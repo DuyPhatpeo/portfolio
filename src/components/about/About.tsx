@@ -1,6 +1,6 @@
 import { User } from "lucide-react";
-import { aboutData } from "@/data/about";
 import AboutAvatar from "./AboutAvatar";
+import { aboutData } from "../../data/about";
 import AboutInfo from "./AboutInfo";
 import AboutAchievements from "./AboutAchievements";
 import AboutQuote from "./AboutQuote";

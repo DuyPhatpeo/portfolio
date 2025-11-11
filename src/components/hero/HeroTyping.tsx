@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
-import { roles } from "@/data/hero";
+import { roles } from "../../data/hero";
 
 export default function HeroTyping() {
   const [currentRole, setCurrentRole] = useState(0);

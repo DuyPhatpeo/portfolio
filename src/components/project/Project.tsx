@@ -2,8 +2,7 @@ import { Github, Monitor } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import { projects as allProjects } from "@/data/projects"; // import từ data/projects
-
+import { projects as allProjects } from "../../data/projects";
 import ProjectFilter from "./ProjectFilter";
 
 export default function Project() {

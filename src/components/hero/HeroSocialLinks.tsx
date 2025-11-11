@@ -1,4 +1,4 @@
-import { socialLinks } from "@/data/hero";
+import { socialLinks } from "../../data/hero";
 
 export default function HeroSocialLinks() {
   return (
