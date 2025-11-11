@@ -1,120 +1,161 @@
-import React, { useRef, useEffect } from "react";
-import { useTheme } from "../ThemeProvider";
+import React, { useRef, useEffect, useState } from "react";
+import { useTheme } from "../../hooks/ThemeProvider";
 
 interface ParticlesProps {
   quantity?: number;
+  staticity?: number;
+  ease?: number;
 }
 
-type Circle = {
-  x: number;
-  y: number;
-  size: number;
-  alpha: number;
-  dx: number;
-  dy: number;
-};
-
-const Particles: React.FC<ParticlesProps> = ({ quantity = 120 }) => {
+const Particles: React.FC<ParticlesProps> = ({
+  quantity = 40,
+  staticity = 50,
+  ease = 50,
+}) => {
   const { darkMode } = useTheme();
+
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
-  const circles = useRef<Circle[]>([]);
+  const circles = useRef<any[]>([]);
+  const mouse = useRef({ x: 0, y: 0 });
   const dpr = window.devicePixelRatio || 1;
-  const canvasSize = useRef({ w: window.innerWidth, h: window.innerHeight });
+  const [size, setSize] = useState({
+    w: window.innerWidth,
+    h: window.innerHeight,
+  });
 
-  const resizeCanvas = () => {
-    if (!canvasRef.current || !ctx.current) return;
+  // Resize canvas khi thay đổi kích thước màn hình
+  useEffect(() => {
+    const handleResize = () =>
+      setSize({ w: window.innerWidth, h: window.innerHeight });
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    canvasSize.current.w = window.innerWidth;
-    canvasSize.current.h = window.innerHeight;
+  // Cập nhật chuột
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouse.current.x = e.clientX - size.w / 2;
+      mouse.current.y = e.clientY - size.h / 2;
+    };
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [size]);
 
-    canvasRef.current.width = canvasSize.current.w * dpr;
-    canvasRef.current.height = canvasSize.current.h * dpr;
-    canvasRef.current.style.width = `${canvasSize.current.w}px`;
-    canvasRef.current.style.height = `${canvasSize.current.h}px`;
+  // Hàm khởi tạo hạt
+  const createCircle = () => {
+    const x = Math.random() * size.w;
+    const y = Math.random() * size.h;
+    const sizeDot = Math.random() * 2 + 0.3;
+    const alpha = 0;
+    const targetAlpha = Math.random() * 0.5 + 0.3;
+    const dx = (Math.random() - 0.5) * 0.3;
+    const dy = (Math.random() - 0.5) * 0.3;
+    const magnetism = 0.2 + Math.random() * 3;
+    return {
+      x,
+      y,
+      sizeDot,
+      alpha,
+      targetAlpha,
+      dx,
+      dy,
+      tx: 0,
+      ty: 0,
+      magnetism,
+    };
+  };
 
-    ctx.current.setTransform(1, 0, 0, 1, 0, 0); // reset transform
-    ctx.current.scale(dpr, dpr);
+  const drawCircle = (circle: any, update = false) => {
+    if (!ctx.current) return;
+    const { x, y, tx, ty, sizeDot, alpha } = circle;
+    ctx.current.save();
+    ctx.current.translate(tx, ty);
+    ctx.current.beginPath();
+    ctx.current.arc(x, y, sizeDot, 0, 2 * Math.PI);
+    ctx.current.fillStyle = `rgba(255,255,255,${alpha})`;
+    ctx.current.shadowColor = "rgba(255,255,255,0.8)";
+    ctx.current.shadowBlur = 6;
+    ctx.current.fill();
+    ctx.current.restore();
 
-    // Tạo các hạt
-    circles.current = [];
+    if (!update) circles.current.push(circle);
+  };
+
+  const drawParticles = () => {
+    if (!ctx.current) return;
+    ctx.current.clearRect(0, 0, size.w, size.h);
+
     for (let i = 0; i < quantity; i++) {
-      circles.current.push({
-        x: Math.random() * canvasSize.current.w,
-        y: Math.random() * canvasSize.current.h,
-        size: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.8 + 0.2,
-        dx: (Math.random() - 0.5) * 0.3,
-        dy: (Math.random() - 0.5) * 0.3,
-      });
+      const circle = createCircle();
+      drawCircle(circle);
     }
   };
 
-  const draw = () => {
+  const animate = () => {
     if (!ctx.current) return;
+    ctx.current.clearRect(0, 0, size.w, size.h);
 
-    // Gradient nền full viewport
-    const gradient = ctx.current.createRadialGradient(
-      canvasSize.current.w / 2,
-      canvasSize.current.h / 2,
-      0,
-      canvasSize.current.w / 2,
-      canvasSize.current.h / 2,
-      canvasSize.current.w / 1.5
-    );
+    circles.current.forEach((circle, i) => {
+      circle.alpha += (circle.targetAlpha - circle.alpha) * 0.02;
+      circle.x += circle.dx;
+      circle.y += circle.dy;
+      circle.tx +=
+        (mouse.current.x / (staticity / circle.magnetism) - circle.tx) / ease;
+      circle.ty +=
+        (mouse.current.y / (staticity / circle.magnetism) - circle.ty) / ease;
 
-    if (darkMode) {
-      gradient.addColorStop(0, "#001f4d");
-      gradient.addColorStop(0.5, "#000022");
-      gradient.addColorStop(1, "#000010");
-    } else {
-      gradient.addColorStop(0, "#e0f7ff");
-      gradient.addColorStop(0.5, "#a0cfff");
-      gradient.addColorStop(1, "#003366");
-    }
+      // Vẽ lại hạt
+      drawCircle(circle, true);
 
-    ctx.current.fillStyle = gradient;
-    ctx.current.fillRect(0, 0, canvasSize.current.w, canvasSize.current.h);
-
-    // vẽ hạt trắng
-    circles.current.forEach((c) => {
-      c.x += c.dx;
-      c.y += c.dy;
-
-      if (c.x < 0 || c.x > canvasSize.current.w) c.dx *= -1;
-      if (c.y < 0 || c.y > canvasSize.current.h) c.dy *= -1;
-
-      ctx.current!.beginPath();
-      ctx.current!.arc(c.x, c.y, c.size, 0, 2 * Math.PI);
-      ctx.current!.fillStyle = `rgba(255,255,255,${c.alpha})`;
-      ctx.current!.shadowColor = "white";
-      ctx.current!.shadowBlur = 8;
-      ctx.current!.fill();
-      ctx.current!.shadowBlur = 0;
+      // Nếu hạt ra khỏi khung thì reset
+      if (
+        circle.x < -circle.sizeDot ||
+        circle.x > size.w + circle.sizeDot ||
+        circle.y < -circle.sizeDot ||
+        circle.y > size.h + circle.sizeDot
+      ) {
+        circles.current.splice(i, 1);
+        drawCircle(createCircle());
+      }
     });
 
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
   };
 
+  // Khởi tạo canvas
   useEffect(() => {
-    if (canvasRef.current) ctx.current = canvasRef.current.getContext("2d");
-    resizeCanvas();
-    draw();
-    window.addEventListener("resize", resizeCanvas);
-    return () => window.removeEventListener("resize", resizeCanvas);
-  }, [darkMode]);
+    if (!canvasRef.current) return;
+    ctx.current = canvasRef.current.getContext("2d");
+
+    canvasRef.current.width = size.w * dpr;
+    canvasRef.current.height = size.h * dpr;
+    canvasRef.current.style.width = `${size.w}px`;
+    canvasRef.current.style.height = `${size.h}px`;
+    ctx.current?.scale(dpr, dpr);
+
+    circles.current = [];
+    drawParticles();
+    animate();
+  }, [size, quantity]);
+
+  // 🎨 Gradient nền thay đổi theo dark/light mode
+  const backgroundGradient = darkMode
+    ? "linear-gradient(180deg, #0a0b1a 0%, #0d1530 40%, #091022 80%, #050814 100%)"
+    : "linear-gradient(180deg, #e9f5ff 0%, #c1dcff 40%, #8abfff 80%, #b0d0ff 100%)";
 
   return (
     <canvas
       ref={canvasRef}
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
+        inset: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: -1, // nền phía sau mọi thứ
-        pointerEvents: "none", // không cản click
+        zIndex: -1,
+        pointerEvents: "none",
+        background: backgroundGradient,
+        transition: "background 0.6s ease-in-out",
       }}
     />
   );

@@ -1,30 +1,51 @@
-// src/App.tsx
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "./components/ThemeProvider";
+import { ThemeProvider, useTheme } from "./hooks/ThemeProvider";
 import Particles from "./components/theme/Particles";
-import DarkModeToggle from "./components/DarkModeToggle";
+import DarkModeToggle from "./components/general/DarkModeToggle";
 import AppRoutes from "./routes/AppRoutes";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./GlobalStyle.css";
+
+const AppContent: React.FC = () => {
+  const { darkMode } = useTheme();
+
+  return (
+    <div className="relative min-h-screen bg-transparent">
+      {/* Particles nền */}
+      <Particles quantity={80} />
+
+      {/* Nút toggle dark mode */}
+      <DarkModeToggle />
+
+      {/* Nội dung router */}
+      <div className="relative z-10">
+        <AppRoutes />
+      </div>
+
+      {/* Toast */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={darkMode ? "dark" : "light"}
+      />
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   return (
     <ThemeProvider>
       <Router>
-        {/* Nền particles full màn hình */}
-        <div className="w-screen h-screen relative overflow-hidden">
-          <Particles quantity={120} />
-
-          {/* Nút toggle */}
-          <div className="absolute top-5 right-5 z-20">
-            <DarkModeToggle />
-          </div>
-
-          {/* Nội dung router */}
-          <div className="absolute inset-0 z-10">
-            <AppRoutes />
-          </div>
-        </div>
+        <AppContent />
       </Router>
     </ThemeProvider>
   );
