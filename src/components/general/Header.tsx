@@ -18,14 +18,17 @@ const Header: React.FC = () => {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-sm bg-white/50 dark:bg-gray-900/50 transition-colors duration-300">
+    <header
+      className={`sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300 border-b 
+        ${darkMode ? "border-white/10" : "border-gray-200/20"}`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <a href="#home" className="flex items-center space-x-2">
             <span
               className={`text-2xl font-bold transition-colors duration-300 ${
-                darkMode ? "text-cyan-400" : "text-blue-600"
+                darkMode ? "text-primary" : "text-primary"
               }`}
             >
               My Portfolio
@@ -40,8 +43,8 @@ const Header: React.FC = () => {
                 href={item.href}
                 className={`text-base font-medium transition-colors duration-200 ${
                   darkMode
-                    ? "text-gray-200 hover:text-cyan-400"
-                    : "text-gray-800 hover:text-blue-600"
+                    ? "text-gray-200 hover:text-primary"
+                    : "text-gray-800 hover:text-primary-deep"
                 }`}
               >
                 {item.name}
@@ -56,8 +59,8 @@ const Header: React.FC = () => {
             aria-controls="mobile-menu"
             className={`md:hidden p-2 rounded-full transition-colors duration-200 ${
               darkMode
-                ? "text-gray-200 hover:bg-gray-800/30"
-                : "text-gray-800 hover:bg-gray-100/50"
+                ? "text-gray-200 hover:bg-white/10"
+                : "text-gray-800 hover:bg-black/5"
             }`}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -79,8 +82,8 @@ const Header: React.FC = () => {
               href={item.href}
               className={`block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 ${
                 darkMode
-                  ? "text-gray-200 hover:bg-gray-800/30 hover:text-cyan-400"
-                  : "text-gray-800 hover:bg-gray-100/50 hover:text-blue-600"
+                  ? "text-gray-200 hover:bg-white/10 hover:text-primary"
+                  : "text-gray-800 hover:bg-black/5 hover:text-primary-deep"
               }`}
             >
               {item.name}
