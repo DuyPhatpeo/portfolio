@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import Header from "../components/Header";
 import { useTheme } from "../hooks/useTheme";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import ColorPalette from "../components/ColorPalette";
 import ToastDemo from "../components/ToastDemo";
 
@@ -14,33 +12,25 @@ const HomePage: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-neutral dark:bg-neutral text-gray-900 dark:text-gray-100 transition-colors duration-500">
-      {/* ✅ Toast container */}
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-        closeOnClick
-        pauseOnHover
-        draggable
-        theme={theme === "dark" ? "dark" : "light"}
-      />
-
+    <div className="flex flex-col min-h-screen transition-colors duration-500 bg-transparent text-gray-900 dark:text-gray-100">
+      {/* Header */}
       <Header />
 
-      <main className="flex flex-col items-center px-6 py-16">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-10 text-center">
+      {/* Main content */}
+      <main className="flex flex-col items-center px-6 py-16 space-y-10 relative z-10">
+        <h1 className="text-4xl sm:text-5xl font-bold text-center">
           🎨 Dino UI Theme Colors
         </h1>
 
-        {/* Bảng màu */}
+        {/* Color palette */}
         <ColorPalette />
 
-        {/* Các nút thao tác Toast */}
+        {/* Toast buttons */}
         <ToastDemo theme={theme} toggleTheme={toggleTheme} />
       </main>
 
-      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-500 border-t border-gray-200 dark:border-gray-800">
+      {/* Footer */}
+      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-gray-200 dark:border-gray-800 relative z-10">
         © {new Date().getFullYear()} Dino UI Playground. Crafted with 🧠 & ⚙️
       </footer>
     </div>
