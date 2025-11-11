@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Header from "../components/general/Header";
 
-const HomePage: React.FC = () => {
+const PorfolioPage: React.FC = () => {
   useEffect(() => {
     document.title = "My Portfolio";
     document.documentElement.style.scrollBehavior = "smooth";
@@ -137,4 +137,4 @@ const HomePage: React.FC = () => {
   );
 };
 
-export default HomePage;
+export default PorfolioPage;
