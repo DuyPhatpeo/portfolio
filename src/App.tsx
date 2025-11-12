@@ -17,7 +17,7 @@ const AppContent: React.FC = () => {
       <Particles quantity={80} />
 
       {/* Nút toggle dark mode */}
-      <DarkModeToggle />
+      {/* <DarkModeToggle /> */}
 
       {/* Nội dung router */}
       <div className="relative z-10">

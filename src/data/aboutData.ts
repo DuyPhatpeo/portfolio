@@ -1,5 +1,4 @@
 import {
-  User,
   Heart,
   Trophy,
   Target,
@@ -15,7 +14,7 @@ export const aboutData = {
   avatar: "/avt2.jpg",
   personal: [
     { icon: Calendar, label: "Sinh ngày", value: "28/10/2003" },
-    { icon: MapPin, label: "Đến từ", value: "Nha Trang" },
+    { icon: MapPin, label: "Đến từ", value: "Việt Nam" },
     { icon: Gamepad2, label: "Sở thích", value: "Gaming, Phim" },
     { icon: Coffee, label: "Yêu thích", value: "Coffee & Code" },
   ],

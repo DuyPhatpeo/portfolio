@@ -1,4 +1,4 @@
-import { Facebook, Youtube, Linkedin, Github } from "lucide-react";
+import { Facebook, Youtube, Linkedin, Github, Code2 } from "lucide-react";
 
 export const roles = ["Lập Trình Website", "Thiết Kế UI"];
 
@@ -24,3 +24,13 @@ export const socialLinks = [
     color: "hover:text-black",
   },
 ];
+
+// Thông tin chính của Hero Section
+export const heroInfo = {
+  name: "Trần Duy Phát",
+  avatar: "/avt2.jpg",
+  greeting: "Xin chào! Tôi là",
+  description:
+    "Tôi tạo ra những trải nghiệm web đẹp mắt và tương tác cao, biến ý tưởng thành hiện thực với công nghệ hiện đại.",
+  mainIcon: Code2,
+};
