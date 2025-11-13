@@ -21,6 +21,7 @@ export const skills = [
   // Backend
   { name: "Nodejs", logo: "https://skillicons.dev/icons?i=nodejs" },
   { name: "Laravel", logo: "https://skillicons.dev/icons?i=laravel" },
+  { name: "Discord.js", logo: "https://skillicons.dev/icons?i=discordjs" },
 
   // Database
   { name: "MySQL", logo: "https://skillicons.dev/icons?i=mysql" },
