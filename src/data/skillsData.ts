@@ -8,7 +8,6 @@ export const skills = [
   // Frontend Frameworks/Libraries
   { name: "React JS", logo: "https://skillicons.dev/icons?i=react" },
   { name: "Next.js", logo: "https://skillicons.dev/icons?i=nextjs&w=white" },
-  // { name: "Redux", logo: "https://skillicons.dev/icons?i=redux" },
 
   // Styling
   { name: "Sass", logo: "https://skillicons.dev/icons?i=sass" },
@@ -33,4 +32,7 @@ export const skills = [
 
   // Design tools
   { name: "Figma", logo: "https://skillicons.dev/icons?i=figma" },
+
+  // Deployment
+  { name: "Vercel", logo: "https://skillicons.dev/icons?i=vercel" },
 ];

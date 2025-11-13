@@ -18,27 +18,33 @@ const SkillsSection = () => {
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="relative flex items-center justify-center cursor-pointer"
+            className="relative flex items-center justify-center cursor-pointer group"
             onMouseEnter={() => setHoveredSkill(skill.name)}
             onMouseLeave={() => setHoveredSkill(null)}
           >
             {/* Tooltip */}
             <div
-              className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none z-50 transition-opacity duration-200 ${
+              className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none z-50 transition-opacity duration-200 whitespace-nowrap ${
                 hoveredSkill === skill.name ? "opacity-100" : "opacity-0"
               }`}
             >
               {skill.name}
             </div>
 
-            {/* Logo */}
-            <img
-              src={skill.logo}
-              alt={skill.name}
-              className={`w-16 h-16 object-contain transition-transform duration-300 ${
-                hoveredSkill === skill.name ? "scale-110" : "scale-100"
-              }`}
-            />
+            {/* Keycap Container */}
+            <div className="relative w-20 h-20 perspective-1000">
+              {/* Keycap Base (bottom shadow) */}
+              <div className="absolute inset-0 bg-gradient-to-b from-gray-300 to-gray-400 rounded-3xl transform translate-y-1 transition-transform duration-100"></div>
+
+              {/* Keycap Top */}
+              <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-100 rounded-3xl shadow-lg transform -translate-y-1 group-hover:translate-y-0 transition-all duration-100 flex items-center justify-center">
+                <img
+                  src={skill.logo}
+                  alt={skill.name}
+                  className="w-20 h-20 object-contain transition-transform duration-100"
+                />
+              </div>
+            </div>
           </div>
         ))}
       </div>
