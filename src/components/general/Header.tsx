@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           </button>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center space-x-6">
+          <nav className="hidden md:flex items-center gap-x-2">
             {navItems.map((item) => {
               const isActive = activeSection === item.href;
               return (
@@ -206,15 +206,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xl ${
+            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xlbackdrop-blur-2xl border-b ${
               darkMode
-                ? "bg-white/5 shadow-lg shadow-black/5"
-                : "bg-white/80 shadow-lg shadow-slate-200/50"
+                ? "bg-white/5 border-white/10 shadow-lg shadow-black/5"
+                : "bg-white/80 border-white/40 shadow-lg shadow-slate-200/50"
             }`}
-            style={{
-              backdropFilter: "blur(20px) saturate(180%)",
-              WebkitBackdropFilter: "blur(20px) saturate(180%)",
-            }}
           >
             {/* Gradient blur right */}
             <div
