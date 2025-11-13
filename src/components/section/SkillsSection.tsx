@@ -10,7 +10,7 @@ const SkillsSection = () => {
       {/* Header */}
       <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-extrabold leading-snug md:leading-snug bg-clip-text text-transparent bg-primary mb-4">
-          Kỹ Năng
+          Skills
         </h2>
       </div>
 
@@ -38,7 +38,7 @@ const SkillsSection = () => {
             </div>
 
             {/* Keycap Container */}
-            <div className="relative w-20 h-20">
+            <div className="relative w-25 h-25">
               {/* Keycap Base */}
               <div
                 className={`absolute inset-0 bg-gradient-to-b from-gray-300 to-gray-400 rounded-3xl transform transition-all duration-100 ${
