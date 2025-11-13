@@ -40,7 +40,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-20 md:pt-24 scroll-mt-20 md:scroll-mt-24"
+      className="relative min-h-screen flex items-center justify-center md:pt-24 scroll-mt-20 md:scroll-mt-24"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Avatar - Mobile lên trên */}
@@ -60,10 +60,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
           <div className="text-black dark:text-white font-bold text-lg md:text-xl lg:text-2xl">
             I am
           </div>
-          <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-snug
-                         bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-          >
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-snug bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
             {name}
           </h1>
 

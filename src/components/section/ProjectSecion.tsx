@@ -41,8 +41,8 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-10 text-center bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-          Dự Án Nổi Bật
+        <h2 className="text-4xl font-bold mb-10 text-center bg-clip-text text-transparent leading-snug bg-gradient-to-r from-primary to-secondary">
+          Featured Projects
         </h2>
 
         {/* Grid chỉ hiển thị hình + tên */}
