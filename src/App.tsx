@@ -13,7 +13,7 @@ const AppContent: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-transparent">
       {/* Particles nền */}
-      <Particles quantity={80} />
+      <Particles quantity={50} />
 
       {/* Nút toggle dark mode */}
       {/* <DarkModeToggle /> */}
