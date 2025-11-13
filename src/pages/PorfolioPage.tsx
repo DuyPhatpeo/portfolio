@@ -30,7 +30,7 @@ const PortfolioPage: React.FC = () => {
       {/* Main Content */}
       <main className="flex-1 relative z-10">
         {/* Home Section */}
-        <HeroSection />
+        <HeroSection scrollToSection={scrollToSection} />
 
         <AboutSection />
 

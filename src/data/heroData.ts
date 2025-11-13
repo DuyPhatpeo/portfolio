@@ -1,6 +1,6 @@
 import { Facebook, Youtube, Linkedin, Github, Code2 } from "lucide-react";
 
-export const roles = ["Lập Trình Website", "Thiết Kế UI"];
+export const roles = ["Web Developer", "Front End", "UI Designer"];
 
 export const socialLinks = [
   {
@@ -25,12 +25,12 @@ export const socialLinks = [
   },
 ];
 
-// Thông tin chính của Hero Section
+// Main info for Hero Section
 export const heroInfo = {
-  name: "Trần Duy Phát",
+  name: "Tran Duy Phat",
   avatar: "/avt2.jpg",
-  greeting: "Xin chào! Tôi là",
+  greeting: "Hello! I am",
   description:
-    "Tôi tạo ra những trải nghiệm web đẹp mắt và tương tác cao, biến ý tưởng thành hiện thực với công nghệ hiện đại.",
+    "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
   mainIcon: Code2,
 };
