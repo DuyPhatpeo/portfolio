@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useTheme } from "../../hooks/ThemeProvider";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
@@ -10,6 +11,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const menuRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null); // ref cho button toggle
 
   const navItems = useMemo(
     () => [
@@ -23,17 +26,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   );
 
   // Detect active section on scroll
-  React.useEffect(() => {
+  useEffect(() => {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.href);
       const scrollPosition = window.scrollY + 100;
-
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetBottom = offsetTop + element.offsetHeight;
-
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
             setActiveSection(section);
             break;
@@ -43,10 +44,42 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
-
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
+
+  // Click outside để đóng menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menuRef.current &&
+        toggleRef.current &&
+        !menuRef.current.contains(event.target as Node) &&
+        !toggleRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
+
+  // Motion variants
+  const menuVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.05, when: "beforeChildren" },
+    },
+    exit: { opacity: 0, y: -20, transition: { when: "afterChildren" } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: 20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
+    exit: { opacity: 0, x: 20, transition: { duration: 0.2 } },
+  };
 
   return (
     <header
@@ -62,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo with gradient */}
+          {/* Logo */}
           <button
             onClick={() => scrollToSection("home")}
             className="group flex items-center space-x-3 relative"
@@ -81,8 +114,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </span>
           </button>
 
-          {/* Desktop nav with animated underline */}
-          <nav className="hidden md:flex items-center space-x-1">
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center space-x-6">
             {navItems.map((item) => {
               const isActive = activeSection === item.href;
               return (
@@ -92,7 +125,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     scrollToSection(item.href);
                     setActiveSection(item.href);
                   }}
-                  className={`relative px-4 py-2 text-sm font-bold tracking-wide transition-all duration-300 group ${
+                  className={`relative px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300 group ${
                     isActive
                       ? darkMode
                         ? "text-primary"
@@ -118,15 +151,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             })}
           </nav>
 
-          {/* Right side with enhanced theme toggle */}
+          {/* Right side */}
           <div className="flex items-center space-x-3">
-            {/* Theme toggle with glow effect */}
+            {/* Theme toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`relative p-3 rounded-xl transition-all duration-300 group border ${
-                darkMode
-                  ? "hover:bg-white/10 border-white/20"
-                  : "hover:bg-slate-900/5 border-slate-300/50"
+              className={`relative p-3 rounded-xl transition-all duration-300 group  ${
+                darkMode ? "hover:bg-white/10 " : "hover:bg-slate-900/5 "
               }`}
             >
               <div
@@ -149,13 +180,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               </div>
             </button>
 
-            {/* Mobile menu toggle with glassmorphism */}
+            {/* Mobile toggle */}
             <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 border ${
+              ref={toggleRef}
+              onClick={() => setIsOpen((prev) => !prev)} // toggle đơn giản
+              className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300  ${
                 darkMode
-                  ? "text-white hover:bg-white/10 border-white/20"
-                  : "text-slate-900 hover:bg-slate-900/5 border-slate-300/50"
+                  ? "text-white hover:bg-white/10 "
+                  : "text-slate-900 hover:bg-slate-900/5 "
               }`}
             >
               <span>{isOpen ? "CLOSE" : "MENU"}</span>
@@ -165,70 +197,71 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Dropdown Mobile Menu - Full Width */}
-      <div
-        className={`md:hidden fixed left-0 right-0 top-20 overflow-hidden transition-all duration-500 ease-out backdrop-blur-3xl border-b ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        } ${
-          darkMode
-            ? "bg-slate-900/95 border-white/10 shadow-2xl shadow-black/50"
-            : "bg-white/95 border-slate-200/50 shadow-2xl shadow-slate-300/50"
-        }`}
-        style={{
-          backdropFilter: "blur(40px) saturate(180%)",
-          WebkitBackdropFilter: "blur(40px) saturate(180%)",
-        }}
-      >
-        {/* Subtle gradient overlay */}
-        <div
-          className={`absolute top-0 right-0 w-1/2 h-full opacity-20 blur-3xl pointer-events-none ${
-            darkMode ? "bg-primary/70" : "bg-primary-deep/70"
-          }`}
-        />
-
-        {/* Menu items with staggered animation - Aligned Right */}
-        <nav className="relative flex flex-col items-end p-6 pr-8">
-          {navItems.map((item, i) => {
-            const isActive = activeSection === item.href;
-            return (
-              <button
-                key={item.name}
-                onClick={() => {
-                  scrollToSection(item.href);
-                  setActiveSection(item.href);
-                  setIsOpen(false);
-                }}
-                className={`group relative text-right px-6 py-3 text-xl font-bold transition-all duration-300 rounded-xl backdrop-blur-sm ${
-                  isActive
-                    ? darkMode
-                      ? "text-primary"
-                      : "text-primary-deep"
-                    : darkMode
-                    ? "text-slate-300 hover:text-white"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-                style={{
-                  transitionDelay: isOpen ? `${i * 50}ms` : "0ms",
-                  transform: isOpen ? "translateY(0)" : "translateY(-20px)",
-                  opacity: isOpen ? 1 : 0,
-                }}
-              >
-                <div
-                  className={`absolute inset-0 rounded-xl transition-transform duration-300 ${
-                    isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                  } ${darkMode ? "bg-white/10" : "bg-white/10"}`}
-                />
-                <div
-                  className={`absolute right-0 top-1/2 -translate-y-1/2 w-1 rounded-full transition-all duration-300 ${
-                    isActive ? "h-3/4" : "h-0 group-hover:h-3/4"
-                  } ${darkMode ? "bg-primary" : "bg-primary-deep"}`}
-                />
-                <span className="relative z-10">{item.name}</span>
-              </button>
-            );
-          })}
-        </nav>
-      </div>
+      {/* Mobile dropdown menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            ref={menuRef}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={menuVariants}
+            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xl ${
+              darkMode
+                ? "bg-white/5 shadow-lg shadow-black/5"
+                : "bg-white/80 shadow-lg shadow-slate-200/50"
+            }`}
+            style={{
+              backdropFilter: "blur(20px) saturate(180%)",
+              WebkitBackdropFilter: "blur(20px) saturate(180%)",
+            }}
+          >
+            {/* Gradient blur right */}
+            <div
+              className={`absolute top-0 right-0 w-1/2 h-full opacity-20 blur-3xl pointer-events-none ${
+                darkMode ? "bg-primary/70" : "bg-primary-deep/70"
+              }`}
+            />
+            <nav className="relative flex flex-col items-end p-6 pr-8 space-y-4">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href;
+                return (
+                  <motion.button
+                    key={item.name}
+                    onClick={() => {
+                      scrollToSection(item.href);
+                      setActiveSection(item.href);
+                      setIsOpen(false); // bấm vào item → đóng menu
+                    }}
+                    variants={itemVariants}
+                    className={`group relative text-right px-8 py-4 text-xl font-bold transition-all duration-300 rounded-xl ${
+                      isActive
+                        ? darkMode
+                          ? "text-primary"
+                          : "text-primary-deep"
+                        : darkMode
+                        ? "text-slate-300 hover:text-white"
+                        : "text-slate-600 hover:text-slate-900"
+                    }`}
+                  >
+                    <div
+                      className={`absolute inset-0 rounded-xl transition-transform duration-300 ${
+                        isActive ? "scale-100" : "scale-0 group-hover:scale-100"
+                      } ${darkMode ? "bg-white/10" : "bg-slate-900/5"}`}
+                    />
+                    <div
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 w-1 rounded-full transition-all duration-300 ${
+                        isActive ? "h-3/4" : "h-0 group-hover:h-3/4"
+                      } ${darkMode ? "bg-primary" : "bg-primary-deep"}`}
+                    />
+                    <span className="relative z-10">{item.name}</span>
+                  </motion.button>
+                );
+              })}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
