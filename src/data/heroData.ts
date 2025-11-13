@@ -27,9 +27,8 @@ export const socialLinks = [
 
 // Main info for Hero Section
 export const heroInfo = {
-  name: "Tran Duy Phat",
+  name: "Trần Duy Phát",
   avatar: "/avt2.jpg",
-  greeting: "Hello! I am",
   description:
     "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
   mainIcon: Code2,
