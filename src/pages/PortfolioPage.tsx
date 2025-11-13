@@ -4,7 +4,7 @@ import Header from "../components/general/Header";
 import AboutSection from "../components/section/AboutSection";
 import HeroSection from "../components/section/HeroSetion";
 import SkillsSection from "../components/section/SkillsSection";
-import ProjectsSection from "../components/section/ProfectSecion";
+import ProjectsSection from "../components/section/ProjectSecion";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -37,22 +37,6 @@ const PortfolioPage: React.FC = () => {
         <SkillsSection />
 
         <ProjectsSection />
-        {/* Contact Section */}
-        <section
-          id="contact"
-          className="py-20 px-6 max-w-4xl mx-auto text-center scroll-mt-16"
-        >
-          <h2 className="text-3xl font-bold mb-6">Contact Me</h2>
-          <p className="text-gray-800 dark:text-gray-300 mb-6">
-            Interested in working together? Reach out via email or social media.
-          </p>
-          <a
-            href="mailto:example@email.com"
-            className="px-6 py-3 rounded-lg bg-primary text-white font-medium shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 inline-block"
-          >
-            Say Hello
-          </a>
-        </section>
       </main>
 
       {/* Footer */}
