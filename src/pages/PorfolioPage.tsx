@@ -8,7 +8,7 @@ import ProjectsSection from "../components/section/ProfectSecion";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
-    document.title = "My Portfolio";
+    document.title = "Dino Péo - Portfolio";
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
