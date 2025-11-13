@@ -57,7 +57,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
 
         {/* Text Content */}
         <div className="text-center md:text-left space-y-4 md:space-y-6 order-2 md:order-1">
-          <div className="text-primary font-bold text-lg md:text-xl lg:text-2xl">
+          <div className="text-black dark:text-white font-bold text-lg md:text-xl lg:text-2xl">
             I am
           </div>
           <h1
