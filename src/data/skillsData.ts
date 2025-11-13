@@ -60,4 +60,8 @@ export const skills = [
     name: "MySQL",
     logo: "https://skillicons.dev/icons?i=mysql",
   },
+  {
+    name: "Firebase",
+    logo: "https://skillicons.dev/icons?i=firebase",
+  },
 ];

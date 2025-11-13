@@ -4,6 +4,7 @@ import Header from "../components/general/Header";
 import AboutSection from "../components/section/AboutSection";
 import HeroSection from "../components/section/HeroSetion";
 import SkillsSection from "../components/section/SkillsSection";
+import ProjectsSection from "../components/section/ProfectSecion";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -35,33 +36,7 @@ const PortfolioPage: React.FC = () => {
 
         <SkillsSection />
 
-        {/* Projects Section */}
-        <section
-          id="projects"
-          className="py-20 px-6 max-w-6xl mx-auto scroll-mt-16"
-        >
-          <h2 className="text-3xl font-bold mb-10 text-center">Projects</h2>
-          <div className="grid gap-8 md:grid-cols-2">
-            {["Project A", "Project B", "Project C", "Project D"].map(
-              (proj) => (
-                <div
-                  key={proj}
-                  className="rounded-2xl overflow-hidden backdrop-blur-md bg-white/20 dark:bg-gray-900/30 border border-white/10 shadow-md hover:shadow-xl hover:scale-[1.02] transition-all duration-300"
-                >
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{proj}</h3>
-                    <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </section>
-
+        <ProjectsSection />
         {/* Contact Section */}
         <section
           id="contact"
