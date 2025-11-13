@@ -1,17 +1,17 @@
 export const projects = [
   {
-    name: "Dino Blogging",
-    desc: "Nền tảng blog cá nhân với quản lý bài viết, danh mục, và người dùng.",
-    tech: ["ReactJS", "Styled-Components", "Firebase"],
-    link: "https://github.com/DuyPhatpeo/dino-blogging",
-    demo: "https://dinoblogging.vercel.app/",
-    image: "",
-    category: "Blog",
-  },
-  {
     name: "Dino Movie",
     desc: "Ứng dụng xem phim trực tuyến...",
-    tech: ["ReactJS", "TailwindCSS"],
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
     link: "https://github.com/DuyPhatpeo/simple-movies",
     demo: "https://dinomovie.vercel.app/",
     image: "/dinomovie.png",
@@ -20,7 +20,16 @@ export const projects = [
   {
     name: "Portfolio Website",
     desc: "Website portfolio cá nhân...",
-    tech: ["ReactJS", "TailwindCSS"],
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
     link: "https://github.com/DuyPhatpeo/tranduyphat",
     demo: "https://tranduyphat.vercel.app/",
     image: "/portfolio.jpg",
@@ -29,7 +38,16 @@ export const projects = [
   {
     name: "Dino Bot",
     desc: "Discord bot thông minh...",
-    tech: ["NodeJS", "Discord.js"],
+    tech: [
+      {
+        name: "NodeJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Discord.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg",
+      },
+    ],
     link: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",
     image: "/dinobotweb.png",
@@ -38,7 +56,16 @@ export const projects = [
   {
     name: "Dino Store",
     desc: "ReactJS e-commerce hiện đại...",
-    tech: ["ReactJS", "TailwindCSS"],
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
     link: "https://github.com/DuyPhatpeo/DinoStore",
     demo: "https://dinostorevn.vercel.app/",
     image: "/dinostore.jpg",
@@ -47,17 +74,22 @@ export const projects = [
   {
     name: "ShopFSTYLE",
     desc: "Website thương mại điện tử...",
-    tech: ["PHP", "Bootstrap", "MySQL"],
+    tech: [
+      {
+        name: "PHP",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+      },
+      {
+        name: "Bootstrap",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+      },
+      {
+        name: "MySQL",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
+    ],
     link: "https://github.com/DuyPhatpeo/ShopFSTYLE",
     image: "/shopfstyle.jpg",
     category: "E-commerce",
-  },
-  {
-    name: "D2P",
-    desc: "Hệ thống đặt vé xem phim...",
-    tech: ["PHP", "MySQL"],
-    link: "https://github.com/nguyenduydan/Website_BanVeXemPhim",
-    image: "",
-    category: "Entertainment",
   },
 ];
