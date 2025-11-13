@@ -1,6 +1,6 @@
 import { Facebook, Youtube, Linkedin, Github, Code2 } from "lucide-react";
 
-export const roles = ["Web Developer", "Front End", "UI Designer"];
+export const roles = ["Web Developer", "Front-End Developer"];
 
 export const socialLinks = [
   {
