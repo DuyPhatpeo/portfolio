@@ -1,4 +1,5 @@
 export const skills = [
+  { name: "vscode", logo: "https://skillicons.dev/icons?i=vscode" },
   // Core Frontend
   { name: "HTML", logo: "https://skillicons.dev/icons?i=html" },
   { name: "CSS", logo: "https://skillicons.dev/icons?i=css" },
@@ -6,7 +7,7 @@ export const skills = [
   { name: "TypeScript", logo: "https://skillicons.dev/icons?i=typescript" },
 
   // Frontend Frameworks/Libraries
-  { name: "React JS", logo: "https://skillicons.dev/icons?i=react" },
+  { name: "ReactJS", logo: "https://skillicons.dev/icons?i=react" },
   { name: "Next.js", logo: "https://skillicons.dev/icons?i=nextjs&w=white" },
 
   // Styling
