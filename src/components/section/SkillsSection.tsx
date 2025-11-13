@@ -1,30 +1,30 @@
 import React, { useState } from "react";
 import { skills } from "../../data/skillsData";
+
 const SkillsSection = () => {
-  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
   return (
-    <section className="py-20 px-6 max-w-7xl mx-auto">
+    <section className="py-20 px-6 max-w-7xl mx-auto relative">
+      {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 mb-4">
+        <h2 className="text-4xl md:text-5xl font-extrabold leading-snug md:leading-snug bg-clip-text text-transparent bg-primary mb-4">
           Kỹ Năng
         </h2>
-        <p className="text-gray-500 text-lg">
-          Những công nghệ và kỹ năng tôi sử dụng hàng ngày
-        </p>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-5xl mx-auto">
+      {/* Skills Grid */}
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-5xl mx-auto px-2 md:px-0">
         {skills.map((skill) => (
           <div
             key={skill.name}
-            className="relative flex items-center justify-center cursor-pointer transition-transform duration-300"
+            className="relative flex items-center justify-center cursor-pointer"
             onMouseEnter={() => setHoveredSkill(skill.name)}
             onMouseLeave={() => setHoveredSkill(null)}
           >
             {/* Tooltip */}
             <div
-              className={`absolute -top-10 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none z-50 transition-opacity duration-200 ${
+              className={`absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none z-50 transition-opacity duration-200 ${
                 hoveredSkill === skill.name ? "opacity-100" : "opacity-0"
               }`}
             >

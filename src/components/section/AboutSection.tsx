@@ -36,9 +36,10 @@ const AboutSection: React.FC = () => {
 
             {/* Name and bio */}
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-3xl md:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-deep mb-4">
+              <h3 className="text-3xl md:text-4xl font-extrabold leading-snug md:leading-snug bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-deep mb-4">
                 {aboutData.name}
               </h3>
+
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-2xl">
                 {aboutData.bio}
               </p>

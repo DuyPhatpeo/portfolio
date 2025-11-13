@@ -1,66 +1,36 @@
 export const skills = [
-  {
-    name: "HTML",
-    logo: "https://skillicons.dev/icons?i=html",
-  },
+  // Core Frontend
+  { name: "HTML", logo: "https://skillicons.dev/icons?i=html" },
   { name: "CSS", logo: "https://skillicons.dev/icons?i=css" },
-  {
-    name: "JavaScript",
-    logo: "https://skillicons.dev/icons?i=javascript",
-  },
-  {
-    name: "TypeScript",
-    logo: "https://skillicons.dev/icons?i=typescript",
-  },
-  {
-    name: "React JS",
-    logo: "https://skillicons.dev/icons?i=react",
-  },
-  {
-    name: "Next.js",
-    logo: "https://skillicons.dev/icons?i=nextjs&w=white",
-  },
-  {
-    name: "Redux",
-    logo: "https://skillicons.dev/icons?i=redux",
-  },
-  {
-    name: "Sass",
-    logo: "https://skillicons.dev/icons?i=sass",
-  },
-  {
-    name: "Vite",
-    logo: "https://skillicons.dev/icons?i=vite",
-  },
-  {
-    name: "TailwindCSS",
-    logo: "https://skillicons.dev/icons?i=tailwind",
-  },
-  {
-    name: "Bootstrap",
-    logo: "https://skillicons.dev/icons?i=bootstrap",
-  },
-  { name: "Figma", logo: "https://skillicons.dev/icons?i=figma" },
-  {
-    name: "Laravel",
-    logo: "https://skillicons.dev/icons?i=laravel",
-  },
-  { name: "Git", logo: "https://skillicons.dev/icons?i=git" },
-  {
-    name: "GitHub",
-    logo: "https://skillicons.dev/icons?i=github&w=white",
-  },
+  { name: "JavaScript", logo: "https://skillicons.dev/icons?i=javascript" },
+  { name: "TypeScript", logo: "https://skillicons.dev/icons?i=typescript" },
+
+  // Frontend Frameworks/Libraries
+  { name: "React JS", logo: "https://skillicons.dev/icons?i=react" },
+  { name: "Next.js", logo: "https://skillicons.dev/icons?i=nextjs&w=white" },
+  // { name: "Redux", logo: "https://skillicons.dev/icons?i=redux" },
+
+  // Styling
+  { name: "Sass", logo: "https://skillicons.dev/icons?i=sass" },
+  { name: "TailwindCSS", logo: "https://skillicons.dev/icons?i=tailwind" },
+  { name: "Bootstrap", logo: "https://skillicons.dev/icons?i=bootstrap" },
+
+  // Build tools / Package manager
+  { name: "Vite", logo: "https://skillicons.dev/icons?i=vite" },
   { name: "npm", logo: "https://skillicons.dev/icons?i=npm" },
-  {
-    name: "MySQL",
-    logo: "https://skillicons.dev/icons?i=mysql",
-  },
-  {
-    name: "Firebase",
-    logo: "https://skillicons.dev/icons?i=firebase",
-  },
-  {
-    name: "Nodejs",
-    logo: "https://skillicons.dev/icons?i=nodejs",
-  },
+
+  // Backend
+  { name: "Nodejs", logo: "https://skillicons.dev/icons?i=nodejs" },
+  { name: "Laravel", logo: "https://skillicons.dev/icons?i=laravel" },
+
+  // Database
+  { name: "MySQL", logo: "https://skillicons.dev/icons?i=mysql" },
+  { name: "Firebase", logo: "https://skillicons.dev/icons?i=firebase" },
+
+  // Version control
+  { name: "Git", logo: "https://skillicons.dev/icons?i=git" },
+  { name: "GitHub", logo: "https://skillicons.dev/icons?i=github&w=white" },
+
+  // Design tools
+  { name: "Figma", logo: "https://skillicons.dev/icons?i=figma" },
 ];
