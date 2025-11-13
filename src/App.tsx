@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ThemeProvider, useTheme } from "./hooks/ThemeProvider";
 import Particles from "./components/theme/Particles";
-import DarkModeToggle from "./components/general/DarkModeToggle";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

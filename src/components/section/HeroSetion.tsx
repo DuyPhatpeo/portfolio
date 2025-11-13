@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Sparkles, ArrowRight, Send, ChevronDown } from "lucide-react";
 import { roles, socialLinks, heroInfo } from "../../data/heroData";
 
