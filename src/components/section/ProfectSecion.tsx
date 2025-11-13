@@ -59,19 +59,22 @@ export default function ProjectsSection() {
                   alt={project.name}
                   className="absolute inset-0 w-full h-full object-cover transition"
                 />
-              </div>
 
-              {/* Tên + Category */}
-              <div className="p-5 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 text-center">
-                  {project.name}
-                </h3>
-                <div className="flex items-center justify-center gap-2">
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
-                  <span className="px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-primary/20 to-secondary/20 text-primary border border-primary/30 shadow-sm">
-                    {project.category}
-                  </span>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+                {/* Overlay gradient từ dưới lên */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+                {/* Tên + Category đè lên ảnh */}
+                <div className="absolute bottom-0 left-0 right-0 p-5">
+                  <h3 className="text-lg font-semibold text-white mb-2 text-center drop-shadow-lg">
+                    {project.name}
+                  </h3>
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                    <span className="px-3 py-1 text-xs font-medium rounded-full bg-white/20 backdrop-blur-md text-white border border-white/30 shadow-lg">
+                      {project.category}
+                    </span>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+                  </div>
                 </div>
               </div>
             </div>
