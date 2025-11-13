@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 
 export const aboutData = {
-  name: "Tran Duy Phat (Dino Péo)",
+  name: "Trần Duy Phát (Dino Péo)",
   bio: "I'm a developer specializing in creating modern and optimized web experiences. I always explore new technologies and enjoy programming challenges.",
   avatar: "/avt2.jpg",
   personal: [

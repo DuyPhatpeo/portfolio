@@ -61,8 +61,8 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             I am
           </div>
           <h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight
-                         bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-deep to-secondary"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-snug
+                         bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
           >
             {name}
           </h1>
