@@ -3,10 +3,13 @@ import { aboutData } from "../../data/aboutData";
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-20 px-6 max-w-7xl mx-auto scroll-mt-16">
+    <section
+      id="about"
+      className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20 md:scroll-mt-24"
+    >
       {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-deep to-secondary mb-4">
+        <h2 className="text-4xl md:text-5xl font-extrabold leading-snug bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
           About Me
         </h2>
       </div>
