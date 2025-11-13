@@ -45,11 +45,6 @@ export const skills = [
     name: "Laravel",
     logo: "https://skillicons.dev/icons?i=laravel",
   },
-  { name: "C#", logo: "https://skillicons.dev/icons?i=cs" },
-  {
-    name: ".NET",
-    logo: "https://skillicons.dev/icons?i=dotnet",
-  },
   { name: "Git", logo: "https://skillicons.dev/icons?i=git" },
   {
     name: "GitHub",
@@ -63,5 +58,9 @@ export const skills = [
   {
     name: "Firebase",
     logo: "https://skillicons.dev/icons?i=firebase",
+  },
+  {
+    name: "Nodejs",
+    logo: "https://skillicons.dev/icons?i=nodejs",
   },
 ];
