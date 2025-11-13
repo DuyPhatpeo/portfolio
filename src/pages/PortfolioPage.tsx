@@ -5,6 +5,7 @@ import AboutSection from "../components/section/AboutSection";
 import HeroSection from "../components/section/HeroSetion";
 import SkillsSection from "../components/section/SkillsSection";
 import ProjectsSection from "../components/section/ProjectSecion";
+import Footer from "../components/general/Footer";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -40,9 +41,7 @@ const PortfolioPage: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-6 text-center text-sm text-gray-500 dark:text-gray-400 border-t border-white/10 relative z-10 backdrop-blur-sm bg-transparent">
-        © {new Date().getFullYear()} Dino Péo. Crafted with 🧠 & ⚙️
-      </footer>
+      <Footer />
     </div>
   );
 };
