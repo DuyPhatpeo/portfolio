@@ -1,5 +1,27 @@
 export const projects = [
   {
+    name: "KARMA",
+    desc: "KARMA là website thương mại điện tử được xây dựng với ReactJS, TailwindCSS và Firebase, tối ưu trải nghiệm mua sắm trực tuyến. Hệ thống bao gồm danh mục sản phẩm, chi tiết sản phẩm, giỏ hàng, thanh toán, quản lý đơn hàng và tài khoản người dùng. Người dùng có thể tìm kiếm, lọc theo loại, xem sản phẩm nổi bật và liên quan. Giao diện responsive, hiện đại, trực quan và thân thiện, mang lại trải nghiệm mượt mà cho khách hàng.",
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+      {
+        name: "Firebase",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+      },
+    ],
+    link: "https://github.com/DuyPhatpeo/ecommerce",
+    demo: "https://ecommerce-phat.vercel.app/",
+    image: "/ecommerce.png",
+    category: "E-commerce",
+  },
+  {
     name: "Dino Movie",
     desc: "Ứng dụng xem phim trực tuyến được phát triển bằng ReactJS với giao diện trực quan và tốc độ phản hồi cao. Hệ thống cho phép duyệt danh sách phim theo thể loại, xem chi tiết phim, trailer, đánh giá và thông tin diễn viên. Người dùng có thể tìm kiếm theo từ khóa, lọc phim theo độ phổ biến hoặc thời gian phát hành. Trang xem phim được tối ưu trải nghiệm, hỗ trợ chuyển tập, đề xuất phim liên quan và chế độ xem mượt trên mọi thiết bị. Toàn bộ giao diện được thiết kế hiện đại bằng TailwindCSS, mang lại cảm giác nhanh, gọn và rất 'điện ảnh' khi sử dụng.",
     tech: [
