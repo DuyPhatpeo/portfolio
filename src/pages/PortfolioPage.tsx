@@ -6,6 +6,7 @@ import HeroSection from "../components/section/HeroSetion";
 import SkillsSection from "../components/section/SkillsSection";
 import ProjectsSection from "../components/section/ProjectSecion";
 import Footer from "../components/general/Footer";
+import ContactSection from "../components/section/ContactSection";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -38,6 +39,8 @@ const PortfolioPage: React.FC = () => {
         <SkillsSection />
 
         <ProjectsSection />
+
+        <ContactSection />
       </main>
 
       {/* Footer */}
