@@ -1,7 +1,7 @@
 export const projects = [
   {
     name: "KARMA",
-    desc: "KARMA là website thương mại điện tử được xây dựng với ReactJS, TailwindCSS và Firebase, tối ưu trải nghiệm mua sắm trực tuyến. Hệ thống bao gồm danh mục sản phẩm, chi tiết sản phẩm, giỏ hàng, thanh toán, quản lý đơn hàng và tài khoản người dùng. Người dùng có thể tìm kiếm, lọc theo loại, xem sản phẩm nổi bật và liên quan. Giao diện responsive, hiện đại, trực quan và thân thiện, mang lại trải nghiệm mượt mà cho khách hàng.",
+    desc: "KARMA là website thương mại điện tử được xây dựng với ReactJS, TailwindCSS và Firebase, tối ưu trải nghiệm mua sắm trực tuyến. Hệ thống bao gồm danh mục sản phẩm, chi tiết sản phẩm, giỏ hàng, thanh toán, quản lý đơn hàng và tài khoản người dùng. Người dùng có thể tìm kiếm, lọc theo loại, xem sản phẩm nổi bật và liên quan. Giao diện responsive, hiện đại, trực quan và thân thiện, mang lại trải nghiệm mượt mà cho khách hàng.\nKARMA là website thương mại điện tử được xây dựng với ReactJS, TailwindCSS và Firebase, tối ưu trải nghiệm mua sắm trực tuyến. Hệ thống bao gồm danh mục sản phẩm, chi tiết sản phẩm, giỏ hàng, thanh toán, quản lý đơn hàng và tài khoản người dùng. Người dùng có thể tìm kiếm, lọc theo loại, xem sản phẩm nổi bật và liên quan. Giao diện responsive, hiện đại, trực quan và thân thiện, mang lại trải nghiệm mượt mà cho khách hàng.",
     tech: [
       {
         name: "ReactJS",
