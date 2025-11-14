@@ -1,7 +1,7 @@
 // src/pages/HomePage.tsx
 import React, { useEffect } from "react";
 import Header from "../components/general/Header";
-import AboutSection from "../components/section/AboutSection";
+import AboutSection from "../components/about/AboutSection";
 import HeroSection from "../components/section/HeroSetion";
 import SkillsSection from "../components/section/SkillsSection";
 import ProjectsSection from "../components/section/ProjectSecion";
