@@ -58,7 +58,7 @@ export const projects = [
     category: "Movie",
   },
   {
-    name: "Portfolio Website",
+    name: "Portfolio",
     desc: "Trang portfolio cá nhân được xây dựng bằng ReactJS, thiết kế theo phong cách tối giản nhưng hiện đại, tập trung thể hiện kỹ năng và dự án một cách rõ ràng. Website gồm các mục giới thiệu, kỹ năng, dự án, liên hệ, được bố trí mạch lạc, tương thích mọi thiết bị. Giao diện được tùy chỉnh toàn bộ bằng TailwindCSS với hiệu ứng mượt mà, chuyển cảnh tinh tế và điểm nhấn màu sắc nhất quán, giúp tạo dấu ấn chuyên nghiệp khi giới thiệu bản thân.",
 
     tech: [
