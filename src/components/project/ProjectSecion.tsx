@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { projects } from "../../data/projectData";
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
+import SectionHeader from "../ui/SectionHeader";
 
 export default function ProjectsSection() {
   const [selected, setSelected] = useState<any>(null);
@@ -36,10 +37,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl font-bold mb-10 text-center bg-clip-text text-transparent leading-snug bg-gradient-to-r from-primary to-secondary">
-          Featured Projects
-        </h2>
-
+        <SectionHeader title="Featured Projects" />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {projects.map((p, i) => (
             <ProjectCard key={i} project={p} onSelect={setSelected} />
