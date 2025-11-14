@@ -26,7 +26,7 @@ const SkillsSection = () => {
           return (
             <div
               key={skill.name}
-              className="relative flex items-center justify-center cursor-pointer"
+              className="relative flex flex-col items-center justify-center cursor-pointer"
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => {
                 setHoveredSkill(null);
@@ -38,7 +38,7 @@ const SkillsSection = () => {
               onMouseUp={() => setPressedSkill(null)}
               onMouseMove={(e) => {
                 const rect = (
-                  e.target as HTMLDivElement
+                  e.currentTarget as HTMLDivElement
                 ).getBoundingClientRect();
                 const px = e.clientX - rect.left - rect.width / 2;
                 const py = e.clientY - rect.top - rect.height / 2;
@@ -46,19 +46,6 @@ const SkillsSection = () => {
                 y.set(py);
               }}
             >
-              {/* Tooltip */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{
-                  opacity: hoveredSkill === skill.name ? 1 : 0,
-                  y: hoveredSkill === skill.name ? 0 : -10,
-                }}
-                transition={{ duration: 0.2 }}
-                className="absolute -top-12 left-1/2 -translate-x-1/2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none z-50 whitespace-nowrap"
-              >
-                {skill.name}
-              </motion.div>
-
               {/* Keycap */}
               <motion.div
                 className="relative w-24 h-24"
@@ -67,12 +54,9 @@ const SkillsSection = () => {
                 {/* Base */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-gray-300 to-gray-400 rounded-3xl"
-                  animate={{
-                    y: pressedSkill === skill.name ? 4 : 6,
-                  }}
+                  animate={{ y: pressedSkill === skill.name ? 4 : 6 }}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
-
                 {/* Top */}
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-b from-white to-gray-100 rounded-3xl shadow-lg flex items-center justify-center p-3"
@@ -91,12 +75,23 @@ const SkillsSection = () => {
                     src={skill.logo}
                     alt={skill.name}
                     className="w-full h-full object-contain"
-                    animate={{
-                      scale: pressedSkill === skill.name ? 0.95 : 1,
-                    }}
+                    animate={{ scale: pressedSkill === skill.name ? 0.95 : 1 }}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   />
                 </motion.div>
+              </motion.div>
+
+              {/* Tooltip (nằm dưới keycap để không che logo) */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{
+                  opacity: hoveredSkill === skill.name ? 1 : 0,
+                  y: hoveredSkill === skill.name ? 8 : -10, // cách keycap 8px
+                }}
+                transition={{ duration: 0.2 }}
+                className="mt-2 bg-gray-900/90 text-white text-xs font-semibold px-3 py-1 rounded-md pointer-events-none whitespace-nowrap"
+              >
+                {skill.name}
               </motion.div>
             </div>
           );
