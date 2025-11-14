@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import Header from "../components/general/Header";
 import AboutSection from "../components/about/AboutSection";
 import HeroSection from "../components/hero/HeroSetion";
-import ProjectsSection from "../components/section/ProjectSecion";
+import ProjectsSection from "../components/project/ProjectSecion";
 import Footer from "../components/general/Footer";
 import ContactSection from "../components/section/ContactSection";
 import SkillsSection from "../components/skills/SkillsSection";
