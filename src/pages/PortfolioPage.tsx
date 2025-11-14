@@ -5,7 +5,7 @@ import AboutSection from "../components/about/AboutSection";
 import HeroSection from "../components/hero/HeroSetion";
 import ProjectsSection from "../components/project/ProjectSecion";
 import Footer from "../components/general/Footer";
-import ContactSection from "../components/section/ContactSection";
+import ContactSection from "../components/contact/ContactSection";
 import SkillsSection from "../components/skills/SkillsSection";
 
 const PortfolioPage: React.FC = () => {
