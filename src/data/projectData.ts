@@ -22,6 +22,24 @@ export const projects = [
     category: "E-commerce",
   },
   {
+    name: "Feliciano",
+    desc: "Feliciano là website đặt bàn nhà hàng được xây dựng với ReactJS và Firebase, tối ưu trải nghiệm đặt chỗ trực tuyến. Người dùng có thể xem thực đơn, đặt giờ ăn, quản lý đặt chỗ. Hệ thống cung cấp giao diện trực quan, responsive, dễ sử dụng, giúp khách hàng đặt bàn nhanh chóng và tiện lợi.",
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Firebase",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg",
+      },
+    ],
+    link: "https://github.com/DuyPhatpeo/restaurant",
+    demo: "https://restaurant-phat.vercel.app/",
+    image: "/restaurant.png",
+    category: "Booking",
+  },
+  {
     name: "Dino Movie",
     desc: "Ứng dụng xem phim trực tuyến được phát triển bằng ReactJS với giao diện trực quan và tốc độ phản hồi cao. Hệ thống cho phép duyệt danh sách phim theo thể loại, xem chi tiết phim, trailer, đánh giá và thông tin diễn viên. Người dùng có thể tìm kiếm theo từ khóa, lọc phim theo độ phổ biến hoặc thời gian phát hành. Trang xem phim được tối ưu trải nghiệm, hỗ trợ chuyển tập, đề xuất phim liên quan và chế độ xem mượt trên mọi thiết bị. Toàn bộ giao diện được thiết kế hiện đại bằng TailwindCSS, mang lại cảm giác nhanh, gọn và rất 'điện ảnh' khi sử dụng.",
     tech: [
