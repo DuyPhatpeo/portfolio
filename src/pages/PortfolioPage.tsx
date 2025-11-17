@@ -5,6 +5,8 @@ import Header from "../components/general/Header";
 import Footer from "../components/general/Footer";
 import HeroSection from "../components/hero/HeroSetion";
 import AboutSection from "../components/about/AboutSection";
+import SkillsSection from "../components/skills/SkillsSection";
+import ProjectsSection from "../components/project/ProjectSecion";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -32,6 +34,10 @@ const PortfolioPage: React.FC = () => {
         <HeroSection scrollToSection={scrollToSection} />
 
         <AboutSection />
+
+        <SkillsSection />
+
+        <ProjectsSection />
       </main>
 
       {/* Footer */}
