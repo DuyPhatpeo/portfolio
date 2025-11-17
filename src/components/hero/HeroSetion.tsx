@@ -1,4 +1,3 @@
-import React from "react";
 import { heroInfo } from "../../data/heroData";
 import HeroAvatar from "./HeroAvatar";
 import TypingRoles from "./TypingRoles";

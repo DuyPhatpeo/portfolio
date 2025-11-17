@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 export default function ProjectCard({ project, onSelect }: any) {
   return (
     <div
