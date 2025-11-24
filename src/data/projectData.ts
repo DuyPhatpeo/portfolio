@@ -40,6 +40,24 @@ export const projects = [
     category: "Booking",
   },
   {
+    name: "Weather App",
+    desc: "Weather App là ứng dụng web dự báo thời tiết được xây dựng bằng ReactJS và TailwindCSS. Người dùng có thể xem thời tiết hiện tại, dự báo nhiều ngày, tìm kiếm theo thành phố và kiểm tra các chỉ số như nhiệt độ, độ ẩm, tốc độ gió. Giao diện trực quan, responsive và thân thiện — giúp theo dõi thời tiết dễ dàng ở mọi nơi.",
+    tech: [
+      {
+        name: "ReactJS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "TailwindCSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
+    ],
+    link: "https://github.com/DuyPhatpeo/weather-app",
+    demo: "https://weather-app-phat.vercel.app/",
+    image: "/weather-app.png",
+    category: "Web Application",
+  },
+  {
     name: "Dino Movie",
     desc: "Ứng dụng xem phim trực tuyến được phát triển bằng ReactJS với giao diện trực quan và tốc độ phản hồi cao. Hệ thống cho phép duyệt danh sách phim theo thể loại, xem chi tiết phim, trailer, đánh giá và thông tin diễn viên. Người dùng có thể tìm kiếm theo từ khóa, lọc phim theo độ phổ biến hoặc thời gian phát hành. Trang xem phim được tối ưu trải nghiệm, hỗ trợ chuyển tập, đề xuất phim liên quan và chế độ xem mượt trên mọi thiết bị. Toàn bộ giao diện được thiết kế hiện đại bằng TailwindCSS, mang lại cảm giác nhanh, gọn và rất 'điện ảnh' khi sử dụng.",
     tech: [
