@@ -1,5 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Github } from "lucide-react";
+
+// 🔥 React Icons
+import { RxCross2 } from "react-icons/rx";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
 
 export default function ProjectModal({ selected, onClose }: any) {
   return (
@@ -41,7 +44,7 @@ export default function ProjectModal({ selected, onClose }: any) {
               "
               onClick={onClose}
             >
-              <X className="w-5 h-5 text-gray-800 dark:text-gray-200" />
+              <RxCross2 className="w-5 h-5 text-gray-800 dark:text-gray-200" />
             </button>
 
             {/* Content */}
@@ -88,7 +91,7 @@ export default function ProjectModal({ selected, onClose }: any) {
                           transition-all duration-300 shadow-xl
                         "
                       >
-                        <ExternalLink className="w-5 h-5" />
+                        <FiExternalLink className="w-5 h-5" />
                         <span>Live Demo</span>
                       </a>
                     )}
@@ -109,7 +112,7 @@ export default function ProjectModal({ selected, onClose }: any) {
                         transition-all duration-300 shadow-lg
                       "
                     >
-                      <Github className="w-5 h-5" />
+                      <FiGithub className="w-5 h-5" />
                       <span>View Code</span>
                     </a>
                   </div>

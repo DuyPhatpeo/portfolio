@@ -1,5 +1,5 @@
 import React from "react";
-import { Sun, Moon } from "lucide-react";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { useTheme } from "../../hooks/ThemeProvider";
 
 const DarkModeToggle: React.FC = () => {
@@ -18,7 +18,7 @@ const DarkModeToggle: React.FC = () => {
       `}
       aria-label="Toggle Dark Mode"
     >
-      {darkMode ? <Sun size={24} /> : <Moon size={24} />}
+      {darkMode ? <RiSunLine size={24} /> : <RiMoonLine size={24} />}
     </button>
   );
 };

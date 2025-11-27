@@ -1,22 +1,22 @@
-import { Mail, Phone, MessageCircle } from "lucide-react";
+import { FiMail, FiPhone, FiMessageCircle } from "react-icons/fi";
 
 const contactData = [
   {
-    icon: Mail,
+    icon: FiMail,
     label: "Email",
     value: "phattranduy00@gmail.com",
     href: "mailto:phattranduy00@gmail.com",
     color: "text-red-500",
   },
   {
-    icon: Phone,
+    icon: FiPhone,
     label: "Zalo",
     value: "0866 482 834",
     href: "https://zalo.me/0866482834",
     color: "text-blue-500",
   },
   {
-    icon: MessageCircle,
+    icon: FiMessageCircle,
     label: "Message",
     value: "facebook.com/DinoPeo2810",
     href: "https://www.facebook.com/DinoPeo2810",

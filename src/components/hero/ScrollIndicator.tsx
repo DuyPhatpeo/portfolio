@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronDown } from "lucide-react";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 interface ScrollIndicatorProps {
   scrollToSection: (sectionId: string) => void;
@@ -23,7 +23,7 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
         className="p-2 rounded-full backdrop-blur-sm border bg-white/10 border-gray-200/20
                       dark:bg-gray-800/30 dark:border-white/10 group-hover:border-primary/30"
       >
-        <ChevronDown
+        <RiArrowDownSLine
           className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 dark:text-gray-500
                                group-hover:text-primary transition-colors"
         />

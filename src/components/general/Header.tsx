@@ -1,5 +1,10 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
-import { Menu, X, Moon, Sun } from "lucide-react";
+import {
+  RiMenu3Line,
+  RiCloseLine,
+  RiMoonLine,
+  RiSunLine,
+} from "react-icons/ri";
 import { useTheme } from "../../hooks/ThemeProvider";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -12,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const menuRef = useRef<HTMLDivElement>(null);
-  const toggleRef = useRef<HTMLButtonElement>(null); // ref cho button toggle
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const navItems = useMemo(
     () => [
@@ -48,7 +53,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
 
-  // Click outside để đóng menu
+  // click outside to close
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -60,11 +65,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         setIsOpen(false);
       }
     };
+
     if (isOpen) document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
-  // Motion variants
+  // framer-motion variants
   const menuVariants = {
     hidden: { opacity: 0, y: -20 },
     visible: {
@@ -167,12 +173,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               />
               <div className="relative">
                 {darkMode ? (
-                  <Sun
+                  <RiSunLine
                     size={20}
                     className="text-warning group-hover:rotate-180 transition-transform duration-500"
                   />
                 ) : (
-                  <Moon
+                  <RiMoonLine
                     size={20}
                     className="text-primary-deep group-hover:rotate-12 transition-transform duration-300"
                   />
@@ -183,7 +189,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             {/* Mobile toggle */}
             <button
               ref={toggleRef}
-              onClick={() => setIsOpen((prev) => !prev)} // toggle đơn giản
+              onClick={() => setIsOpen((prev) => !prev)}
               className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300  ${
                 darkMode
                   ? "text-white hover:bg-white/10 "
@@ -191,13 +197,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               }`}
             >
               <span>{isOpen ? "CLOSE" : "MENU"}</span>
-              {isOpen ? <X size={20} /> : <Menu size={20} />}
+              {isOpen ? <RiCloseLine size={20} /> : <RiMenu3Line size={20} />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile dropdown menu */}
+      {/* Mobile dropdown */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -206,18 +212,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xlbackdrop-blur-2xl border-b ${
+            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xl backdrop-blur-2xl border-b ${
               darkMode
                 ? "bg-white/5 border-white/10 shadow-lg shadow-black/5"
                 : "bg-white/80 border-white/40 shadow-lg shadow-slate-200/50"
             }`}
           >
-            {/* Gradient blur right */}
             <div
               className={`absolute top-0 right-0 w-1/2 h-full opacity-20 blur-3xl pointer-events-none ${
                 darkMode ? "bg-primary/70" : "bg-primary-deep/70"
               }`}
             />
+
             <nav className="relative flex flex-col items-end p-6 pr-8 space-y-4">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href;
@@ -227,7 +233,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     onClick={() => {
                       scrollToSection(item.href);
                       setActiveSection(item.href);
-                      setIsOpen(false); // bấm vào item → đóng menu
+                      setIsOpen(false);
                     }}
                     variants={itemVariants}
                     className={`group relative text-right px-8 py-4 text-xl font-bold transition-all duration-300 rounded-xl ${
