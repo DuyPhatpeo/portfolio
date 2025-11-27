@@ -1,9 +1,9 @@
 import React from "react";
 import { RiSunLine, RiMoonLine } from "react-icons/ri";
-import { useTheme } from "../../hooks/ThemeProvider";
+import { useThemeStore } from "../../stores/themeStore";
 
 const DarkModeToggle: React.FC = () => {
-  const { darkMode, toggleDarkMode } = useTheme();
+  const { darkMode, toggleDarkMode } = useThemeStore();
 
   return (
     <button

@@ -5,7 +5,7 @@ import {
   RiMoonLine,
   RiSunLine,
 } from "react-icons/ri";
-import { useTheme } from "../../hooks/ThemeProvider";
+import { useThemeStore } from "../../stores/themeStore";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface HeaderProps {
@@ -13,9 +13,11 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
-  const { darkMode, toggleDarkMode } = useTheme();
+  const { darkMode, toggleDarkMode } = useThemeStore();
+
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -35,11 +37,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     const handleScroll = () => {
       const sections = navItems.map((item) => item.href);
       const scrollPosition = window.scrollY + 100;
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetBottom = offsetTop + element.offsetHeight;
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
             setActiveSection(section);
             break;
@@ -120,7 +124,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </span>
           </button>
 
-          {/* Desktop nav */}
+          {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-x-2">
             {navItems.map((item) => {
               const isActive = activeSection === item.href;
@@ -157,12 +161,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             })}
           </nav>
 
-          {/* Right side */}
+          {/* Right side buttons */}
           <div className="flex items-center space-x-3">
             {/* Theme toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`relative p-3 rounded-xl transition-all duration-300 group  ${
+              className={`relative p-3 rounded-xl transition-all duration-300 group ${
                 darkMode ? "hover:bg-white/10 " : "hover:bg-slate-900/5 "
               }`}
             >
@@ -186,14 +190,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               </div>
             </button>
 
-            {/* Mobile toggle */}
+            {/* Mobile menu toggle */}
             <button
               ref={toggleRef}
               onClick={() => setIsOpen((prev) => !prev)}
-              className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300  ${
+              className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
                 darkMode
-                  ? "text-white hover:bg-white/10 "
-                  : "text-slate-900 hover:bg-slate-900/5 "
+                  ? "text-white hover:bg-white/10"
+                  : "text-slate-900 hover:bg-slate-900/5"
               }`}
             >
               <span>{isOpen ? "CLOSE" : "MENU"}</span>
@@ -218,6 +222,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 : "bg-white/80 border-white/40 shadow-lg shadow-slate-200/50"
             }`}
           >
+            {/* Background glow */}
             <div
               className={`absolute top-0 right-0 w-1/2 h-full opacity-20 blur-3xl pointer-events-none ${
                 darkMode ? "bg-primary/70" : "bg-primary-deep/70"
@@ -230,12 +235,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 return (
                   <motion.button
                     key={item.name}
+                    variants={itemVariants}
                     onClick={() => {
                       scrollToSection(item.href);
                       setActiveSection(item.href);
                       setIsOpen(false);
                     }}
-                    variants={itemVariants}
                     className={`group relative text-right px-8 py-4 text-xl font-bold transition-all duration-300 rounded-xl ${
                       isActive
                         ? darkMode
