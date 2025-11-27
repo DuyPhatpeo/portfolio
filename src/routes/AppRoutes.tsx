@@ -19,7 +19,7 @@ const AppRoutes = () => {
         }
         return prev + 1;
       });
-    }, 50);
+    }, 100);
   }, []);
 
   if (!loaded) {
