@@ -50,4 +50,37 @@
     --warning: #facc15;
     --warning-subtle: #facc1514;
   }
+
+  /* ---------- Custom Scrollbar (Light + Dark) ---------- */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-mild) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--primary-mild);
+    border-radius: 999px;
+    transition: background 0.3s ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
+
+  .dark *::-webkit-scrollbar-thumb {
+    background: var(--primary-deep);
+  }
+
+  .dark *::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+  }
 }

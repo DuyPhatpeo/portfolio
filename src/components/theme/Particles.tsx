@@ -12,7 +12,7 @@ const Particles: React.FC<ParticlesProps> = ({
   staticity = 50,
   ease = 50,
 }) => {
-  const { darkMode } = useThemeStore(); // <-- Dùng Zustand
+  const { darkMode } = useThemeStore();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctx = useRef<CanvasRenderingContext2D | null>(null);
@@ -25,7 +25,7 @@ const Particles: React.FC<ParticlesProps> = ({
     h: window.innerHeight,
   });
 
-  // Resize canvas
+  // Resize
   useEffect(() => {
     const handleResize = () =>
       setSize({ w: window.innerWidth, h: window.innerHeight });
@@ -34,7 +34,7 @@ const Particles: React.FC<ParticlesProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Update mouse move
+  // Mouse move
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX - size.w / 2;
@@ -42,7 +42,6 @@ const Particles: React.FC<ParticlesProps> = ({
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [size]);
 
@@ -72,19 +71,26 @@ const Particles: React.FC<ParticlesProps> = ({
     };
   };
 
+  // Draw circle
   const drawCircle = (circle: any, update = false) => {
     if (!ctx.current) return;
 
     const { x, y, tx, ty, sizeDot, alpha } = circle;
+
+    const particleColor = darkMode
+      ? `rgba(200,200,200,${alpha})` // Dark mode → xám sáng
+      : `rgba(0,0,0,${alpha})`; // Light mode → đen
 
     ctx.current.save();
     ctx.current.translate(tx, ty);
 
     ctx.current.beginPath();
     ctx.current.arc(x, y, sizeDot, 0, Math.PI * 2);
+    ctx.current.fillStyle = particleColor;
 
-    ctx.current.fillStyle = `rgba(255,255,255,${alpha})`;
-    ctx.current.shadowColor = "rgba(255,255,255,0.8)";
+    ctx.current.shadowColor = darkMode
+      ? "rgba(200,200,200,0.6)"
+      : "rgba(0,0,0,0.6)";
     ctx.current.shadowBlur = 6;
 
     ctx.current.fill();
@@ -93,6 +99,7 @@ const Particles: React.FC<ParticlesProps> = ({
     if (!update) circles.current.push(circle);
   };
 
+  // Draw initial particles
   const drawParticles = () => {
     if (!ctx.current) return;
     ctx.current.clearRect(0, 0, size.w, size.h);
@@ -102,6 +109,7 @@ const Particles: React.FC<ParticlesProps> = ({
     }
   };
 
+  // Animation
   const animate = () => {
     if (!ctx.current) return;
 
@@ -133,7 +141,7 @@ const Particles: React.FC<ParticlesProps> = ({
     requestAnimationFrame(animate);
   };
 
-  // Init canvas
+  // Init
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -149,12 +157,12 @@ const Particles: React.FC<ParticlesProps> = ({
     circles.current = [];
     drawParticles();
     animate();
-  }, [size, quantity]);
+  }, [size, quantity, darkMode]);
 
-  // Background gradient theo dark/light mode
+  // Neutral gradient backgrounds
   const backgroundGradient = darkMode
-    ? "linear-gradient(180deg, #0a0b1a, #0d1530 40%, #091022 80%, #050814)"
-    : "linear-gradient(180deg, #e9f5ff, #c1dcff 40%, #8abfff 80%, #b0d0ff)";
+    ? "linear-gradient(180deg, #0d0d0d, #1a1a1a 40%, #111 80%, #0a0a0a)"
+    : "linear-gradient(180deg, #fafafa, #eaeaea 40%, #dcdcdc 80%, #e5e5e5)";
 
   return (
     <canvas
