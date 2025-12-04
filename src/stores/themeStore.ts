@@ -5,18 +5,33 @@ interface ThemeState {
   toggleDarkMode: () => void;
 }
 
-export const useThemeStore = create<ThemeState>((set) => ({
-  darkMode: true,
+export const useThemeStore = create<ThemeState>((set) => {
+  let savedMode = true;
 
-  toggleDarkMode: () =>
-    set((state) => {
-      const newMode = !state.darkMode;
+  if (typeof window !== "undefined") {
+    const local = localStorage.getItem("theme");
 
-      // Cập nhật class vào <html>
-      const html = document.documentElement;
-      if (newMode) html.classList.add("dark");
-      else html.classList.remove("dark");
+    if (local === "dark") savedMode = true;
+    else if (local === "light") savedMode = false;
+    else {
+      savedMode = true;
+      localStorage.setItem("theme", "dark");
+    }
 
-      return { darkMode: newMode };
-    }),
-}));
+    document.documentElement.classList.toggle("dark", savedMode);
+  }
+
+  return {
+    darkMode: savedMode,
+
+    toggleDarkMode: () =>
+      set((state) => {
+        const newMode = !state.darkMode;
+
+        document.documentElement.classList.toggle("dark", newMode);
+        localStorage.setItem("theme", newMode ? "dark" : "light");
+
+        return { darkMode: newMode };
+      }),
+  };
+});
