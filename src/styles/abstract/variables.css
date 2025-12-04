@@ -15,7 +15,7 @@
 
   /* ---------- DARK MODE (Deep Space Gray) ---------- */
   .dark {
-    --neutral: #0d0d11; /* Deep Space Gray */
+    --neutral: #0d0d11;
 
     --primary: #3b82f6;
     --primary-deep: #1e40af;
@@ -31,18 +31,21 @@
   /* ---------- Custom Scrollbar (Light + Dark) ---------- */
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--primary-mild) transparent;
+    scrollbar-color: var(--primary-mild) var(--neutral); /* Firefox */
   }
 
+  /* Scrollbar container */
   *::-webkit-scrollbar {
     width: 8px;
     height: 8px;
   }
 
+  /* Track (background) */
   *::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--neutral); /* 🔥 track tự đổi màu theo theme */
   }
 
+  /* Thumb */
   *::-webkit-scrollbar-thumb {
     background: var(--primary-mild);
     border-radius: 999px;
@@ -51,6 +54,11 @@
 
   *::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
+  }
+
+  /* ---------- DARK MODE Scrollbar ---------- */
+  .dark *::-webkit-scrollbar-track {
+    background: var(--neutral); /* màu nền track dark */
   }
 
   .dark *::-webkit-scrollbar-thumb {

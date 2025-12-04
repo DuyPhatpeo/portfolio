@@ -91,7 +91,7 @@ export const projects = [
     ],
     link: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://portfolio-tranduyphat.vercel.app/",
-    image: "/portfolio.jpg",
+    image: "/portfolio_1.png",
     category: "Portfolio",
   },
   {
