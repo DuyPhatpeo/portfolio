@@ -1,44 +1,68 @@
+import { motion } from "framer-motion";
 import React from "react";
 
-interface ContactCardProps {
-  icon: React.FC<any>;
+interface ContactData {
+  icon: React.ElementType;
   label: string;
   value: string;
   href: string;
   color: string;
 }
 
-const ContactCard: React.FC<ContactCardProps> = ({
+export default function ContactCard({
   icon: Icon,
   label,
   value,
   href,
   color,
-}) => {
+}: ContactData) {
   return (
-    <a
+    <motion.a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group p-6 rounded-2xl border border-gray-200/20 dark:border-white/10 bg-white/40 dark:bg-gray-800/40 shadow-lg backdrop-blur-md transition-all hover:-translate-y-1 hover:shadow-2xl"
+      className="group relative block h-full"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="flex flex-col items-center text-center gap-3">
+      <div
+        className="
+          relative h-full p-8 rounded-2xl
+          bg-white/60 dark:bg-slate-900/80 
+          backdrop-blur-sm
+          border-2 
+          border-slate-300/70 dark:border-slate-700/50 
+          hover:border-slate-400 dark:hover:border-slate-600
+          transition-all duration-300 overflow-hidden flex flex-col
+        "
+      >
         <div
-          className={`p-4 rounded-full bg-white dark:bg-gray-900 shadow-md ${color}`}
-        >
-          <Icon className="w-6 h-6" />
+          className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+        />
+
+        <div className="relative space-y-5 flex-1 flex flex-col">
+          <div
+            className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${color} group-hover:scale-110 transition-transform duration-300 self-start`}
+          >
+            <Icon className="w-6 h-6 text-white" />
+          </div>
+
+          <div className="flex-1">
+            <p className="text-xs font-bold tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-2">
+              {label}
+            </p>
+            <p className="text-base font-semibold text-slate-800 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors break-all">
+              {value}
+            </p>
+          </div>
         </div>
 
-        <p className="text-sm uppercase font-semibold text-gray-500 dark:text-gray-400">
-          {label}
-        </p>
-
-        <p className="font-bold text-gray-800 dark:text-gray-100 text-lg">
-          {value}
-        </p>
+        <div
+          className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${color} group-hover:w-full transition-all duration-500`}
+        />
       </div>
-    </a>
+    </motion.a>
   );
-};
-
-export default ContactCard;
+}

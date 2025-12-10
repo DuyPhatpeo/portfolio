@@ -1,23 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  MdEmail,
-  MdLocationOn,
-  MdPhone,
-  MdSend,
-  MdCheckCircle,
-  MdError,
-} from "react-icons/md";
-import { FaGithub } from "react-icons/fa";
-import SectionHeader from "../ui/SectionHeader";
+import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
 
-interface ContactData {
-  icon: React.ElementType;
-  label: string;
-  value: string;
-  href: string;
-  color: string;
-}
+import ContactCard from "./ContactCard";
+import { contactData } from "../../data/contactData";
+import SectionHeader from "../ui/SectionHeader";
 
 interface ContactFormState {
   name: string;
@@ -27,93 +14,6 @@ interface ContactFormState {
   msg: string;
   loading: boolean;
 }
-
-const contactData: ContactData[] = [
-  {
-    icon: MdEmail,
-    label: "EMAIL",
-    value: "phattranduy00@gmail.com",
-    href: "mailto:phattranduy00@gmail.com",
-    color: "from-violet-500 to-purple-500",
-  },
-  {
-    icon: MdPhone,
-    label: "PHONE",
-    value: "+84 123 456 789",
-    href: "tel:+84123456789",
-    color: "from-emerald-500 to-teal-500",
-  },
-  {
-    icon: MdLocationOn,
-    label: "LOCATION",
-    value: "Nha Trang, Khánh Hoà, Việt Nam",
-    href: "#",
-    color: "from-rose-500 to-pink-500",
-  },
-  {
-    icon: FaGithub,
-    label: "GITHUB",
-    value: "@DuyPhatpeo",
-    href: "https://github.com/DuyPhatpeo",
-    color: "from-slate-500 to-gray-500",
-  },
-];
-
-const ContactCard = ({
-  icon: Icon,
-  label,
-  value,
-  href,
-  color,
-}: ContactData) => (
-  <motion.a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group relative block h-full"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-  >
-    <div
-      className="
-        relative h-full p-8 rounded-2xl
-        bg-white/60 dark:bg-slate-900/80 
-        backdrop-blur-sm
-        border-2 
-        border-slate-300/70 dark:border-slate-700/50 
-        hover:border-slate-400 dark:hover:border-slate-600
-        transition-all duration-300 overflow-hidden flex flex-col
-      "
-    >
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
-      />
-
-      <div className="relative space-y-5 flex-1 flex flex-col">
-        <div
-          className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${color} group-hover:scale-110 transition-transform duration-300 self-start`}
-        >
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-
-        <div className="flex-1">
-          <p className="text-xs font-bold tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-2">
-            {label}
-          </p>
-          <p className="text-base font-semibold text-slate-800 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors break-all">
-            {value}
-          </p>
-        </div>
-      </div>
-
-      <div
-        className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${color} group-hover:w-full transition-all duration-500`}
-      />
-    </div>
-  </motion.a>
-);
 
 export default function ContactSection() {
   const [state, setState] = useState<ContactFormState>({
@@ -143,6 +43,7 @@ export default function ContactSection() {
     try {
       const subject = `Portfolio Contact from ${name}`;
       const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+
       window.location.href = `mailto:phattranduy00@gmail.com?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;
@@ -189,6 +90,7 @@ export default function ContactSection() {
                 border-2 border-slate-300 dark:border-slate-700/50
               "
             >
+              {/* Tiêu đề form */}
               <div className="flex items-center gap-3 mb-8">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
                   <MdSend className="w-6 h-6 text-white" />
@@ -204,8 +106,8 @@ export default function ContactSection() {
                 </h3>
               </div>
 
+              {/* INPUTS */}
               <div className="space-y-6">
-                {/* NAME + EMAIL */}
                 <div className="grid md:grid-cols-2 gap-6">
                   {["name", "email"].map((field) => (
                     <div key={field}>
@@ -235,7 +137,6 @@ export default function ContactSection() {
                   ))}
                 </div>
 
-                {/* MESSAGE */}
                 <div>
                   <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
                     Your Message <span className="text-pink-500">*</span>
@@ -243,9 +144,9 @@ export default function ContactSection() {
                   <textarea
                     name="message"
                     rows={6}
-                    placeholder="Tell me about your project..."
                     value={state.message}
                     onChange={(e) => setField("message", e.target.value)}
+                    placeholder="Tell me about your project..."
                     className="
                       w-full px-5 py-3.5 rounded-xl 
                       bg-white/60 dark:bg-slate-950/50 
