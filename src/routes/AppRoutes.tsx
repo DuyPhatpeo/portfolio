@@ -1,33 +1,35 @@
 import { lazy, useState, useEffect } from "react";
 import Loading from "../components/general/Loading";
 
-// Lazy load trang Portfolio
 const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
 
 const AppRoutes = () => {
   const [progress, setProgress] = useState(0);
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(
+    localStorage.getItem("app_loaded") === "true"
+  );
 
   useEffect(() => {
-    // Giả lập loading 0 → 100%
+    // Nếu đã load trước đó → bỏ qua loading
+    if (loaded) return;
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setLoaded(true); // sau khi 100% mới render PortfolioPage
+          setLoaded(true);
+          localStorage.setItem("app_loaded", "true"); // đánh dấu đã load
           return 100;
         }
         return prev + 1;
       });
     }, 100);
-  }, []);
+  }, [loaded]);
 
   if (!loaded) {
-    // Khi chưa load xong, hiển thị Loading
     return <Loading progress={progress} />;
   }
 
-  // Khi đã 100%, render PortfolioPage
   return <PortfolioPage />;
 };
 
