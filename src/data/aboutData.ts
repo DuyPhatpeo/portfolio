@@ -10,14 +10,34 @@ import { FaGamepad } from "react-icons/fa";
 
 export const aboutData = {
   name: "Trần Duy Phát (Dino Péo)",
-  bio: "I'm a developer specializing in creating modern and optimized web experiences. I always explore new technologies and enjoy programming challenges.",
+  bio: "I'm a developer specializing in creating modern and optimized web experiences.",
   avatar: "/avt2.jpg",
 
   personal: [
-    { icon: FiCalendar, label: "Date of Birth", value: "28/10/2003" },
-    { icon: FiMapPin, label: "From", value: "Vietnam" },
-    { icon: FaGamepad, label: "Hobbies", value: "Gaming, Movies" },
-    { icon: FiCoffee, label: "Favorites", value: "Coffee & Coding" },
+    {
+      icon: FiCalendar,
+      label: "Date of Birth",
+      value: "28/10/2003",
+      color: "from-pink-500 to-pink-400 text-pink-500",
+    },
+    {
+      icon: FiMapPin,
+      label: "From",
+      value: "Vietnam",
+      color: "from-emerald-500 to-emerald-400 text-emerald-500",
+    },
+    {
+      icon: FaGamepad,
+      label: "Hobbies",
+      value: "Gaming, Movies",
+      color: "from-indigo-500 to-indigo-400 text-indigo-500",
+    },
+    {
+      icon: FiCoffee,
+      label: "Favorites",
+      value: "Coffee & Coding",
+      color: "from-amber-500 to-amber-400 text-amber-500",
+    },
   ],
 
   achievements: [
