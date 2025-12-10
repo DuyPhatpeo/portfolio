@@ -29,38 +29,58 @@ export default function ContactCard({
     >
       <div
         className="
-          relative h-full p-8 rounded-2xl
-          bg-white/60 dark:bg-slate-900/80 
-          backdrop-blur-sm
-          border-2 
-          border-slate-300/70 dark:border-slate-700/50 
-          hover:border-slate-400 dark:hover:border-slate-600
-          transition-all duration-300 overflow-hidden flex flex-col
+          relative h-full p-6 rounded-2xl
+          bg-white/10 dark:bg-neutral-900/10
+          backdrop-blur-xl
+          border border-white/20 dark:border-neutral-700/20
+          shadow-lg shadow-black/20 dark:shadow-white/5
+          transition-all duration-300
+          overflow-hidden flex flex-col items-center text-center
         "
       >
+        {/* Hover glow overlay */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}
+          className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-[0.08] transition-opacity duration-300 pointer-events-none`}
         />
 
-        <div className="relative space-y-5 flex-1 flex flex-col">
+        <div className="relative space-y-4 flex-1 flex flex-col items-center">
+          {/* Icon */}
           <div
-            className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${color} group-hover:scale-110 transition-transform duration-300 self-start`}
+            className={`
+              inline-flex p-3 rounded-2xl bg-gradient-to-br ${color}
+              group-hover:scale-110 transition-transform duration-300
+            `}
           >
-            <Icon className="w-6 h-6 text-white" />
+            <Icon className="w-7 h-7 text-white" />
           </div>
 
-          <div className="flex-1">
-            <p className="text-xs font-bold tracking-widest text-gray-500 dark:text-gray-400 uppercase mb-2">
+          {/* Text */}
+          <div>
+            <p className="text-xs font-bold tracking-widest text-gray-600 dark:text-gray-400 uppercase mb-1">
               {label}
             </p>
-            <p className="text-base font-semibold text-slate-800 dark:text-slate-100 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors break-all">
+
+            <p
+              className="
+                text-base font-semibold
+                text-slate-900 dark:text-white
+                group-hover:text-slate-700 dark:group-hover:text-slate-200
+                transition-colors
+                whitespace-nowrap overflow-hidden text-ellipsis
+              "
+            >
               {value}
             </p>
           </div>
         </div>
 
+        {/* Bottom highlight */}
         <div
-          className={`absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r ${color} group-hover:w-full transition-all duration-500`}
+          className={`
+            absolute bottom-0 left-0 h-1 w-0
+            bg-gradient-to-r ${color}
+            group-hover:w-full transition-all duration-500
+          `}
         />
       </div>
     </motion.a>

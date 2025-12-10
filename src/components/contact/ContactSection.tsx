@@ -1,211 +1,17 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
-
 import ContactCard from "./ContactCard";
 import { contactData } from "../../data/contactData";
 import SectionHeader from "../ui/SectionHeader";
-
-interface ContactFormState {
-  name: string;
-  email: string;
-  message: string;
-  status: "" | "success" | "error";
-  msg: string;
-  loading: boolean;
-}
+import ContactForm from "./ContactForm";
 
 export default function ContactSection() {
-  const [state, setState] = useState<ContactFormState>({
-    name: "",
-    email: "",
-    message: "",
-    status: "",
-    msg: "",
-    loading: false,
-  });
-
-  const setField = (k: string, v: string) =>
-    setState((s) => ({ ...s, [k]: v }));
-
-  const sendMail = () => {
-    const { name, email, message } = state;
-
-    if (!name || !email || !message)
-      return setState((s) => ({
-        ...s,
-        status: "error",
-        msg: "Please fill in all fields",
-      }));
-
-    setState((s) => ({ ...s, loading: true, status: "", msg: "" }));
-
-    try {
-      const subject = `Portfolio Contact from ${name}`;
-      const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-
-      window.location.href = `mailto:phattranduy00@gmail.com?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(body)}`;
-
-      setState({
-        name: "",
-        email: "",
-        message: "",
-        status: "success",
-        msg: "Email client opened! Please send the email.",
-        loading: false,
-      });
-    } catch {
-      setState((s) => ({
-        ...s,
-        status: "error",
-        msg: "Something went wrong, please try again.",
-        loading: false,
-      }));
-    }
-  };
-
   return (
     <section id="contact" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader title="Get In Touch" />
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* FORM */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="relative"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl" />
-
-            <div
-              className="
-                relative rounded-2xl p-8 md:p-10 shadow-xl
-                bg-white/70 dark:bg-slate-900/80 
-                backdrop-blur-sm
-                border-2 border-slate-300 dark:border-slate-700/50
-              "
-            >
-              {/* Tiêu đề form */}
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                  <MdSend className="w-6 h-6 text-white" />
-                </div>
-                <h3
-                  className="
-                    text-2xl md:text-3xl font-bold 
-                    bg-gradient-to-r from-slate-800 to-slate-500 dark:from-white dark:to-slate-300 
-                    bg-clip-text text-transparent
-                  "
-                >
-                  Send Message
-                </h3>
-              </div>
-
-              {/* INPUTS */}
-              <div className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  {["name", "email"].map((field) => (
-                    <div key={field}>
-                      <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
-                        {field === "name" ? "Your Name" : "Email Address"}
-                        <span className="text-pink-500 ml-1">*</span>
-                      </label>
-                      <input
-                        name={field}
-                        value={(state as any)[field]}
-                        onChange={(e) => setField(field, e.target.value)}
-                        placeholder={
-                          field === "name" ? "John Doe" : "john@example.com"
-                        }
-                        className="
-                          w-full px-5 py-3.5 rounded-xl 
-                          bg-white/60 dark:bg-slate-950/50 
-                          border-2 
-                          border-slate-300 dark:border-slate-700 
-                          focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 
-                          text-slate-900 dark:text-white 
-                          placeholder:text-gray-500 dark:placeholder:text-gray-400
-                          outline-none transition-all duration-300
-                        "
-                      />
-                    </div>
-                  ))}
-                </div>
-
-                <div>
-                  <label className="block text-sm font-semibold mb-3 text-gray-700 dark:text-gray-300">
-                    Your Message <span className="text-pink-500">*</span>
-                  </label>
-                  <textarea
-                    name="message"
-                    rows={6}
-                    value={state.message}
-                    onChange={(e) => setField("message", e.target.value)}
-                    placeholder="Tell me about your project..."
-                    className="
-                      w-full px-5 py-3.5 rounded-xl 
-                      bg-white/60 dark:bg-slate-950/50 
-                      border-2 
-                      border-slate-300 dark:border-slate-700 
-                      focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 
-                      text-slate-900 dark:text-white 
-                      placeholder:text-gray-500 dark:placeholder:text-gray-400
-                      outline-none transition-all duration-300 resize-none
-                    "
-                  />
-                </div>
-
-                {/* STATUS */}
-                {state.msg && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={`
-                      p-4 rounded-xl flex items-center gap-3 border-2
-                      ${
-                        state.status === "success"
-                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
-                          : "bg-rose-500/10 border-rose-500/30 text-rose-600 dark:text-rose-400"
-                      }
-                    `}
-                  >
-                    {state.status === "success" ? (
-                      <MdCheckCircle className="w-5 h-5" />
-                    ) : (
-                      <MdError className="w-5 h-5" />
-                    )}
-                    <span className="text-sm font-medium">{state.msg}</span>
-                  </motion.div>
-                )}
-
-                {/* SUBMIT */}
-                <button
-                  onClick={sendMail}
-                  disabled={state.loading}
-                  className="
-                    w-full px-8 py-4 rounded-xl font-bold text-lg 
-                    bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 
-                    disabled:opacity-50 disabled:cursor-not-allowed 
-                    transition-all duration-300 flex items-center justify-center gap-3 group
-                  "
-                >
-                  {state.loading ? (
-                    "Opening..."
-                  ) : (
-                    <>
-                      <MdSend className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      Send Message
-                    </>
-                  )}
-                </button>
-              </div>
-            </div>
-          </motion.div>
+          {/* Glass Form Component */}
+          <ContactForm />
 
           {/* CONTACT CARDS */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -213,12 +19,6 @@ export default function ContactSection() {
               <ContactCard key={i} {...c} />
             ))}
           </div>
-        </div>
-
-        <div className="text-center mt-20">
-          <p className="text-lg text-gray-600 dark:text-gray-400 font-medium flex items-center justify-center gap-2">
-            💬 Always open for collaboration ✨
-          </p>
         </div>
       </div>
     </section>

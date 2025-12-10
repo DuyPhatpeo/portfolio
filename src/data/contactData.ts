@@ -12,15 +12,15 @@ export const contactData = [
   {
     icon: MdPhone,
     label: "PHONE",
-    value: "+84 123 456 789",
-    href: "tel:+84123456789",
+    value: "0866 482 834",
+    href: "tel:0866482834",
     color: "from-emerald-500 to-teal-500",
   },
   {
     icon: MdLocationOn,
     label: "LOCATION",
     value: "Nha Trang, Khánh Hoà, Việt Nam",
-    href: "#",
+    href: "https://www.google.com/maps?q=Nha+Trang+Khanh+Hoa+Viet+Nam",
     color: "from-rose-500 to-pink-500",
   },
   {
