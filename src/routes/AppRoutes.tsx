@@ -4,13 +4,15 @@ import Loading from "../components/general/Loading";
 const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
 
 const AppRoutes = () => {
+  // Kiểm tra xem đã load trong phiên hiện tại chưa
+  const [loaded, setLoaded] = useState(() => {
+    return sessionStorage.getItem("page_loaded") === "true";
+  });
+
   const [progress, setProgress] = useState(0);
-  const [loaded, setLoaded] = useState(
-    localStorage.getItem("app_loaded") === "true"
-  );
 
   useEffect(() => {
-    // Nếu đã load trước đó → bỏ qua loading
+    // Nếu đã load trong phiên hiện tại → bỏ qua loading
     if (loaded) return;
 
     const interval = setInterval(() => {
@@ -18,12 +20,17 @@ const AppRoutes = () => {
         if (prev >= 100) {
           clearInterval(interval);
           setLoaded(true);
-          localStorage.setItem("app_loaded", "true"); // đánh dấu đã load
+
+          // Đánh dấu đã load cho phiên này
+          sessionStorage.setItem("page_loaded", "true");
+
           return 100;
         }
         return prev + 1;
       });
     }, 100);
+
+    return () => clearInterval(interval);
   }, [loaded]);
 
   if (!loaded) {
