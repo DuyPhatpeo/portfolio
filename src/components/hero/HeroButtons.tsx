@@ -21,12 +21,20 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ scrollToSection }) => (
     {/* Contact */}
     <button
       onClick={() => scrollToSection("contact")}
-      className="w-auto group px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold backdrop-blur-sm border
-                 transition-all duration-300 hover:scale-105 flex items-center gap-2 sm:gap-3 justify-center
-                 text-gray-700 dark:text-gray-200 bg-white/10 border-gray-200/20 dark:bg-gray-800/30 dark:border-white/10
-                 hover:bg-white/20 dark:hover:bg-gray-700/30 hover:border-primary/30"
+      className="
+    w-auto group px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold
+    flex items-center gap-2 sm:gap-3 justify-center
+    transition-all duration-300 hover:scale-105 hover:border-primary
+
+    bg-white/10 dark:bg-neutral-900/10
+    backdrop-blur-xl
+    border border-white/20 dark:border-neutral-700/20
+    shadow-md shadow-black/10 dark:shadow-white/5
+
+    text-gray-900 dark:text-gray-100
+  "
     >
-      <RiSendPlane2Line className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:rotate-12" />
+      <RiSendPlane2Line className="w-4 h-4 sm:w-5 sm:h-5" />
       <span className="text-sm sm:text-base">Contact</span>
     </button>
   </div>

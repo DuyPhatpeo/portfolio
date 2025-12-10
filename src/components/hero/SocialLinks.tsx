@@ -9,15 +9,23 @@ const SocialLinks: React.FC = () => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group relative p-3 sm:p-4 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:scale-110
-                   bg-white/10 border-gray-200/20 dark:bg-gray-800/30 dark:border-white/10 hover:bg-white/20 dark:hover:bg-gray-700/30
-                   hover:border-primary/30 ${color}`}
+        className="
+          p-3 sm:p-3.5 rounded-xl
+          flex items-center justify-center
+
+          /* Glassmorphism */
+          bg-white/10 dark:bg-neutral-900/10
+          backdrop-blur-xl
+          border border-white/20 dark:border-neutral-700/20
+          shadow-md shadow-black/10 dark:shadow-white/5
+
+          /* Hover */
+          hover:bg-white/20 dark:hover:bg-neutral-800/20
+          transition-all duration-300 hover:-translate-y-1
+        "
       >
-        <div
-          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/20 to-secondary/20
-                        opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-300"
-        />
-        <Icon className="relative z-10 w-4 h-4 sm:w-5 sm:h-5 transition-colors duration-300" />
+        {/* Icon — chỉ màu, không nền */}
+        <Icon className={`w-5 h-5 ${color}`} />
       </a>
     ))}
   </div>
