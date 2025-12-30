@@ -1,10 +1,23 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useThemeStore } from "../../stores/themeStore";
 
 interface ParticlesProps {
   quantity?: number;
   staticity?: number;
   ease?: number;
+}
+
+interface Circle {
+  x: number;
+  y: number;
+  size: number;
+  alpha: number;
+  targetAlpha: number;
+  dx: number;
+  dy: number;
+  tx: number;
+  ty: number;
+  magnetism: number;
 }
 
 const Particles: React.FC<ParticlesProps> = ({
@@ -15,151 +28,133 @@ const Particles: React.FC<ParticlesProps> = ({
   const { darkMode } = useThemeStore();
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const ctx = useRef<CanvasRenderingContext2D | null>(null);
-  const circles = useRef<any[]>([]);
-  const mouse = useRef({ x: 0, y: 0 });
-  const dpr = window.devicePixelRatio || 1;
+  const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+  const circlesRef = useRef<Circle[]>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number>();
 
-  const [size, setSize] = useState({
+  const [size, setSize] = useState(() => ({
     w: window.innerWidth,
     h: window.innerHeight,
-  });
+  }));
 
-  // Resize
+  /* -------------------- Utils -------------------- */
+  const dpr = window.devicePixelRatio || 1;
+
+  const createCircle = useCallback((): Circle => {
+    return {
+      x: Math.random() * size.w,
+      y: Math.random() * size.h,
+      size: Math.random() * 2 + 0.3,
+      alpha: 0,
+      targetAlpha: Math.random() * 0.5 + 0.3,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: (Math.random() - 0.5) * 0.3,
+      tx: 0,
+      ty: 0,
+      magnetism: 0.2 + Math.random() * 3,
+    };
+  }, [size]);
+
+  /* -------------------- Resize -------------------- */
   useEffect(() => {
-    const handleResize = () =>
+    const handleResize = () => {
       setSize({ w: window.innerWidth, h: window.innerHeight });
-
+    };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Mouse move
+  /* -------------------- Mouse -------------------- */
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      mouse.current.x = e.clientX - size.w / 2;
-      mouse.current.y = e.clientY - size.h / 2;
+      mouseRef.current.x = e.clientX - size.w / 2;
+      mouseRef.current.y = e.clientY - size.h / 2;
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [size]);
 
-  // Create circle
-  const createCircle = () => {
-    const x = Math.random() * size.w;
-    const y = Math.random() * size.h;
-    const sizeDot = Math.random() * 2 + 0.3;
-    const alpha = 0;
-    const targetAlpha = Math.random() * 0.5 + 0.3;
+  /* -------------------- Draw -------------------- */
+  const drawCircle = (c: Circle) => {
+    const ctx = ctxRef.current;
+    if (!ctx) return;
 
-    const dx = (Math.random() - 0.5) * 0.3;
-    const dy = (Math.random() - 0.5) * 0.3;
-    const magnetism = 0.2 + Math.random() * 3;
+    ctx.save();
+    ctx.translate(c.tx, c.ty);
 
-    return {
-      x,
-      y,
-      sizeDot,
-      alpha,
-      targetAlpha,
-      dx,
-      dy,
-      tx: 0,
-      ty: 0,
-      magnetism,
-    };
+    ctx.beginPath();
+    ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+    ctx.fillStyle = darkMode
+      ? `rgba(200,200,200,${c.alpha})`
+      : `rgba(0,0,0,${c.alpha})`;
+
+    ctx.shadowColor = darkMode ? "rgba(200,200,200,0.6)" : "rgba(0,0,0,0.6)";
+    ctx.shadowBlur = 6;
+
+    ctx.fill();
+    ctx.restore();
   };
 
-  // Draw circle
-  const drawCircle = (circle: any, update = false) => {
-    if (!ctx.current) return;
+  /* -------------------- Animation -------------------- */
+  const animate = useCallback(() => {
+    const ctx = ctxRef.current;
+    if (!ctx) return;
 
-    const { x, y, tx, ty, sizeDot, alpha } = circle;
+    ctx.clearRect(0, 0, size.w, size.h);
 
-    const particleColor = darkMode
-      ? `rgba(200,200,200,${alpha})` // Dark mode → xám sáng
-      : `rgba(0,0,0,${alpha})`; // Light mode → đen
+    const nextCircles: Circle[] = [];
 
-    ctx.current.save();
-    ctx.current.translate(tx, ty);
+    for (const c of circlesRef.current) {
+      c.alpha += (c.targetAlpha - c.alpha) * 0.02;
+      c.x += c.dx;
+      c.y += c.dy;
 
-    ctx.current.beginPath();
-    ctx.current.arc(x, y, sizeDot, 0, Math.PI * 2);
-    ctx.current.fillStyle = particleColor;
-
-    ctx.current.shadowColor = darkMode
-      ? "rgba(200,200,200,0.6)"
-      : "rgba(0,0,0,0.6)";
-    ctx.current.shadowBlur = 6;
-
-    ctx.current.fill();
-    ctx.current.restore();
-
-    if (!update) circles.current.push(circle);
-  };
-
-  // Draw initial particles
-  const drawParticles = () => {
-    if (!ctx.current) return;
-    ctx.current.clearRect(0, 0, size.w, size.h);
-
-    for (let i = 0; i < quantity; i++) {
-      drawCircle(createCircle());
-    }
-  };
-
-  // Animation
-  const animate = () => {
-    if (!ctx.current) return;
-
-    ctx.current.clearRect(0, 0, size.w, size.h);
-
-    circles.current.forEach((circle, i) => {
-      circle.alpha += (circle.targetAlpha - circle.alpha) * 0.02;
-      circle.x += circle.dx;
-      circle.y += circle.dy;
-
-      circle.tx +=
-        (mouse.current.x / (staticity / circle.magnetism) - circle.tx) / ease;
-      circle.ty +=
-        (mouse.current.y / (staticity / circle.magnetism) - circle.ty) / ease;
-
-      drawCircle(circle, true);
+      c.tx += (mouseRef.current.x / (staticity / c.magnetism) - c.tx) / ease;
+      c.ty += (mouseRef.current.y / (staticity / c.magnetism) - c.ty) / ease;
 
       if (
-        circle.x < -circle.sizeDot ||
-        circle.x > size.w + circle.sizeDot ||
-        circle.y < -circle.sizeDot ||
-        circle.y > size.h + circle.sizeDot
+        c.x < -c.size ||
+        c.x > size.w + c.size ||
+        c.y < -c.size ||
+        c.y > size.h + c.size
       ) {
-        circles.current.splice(i, 1);
-        drawCircle(createCircle());
+        nextCircles.push(createCircle());
+      } else {
+        drawCircle(c);
+        nextCircles.push(c);
       }
-    });
+    }
 
-    requestAnimationFrame(animate);
-  };
+    circlesRef.current = nextCircles;
+    rafRef.current = requestAnimationFrame(animate);
+  }, [size, staticity, ease, darkMode, createCircle]);
 
-  // Init
+  /* -------------------- Init -------------------- */
   useEffect(() => {
-    if (!canvasRef.current) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    ctx.current = canvasRef.current.getContext("2d");
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
-    canvasRef.current.width = size.w * dpr;
-    canvasRef.current.height = size.h * dpr;
-    canvasRef.current.style.width = `${size.w}px`;
-    canvasRef.current.style.height = `${size.h}px`;
+    ctxRef.current = ctx;
 
-    ctx.current?.scale(dpr, dpr);
+    canvas.width = size.w * dpr;
+    canvas.height = size.h * dpr;
+    canvas.style.width = `${size.w}px`;
+    canvas.style.height = `${size.h}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    circles.current = [];
-    drawParticles();
+    circlesRef.current = Array.from({ length: quantity }, createCircle);
+
+    cancelAnimationFrame(rafRef.current!);
     animate();
-  }, [size, quantity, darkMode]);
 
-  // Neutral gradient backgrounds
+    return () => cancelAnimationFrame(rafRef.current!);
+  }, [size, quantity, darkMode, animate, createCircle]);
+
+  /* -------------------- UI -------------------- */
   const backgroundGradient = darkMode
     ? "linear-gradient(180deg, #0d0d0d, #1a1a1a 40%, #111 80%, #0a0a0a)"
     : "linear-gradient(180deg, #fafafa, #eaeaea 40%, #dcdcdc 80%, #e5e5e5)";
@@ -175,7 +170,7 @@ const Particles: React.FC<ParticlesProps> = ({
         zIndex: -1,
         pointerEvents: "none",
         background: backgroundGradient,
-        transition: "background 0.6s ease-in-out",
+        transition: "background 0.6s ease",
       }}
     />
   );
