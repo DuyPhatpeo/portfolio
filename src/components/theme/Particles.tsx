@@ -27,20 +27,40 @@ const Particles: React.FC<ParticlesProps> = ({
 }) => {
   const { darkMode } = useThemeStore();
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const circlesRef = useRef<Circle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | null>(null);
+
+  const dpr = window.devicePixelRatio || 1;
 
   const [size, setSize] = useState(() => ({
     w: window.innerWidth,
     h: window.innerHeight,
   }));
 
-  /* -------------------- Utils -------------------- */
-  const dpr = window.devicePixelRatio || 1;
+  /* ---------------- Resize ---------------- */
+  useEffect(() => {
+    const handleResize = () =>
+      setSize({ w: window.innerWidth, h: window.innerHeight });
 
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  /* ---------------- Mouse ---------------- */
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current.x = e.clientX - size.w / 2;
+      mouseRef.current.y = e.clientY - size.h / 2;
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [size]);
+
+  /* ---------------- Particle ---------------- */
   const createCircle = useCallback((): Circle => {
     return {
       x: Math.random() * size.w,
@@ -56,26 +76,6 @@ const Particles: React.FC<ParticlesProps> = ({
     };
   }, [size]);
 
-  /* -------------------- Resize -------------------- */
-  useEffect(() => {
-    const handleResize = () => {
-      setSize({ w: window.innerWidth, h: window.innerHeight });
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  /* -------------------- Mouse -------------------- */
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX - size.w / 2;
-      mouseRef.current.y = e.clientY - size.h / 2;
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [size]);
-
-  /* -------------------- Draw -------------------- */
   const drawCircle = (c: Circle) => {
     const ctx = ctxRef.current;
     if (!ctx) return;
@@ -96,14 +96,14 @@ const Particles: React.FC<ParticlesProps> = ({
     ctx.restore();
   };
 
-  /* -------------------- Animation -------------------- */
+  /* ---------------- Animation ---------------- */
   const animate = useCallback(() => {
     const ctx = ctxRef.current;
     if (!ctx) return;
 
     ctx.clearRect(0, 0, size.w, size.h);
 
-    const nextCircles: Circle[] = [];
+    const next: Circle[] = [];
 
     for (const c of circlesRef.current) {
       c.alpha += (c.targetAlpha - c.alpha) * 0.02;
@@ -119,18 +119,18 @@ const Particles: React.FC<ParticlesProps> = ({
         c.y < -c.size ||
         c.y > size.h + c.size
       ) {
-        nextCircles.push(createCircle());
+        next.push(createCircle());
       } else {
         drawCircle(c);
-        nextCircles.push(c);
+        next.push(c);
       }
     }
 
-    circlesRef.current = nextCircles;
+    circlesRef.current = next;
     rafRef.current = requestAnimationFrame(animate);
   }, [size, staticity, ease, darkMode, createCircle]);
 
-  /* -------------------- Init -------------------- */
+  /* ---------------- Init ---------------- */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -148,13 +148,20 @@ const Particles: React.FC<ParticlesProps> = ({
 
     circlesRef.current = Array.from({ length: quantity }, createCircle);
 
-    cancelAnimationFrame(rafRef.current!);
+    if (rafRef.current !== null) {
+      cancelAnimationFrame(rafRef.current);
+    }
+
     animate();
 
-    return () => cancelAnimationFrame(rafRef.current!);
+    return () => {
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current);
+      }
+    };
   }, [size, quantity, darkMode, animate, createCircle]);
 
-  /* -------------------- UI -------------------- */
+  /* ---------------- UI ---------------- */
   const backgroundGradient = darkMode
     ? "linear-gradient(180deg, #0d0d0d, #1a1a1a 40%, #111 80%, #0a0a0a)"
     : "linear-gradient(180deg, #fafafa, #eaeaea 40%, #dcdcdc 80%, #e5e5e5)";
@@ -170,7 +177,7 @@ const Particles: React.FC<ParticlesProps> = ({
         zIndex: -1,
         pointerEvents: "none",
         background: backgroundGradient,
-        transition: "background 0.6s ease",
+        transition: "background 0.6s ease-in-out",
       }}
     />
   );
