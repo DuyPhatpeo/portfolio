@@ -179,7 +179,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 {darkMode ? (
                   <RiSunLine
                     size={20}
-                    className="text-warning group-hover:rotate-180 transition-transform duration-500"
+                    className="text-yellow-400 group-hover:rotate-180 transition-transform duration-500"
                   />
                 ) : (
                   <RiMoonLine
@@ -200,7 +200,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   : "text-slate-900 hover:bg-slate-900/5"
               }`}
             >
-              <span>{isOpen ? "CLOSE" : "MENU"}</span>
+              {/* <span>{isOpen ? "CLOSE" : "MENU"}</span> */}
               {isOpen ? <RiCloseLine size={20} /> : <RiMenu3Line size={20} />}
             </button>
           </div>
