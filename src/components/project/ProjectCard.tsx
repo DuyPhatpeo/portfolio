@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { HiArrowUpRight } from "react-icons/hi2";
 
 export default function ProjectCard({ project, onSelect }: any) {
   return (
