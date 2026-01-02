@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { skills } from "../../data/skillsData";
+import { skills } from "../../data/skillsData.tsx";
 import SkillKeycap from "./SkillKeycap";
 
 // Container điều khiển xuất hiện từng item

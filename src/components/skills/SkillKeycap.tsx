@@ -1,9 +1,11 @@
 import React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-interface Skill {
+/* ===== Skill type ===== */
+export interface Skill {
   name: string;
-  logo: string;
+  logo?: string;
+  icon?: (props: { className?: string }) => React.ReactNode;
   url?: string;
 }
 
@@ -14,6 +16,19 @@ interface SkillKeycapProps {
   setHoveredSkill: (name: string | null) => void;
   setPressedSkill: (name: string | null) => void;
 }
+
+/* ===== Icon config (per-skill tuning) ===== */
+const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean }> = {
+  Firebase: {
+    size: "h-14 scale-110", // Firebase SVG hơi nhỏ → boost nhẹ
+  },
+  "Framer Motion": {
+    size: "h-9",
+    disableGlow: true, // SVG vàng → không cần glow
+  },
+};
+
+const DEFAULT_ICON_SIZE = "h-8";
 
 const SkillKeycap: React.FC<SkillKeycapProps> = ({
   skill,
@@ -31,17 +46,24 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
   const isHovered = hoveredSkill === skill.name;
   const isPressed = pressedSkill === skill.name;
 
+  const iconConfig = ICON_CONFIG[skill.name];
+
+  /* ===== Handle click: mở link skill (nếu có) =====
+     - Chỉ click khi tồn tại `skill.url`
+     - Mở tab mới để không mất trang hiện tại
+     - noopener,noreferrer: best practice bảo mật
+  */
+  const handleClick = () => {
+    if (!skill.url) return;
+
+    window.open(skill.url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <motion.button
       type="button"
       aria-label={skill.name}
-      className="relative flex flex-col items-center justify-center select-none cursor-pointer focus:outline-none"
-      whileTap={{ scale: 0.96 }}
-      onClick={() => {
-        if (skill.url) {
-          window.open(skill.url, "_blank", "noopener,noreferrer");
-        }
-      }}
+      onClick={handleClick}
       onMouseEnter={() => setHoveredSkill(skill.name)}
       onMouseLeave={() => {
         setHoveredSkill(null);
@@ -54,45 +76,33 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
       onMouseMove={(e) => {
         if (!isHovered) return;
         const rect = e.currentTarget.getBoundingClientRect();
-        const px = e.clientX - rect.left - rect.width / 2;
-        const py = e.clientY - rect.top - rect.height / 2;
-        x.set(px * 0.25);
-        y.set(py * 0.25);
+        x.set((e.clientX - rect.left - rect.width / 2) * 0.25);
+        y.set((e.clientY - rect.top - rect.height / 2) * 0.25);
       }}
+      whileTap={{ scale: 0.96 }}
+      /* UX:
+         - Có url → cursor-pointer
+         - Không url → cursor-default + mờ nhẹ
+      */
+      className={`relative flex flex-col items-center justify-center select-none focus:outline-none
+        ${skill.url ? "cursor-pointer" : "cursor-default opacity-80"}
+      `}
     >
-      {/* Keycap */}
+      {/* ===== Keycap ===== */}
       <motion.div
         className="relative w-22 h-22"
         style={{ perspective: 700 }}
         animate={{ scale: isHovered ? 1.06 : 1 }}
         transition={{ type: "spring", stiffness: 420, damping: 26 }}
       >
-        {/* Hover glow */}
+        {/* Outer glow */}
         <motion.div
           className="absolute -inset-3 rounded-[26px] blur-2xl"
           animate={{ opacity: isHovered ? 0.35 : 0 }}
-          transition={{ duration: 0.25 }}
           style={{
             background:
               "radial-gradient(circle, rgba(99,102,241,0.35), transparent 70%)",
           }}
-        />
-
-        {/* Press glow */}
-        <motion.div
-          className="absolute -inset-2 rounded-[24px] blur-xl"
-          animate={{ opacity: isPressed ? 0.45 : 0 }}
-          transition={{ duration: 0.15 }}
-          style={{
-            background:
-              "radial-gradient(circle, rgba(99,102,241,0.5), transparent 70%)",
-          }}
-        />
-
-        {/* Shadow */}
-        <motion.div
-          className="absolute inset-0 rounded-[22px] bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 blur-sm opacity-40"
-          animate={{ y: isPressed ? 5 : 7 }}
         />
 
         {/* Base */}
@@ -107,54 +117,46 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
           style={{ rotateX, rotateY }}
           animate={{ y: isPressed ? 4 : 0 }}
         >
-          {/* Surface */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
 
-          {/* Light sweep */}
-          <motion.div
-            className="absolute inset-0"
-            animate={{
-              backgroundPositionX: isHovered ? "200%" : "0%",
-              opacity: isHovered ? 0.6 : 0,
-            }}
-            transition={{ duration: 1.1, ease: "easeOut" }}
-            style={{
-              background:
-                "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%)",
-              backgroundSize: "200% 100%",
-            }}
-          />
-
-          {/* Border */}
-          <div className="absolute inset-0 rounded-[20px] ring-1 ring-white/50 ring-inset" />
-
-          {/* Logo */}
-          <div className="absolute inset-0 flex items-center justify-center p-2.5">
+          {/* Icon */}
+          <div className="absolute inset-0 flex items-center justify-center p-3">
             <motion.div
-              className="relative w-full h-full"
+              className="relative w-full h-full flex items-center justify-center"
               animate={{
                 scale: isPressed ? 0.9 : isHovered ? 1.06 : 1,
                 y: isHovered ? -2 : 0,
               }}
               transition={{ type: "spring", stiffness: 420, damping: 26 }}
             >
-              <motion.div
-                className="absolute inset-0 rounded-xl blur-xl"
-                animate={{ opacity: isHovered ? 0.35 : 0 }}
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(59,130,246,0.45), transparent 70%)",
-                }}
-              />
-              <img
-                src={skill.logo}
-                alt={skill.name}
-                className="relative w-full h-full object-contain drop-shadow-md"
-              />
+              {/* Glow: chỉ cho IMG + không bị disable */}
+              {skill.logo && !iconConfig?.disableGlow && (
+                <motion.div
+                  className="absolute inset-0 rounded-xl blur-xl"
+                  animate={{ opacity: isHovered ? 0.25 : 0 }}
+                  style={{
+                    background:
+                      "radial-gradient(circle, rgba(255,243,18,0.25), transparent 70%)",
+                  }}
+                />
+              )}
+
+              {skill.logo ? (
+                <img
+                  src={skill.logo}
+                  alt={skill.name}
+                  className="relative w-full h-full object-contain drop-shadow-md"
+                />
+              ) : (
+                skill.icon?.({
+                  className: `relative w-auto ${
+                    iconConfig?.size ?? DEFAULT_ICON_SIZE
+                  }`,
+                })
+              )}
             </motion.div>
           </div>
 
-          {/* Inner shadow */}
           <div className="absolute inset-0 rounded-[20px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.08)]" />
         </motion.div>
       </motion.div>
@@ -167,8 +169,8 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
           y: isHovered ? 10 : -4,
           scale: isHovered ? 1 : 0.9,
         }}
-        transition={{ duration: 0.18, ease: "easeOut" }}
-        className="mt-1.5 text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap pointer-events-none bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-xl"
+        transition={{ duration: 0.18 }}
+        className="mt-1.5 text-xs font-medium px-3 py-1.5 rounded-lg bg-gray-900 text-white shadow-xl"
       >
         {skill.name}
       </motion.div>
