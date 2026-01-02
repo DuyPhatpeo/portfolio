@@ -1,8 +1,14 @@
 import React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
+interface Skill {
+  name: string;
+  logo: string;
+  url?: string;
+}
+
 interface SkillKeycapProps {
-  skill: { name: string; logo: string };
+  skill: Skill;
   hoveredSkill: string | null;
   pressedSkill: string | null;
   setHoveredSkill: (name: string | null) => void;
@@ -18,15 +24,24 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
 }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-50, 50], [12, -12]);
-  const rotateY = useTransform(x, [-50, 50], [-12, 12]);
+
+  const rotateX = useTransform(y, [-40, 40], [10, -10]);
+  const rotateY = useTransform(x, [-40, 40], [-10, 10]);
 
   const isHovered = hoveredSkill === skill.name;
   const isPressed = pressedSkill === skill.name;
 
   return (
-    <div
-      className="relative flex flex-col items-center justify-center cursor-pointer select-none"
+    <motion.button
+      type="button"
+      aria-label={skill.name}
+      className="relative flex flex-col items-center justify-center select-none cursor-pointer focus:outline-none"
+      whileTap={{ scale: 0.96 }}
+      onClick={() => {
+        if (skill.url) {
+          window.open(skill.url, "_blank", "noopener,noreferrer");
+        }
+      }}
       onMouseEnter={() => setHoveredSkill(skill.name)}
       onMouseLeave={() => {
         setHoveredSkill(null);
@@ -41,134 +56,123 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
         const rect = e.currentTarget.getBoundingClientRect();
         const px = e.clientX - rect.left - rect.width / 2;
         const py = e.clientY - rect.top - rect.height / 2;
-        x.set(px * 0.3);
-        y.set(py * 0.3);
+        x.set(px * 0.25);
+        y.set(py * 0.25);
       }}
     >
-      {/* Keycap Container */}
+      {/* Keycap */}
       <motion.div
-        className="relative w-28 h-28"
-        style={{ perspective: 800 }}
-        animate={{
-          scale: isHovered ? 1.05 : 1,
-        }}
-        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        className="relative w-22 h-22"
+        style={{ perspective: 700 }}
+        animate={{ scale: isHovered ? 1.06 : 1 }}
+        transition={{ type: "spring", stiffness: 420, damping: 26 }}
       >
-        {/* Shadow Layer */}
+        {/* Hover glow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-[28px] blur-sm opacity-40"
-          animate={{
-            y: isPressed ? 6 : 8,
-            scale: isPressed ? 0.95 : 1,
+          className="absolute -inset-3 rounded-[26px] blur-2xl"
+          animate={{ opacity: isHovered ? 0.35 : 0 }}
+          transition={{ duration: 0.25 }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(99,102,241,0.35), transparent 70%)",
           }}
-          transition={{ type: "spring", stiffness: 600, damping: 35 }}
         />
 
-        {/* Base/Side Layer */}
+        {/* Press glow */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 rounded-[26px]"
-          animate={{
-            y: isPressed ? 5 : 7,
+          className="absolute -inset-2 rounded-[24px] blur-xl"
+          animate={{ opacity: isPressed ? 0.45 : 0 }}
+          transition={{ duration: 0.15 }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(99,102,241,0.5), transparent 70%)",
           }}
-          transition={{ type: "spring", stiffness: 600, damping: 35 }}
         />
 
-        {/* Top Surface */}
+        {/* Shadow */}
         <motion.div
-          className="absolute inset-0 rounded-[26px] overflow-hidden"
+          className="absolute inset-0 rounded-[22px] bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600 blur-sm opacity-40"
+          animate={{ y: isPressed ? 5 : 7 }}
+        />
+
+        {/* Base */}
+        <motion.div
+          className="absolute inset-0 rounded-[20px] bg-gradient-to-br from-gray-400 via-gray-500 to-gray-600"
+          animate={{ y: isPressed ? 4 : 6 }}
+        />
+
+        {/* Top */}
+        <motion.div
+          className="absolute inset-0 rounded-[20px] overflow-hidden"
           style={{ rotateX, rotateY }}
-          animate={{
-            y: isPressed ? 5 : 0,
-          }}
-          transition={{ type: "spring", stiffness: 600, damping: 35 }}
+          animate={{ y: isPressed ? 4 : 0 }}
         >
-          {/* Gradient Background */}
+          {/* Surface */}
           <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
 
-          {/* Shine Effect */}
+          {/* Light sweep */}
           <motion.div
-            className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent"
+            className="absolute inset-0"
             animate={{
-              opacity: isHovered ? 0.8 : 0.4,
+              backgroundPositionX: isHovered ? "200%" : "0%",
+              opacity: isHovered ? 0.6 : 0,
+            }}
+            transition={{ duration: 1.1, ease: "easeOut" }}
+            style={{
+              background:
+                "linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.6) 50%, transparent 70%)",
+              backgroundSize: "200% 100%",
             }}
           />
 
-          {/* Border Highlight */}
-          <div className="absolute inset-0 rounded-[26px] ring-1 ring-white/50 ring-inset" />
+          {/* Border */}
+          <div className="absolute inset-0 rounded-[20px] ring-1 ring-white/50 ring-inset" />
 
-          {/* Logo Container */}
-          <div className="absolute inset-0 flex items-center justify-center p-3">
+          {/* Logo */}
+          <div className="absolute inset-0 flex items-center justify-center p-2.5">
             <motion.div
               className="relative w-full h-full"
               animate={{
-                scale: isPressed ? 0.9 : 1,
+                scale: isPressed ? 0.9 : isHovered ? 1.06 : 1,
+                y: isHovered ? -2 : 0,
               }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              transition={{ type: "spring", stiffness: 420, damping: 26 }}
             >
-              {/* Logo Glow */}
               <motion.div
-                className="absolute inset-0 rounded-2xl blur-xl opacity-0"
-                animate={{
-                  opacity: isHovered ? 0.3 : 0,
-                }}
+                className="absolute inset-0 rounded-xl blur-xl"
+                animate={{ opacity: isHovered ? 0.35 : 0 }}
                 style={{
                   background:
-                    "radial-gradient(circle, rgba(59,130,246,0.5) 0%, transparent 70%)",
+                    "radial-gradient(circle, rgba(59,130,246,0.45), transparent 70%)",
                 }}
               />
-
-              {/* Logo */}
-              <motion.img
+              <img
                 src={skill.logo}
                 alt={skill.name}
-                className="relative w-full h-full object-contain drop-shadow-lg"
-                animate={{
-                  filter: isHovered
-                    ? "drop-shadow(0 4px 12px rgba(0,0,0,0.2))"
-                    : "drop-shadow(0 2px 6px rgba(0,0,0,0.15))",
-                }}
+                className="relative w-full h-full object-contain drop-shadow-md"
               />
             </motion.div>
           </div>
 
-          {/* Subtle Inner Shadow */}
-          <div className="absolute inset-0 rounded-[26px] shadow-[inset_0_2px_8px_rgba(0,0,0,0.08)]" />
+          {/* Inner shadow */}
+          <div className="absolute inset-0 rounded-[20px] shadow-[inset_0_2px_6px_rgba(0,0,0,0.08)]" />
         </motion.div>
-
-        {/* Pressed State Shadow */}
-        <motion.div
-          className="absolute inset-0 rounded-[26px] bg-black/5"
-          animate={{
-            opacity: isPressed ? 1 : 0,
-          }}
-          transition={{ duration: 0.1 }}
-        />
       </motion.div>
 
       {/* Tooltip */}
       <motion.div
-        initial={{ opacity: 0, y: -5, scale: 0.9 }}
+        initial={{ opacity: 0, y: -4, scale: 0.9 }}
         animate={{
           opacity: isHovered ? 1 : 0,
-          y: isHovered ? 12 : -5,
+          y: isHovered ? 10 : -4,
           scale: isHovered ? 1 : 0.9,
         }}
-        transition={{
-          duration: 0.2,
-          ease: "easeOut",
-        }}
-        className="mt-2 bg-gradient-to-br from-gray-900 to-gray-800 text-white text-sm font-medium px-4 py-2 rounded-xl pointer-events-none whitespace-nowrap shadow-xl"
-        style={{
-          boxShadow: "0 8px 24px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.3)",
-        }}
+        transition={{ duration: 0.18, ease: "easeOut" }}
+        className="mt-1.5 text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap pointer-events-none bg-gradient-to-br from-gray-900 to-gray-800 text-white shadow-xl"
       >
-        <div className="relative">
-          {skill.name}
-          {/* Tooltip Arrow */}
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-b-4 border-l-transparent border-r-transparent border-b-gray-900" />
-        </div>
+        {skill.name}
       </motion.div>
-    </div>
+    </motion.button>
   );
 };
 
