@@ -8,7 +8,7 @@ const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.08, // 👈 tốc độ từng cái
+      staggerChildren: 0.08,
     },
   },
 };
@@ -37,14 +37,18 @@ export default function SkillsGrid() {
 
   return (
     <motion.div
-      className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-6 max-w-5xl mx-auto"
+      className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-8 place-items-center max-w-5xl mx-auto"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }} // 👈 scroll tới mới chạy
+      viewport={{ once: true, margin: "-60px" }}
     >
       {skills.map((skill) => (
-        <motion.div key={skill.name} variants={itemVariants}>
+        <motion.div
+          key={skill.name}
+          variants={itemVariants}
+          className="flex items-center justify-center w-full"
+        >
           <SkillKeycap
             skill={skill}
             hoveredSkill={hoveredSkill}
