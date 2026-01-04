@@ -8,7 +8,7 @@ const Footer = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: 0.08,
         delayChildren: 0.1,
       },
     },
@@ -32,28 +32,33 @@ const Footer = () => {
   return (
     <footer className="bg-transparent py-2 mt-auto w-full overflow-hidden">
       <div className="w-full px-4">
-        <div className="flex flex-col items-center justify-center relative">
-          {/* Copyright Text - Top Right */}
-          <div className="absolute top-0 right-4 text-xs text-gray-400 flex items-center space-x-1 mb-2 z-10">
+        <div className="relative flex flex-col items-center justify-center">
+          {/* Copyright */}
+          <div className="absolute top-0 right-4 z-10 flex items-center space-x-1 text-xs text-gray-400">
             <span>© 2025</span>
             <span className="font-semibold text-primary">DINO PÉO</span>
             <span>ALL RIGHTS RESERVED</span>
           </div>
 
-          {/* Animated Name - Full Width */}
-          <div className="w-full flex justify-center mt-8 min-h-[10rem]">
+          {/* Gradient Animated Name */}
+          <div className="mt-8 flex min-h-[10rem] w-full justify-center">
             <motion.h1
-              className="text-primary font-black flex flex-wrap justify-center gap-x-2 md:gap-x-4 lg:gap-x-6 w-full"
+              className="
+                flex w-full flex-wrap justify-center gap-x-2 md:gap-x-4 lg:gap-x-6
+                font-black
+                bg-gradient-to-r from-primary via-secondary to-primary
+                bg-clip-text text-transparent
+              "
               style={{
                 fontSize: "clamp(4rem, 12vw, 10rem)",
                 fontFamily: "Arial Black, sans-serif",
-                textShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
                 letterSpacing: "0.05em",
+                textShadow: "0 6px 12px rgba(0,0,0,0.25)",
               }}
               variants={container}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.2, margin: "-50px" }}
+              viewport={{ once: true, amount: 0.2 }}
             >
               {fullText.split("").map((char, index) => (
                 <motion.span
