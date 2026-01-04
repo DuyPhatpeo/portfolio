@@ -3,7 +3,6 @@
     --neutral: #ffffff;
 
     --primary: #2563eb;
-    --primary-deep: #1d4ed8;
     --primary-mild: #3b82f6;
     --primary-subtle: #2563eb14;
 
@@ -13,7 +12,7 @@
     --secondary-subtle: #8b5cf614;
   }
 
-  /* ---------- DARK MODE (Deep Space Gray) ---------- */
+  /* ---------- DARK MODE ---------- */
   .dark {
     --neutral: #0d0d11;
 
@@ -28,44 +27,41 @@
     --secondary-subtle: #a78bfa14;
   }
 
-  /* ---------- Custom Scrollbar (Light + Dark) ---------- */
-  * {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-mild) var(--neutral); /* Firefox */
+  /* ---------- SCROLLBAR ---------- */
+
+  /* Size */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
   }
 
-  /* Scrollbar container */
-  *::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  /* Track (background) */
-  *::-webkit-scrollbar-track {
-    background: var(--neutral); /* 🔥 track tự đổi màu theo theme */
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--neutral);
   }
 
   /* Thumb */
-  *::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: var(--primary-mild);
     border-radius: 999px;
-    transition: background 0.3s ease;
+    transition: background 0.25s ease;
   }
 
-  *::-webkit-scrollbar-thumb:hover {
+  /* Hover */
+  ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
   }
 
-  /* ---------- DARK MODE Scrollbar ---------- */
-  .dark *::-webkit-scrollbar-track {
-    background: var(--neutral); /* màu nền track dark */
+  /* ---------- DARK MODE SCROLLBAR ---------- */
+  .dark ::-webkit-scrollbar-track {
+    background: var(--neutral);
   }
 
-  .dark *::-webkit-scrollbar-thumb {
-    background: var(--primary-deep);
+  .dark ::-webkit-scrollbar-thumb {
+    background: var(--primary);
   }
 
-  .dark *::-webkit-scrollbar-thumb:hover {
+  .dark ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
   }
 }
