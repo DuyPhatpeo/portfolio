@@ -40,6 +40,10 @@ export const projects = [
           </svg>
         ),
       },
+      {
+        name: "Zustand",
+        logo: "https://raw.githubusercontent.com/pmndrs/zustand/main/examples/demo/public/logo192.png",
+      },
     ],
     link: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
