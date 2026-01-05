@@ -34,7 +34,7 @@ export const socialLinks = [
 // Main info for Hero Section
 export const heroInfo = {
   name: "Trần Duy Phát",
-  avatar: "/avt2.jpg",
+  hero: "/hero.jpg",
   description:
     "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
   mainIcon: FiCode,

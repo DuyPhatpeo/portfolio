@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, type Variants } from "framer-motion";
 
-import AvatarBio from "./AvatarBio";
+import Bio from "./Bio";
 import PersonalInfo from "./PersonalInfo";
 import Achievements from "./Achievements";
 import Quote from "./Quote";
@@ -50,7 +50,7 @@ const AboutSection: React.FC = () => {
       </motion.div>
 
       <motion.div variants={itemVariants}>
-        <AvatarBio />
+        <Bio />
       </motion.div>
 
       <motion.div variants={itemVariants}>
