@@ -6,11 +6,11 @@ import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./GlobalStyle.css";
+import ScrollToTop from "./components/general/ScrollToTop";
 
 const AppContent: React.FC = () => {
   const { darkMode } = useThemeStore();
 
-  // Đồng bộ theme khi load trang (nếu dùng persist)
   useEffect(() => {
     const html = document.documentElement;
     if (darkMode) html.classList.add("dark");
@@ -25,16 +25,14 @@ const AppContent: React.FC = () => {
         <AppRoutes />
       </div>
 
+      {/* Scroll To Top */}
+      <ScrollToTop />
+
       <ToastContainer
         position="top-right"
         autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
         pauseOnHover
+        draggable
         theme={darkMode ? "dark" : "light"}
       />
     </div>
