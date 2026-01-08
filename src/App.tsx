@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useThemeStore } from "./stores/themeStore"; // <-- dùng zustand
+import { useThemeStore } from "./stores/themeStore";
 import Particles from "./components/theme/Particles";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";

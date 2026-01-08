@@ -3,8 +3,9 @@ import Loading from "../components/general/Loading";
 
 const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
 
+const LOADING_DURATION = 2000; // 2s là hợp lý
+
 const AppRoutes = () => {
-  // Kiểm tra xem đã load trong phiên hiện tại chưa
   const [loaded, setLoaded] = useState(() => {
     return sessionStorage.getItem("page_loaded") === "true";
   });
@@ -12,25 +13,32 @@ const AppRoutes = () => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Nếu đã load trong phiên hiện tại → bỏ qua loading
     if (loaded) return;
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setLoaded(true);
+    const startTime = Date.now();
+    let rafId: number;
 
-          // Đánh dấu đã load cho phiên này
-          sessionStorage.setItem("page_loaded", "true");
+    const updateProgress = () => {
+      const elapsed = Date.now() - startTime;
+      const percent = Math.min(
+        Math.round((elapsed / LOADING_DURATION) * 100),
+        100
+      );
 
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 100);
+      setProgress(percent);
 
-    return () => clearInterval(interval);
+      if (percent >= 100) {
+        setLoaded(true);
+        sessionStorage.setItem("page_loaded", "true");
+        return;
+      }
+
+      rafId = requestAnimationFrame(updateProgress);
+    };
+
+    rafId = requestAnimationFrame(updateProgress);
+
+    return () => cancelAnimationFrame(rafId);
   }, [loaded]);
 
   if (!loaded) {

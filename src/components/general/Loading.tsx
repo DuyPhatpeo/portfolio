@@ -7,22 +7,35 @@ interface LoadingProps {
 const Loading: React.FC<LoadingProps> = ({ progress }) => {
   return (
     <>
-      {/* Thanh progress ở đầu trang */}
-      <div className="fixed top-0 left-0 w-full z-50">
-        <div className="relative w-full h-3 bg-gray-200">
-          {/* Thanh progress */}
-          <div
-            className="h-3 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 transition-all duration-300 ease-out"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+      {/* Progress bar trên cùng */}
+      <div className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+        <div
+          className="
+            h-2
+            transition-all duration-300 ease-out
+            bg-gradient-to-r
+            from-primary/60
+            via-primary
+            to-primary/90
+            shadow-[0_0_12px_theme(colors.primary/40)]
+          "
+          style={{ width: `${progress}%` }}
+        />
       </div>
 
-      {/* Chỉ hiển thị phần trăm, không nền */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <div className="text-5xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-transparent text-center">
+      {/* % góc phải dưới */}
+      <div className="fixed bottom-6 right-6 z-50 pointer-events-none">
+        <div
+          className="
+            text-5xl font-bold leading-none
+            bg-gradient-to-r
+            from-primary
+            to-primary/80
+            bg-clip-text text-transparent
+          "
+        >
           {progress}
-          <span className="text-3xl">%</span>
+          <span className="ml-1 text-3xl">%</span>
         </div>
       </div>
     </>
