@@ -2,52 +2,49 @@
   :root {
     --neutral: #ffffff;
 
-    --primary: #2563eb;
-    --primary-mild: #3b82f6;
-    --primary-subtle: #2563eb14;
+    /* TEAL THEME */
+    --primary: #2dd4bf; /* teal-400 */
+    --primary-mild: #5eead4; /* teal-300 */
+    --primary-deep: #0f766e; /* teal-700 */
+    --primary-subtle: #2dd4bf14;
 
-    --secondary: #8b5cf6;
-    --secondary-deep: #6d28d9;
-    --secondary-mild: #a78bfa;
-    --secondary-subtle: #8b5cf614;
+    --secondary: #14b8a6; /* teal-500 */
+    --secondary-mild: #99f6e4; /* teal-200 */
+    --secondary-deep: #115e59; /* teal-800 */
+    --secondary-subtle: #14b8a614;
   }
 
   /* ---------- DARK MODE ---------- */
   .dark {
     --neutral: #0d0d11;
 
-    --primary: #3b82f6;
-    --primary-deep: #1e40af;
-    --primary-mild: #60a5fa;
-    --primary-subtle: #3b82f614;
+    --primary: #2dd4bf; /* teal-400 */
+    --primary-mild: #5eead4; /* teal-300 */
+    --primary-deep: #134e4a; /* teal-900 */
+    --primary-subtle: #2dd4bf14;
 
-    --secondary: #a78bfa;
-    --secondary-deep: #7c3aed;
-    --secondary-mild: #c4b5fd;
-    --secondary-subtle: #a78bfa14;
+    --secondary: #5eead4;
+    --secondary-mild: #99f6e4;
+    --secondary-deep: #0f766e;
+    --secondary-subtle: #5eead414;
   }
 
   /* ---------- SCROLLBAR ---------- */
-
-  /* Size */
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
   }
 
-  /* Track */
   ::-webkit-scrollbar-track {
     background: var(--neutral);
   }
 
-  /* Thumb */
   ::-webkit-scrollbar-thumb {
     background: var(--primary-mild);
     border-radius: 999px;
     transition: background 0.25s ease;
   }
 
-  /* Hover */
   ::-webkit-scrollbar-thumb:hover {
     background: var(--primary);
   }
@@ -62,6 +59,6 @@
   }
 
   .dark ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
+    background: var(--primary-mild);
   }
 }
