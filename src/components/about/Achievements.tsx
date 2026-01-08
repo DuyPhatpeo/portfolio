@@ -12,23 +12,22 @@ const Achievements: React.FC = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5 + i * 0.05 }}
         className="
-          flex items-center justify-center gap-3
-          p-4 rounded-2xl h-full
-          bg-white/10 dark:bg-neutral-900/10
-          backdrop-blur-xl
-          shadow-lg shadow-black/10 dark:shadow-white/5
+          bg-white dark:bg-slate-800
+          p-6 rounded-xl shadow-lg
+          flex items-center gap-4
           transition-all duration-300
+          hover:-translate-y-1
         "
       >
-        {/* Icon - no border, clean */}
-        <div className="p-3 rounded-xl bg-white/20 dark:bg-white/10">
+        {/* Icon */}
+        <div className="p-3 rounded-lg bg-gray-100 dark:bg-slate-700">
           <Icon className={`w-6 h-6 ${color}`} />
         </div>
 
         {/* Text */}
-        <span className="font-bold text-base text-gray-800 dark:text-gray-100">
+        <p className="leading-relaxed font-semibold text-gray-700 dark:text-gray-300">
           {label}
-        </span>
+        </p>
       </motion.div>
     ))}
   </div>

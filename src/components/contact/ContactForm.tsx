@@ -32,8 +32,6 @@ export default function ContactForm() {
       }
 
       setLoading(false);
-
-      // Auto-clear status
       setTimeout(() => setStatus(""), 3000);
     }, 1200);
   };
@@ -41,23 +39,21 @@ export default function ContactForm() {
   return (
     <motion.form
       onSubmit={handleSubmit}
-      className="
-        w-full space-y-4 
-        bg-white/10 dark:bg-neutral-900/10
-        backdrop-blur-xl
-        p-6 rounded-2xl shadow-lg 
-        border border-white/20 dark:border-neutral-700/20
-      "
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
+      className="
+        w-full space-y-5
+        bg-white dark:bg-slate-800
+        p-6 md:p-8 rounded-xl shadow-lg
+      "
     >
       {/* TITLE */}
-      <h2 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white mb-3">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
         Contact Form
       </h2>
 
       {/* DESCRIPTION */}
-      <p className="text-sm text-neutral-700 dark:text-neutral-300 leading-relaxed">
+      <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
         You can reach me via email at{" "}
         <a
           href="mailto:phattranduy00@gmail.com"
@@ -65,58 +61,48 @@ export default function ContactForm() {
         >
           phattranduy00@gmail.com
         </a>{" "}
-        or use the contact form below.
+        or use the form below.
       </p>
 
-      {/* NAME */}
-      <div>
-        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-200 mb-1">
-          Your Name
-        </label>
-        <input
-          type="text"
-          name="name"
-          required
-          placeholder="Your Name"
-          value={form.name}
-          onChange={handleChange}
-          className="
-            w-full px-4 py-3 rounded-xl
-            bg-white/10 dark:bg-neutral-800/20
-            backdrop-blur-sm border border-white/20 dark:border-neutral-700/20
-            placeholder-neutral-500 dark:placeholder-neutral-400
-            outline-none transition
-            focus:border-primary focus:ring-2 focus:ring-primary/40
-          "
-        />
-      </div>
-
-      {/* EMAIL */}
-      <div>
-        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-200 mb-1">
-          Email Address
-        </label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="your@example.com"
-          value={form.email}
-          onChange={handleChange}
-          className="
-            w-full px-4 py-3 rounded-xl
-            bg-white/10 dark:bg-neutral-800/20
-            backdrop-blur-sm border border-white/20 dark:border-neutral-700/20
-            placeholder-neutral-500 dark:placeholder-neutral-400
-            outline-none transition
-            focus:border-primary focus:ring-2 focus:ring-primary/40
-          "
-        />
-      </div>
+      {/* INPUT */}
+      {[
+        {
+          label: "Your Name",
+          name: "name",
+          type: "text",
+          placeholder: "Your name",
+        },
+        {
+          label: "Email Address",
+          name: "email",
+          type: "email",
+          placeholder: "your@email.com",
+        },
+      ].map((item) => (
+        <div key={item.name}>
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            {item.label}
+          </label>
+          <input
+            {...item}
+            required
+            value={(form as any)[item.name]}
+            onChange={handleChange}
+            className="
+              w-full px-4 py-3 rounded-lg
+              bg-gray-50 dark:bg-slate-700
+              border border-gray-200 dark:border-slate-600
+              placeholder-gray-400 dark:placeholder-gray-400
+              outline-none transition
+              focus:border-primary focus:ring-2 focus:ring-primary/30
+            "
+          />
+        </div>
+      ))}
 
       {/* MESSAGE */}
       <div>
-        <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-200 mb-1">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
           Message
         </label>
         <textarea
@@ -127,52 +113,52 @@ export default function ContactForm() {
           value={form.message}
           onChange={handleChange}
           className="
-            w-full px-4 py-3 rounded-xl
-            bg-white/10 dark:bg-neutral-800/20
-            backdrop-blur-sm border border-white/20 dark:border-neutral-700/20
-            placeholder-neutral-500 dark:placeholder-neutral-400
+            w-full px-4 py-3 rounded-lg
+            bg-gray-50 dark:bg-slate-700
+            border border-gray-200 dark:border-slate-600
+            placeholder-gray-400 dark:placeholder-gray-400
             outline-none transition
-            focus:border-primary focus:ring-2 focus:ring-primary/40
+            focus:border-primary focus:ring-2 focus:ring-primary/30
           "
         />
       </div>
 
-      {/* SUBMIT BUTTON */}
+      {/* BUTTON */}
       <button
         type="submit"
         disabled={loading}
         className="
-          w-full flex items-center justify-center gap-2 
-          bg-primary text-white py-3 rounded-xl 
-          font-medium transition
+          w-full flex items-center justify-center gap-2
+          bg-primary text-white py-3 rounded-xl
+          font-semibold transition
+          hover:opacity-90
           disabled:opacity-50 disabled:cursor-not-allowed
         "
       >
         {loading ? (
-          <motion.div
+          <motion.span
             animate={{ rotate: 360 }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
           >
             <MdSend size={18} />
-          </motion.div>
+          </motion.span>
         ) : (
           <>
-            Send Message
-            <MdSend size={18} />
+            Send Message <MdSend size={18} />
           </>
         )}
       </button>
 
       {/* STATUS */}
       {status === "success" && (
-        <p className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm mt-2">
+        <p className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm">
           <MdCheckCircle size={18} /> Message sent successfully!
         </p>
       )}
 
       {status === "error" && (
         <motion.p
-          className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm mt-2"
+          className="flex items-center gap-2 text-red-600 dark:text-red-400 text-sm"
           animate={{ x: [-6, 6, -6, 0] }}
           transition={{ duration: 0.3 }}
         >

@@ -36,10 +36,7 @@ export default function FeaturedProject({
       <img
         src={project.image}
         alt={project.title}
-        className="w-full rounded shadow-2xl
-                   transition-transform duration-300
-                   group-hover:scale-[1.02]
-                   group-hover:ring-2 group-hover:ring-primary/40"
+        className="w-full rounded shadow-2xl transition-transform duration-300 group-hover:scale-[1.02] group-hover:ring-2 group-hover:ring-primary/40"
       />
     </div>
   );
@@ -49,11 +46,7 @@ export default function FeaturedProject({
     <div className={align === "right" ? "md:text-right" : "md:text-left"}>
       <p className="text-primary font-mono text-sm mb-2">Featured Project</p>
 
-      <h3
-        className="text-2xl font-bold mb-5
-                   text-gray-900 dark:text-gray-100
-                   hover:text-primary transition-colors"
-      >
+      <h3 className="text-2xl font-bold mb-5 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors">
         {project.title}
       </h3>
 
@@ -85,8 +78,7 @@ export default function FeaturedProject({
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300
-                       hover:text-primary transition-colors"
+            className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
           >
             <FiGithub size={22} />
           </a>
@@ -97,8 +89,7 @@ export default function FeaturedProject({
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300
-                       hover:text-primary transition-colors"
+            className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
           >
             <FiExternalLink size={22} />
           </a>

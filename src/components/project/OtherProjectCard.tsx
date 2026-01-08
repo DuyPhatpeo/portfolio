@@ -33,16 +33,8 @@ export default function OtherProjectCard({
   return (
     <div
       ref={cardRef}
-      className={`bg-white dark:bg-slate-800
-                  p-7 rounded-xl shadow-md
-                  flex flex-col h-full
-                  transition-all duration-500
-                  hover:-translate-y-2 hover:shadow-xl
-                  ${
-                    isVisible
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }`}
+      className={`bg-white dark:bg-slate-800 p-7 rounded-xl shadow-md flex flex-col h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-xl
+      ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
       {/* ---------- HEADER ---------- */}
@@ -56,8 +48,7 @@ export default function OtherProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub repository"
-              className="text-gray-600 dark:text-gray-400
-                         hover:text-primary transition-colors"
+              className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
             >
               <FiGithub size={20} />
             </a>
@@ -69,8 +60,7 @@ export default function OtherProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Live demo"
-              className="text-gray-600 dark:text-gray-400
-                         hover:text-primary transition-colors"
+              className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
             >
               <FiExternalLink size={20} />
             </a>
@@ -79,11 +69,7 @@ export default function OtherProjectCard({
       </div>
 
       {/* ---------- TITLE ---------- */}
-      <h3
-        className="text-xl font-semibold mb-3
-                   text-gray-900 dark:text-gray-100
-                   hover:text-primary transition-colors"
-      >
+      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors">
         {project.title}
       </h3>
 

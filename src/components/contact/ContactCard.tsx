@@ -6,7 +6,7 @@ interface ContactData {
   label: string;
   value: string;
   href: string;
-  color: string;
+  color: string; // gradient tailwind: from-... to-...
 }
 
 export default function ContactCard({
@@ -21,7 +21,7 @@ export default function ContactCard({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative block h-full"
+      className="group block h-full"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -29,26 +29,33 @@ export default function ContactCard({
     >
       <div
         className="
-          relative h-full p-6 rounded-2xl
-          bg-white/10 dark:bg-neutral-900/10
-          backdrop-blur-xl
-          border border-white/20 dark:border-neutral-700/20
-          shadow-lg shadow-black/20 dark:shadow-white/5
+          relative h-full p-6 rounded-xl
+          bg-white dark:bg-slate-800
+          shadow-lg
           transition-all duration-300
-          overflow-hidden flex flex-col items-center text-center
+          hover:-translate-y-1
+          flex flex-col items-center text-center
+          overflow-hidden
         "
       >
-        {/* Hover glow overlay */}
+        {/* Accent overlay */}
         <div
-          className={`absolute inset-0 bg-gradient-to-br ${color} opacity-0 group-hover:opacity-[0.08] transition-opacity duration-300 pointer-events-none`}
+          className={`
+            absolute inset-0 bg-gradient-to-br ${color}
+            opacity-0 group-hover:opacity-[0.06]
+            transition-opacity duration-300
+            pointer-events-none
+          `}
         />
 
         <div className="relative space-y-4 flex-1 flex flex-col items-center">
           {/* Icon */}
           <div
             className={`
-              inline-flex p-3 rounded-2xl bg-gradient-to-br ${color}
-              group-hover:scale-110 transition-transform duration-300
+              inline-flex p-3 rounded-xl
+              bg-gradient-to-br ${color}
+              group-hover:scale-110
+              transition-transform duration-300
             `}
           >
             <Icon className="w-7 h-7 text-white" />
@@ -56,15 +63,15 @@ export default function ContactCard({
 
           {/* Text */}
           <div>
-            <p className="text-xs font-bold tracking-widest text-gray-600 dark:text-gray-400 uppercase mb-1">
+            <p className="text-xs font-bold tracking-widest uppercase mb-1 text-gray-500 dark:text-gray-400">
               {label}
             </p>
 
             <p
               className="
                 text-base font-semibold
-                text-slate-900 dark:text-white
-                group-hover:text-slate-700 dark:group-hover:text-slate-200
+                text-gray-800 dark:text-gray-100
+                group-hover:text-gray-600 dark:group-hover:text-gray-300
                 transition-colors
                 whitespace-nowrap overflow-hidden text-ellipsis
               "
@@ -74,7 +81,7 @@ export default function ContactCard({
           </div>
         </div>
 
-        {/* Bottom highlight */}
+        {/* Bottom accent bar */}
         <div
           className={`
             absolute bottom-0 left-0 h-1 w-0

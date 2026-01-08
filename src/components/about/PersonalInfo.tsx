@@ -12,29 +12,24 @@ const PersonalInfo: React.FC = () => (
         viewport={{ once: true }}
         transition={{ duration: 0.5 + i * 0.05 }}
         className="
-          relative p-5 rounded-2xl h-full
-          bg-white/10 dark:bg-neutral-900/10
-          backdrop-blur-xl
-          border border-white/20 dark:border-neutral-700/20
-          shadow-lg shadow-black/10 dark:shadow-white/5
-          transition-all duration-300
+          bg-white dark:bg-slate-800
+          p-5 rounded-xl shadow-lg
           flex items-center gap-4
+          transition-all duration-300
+          hover:-translate-y-1
         "
       >
-        {/* Icon — chỉ màu, không nền */}
-        <Icon className={`w-6 h-6 ${color}`} />
+        {/* Icon */}
+        <div className="p-3 rounded-lg bg-gray-100 dark:bg-slate-700">
+          <Icon className={`w-5 h-5 ${color}`} />
+        </div>
 
         {/* Text */}
         <div>
-          <p className="text-xs uppercase font-semibold text-gray-600 dark:text-gray-400 mb-1 tracking-wider">
+          <p className="text-xs uppercase font-semibold tracking-wider text-gray-500 dark:text-gray-400 mb-1">
             {label}
           </p>
-          <p
-            className="
-              font-bold text-gray-900 dark:text-gray-100 text-lg
-              transition-all duration-300
-            "
-          >
+          <p className="font-bold text-gray-800 dark:text-gray-100 text-lg">
             {value}
           </p>
         </div>
