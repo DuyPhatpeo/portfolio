@@ -1,5 +1,9 @@
 # 🚀 Personal Portfolio
 
+<div align="center">
+  <img src="public/portfolio.png" alt="Portfolio Preview" width="600" />
+</div>
+
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.0.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
@@ -20,7 +24,7 @@
 
 ## 🛠️ Tech Stack
 
-- **Frontend Framework:** React 18
+- **Frontend:** React 18
 - **Language:** TypeScript
 - **Build Tool:** Vite
 - **Styling:** CSS3 / Styled Components
@@ -37,17 +41,20 @@
 ### Installation
 
 1. Clone the repository
+
 ```bash
 git clone https://github.com/DuyPhatpeo/portfolio.git
 cd portfolio
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 ```
 
-3. Start development server
+3. Start the development server
+
 ```bash
 npm run dev
 ```
@@ -80,7 +87,6 @@ portfolio/
 │   ├── components/     # React components
 │   ├── pages/          # Page components
 │   ├── styles/         # Global styles
-│   ├── utils/          # Utility functions
 │   ├── App.tsx         # Main App component
 │   └── main.tsx        # Entry point
 ├── .eslintrc.cjs       # ESLint configuration
@@ -103,14 +109,16 @@ You can customize this portfolio by:
 ### GitHub Pages
 
 1. Update `vite.config.ts` with your repo name:
+
 ```typescript
 export default defineConfig({
-  base: '/portfolio/',
+  base: "/portfolio/",
   // ...
-})
+});
 ```
 
 2. Build and deploy:
+
 ```bash
 npm run build
 npm run deploy
@@ -133,11 +141,11 @@ export default tseslint.config({
   ],
   languageOptions: {
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 ## 🤝 Contributing
