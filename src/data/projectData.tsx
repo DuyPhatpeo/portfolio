@@ -6,8 +6,8 @@ export interface Project {
   description: string;
   image: string;
   tags: string[];
-  github: string | null;
-  demo: string;
+  github: string;
+  demo: string | null;
   featured: boolean; // Trường để phân biệt nổi bật hay bình thường
   reverse?: boolean; // Chỉ dùng cho featured projects
 }
@@ -16,27 +16,32 @@ export const projects: Project[] = [
   // Featured Projects
   {
     id: 1,
-    title: "Halcyon Theme",
+    title: "Personal Portfolio",
     description:
-      "A minimal, dark blue theme for VS Code, Sublime Text, Atom, iTerm, and more. Available on Visual Studio Marketplace, Package Control, Atom Package Manager, and npm.",
-    image:
-      "https://tse3.mm.bing.net/th/id/OIP.LSiV2YhM-O80StIMm7HJeQHaD4?rs=1&pid=ImgDetMain",
-    tags: ["VS Code", "Sublime Text", "Atom", "iTerm2", "Hyper"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "My personal portfolio website built with React, TypeScript, and Vite. Showcasing selected projects, technical skills, and my journey as a frontend developer with a clean, modern, and responsive design.",
+    image: "public/portfolio.png",
+    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
+    github: "https://github.com/DuyPhatpeo/portfolio",
+    demo: "https://tranduyphat.vercel.app/",
     featured: true,
     reverse: false,
   },
   {
     id: 2,
-    title: "Spotify Profile",
+    title: "E-commerce Website",
     description:
-      "A web app for visualizing personalized Spotify data. View your top artists, top tracks, recently played tracks, and detailed audio information about each track. Create and save new playlists of recommended tracks based on your existing playlists and more.",
-    image:
-      "https://tse3.mm.bing.net/th/id/OIP.LSiV2YhM-O80StIMm7HJeQHaD4?rs=1&pid=ImgDetMain",
-    tags: ["React", "Styled Components", "Express", "Spotify API", "Heroku"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "A full-featured e-commerce web application built with React and TypeScript. The project implements core shopping flows including authentication, product listing and search, cart management, checkout, order history, and user profile management, all wrapped in a modern, responsive UI.",
+    image: "public/ecommerce.png",
+    tags: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Firebase",
+      "Zustand",
+    ],
+    github: "https://github.com/DuyPhatpeo/ecommerce",
+    demo: "https://ecommerce-phat.vercel.app/",
     featured: true,
     reverse: true,
   },
@@ -44,15 +49,16 @@ export const projects: Project[] = [
   // Other Projects
   {
     id: 3,
-    title: "Integrating Algolia Search with WordPress Multisite",
+    title: "Restaurant Website",
     description:
-      "Building a custom multisite compatible WordPress plugin to build global search with Algolia",
-    tags: ["Algolia", "WordPress", "PHP"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "A modern restaurant website built with React and Vite. The project features online table reservations, dynamic menu management, blog and gallery pages, Firebase integration for authentication and storage, and a simulated REST API using JSON Server, all presented in a responsive and smooth UI.",
+    image: "public/restaurant.png",
+    tags: ["React", "Vite", "Firebase", "Axios"],
+    github: "https://github.com/DuyPhatpeo/restaurant",
+    demo: "https://restaurant-phat.vercel.app/",
     featured: false,
-    image: "",
   },
+
   {
     id: 4,
     title: "Time to Have More Fun",
@@ -64,17 +70,7 @@ export const projects: Project[] = [
     featured: false,
     image: "",
   },
-  {
-    id: 5,
-    title: "Building a Headless Mobile App CMS From Scratch",
-    description:
-      "Find out how we built a custom headless CMS with Node, Express, and Firebase for a project at Upstatement",
-    tags: ["Node", "Express", "Firebase", "Vue"],
-    github: null,
-    demo: "https://demo.com",
-    featured: false,
-    image: "",
-  },
+
   {
     id: 6,
     title: "OctoProfile",
@@ -102,7 +98,7 @@ export const projects: Project[] = [
     description:
       "Embeddable web player widget for Apple Music that lets users log in and listen to full song playback in the browser leveraging MusicKit.js",
     tags: ["MusicKit.js", "JS", "SCSS"],
-    github: null,
+    github: "https://demo.com",
     demo: "https://demo.com",
     featured: false,
     image: "",
