@@ -9,7 +9,7 @@ export default function ProjectSection() {
   const otherProjects = projects.filter((project) => !project.featured);
 
   return (
-    <section id="project" className="py-20">
+    <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* Featured Projects */}
         <div className="mb-32">
