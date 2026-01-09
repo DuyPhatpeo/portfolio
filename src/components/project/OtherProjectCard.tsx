@@ -33,13 +33,26 @@ export default function OtherProjectCard({
   return (
     <div
       ref={cardRef}
-      className={`bg-white dark:bg-slate-800 p-7 rounded-xl shadow-md flex flex-col h-full transition-all duration-500 hover:-translate-y-2 hover:shadow-xl
-      ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+      className={`
+        group
+        bg-white dark:bg-slate-800
+        p-7 rounded-xl
+        border border-transparent
+        shadow-md
+        flex flex-col h-full
+        transition-all duration-300
+        hover:border-primary/50 hover:shadow-lg
+        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+      `}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* ---------- HEADER ---------- */}
+      {/* HEADER */}
       <div className="flex justify-between items-start mb-6">
-        <FiFolder size={40} strokeWidth={1.5} className="text-primary" />
+        <FiFolder
+          size={40}
+          strokeWidth={1.5}
+          className="text-primary transition-colors"
+        />
 
         <div className="flex gap-3">
           {project.github && (
@@ -47,8 +60,13 @@ export default function OtherProjectCard({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub repository"
-              className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+              className="
+                p-1 rounded-md
+                text-gray-600 dark:text-gray-400
+                transition-all duration-200
+                group-hover:text-primary
+                hover:scale-110
+              "
             >
               <FiGithub size={20} />
             </a>
@@ -59,8 +77,13 @@ export default function OtherProjectCard({
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Live demo"
-              className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors"
+              className="
+                p-1 rounded-md
+                text-gray-600 dark:text-gray-400
+                transition-all duration-200
+                group-hover:text-primary
+                hover:scale-110
+              "
             >
               <FiExternalLink size={20} />
             </a>
@@ -68,18 +91,18 @@ export default function OtherProjectCard({
         </div>
       </div>
 
-      {/* ---------- TITLE ---------- */}
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors">
+      {/* TITLE */}
+      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-primary transition-colors">
         {project.title}
       </h3>
 
-      {/* ---------- DESCRIPTION ---------- */}
-      <p className="text-sm leading-relaxed mb-auto text-gray-600 dark:text-gray-400">
+      {/* DESCRIPTION */}
+      <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
         {project.description}
       </p>
 
-      {/* ---------- TAGS ---------- */}
-      <div className="flex flex-wrap gap-4 mt-6 pt-5">
+      {/* TAGS */}
+      <div className="flex flex-wrap gap-4 mt-auto pt-6">
         {project.tags.map((tag, i) => (
           <span key={i} className="font-mono text-xs text-primary-mild">
             {tag}

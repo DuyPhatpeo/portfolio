@@ -2,16 +2,16 @@
 import SectionHeader from "../ui/SectionHeader";
 import { projects } from "../../data/projectData";
 import FeaturedProject from "./FeaturedProject";
-import OtherProjectCard from "./OtherProjectCard";
+import OtherProject from "./OtherProject";
 
 export default function ProjectSection() {
-  const featuredProjects = projects.filter((project) => project.featured);
-  const otherProjects = projects.filter((project) => !project.featured);
+  const featuredProjects = projects.filter((p) => p.featured);
+  const otherProjects = projects.filter((p) => !p.featured);
 
   return (
     <section id="projects" className="py-20">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Featured Projects */}
+        {/* ================= FEATURED ================= */}
         <div className="mb-32">
           <SectionHeader title="Some Things I've Built" />
 
@@ -26,19 +26,11 @@ export default function ProjectSection() {
           </div>
         </div>
 
-        {/* Other Projects */}
+        {/* ================= OTHER ================= */}
         <div>
           <SectionHeader title="Other Noteworthy Projects" />
 
-          <div className="grid md:grid-cols-3 gap-4">
-            {otherProjects.map((project, index) => (
-              <OtherProjectCard
-                key={project.id}
-                project={project}
-                index={index}
-              />
-            ))}
-          </div>
+          <OtherProject projects={otherProjects} />
         </div>
       </div>
     </section>

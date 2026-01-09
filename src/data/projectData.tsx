@@ -75,7 +75,7 @@ export const projects: Project[] = [
     description:
       "A simple movie discovery web application built with React and Vite. The app allows users to browse a list of movies and view detailed information for each title, featuring a clean, responsive UI and fast development setup with hot reload.",
     image: "dinomovies.png",
-    tags: ["React", "Vite", "Movie App", "Responsive UI", "Vercel"],
+    tags: ["React", "Vite", "Tailwind CSS", "Axios", "React Router"],
     github: "https://github.com/DuyPhatpeo/simple-movies",
     demo: "https://dinomovie.vercel.app",
     featured: false,

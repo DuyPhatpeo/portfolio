@@ -47,31 +47,23 @@ export default function FeaturedProject({
   );
 
   /* ---------- CONTENT ---------- */
-  const ContentBlock = (align: "left" | "right") => (
-    <div
-      className={`
-        text-center
-        md:${align === "right" ? "text-right" : "text-left"}
-      `}
-    >
+  const ContentBlock = () => (
+    <div className="max-w-lg mx-auto text-center">
       <p className="text-primary font-mono text-sm mb-2">Featured Project</p>
 
-      <h3 className="text-2xl font-bold mb-5 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors">
+      <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100 hover:text-primary transition-colors">
         {project.title}
       </h3>
 
-      <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-xl shadow-lg mb-5">
+      {/* DESCRIPTION */}
+      <div className="bg-white dark:bg-slate-800 p-5 md:p-6 rounded-xl shadow-lg mb-4">
         <p className="leading-relaxed text-gray-700 dark:text-gray-300">
           {project.description}
         </p>
       </div>
 
-      <div
-        className={`
-          flex flex-wrap gap-3 mb-5 justify-center
-          md:${align === "right" ? "justify-end" : "justify-start"}
-        `}
-      >
+      {/* TAGS – CENTER */}
+      <div className="flex flex-wrap justify-center gap-3 mb-4">
         {project.tags.map((tag, i) => (
           <span key={i} className="font-mono text-xs text-primary-mild">
             {tag}
@@ -79,18 +71,19 @@ export default function FeaturedProject({
         ))}
       </div>
 
-      <div
-        className={`
-          flex gap-4 justify-center
-          md:${align === "right" ? "justify-end" : "justify-start"}
-        `}
-      >
+      {/* ICONS – CENTER */}
+      <div className="flex justify-center gap-4">
         {project.github && (
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
+            className="
+              p-2 rounded-full
+              text-gray-700 dark:text-gray-300
+              hover:text-primary hover:bg-primary/10
+              transition
+            "
           >
             <FiGithub size={22} />
           </a>
@@ -101,7 +94,12 @@ export default function FeaturedProject({
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-700 dark:text-gray-300 hover:text-primary transition-colors"
+            className="
+              p-2 rounded-full
+              text-gray-700 dark:text-gray-300
+              hover:text-primary hover:bg-primary/10
+              transition
+            "
           >
             <FiExternalLink size={22} />
           </a>
@@ -121,7 +119,7 @@ export default function FeaturedProject({
       style={{ transitionDelay: `${index * 150}ms` }}
     >
       <div className="grid md:grid-cols-12 gap-8 md:gap-0 items-center">
-        {/* IMAGE – luôn ở trên mobile */}
+        {/* IMAGE – trên mobile */}
         <div
           className={`
             md:col-span-7
@@ -131,14 +129,14 @@ export default function FeaturedProject({
           {ImageBlock}
         </div>
 
-        {/* CONTENT – luôn ở dưới mobile */}
+        {/* CONTENT – dưới mobile */}
         <div
           className={`
             md:col-span-5 relative z-10
             ${project.reverse ? "md:-mr-20 md:order-1" : "md:-ml-20 md:order-2"}
           `}
         >
-          {ContentBlock(project.reverse ? "left" : "right")}
+          <ContentBlock />
         </div>
       </div>
     </div>
