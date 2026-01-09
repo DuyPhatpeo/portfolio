@@ -1,35 +1,81 @@
+/* src/styles/abstract/variables.css */
 @layer theme {
   :root {
+    --radius: 0.625rem;
     --neutral: #ffffff;
 
-    /* TEAL THEME */
-    --primary: #2dd4bf; /* teal-400 */
-    --primary-mild: #5eead4; /* teal-300 */
-    --primary-deep: #0f766e; /* teal-700 */
+    /* ===== TEAL SYSTEM ===== */
+    --primary: #2dd4bf;
+    --primary-mild: #5eead4;
+    --primary-deep: #0f766e;
     --primary-subtle: #2dd4bf14;
 
-    --secondary: #14b8a6; /* teal-500 */
-    --secondary-mild: #99f6e4; /* teal-200 */
-    --secondary-deep: #115e59; /* teal-800 */
+    --secondary: #14b8a6;
+    --secondary-mild: #99f6e4;
+    --secondary-deep: #115e59;
     --secondary-subtle: #14b8a614;
+
+    /* ===== SEMANTIC ===== */
+    --background: var(--neutral);
+    --foreground: #0f172a;
+
+    --card: #ffffff;
+    --card-foreground: #0f172a;
+
+    --popover: #ffffff;
+    --popover-foreground: #0f172a;
+
+    --primary-foreground: #ffffff;
+    --secondary-foreground: #ffffff;
+
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+
+    --accent: var(--primary-subtle);
+    --accent-foreground: var(--primary-deep);
+
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: var(--primary);
   }
 
-  /* ---------- DARK MODE ---------- */
   .dark {
     --neutral: #0d0d11;
 
-    --primary: #2dd4bf; /* teal-400 */
-    --primary-mild: #5eead4; /* teal-300 */
-    --primary-deep: #134e4a; /* teal-900 */
+    --primary: #2dd4bf;
+    --primary-mild: #5eead4;
+    --primary-deep: #134e4a;
     --primary-subtle: #2dd4bf14;
 
     --secondary: #5eead4;
     --secondary-mild: #99f6e4;
     --secondary-deep: #0f766e;
     --secondary-subtle: #5eead414;
+
+    --background: #0d0d11;
+    --foreground: #e5e7eb;
+
+    --card: #111827;
+    --card-foreground: #e5e7eb;
+
+    --popover: #111827;
+    --popover-foreground: #e5e7eb;
+
+    --primary-foreground: #042f2e;
+    --secondary-foreground: #042f2e;
+
+    --muted: #1f2937;
+    --muted-foreground: #9ca3af;
+
+    --accent: var(--primary-subtle);
+    --accent-foreground: var(--primary-mild);
+
+    --border: #1f2937;
+    --input: #1f2937;
+    --ring: var(--primary);
   }
 
-  /* ---------- SCROLLBAR ---------- */
+  /* ===== SCROLLBAR ===== */
   ::-webkit-scrollbar {
     width: 5px;
     height: 5px;
@@ -42,23 +88,9 @@
   ::-webkit-scrollbar-thumb {
     background: var(--primary-mild);
     border-radius: 999px;
-    transition: background 0.25s ease;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
-  }
-
-  /* ---------- DARK MODE SCROLLBAR ---------- */
-  .dark ::-webkit-scrollbar-track {
-    background: var(--neutral);
   }
 
   .dark ::-webkit-scrollbar-thumb {
     background: var(--primary);
-  }
-
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-mild);
   }
 }
