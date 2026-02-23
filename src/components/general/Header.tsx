@@ -4,7 +4,6 @@ import {
   RiCloseLine,
   RiMoonLine,
   RiSunLine,
-  RiGlobalLine,
 } from "react-icons/ri";
 import { useThemeStore } from "../../stores/themeStore";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,10 +18,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { t, i18n } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLangOpen, setIsLangOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const langMenuRef = useRef<HTMLDivElement>(null);
+  const langToggleRef = useRef<HTMLButtonElement>(null);
 
   const navItems = useMemo(
     () => [
@@ -34,12 +36,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     ],
     [t],
   );
-
-  const toggleLanguage = () => {
-    const newLang = i18n.language === "vi" ? "en" : "vi";
-    i18n.changeLanguage(newLang);
-    localStorage.setItem("language", newLang);
-  };
 
   // Detect active section on scroll
   useEffect(() => {
@@ -77,11 +73,21 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       ) {
         setIsOpen(false);
       }
+
+      if (
+        langMenuRef.current &&
+        langToggleRef.current &&
+        !langMenuRef.current.contains(event.target as Node) &&
+        !langToggleRef.current.contains(event.target as Node)
+      ) {
+        setIsLangOpen(false);
+      }
     };
 
-    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
+    if (isOpen || isLangOpen)
+      document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, isLangOpen]);
 
   // framer-motion variants
   const menuVariants = {
@@ -166,28 +172,94 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
           {/* Right side buttons */}
           <div className="flex items-center space-x-3 md:space-x-4">
-            {/* Language toggle */}
-            <button
-              onClick={toggleLanguage}
-              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)] flex items-center justify-center gap-1 min-w-[64px]`}
-              style={{
-                clipPath:
-                  "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
-              }}
-            >
-              <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-tech-teal/20`}
-              />
-              <div className="relative text-tech-teal flex items-center gap-1">
-                <RiGlobalLine
-                  size={18}
-                  className="group-hover:rotate-12 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+            {/* Language Dropdown */}
+            <div className="relative group">
+              <button
+                ref={langToggleRef}
+                onClick={() => setIsLangOpen(!isLangOpen)}
+                className={`relative p-2 md:p-3 transition-all duration-300 overflow-hidden border border-tech-teal/30 hover:border-tech-teal ${isLangOpen ? "border-tech-teal shadow-[0_0_15px_rgba(68,187,164,0.4)]" : ""} bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] flex items-center justify-center gap-2 min-w-[70px]`}
+                style={{
+                  clipPath:
+                    "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
+                }}
+              >
+                <div
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 ${isLangOpen ? "opacity-100" : ""} transition-opacity duration-300 blur-md bg-tech-teal/20`}
                 />
-                <span className="text-sm font-bold tracking-widest">
-                  {i18n.language.toUpperCase()}
-                </span>
-              </div>
-            </button>
+                <div className="relative text-tech-teal flex items-center gap-2">
+                  <img
+                    src={
+                      i18n.language === "vi"
+                        ? "https://flagcdn.com/vn.svg"
+                        : "https://flagcdn.com/gb.svg"
+                    }
+                    alt={i18n.language}
+                    className="w-5 h-auto object-cover rounded-[2px]"
+                  />
+                  <span className="text-sm font-bold tracking-widest pointer-events-none">
+                    {i18n.language.toUpperCase()}
+                  </span>
+                </div>
+              </button>
+
+              {/* Dropdown Menu */}
+              <AnimatePresence>
+                {isLangOpen && (
+                  <motion.div
+                    ref={langMenuRef}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-[110%] right-0 mt-2 w-28 bg-tech-bg/95 backdrop-blur-xl border border-tech-teal/30 shadow-[0_0_20px_rgba(68,187,164,0.3)] z-50 flex flex-col"
+                    style={{
+                      clipPath:
+                        "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                    }}
+                  >
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("vi");
+                        localStorage.setItem("language", "vi");
+                        setIsLangOpen(false);
+                      }}
+                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-tech-teal/20 text-sm font-bold tracking-widest transition-colors ${
+                        i18n.language === "vi"
+                          ? "text-tech-teal bg-tech-teal/10"
+                          : "text-tech-light hover:text-tech-teal"
+                      }`}
+                    >
+                      <img
+                        src="https://flagcdn.com/vn.svg"
+                        alt="VI"
+                        className="w-5 h-auto object-cover rounded-[2px]"
+                      />{" "}
+                      VI
+                    </button>
+                    <div className="w-full h-px bg-tech-teal/20" />
+                    <button
+                      onClick={() => {
+                        i18n.changeLanguage("en");
+                        localStorage.setItem("language", "en");
+                        setIsLangOpen(false);
+                      }}
+                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-tech-teal/20 text-sm font-bold tracking-widest transition-colors ${
+                        i18n.language === "en"
+                          ? "text-tech-teal bg-tech-teal/10"
+                          : "text-tech-light hover:text-tech-teal"
+                      }`}
+                    >
+                      <img
+                        src="https://flagcdn.com/gb.svg"
+                        alt="EN"
+                        className="w-5 h-auto object-cover rounded-[2px]"
+                      />{" "}
+                      EN
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             {/* Theme toggle */}
             <button
@@ -251,17 +323,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className={`md:hidden absolute left-0 right-0 top-20 overflow-hidden rounded-b-xl backdrop-blur-2xl border-b ${
-              darkMode
-                ? "bg-white/5 border-white/10 shadow-lg shadow-black/5"
-                : "bg-white/80 border-white/40 shadow-lg shadow-slate-200/50"
-            }`}
+            className={`md:hidden absolute left-0 right-0 top-20 bg-tech-bg/95 backdrop-blur-xl border-b border-tech-teal/30 shadow-[0_10px_30px_rgba(68,187,164,0.15)] z-40`}
+            style={{
+              clipPath:
+                "polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
+            }}
           >
             {/* Background glow */}
             <div
-              className={`absolute top-0 right-0 w-1/2 h-full opacity-20 blur-3xl pointer-events-none ${
-                darkMode ? "bg-primary/70" : "bg-primary-deep/70"
-              }`}
+              className={`absolute top-0 right-0 w-1/2 h-full opacity-10 blur-3xl pointer-events-none bg-tech-teal`}
             />
 
             <nav className="relative flex flex-col items-end p-6 pr-8 space-y-4">
@@ -276,25 +346,25 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                       setActiveSection(item.href);
                       setIsOpen(false);
                     }}
-                    className={`group relative text-right px-8 py-4 text-xl font-bold transition-all duration-300 rounded-xl ${
+                    className={`group relative text-right px-8 py-4 text-xl font-bold uppercase tracking-widest transition-all duration-300 ${
                       isActive
-                        ? darkMode
-                          ? "text-primary"
-                          : "text-primary-deep"
-                        : darkMode
-                          ? "text-slate-300 hover:text-white"
-                          : "text-slate-600 hover:text-slate-900"
+                        ? "text-tech-teal drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]"
+                        : "text-tech-light/70 hover:text-tech-light"
                     }`}
                   >
                     <div
-                      className={`absolute inset-0 rounded-xl transition-transform duration-300 ${
+                      className={`absolute inset-0 transition-transform duration-300 bg-tech-teal/5 ${
                         isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                      } ${darkMode ? "bg-white/10" : "bg-slate-900/5"}`}
+                      }`}
+                      style={{
+                        clipPath:
+                          "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                      }}
                     />
                     <div
-                      className={`absolute right-0 top-1/2 -translate-y-1/2 w-1 rounded-full transition-all duration-300 ${
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 w-[3px] transition-all duration-300 bg-tech-teal shadow-[0_0_8px_rgba(68,187,164,0.8)] ${
                         isActive ? "h-3/4" : "h-0 group-hover:h-3/4"
-                      } ${darkMode ? "bg-primary" : "bg-primary-deep"}`}
+                      }`}
                     />
                     <span className="relative z-10">{item.name}</span>
                   </motion.button>
@@ -308,23 +378,25 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   toggleDarkMode();
                   setIsOpen(false);
                 }}
-                className={`group relative text-right px-8 py-4 text-xl font-bold flex items-center justify-end gap-3 transition-all duration-300 rounded-xl ${
-                  darkMode
-                    ? "text-slate-300 hover:text-white"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
+                className={`group relative text-right px-8 py-4 text-xl font-bold uppercase tracking-widest flex items-center justify-end gap-3 transition-all duration-300 text-tech-light/70 hover:text-tech-light`}
               >
                 <div
-                  className={`absolute inset-0 rounded-xl transition-transform duration-300 scale-0 group-hover:scale-100 ${darkMode ? "bg-white/10" : "bg-slate-900/5"}`}
+                  className={`absolute inset-0 transition-transform duration-300 bg-tech-teal/5 scale-0 group-hover:scale-100`}
+                  style={{
+                    clipPath:
+                      "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                  }}
                 />
                 <span className="relative z-10">
                   {darkMode ? "LIGHT MODE" : "DARK MODE"}
                 </span>
-                {darkMode ? (
-                  <RiSunLine size={24} className="relative z-10" />
-                ) : (
-                  <RiMoonLine size={24} className="relative z-10" />
-                )}
+                <div className="relative z-10 text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]">
+                  {darkMode ? (
+                    <RiSunLine size={24} />
+                  ) : (
+                    <RiMoonLine size={24} />
+                  )}
+                </div>
               </motion.button>
             </nav>
           </motion.div>

@@ -19,7 +19,7 @@ module.exports = {
         "tech-light": "var(--tech-light)",
       },
       fontFamily: {
-        sans: ["Orbitron", "sans-serif"],
+        sans: ["Space Grotesk", "sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
       typography: (theme) => ({
