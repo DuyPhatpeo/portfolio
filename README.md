@@ -1,123 +1,115 @@
-# 🚀 Personal Portfolio
+# 🌌 Dark Sci-Fi Portfolio - DINO PÉO
 
 <div align="center">
-  <img src="public/portfolio.png" alt="Portfolio Preview" width="600" />
+  <img src="public/portfolio.png" alt="Portfolio Preview" width="800" />
 </div>
 
-[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.0.1-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](./LICENSE)
+<p align="center">
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React"></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.6.2-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"></a>
+  <a href="https://vitejs.dev/"><img src="https://img.shields.io/badge/Vite-6.0.1-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite"></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-3.4.10-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS"></a>
+  <a href="https://www.framer.com/motion/"><img src="https://img.shields.io/badge/Framer_Motion-11.5.4-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion"></a>
+</p>
 
-> A modern, responsive portfolio website built with React, TypeScript, and Vite. Showcasing my skills, projects, and professional journey as a developer.
+> A visually striking, high-performance personal portfolio website engineered with a premium **Dark Sci-Fi / Cyber** aesthetic. Designed to resemble an advanced Heads-Up Display (HUD) and futuristic data terminal.
 
-## ✨ Features
+## ✨ Key Features & Aesthetic
 
-- 🎨 **Modern Design** - Clean and professional UI/UX
-- 📱 **Fully Responsive** - Optimized for all devices
-- ⚡ **Lightning Fast** - Built with Vite for optimal performance
-- 🎯 **Type-Safe** - Written in TypeScript for better code quality
-- 🔥 **Hot Module Replacement** - Instant updates during development
-- 🎭 **Smooth Animations** - Engaging user interactions
-- 📧 **Contact Form** - Easy way to get in touch
-- 🌐 **SEO Optimized** - Better search engine visibility
+- 🕶️ **Pure Black Dark Mode:** High-contrast OLED-ready `#000000` dark mode background for maximum depth.
+- 🟢 **Neon Xanh Ngọc (Turquoise) Synergy:** Distinctive bright turquoise accents mixed with deep slate/blacks.
+- 📐 **HUD Terminal UI:** Geometric elements, angular container clip-paths (`polygon`), and raw console-style aesthetics throughout the structural layout.
+- 🕹️ **Interactive Particle System:** Dynamic floating canvas particles with circuit lines that match the currently selected theme.
+- 🌓 **Cyber Light Mode:** A fully supported contrasting bright tech theme with Deep Slate and Vibrant Teal (`#0D9488`).
+- ⚡ **Maximum Performance:** Built on Vite + React 18, utilizing Framer Motion for buttery-smooth 60fps animations.
 
-## 🛠️ Tech Stack
+## 🛠️ Architecture & Tech Stack
 
-- **Frontend:** React 18
-- **Language:** TypeScript
-- **Build Tool:** Vite
-- **Styling:** CSS3 / Styled Components
-- **Code Quality:** ESLint
-- **Version Control:** Git & GitHub
+- **Frontend Core:** React 18 (Function Components, Hooks)
+- **Language:** TypeScript (Strict Typing)
+- **Build Tool:** Vite (ESBuild ecosystem)
+- **Styling:** Tailwind CSS + Native CSS Variables for global theming
+- **Animation Engine:** Framer Motion
+- **Icons:** React Icons + DevIcons (SVG)
+- **State Pattern:** Top-level Context / Zustand (for toggles)
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v18 or higher)
-- npm or yarn
+Ensure you have installed:
 
-### Installation
+- [Node.js](https://nodejs.org/) (v18.0.0 or higher)
+- npm, yarn, or bun.
 
-1. Clone the repository
+### Installation & Run
+
+1. Clone the repository:
 
 ```bash
 git clone https://github.com/DuyPhatpeo/portfolio.git
 cd portfolio
 ```
 
-2. Install dependencies
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Start the development server
+3. Initialize the Cyber Terminal (Start Dev Server):
 
 ```bash
 npm run dev
 ```
 
-4. Open your browser and visit `http://localhost:5173`
+4. Access the interface at `http://localhost:5173`.
 
-## 📦 Available Scripts
-
-```bash
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-
-# Run linter
-npm run lint
-```
-
-## 🏗️ Project Structure
+## 📂 System File Hierarchy
 
 ```
 portfolio/
-├── public/              # Static assets
+├── public/                 # Static assets & OpenGraph Images
 ├── src/
-│   ├── assets/         # Images, fonts, etc.
-│   ├── components/     # React components
-│   ├── pages/          # Page components
-│   ├── styles/         # Global styles
-│   ├── App.tsx         # Main App component
-│   └── main.tsx        # Entry point
-├── .eslintrc.cjs       # ESLint configuration
-├── tsconfig.json       # TypeScript configuration
-├── vite.config.ts      # Vite configuration
-└── package.json        # Project dependencies
+│   ├── components/         # Modular Interface Modules
+│   │   ├── about/          # Biographical Data Modules
+│   │   ├── contact/        # Comm-Link Forms & HUD Cards
+│   │   ├── general/        # Header, Footer, Navigation Systems
+│   │   ├── hero/           # Primary Landing Interface
+│   │   ├── project/        # Holographic Portfolio Logs
+│   │   ├── skills/         # Technical Skill HUD Nodes
+│   │   └── theme/          # Particle Systems & Theme Toggles
+│   ├── data/               # Unified Configuration Data (JSON-like TS)
+│   ├── styles/             # Global CSS Architecture & Theme Tokens
+│   ├── App.tsx             # Root Application Assembly
+│   └── main.tsx            # DOM Render Entry
+├── index.html              # HTML Shell
+├── tailwind.config.cjs     # Tailwind Configuration & Theme Extensions
+└── vite.config.ts          # Vite Bundler Settings
 ```
 
-## 🎨 Customization
+## 🎨 Customizing the Terminal
 
-You can customize this portfolio by:
+The system is highly modular. To adapt the portfolio for your own identity:
 
-1. **Update Personal Information:** Edit the content in `src/data/` files
-2. **Change Theme:** Modify colors in `src/styles/theme.ts`
-3. **Add Projects:** Add your projects to `src/data/projects.ts`
-4. **Update Skills:** Edit skills in `src/data/skills.ts`
+1. **Identity Injection:** Edit the configuration models inside `src/data/` (`heroData.ts`, `aboutData.ts`, `skillsData.tsx`).
+2. **Theme Recalibration:** Modify the CSS Custom Properties found in `src/styles/abstract/variables.css` to change the core neon accent colors.
+3. **Database Population:** Append your professional history and repositories to `src/data/projectData.tsx`.
 
-## 🚀 Deployment
+## 🚀 Deployment Protocol
 
 ### GitHub Pages
 
-1. Update `vite.config.ts` with your repo name:
+1. Update `base` path in `vite.config.ts`:
 
 ```typescript
 export default defineConfig({
-  base: "/portfolio/",
+  base: "/portfolio/", // Your repository name
   // ...
 });
 ```
 
-2. Build and deploy:
+2. Execute build & deploy sequence:
 
 ```bash
 npm run build
@@ -126,58 +118,17 @@ npm run deploy
 
 ### Vercel / Netlify
 
-Simply connect your GitHub repository and these platforms will automatically build and deploy your site.
+The architecture is inherently serverless-ready. Link your GitHub repository to Vercel or Netlify, specify `npm run build` as the build command, and `dist` as the output directory. The system will deploy automatically upon commit.
 
-## 📝 ESLint Configuration
+## 👨‍💻 Operator
 
-For production applications, consider enabling type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    ...tseslint.configs.recommendedTypeChecked,
-    // or use strictTypeChecked for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-  ],
-  languageOptions: {
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
-```
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/DuyPhatpeo/portfolio/issues).
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**DuyPhatpeo**
+**DINO PÉO**
 
 - GitHub: [@DuyPhatpeo](https://github.com/DuyPhatpeo)
-- Portfolio: [https://duyphatpeo.github.io/portfolio](https://duyphatpeo.github.io/portfolio)
-
-## 🙏 Acknowledgments
-
-- Design inspiration from various portfolio websites
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
-- Built with [Vite](https://vitejs.dev/) and [React](https://react.dev/)
 
 ---
 
 <div align="center">
-  <p>Made with ❤️ by DuyPhatpeo</p>
-  <p>⭐ Star this repo if you found it helpful!</p>
+  <p>Engineered with 🩻 by DINO PÉO</p>
+  <p>If this system architecture assists your development, initialize a ⭐ on the repository.</p>
 </div>
