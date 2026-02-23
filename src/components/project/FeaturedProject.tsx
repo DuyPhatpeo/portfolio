@@ -46,8 +46,6 @@ export default function FeaturedProject({
           className="
             w-full transition-transform duration-500
             md:group-hover:scale-[1.05]
-            filter brightness-90 md:group-hover:brightness-110 md:group-hover:contrast-125
-            mix-blend-luminosity md:group-hover:mix-blend-normal
           "
         />
         {/* Holographic Scanline effect */}
@@ -177,7 +175,7 @@ export default function FeaturedProject({
         <div
           className={`
             md:col-span-5 relative z-10
-            ${project.reverse ? "md:-mr-20 md:order-1" : "md:-ml-20 md:order-2"}
+            ${project.reverse ? "md:-mr-10 md:order-1" : "md:-ml-10 md:order-2"}
           `}
         >
           <ContentBlock />

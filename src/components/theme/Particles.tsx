@@ -186,10 +186,10 @@ const Particles: React.FC<ParticlesProps> = ({
 
   /* ---------------- UI ---------------- */
   // Responsive background based on dark mode
-  const backgroundColor = darkMode ? "#0a1929" : "#F3F4F6";
+  const backgroundColor = darkMode ? "#0a1929" : "#ffffff";
   const circuitColor = darkMode
     ? "rgba(0, 245, 212, 0.04)"
-    : "rgba(17, 94, 89, 0.04)";
+    : "rgba(13, 148, 136, 0.05)";
 
   const backgroundPattern = `
     radial-gradient(circle at center, transparent 0%, ${backgroundColor} 100%),

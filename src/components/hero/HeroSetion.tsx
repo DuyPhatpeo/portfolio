@@ -18,7 +18,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
       className="relative min-h-screen flex items-center justify-center md:pt-24 scroll-mt-20 md:scroll-mt-24 px-4 sm:px-6 lg:px-8 py-12"
     >
       <div className="max-w-7xl w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative">
           {/* Main Terminal Window (Right Content) */}
           <div
             className="lg:col-span-7 flex flex-col justify-center space-y-4 md:space-y-6 bg-tech-bg/60 backdrop-blur-md border border-tech-teal/30 p-8 shadow-[0_0_20px_rgba(68,187,164,0.1)] relative"
@@ -38,7 +38,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               </div>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter text-tech-light drop-shadow-[0_0_15px_rgba(68,187,164,0.6)]">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[90px] font-sans font-black uppercase leading-[1.1] tracking-widest text-tech-light drop-shadow-[0_0_18px_rgba(0,245,212,0.7)] whitespace-nowrap">
               {name}
             </h1>
 

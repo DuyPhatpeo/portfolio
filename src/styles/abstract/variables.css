@@ -5,42 +5,42 @@
     --neutral: #ffffff;
 
     /* Cyber Light Theme (Bright, clean, contrast tech) */
-    --tech-bg: #f3f4f6; /* Light silver/grey */
-    --tech-teal: #115e59; /* Darker teal for contrast on light bg */
-    --tech-light: #1f2937; /* Dark grey for text */
+    --tech-bg: #ffffff; /* Pure white instead of silver/gray */
+    --tech-teal: #0d9488; /* Vibrant Teal */
+    --tech-light: #0f172a; /* Deep Slate for text */
 
     /* ===== TEAL SYSTEM ===== */
-    --primary: #115e59;
-    --primary-mild: #0f766e;
-    --primary-deep: #042f2e;
-    --primary-subtle: #115e5914;
+    --primary: #0d9488;
+    --primary-mild: #14b8a6;
+    --primary-deep: #0f766e;
+    --primary-subtle: #0d94881a;
 
-    --secondary: #1f2937;
-    --secondary-mild: #374151;
-    --secondary-deep: #111827;
-    --secondary-subtle: #1f293714;
+    --secondary: #0f172a;
+    --secondary-mild: #1e293b;
+    --secondary-deep: #020617;
+    --secondary-subtle: #0f172a14;
 
     /* ===== SEMANTIC ===== */
-    --background: #f3f4f6;
-    --foreground: #1f2937;
+    --background: #ffffff;
+    --foreground: #0f172a;
 
-    --card: #ffffff;
-    --card-foreground: #1f2937;
+    --card: #f8fafc; /* Very light slate for cards */
+    --card-foreground: #0f172a;
 
     --popover: #ffffff;
-    --popover-foreground: #1f2937;
+    --popover-foreground: #0f172a;
 
-    --primary-foreground: #f3f4f6;
-    --secondary-foreground: #f3f4f6;
+    --primary-foreground: #ffffff;
+    --secondary-foreground: #ffffff;
 
-    --muted: #e5e7eb;
-    --muted-foreground: #4b5563;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
 
     --accent: var(--primary-subtle);
     --accent-foreground: var(--primary-deep);
 
-    --border: #d1d5db;
-    --input: #d1d5db;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
     --ring: var(--primary);
   }
 
