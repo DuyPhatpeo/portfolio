@@ -1,21 +1,25 @@
 import { motion } from "framer-motion";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface ContactData {
   icon: React.ElementType;
-  label: string;
-  value: string;
+  labelKey: string;
+  value?: string;
+  valueKey?: string;
   href: string;
   color: string; // gradient tailwind: from-... to-...
 }
 
 export default function ContactCard({
   icon: Icon,
-  label,
+  labelKey,
   value,
+  valueKey,
   href,
-  color,
 }: ContactData) {
+  const { t } = useTranslation();
+
   return (
     <motion.a
       href={href}
@@ -66,7 +70,7 @@ export default function ContactCard({
           {/* Text */}
           <div className="w-full">
             <p className="text-[10px] md:text-xs font-mono font-bold tracking-widest uppercase mb-2 text-tech-teal border-b border-tech-teal/20 pb-2">
-              &gt; {label}
+              &gt; {t(labelKey)}
             </p>
 
             <p
@@ -78,7 +82,7 @@ export default function ContactCard({
                 whitespace-nowrap overflow-hidden text-ellipsis
               "
             >
-              {value}
+              {valueKey ? t(valueKey) : value}
             </p>
           </div>
         </div>

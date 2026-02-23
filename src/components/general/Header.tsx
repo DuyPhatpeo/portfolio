@@ -4,9 +4,11 @@ import {
   RiCloseLine,
   RiMoonLine,
   RiSunLine,
+  RiGlobalLine,
 } from "react-icons/ri";
 import { useThemeStore } from "../../stores/themeStore";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
@@ -14,6 +16,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useThemeStore();
+  const { t, i18n } = useTranslation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -23,14 +26,20 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const navItems = useMemo(
     () => [
-      { name: "HOME", href: "home" },
-      { name: "ABOUT", href: "about" },
-      { name: "SKILLS", href: "skills" },
-      { name: "PROJECTS", href: "projects" },
-      { name: "CONTACT", href: "contact" },
+      { name: t("nav.home"), href: "home" },
+      { name: t("nav.about"), href: "about" },
+      { name: t("nav.skills"), href: "skills" },
+      { name: t("nav.projects"), href: "projects" },
+      { name: t("nav.contact"), href: "contact" },
     ],
-    [],
+    [t],
   );
+
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "vi" ? "en" : "vi";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("language", newLang);
+  };
 
   // Detect active section on scroll
   useEffect(() => {
@@ -122,7 +131,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               const isActive = activeSection === item.href;
               return (
                 <button
-                  key={item.name}
+                  key={item.href}
                   onClick={() => {
                     scrollToSection(item.href);
                     setActiveSection(item.href);
@@ -157,10 +166,33 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
           {/* Right side buttons */}
           <div className="flex items-center space-x-3 md:space-x-4">
-            {/* Theme toggle (Decorative in dark mode locked aesthetic) */}
+            {/* Language toggle */}
+            <button
+              onClick={toggleLanguage}
+              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)] flex items-center justify-center gap-1 min-w-[64px]`}
+              style={{
+                clipPath:
+                  "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
+              }}
+            >
+              <div
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-tech-teal/20`}
+              />
+              <div className="relative text-tech-teal flex items-center gap-1">
+                <RiGlobalLine
+                  size={18}
+                  className="group-hover:rotate-12 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                />
+                <span className="text-sm font-bold tracking-widest">
+                  {i18n.language.toUpperCase()}
+                </span>
+              </div>
+            </button>
+
+            {/* Theme toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)]`}
+              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)] hidden md:block`}
               style={{
                 clipPath:
                   "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
@@ -194,7 +226,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
               }}
             >
-              {/* <span>{isOpen ? "CLOSE" : "MENU"}</span> */}
               {isOpen ? (
                 <RiCloseLine
                   size={24}
@@ -238,7 +269,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 const isActive = activeSection === item.href;
                 return (
                   <motion.button
-                    key={item.name}
+                    key={item.href}
                     variants={itemVariants}
                     onClick={() => {
                       scrollToSection(item.href);
@@ -269,6 +300,32 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   </motion.button>
                 );
               })}
+
+              {/* Theme Toggle inside Mobile Menu */}
+              <motion.button
+                variants={itemVariants}
+                onClick={() => {
+                  toggleDarkMode();
+                  setIsOpen(false);
+                }}
+                className={`group relative text-right px-8 py-4 text-xl font-bold flex items-center justify-end gap-3 transition-all duration-300 rounded-xl ${
+                  darkMode
+                    ? "text-slate-300 hover:text-white"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                <div
+                  className={`absolute inset-0 rounded-xl transition-transform duration-300 scale-0 group-hover:scale-100 ${darkMode ? "bg-white/10" : "bg-slate-900/5"}`}
+                />
+                <span className="relative z-10">
+                  {darkMode ? "LIGHT MODE" : "DARK MODE"}
+                </span>
+                {darkMode ? (
+                  <RiSunLine size={24} className="relative z-10" />
+                ) : (
+                  <RiMoonLine size={24} className="relative z-10" />
+                )}
+              </motion.button>
             </nav>
           </motion.div>
         )}

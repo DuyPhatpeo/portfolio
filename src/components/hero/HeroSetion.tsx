@@ -1,16 +1,16 @@
-import { heroInfo } from "../../data/heroData";
 import HeroAvatar from "./HeroAvatar";
 import TypingRoles from "./TypingRoles";
 import HeroButtons from "./HeroButtons";
 import SocialLinks from "./SocialLinks";
 import ScrollIndicator from "./ScrollIndicator";
+import { useTranslation } from "react-i18next";
 
 interface HeroSectionProps {
   scrollToSection: (sectionId: string) => void;
 }
 
 export default function HeroSection({ scrollToSection }: HeroSectionProps) {
-  const { name, description } = heroInfo;
+  const { t } = useTranslation();
 
   return (
     <section
@@ -39,7 +39,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             </div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[90px] font-sans font-black uppercase leading-[1.1] tracking-widest text-tech-light drop-shadow-[0_0_18px_rgba(0,245,212,0.7)] whitespace-nowrap">
-              {name}
+              {t("hero.title")}
             </h1>
 
             <div className="pl-4 border-l-2 border-tech-teal/50">
@@ -53,15 +53,14 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
                   "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
               }}
             >
-              {description}
+              {t("hero.subtitle")}
             </p>
 
             <HeroButtons scrollToSection={scrollToSection} />
             <SocialLinks />
           </div>
 
-          {/* Avatar Panel (Left Content, but moved to right col for visual weight balance if desired, originally left side. We'll put it right side on desktop for standard HUD look or keep it left based on original code structure) */}
-          {/* Originally: left was avatar. Now: col-span-5 right side */}
+          {/* Avatar Panel */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative order-first lg:order-last mb-8 lg:mb-0">
             {/* Decorative Data Nodes */}
             <div className="hidden lg:flex flex-col gap-2 absolute left-0 top-1/4 -translate-x-full pr-8">

@@ -4,6 +4,7 @@ import ContactCard from "./ContactCard";
 import { contactData } from "../../data/contactData";
 import SectionHeader from "../ui/SectionHeader";
 import ContactForm from "./ContactForm";
+import { useTranslation } from "react-i18next";
 
 const containerVariants: Variants = {
   hidden: {},
@@ -45,6 +46,8 @@ const formVariants: Variants = {
 };
 
 export default function ContactSection() {
+  const { t } = useTranslation();
+
   return (
     <motion.section
       id="contact"
@@ -56,7 +59,7 @@ export default function ContactSection() {
     >
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={itemVariants}>
-          <SectionHeader title="Get In Touch" />
+          <SectionHeader title={t("contact.title")} />
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">

@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const fullText = "DINO PÉO";
 
   const container = {
@@ -85,7 +87,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3">
               <span>© {new Date().getFullYear()}</span>
               <span className="text-tech-teal font-bold">DINO PÉO</span>
-              <span>ALL RIGHTS RESERVED</span>
+              <span>{t("footer.rights")}</span>
             </div>
           </div>
         </div>

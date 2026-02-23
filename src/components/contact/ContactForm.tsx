@@ -3,9 +3,11 @@ import { motion } from "framer-motion";
 import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { useContactStore } from "../../stores/contactStore";
+import { useTranslation } from "react-i18next";
 
 export default function ContactForm() {
   const { form, loading, status, setField, sendEmail } = useContactStore();
+  const { t } = useTranslation();
 
   /* INIT EMAILJS */
   useEffect(() => {
@@ -43,13 +45,13 @@ export default function ContactForm() {
       </div>
 
       <p className="text-xs md:text-sm font-mono text-tech-teal/80 uppercase tracking-widest border-l-2 border-tech-teal/50 pl-3 mb-6">
-        &gt; Channel open. Awaiting telemetry...
+        &gt; {t("contact.subtitle")}
       </p>
 
       {/* NAME */}
       <input
         type="text"
-        placeholder="Designation / Name"
+        placeholder={t("contact.labels.form.name")}
         value={form.name}
         onChange={(e) => setField("name", e.target.value)}
         required
@@ -68,7 +70,7 @@ export default function ContactForm() {
       {/* EMAIL */}
       <input
         type="email"
-        placeholder="Comms Link / Email"
+        placeholder={t("contact.labels.form.email")}
         value={form.email}
         onChange={(e) => setField("email", e.target.value)}
         required
@@ -87,7 +89,7 @@ export default function ContactForm() {
       {/* MESSAGE */}
       <textarea
         rows={4}
-        placeholder="Encrypt message..."
+        placeholder={t("contact.labels.form.message")}
         value={form.message}
         onChange={(e) => setField("message", e.target.value)}
         required
@@ -121,10 +123,10 @@ export default function ContactForm() {
         }}
       >
         {loading ? (
-          "Transmitting..."
+          t("contact.labels.form.sending")
         ) : (
           <>
-            Transmit Data{" "}
+            {t("contact.labels.form.send")}{" "}
             <MdSend className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </>
         )}
@@ -133,13 +135,13 @@ export default function ContactForm() {
       {/* STATUS */}
       {status === "success" && (
         <p className="flex items-center gap-2 text-green-600 text-sm">
-          <MdCheckCircle /> Message sent successfully!
+          <MdCheckCircle /> {t("contact.alerts.success")}
         </p>
       )}
 
       {status === "error" && (
         <p className="flex items-center gap-2 text-red-600 text-sm">
-          <MdError /> Something went wrong. Please try again.
+          <MdError /> {t("contact.alerts.error")}
         </p>
       )}
     </motion.form>

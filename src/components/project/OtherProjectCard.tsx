@@ -2,6 +2,7 @@
 import { FiExternalLink, FiGithub, FiFolder } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
 import type { Project } from "../../data/projectData";
+import { useTranslation } from "react-i18next";
 
 interface OtherProjectCardProps {
   project: Project;
@@ -14,6 +15,7 @@ export default function OtherProjectCard({
 }: OtherProjectCardProps) {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -108,12 +110,12 @@ export default function OtherProjectCard({
 
       {/* TITLE */}
       <h3 className="text-xl font-bold font-mono tracking-tight mb-3 text-tech-light group-hover:text-tech-teal transition-colors relative z-10">
-        &gt; {project.title}
+        &gt; {t(`projects.items.${project.id}.title`)}
       </h3>
 
       {/* DESCRIPTION */}
       <p className="text-sm font-mono leading-relaxed text-tech-light/70 relative z-10">
-        {project.description}
+        {t(`projects.items.${project.id}.description`)}
       </p>
 
       {/* TAGS */}

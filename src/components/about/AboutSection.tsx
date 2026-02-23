@@ -1,5 +1,6 @@
 import React from "react";
 import { motion, type Variants } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 import Bio from "./Bio";
 import PersonalInfo from "./PersonalInfo";
@@ -36,6 +37,8 @@ const itemVariants: Variants = {
 };
 
 const AboutSection: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <motion.section
       id="about"
@@ -46,7 +49,7 @@ const AboutSection: React.FC = () => {
       className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20 md:scroll-mt-24"
     >
       <motion.div variants={itemVariants}>
-        <SectionHeader title="About Me" />
+        <SectionHeader title={t("about.title")} />
       </motion.div>
 
       <motion.div variants={itemVariants}>

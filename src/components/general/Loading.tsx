@@ -1,10 +1,13 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 interface LoadingProps {
   progress: number;
 }
 
 const Loading: React.FC<LoadingProps> = ({ progress }) => {
+  const { t } = useTranslation();
+
   return (
     <div className="fixed inset-0 z-[9999] bg-background text-foreground flex flex-col items-center justify-center font-sans overflow-hidden">
       {/* Background Decorative Grid */}
@@ -57,7 +60,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
             {Math.round(progress)}
           </div>
           <div className="text-primary-mild text-sm tracking-widest mt-1">
-            %
+            {t("loading.percentage")}
           </div>
         </div>
       </div>

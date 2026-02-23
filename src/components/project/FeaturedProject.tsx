@@ -2,6 +2,7 @@
 import { FiExternalLink, FiGithub } from "react-icons/fi";
 import type { Project } from "../../data/projectData";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface FeaturedProjectProps {
   project: Project;
@@ -14,6 +15,7 @@ export default function FeaturedProject({
 }: FeaturedProjectProps) {
   const [isVisible, setIsVisible] = useState(false);
   const projectRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,7 +44,7 @@ export default function FeaturedProject({
       >
         <img
           src={project.image}
-          alt={project.title}
+          alt={t(`projects.items.${project.id}.title`)}
           className="
             w-full transition-transform duration-500
             md:group-hover:scale-[1.05]
@@ -67,14 +69,14 @@ export default function FeaturedProject({
         {project.reverse ? null : (
           <span className="hidden md:inline-block h-[1px] w-8 bg-tech-teal/50"></span>
         )}
-        Featured_Log
+        {t("projects.badges.featured")}
         {project.reverse ? (
           <span className="hidden md:inline-block h-[1px] w-8 bg-tech-teal/50"></span>
         ) : null}
       </p>
 
       <h3 className="text-3xl lg:text-4xl font-black mb-4 text-tech-light uppercase tracking-tight drop-shadow-[0_0_8px_rgba(68,187,164,0.4)] hover:text-tech-teal transition-colors">
-        {project.title}
+        {t(`projects.items.${project.id}.title`)}
       </h3>
 
       {/* DESCRIPTION - HUD Data Module */}
@@ -87,7 +89,7 @@ export default function FeaturedProject({
       >
         <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-tech-teal/50"></div>
         <p className="leading-relaxed text-sm md:text-base text-tech-light/80 font-mono">
-          {project.description}
+          {t(`projects.items.${project.id}.description`)}
         </p>
       </div>
 

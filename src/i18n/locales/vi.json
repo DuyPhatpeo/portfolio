@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "TRANG CHỦ",
+    "about": "GIỚI THIỆU",
+    "skills": "KỸ NĂNG",
+    "projects": "DỰ ÁN",
+    "contact": "LIÊN HỆ"
+  },
+  "hero": {
+    "title": "DINO PÉO",
+    "subtitle": "Kiến tạo các trải nghiệm web trực quan và tương tác cao, biến ý tưởng thành hiện thực bằng các công nghệ hiện đại.",
+    "roles": ["Lập trình viên Web", "Lập trình viên Front-End"],
+    "system_initialized": "Hệ thống Đã Khởi Tạo",
+    "cta": "XEM DỰ ÁN"
+  },
+  "about": {
+    "title": "Giới Thiệu",
+    "profile": "HỒ SƠ: ",
+    "name": "Trần Duy Phát (Dino Péo)",
+    "bio": "Là một nhà phát triển phần mềm chuyên nghiệp, tập trung vào việc tạo ra các trải nghiệm web tối ưu và hiện đại.",
+    "quote": "Không ngừng sáng tạo – Không ngại thử thách",
+    "sections": {
+      "personal": "THÔNG TIN CÁ NHÂN",
+      "achievements": "THÀNH TÍCH"
+    },
+    "personal": {
+      "dobLabel": "Ngày sinh",
+      "dobValue": "28/10/2003",
+      "fromLabel": "Đến từ",
+      "fromValue": "Nha Trang, Việt Nam",
+      "hobbiesLabel": "Sở thích",
+      "hobbiesValue": "Chơi game, Xem phim",
+      "favoritesLabel": "Đam mê",
+      "favoritesValue": "Cà phê & Lập trình"
+    },
+    "achievements": {
+      "projectsLabel": "Hơn 5+ Dự án",
+      "satisfactionLabel": "Độ hài lòng 100%",
+      "passionLabel": "Nhiệt huyết"
+    }
+  },
+  "skills": {
+    "title": "Kỹ Năng"
+  },
+  "projects": {
+    "title": "Dự Án Đã Làm",
+    "subtitle": "DỰ ÁN TIÊU BIỂU",
+    "badges": {
+      "featured": "DỰ ÁN NỔI BẬT"
+    },
+    "items": {
+      "1": {
+        "title": "Website Cá Nhân (Portfolio)",
+        "description": "Trang web danh mục cá nhân của tôi được xây dựng bằng React, TypeScript và Vite. Nơi đây trưng bày các dự án chọn lọc, kỹ năng chuyên môn, và hành trình trở thành một frontend developer của tôi với thiết kế giao diện theo xu hướng hiện đại, gọn gàng và tương thích với mọi thiết bị di động."
+      },
+      "2": {
+        "title": "Website Thương mại điện tử",
+        "description": "Một ứng dụng web thương mại điện tử đầy đủ tính năng được xây dựng bằng React và TypeScript. Dự án triển khai quy trình mua sắm cốt lõi bao gồm đăng nhập/đăng ký, danh sách và tìm kiếm sản phẩm, quản lý giỏ hàng, thanh toán, lịch sử đơn hàng và tài khoản người dùng, tất cả với giao diện tối ưu, hiện đại."
+      },
+      "3": {
+        "title": "Website Nhà hàng",
+        "description": "Một website nhà hàng hiện đại xây dựng bằng React và Vite. Dự án có tính năng đặt bàn trực tuyến, quản lý thực đơn động, trang blog và thư viện ảnh, tích hợp Firebase để xác thực và lưu trữ dữ liệu, kèm theo tài liệu mô phỏng API REST sử dụng JSON Server, tất cả trong một UI đồ hoạ mãn nhãn và mượt mà."
+      },
+      "4": {
+        "title": "Ứng dụng Dự báo Thời Tiết",
+        "description": "Ứng dụng dự báo thời tiết tiên tiến xây với React, TypeScript, và Tailwind CSS. Ứng dụng hỗ trợ tìm thành phố và nhận diện vị trí hiện tại, hiển thị thông tin thời tiết chi tiết của ngày, dự báo theo giờ và các ngày tiếp theo, sử dụng giao diện gọn đẹp và quản lý state nhẹ nhàng bằng Zustand."
+      },
+      "5": {
+        "title": "Dino Phim",
+        "description": "Ứng dụng tra cứu thông tin phim đơn giản viết bằng React và Vite. Cung cấp khả năng duyệt qua danh sách các bộ phim mới nhất, xem thông tin tóm tắt từng tựa phim với giao diện được thiết kế nhanh nhẹn, tối ưu hiệu suất, dễ sử dụng trên điện thoại."
+      },
+      "6": {
+        "title": "Cửa hàng DinoStore",
+        "description": "DinoStore là ứng dụng mua sắm thương mại điện tử làm với React và Vite, mang lại trải nghiệm đầy đủ cho mua sắm trực tuyến. Bao gồm banner trang chủ, sản phẩm nổi bật, chi tiết sản phẩm, chức năng xác thực người dùng, giỏ hàng, yêu thích, bộ lọc sản phẩm, phân trang, hoàn toàn responsive."
+      },
+      "7": {
+        "title": "DinoBot Discord",
+        "description": "Một bot Discord đa chức năng viết bằng Node.js và Discord.js để hỗ trợ điều hành và quản trị server tự động. Bao gồm các lệnh như kick, ban, và mute, được thiết kế để triển khai linh động với hệ thống kiểm soát thời gian chạy ổn định liên tục 24/7."
+      },
+      "8": {
+        "title": "ShopFSTYLE – Hệ thống TMĐT Thời Trang",
+        "description": "Website thương mại điện tử thời trang đầy đủ tính năng được phát triển dưới dạng đồ án tốt nghiệp. Hệ thống bao gồm module cho khách hàng và admin, quản lý sản phẩm cùng với biên thể màu sắc-size, theo dõi kho, các vai trò user đa cấp, bảng điều khiển thống kê kinh doanh. Làm với PHP thuần, MySQL và giao diện responsive tập trung vào luồng công việc thực tế."
+      }
+    }
+  },
+  "contact": {
+    "title": "Liên Hệ",
+    "subtitle": "TRẠNG THÁI KẾNH BẢO MẬT: ĐANG CHẠY",
+    "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
+    "labels": {
+      "email": "EMAIL",
+      "phone": "SỐ ĐIỆN THOẠI",
+      "location": "VỊ TRÍ",
+      "github": "GITHUB",
+      "form": {
+        "name": "TÊN CỦA BẠN",
+        "email": "EMAIL",
+        "message": "TIN NHẮN",
+        "send": "GỬI TIN NHẮN",
+        "sending": "ĐANG GỬI..."
+      }
+    },
+    "values": {
+      "location": "Nha Trang, Khánh Hòa, Việt Nam"
+    },
+    "alerts": {
+      "success": "Gửi tin nhắn thành công!",
+      "error": "Lỗi gửi tin nhắn. Mã lỗi: "
+    }
+  },
+  "footer": {
+    "rights": "BẢN QUYỀN ĐƯỢC BẢO LƯU.",
+    "transmission": "Kết thúc truyền tin"
+  },
+  "loading": {
+    "percentage": "%"
+  },
+  "common": {
+    "links": {
+      "source": "Mã Nguồn (Source)",
+      "live": "Xem Trực Tiếp (Live)"
+    }
+  }
+}

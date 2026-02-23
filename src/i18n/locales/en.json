@@ -1,0 +1,124 @@
+{
+  "nav": {
+    "home": "HOME",
+    "about": "ABOUT",
+    "skills": "SKILLS",
+    "projects": "PROJECTS",
+    "contact": "CONTACT"
+  },
+  "hero": {
+    "title": "DINO PÉO",
+    "subtitle": "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
+    "roles": ["Web Developer", "Front-End Developer"],
+    "system_initialized": "System Initialized",
+    "cta": "EXPLORE WORK"
+  },
+  "about": {
+    "title": "About Me",
+    "profile": "PROFILE: ",
+    "name": "Trần Duy Phát (Dino Péo)",
+    "bio": "I'm a developer specializing in creating modern and optimized web experiences.",
+    "quote": "Keep creating – Never fear challenges",
+    "sections": {
+      "personal": "PERSONAL",
+      "achievements": "ACHIEVEMENTS"
+    },
+    "personal": {
+      "dobLabel": "Date of Birth",
+      "dobValue": "28/10/2003",
+      "fromLabel": "From",
+      "fromValue": "Vietnam",
+      "hobbiesLabel": "Hobbies",
+      "hobbiesValue": "Gaming, Movies",
+      "favoritesLabel": "Favorites",
+      "favoritesValue": "Coffee & Coding"
+    },
+    "achievements": {
+      "projectsLabel": "5+ Projects",
+      "satisfactionLabel": "100% Satisfaction",
+      "passionLabel": "Passion"
+    }
+  },
+  "skills": {
+    "title": "Skills"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "SELECTED WORKS",
+    "badges": {
+      "featured": "FEATURED PROJECT"
+    },
+    "items": {
+      "1": {
+        "title": "Personal Portfolio",
+        "description": "My personal portfolio website built with React, TypeScript, and Vite. Showcasing selected projects, technical skills, and my journey as a frontend developer with a clean, modern, and responsive design."
+      },
+      "2": {
+        "title": "E-commerce Website",
+        "description": "A full-featured e-commerce web application built with React and TypeScript. The project implements core shopping flows including authentication, product listing and search, cart management, checkout, order history, and user profile management, all wrapped in a modern, responsive UI."
+      },
+      "3": {
+        "title": "Restaurant Website",
+        "description": "A modern restaurant website built with React and Vite. The project features online table reservations, dynamic menu management, blog and gallery pages, Firebase integration for authentication and storage, and a simulated REST API using JSON Server, all presented in a responsive and smooth UI."
+      },
+      "4": {
+        "title": "Weather Forecast App",
+        "description": "A modern weather forecast application built with React, TypeScript, and Tailwind CSS. The app supports city search and geolocation, displays detailed current weather, hourly forecasts, and multi-day forecasts, with a clean, responsive UI and lightweight state management using Zustand."
+      },
+      "5": {
+        "title": "Dino Movies",
+        "description": "A simple movie discovery web application built with React and Vite. The app allows users to browse a list of movies and view detailed information for each title, featuring a clean, responsive UI and fast development setup with hot reload."
+      },
+      "6": {
+        "title": "DinoStore",
+        "description": "DinoStore is a modern e-commerce web application built with React and Vite, offering an end-to-end online shopping experience. It includes home banners, featured products, detailed product pages, user authentication, cart and wishlist functionality, product filtering, pagination, and a fully responsive UI optimized for all devices."
+      },
+      "7": {
+        "title": "DinoBot Discord",
+        "description": "A multifunctional Discord bot built with Node.js and Discord.js to support server moderation and automation. It includes moderation commands like kick, ban, and mute, and is designed for flexible deployment with uptime monitoring to keep it running reliably 24/7."
+      },
+      "8": {
+        "title": "ShopFSTYLE – Fashion E-commerce System",
+        "description": "A full-featured fashion e-commerce website developed as a graduation project. The system includes customer and admin modules, supporting product management with color-size variants, inventory tracking, order processing, user roles, dashboards, and sales statistics. Built with a custom PHP backend, MySQL database, and a responsive frontend focused on real-world business workflows."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "SECURE CHANNEL STATUS: ONLINE",
+    "availability": "Ready for new opportunities. Leave a message below.",
+    "labels": {
+      "email": "EMAIL",
+      "phone": "PHONE",
+      "location": "LOCATION",
+      "github": "GITHUB",
+      "form": {
+        "name": "NAME",
+        "email": "EMAIL",
+        "message": "MESSAGE",
+        "send": "SEND TRANSMISSION",
+        "sending": "SENDING..."
+      }
+    },
+    "values": {
+      "location": "Nha Trang, Khanh Hoa, Vietnam"
+    },
+    "alerts": {
+      "success": "Transmission sent successfully!",
+      "error": "Transmission failed. Error code: "
+    }
+  },
+  "footer": {
+    "rights": "ALL RIGHTS RESERVED.",
+    "transmission": "End of Transmission"
+  },
+  "loading": {
+    "percentage": "%"
+  },
+  "common": {
+    "links": {
+      "source": "Source Code",
+      "live": "Live Preview"
+    }
+  }
+}
