@@ -16,7 +16,9 @@ const SocialLinks: React.FC = () => (
         }}
       >
         {/* Glow effect inside */}
-        <Icon className={`w-5 h-5 ${color}`} />
+        <Icon
+          className={`w-5 h-5 transition-colors duration-300 ${color} text-tech-light`}
+        />
       </a>
     ))}
   </div>

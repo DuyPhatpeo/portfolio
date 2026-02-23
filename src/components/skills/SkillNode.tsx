@@ -5,6 +5,7 @@ import { motion, useMotionValue } from "framer-motion";
 export interface Skill {
   name: string;
   logo?: string;
+  invertDark?: boolean;
   icon?: (props: { className?: string }) => React.ReactNode;
   url?: string;
 }
@@ -26,7 +27,7 @@ const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean }> = {
 const DEFAULT_ICON_SIZE = "h-8";
 const SPRING_CONFIG = { type: "spring" as const, stiffness: 600, damping: 35 };
 
-const SkillKeycap: React.FC<SkillKeycapProps> = ({
+const SkillNode: React.FC<SkillKeycapProps> = ({
   skill,
   hoveredSkill,
   pressedSkill,
@@ -73,61 +74,62 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
       }`}
     >
       <motion.div
-        className={`relative w-24 h-24 flex items-center justify-center border-2 transition-all duration-300 ${
+        className={`relative w-24 h-24 transition-all duration-300 ${
           isHovered
-            ? "bg-tech-teal/20 border-tech-teal shadow-[0_0_20px_rgba(68,187,164,0.4)]"
-            : "bg-tech-bg/50 border-tech-teal/30 shadow-[0_0_10px_rgba(68,187,164,0.05)]"
+            ? "drop-shadow-[0_0_15px_rgba(0,245,212,0.6)]"
+            : "drop-shadow-[0_0_5px_rgba(0,245,212,0.1)]"
         }`}
-        style={{
-          clipPath:
-            "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
-        }}
         animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        {/* Decorative HUD Corner */}
-        {isHovered && (
-          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-tech-light"></div>
-        )}
+        <div
+          className={`relative w-full h-full flex items-center justify-center border-2 transition-all duration-300 ${
+            isHovered
+              ? "bg-tech-teal/20 border-tech-teal"
+              : "bg-tech-bg/50 border-tech-teal/30"
+          }`}
+          style={{
+            clipPath:
+              "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
+          }}
+        >
+          {/* Decorative HUD Corner */}
+          {isHovered && (
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-tech-light"></div>
+          )}
 
-        {/* Icon container */}
-        <div className="relative w-full h-full flex items-center justify-center p-4">
-          <motion.div
-            className="relative w-full h-full flex items-center justify-center"
-            animate={{ scale: isPressed ? 0.9 : 1 }}
-            transition={SPRING_CONFIG}
-          >
-            {/* Icon glow */}
-            {skill.logo && !iconConfig?.disableGlow && (
-              <motion.div
-                className="absolute inset-0 rounded-2xl blur-xl bg-tech-teal/40"
-                animate={{ opacity: isHovered ? 0.8 : 0 }}
-                transition={{ duration: 0.4 }}
-              />
-            )}
+          {/* Icon container */}
+          <div className="relative w-full h-full flex items-center justify-center p-4">
+            <motion.div
+              className="relative w-full h-full flex items-center justify-center"
+              animate={{ scale: isPressed ? 0.9 : 1 }}
+              transition={SPRING_CONFIG}
+            >
+              {/* Removed Icon glow per user request */}
 
-            {skill.logo ? (
-              <img
-                src={skill.logo}
-                alt={skill.name}
-                className={`relative w-full h-full object-contain transition-all duration-300 ${
-                  isHovered && !iconConfig?.disableGlow
-                    ? "drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]"
-                    : ""
-                }`}
-              />
-            ) : (
-              skill.icon?.({
-                className: `relative w-auto transition-all duration-300 ${
-                  iconConfig?.size ?? DEFAULT_ICON_SIZE
-                } text-tech-teal ${
-                  isHovered
-                    ? "drop-shadow-[0_0_8px_rgba(68,187,164,0.8)] filter brightness-125"
-                    : ""
-                }`,
-              })
-            )}
-          </motion.div>
+              {skill.logo ? (
+                <img
+                  src={skill.logo}
+                  alt={skill.name}
+                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${
+                    isHovered && !iconConfig?.disableGlow
+                      ? "filter brightness-110"
+                      : ""
+                  } ${skill.invertDark ? "dark:invert" : ""}`}
+                />
+              ) : (
+                skill.icon?.({
+                  className: `relative w-auto transition-all duration-300 ${
+                    iconConfig?.size ?? DEFAULT_ICON_SIZE
+                  } ${
+                    isHovered
+                      ? "text-tech-teal filter brightness-125"
+                      : "text-tech-teal"
+                  }`,
+                })
+              )}
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 
@@ -143,7 +145,7 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
         className="mt-3 relative z-10"
       >
         <div
-          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-tech-bg border border-tech-teal text-tech-light shadow-[0_0_10px_rgba(68,187,164,0.4)]"
+          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-tech-bg border border-tech-teal text-tech-light shadow-[0_0_10px_rgba(0,245,212,0.4)]"
           style={{
             clipPath:
               "polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)",
@@ -156,4 +158,4 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
   );
 };
 
-export default SkillKeycap;
+export default SkillNode;

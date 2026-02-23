@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { skills } from "../../data/skillsData.tsx";
-import SkillKeycap from "./SkillKeycap";
+import SkillNode from "./SkillNode.tsx";
 
 // Container điều khiển xuất hiện từng item
 const containerVariants = {
@@ -49,7 +49,7 @@ export default function SkillsGrid() {
           variants={itemVariants}
           className="flex items-center justify-center w-full"
         >
-          <SkillKeycap
+          <SkillNode
             skill={skill}
             hoveredSkill={hoveredSkill}
             pressedSkill={pressedSkill}
