@@ -31,9 +31,11 @@ const TypingRoles: React.FC = () => {
 
   return (
     <div className="flex items-center gap-2 md:gap-3 justify-center md:justify-start mt-1 md:mt-2">
-      <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-        <span className="font-mono">{displayedText}</span>
-        <span className="animate-pulse text-primary font-bold text-2xl sm:text-3xl">
+      <div className="text-lg sm:text-xl md:text-2xl font-bold text-tech-teal flex items-center gap-2">
+        <span className="font-mono uppercase tracking-wider drop-shadow-[0_0_8px_rgba(68,187,164,0.6)]">
+          {displayedText}
+        </span>
+        <span className="animate-pulse text-tech-light font-bold text-2xl sm:text-3xl">
           |
         </span>
       </div>

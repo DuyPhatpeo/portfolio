@@ -1,5 +1,5 @@
 import React from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 /* ===== Skill type ===== */
 export interface Skill {
@@ -15,7 +15,6 @@ interface SkillKeycapProps {
   pressedSkill: string | null;
   setHoveredSkill: (name: string | null) => void;
   setPressedSkill: (name: string | null) => void;
-  isDarkMode?: boolean; // Thêm prop dark mode
 }
 
 /* ===== Icon config ===== */
@@ -33,12 +32,9 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
   pressedSkill,
   setHoveredSkill,
   setPressedSkill,
-  isDarkMode = false,
 }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-40, 40], [8, -8]);
-  const rotateY = useTransform(x, [-40, 40], [-8, 8]);
 
   const isHovered = hoveredSkill === skill.name;
   const isPressed = pressedSkill === skill.name;
@@ -77,120 +73,65 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
       }`}
     >
       <motion.div
-        className="relative w-24 h-24"
-        style={{ perspective: 1200 }}
-        animate={{ scale: isHovered ? 1.05 : 1 }}
+        className={`relative w-24 h-24 flex items-center justify-center border-2 transition-all duration-300 ${
+          isHovered
+            ? "bg-tech-teal/20 border-tech-teal shadow-[0_0_20px_rgba(68,187,164,0.4)]"
+            : "bg-tech-bg/50 border-tech-teal/30 shadow-[0_0_10px_rgba(68,187,164,0.05)]"
+        }`}
+        style={{
+          clipPath:
+            "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
+        }}
+        animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        {/* Ambient glow */}
-        <motion.div
-          className="absolute -inset-6 rounded-[32px] blur-3xl bg-primary/70"
-          animate={{ opacity: isHovered ? 0.6 : 0 }}
-          transition={{ duration: 0.4 }}
-        />
+        {/* Decorative HUD Corner */}
+        {isHovered && (
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-tech-light"></div>
+        )}
 
-        {/* Shadow */}
-        <motion.div
-          className={`absolute inset-0 rounded-[22px] blur-xl ${
-            isDarkMode ? "bg-black/40" : "bg-black/25"
-          }`}
-          animate={{ y: isPressed ? 2 : isHovered ? 5 : 10 }}
-          transition={SPRING_CONFIG}
-        />
-
-        {/* Base plate */}
-        <motion.div
-          className={`absolute inset-0 rounded-[22px] ${
-            isDarkMode
-              ? "bg-gradient-to-br from-slate-800 via-slate-900 to-black"
-              : "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"
-          }`}
-          animate={{ y: isPressed ? 7 : 10 }}
-          transition={SPRING_CONFIG}
-        />
-
-        {/* Top surface */}
-        <motion.div
-          className={`absolute inset-0 rounded-[22px] overflow-hidden ${
-            isDarkMode
-              ? "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900"
-              : "bg-gradient-to-br from-gray-50 via-white to-gray-100"
-          }`}
-          style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-          animate={{ y: isPressed ? 5 : isHovered ? 2 : 0 }}
-          transition={SPRING_CONFIG}
-        >
-          {/* Glossy shine */}
+        {/* Icon container */}
+        <div className="relative w-full h-full flex items-center justify-center p-4">
           <motion.div
-            className={`absolute inset-0 ${
-              isDarkMode
-                ? "bg-gradient-to-br from-slate-600/40 via-transparent to-transparent"
-                : "bg-gradient-to-br from-white/60 via-transparent to-transparent"
-            }`}
-            animate={{ opacity: isHovered ? 0.9 : 0.5 }}
-          />
+            className="relative w-full h-full flex items-center justify-center"
+            animate={{ scale: isPressed ? 0.9 : 1 }}
+            transition={SPRING_CONFIG}
+          >
+            {/* Icon glow */}
+            {skill.logo && !iconConfig?.disableGlow && (
+              <motion.div
+                className="absolute inset-0 rounded-2xl blur-xl bg-tech-teal/40"
+                animate={{ opacity: isHovered ? 0.8 : 0 }}
+                transition={{ duration: 0.4 }}
+              />
+            )}
 
-          {/* Icon container */}
-          <div className="absolute inset-0 flex items-center justify-center p-4">
-            <motion.div
-              className="relative w-full h-full flex items-center justify-center"
-              animate={{ scale: isPressed ? 0.88 : 1 }}
-              transition={SPRING_CONFIG}
-            >
-              {/* Icon glow */}
-              {skill.logo && !iconConfig?.disableGlow && (
-                <motion.div
-                  className="absolute -inset-2 rounded-2xl blur-2xl bg-primary/60"
-                  animate={{ opacity: isHovered ? 0.5 : 0 }}
-                  transition={{ duration: 0.4 }}
-                />
-              )}
-
-              {skill.logo ? (
-                <motion.img
-                  src={skill.logo}
-                  alt={skill.name}
-                  className="relative w-full h-full object-contain"
-                  animate={{ scale: isPressed ? 0.88 : 1 }}
-                  transition={SPRING_CONFIG}
-                />
-              ) : (
-                skill.icon?.({
-                  className: `relative w-auto ${
-                    iconConfig?.size ?? DEFAULT_ICON_SIZE
-                  } ${isDarkMode ? "text-gray-200" : ""}`,
-                })
-              )}
-            </motion.div>
-          </div>
-
-          {/* Inner shadow */}
-          <motion.div
-            className="absolute inset-0 rounded-[22px]"
-            animate={{
-              boxShadow: isHovered
-                ? isDarkMode
-                  ? "inset 0 2px 8px rgba(0,0,0,0.5)"
-                  : "inset 0 2px 8px rgba(0,0,0,0.08)"
-                : isDarkMode
-                ? "inset 0 3px 12px rgba(0,0,0,0.6)"
-                : "inset 0 3px 12px rgba(0,0,0,0.12)",
-            }}
-          />
-
-          {/* Top highlight */}
-          <motion.div
-            className={`absolute inset-x-0 top-0 h-2/5 rounded-t-[22px] ${
-              isDarkMode
-                ? "bg-gradient-to-b from-slate-600/30 via-slate-700/15 to-transparent"
-                : "bg-gradient-to-b from-white/50 via-white/20 to-transparent"
-            }`}
-            animate={{ opacity: isHovered ? 0.8 : 0.5 }}
-          />
-        </motion.div>
+            {skill.logo ? (
+              <img
+                src={skill.logo}
+                alt={skill.name}
+                className={`relative w-full h-full object-contain transition-all duration-300 ${
+                  isHovered && !iconConfig?.disableGlow
+                    ? "drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]"
+                    : ""
+                }`}
+              />
+            ) : (
+              skill.icon?.({
+                className: `relative w-auto transition-all duration-300 ${
+                  iconConfig?.size ?? DEFAULT_ICON_SIZE
+                } text-tech-teal ${
+                  isHovered
+                    ? "drop-shadow-[0_0_8px_rgba(68,187,164,0.8)] filter brightness-125"
+                    : ""
+                }`,
+              })
+            )}
+          </motion.div>
+        </div>
       </motion.div>
 
-      {/* Tooltip */}
+      {/* Tooltip Terminal Style */}
       <motion.div
         initial={{ opacity: 0, y: -6, scale: 0.85 }}
         animate={{
@@ -199,17 +140,16 @@ const SkillKeycap: React.FC<SkillKeycapProps> = ({
           scale: isHovered ? 1 : 0.85,
         }}
         transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
-        className="mt-3 relative"
+        className="mt-3 relative z-10"
       >
-        <div className="absolute inset-0 bg-primary/35 blur-xl rounded-xl" />
         <div
-          className={`relative text-xs font-bold px-4 py-2 rounded-xl shadow-2xl ${
-            isDarkMode
-              ? "bg-slate-800 text-gray-100 border border-slate-600/50"
-              : "bg-gray-900 text-white border border-slate-700/50"
-          }`}
+          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-tech-bg border border-tech-teal text-tech-light shadow-[0_0_10px_rgba(68,187,164,0.4)]"
+          style={{
+            clipPath:
+              "polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)",
+          }}
         >
-          <span className="relative">{skill.name}</span>
+          &gt; {skill.name}
         </div>
       </motion.div>
     </motion.button>

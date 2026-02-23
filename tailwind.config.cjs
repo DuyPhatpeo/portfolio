@@ -14,6 +14,13 @@ module.exports = {
         "secondary-mild": "var(--secondary-mild)",
         "secondary-subtle": "var(--secondary-subtle)",
         neutral: "var(--neutral)",
+        "tech-bg": "var(--tech-bg)",
+        "tech-teal": "var(--tech-teal)",
+        "tech-light": "var(--tech-light)",
+      },
+      fontFamily: {
+        sans: ["Orbitron", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
       typography: (theme) => ({
         DEFAULT: {

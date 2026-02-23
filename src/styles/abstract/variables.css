@@ -1,77 +1,85 @@
 /* src/styles/abstract/variables.css */
 @layer theme {
   :root {
-    --radius: 0.625rem;
+    --radius: 0; /* Angular aesthetic everywhere */
     --neutral: #ffffff;
 
-    /* ===== TEAL SYSTEM ===== */
-    --primary: #2dd4bf;
-    --primary-mild: #5eead4;
-    --primary-deep: #0f766e;
-    --primary-subtle: #2dd4bf14;
+    /* Cyber Light Theme (Bright, clean, contrast tech) */
+    --tech-bg: #f3f4f6; /* Light silver/grey */
+    --tech-teal: #115e59; /* Darker teal for contrast on light bg */
+    --tech-light: #1f2937; /* Dark grey for text */
 
-    --secondary: #14b8a6;
-    --secondary-mild: #99f6e4;
-    --secondary-deep: #115e59;
-    --secondary-subtle: #14b8a614;
+    /* ===== TEAL SYSTEM ===== */
+    --primary: #115e59;
+    --primary-mild: #0f766e;
+    --primary-deep: #042f2e;
+    --primary-subtle: #115e5914;
+
+    --secondary: #1f2937;
+    --secondary-mild: #374151;
+    --secondary-deep: #111827;
+    --secondary-subtle: #1f293714;
 
     /* ===== SEMANTIC ===== */
-    --background: var(--neutral);
-    --foreground: #0f172a;
+    --background: #f3f4f6;
+    --foreground: #1f2937;
 
     --card: #ffffff;
-    --card-foreground: #0f172a;
+    --card-foreground: #1f2937;
 
     --popover: #ffffff;
-    --popover-foreground: #0f172a;
+    --popover-foreground: #1f2937;
 
-    --primary-foreground: #ffffff;
-    --secondary-foreground: #ffffff;
+    --primary-foreground: #f3f4f6;
+    --secondary-foreground: #f3f4f6;
 
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
+    --muted: #e5e7eb;
+    --muted-foreground: #4b5563;
 
     --accent: var(--primary-subtle);
     --accent-foreground: var(--primary-deep);
 
-    --border: #e2e8f0;
-    --input: #e2e8f0;
+    --border: #d1d5db;
+    --input: #d1d5db;
     --ring: var(--primary);
   }
 
   .dark {
-    --neutral: #0d0d11;
+    --neutral: #0a1929;
+    --tech-bg: #0a1929; /* Deep Space Blue (Not gray) */
+    --tech-teal: #00f5d4; /* Xanh Ngọc (Bright Turquoise) */
+    --tech-light: #f8fafc; /* Stark White for contrast */
 
-    --primary: #2dd4bf;
-    --primary-mild: #5eead4;
-    --primary-deep: #134e4a;
-    --primary-subtle: #2dd4bf14;
+    --primary: #00f5d4;
+    --primary-mild: #20c997;
+    --primary-deep: #0f766e;
+    --primary-subtle: #00f5d41a;
 
-    --secondary: #5eead4;
-    --secondary-mild: #99f6e4;
-    --secondary-deep: #0f766e;
-    --secondary-subtle: #5eead414;
+    --secondary: #f8fafc;
+    --secondary-mild: #ffffff;
+    --secondary-deep: #94a3b8;
+    --secondary-subtle: #f8fafc14;
 
-    --background: #0d0d11;
-    --foreground: #e5e7eb;
+    --background: #0a1929;
+    --foreground: #f8fafc;
 
-    --card: #111827;
-    --card-foreground: #e5e7eb;
+    --card: #132f4c; /* Deep rich blue for cards (Not gray) */
+    --card-foreground: #f8fafc;
 
-    --popover: #111827;
-    --popover-foreground: #e5e7eb;
+    --popover: #132f4c;
+    --popover-foreground: #f8fafc;
 
-    --primary-foreground: #042f2e;
-    --secondary-foreground: #042f2e;
+    --primary-foreground: #0a1929;
+    --secondary-foreground: #0a1929;
 
-    --muted: #1f2937;
-    --muted-foreground: #9ca3af;
+    --muted: #1e3a5f;
+    --muted-foreground: #94a3b8;
 
     --accent: var(--primary-subtle);
     --accent-foreground: var(--primary-mild);
 
-    --border: #1f2937;
-    --input: #1f2937;
+    --border: #1e3a5f;
+    --input: #1e3a5f;
     --ring: var(--primary);
   }
 

@@ -9,9 +9,13 @@ const SocialLinks: React.FC = () => (
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className=" p-3 sm:p-3.5 rounded-xl flex items-center justify-center bg-white/10 dark:bg-neutral-900/10 backdrop-blur-xl border border-white/20 dark:border-neutral-700/20 shadow-md shadow-black/10 dark:shadow-white/5 hover:bg-white/20 dark:hover:bg-neutral-800/20 transition-all duration-300 hover:-translate-y-1 "
+        className="relative group p-3 sm:p-3.5 flex items-center justify-center bg-tech-bg/50 border border-tech-teal/30 hover:border-tech-teal shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.5)] transition-all duration-300 hover:-translate-y-1"
+        style={{
+          clipPath:
+            "polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%)",
+        }}
       >
-        {/* Icon — chỉ màu, không nền */}
+        {/* Glow effect inside */}
         <Icon className={`w-5 h-5 ${color}`} />
       </a>
     ))}

@@ -85,14 +85,37 @@ const Particles: React.FC<ParticlesProps> = ({
 
     ctx.beginPath();
     ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
+    // Neon Turquoise Particles
     ctx.fillStyle = darkMode
-      ? `rgba(200,200,200,${c.alpha})`
-      : `rgba(0,0,0,${c.alpha})`;
+      ? `rgba(0, 245, 212, ${c.alpha})`
+      : `rgba(17, 94, 89, ${c.alpha})`;
 
-    ctx.shadowColor = darkMode ? "rgba(200,200,200,0.6)" : "rgba(0,0,0,0.6)";
-    ctx.shadowBlur = 6;
+    // Glowing Effect
+    ctx.shadowColor = darkMode
+      ? "rgba(0, 245, 212, 0.8)"
+      : "rgba(17, 94, 89, 0.6)";
+    ctx.shadowBlur = darkMode ? 10 : 8;
 
     ctx.fill();
+
+    // Draw lines connecting nearby particles (Data Streams)
+    circlesRef.current.forEach((otherC) => {
+      const dx = c.x - otherC.x;
+      const dy = c.y - otherC.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        const lineColor = darkMode
+          ? `rgba(0, 245, 212, ${c.alpha * 0.3 * (1 - dist / 100)})`
+          : `rgba(17, 94, 89, ${c.alpha * 0.5 * (1 - dist / 100)})`;
+        ctx.strokeStyle = lineColor;
+        ctx.lineWidth = 1;
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(otherC.x, otherC.y);
+        ctx.stroke();
+      }
+    });
+
     ctx.restore();
   };
 
@@ -159,16 +182,23 @@ const Particles: React.FC<ParticlesProps> = ({
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [size, quantity, darkMode, animate, createCircle]);
+  }, [size, quantity, animate, createCircle, dpr]);
 
   /* ---------------- UI ---------------- */
-  const backgroundGradient = darkMode
-    ? "linear-gradient(180deg, #0d0d0d, #1a1a1a 40%, #111 80%, #0a0a0a)"
-    : "linear-gradient(180deg, #fafafa, #eaeaea 40%, #dcdcdc 80%, #e5e5e5)";
+  // Responsive background based on dark mode
+  const backgroundColor = darkMode ? "#0a1929" : "#F3F4F6";
+  const circuitColor = darkMode
+    ? "rgba(0, 245, 212, 0.04)"
+    : "rgba(17, 94, 89, 0.04)";
+
+  const backgroundPattern = `
+    radial-gradient(circle at center, transparent 0%, ${backgroundColor} 100%),
+    linear-gradient(${circuitColor} 1px, transparent 1px),
+    linear-gradient(90deg, ${circuitColor} 1px, transparent 1px)
+  `;
 
   return (
-    <canvas
-      ref={canvasRef}
+    <div
       style={{
         position: "fixed",
         inset: 0,
@@ -176,10 +206,14 @@ const Particles: React.FC<ParticlesProps> = ({
         height: "100vh",
         zIndex: -1,
         pointerEvents: "none",
-        background: backgroundGradient,
-        transition: "background 0.6s ease-in-out",
+        backgroundColor: backgroundColor,
+        backgroundImage: backgroundPattern,
+        backgroundSize: "100% 100%, 40px 40px, 40px 40px",
+        transition: "background-color 0.5s ease",
       }}
-    />
+    >
+      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+    </div>
   );
 };
 

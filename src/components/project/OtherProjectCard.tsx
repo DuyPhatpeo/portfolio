@@ -23,7 +23,7 @@ export default function OtherProjectCard({
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     if (cardRef.current) observer.observe(cardRef.current);
@@ -34,24 +34,35 @@ export default function OtherProjectCard({
     <div
       ref={cardRef}
       className={`
-        group
-        bg-white dark:bg-slate-800
-        p-7 rounded-xl
-        border border-transparent
-        shadow-md
-        flex flex-col h-full
+        group relative
+        bg-tech-bg/60 backdrop-blur-sm border border-tech-teal/30
+        p-7 h-full flex flex-col
         transition-all duration-300
-        hover:border-primary/50 hover:shadow-lg
+        hover:bg-tech-bg/80 hover:border-tech-teal hover:shadow-[0_0_20px_rgba(68,187,164,0.15)]
         ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
       `}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{
+        transitionDelay: `${index * 100}ms`,
+        clipPath:
+          "polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
+      }}
     >
+      {/* HUD Corner Decor */}
+      <div
+        className="absolute top-0 right-0 w-12 h-12 bg-tech-teal/5 transition-colors group-hover:bg-tech-teal/20"
+        style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+      ></div>
+      <div
+        className="absolute bottom-0 left-0 w-12 h-12 bg-tech-teal/5 transition-colors group-hover:bg-tech-teal/20"
+        style={{ clipPath: "polygon(0 100%, 0 0, 100% 100%)" }}
+      ></div>
+
       {/* HEADER */}
-      <div className="flex justify-between items-start mb-6">
+      <div className="flex justify-between items-start mb-6 border-b border-tech-teal/20 pb-4 relative z-10">
         <FiFolder
-          size={40}
+          size={36}
           strokeWidth={1.5}
-          className="text-primary transition-colors"
+          className="text-tech-teal transition-colors drop-shadow-[0_0_5px_rgba(68,187,164,0.5)]"
         />
 
         <div className="flex gap-3">
@@ -61,14 +72,16 @@ export default function OtherProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               className="
-                p-1 rounded-md
-                text-gray-600 dark:text-gray-400
+                p-2 bg-tech-bg border border-tech-teal/40
+                text-tech-light hover:text-tech-teal hover:border-tech-teal hover:shadow-[0_0_8px_rgba(68,187,164,0.4)]
                 transition-all duration-200
-                group-hover:text-primary
-                hover:scale-110
               "
+              style={{
+                clipPath:
+                  "polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px)",
+              }}
             >
-              <FiGithub size={20} />
+              <FiGithub size={18} />
             </a>
           )}
 
@@ -78,33 +91,38 @@ export default function OtherProjectCard({
               target="_blank"
               rel="noopener noreferrer"
               className="
-                p-1 rounded-md
-                text-gray-600 dark:text-gray-400
+                p-2 bg-tech-bg border border-tech-teal/40
+                text-tech-light hover:text-tech-teal hover:border-tech-teal hover:shadow-[0_0_8px_rgba(68,187,164,0.4)]
                 transition-all duration-200
-                group-hover:text-primary
-                hover:scale-110
               "
+              style={{
+                clipPath:
+                  "polygon(4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%, 0 4px)",
+              }}
             >
-              <FiExternalLink size={20} />
+              <FiExternalLink size={18} />
             </a>
           )}
         </div>
       </div>
 
       {/* TITLE */}
-      <h3 className="text-xl font-semibold mb-3 text-gray-900 dark:text-gray-100 group-hover:text-primary transition-colors">
-        {project.title}
+      <h3 className="text-xl font-bold font-mono tracking-tight mb-3 text-tech-light group-hover:text-tech-teal transition-colors relative z-10">
+        &gt; {project.title}
       </h3>
 
       {/* DESCRIPTION */}
-      <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+      <p className="text-sm font-mono leading-relaxed text-tech-light/70 relative z-10">
         {project.description}
       </p>
 
       {/* TAGS */}
-      <div className="flex flex-wrap gap-4 mt-auto pt-6">
+      <div className="flex flex-wrap gap-3 mt-auto pt-8 relative z-10">
         {project.tags.map((tag, i) => (
-          <span key={i} className="font-mono text-xs text-primary-mild">
+          <span
+            key={i}
+            className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-tech-teal border border-tech-teal/20 bg-tech-teal/5 px-2 py-1"
+          >
             {tag}
           </span>
         ))}

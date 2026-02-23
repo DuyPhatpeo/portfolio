@@ -7,29 +7,42 @@ const PersonalInfo: React.FC = () => (
     {aboutData.personal.map(({ icon: Icon, label, value, color }, i) => (
       <motion.div
         key={i}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 + i * 0.05 }}
+        transition={{ duration: 0.4 + i * 0.1 }}
         className="
-          bg-white dark:bg-slate-800
-          p-5 rounded-xl shadow-lg
-          flex items-center gap-4
+          relative group
+          bg-tech-bg/50 border border-tech-teal/20
+          p-5 flex items-center gap-4
           transition-all duration-300
-          hover:-translate-y-1
+          hover:bg-tech-teal/10 hover:border-tech-teal/80 hover:shadow-[0_0_15px_rgba(68,187,164,0.2)]
         "
+        style={{
+          clipPath:
+            "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
+        }}
       >
+        {/* Glow accent */}
+        <div className="absolute top-0 right-0 w-8 h-8 bg-tech-teal/5 blur-xl group-hover:bg-tech-teal/20 transition-all"></div>
+
         {/* Icon */}
-        <div className="p-3 rounded-lg bg-gray-100 dark:bg-slate-700">
-          <Icon className={`w-5 h-5 ${color}`} />
+        <div
+          className="p-3 bg-tech-teal/10 border border-tech-teal/30 group-hover:border-tech-teal transition-colors"
+          style={{
+            clipPath:
+              "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
+          }}
+        >
+          <Icon className={`w-5 h-5 text-tech-teal ${color}`} />
         </div>
 
         {/* Text */}
         <div>
-          <p className="text-xs uppercase font-semibold tracking-wider text-gray-500 dark:text-gray-400 mb-1">
+          <p className="text-xs uppercase font-bold tracking-widest text-tech-teal/60 mb-1 font-mono">
             {label}
           </p>
-          <p className="font-bold text-gray-800 dark:text-gray-100 text-lg">
+          <p className="font-black text-tech-light uppercase tracking-wider text-sm md:text-base">
             {value}
           </p>
         </div>

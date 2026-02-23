@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       { name: "PROJECTS", href: "projects" },
       { name: "CONTACT", href: "contact" },
     ],
-    []
+    [],
   );
 
   // Detect active section on scroll
@@ -93,14 +93,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 backdrop-blur-2xl border-b ${
-        darkMode
-          ? "bg-white/5 border-white/10 shadow-lg shadow-black/5"
-          : "bg-white/80 border-white/40 shadow-lg shadow-slate-200/50"
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-tech-teal/20 bg-tech-bg/80 shadow-[0_4px_30px_rgba(68,187,164,0.1)]`}
       style={{
-        backdropFilter: "blur(20px) saturate(180%)",
-        WebkitBackdropFilter: "blur(20px) saturate(180%)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,16 +107,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             className="group flex items-center space-x-3 relative"
           >
             <div
-              className={`absolute -inset-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg ${
-                darkMode ? "bg-primary/50" : "bg-primary-deep/50"
-              }`}
+              className={`absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg bg-tech-teal/40`}
             />
             <span
-              className={`relative text-3xl font-black tracking-tight transition-transform duration-300 group-hover:scale-105 ${
-                darkMode ? "text-primary" : "text-primary-deep"
-              }`}
+              className={`relative text-2xl md:text-3xl font-black uppercase tracking-widest transition-transform duration-300 group-hover:scale-105 text-tech-light drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]`}
             >
-              Dino Péo
+              DINO PÉO
             </span>
           </button>
 
@@ -135,26 +127,28 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     scrollToSection(item.href);
                     setActiveSection(item.href);
                   }}
-                  className={`relative px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300 group ${
+                  className={`relative px-4 py-2 mx-1 text-sm font-bold tracking-widest transition-all duration-300 group uppercase ${
                     isActive
-                      ? darkMode
-                        ? "text-primary"
-                        : "text-primary-deep"
-                      : darkMode
-                      ? "text-slate-300 hover:text-white"
-                      : "text-slate-700 hover:text-slate-900"
+                      ? "text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                      : "text-tech-light/60 hover:text-tech-light"
                   }`}
                 >
                   <span className="relative z-10">{item.name}</span>
+                  {/* Hover background block */}
                   <div
-                    className={`absolute inset-0 rounded-lg transition-transform duration-300 ${
-                      isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                    } ${darkMode ? "bg-white/10" : "bg-slate-900/5"}`}
+                    className={`absolute inset-0 border border-tech-teal/0 group-hover:border-tech-teal/50 transition-all duration-300 bg-tech-teal/5 scale-y-0 group-hover:scale-y-100 origin-bottom`}
+                    style={{
+                      clipPath:
+                        "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+                    }}
                   />
+                  {/* Active bottom line */}
                   <div
-                    className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 rounded-full transition-all duration-300 ${
-                      isActive ? "w-3/4" : "w-0 group-hover:w-3/4"
-                    } ${darkMode ? "bg-primary" : "bg-primary-deep"}`}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-tech-teal transition-all duration-300 ${
+                      isActive
+                        ? "w-full shadow-[0_0_10px_rgba(68,187,164,1)]"
+                        : "w-0 group-hover:w-full"
+                    }`}
                   />
                 </button>
               );
@@ -162,29 +156,29 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           </nav>
 
           {/* Right side buttons */}
-          <div className="flex items-center space-x-3">
-            {/* Theme toggle */}
+          <div className="flex items-center space-x-3 md:space-x-4">
+            {/* Theme toggle (Decorative in dark mode locked aesthetic) */}
             <button
               onClick={toggleDarkMode}
-              className={`relative p-3 rounded-xl transition-all duration-300 group ${
-                darkMode ? "hover:bg-white/10 " : "hover:bg-slate-900/5 "
-              }`}
+              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)]`}
+              style={{
+                clipPath:
+                  "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
+              }}
             >
               <div
-                className={`absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md ${
-                  darkMode ? "bg-primary/50" : "bg-primary-deep/50"
-                }`}
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-tech-teal/20`}
               />
-              <div className="relative">
+              <div className="relative text-tech-teal">
                 {darkMode ? (
-                  <RiSunLine
-                    size={20}
-                    className="text-yellow-400 group-hover:rotate-180 transition-transform duration-500"
-                  />
-                ) : (
                   <RiMoonLine
                     size={20}
-                    className="text-primary-deep group-hover:rotate-12 transition-transform duration-300"
+                    className="group-hover:rotate-12 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                  />
+                ) : (
+                  <RiSunLine
+                    size={20}
+                    className="text-tech-light group-hover:rotate-180 transition-transform duration-500"
                   />
                 )}
               </div>
@@ -194,14 +188,24 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <button
               ref={toggleRef}
               onClick={() => setIsOpen((prev) => !prev)}
-              className={`md:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all duration-300 ${
-                darkMode
-                  ? "text-white hover:bg-white/10"
-                  : "text-slate-900 hover:bg-slate-900/5"
-              }`}
+              className={`md:hidden flex items-center gap-2 px-3 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 border border-tech-teal/50 hover:bg-tech-teal/10 text-tech-light shadow-[inset_0_0_10px_rgba(68,187,164,0.1)]`}
+              style={{
+                clipPath:
+                  "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
+              }}
             >
               {/* <span>{isOpen ? "CLOSE" : "MENU"}</span> */}
-              {isOpen ? <RiCloseLine size={20} /> : <RiMenu3Line size={20} />}
+              {isOpen ? (
+                <RiCloseLine
+                  size={24}
+                  className="text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                />
+              ) : (
+                <RiMenu3Line
+                  size={24}
+                  className="text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                />
+              )}
             </button>
           </div>
         </div>
@@ -247,8 +251,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                           ? "text-primary"
                           : "text-primary-deep"
                         : darkMode
-                        ? "text-slate-300 hover:text-white"
-                        : "text-slate-600 hover:text-slate-900"
+                          ? "text-slate-300 hover:text-white"
+                          : "text-slate-600 hover:text-slate-900"
                     }`}
                   >
                     <div

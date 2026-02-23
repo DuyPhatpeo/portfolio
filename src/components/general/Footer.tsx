@@ -30,30 +30,38 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-transparent py-2 mt-auto w-full overflow-hidden">
-      <div className="w-full px-4">
-        <div className="relative flex flex-col items-center justify-center">
-          {/* Copyright */}
-          <div className="absolute top-0 right-4 z-10 flex items-center space-x-1 text-xs text-gray-400">
-            <span>© 2025</span>
-            <span className="font-semibold text-primary">DINO PÉO</span>
-            <span>ALL RIGHTS RESERVED</span>
+    <footer
+      className="bg-tech-bg/50 border-t border-tech-teal/30 py-8 mt-auto w-full relative overflow-hidden"
+      style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+    >
+      {/* Decorative Top Border */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tech-teal/50 to-transparent"></div>
+
+      {/* HUD Corner Accents */}
+      <div className="absolute top-0 left-0 w-16 h-16 border-t-[3px] border-l-[3px] border-tech-teal/60 opacity-50 m-2"></div>
+      <div className="absolute top-0 right-0 w-16 h-16 border-t-[3px] border-r-[3px] border-tech-teal/60 opacity-50 m-2"></div>
+
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative flex flex-col items-center justify-center space-y-8">
+          {/* System Status Line */}
+          <div className="flex items-center space-x-4 opacity-70">
+            <div className="h-[1px] w-12 bg-tech-teal"></div>
+            <span className="font-mono text-tech-teal text-xs tracking-[0.2em] uppercase">
+              End of Transmission
+            </span>
+            <div className="h-[1px] w-12 bg-tech-teal"></div>
           </div>
 
-          {/* Gradient Animated Name */}
-          <div className="mt-8 flex min-h-[10rem] w-full justify-center">
+          {/* Maximalist Glowing Name */}
+          <div className="flex w-full justify-center">
             <motion.h1
               className="
                 flex w-full flex-wrap justify-center gap-x-2 md:gap-x-4 lg:gap-x-6
-                font-black
-                bg-gradient-to-r from-primary via-secondary to-primary
-                bg-clip-text text-transparent
+                font-black uppercase tracking-tighter text-tech-light
+                drop-shadow-[0_0_20px_rgba(68,187,164,0.6)]
               "
               style={{
                 fontSize: "clamp(4rem, 12vw, 10rem)",
-                fontFamily: "Arial Black, sans-serif",
-                letterSpacing: "0.05em",
-                textShadow: "0 6px 12px rgba(0,0,0,0.25)",
               }}
               variants={container}
               initial="hidden"
@@ -64,12 +72,21 @@ const Footer = () => {
                 <motion.span
                   key={index}
                   variants={child}
-                  className="inline-block"
+                  className="inline-block hover:text-tech-teal transition-colors duration-300"
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
               ))}
             </motion.h1>
+          </div>
+
+          {/* Copyright Area */}
+          <div className="flex flex-col sm:flex-row items-center justify-center w-full border-t border-tech-teal/20 pt-6 mt-8 font-mono text-[10px] md:text-xs text-tech-light/60 tracking-widest uppercase">
+            <div className="flex items-center space-x-3">
+              <span>© {new Date().getFullYear()}</span>
+              <span className="text-tech-teal font-bold">DINO PÉO</span>
+              <span>ALL RIGHTS RESERVED</span>
+            </div>
           </div>
         </div>
       </div>

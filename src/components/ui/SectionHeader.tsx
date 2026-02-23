@@ -19,39 +19,29 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       {/* Title */}
-      <motion.h2
-        className="
-          text-4xl md:text-5xl font-extrabold leading-snug
-          bg-clip-text text-transparent
-          bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
-        "
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.6,
-          ease: [0.16, 1, 0.3, 1],
-          delay: 0.1,
-        }}
-        viewport={{ once: true }}
-      >
-        {title}
-      </motion.h2>
+      <motion.div className="relative inline-block border-l-4 border-tech-teal pl-6 py-2">
+        <motion.h2
+          className="
+            text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-widest text-tech-light
+            drop-shadow-[0_0_10px_rgba(68,187,164,0.3)]
+          "
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{
+            duration: 0.6,
+            ease: [0.16, 1, 0.3, 1],
+            delay: 0.1,
+          }}
+          viewport={{ once: true }}
+        >
+          {title}
+        </motion.h2>
 
-      {/* Underline */}
-      <motion.div
-        className="
-          h-[3px] w-24 mx-auto mt-4 rounded-full
-          bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
-        "
-        initial={{ width: 0, opacity: 0 }}
-        whileInView={{ width: 96, opacity: 1 }}
-        transition={{
-          duration: 0.7,
-          ease: [0.16, 1, 0.3, 1],
-          delay: 0.25,
-        }}
-        viewport={{ once: true }}
-      />
+        {/* HUD Sub-elements */}
+        <div className="absolute top-0 right-[-30px] w-6 h-2 bg-tech-teal/40"></div>
+        <div className="absolute top-0 right-[-40px] w-2 h-2 bg-tech-teal/80"></div>
+        <div className="absolute bottom-0 right-[-20px] w-12 h-[2px] bg-tech-teal/50"></div>
+      </motion.div>
     </motion.div>
   );
 };

@@ -12,7 +12,7 @@ export const contactData = [
   {
     icon: MdPhone,
     label: "PHONE",
-    value: "0866 482 834",
+    value: "(+84) 0866 482 834",
     href: "tel:0866482834",
     color: "from-emerald-500 to-teal-500",
   },
