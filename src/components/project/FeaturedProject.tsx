@@ -162,7 +162,7 @@ export default function FeaturedProject({
       `}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <div className="grid md:grid-cols-12 gap-8 md:gap-0 items-center">
+      <div className="grid md:grid-cols-12 gap-12 md:gap-0 items-center">
         {/* IMAGE – trên mobile */}
         <div
           className={`
@@ -176,8 +176,8 @@ export default function FeaturedProject({
         {/* CONTENT – dưới mobile */}
         <div
           className={`
-            md:col-span-5 relative z-10
-            ${project.reverse ? "md:-mr-10 md:order-1" : "md:-ml-10 md:order-2"}
+            md:col-span-5 relative z-10 mt-4 md:mt-0
+            ${project.reverse ? "md:-mr-6 md:order-1" : "md:-ml-6 md:order-2"}
           `}
         >
           <ContentBlock />
