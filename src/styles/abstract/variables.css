@@ -45,8 +45,8 @@
   }
 
   .dark {
-    --neutral: #0a1929;
-    --tech-bg: #0a1929; /* Deep Space Blue (Not gray) */
+    --neutral: #000000;
+    --tech-bg: #000000; /* Pure Black */
     --tech-teal: #00f5d4; /* Xanh Ngọc (Bright Turquoise) */
     --tech-light: #f8fafc; /* Stark White for contrast */
 
@@ -60,26 +60,26 @@
     --secondary-deep: #94a3b8;
     --secondary-subtle: #f8fafc14;
 
-    --background: #0a1929;
+    --background: #000000;
     --foreground: #f8fafc;
 
-    --card: #132f4c; /* Deep rich blue for cards (Not gray) */
+    --card: #0a0a0a; /* Very dark gray for cards */
     --card-foreground: #f8fafc;
 
-    --popover: #132f4c;
+    --popover: #0a0a0a;
     --popover-foreground: #f8fafc;
 
-    --primary-foreground: #0a1929;
-    --secondary-foreground: #0a1929;
+    --primary-foreground: #000000;
+    --secondary-foreground: #000000;
 
-    --muted: #1e3a5f;
+    --muted: #1a1a1a;
     --muted-foreground: #94a3b8;
 
     --accent: var(--primary-subtle);
     --accent-foreground: var(--primary-mild);
 
-    --border: #1e3a5f;
-    --input: #1e3a5f;
+    --border: #1a1a1a;
+    --input: #1a1a1a;
     --ring: var(--primary);
   }
 

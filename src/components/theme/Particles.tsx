@@ -186,7 +186,7 @@ const Particles: React.FC<ParticlesProps> = ({
 
   /* ---------------- UI ---------------- */
   // Responsive background based on dark mode
-  const backgroundColor = darkMode ? "#0a1929" : "#ffffff";
+  const backgroundColor = darkMode ? "#000000" : "#ffffff";
   const circuitColor = darkMode
     ? "rgba(0, 245, 212, 0.04)"
     : "rgba(13, 148, 136, 0.05)";
