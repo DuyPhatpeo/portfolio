@@ -1,2 +1,9 @@
 @import "./styles/base/abstract.css";
 @import "./styles/base/vendor.css";
+
+/* Hide default cursor globally – replaced by CustomCursor */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}

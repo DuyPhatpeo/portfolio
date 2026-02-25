@@ -1,200 +1,276 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useThemeStore } from "../../stores/themeStore";
 
-interface ParticlesProps {
-  quantity?: number;
-  staticity?: number;
-  ease?: number;
-}
-
-interface Circle {
+interface Star {
   x: number;
   y: number;
   size: number;
   alpha: number;
-  targetAlpha: number;
+  alphaSpeed: number;
+  alphaDir: number;
   dx: number;
   dy: number;
-  tx: number;
-  ty: number;
-  magnetism: number;
+  color: string;
+  depth: number; // for parallax (0.1 – 1.0)
 }
 
-const Particles: React.FC<ParticlesProps> = ({
-  quantity = 40,
-  staticity = 50,
-  ease = 50,
-}) => {
-  const { darkMode } = useThemeStore();
+interface ShootingStar {
+  x: number;
+  y: number;
+  len: number;
+  speed: number;
+  angle: number;
+  alpha: number;
+  active: boolean;
+}
 
+interface ParticlesProps {
+  quantity?: number;
+}
+
+const STAR_COLORS_DARK = [
+  "255,255,255", // white
+  "200,220,255", // cool blue-white
+  "255,240,200", // warm yellow-white
+  "180,200,255", // ice blue
+  "0,245,212", // accent teal
+];
+
+const STAR_COLORS_LIGHT = [
+  "30,60,120", // deep navy
+  "60,90,180", // indigo
+  "20,100,140", // ocean blue
+  "13,148,136", // teal
+  "100,80,200", // purple-blue
+];
+
+const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
+  const { darkMode } = useThemeStore();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-  const circlesRef = useRef<Circle[]>([]);
+  const starsRef = useRef<Star[]>([]);
+  const shootingRef = useRef<ShootingStar[]>([
+    { x: 0, y: 0, len: 0, speed: 0, angle: 0, alpha: 0, active: false },
+    { x: 0, y: 0, len: 0, speed: 0, angle: 0, alpha: 0, active: false },
+  ]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
-
-  const dpr = window.devicePixelRatio || 1;
+  const shootTimerRef = useRef<number>(0);
 
   const [size, setSize] = useState(() => ({
     w: window.innerWidth,
     h: window.innerHeight,
   }));
 
-  /* ---------------- Resize ---------------- */
+  /* ── Resize ─────────────────────────────── */
   useEffect(() => {
-    const handleResize = () =>
+    const handle = () =>
       setSize({ w: window.innerWidth, h: window.innerHeight });
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener("resize", handle);
+    return () => window.removeEventListener("resize", handle);
   }, []);
 
-  /* ---------------- Mouse ---------------- */
+  /* ── Mouse ──────────────────────────────── */
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = e.clientX - size.w / 2;
-      mouseRef.current.y = e.clientY - size.h / 2;
+    const handle = (e: MouseEvent) => {
+      mouseRef.current.x = (e.clientX / size.w - 0.5) * 2; // -1 → 1
+      mouseRef.current.y = (e.clientY / size.h - 0.5) * 2;
     };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handle);
+    return () => window.removeEventListener("mousemove", handle);
   }, [size]);
 
-  /* ---------------- Particle ---------------- */
-  const createCircle = useCallback((): Circle => {
-    return {
-      x: Math.random() * size.w,
-      y: Math.random() * size.h,
-      size: Math.random() * 2 + 0.3,
-      alpha: 0,
-      targetAlpha: Math.random() * 0.5 + 0.3,
-      dx: (Math.random() - 0.5) * 0.3,
-      dy: (Math.random() - 0.5) * 0.3,
-      tx: 0,
-      ty: 0,
-      magnetism: 0.2 + Math.random() * 3,
-    };
-  }, [size]);
+  /* ── Create star ────────────────────────── */
+  const createStar = useCallback(
+    (randomY = true): Star => {
+      const depth = 0.15 + Math.random() * 0.85;
+      const baseSize = depth * 1.6;
+      const colors = darkMode ? STAR_COLORS_DARK : STAR_COLORS_LIGHT;
+      const colorIdx = Math.floor(Math.random() * colors.length);
+      return {
+        x: Math.random() * size.w,
+        y: randomY ? Math.random() * size.h : -4,
+        size: Math.max(0.4, baseSize + Math.random() * 0.6),
+        alpha: Math.random() * 0.6 + 0.2,
+        alphaSpeed: 0.003 + Math.random() * 0.008,
+        alphaDir: Math.random() > 0.5 ? 1 : -1,
+        dx: (Math.random() - 0.5) * 0.06 * depth,
+        dy: 0.04 + Math.random() * 0.04 * depth,
+        color: colors[colorIdx],
+        depth,
+      };
+    },
+    [size, darkMode],
+  );
 
-  const drawCircle = (c: Circle) => {
-    const ctx = ctxRef.current;
-    if (!ctx) return;
+  /* ── Spawn shooting star ────────────────── */
+  const spawnShooting = useCallback(
+    (s: ShootingStar) => {
+      s.x = Math.random() * size.w * 0.7;
+      s.y = Math.random() * size.h * 0.4;
+      s.len = 90 + Math.random() * 100;
+      s.speed = 8 + Math.random() * 8;
+      s.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.4;
+      s.alpha = 1;
+      s.active = true;
+    },
+    [size],
+  );
 
-    ctx.save();
-    ctx.translate(c.tx, c.ty);
+  /* ── Draw star ──────────────────────────── */
+  const drawStar = (
+    ctx: CanvasRenderingContext2D,
+    s: Star,
+    mx: number,
+    my: number,
+  ) => {
+    const px = s.x + mx * s.depth * 18;
+    const py = s.y + my * s.depth * 10;
 
-    ctx.beginPath();
-    ctx.arc(c.x, c.y, c.size, 0, Math.PI * 2);
-    // Neon Turquoise Particles
-    ctx.fillStyle = darkMode
-      ? `rgba(0, 245, 212, ${c.alpha})`
-      : `rgba(17, 94, 89, ${c.alpha})`;
+    // Twinkling alpha
+    s.alpha += s.alphaSpeed * s.alphaDir;
+    if (s.alpha >= 0.92) s.alphaDir = -1;
+    if (s.alpha <= 0.08) s.alphaDir = 1;
 
-    // Glowing Effect
-    ctx.shadowColor = darkMode
-      ? "rgba(0, 245, 212, 0.8)"
-      : "rgba(17, 94, 89, 0.6)";
-    ctx.shadowBlur = darkMode ? 10 : 8;
-
-    ctx.fill();
-
-    // Draw lines connecting nearby particles (Data Streams)
-    circlesRef.current.forEach((otherC) => {
-      const dx = c.x - otherC.x;
-      const dy = c.y - otherC.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 100) {
-        ctx.beginPath();
-        const lineColor = darkMode
-          ? `rgba(0, 245, 212, ${c.alpha * 0.3 * (1 - dist / 100)})`
-          : `rgba(17, 94, 89, ${c.alpha * 0.5 * (1 - dist / 100)})`;
-        ctx.strokeStyle = lineColor;
-        ctx.lineWidth = 1;
-        ctx.moveTo(c.x, c.y);
-        ctx.lineTo(otherC.x, otherC.y);
-        ctx.stroke();
-      }
-    });
-
-    ctx.restore();
-  };
-
-  /* ---------------- Animation ---------------- */
-  const animate = useCallback(() => {
-    const ctx = ctxRef.current;
-    if (!ctx) return;
-
-    ctx.clearRect(0, 0, size.w, size.h);
-
-    const next: Circle[] = [];
-
-    for (const c of circlesRef.current) {
-      c.alpha += (c.targetAlpha - c.alpha) * 0.02;
-      c.x += c.dx;
-      c.y += c.dy;
-
-      c.tx += (mouseRef.current.x / (staticity / c.magnetism) - c.tx) / ease;
-      c.ty += (mouseRef.current.y / (staticity / c.magnetism) - c.ty) / ease;
-
-      if (
-        c.x < -c.size ||
-        c.x > size.w + c.size ||
-        c.y < -c.size ||
-        c.y > size.h + c.size
-      ) {
-        next.push(createCircle());
-      } else {
-        drawCircle(c);
-        next.push(c);
-      }
+    // Glow for larger stars
+    if (s.size > 1.2) {
+      const grd = ctx.createRadialGradient(px, py, 0, px, py, s.size * 3.5);
+      grd.addColorStop(0, `rgba(${s.color},${s.alpha * 0.9})`);
+      grd.addColorStop(1, `rgba(${s.color},0)`);
+      ctx.beginPath();
+      ctx.arc(px, py, s.size * 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = grd;
+      ctx.fill();
     }
 
-    circlesRef.current = next;
-    rafRef.current = requestAnimationFrame(animate);
-  }, [size, staticity, ease, darkMode, createCircle]);
+    // Core dot
+    ctx.beginPath();
+    ctx.arc(px, py, s.size, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(${s.color},${s.alpha})`;
+    ctx.fill();
 
-  /* ---------------- Init ---------------- */
+    // Move
+    s.x += s.dx;
+    s.y += s.dy;
+  };
+
+  /* ── Draw shooting star ──────────────────── */
+  const drawShooting = (ctx: CanvasRenderingContext2D, s: ShootingStar) => {
+    if (!s.active) return;
+
+    const tx = s.x + Math.cos(s.angle) * s.len;
+    const ty = s.y + Math.sin(s.angle) * s.len;
+
+    const grd = ctx.createLinearGradient(s.x, s.y, tx, ty);
+    grd.addColorStop(0, `rgba(0,245,212,0)`);
+    grd.addColorStop(0.5, `rgba(200,240,255,${s.alpha * 0.6})`);
+    grd.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+
+    ctx.beginPath();
+    ctx.moveTo(tx, ty);
+    ctx.lineTo(s.x, s.y);
+    ctx.strokeStyle = grd;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    s.x += Math.cos(s.angle) * s.speed;
+    s.y += Math.sin(s.angle) * s.speed;
+    s.alpha -= 0.022;
+
+    if (s.alpha <= 0 || s.x > size.w + 50 || s.y > size.h + 50) {
+      s.active = false;
+    }
+  };
+
+  /* ── Animation loop ─────────────────────── */
+  const animate = useCallback(
+    (timestamp: number) => {
+      const ctx = ctxRef.current;
+      if (!ctx) return;
+
+      ctx.clearRect(0, 0, size.w, size.h);
+
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
+
+      // Draw & update stars
+      const next: Star[] = [];
+      for (const s of starsRef.current) {
+        if (s.y > size.h + 4) {
+          next.push(createStar(false));
+        } else {
+          drawStar(ctx, s, mx, my);
+          next.push(s);
+        }
+      }
+      starsRef.current = next;
+
+      // Shooting stars timer
+      shootTimerRef.current = timestamp;
+      for (const ss of shootingRef.current) {
+        if (ss.active) {
+          drawShooting(ctx, ss);
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(animate);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [size, createStar],
+  );
+
+  /* ── Shooting star scheduler ─────────────── */
+  useEffect(() => {
+    const scheduleNext = () => {
+      const delay = 3500 + Math.random() * 5000;
+      const timer = window.setTimeout(() => {
+        const idle = shootingRef.current.find((s) => !s.active);
+        if (idle) spawnShooting(idle);
+        scheduleNext();
+      }, delay);
+      return timer;
+    };
+    const t = scheduleNext();
+    return () => clearTimeout(t);
+  }, [spawnShooting]);
+
+  /* ── Init ───────────────────────────────── */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     ctxRef.current = ctx;
 
+    const dpr = window.devicePixelRatio || 1;
     canvas.width = size.w * dpr;
     canvas.height = size.h * dpr;
     canvas.style.width = `${size.w}px`;
     canvas.style.height = `${size.h}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    circlesRef.current = Array.from({ length: quantity }, createCircle);
+    starsRef.current = Array.from({ length: quantity }, () => createStar(true));
 
-    if (rafRef.current !== null) {
-      cancelAnimationFrame(rafRef.current);
-    }
-
-    animate();
+    if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
-  }, [size, quantity, animate, createCircle, dpr]);
+  }, [size, quantity, animate, createStar]);
 
-  /* ---------------- UI ---------------- */
-  // Responsive background based on dark mode
-  const backgroundColor = darkMode ? "#000000" : "#ffffff";
-  const circuitColor = darkMode
-    ? "rgba(0, 245, 212, 0.04)"
-    : "rgba(13, 148, 136, 0.05)";
+  /* ── Background styles ───────────────────── */
+  const darkBg = `
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,245,212,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(130,80,255,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(0,150,255,0.05) 0%, transparent 50%),
+    linear-gradient(180deg, #06071b 0%, #080920 50%, #06071b 100%)
+  `;
 
-  const backgroundPattern = `
-    radial-gradient(circle at center, transparent 0%, ${backgroundColor} 100%),
-    linear-gradient(${circuitColor} 1px, transparent 1px),
-    linear-gradient(90deg, ${circuitColor} 1px, transparent 1px)
+  const lightBg = `
+    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(13,148,136,0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(99,102,241,0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #dbeafe 0%, #eff6ff 40%, #f0fdf4 100%)
   `;
 
   return (
@@ -206,13 +282,19 @@ const Particles: React.FC<ParticlesProps> = ({
         height: "100vh",
         zIndex: -1,
         pointerEvents: "none",
-        backgroundColor: backgroundColor,
-        backgroundImage: backgroundPattern,
-        backgroundSize: "100% 100%, 40px 40px, 40px 40px",
-        transition: "background-color 0.5s ease",
+        background: darkMode ? darkBg : lightBg,
+        transition: "background 0.6s ease",
       }}
     >
-      <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
+      {/* Stars canvas – always visible, color adapts to mode */}
+      <canvas
+        ref={canvasRef}
+        style={{
+          width: "100%",
+          height: "100%",
+          opacity: 1,
+        }}
+      />
     </div>
   );
 };

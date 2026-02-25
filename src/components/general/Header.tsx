@@ -108,14 +108,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b border-tech-teal/20 bg-tech-bg/80 shadow-[0_4px_30px_rgba(68,187,164,0.1)]`}
-      style={{
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
+      className={`fixed top-3 left-4 right-4 z-50 transition-all duration-300`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div
+        className="max-w-6xl mx-auto rounded-2xl border border-white/10 dark:border-white/10 dark:bg-[#06071b]/75 bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
+        style={{
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
+        }}
+      >
+        <div className="flex justify-between items-center h-16 px-5 sm:px-6">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("home")}
@@ -323,11 +325,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className={`md:hidden absolute left-0 right-0 top-20 bg-tech-bg/95 backdrop-blur-xl border-b border-tech-teal/30 shadow-[0_10px_30px_rgba(68,187,164,0.15)] z-40`}
-            style={{
-              clipPath:
-                "polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)",
-            }}
+            className={`md:hidden absolute left-0 right-0 top-[4.5rem] bg-[#06071b]/95 dark:bg-[#06071b]/95 bg-white/95 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)] z-40 rounded-2xl overflow-hidden`}
           >
             {/* Background glow */}
             <div

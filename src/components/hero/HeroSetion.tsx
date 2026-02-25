@@ -15,44 +15,34 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center md:pt-24 scroll-mt-20 md:scroll-mt-24 px-4 sm:px-6 lg:px-8 py-12"
+      className="relative min-h-screen flex items-center justify-center pt-28 md:pt-24 scroll-mt-20 md:scroll-mt-24 px-4 sm:px-6 lg:px-8 py-12"
     >
       <div className="max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative">
-          {/* Main Terminal Window (Right Content) */}
-          <div
-            className="lg:col-span-7 flex flex-col justify-center space-y-4 md:space-y-6 bg-tech-bg/60 backdrop-blur-md border border-tech-teal/30 p-8 shadow-[0_0_20px_rgba(68,187,164,0.1)] relative"
-            style={{
-              clipPath:
-                "polygon(30px 0, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0 30px)",
-            }}
-          >
-            {/* HUD Corner Decor */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-tech-teal opacity-50"></div>
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-tech-teal opacity-50"></div>
-
-            <div className="flex items-center gap-4">
-              <div className="h-[2px] w-12 bg-tech-teal"></div>
-              <div className="text-tech-light font-bold text-sm md:text-md uppercase tracking-[0.3em] font-mono">
-                System Initialized
+          {/* Main Content */}
+          <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
+            {/* Status badge */}
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-tech-teal/30 bg-tech-teal/5">
+                <span className="w-2 h-2 rounded-full bg-tech-teal animate-pulse" />
+                <span className="text-tech-teal font-mono text-xs tracking-[0.2em] uppercase">
+                  System Initialized
+                </span>
               </div>
             </div>
 
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] xl:text-[90px] font-sans font-black uppercase leading-[1.1] tracking-widest text-tech-light drop-shadow-[0_0_18px_rgba(0,245,212,0.7)] whitespace-nowrap">
+            {/* Title */}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[88px] font-sans font-black uppercase leading-[1.05] tracking-tight text-tech-light drop-shadow-[0_0_24px_rgba(0,245,212,0.5)]">
               {t("hero.title")}
             </h1>
 
+            {/* Typing roles */}
             <div className="pl-4 border-l-2 border-tech-teal/50">
               <TypingRoles />
             </div>
 
-            <p
-              className="text-sm md:text-base text-tech-teal font-mono max-w-xl leading-relaxed mt-3 opacity-90 uppercase tracking-widest bg-tech-teal/5 p-4 border border-tech-teal/20"
-              style={{
-                clipPath:
-                  "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-              }}
-            >
+            {/* Subtitle */}
+            <p className="text-sm md:text-base text-tech-teal/80 font-mono max-w-xl leading-relaxed mt-1 border border-tech-teal/15 bg-tech-teal/5 rounded-lg p-4">
               {t("hero.subtitle")}
             </p>
 
@@ -61,14 +51,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
           </div>
 
           {/* Avatar Panel */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative order-first lg:order-last mb-8 lg:mb-0">
-            {/* Decorative Data Nodes */}
-            <div className="hidden lg:flex flex-col gap-2 absolute left-0 top-1/4 -translate-x-full pr-8">
-              <div className="h-1 w-8 bg-tech-teal/40"></div>
-              <div className="h-1 w-12 bg-tech-teal/60"></div>
-              <div className="h-1 w-6 bg-tech-teal/80"></div>
-            </div>
-
+          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative order-first lg:order-last mb-6 lg:mb-0">
             <HeroAvatar />
           </div>
         </div>
