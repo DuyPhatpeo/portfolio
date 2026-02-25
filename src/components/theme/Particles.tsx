@@ -37,11 +37,11 @@ const STAR_COLORS_DARK = [
 ];
 
 const STAR_COLORS_LIGHT = [
-  "30,60,120", // deep navy
-  "60,90,180", // indigo
-  "20,100,140", // ocean blue
-  "13,148,136", // teal
-  "100,80,200", // purple-blue
+  "148,163,184", // slate-400 (bụi sao dịu nhẹ)
+  "100,116,139", // slate-500
+  "56,189,248", // sky-400 (xanh da trời nhạt xíu)
+  "20,184,166", // teal-500
+  "167,139,250", // violet-400
 ];
 
 const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
@@ -264,13 +264,13 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
     radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,245,212,0.07) 0%, transparent 55%),
     radial-gradient(ellipse 60% 50% at 85% 30%, rgba(130,80,255,0.06) 0%, transparent 50%),
     radial-gradient(ellipse 50% 40% at 10% 70%, rgba(0,150,255,0.05) 0%, transparent 50%),
-    linear-gradient(180deg, #06071b 0%, #080920 50%, #06071b 100%)
+    linear-gradient(180deg, #000000 0%, #050505 50%, #000000 100%)
   `;
 
   const lightBg = `
-    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(13,148,136,0.12) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(99,102,241,0.08) 0%, transparent 45%),
-    linear-gradient(180deg, #dbeafe 0%, #eff6ff 40%, #f0fdf4 100%)
+    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(20,184,166,0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 45%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f1f5f9 100%)
   `;
 
   return (

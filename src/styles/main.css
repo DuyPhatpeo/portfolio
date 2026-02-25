@@ -6,8 +6,7 @@
    3. Custom partials
    ───────────────────────────────────────────── */
 
-/* 1. Design Tokens */
-@import "./tokens/variables.css";
+/* 1. Design Tokens - moved to App.tsx */
 
 /* 2. Tailwind CSS v4 */
 @import "tailwindcss";
@@ -62,5 +61,4 @@
   }
 }
 
-/* 3. Custom partials */
-@import "./base/reset.css";
+/* 3. Custom partials - moved to App.tsx */
