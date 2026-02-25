@@ -6,7 +6,7 @@ import CustomCursor from "./components/theme/CustomCursor";
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./GlobalStyle.css";
+import "./styles/main.css";
 import ScrollToTop from "./components/general/ScrollToTop";
 import ClickSpark from "./components/general/ClickSpark";
 

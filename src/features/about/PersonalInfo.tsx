@@ -1,5 +1,5 @@
 import React from "react";
-import { aboutData } from "../../data/aboutData";
+import { aboutData } from "../../constants/aboutData";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 

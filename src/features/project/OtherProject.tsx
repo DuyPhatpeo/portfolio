@@ -1,5 +1,5 @@
 // src/components/project/OtherProject.tsx
-import type { Project } from "../../data/projectData";
+import type { Project } from "../../constants/projectData";
 import OtherProjectCard from "./OtherProjectCard";
 
 interface OtherProjectProps {

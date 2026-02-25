@@ -1,5 +1,5 @@
 import React from "react";
-import { heroInfo } from "../../data/heroData";
+import { heroInfo } from "../../constants/heroData";
 
 const HeroAvatar: React.FC = () => {
   const { hero, name } = heroInfo;

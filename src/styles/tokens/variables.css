@@ -1,4 +1,5 @@
-/* src/styles/abstract/variables.css */
+/* src/styles/tokens/variables.css */
+/* Design tokens – CSS custom properties for the entire app */
 @layer theme {
   :root {
     --radius: 0; /* Angular aesthetic everywhere */

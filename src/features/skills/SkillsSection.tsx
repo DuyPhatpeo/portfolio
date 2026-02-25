@@ -1,6 +1,6 @@
 import React from "react";
 import SkillsGrid from "./SkillsGrid";
-import SectionHeader from "../ui/SectionHeader";
+import SectionHeader from "../../components/ui/SectionHeader";
 import { useTranslation } from "react-i18next";
 
 const SkillsSection: React.FC = () => {

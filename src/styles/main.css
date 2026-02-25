@@ -1,14 +1,23 @@
-/* src/styles/tailwind.css */
+/* src/styles/main.css */
+/* ─────────────────────────────────────────────
+   Entry point – import order matters!
+   1. Design tokens  (must come first)
+   2. Tailwind engine
+   3. Custom partials
+   ───────────────────────────────────────────── */
+
+/* 1. Design Tokens */
+@import "./tokens/variables.css";
+
+/* 2. Tailwind CSS v4 */
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
-@import "../abstract/variables.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+@config "../../tailwind.config.cjs";
 
-@config "../../../tailwind.config.cjs";
-
-/* ===== SHADCN MAP ===== */
+/* ===== Tailwind → shadcn token mapping ===== */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -42,6 +51,7 @@
   --color-ring: var(--ring);
 }
 
+/* ===== Tailwind base layer ===== */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -51,3 +61,6 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* 3. Custom partials */
+@import "./base/reset.css";

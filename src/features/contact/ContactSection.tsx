@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import ContactCard from "./ContactCard";
-import { contactData } from "../../data/contactData";
-import SectionHeader from "../ui/SectionHeader";
+import { contactData } from "../../constants/contactData";
+import SectionHeader from "../../components/ui/SectionHeader";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
 

@@ -1,7 +1,7 @@
 // src/components/project/OtherProjectCard.tsx
 import { FiExternalLink, FiGithub, FiFolder } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
-import type { Project } from "../../data/projectData";
+import type { Project } from "../../constants/projectData";
 import { useTranslation } from "react-i18next";
 
 interface OtherProjectCardProps {

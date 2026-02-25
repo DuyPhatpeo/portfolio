@@ -6,7 +6,7 @@ import Bio from "./Bio";
 import PersonalInfo from "./PersonalInfo";
 import Achievements from "./Achievements";
 import Quote from "./Quote";
-import SectionHeader from "../ui/SectionHeader";
+import SectionHeader from "../../components/ui/SectionHeader";
 
 // Container: điều khiển stagger
 const containerVariants: Variants = {

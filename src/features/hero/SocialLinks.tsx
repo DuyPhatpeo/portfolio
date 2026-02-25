@@ -1,5 +1,5 @@
 import React from "react";
-import { socialLinks } from "../../data/heroData";
+import { socialLinks } from "../../constants/heroData";
 
 const SocialLinks: React.FC = () => (
   <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start mt-3 md:mt-4">

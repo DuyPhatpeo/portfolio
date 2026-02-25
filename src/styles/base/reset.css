@@ -1,5 +1,5 @@
-@import "./styles/base/abstract.css";
-@import "./styles/base/vendor.css";
+/* src/styles/base/reset.css */
+/* Global resets & overrides */
 
 /* Hide default cursor globally – replaced by CustomCursor */
 *,

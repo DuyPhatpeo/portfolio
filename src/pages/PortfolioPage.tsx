@@ -3,11 +3,11 @@ import React, { useEffect } from "react";
 import Header from "../components/general/Header";
 
 import Footer from "../components/general/Footer";
-import HeroSection from "../components/hero/HeroSetion";
-import AboutSection from "../components/about/AboutSection";
-import SkillsSection from "../components/skills/SkillsSection";
-import ProjectsSection from "../components/project/ProjectSecion";
-import ContactSection from "../components/contact/ContactSection";
+import HeroSection from "../features/hero/HeroSetion";
+import AboutSection from "../features/about/AboutSection";
+import SkillsSection from "../features/skills/SkillsSection";
+import ProjectsSection from "../features/project/ProjectSecion";
+import ContactSection from "../features/contact/ContactSection";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
