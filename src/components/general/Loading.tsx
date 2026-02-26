@@ -9,19 +9,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-background text-foreground flex flex-col items-center justify-center font-sans overflow-hidden">
-      {/* Background Decorative Grid */}
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, var(--primary-subtle) 1px, transparent 1px),
-            linear-gradient(to bottom, var(--primary-subtle) 1px, transparent 1px)
-          `,
-          backgroundSize: "40px 40px",
-        }}
-      />
-
+    <div className="fixed inset-0 z-[9999] bg-tech-bg/30 backdrop-blur-sm text-foreground flex flex-col items-center justify-center font-sans overflow-hidden">
       {/* Center HUD Circle */}
       <div className="relative w-64 h-64 flex items-center justify-center">
         {/* Outer glowing ring */}
