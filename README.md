@@ -1,4 +1,4 @@
-# 🌌 Dark Sci-Fi Portfolio - DINO PÉO
+# Portfolio - DINO PÉO
 
 <div align="center">
   <img src="public/portfolio.png" alt="Portfolio Preview" width="800" />
@@ -13,110 +13,110 @@
   <a href="https://zustand-demo.pmnd.rs/"><img src="https://img.shields.io/badge/Zustand-5.0.8-FF4154?style=for-the-badge&logo=react&logoColor=white" alt="Zustand"></a>
 </p>
 
-> A visually striking, high-performance personal portfolio website engineered with a premium **Dark Sci-Fi / Cyber** aesthetic. Designed to resemble an advanced Heads-Up Display (HUD) and futuristic data terminal, scaling perfectly with modern feature-driven architecture.
+> Một trang web portfolio cá nhân đầy ấn tượng với hiệu suất cao, mang đậm phong cách **Dark Sci-Fi / Cyber**. Giao diện được thiết kế mô phỏng màn hình HUD (Heads-Up Display) và trạm dữ liệu tương lai, kết hợp với kiến trúc Feature-Driven hiện đại giúp dễ dàng mở rộng và bảo trì.
 
-## ✨ Key Features & Aesthetic
+## ✨ Tính năng Nổi bật & Giao diện
 
-- 🕶️ **Pure Black Dark Mode:** High-contrast OLED-ready `#000000` dark mode background for maximum depth.
-- 🌌 **Cosmic Starry Sky:** Immersive animated starry background with nebula effects and shooting stars in dark mode.
-- 📐 **HUD Terminal UI:** Geometric elements, glassmorphism headers, and modern tech accents.
-- 🌍 **Internationalization (i18n):** Multi-language support built-in using `react-i18next`.
-- 🌓 **Cyber Light Mode:** A fully supported contrasting bright tech theme with Deep Slate and Vibrant Teal (`#0D9488`).
-- ⚡ **Maximum Performance:** Built on Vite + React 19, utilizing Framer Motion for buttery-smooth 60fps animations.
-- 🏗️ **Feature-Driven Architecture:** Clean modular structure adopting Screaming Architecture principles for scalable frontend.
+- 🕶️ **Chế độ Tối (Pure Black):** Nền đen chuẩn OLED `#000000` tạo chiều sâu tối đa.
+- 🌌 **Bầu trời sao vũ trụ:** Hiệu ứng nền vũ trụ sống động với các vì sao, tinh vân và sao băng ở chế độ Dark Mode.
+- 📐 **Giao diện HUD Terminal:** Các khối hình học, hiệu ứng kính mờ (glassmorphism) và các điểm nhấn công nghệ hiện đại.
+- 🌍 **Đa ngôn ngữ (i18n):** Tích hợp sẵn hỗ trợ nhiều ngôn ngữ với `react-i18next`.
+- 🌓 **Chế độ Sáng (Cyber Light):** Giao diện sáng đầy tính công nghệ với sự tương phản giữa Deep Slate và Vibrant Teal (`#0D9488`).
+- ⚡ **Hiệu suất Tối đa:** Xây dựng trên Vite + React 19, sử dụng Framer Motion cho các hoạt ảnh mượt mà đạt 60fps.
+- 🏗️ **Kiến trúc Feature-Driven:** Cấu trúc module rõ ràng, áp dụng nguyên tắc Screaming Architecture giúp dễ dàng mở rộng frontend.
 
-## 🛠️ Architecture & Tech Stack
+## 🛠️ Kiến trúc & Công nghệ (Tech Stack)
 
-- **Frontend Core:** React 19 (Function Components, Hooks)
-- **Language:** TypeScript 5.8 (Strict Typing)
-- **Build Tool:** Vite 6
-- **Styling:** Tailwind CSS + PostCSS + CSS Variables for global theming
-- **Animation Engine:** Framer Motion
-- **State Pattern:** Zustand (Theme, Language, App State)
+- **Core Frontend:** React 19 (Function Components, Hooks)
+- **Ngôn ngữ:** TypeScript 5.8 (Strict Typing)
+- **Trình đóng gói (Build Tool):** Vite 6
+- **CSS / Styling:** Tailwind CSS + PostCSS + CSS Variables (Hỗ trợ Global Theming)
+- **Animation:** Framer Motion
+- **Quản lý State:** Zustand (Theme, Language, App State)
 - **Routing:** React Router v7
 - **UI Components & Icons:** Lucide React, React Icons, React Toastify
 
-## 🚀 Quick Start
+## 🚀 Hướng dẫn Cài đặt & Khởi chạy
 
-### Prerequisites
+### Yêu cầu hệ thống
 
-Ensure you have installed:
+Đảm bảo bạn đã cài đặt các công cụ sau:
 
-- [Node.js](https://nodejs.org/) (v18.0.0 or higher)
-- npm, yarn, or bun.
+- [Node.js](https://nodejs.org/) (Phiên bản v18.0.0 trở lên)
+- Trình quản lý gói: `npm`, `yarn`, hoặc `bun`.
 
-### Installation & Run
+### Các bước Cài đặt
 
-1. Clone the repository:
+1. Clone kho lưu trữ (repository) về máy:
 
 ```bash
 git clone https://github.com/DuyPhatpeo/portfolio.git
 cd portfolio
 ```
 
-2. Install dependencies:
+1. Cài đặt các thư viện phụ thuộc:
 
 ```bash
 npm install
 ```
 
-3. Initialize the Cyber Terminal (Start Dev Server):
+1. Khởi chạy Server Development (Cyber Terminal):
 
 ```bash
 npm run dev
 ```
 
-4. Access the interface at `http://localhost:5173`.
+1. Truy cập giao diện tại: `http://localhost:5173`
 
-## 📂 System File Hierarchy
+## 📂 Cấu trúc Thư mục
 
-```
+```text
 portfolio/
-├── public/                 # Static assets & OpenGraph Images
+├── public/                 # Các tệp tĩnh & Hình ảnh OpenGraph
 ├── src/
-│   ├── assets/             # Images, SVGs, global media
-│   ├── components/         # Shared/Core UI Components (Buttons, Cards)
-│   ├── constants/          # Static configuration and data
-│   ├── features/           # Feature-driven modules (Hero, About, Project, etc.)
+│   ├── assets/             # Hình ảnh, SVGs, media cục bộ
+│   ├── components/         # Các UI Components dùng chung (Buttons, Cards, UI)
+│   ├── constants/          # Dữ liệu tĩnh và cấu hình
+│   ├── features/           # Các tính năng chính (Hero, About, Project, v.v.)
 │   ├── hooks/              # Custom React Hooks
-│   ├── i18n/               # Internationalization configurations
-│   ├── layouts/            # Page layouts and structural components
-│   ├── routes/             # App routing configuration
-│   ├── stores/             # Zustand global state stores
-│   ├── styles/             # Global CSS Architecture & Theme Tokens
-│   ├── types/              # TypeScript global definitions
-│   ├── App.tsx             # Root Application Assembly
-│   └── main.tsx            # DOM Render Entry
+│   ├── i18n/               # Cấu hình đa ngôn ngữ
+│   ├── layouts/            # Layout trang và các thành phần cấu trúc
+│   ├── routes/             # Cấu hình Routing của ứng dụng
+│   ├── stores/             # Quản lý state toàn cục với Zustand
+│   ├── styles/             # Kiến trúc CSS Global & Theme Tokens
+│   ├── types/              # Định nghĩa kiểu dữ liệu TypeScript (Global TS Types)
+│   ├── App.tsx             # Cấu trúc gốc của ứng dụng (Root Component)
+│   └── main.tsx            # Điểm render vào DOM
 ├── index.html              # HTML Shell
-└── vite.config.ts          # Vite Bundler Settings
+└── vite.config.ts          # Cấu hình Vite Bundler
 ```
 
-## 🎨 Customizing the Terminal
+## 🎨 Hướng dẫn Tùy chỉnh (Customizing)
 
-The system is highly modular. To adapt the portfolio for your own identity:
+Hệ thống được thiết kế theo dạng module độc lập (Highly modular). Để tùy chỉnh portfolio thành của riêng bạn:
 
-1. **Identity Injection:** Edit the configuration models inside `src/constants/` (or update data files under `src/features/`).
-2. **Language Configuration:** Add or modify translations inside `src/i18n/`.
-3. **Theme Recalibration:** Modify the CSS Custom Properties found in `src/styles/` to change the core neon accent colors.
+1. **Thay đổi Thông tin Cá nhân:** Chỉnh sửa các file cấu hình trong `src/constants/` (hoặc dữ liệu hiển thị trong `src/features/`).
+2. **Cấu hình Ngôn ngữ:** Cập nhật hoặc thêm ngôn ngữ mới tại `src/i18n/`.
+3. **Thay đổi Giao diện (Theme):** Chỉnh sửa các giá trị CSS Custom Properties trong thư mục `src/styles/` để thay đổi màu nhấn neon chủ đạo.
 
-## 🚀 Deployment Protocol
+## 🚀 Triển khai (Deployment)
 
-### GitHub Actions (CI/CD)
+### CI/CD với GitHub Actions
 
-The project includes a pre-configured GitHub workflow (`.github/workflows/node.js.yml`) that automatically lints and builds the project on every push to `main` and Pull Requests.
+Dự án đã được cấu hình sẵn GitHub workflow (`.github/workflows/node.js.yml`) để tự động kiểm tra code (lint) và build dự án mỗi khi có push lên nhánh `main` hoặc tạo Pull Requests.
 
-### GitHub Pages
+### Github Pages
 
-1. Update `base` path in `vite.config.ts`:
+1. Cập nhật đường dẫn `base` trong file `vite.config.ts`:
 
 ```typescript
 export default defineConfig({
-  base: "/portfolio/", // Your repository name
+  base: "/portfolio/", // Tên repository của bạn
   // ...
 });
 ```
 
-2. Execute build sequence:
+1. Chạy lệnh build:
 
 ```bash
 npm run build
@@ -124,9 +124,9 @@ npm run build
 
 ### Vercel / Netlify
 
-The architecture is inherently serverless-ready. Link your GitHub repository to Vercel or Netlify, specify `npm run build` as the build command, and `dist` as the output directory. The system will deploy automatically upon commit.
+Kiến trúc dự án hoàn toàn tương thích với môi trường serverless. Bạn chỉ cần liên kết repository GitHub với Vercel hoặc Netlify, thiết lập command build là `npm run build` và thư mục output là `dist`. Hệ thống sẽ tự động deploy sau mỗi lần commit.
 
-## 👨‍💻 Operator
+## 👨‍💻 Tác giả
 
 **DINO PÉO**
 
@@ -136,5 +136,5 @@ The architecture is inherently serverless-ready. Link your GitHub repository to 
 
 <div align="center">
   <p>Engineered with 🩻 by DINO PÉO</p>
-  <p>If this system architecture assists your development, initialize a ⭐ on the repository.</p>
+  <p>Nếu kiến trúc hệ thống này giúp ích cho bạn, hãy để lại một ⭐ cho repository nhé!</p>
 </div>
