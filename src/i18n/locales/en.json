@@ -57,8 +57,8 @@
     "title": "Skills"
   },
   "projects": {
-    "title": "Projects",
-    "subtitle": "SELECTED WORKS",
+    "title": "FEATURED PROJECTS",
+    "subtitle": "OTHER PROJECTS",
     "badges": {
       "featured": "FEATURED PROJECT"
     },
@@ -77,7 +77,7 @@
       },
       "4": {
         "title": "Weather Forecast App",
-        "description": "A modern weather forecast application built with React, TypeScript, and Tailwind CSS. The app supports city search and geolocation, displays detailed current weather, hourly forecasts, and multi-day forecasts, with a clean, responsive UI and lightweight state management using Zustand."
+        "description": "A modern weather forecast application featuring location search, automatic geolocation, and detailed hourly/daily forecasts. It offers a smooth responsive UI with Tailwind CSS and efficient state management using Zustand."
       },
       "5": {
         "title": "Dino Movies",
@@ -94,6 +94,10 @@
       "8": {
         "title": "ShopFSTYLE – Fashion E-commerce System",
         "description": "A full-featured fashion e-commerce website developed as a graduation project. The system includes customer and admin modules, supporting product management with color-size variants, inventory tracking, order processing, user roles, dashboards, and sales statistics. Built with a custom PHP backend, MySQL database, and a responsive frontend focused on real-world business workflows."
+      },
+      "9": {
+        "title": "Pokedex App",
+        "description": "A modern Pokedex application built with React Native and Expo. The project focuses on a smooth user experience with NativeWind, state management using Zustand, multi-language support, custom unit systems, and optimized search performance for hundreds of Pokemon."
       }
     }
   },

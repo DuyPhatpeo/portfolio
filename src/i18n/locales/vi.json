@@ -57,8 +57,8 @@
     "title": "Kỹ Năng"
   },
   "projects": {
-    "title": "Dự Án Đã Làm",
-    "subtitle": "DỰ ÁN TIÊU BIỂU",
+    "title": "DỰ ÁN TIÊU BIỂU",
+    "subtitle": "DỰ ÁN ĐÃ LÀM",
     "badges": {
       "featured": "DỰ ÁN NỔI BẬT"
     },
@@ -77,7 +77,7 @@
       },
       "4": {
         "title": "Ứng dụng Dự báo Thời Tiết",
-        "description": "Ứng dụng dự báo thời tiết tiên tiến xây với React, TypeScript, và Tailwind CSS. Ứng dụng hỗ trợ tìm thành phố và nhận diện vị trí hiện tại, hiển thị thông tin thời tiết chi tiết của ngày, dự báo theo giờ và các ngày tiếp theo, sử dụng giao diện gọn đẹp và quản lý state nhẹ nhàng bằng Zustand."
+        "description": "Ứng dụng dự báo thời tiết hiện đại tích hợp tìm kiếm địa điểm, định vị tự động và hiển thị dự báo chi tiết theo giờ/ngày. Giao diện responsive mượt mà với Tailwind CSS và quản lý trạng thái hiệu quả bằng Zustand."
       },
       "5": {
         "title": "Dino Phim",
@@ -94,6 +94,10 @@
       "8": {
         "title": "ShopFSTYLE – Hệ thống TMĐT Thời Trang",
         "description": "Website thương mại điện tử thời trang đầy đủ tính năng được phát triển dưới dạng đồ án tốt nghiệp. Hệ thống bao gồm module cho khách hàng và admin, quản lý sản phẩm cùng với biên thể màu sắc-size, theo dõi kho, các vai trò user đa cấp, bảng điều khiển thống kê kinh doanh. Làm với PHP thuần, MySQL và giao diện responsive tập trung vào luồng công việc thực tế."
+      },
+      "9": {
+        "title": "Pokedex App",
+        "description": "Ứng dụng Pokedex hiện đại xây dựng bằng React Native và Expo. Dự án tập trung vào trải nghiệm người dùng mượt mà với NativeWind, quản lý trạng thái bằng Zustand, hỗ trợ đa ngôn ngữ, hệ thống đơn vị đo lường tùy chỉnh và hiệu suất tìm kiếm tối ưu cho hàng trăm Pokemon."
       }
     }
   },

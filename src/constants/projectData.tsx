@@ -11,7 +11,6 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-  // Featured Projects
   {
     id: 1,
     image: "portfolio.png",
@@ -37,22 +36,31 @@ export const projects: Project[] = [
     featured: true,
     reverse: true,
   },
+  {
+    id: 4,
+    image: "weather-app.png",
+    tags: ["React 18", "TypeScript", "Tailwind CSS", "Zustand"],
+    github: "https://github.com/DuyPhatpeo/weather-app",
+    demo: "https://weather-app-phat.vercel.app/",
+    featured: true,
+    reverse: false,
+  },
 
   // Other Projects
+  {
+    id: 9,
+    image: "pokedex.png",
+    tags: ["React Native", "Expo", "TypeScript", "NativeWind", "Zustand"],
+    github: "https://github.com/DuyPhatpeo/pokedex",
+    demo: null,
+    featured: false,
+  },
   {
     id: 3,
     image: "restaurant.png",
     tags: ["React", "Vite", "Firebase", "Axios"],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
-    featured: false,
-  },
-  {
-    id: 4,
-    image: "weather-app.png",
-    tags: ["React", "TypeScript", "Tailwind CSS", "Zustand", "Weather API"],
-    github: "https://github.com/DuyPhatpeo/weather-app",
-    demo: "https://weather-app-phat.vercel.app/",
     featured: false,
   },
   {
