@@ -4,20 +4,33 @@
     "about": "ABOUT",
     "skills": "SKILLS",
     "projects": "PROJECTS",
-    "contact": "CONTACT"
+    "contact": "CONTACT",
+    "theme": {
+      "light": "LIGHT MODE",
+      "dark": "DARK MODE"
+    }
   },
   "hero": {
     "title": "DINO PÉO",
     "subtitle": "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
-    "roles": ["Web Developer", "Front-End Developer"],
+    "roles": [
+      "Web Developer",
+      "Front-End Developer"
+    ],
     "system_initialized": "System Initialized",
-    "cta": "EXPLORE WORK"
+    "cta": "EXPLORE WORK",
+    "scroll": "Scroll Down",
+    "buttons": {
+      "resume": "Download CV",
+      "connect": "Connect Now"
+    }
   },
   "about": {
     "title": "About Me",
     "profile": "PROFILE: ",
     "name": "Trần Duy Phát (Dino Péo)",
     "bio": "I'm a developer specializing in creating modern and optimized web experiences.",
+    "neural_link": "Neural-Link: Established // Type: Admin",
     "quote": "Keep creating – Never fear challenges",
     "sections": {
       "personal": "PERSONAL",
@@ -36,7 +49,8 @@
     "achievements": {
       "projectsLabel": "5+ Projects",
       "satisfactionLabel": "100% Satisfaction",
-      "passionLabel": "Passion"
+      "passionLabel": "Passion",
+      "clearance": "Clearance: Level {{level}} // Verified"
     }
   },
   "skills": {
@@ -86,6 +100,7 @@
   "contact": {
     "title": "Contact",
     "subtitle": "SECURE CHANNEL STATUS: ONLINE",
+    "transmission_log": "TRANSMISSION_LOG",
     "availability": "Ready for new opportunities. Leave a message below.",
     "labels": {
       "email": "EMAIL",

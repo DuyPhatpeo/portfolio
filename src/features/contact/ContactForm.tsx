@@ -37,7 +37,7 @@ export default function ContactForm() {
       <div className="flex items-center gap-3 mb-2">
         <div className="h-1 w-6 bg-primary"></div>
         <h2 className="text-2xl md:text-3xl font-sans font-black text-foreground uppercase tracking-[0.2em]">
-          TRANSMISSION_LOG
+          {t("contact.transmission_log")}
         </h2>
       </div>
 

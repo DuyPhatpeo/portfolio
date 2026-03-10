@@ -48,7 +48,7 @@ const Footer = () => {
           <div className="flex items-center space-x-4 opacity-70">
             <div className="h-px w-12 bg-primary"></div>
             <span className="font-mono text-primary text-xs tracking-[0.2em] uppercase">
-              End of Transmission
+              {t("footer.transmission")}
             </span>
             <div className="h-px w-12 bg-primary"></div>
           </div>

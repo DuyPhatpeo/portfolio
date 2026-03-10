@@ -40,7 +40,7 @@ const Achievements: React.FC = () => {
             </h4>
             <div className="w-12 h-[2px] bg-primary/20 group-hover:w-full transition-all duration-500" />
             <p className="font-mono text-[10px] text-foreground/50 uppercase tracking-[0.2em]">
-              Clearance: Level {i + 4} // Verified
+              {t("about.achievements.clearance", { level: i + 4 })}
             </p>
           </div>
         </motion.div>

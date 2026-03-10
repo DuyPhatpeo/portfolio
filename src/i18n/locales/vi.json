@@ -4,20 +4,33 @@
     "about": "GIỚI THIỆU",
     "skills": "KỸ NĂNG",
     "projects": "DỰ ÁN",
-    "contact": "LIÊN HỆ"
+    "contact": "LIÊN HỆ",
+    "theme": {
+      "light": "CHẾ ĐỘ SÁNG",
+      "dark": "CHẾ ĐỘ TỐI"
+    }
   },
   "hero": {
     "title": "DINO PÉO",
     "subtitle": "Kiến tạo các trải nghiệm web trực quan và tương tác cao, biến ý tưởng thành hiện thực bằng các công nghệ hiện đại.",
-    "roles": ["Lập trình viên Web", "Lập trình viên Front-End"],
+    "roles": [
+      "Lập trình viên Web",
+      "Lập trình viên Front-End"
+    ],
     "system_initialized": "Hệ thống Đã Khởi Tạo",
-    "cta": "XEM DỰ ÁN"
+    "cta": "XEM DỰ ÁN",
+    "scroll": "Cuộn xuống",
+    "buttons": {
+      "resume": "Tải CV (Resume)",
+      "connect": "Kết nối ngay"
+    }
   },
   "about": {
     "title": "Giới Thiệu",
     "profile": "HỒ SƠ: ",
     "name": "Trần Duy Phát (Dino Péo)",
     "bio": "Là một nhà phát triển phần mềm chuyên nghiệp, tập trung vào việc tạo ra các trải nghiệm web tối ưu và hiện đại.",
+    "neural_link": "Liên Kết Thần Kinh: Đã Thiết Lập // Loại: Quản Trị Viên",
     "quote": "Không ngừng sáng tạo – Không ngại thử thách",
     "sections": {
       "personal": "THÔNG TIN CÁ NHÂN",
@@ -36,7 +49,8 @@
     "achievements": {
       "projectsLabel": "Hơn 5+ Dự án",
       "satisfactionLabel": "Độ hài lòng 100%",
-      "passionLabel": "Nhiệt huyết"
+      "passionLabel": "Nhiệt huyết",
+      "clearance": "Cấp Độ Bảo Mật: Cấp {{level}} // Đã Xác Minh"
     }
   },
   "skills": {
@@ -86,6 +100,7 @@
   "contact": {
     "title": "Liên Hệ",
     "subtitle": "TRẠNG THÁI KẾNH BẢO MẬT: ĐANG CHẠY",
+    "transmission_log": "NHẬT_KÝ_TRUYỀN_TIN",
     "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
     "labels": {
       "email": "EMAIL",

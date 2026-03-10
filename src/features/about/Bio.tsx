@@ -16,7 +16,7 @@ const Bio: React.FC = () => {
         </div>
 
         <div className="text-[10px] font-mono text-primary/50 uppercase tracking-[0.3em] border-b border-primary/20 pb-1">
-          Neural-Link: Established // Type: Admin
+          {t("about.neural_link")}
         </div>
       </div>
 

@@ -26,7 +26,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               <div className="flex items-center gap-2 px-3 py-1.5 border border-primary/30 bg-primary/5 cyber-chamfer">
                 <span className="w-2 h-2 bg-primary animate-pulse" />
                 <span className="text-primary font-mono text-xs tracking-[0.2em] uppercase">
-                  Terminal.Initialized
+                  {t("hero.system_initialized")}
                 </span>
               </div>
             </div>

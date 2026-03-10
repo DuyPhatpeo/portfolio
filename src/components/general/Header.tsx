@@ -354,7 +354,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   className={`absolute inset-0 transition-transform duration-300 bg-primary/5 scale-0 group-hover:scale-100 cyber-chamfer`}
                 />
                 <span className="relative z-10">
-                  {darkMode ? "LIGHT MODE" : "DARK MODE"}
+                  {darkMode ? t("nav.theme.light") : t("nav.theme.dark")}
                 </span>
                 <div className="relative z-10 text-primary drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]">
                   {darkMode ? (
