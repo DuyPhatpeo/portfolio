@@ -15,7 +15,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center pt-28 md:pt-24 scroll-mt-20 md:scroll-mt-24 px-4 sm:px-6 lg:px-8 py-12"
+      className="relative min-h-screen flex items-center justify-center pt-28 pb-32 md:py-24 scroll-mt-20 md:scroll-mt-24 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-7xl w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center relative">

@@ -9,7 +9,7 @@ const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   scrollToSection,
 }) => (
   <div
-    className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group z-[60]"
+    className="absolute bottom-10 md:bottom-8 left-1/2 -translate-x-1/2 cursor-pointer group z-40"
     onClick={() => scrollToSection("about")}
   >
     <div className="flex flex-col items-center gap-1.5 md:gap-2 animate-bounce">
