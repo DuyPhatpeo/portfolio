@@ -11,7 +11,7 @@ export default function ProjectSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="py-24 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         {/* ================= FEATURED ================= */}
         <div className="mb-32">

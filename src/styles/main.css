@@ -48,17 +48,224 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-tertiary: var(--accent-tertiary);
+
+  --font-sans: var(--font-heading);
+  --font-mono: var(--font-body);
 }
 
-/* ===== Tailwind base layer ===== */
+/* ===== Cyberpunk Utilities ===== */
+@utility cyber-glow {
+  box-shadow: 0 0 15px var(--primary);
+}
+
+@utility cyber-glow-sm {
+  box-shadow: 0 0 8px var(--primary);
+}
+
+@utility cyber-glow-secondary {
+  box-shadow: 0 0 15px var(--secondary);
+}
+
+@utility cyber-chamfer {
+  clip-path: polygon(0 10px, 10px 0,
+      calc(100% - 10px) 0, 100% 10px,
+      100% calc(100% - 10px), calc(100% - 10px) 100%,
+      10px 100%, 0 calc(100% - 10px));
+}
+
+@utility cyber-glitch {
+  position: relative;
+
+  &:hover::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 2px;
+    text-shadow: -1px 0 var(--secondary);
+    background: var(--background);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+}
+
+@utility cyber-glitch-auto {
+  position: relative;
+
+  &::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 2px;
+    text-shadow: -1px 0 var(--secondary);
+    background: var(--background);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch-anim 2s infinite linear alternate-reverse;
+  }
+}
+
+@utility cyber-grid {
+  background-image:
+    linear-gradient(to right, var(--primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  opacity: 0.05;
+}
+
+@utility cyber-grid-subtle {
+  background-image:
+    linear-gradient(to right, var(--primary) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.06;
+}
+
+@utility cyber-dots {
+  background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+  background-size: 20px 20px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+  opacity: 0.1;
+}
+
+@utility cyber-lines-v {
+  background-image: linear-gradient(to right, var(--primary) 1px, transparent 1px);
+  background-size: 60px 100%;
+  opacity: 0.05;
+}
+
+@utility cyber-lines {
+  background-image: repeating-linear-gradient(45deg,
+      var(--primary) 0%,
+      var(--primary) 1px,
+      transparent 1px,
+      transparent 20px);
+  opacity: 0.05;
+}
+
+@utility cyber-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  filter: contrast(150%) brightness(100%);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-sans uppercase tracking-widest;
+  }
+
+  ::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
   }
 }
 
+@keyframes glitch-sm {
+  0% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+
+  25% {
+    transform: translate(-1px, 1px);
+    text-shadow: 1px 0 #ff00ff;
+  }
+
+  50% {
+    transform: translate(1px, -1px);
+    text-shadow: -1px 0 #00ffff;
+  }
+
+  75% {
+    transform: translate(-1px, -1px);
+    text-shadow: 1px 0 #ff00ff;
+  }
+
+  100% {
+    transform: translate(0);
+    text-shadow: none;
+  }
+}
+
+.group:hover .glitch-sm {
+  animation: glitch-sm 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes glitch-anim {
+  0% {
+    clip: rect(44px, 9999px, 56px, 0);
+  }
+
+  20% {
+    clip: rect(12px, 9999px, 30px, 0);
+  }
+
+  40% {
+    clip: rect(67px, 9999px, 89px, 0);
+  }
+
+  60% {
+    clip: rect(5px, 9999px, 15px, 0);
+  }
+
+  80% {
+    clip: rect(33px, 9999px, 50px, 0);
+  }
+
+  100% {
+    clip: rect(91px, 9999px, 98px, 0);
+  }
+}
+
+@keyframes scanline-v {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.animate-scanline-v {
+  animation: scanline-v 3s linear infinite;
+}
+
 /* 3. Custom partials - moved to App.tsx */
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: 1px border var(--primary/20);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary/40);
+  border: 2px solid var(--background);
+  transition: all 0.3s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+}

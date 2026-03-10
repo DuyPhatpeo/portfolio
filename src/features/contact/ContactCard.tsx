@@ -34,50 +34,42 @@ export default function ContactCard({
       <div
         className="
           relative h-full p-6
-          bg-tech-bg/50 backdrop-blur-md border border-tech-teal/30
-          shadow-[0_0_15px_rgba(0,245,212,0.05)]
+          bg-card/50 backdrop-blur-md border border-primary/30
+          shadow-[0_0_15px_var(--primary)]
           transition-all duration-300
-          hover:bg-tech-teal/10 hover:border-tech-teal hover:shadow-[0_0_20px_rgba(0,245,212,0.3)]
+          hover:bg-primary/10 hover:border-primary hover:cyber-glow
           flex flex-col items-center text-center
-          overflow-hidden
+          overflow-hidden cyber-chamfer
         "
-        style={{
-          clipPath:
-            "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
-        }}
       >
         {/* HUD Corner Accents */}
-        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-tech-teal/50 transition-colors group-hover:border-tech-teal"></div>
-        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-tech-teal/50 transition-colors group-hover:border-tech-teal"></div>
+        <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary/50 transition-colors group-hover:border-primary"></div>
+        <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary/50 transition-colors group-hover:border-primary"></div>
 
         <div className="relative space-y-4 flex-1 flex flex-col items-center z-10 w-full mt-4">
           {/* Icon */}
           <div
             className="
               inline-flex p-4
-              bg-tech-bg border border-tech-teal/50 shadow-[0_0_10px_rgba(0,245,212,0.2)]
-              group-hover:scale-110 group-hover:border-tech-teal group-hover:shadow-[0_0_15px_rgba(0,245,212,0.6)]
-              transition-all duration-300
+              bg-card border border-primary/50 shadow-[0_0_10px_var(--primary)]
+              group-hover:scale-110 group-hover:border-primary group-hover:cyber-glow
+              transition-all duration-300 cyber-chamfer
             "
-            style={{
-              clipPath:
-                "polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)",
-            }}
           >
-            <Icon className="w-8 h-8 text-tech-light group-hover:text-tech-teal transition-colors" />
+            <Icon className="w-8 h-8 text-foreground group-hover:text-primary transition-colors" />
           </div>
 
           {/* Text */}
           <div className="w-full">
-            <p className="text-[10px] md:text-xs font-mono font-bold tracking-widest uppercase mb-2 text-tech-teal border-b border-tech-teal/20 pb-2">
+            <p className="text-[10px] md:text-xs font-mono font-bold tracking-widest uppercase mb-2 text-primary border-b border-primary/20 pb-2 text-center inline-block w-full">
               &gt; {t(labelKey)}
             </p>
 
             <p
               className="
                 text-sm md:text-base font-mono
-                text-tech-light/80
-                group-hover:text-tech-light
+                text-foreground/80
+                group-hover:text-foreground
                 transition-colors
                 whitespace-nowrap overflow-hidden text-ellipsis
               "
@@ -88,7 +80,7 @@ export default function ContactCard({
         </div>
 
         {/* Bottom accent glow override */}
-        <div className="absolute inset-0 bg-gradient-to-t from-tech-teal/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       </div>
     </motion.a>
   );

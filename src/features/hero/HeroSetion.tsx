@@ -23,26 +23,29 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
             {/* Status badge */}
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full border border-tech-teal/30 bg-tech-teal/5">
-                <span className="w-2 h-2 rounded-full bg-tech-teal animate-pulse" />
-                <span className="text-tech-teal font-mono text-xs tracking-[0.2em] uppercase">
-                  System Initialized
+              <div className="flex items-center gap-2 px-3 py-1.5 border border-primary/30 bg-primary/5 cyber-chamfer">
+                <span className="w-2 h-2 bg-primary animate-pulse" />
+                <span className="text-primary font-mono text-xs tracking-[0.2em] uppercase">
+                  Terminal.Initialized
                 </span>
               </div>
             </div>
 
             {/* Title */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[88px] font-sans font-black uppercase leading-[1.05] tracking-tight text-tech-light drop-shadow-[0_0_24px_rgba(0,245,212,0.5)]">
+            <h1
+              data-text={t("hero.title")}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[88px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto"
+            >
               {t("hero.title")}
             </h1>
 
             {/* Typing roles */}
-            <div className="pl-4 border-l-2 border-tech-teal/50">
+            <div className="pl-4 border-l-2 border-primary/50">
               <TypingRoles />
             </div>
 
             {/* Subtitle */}
-            <p className="text-sm md:text-base text-tech-teal/80 font-mono max-w-xl leading-relaxed mt-1 border border-tech-teal/15 bg-tech-teal/5 rounded-lg p-4">
+            <p className="text-sm md:text-base text-primary/80 font-mono max-w-xl leading-relaxed mt-1 border border-primary/15 bg-primary/5 cyber-chamfer p-4">
               {t("hero.subtitle")}
             </p>
 

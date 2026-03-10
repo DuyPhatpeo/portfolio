@@ -7,47 +7,39 @@ const PersonalInfo: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
       {aboutData.personal.map(
-        ({ icon: Icon, labelKey, valueKey, color }, i) => (
+        ({ icon: Icon, labelKey, valueKey }, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4 + i * 0.1 }}
+            transition={{ duration: 0.4, delay: i * 0.1 }}
             className="
-            relative group
-            bg-tech-bg/50 border border-tech-teal/20
-            p-5 flex items-center gap-4
-            transition-all duration-300
-            hover:bg-tech-teal/10 hover:border-tech-teal/80 hover:shadow-[0_0_15px_rgba(68,187,164,0.2)]
-          "
-            style={{
-              clipPath:
-                "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
-            }}
+              relative group
+              bg-card border border-primary/10 dark:border-primary/20
+              p-6 flex flex-col gap-5
+              transition-all duration-300
+              hover:border-primary/60 hover:shadow-[0_0_20px_var(--primary)]
+              cyber-chamfer
+            "
           >
-            {/* Glow accent */}
-            <div className="absolute top-0 right-0 w-8 h-8 bg-tech-teal/5 blur-xl group-hover:bg-tech-teal/20 transition-all"></div>
+            {/* Corner accent (Top-left small cut) */}
+            <div className="absolute top-0 left-0 w-3 h-[2px] bg-primary/40 group-hover:bg-primary" />
+            <div className="absolute top-0 left-0 w-[2px] h-3 bg-primary/40 group-hover:bg-primary" />
 
-            {/* Icon */}
-            <div
-              className="p-3 bg-tech-teal/10 border border-tech-teal/30 group-hover:border-tech-teal transition-colors"
-              style={{
-                clipPath:
-                  "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
-              }}
-            >
-              <Icon className={`w-5 h-5 text-tech-teal ${color}`} />
+            {/* Icon Box - Solid Primary */}
+            <div className="w-12 h-12 flex items-center justify-center bg-primary cyber-chamfer shadow-[0_0_15px_rgba(0,255,136,0.3)]">
+              <Icon className="w-6 h-6 text-black" />
             </div>
 
-            {/* Text */}
-            <div>
-              <p className="text-xs uppercase font-bold tracking-widest text-tech-teal/60 mb-1 font-mono">
-                {t(labelKey)}
-              </p>
-              <p className="font-black text-tech-light uppercase tracking-wider text-sm md:text-base">
+            {/* Text Content */}
+            <div className="space-y-1">
+              <h4 className="text-lg md:text-xl font-heading font-black text-primary uppercase tracking-tight group-hover:glitch-sm">
+                {t(labelKey).replace(":", "")}
+              </h4>
+              <p className="font-mono text-sm text-foreground/70 leading-relaxed uppercase tracking-widest">
                 {t(valueKey)}
               </p>
             </div>

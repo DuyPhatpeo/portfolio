@@ -14,28 +14,20 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ scrollToSection }) => {
         href="/Tran-Duy-Phat-CV-English.pdf"
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative px-6 py-3 sm:px-8 sm:py-4 font-bold flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-tech-bg bg-tech-teal border border-tech-light shadow-[0_0_15px_rgba(68,187,164,0.5)] hover:shadow-[0_0_25px_rgba(68,187,164,0.8)] uppercase tracking-widest overflow-hidden"
+        className="group relative px-6 py-3 sm:px-8 sm:py-4 font-bold flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-background bg-primary cyber-chamfer cyber-glow uppercase tracking-[0.2em] overflow-hidden"
       >
         <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-        {/* Angular cut corners effect via pseudo elements or clip-path (clip path is cleaner) */}
-        <div
-          className="absolute inset-0 z-[-1] bg-tech-teal"
-          style={{
-            clipPath:
-              "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-          }}
-        ></div>
         <IoIosDocument className="w-4 h-4 sm:w-5 sm:h-5" />
-        <span className="text-sm sm:text-base">Resume</span>
+        <span className="text-sm sm:text-base">Resume.exe</span>
       </a>
 
       {/* 2. Contact - Secondary Action */}
       <button
         onClick={() => scrollToSection("contact")}
-        className="group relative px-6 py-3 sm:px-8 sm:py-4 font-semibold flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-tech-teal border border-tech-teal hover:bg-tech-teal/10 shadow-[inset_0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)] uppercase tracking-widest"
+        className="group relative px-6 py-3 sm:px-8 sm:py-4 font-semibold flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-primary border border-primary hover:bg-primary/10 cyber-chamfer hover:cyber-glow uppercase tracking-[0.2em]"
       >
         <RiSendPlane2Line className="w-4 h-4 sm:w-5 sm:h-5 group-hover:animate-pulse" />
-        <span className="text-sm sm:text-base">System Link</span>
+        <span className="text-sm sm:text-base">Connect_System</span>
       </button>
     </div>
   );

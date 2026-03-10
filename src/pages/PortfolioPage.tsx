@@ -26,7 +26,7 @@ const PortfolioPage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-transparent text-gray-900 dark:text-gray-100 transition-colors duration-500">
+    <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-500">
       {/* Header */}
       <Header scrollToSection={scrollToSection} />
 

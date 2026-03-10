@@ -30,18 +30,18 @@ interface ParticlesProps {
 
 const STAR_COLORS_DARK = [
   "255,255,255", // white
-  "200,220,255", // cool blue-white
-  "255,240,200", // warm yellow-white
+  "0,255,136",   // accent green
+  "255,0,255",   // accent magenta
+  "0,212,255",   // accent cyan
   "180,200,255", // ice blue
-  "0,245,212", // accent teal
 ];
 
 const STAR_COLORS_LIGHT = [
-  "148,163,184", // slate-400 (bụi sao dịu nhẹ)
-  "100,116,139", // slate-500
-  "56,189,248", // sky-400 (xanh da trời nhạt xíu)
-  "20,184,166", // teal-500
-  "167,139,250", // violet-400
+  "20,20,30",    // dark navy
+  "0,150,80",    // dark green
+  "180,0,180",   // dark magenta
+  "0,100,180",   // dark blue
+  "100,100,120"  // slate gray
 ];
 
 const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
@@ -261,16 +261,16 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
 
   /* ── Background styles ───────────────────── */
   const darkBg = `
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,245,212,0.07) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(130,80,255,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(0,150,255,0.05) 0%, transparent 50%),
-    linear-gradient(180deg, #000000 0%, #050505 50%, #000000 100%)
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,255,136,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(255,0,255,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(0,212,255,0.04) 0%, transparent 50%),
+    #000000
   `;
 
   const lightBg = `
-    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(20,184,166,0.06) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(139,92,246,0.04) 0%, transparent 45%),
-    linear-gradient(180deg, #f8fafc 0%, #ffffff 40%, #f1f5f9 100%)
+    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(0,255,136,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,0,255,0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #f0f0f5 0%, #e2e2e9 40%, #f0f0f5 100%)
   `;
 
   return (

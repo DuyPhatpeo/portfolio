@@ -46,27 +46,36 @@ const AboutSection: React.FC = () => {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
-      className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-20 md:scroll-mt-24"
+      className="py-24 relative scroll-mt-20 md:scroll-mt-24 overflow-hidden bg-card/40 border-y border-primary/5"
     >
-      <motion.div variants={itemVariants}>
-        <SectionHeader title={t("about.title")} />
-      </motion.div>
+      {/* Grid Pattern Background */}
+      <div className="absolute inset-0 cyber-grid-subtle pointer-events-none" />
 
-      <motion.div variants={itemVariants}>
-        <Bio />
-      </motion.div>
+      {/* Background Glow */}
+      <div className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-primary/5 blur-[120px] pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 -right-1/4 w-1/2 h-1/2 bg-secondary/5 blur-[120px] pointer-events-none -z-10" />
 
-      <motion.div variants={itemVariants}>
-        <PersonalInfo />
-      </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div variants={itemVariants}>
+          <SectionHeader title={t("about.title")} />
+        </motion.div>
 
-      <motion.div variants={itemVariants}>
-        <Achievements />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <Bio />
+        </motion.div>
 
-      <motion.div variants={itemVariants}>
-        <Quote />
-      </motion.div>
+        <motion.div variants={itemVariants}>
+          <PersonalInfo />
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Achievements />
+        </motion.div>
+
+        <motion.div variants={itemVariants}>
+          <Quote />
+        </motion.div>
+      </div>
     </motion.section>
   );
 };

@@ -6,7 +6,7 @@ export interface Skill {
   name: string;
   logo?: string;
   invertDark?: boolean;
-  icon?: (props: { className?: string }) => React.ReactNode;
+  icon?: (props: { className?: string; style?: React.CSSProperties }) => React.ReactNode;
   url?: string;
 }
 
@@ -19,9 +19,9 @@ interface SkillKeycapProps {
 }
 
 /* ===== Icon config ===== */
-const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean }> = {
-  Firebase: { size: "h-14 scale-110" },
-  "Framer Motion": { size: "h-9", disableGlow: true },
+const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean; glowColor?: string }> = {
+  Firebase: { size: "h-14 scale-110", glowColor: "#FFCA28" },
+  "Framer Motion": { size: "h-9", glowColor: "#FFF312" },
 };
 
 const DEFAULT_ICON_SIZE = "h-8";
@@ -40,6 +40,7 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
   const isHovered = hoveredSkill === skill.name;
   const isPressed = pressedSkill === skill.name;
   const iconConfig = ICON_CONFIG[skill.name];
+  const glowColor = iconConfig?.glowColor ?? "var(--primary)";
 
   const handleClick = () => {
     if (skill.url) window.open(skill.url, "_blank", "noopener,noreferrer");
@@ -69,33 +70,23 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
       onMouseDown={() => setPressedSkill(skill.name)}
       onMouseUp={() => setPressedSkill(null)}
       onMouseMove={handleMouseMove}
-      className={`relative flex flex-col items-center justify-center select-none focus:outline-none ${
-        skill.url ? "cursor-pointer" : "cursor-default opacity-80"
-      }`}
+      className={`relative flex flex-col items-center justify-center select-none focus:outline-none ${skill.url ? "cursor-pointer" : "cursor-default opacity-80"
+        }`}
     >
       <motion.div
-        className={`relative w-24 h-24 transition-all duration-300 ${
-          isHovered
-            ? "drop-shadow-[0_0_15px_rgba(0,245,212,0.6)]"
-            : "drop-shadow-[0_0_5px_rgba(0,245,212,0.1)]"
-        }`}
+        className={`relative w-24 h-24 transition-all duration-300`}
         animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
         <div
-          className={`relative w-full h-full flex items-center justify-center border-2 transition-all duration-300 ${
-            isHovered
-              ? "bg-tech-teal/20 border-tech-teal"
-              : "bg-tech-bg/50 border-tech-teal/30"
-          }`}
-          style={{
-            clipPath:
-              "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
-          }}
+          className={`relative w-full h-full flex items-center justify-center border-2 transition-all duration-300 cyber-chamfer ${isHovered
+            ? "bg-primary/10 border-primary"
+            : "bg-card/50 border-primary/30"
+            }`}
         >
           {/* Decorative HUD Corner */}
           {isHovered && (
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-tech-light"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
           )}
 
           {/* Icon container */}
@@ -105,27 +96,23 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
               animate={{ scale: isPressed ? 0.9 : 1 }}
               transition={SPRING_CONFIG}
             >
-              {/* Removed Icon glow per user request */}
-
               {skill.logo ? (
                 <img
                   src={skill.logo}
                   alt={skill.name}
-                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${
-                    isHovered && !iconConfig?.disableGlow
-                      ? "filter brightness-110"
-                      : ""
-                  } ${skill.invertDark ? "dark:invert" : ""}`}
+                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${isHovered
+                    ? "filter brightness-125"
+                    : ""
+                    } ${skill.invertDark ? "dark:invert" : ""}`}
                 />
               ) : (
                 skill.icon?.({
-                  className: `relative w-auto transition-all duration-300 ${
-                    iconConfig?.size ?? DEFAULT_ICON_SIZE
-                  } ${
-                    isHovered
-                      ? "text-tech-teal filter brightness-125"
-                      : "text-tech-teal"
-                  }`,
+                  className: `relative w-auto transition-all duration-300 ${iconConfig?.size ?? DEFAULT_ICON_SIZE
+                    } ${isHovered
+                      ? "filter brightness-150"
+                      : "text-primary/70"
+                    }`,
+                  style: { color: isHovered ? glowColor : undefined }
                 })
               )}
             </motion.div>
@@ -145,11 +132,7 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
         className="mt-3 relative z-10"
       >
         <div
-          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-tech-bg border border-tech-teal text-tech-light shadow-[0_0_10px_rgba(0,245,212,0.4)]"
-          style={{
-            clipPath:
-              "polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px)",
-          }}
+          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-card border border-primary text-foreground transition-all duration-300 cyber-chamfer"
         >
           &gt; {skill.name}
         </div>

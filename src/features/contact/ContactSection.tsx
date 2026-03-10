@@ -51,12 +51,27 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="py-20"
+      className="py-24 relative overflow-hidden bg-background border-t border-primary/10 transition-all duration-500"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
     >
+      {/* Refined Cyber Mist Background */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,var(--primary)_0%,transparent_80%)] opacity-[0.06]" />
+
+        {/* Cloudy Volumetric Layers */}
+        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-primary/20 blur-[160px] rounded-full opacity-50 animate-pulse" />
+        <div className="absolute top-[10%] right-[10%] w-[50%] h-[50%] bg-primary/10 blur-[100px] rounded-full opacity-30" />
+
+        {/* Technological Texture */}
+        <div className="absolute inset-0 cyber-lines opacity-[0.04]" />
+        <div className="absolute inset-0 cyber-noise opacity-[0.05] mix-blend-overlay" />
+      </div>
+
+      {/* Decorative side borders */}
+
       <div className="max-w-7xl mx-auto px-6">
         <motion.div variants={itemVariants}>
           <SectionHeader title={t("contact.title")} />

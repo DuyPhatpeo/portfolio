@@ -27,24 +27,21 @@ export default function ContactForm() {
       animate={{ opacity: 1, y: 0 }}
       className="
         w-full space-y-6
-        bg-tech-bg/60 backdrop-blur-md border border-tech-teal/30
-        p-6 md:p-8 shadow-[0_0_20px_rgba(68,187,164,0.1)] relative overflow-hidden
+        bg-card/60 backdrop-blur-md border border-primary/30
+        p-6 md:p-8 shadow-[0_0_20px_rgba(0,255,136,0.1)] relative overflow-hidden
+        cyber-chamfer
       "
-      style={{
-        clipPath:
-          "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
-      }}
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-tech-teal/10 blur-3xl rounded-full pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full pointer-events-none"></div>
 
       <div className="flex items-center gap-3 mb-2">
-        <div className="h-1 w-6 bg-tech-teal"></div>
-        <h2 className="text-2xl md:text-3xl font-black text-tech-light uppercase tracking-[0.2em] font-mono">
+        <div className="h-1 w-6 bg-primary"></div>
+        <h2 className="text-2xl md:text-3xl font-sans font-black text-foreground uppercase tracking-[0.2em]">
           TRANSMISSION_LOG
         </h2>
       </div>
 
-      <p className="text-xs md:text-sm font-mono text-tech-teal/80 uppercase tracking-widest border-l-2 border-tech-teal/50 pl-3 mb-6">
+      <p className="text-xs md:text-sm font-mono text-primary/80 uppercase tracking-widest border-l-2 border-primary/50 pl-3 mb-6">
         &gt; {t("contact.subtitle")}
       </p>
 
@@ -56,15 +53,11 @@ export default function ContactForm() {
         onChange={(e) => setField("name", e.target.value)}
         required
         className="
-          w-full px-4 py-3 font-mono text-tech-light placeholder:text-tech-teal/50
-          border border-tech-teal/30 bg-tech-bg/50
-          focus:border-tech-teal focus:ring-0 focus:shadow-[0_0_15px_rgba(68,187,164,0.3)]
-          outline-none transition-all
+          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/50
+          border border-primary/30 bg-card/50
+          focus:border-primary focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)]
+          outline-none transition-all cyber-chamfer
         "
-        style={{
-          clipPath:
-            "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-        }}
       />
 
       {/* EMAIL */}
@@ -75,15 +68,11 @@ export default function ContactForm() {
         onChange={(e) => setField("email", e.target.value)}
         required
         className="
-          w-full px-4 py-3 font-mono text-tech-light placeholder:text-tech-teal/50
-          border border-tech-teal/30 bg-tech-bg/50
-          focus:border-tech-teal focus:ring-0 focus:shadow-[0_0_15px_rgba(68,187,164,0.3)]
-          outline-none transition-all
+          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/50
+          border border-primary/30 bg-card/50
+          focus:border-primary focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)]
+          outline-none transition-all cyber-chamfer
         "
-        style={{
-          clipPath:
-            "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-        }}
       />
 
       {/* MESSAGE */}
@@ -94,15 +83,11 @@ export default function ContactForm() {
         onChange={(e) => setField("message", e.target.value)}
         required
         className="
-          w-full px-4 py-3 font-mono text-tech-light placeholder:text-tech-teal/50
-          border border-tech-teal/30 bg-tech-bg/50
-          focus:border-tech-teal focus:ring-0 focus:shadow-[0_0_15px_rgba(68,187,164,0.3)]
-          outline-none transition-all resize-none
+          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/40
+          border border-primary/10 dark:border-primary/20 bg-muted/20 dark:bg-[#08080c]
+          focus:border-primary/60 focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.15)]
+          outline-none transition-all cyber-chamfer
         "
-        style={{
-          clipPath:
-            "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-        }}
       />
 
       {/* BUTTON */}
@@ -111,16 +96,13 @@ export default function ContactForm() {
         disabled={loading}
         className="
           group relative w-full flex items-center justify-center gap-3
-          bg-tech-bg text-tech-teal font-bold uppercase tracking-widest
-          py-4 border border-tech-teal
+          bg-primary text-background font-bold uppercase tracking-widest
+          py-4 border border-primary
           transition-all duration-300
-          hover:bg-tech-teal/10 hover:shadow-[0_0_20px_rgba(68,187,164,0.4)]
+          hover:bg-primary/90 hover:cyber-glow
           disabled:opacity-50 disabled:cursor-not-allowed
+          cyber-chamfer
         "
-        style={{
-          clipPath:
-            "polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px)",
-        }}
       >
         {loading ? (
           t("contact.labels.form.sending")
@@ -134,13 +116,13 @@ export default function ContactForm() {
 
       {/* STATUS */}
       {status === "success" && (
-        <p className="flex items-center gap-2 text-green-600 text-sm">
+        <p className="flex items-center gap-2 text-primary font-mono text-sm">
           <MdCheckCircle /> {t("contact.alerts.success")}
         </p>
       )}
 
       {status === "error" && (
-        <p className="flex items-center gap-2 text-red-600 text-sm">
+        <p className="flex items-center gap-2 text-destructive font-mono text-sm">
           <MdError /> {t("contact.alerts.error")}
         </p>
       )}

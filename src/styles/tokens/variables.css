@@ -2,86 +2,85 @@
 /* Design tokens – CSS custom properties for the entire app */
 @layer theme {
   :root {
-    --radius: 0; /* Angular aesthetic everywhere */
-    --neutral: #ffffff;
+    --radius: 0px;
+    --background: #000000;
+    --foreground: #e0e0e0;
 
-    /* Cyber Light Theme (Bright, clean, contrast tech) */
-    --tech-bg: #ffffff; /* Pure white instead of silver/gray */
-    --tech-teal: #0d9488; /* Vibrant Teal */
-    --tech-light: #0f172a; /* Deep Slate for text */
+    --card: #08080c;
+    --card-foreground: #e0e0e0;
 
-    /* ===== TEAL SYSTEM ===== */
-    --primary: #0d9488;
-    --primary-mild: #14b8a6;
-    --primary-deep: #0f766e;
-    --primary-subtle: #0d94881a;
+    --popover: #12121a;
+    --popover-foreground: #e0e0e0;
 
-    --secondary: #0f172a;
-    --secondary-mild: #1e293b;
-    --secondary-deep: #020617;
-    --secondary-subtle: #0f172a14;
+    --primary: #00ff88;
+    --primary-foreground: #0a0a0f;
 
-    /* ===== SEMANTIC ===== */
-    --background: #ffffff;
-    --foreground: #0f172a;
+    --secondary: #ff00ff;
+    --secondary-foreground: #0a0a0f;
 
-    --card: #f8fafc; /* Very light slate for cards */
-    --card-foreground: #0f172a;
+    --muted: #1c1c2e;
+    --muted-foreground: #6b7280;
 
+    --accent: #00ff88;
+    --accent-foreground: #0a0a0f;
+
+    --destructive: #ff3366;
+    --destructive-foreground: #e0e0e0;
+
+    --border: #1a1a2a;
+    --input: #12121a;
+    --ring: #00ff88;
+
+    /* Cyberpunk Specific */
+    --accent-secondary: #ff00ff;
+    --accent-tertiary: #00d4ff;
+
+    --neon-glow: 0 0 5px var(--primary), 0 0 10px rgba(0, 255, 136, 0.4);
+    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 10px rgba(255, 0, 255, 0.4);
+
+    --selection-bg: var(--primary);
+    --selection-text: var(--primary-foreground);
+
+    --scanline-opacity: 0.15;
+
+    /* Font overrides */
+    --font-heading: "Chakra Petch", "Orbitron", sans-serif;
+    --font-body: "Inter", "JetBrains Mono", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+  }
+
+  :root:not(.dark) {
+    /* Clean Cyber / Tech White theme */
+    --background: #f0f0f5;
+    --foreground: #0a0a0f;
+    --card: #ffffff;
+    --card-foreground: #0a0a0f;
     --popover: #ffffff;
-    --popover-foreground: #0f172a;
-
+    --popover-foreground: #0a0a0f;
+    --primary: #00cc6a;
+    /* Slightly darker green for readability on white */
     --primary-foreground: #ffffff;
+    --secondary: #d400d4;
     --secondary-foreground: #ffffff;
-
-    --muted: #f1f5f9;
+    --muted: #e2e2e9;
     --muted-foreground: #64748b;
+    --accent: #00cc6a;
+    --accent-foreground: #ffffff;
+    --border: #cbd5e1;
+    --input: #f8fafc;
+    --ring: #00cc6a;
 
-    --accent: var(--primary-subtle);
-    --accent-foreground: var(--primary-deep);
+    --neon-glow: 0 0 5px rgba(0, 204, 106, 0.3), 0 0 10px rgba(0, 204, 106, 0.1);
+    --neon-glow-secondary: 0 0 5px rgba(212, 0, 212, 0.3), 0 0 10px rgba(212, 0, 212, 0.1);
 
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: var(--primary);
+    --scanline-opacity: 0.05;
   }
 
   .dark {
-    --neutral: #06071b;
-    --tech-bg: #06071b; /* Deep space indigo-black */
-    --tech-teal: #00f5d4; /* Xanh Ngọc (Bright Turquoise) */
-    --tech-light: #e8eaf6; /* Starlight white */
-
-    --primary: #00f5d4;
-    --primary-mild: #20c997;
-    --primary-deep: #0f766e;
-    --primary-subtle: #00f5d41a;
-
-    --secondary: #e8eaf6;
-    --secondary-mild: #ffffff;
-    --secondary-deep: #8892b0;
-    --secondary-subtle: #e8eaf614;
-
-    --background: #06071b;
-    --foreground: #e8eaf6;
-
-    --card: #0d0e2a; /* Deep navy for cards */
-    --card-foreground: #e8eaf6;
-
-    --popover: #0d0e2a;
-    --popover-foreground: #e8eaf6;
-
-    --primary-foreground: #06071b;
-    --secondary-foreground: #06071b;
-
-    --muted: #131533;
-    --muted-foreground: #8892b0;
-
-    --accent: var(--primary-subtle);
-    --accent-foreground: var(--primary-mild);
-
-    --border: #1a1c3a;
-    --input: #1a1c3a;
-    --ring: var(--primary);
+    /* Cyberpunk is primarily dark mode, so we'll keep it similar or even more intense */
+    --background: #000000;
+    --card: #08080c;
+    --border: #151522;
   }
 
   /* ===== SCROLLBAR ===== */
@@ -91,12 +90,19 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--neutral);
+    background: var(--background);
+    border-left: 1px solid var(--border);
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--primary-mild);
-    border-radius: 999px;
+    background: var(--primary);
+    opacity: 0.5;
+    border: 2px solid var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+    opacity: 1;
   }
 
   .dark ::-webkit-scrollbar-thumb {

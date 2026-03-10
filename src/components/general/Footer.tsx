@@ -33,25 +33,24 @@ const Footer = () => {
 
   return (
     <footer
-      className="bg-tech-bg/50 border-t border-tech-teal/30 py-8 mt-auto w-full relative overflow-hidden"
-      style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+      className="bg-card/50 border-t border-primary/30 py-8 mt-auto w-full relative overflow-hidden"
     >
       {/* Decorative Top Border */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-tech-teal/50 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary/50 to-transparent"></div>
 
       {/* HUD Corner Accents */}
-      <div className="absolute top-0 left-0 w-16 h-16 border-t-[3px] border-l-[3px] border-tech-teal/60 opacity-50 m-2"></div>
-      <div className="absolute top-0 right-0 w-16 h-16 border-t-[3px] border-r-[3px] border-tech-teal/60 opacity-50 m-2"></div>
+      <div className="absolute top-0 left-0 w-16 h-16 border-t-[3px] border-l-[3px] border-secondary/40 opacity-50 m-2"></div>
+      <div className="absolute top-0 right-0 w-16 h-16 border-t-[3px] border-r-[3px] border-secondary/40 opacity-50 m-2"></div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex flex-col items-center justify-center space-y-8">
           {/* System Status Line */}
           <div className="flex items-center space-x-4 opacity-70">
-            <div className="h-[1px] w-12 bg-tech-teal"></div>
-            <span className="font-mono text-tech-teal text-xs tracking-[0.2em] uppercase">
+            <div className="h-px w-12 bg-primary"></div>
+            <span className="font-mono text-primary text-xs tracking-[0.2em] uppercase">
               End of Transmission
             </span>
-            <div className="h-[1px] w-12 bg-tech-teal"></div>
+            <div className="h-px w-12 bg-primary"></div>
           </div>
 
           {/* Maximalist Glowing Name */}
@@ -59,8 +58,8 @@ const Footer = () => {
             <motion.h1
               className="
                 flex w-full flex-wrap justify-center gap-x-2 md:gap-x-4 lg:gap-x-6
-                font-black uppercase tracking-tighter text-tech-light
-                drop-shadow-[0_0_20px_rgba(68,187,164,0.6)]
+                font-sans font-black uppercase tracking-tighter text-foreground
+                drop-shadow-[0_0_20px_var(--primary)]
               "
               style={{
                 fontSize: "clamp(4rem, 12vw, 10rem)",
@@ -74,7 +73,7 @@ const Footer = () => {
                 <motion.span
                   key={index}
                   variants={child}
-                  className="inline-block hover:text-tech-teal transition-colors duration-300"
+                  className="inline-block hover:text-primary transition-colors duration-300"
                 >
                   {char === " " ? "\u00A0" : char}
                 </motion.span>
@@ -83,10 +82,10 @@ const Footer = () => {
           </div>
 
           {/* Copyright Area */}
-          <div className="flex flex-col sm:flex-row items-center justify-center w-full border-t border-tech-teal/20 pt-6 mt-8 font-mono text-[10px] md:text-xs text-tech-light/60 tracking-widest uppercase">
+          <div className="flex flex-col sm:flex-row items-center justify-center w-full border-t border-primary/20 pt-6 mt-8 font-mono text-[10px] md:text-xs text-foreground/60 tracking-widest uppercase">
             <div className="flex items-center space-x-3">
               <span>© {new Date().getFullYear()}</span>
-              <span className="text-tech-teal font-bold">DINO PÉO</span>
+              <span className="text-primary font-bold">DINO PÉO</span>
               <span>{t("footer.rights")}</span>
             </div>
           </div>

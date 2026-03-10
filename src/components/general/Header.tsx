@@ -110,24 +110,27 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     <header
       className={`fixed top-3 left-4 right-4 z-50 transition-all duration-300`}
     >
-      <div
-        className="max-w-6xl mx-auto rounded-2xl border border-white/10 dark:border-white/10 dark:bg-[#06071b]/75 bg-white/80 shadow-[0_8px_32px_rgba(0,0,0,0.3)]"
-        style={{
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-        }}
-      >
+      <div className="max-w-6xl mx-auto relative">
+        {/* Cyberpunk Background with Chamfer */}
+        <div
+          className="absolute inset-0 border border-primary/20 bg-card/85 shadow-[0_8px_32px_rgba(0,0,0,0.5)] cyber-chamfer -z-10"
+          style={{
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+          }}
+        />
         <div className="flex justify-between items-center h-16 px-5 sm:px-6">
           {/* Logo */}
           <button
             onClick={() => scrollToSection("home")}
             className="group flex items-center space-x-3 relative"
           >
+            {/* Pulsing background glow */}
             <div
-              className={`absolute -inset-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg bg-tech-teal/40`}
+              className={`absolute -inset-2 opacity-70 transition-opacity duration-300 blur-lg bg-primary/30 animate-pulse`}
             />
             <span
-              className={`relative text-2xl md:text-3xl font-black uppercase tracking-widest transition-transform duration-300 group-hover:scale-105 text-tech-light drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]`}
+              className={`relative text-2xl md:text-3xl font-sans font-black uppercase tracking-widest transition-transform duration-300 scale-105 text-foreground drop-shadow-[0_0_12px_rgba(0,255,136,0.9)]`}
             >
               DINO PÉO
             </span>
@@ -144,28 +147,22 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     scrollToSection(item.href);
                     setActiveSection(item.href);
                   }}
-                  className={`relative px-4 py-2 mx-1 text-sm font-bold tracking-widest transition-all duration-300 group uppercase ${
-                    isActive
-                      ? "text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
-                      : "text-tech-light/60 hover:text-tech-light"
-                  }`}
+                  className={`relative px-4 py-2 mx-1 text-sm font-mono font-bold tracking-widest transition-all duration-300 group uppercase ${isActive
+                    ? "text-primary drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]"
+                    : "text-foreground/60 hover:text-foreground"
+                    }`}
                 >
                   <span className="relative z-10">{item.name}</span>
                   {/* Hover background block */}
                   <div
-                    className={`absolute inset-0 border border-tech-teal/0 group-hover:border-tech-teal/50 transition-all duration-300 bg-tech-teal/5 scale-y-0 group-hover:scale-y-100 origin-bottom`}
-                    style={{
-                      clipPath:
-                        "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-                    }}
+                    className={`absolute inset-0 border border-primary/0 group-hover:border-primary/50 transition-all duration-300 bg-primary/5 scale-y-0 group-hover:scale-y-100 origin-bottom cyber-chamfer`}
                   />
                   {/* Active bottom line */}
                   <div
-                    className={`absolute bottom-0 left-0 h-[2px] bg-tech-teal transition-all duration-300 ${
-                      isActive
-                        ? "w-full shadow-[0_0_10px_rgba(68,187,164,1)]"
-                        : "w-0 group-hover:w-full"
-                    }`}
+                    className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-300 ${isActive
+                      ? "w-full shadow-[0_0_10px_rgba(0,255,136,1)]"
+                      : "w-0 group-hover:w-full"
+                      }`}
                   />
                 </button>
               );
@@ -179,16 +176,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               <button
                 ref={langToggleRef}
                 onClick={() => setIsLangOpen(!isLangOpen)}
-                className={`relative p-2 md:p-3 transition-all duration-300 overflow-hidden border border-tech-teal/30 hover:border-tech-teal ${isLangOpen ? "border-tech-teal shadow-[0_0_15px_rgba(68,187,164,0.4)]" : ""} bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] flex items-center justify-center gap-2 min-w-[70px]`}
-                style={{
-                  clipPath:
-                    "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
-                }}
+                className={`relative p-2 md:p-3 transition-all duration-300 overflow-hidden border border-primary/30 hover:border-primary ${isLangOpen ? "border-primary cyber-glow" : ""} bg-card/50 shadow-[0_0_10px_rgba(0,255,136,0.1)] flex items-center justify-center gap-2 min-w-[70px] cyber-chamfer`}
               >
                 <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 ${isLangOpen ? "opacity-100" : ""} transition-opacity duration-300 blur-md bg-tech-teal/20`}
+                  className={`absolute inset-0 opacity-0 group-hover:opacity-100 ${isLangOpen ? "opacity-100" : ""} transition-opacity duration-300 blur-md bg-primary/20`}
                 />
-                <div className="relative text-tech-teal flex items-center gap-2">
+                <div className="relative text-primary flex items-center gap-2">
                   <img
                     src={
                       i18n.language === "vi"
@@ -196,9 +189,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         : "https://flagcdn.com/gb.svg"
                     }
                     alt={i18n.language}
-                    className="w-5 h-auto object-cover rounded-[2px]"
+                    className="w-5 h-auto object-cover rounded-none"
                   />
-                  <span className="text-sm font-bold tracking-widest pointer-events-none">
+                  <span className="text-sm font-mono font-bold tracking-widest pointer-events-none">
                     {i18n.language.toUpperCase()}
                   </span>
                 </div>
@@ -213,11 +206,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-[110%] right-0 mt-2 w-28 bg-tech-bg/95 backdrop-blur-xl border border-tech-teal/30 shadow-[0_0_20px_rgba(68,187,164,0.3)] z-50 flex flex-col"
-                    style={{
-                      clipPath:
-                        "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-                    }}
+                    className="absolute top-[110%] right-0 mt-2 w-28 bg-card/95 backdrop-blur-xl border border-primary/30 shadow-[0_0_20px_rgba(0,255,136,0.3)] z-50 flex flex-col cyber-chamfer"
                   >
                     <button
                       onClick={() => {
@@ -225,36 +214,34 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         localStorage.setItem("language", "vi");
                         setIsLangOpen(false);
                       }}
-                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-tech-teal/20 text-sm font-bold tracking-widest transition-colors ${
-                        i18n.language === "vi"
-                          ? "text-tech-teal bg-tech-teal/10"
-                          : "text-tech-light hover:text-tech-teal"
-                      }`}
+                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-primary/20 text-sm font-mono font-bold tracking-widest transition-colors ${i18n.language === "vi"
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:text-primary"
+                        }`}
                     >
                       <img
                         src="https://flagcdn.com/vn.svg"
                         alt="VI"
-                        className="w-5 h-auto object-cover rounded-[2px]"
+                        className="w-5 h-auto object-cover rounded-none"
                       />{" "}
                       VI
                     </button>
-                    <div className="w-full h-px bg-tech-teal/20" />
+                    <div className="w-full h-px bg-primary/20" />
                     <button
                       onClick={() => {
                         i18n.changeLanguage("en");
                         localStorage.setItem("language", "en");
                         setIsLangOpen(false);
                       }}
-                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-tech-teal/20 text-sm font-bold tracking-widest transition-colors ${
-                        i18n.language === "en"
-                          ? "text-tech-teal bg-tech-teal/10"
-                          : "text-tech-light hover:text-tech-teal"
-                      }`}
+                      className={`px-4 py-3 flex items-center gap-3 text-left hover:bg-primary/20 text-sm font-mono font-bold tracking-widest transition-colors ${i18n.language === "en"
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:text-primary"
+                        }`}
                     >
                       <img
                         src="https://flagcdn.com/gb.svg"
                         alt="EN"
-                        className="w-5 h-auto object-cover rounded-[2px]"
+                        className="w-5 h-auto object-cover rounded-none"
                       />{" "}
                       EN
                     </button>
@@ -266,25 +253,21 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             {/* Theme toggle */}
             <button
               onClick={toggleDarkMode}
-              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-tech-teal/30 hover:border-tech-teal bg-tech-bg/50 shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.4)] hidden md:block`}
-              style={{
-                clipPath:
-                  "polygon(5px 0, 100% 0, 100% calc(100% - 5px), calc(100% - 5px) 100%, 0 100%, 0 5px)",
-              }}
+              className={`relative p-2 md:p-3 transition-all duration-300 group overflow-hidden border border-primary/30 hover:border-primary bg-card/50 shadow-[0_0_10px_rgba(0,255,136,0.1)] hover:cyber-glow hidden md:block cyber-chamfer`}
             >
               <div
-                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-tech-teal/20`}
+                className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md bg-primary/20`}
               />
-              <div className="relative text-tech-teal">
+              <div className="relative text-primary">
                 {darkMode ? (
                   <RiMoonLine
                     size={20}
-                    className="group-hover:rotate-12 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                    className="group-hover:rotate-12 transition-transform duration-300 drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]"
                   />
                 ) : (
                   <RiSunLine
                     size={20}
-                    className="text-tech-light group-hover:rotate-180 transition-transform duration-500"
+                    className="text-foreground group-hover:rotate-180 transition-transform duration-500"
                   />
                 )}
               </div>
@@ -294,21 +277,17 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <button
               ref={toggleRef}
               onClick={() => setIsOpen((prev) => !prev)}
-              className={`md:hidden flex items-center gap-2 px-3 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-300 border border-tech-teal/50 hover:bg-tech-teal/10 text-tech-light shadow-[inset_0_0_10px_rgba(68,187,164,0.1)]`}
-              style={{
-                clipPath:
-                  "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-              }}
+              className={`md:hidden flex items-center gap-2 px-3 py-2 text-sm font-mono font-bold uppercase tracking-widest transition-all duration-300 border border-primary/50 hover:bg-primary/10 text-foreground shadow-[inset_0_0_10px_rgba(0,255,136,0.1)] cyber-chamfer`}
             >
               {isOpen ? (
                 <RiCloseLine
                   size={24}
-                  className="text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                  className="text-primary drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]"
                 />
               ) : (
                 <RiMenu3Line
                   size={24}
-                  className="text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]"
+                  className="text-primary drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]"
                 />
               )}
             </button>
@@ -325,11 +304,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             animate="visible"
             exit="exit"
             variants={menuVariants}
-            className={`md:hidden absolute left-0 right-0 top-[4.5rem] bg-[#06071b]/95 dark:bg-[#06071b]/95 bg-white/95 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.4)] z-40 rounded-2xl overflow-hidden`}
+            className={`md:hidden absolute left-0 right-0 top-18 bg-card/95 backdrop-blur-xl border border-primary/20 shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-40 overflow-hidden cyber-chamfer`}
           >
             {/* Background glow */}
             <div
-              className={`absolute top-0 right-0 w-1/2 h-full opacity-10 blur-3xl pointer-events-none bg-tech-teal`}
+              className={`absolute top-0 right-0 w-1/2 h-full opacity-10 blur-3xl pointer-events-none bg-primary`}
             />
 
             <nav className="relative flex flex-col items-end p-6 pr-8 space-y-4">
@@ -344,25 +323,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                       setActiveSection(item.href);
                       setIsOpen(false);
                     }}
-                    className={`group relative text-right px-8 py-4 text-xl font-bold uppercase tracking-widest transition-all duration-300 ${
-                      isActive
-                        ? "text-tech-teal drop-shadow-[0_0_8px_rgba(68,187,164,0.8)]"
-                        : "text-tech-light/70 hover:text-tech-light"
-                    }`}
+                    className={`group relative text-right px-8 py-4 text-xl font-mono font-bold uppercase tracking-widest transition-all duration-300 ${isActive
+                      ? "text-primary drop-shadow-[0_0_8px_rgba(0,255,136,0.8)]"
+                      : "text-foreground/70 hover:text-foreground"
+                      }`}
                   >
                     <div
-                      className={`absolute inset-0 transition-transform duration-300 bg-tech-teal/5 ${
-                        isActive ? "scale-100" : "scale-0 group-hover:scale-100"
-                      }`}
-                      style={{
-                        clipPath:
-                          "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-                      }}
+                      className={`absolute inset-0 transition-transform duration-300 bg-primary/5 ${isActive ? "scale-100" : "scale-0 group-hover:scale-100"
+                        } cyber-chamfer`}
                     />
                     <div
-                      className={`absolute right-0 top-1/2 -translate-y-1/2 w-[3px] transition-all duration-300 bg-tech-teal shadow-[0_0_8px_rgba(68,187,164,0.8)] ${
-                        isActive ? "h-3/4" : "h-0 group-hover:h-3/4"
-                      }`}
+                      className={`absolute right-0 top-1/2 -translate-y-1/2 w-[3px] transition-all duration-300 bg-primary shadow-[0_0_8px_rgba(0,255,136,0.8)] ${isActive ? "h-3/4" : "h-0 group-hover:h-3/4"
+                        }`}
                     />
                     <span className="relative z-10">{item.name}</span>
                   </motion.button>
@@ -376,19 +348,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   toggleDarkMode();
                   setIsOpen(false);
                 }}
-                className={`group relative text-right px-8 py-4 text-xl font-bold uppercase tracking-widest flex items-center justify-end gap-3 transition-all duration-300 text-tech-light/70 hover:text-tech-light`}
+                className={`group relative text-right px-8 py-4 text-xl font-mono font-bold uppercase tracking-widest flex items-center justify-end gap-3 transition-all duration-300 text-foreground/70 hover:text-foreground`}
               >
                 <div
-                  className={`absolute inset-0 transition-transform duration-300 bg-tech-teal/5 scale-0 group-hover:scale-100`}
-                  style={{
-                    clipPath:
-                      "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)",
-                  }}
+                  className={`absolute inset-0 transition-transform duration-300 bg-primary/5 scale-0 group-hover:scale-100 cyber-chamfer`}
                 />
                 <span className="relative z-10">
                   {darkMode ? "LIGHT MODE" : "DARK MODE"}
                 </span>
-                <div className="relative z-10 text-tech-teal drop-shadow-[0_0_5px_rgba(68,187,164,0.8)]">
+                <div className="relative z-10 text-primary drop-shadow-[0_0_5px_rgba(0,255,136,0.8)]">
                   {darkMode ? (
                     <RiSunLine size={24} />
                   ) : (

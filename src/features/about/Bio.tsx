@@ -5,29 +5,42 @@ const Bio: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mt-12 mb-12">
-      <div
-        className="w-full relative bg-tech-bg/40 backdrop-blur-sm border border-tech-teal/20 p-6 md:p-8 shadow-[0_0_15px_rgba(68,187,164,0.05)]"
-        style={{
-          clipPath:
-            "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)",
-        }}
-      >
-        {/* Corner accents */}
-        <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-tech-teal"></div>
-        <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-tech-teal"></div>
-
-        <div className="flex items-center gap-3 mb-6">
-          <div className="h-1 w-8 bg-tech-teal"></div>
-          <h3 className="text-xl md:text-2xl font-black uppercase tracking-widest text-tech-light font-mono">
-            {t("about.profile")}{" "}
-            <span className="text-tech-teal">{t("about.name")}</span>
+    <div className="max-w-4xl mx-auto mt-12 mb-16 space-y-8 text-center lg:text-left">
+      {/* Profile Header Block */}
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+        <div className="inline-flex items-center gap-4 px-6 py-3 border border-primary/20 bg-primary/5 cyber-chamfer">
+          <div className="w-2 h-2 bg-primary animate-pulse" />
+          <h3 className="text-2xl md:text-3xl font-black uppercase tracking-[0.2em] text-foreground font-heading">
+            {t("about.profile")} <span className="text-primary">{t("about.name")}</span>
           </h3>
         </div>
 
-        <p className="text-tech-light/80 font-mono text-sm md:text-base leading-relaxed pl-4 border-l-2 border-tech-teal/30">
+        <div className="text-[10px] font-mono text-primary/50 uppercase tracking-[0.3em] border-b border-primary/20 pb-1">
+          Neural-Link: Established // Type: Admin
+        </div>
+      </div>
+
+      {/* Profile Bio Block */}
+      <div className="relative p-8 border border-primary/20 bg-card/30 backdrop-blur-sm cyber-chamfer group transition-all duration-500 hover:border-primary/40">
+        <div className="absolute -top-1 -right-1 w-12 h-1 bg-primary/40" />
+        <div className="absolute -bottom-1 -left-1 w-12 h-1 bg-primary/40" />
+
+        <p className="text-foreground/90 font-mono text-base md:text-lg leading-relaxed lg:pl-6 lg:border-l-2 lg:border-primary/20 group-hover:border-primary/40 transition-colors">
           {t("about.bio")}
         </p>
+
+        <div className="mt-8 flex justify-center lg:justify-start gap-3">
+          <span className="w-12 h-1 bg-primary/40 animate-pulse" />
+          <span className="w-8 h-1 bg-primary/20" />
+          <span className="w-4 h-1 bg-primary/10" />
+        </div>
+
+        {/* Decorative HUD Elements */}
+        <div className="absolute top-2 right-2 flex gap-1">
+          <div className="w-1 h-3 bg-primary/10" />
+          <div className="w-1 h-3 bg-primary/20" />
+          <div className="w-1 h-3 bg-primary/30" />
+        </div>
       </div>
     </div>
   );
