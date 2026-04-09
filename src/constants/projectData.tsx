@@ -12,14 +12,34 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 10,
+    image: "linksnap.png",
+    tags: ["Laravel", "PHP", "Tailwind CSS", "MySQL", "Vite"],
+    github: "https://github.com/DuyPhatpeo/rutgonlink",
+    demo: "https://linksnap.free.laravel.cloud/",
+    featured: true,
+    reverse: false,
+  },
+  {
     id: 1,
     image: "portfolio.png",
     tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
     featured: true,
+    reverse: true,
+  },
+  {
+    id: 4,
+    image: "weather-app.png",
+    tags: ["React 18", "TypeScript", "Tailwind CSS", "Zustand"],
+    github: "https://github.com/DuyPhatpeo/weather-app",
+    demo: "https://thoitiet24h.vercel.app/",
+    featured: true,
     reverse: false,
   },
+
+  // Other Projects
   {
     id: 2,
     image: "ecommerce.png",
@@ -33,20 +53,8 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
-    featured: true,
-    reverse: true,
+    featured: false,
   },
-  {
-    id: 4,
-    image: "weather-app.png",
-    tags: ["React 18", "TypeScript", "Tailwind CSS", "Zustand"],
-    github: "https://github.com/DuyPhatpeo/weather-app",
-    demo: "https://weather-app-phat.vercel.app/",
-    featured: true,
-    reverse: false,
-  },
-
-  // Other Projects
   {
     id: 9,
     image: "pokedex.png",

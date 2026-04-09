@@ -98,6 +98,10 @@
       "9": {
         "title": "Pokedex App",
         "description": "Ứng dụng Pokedex hiện đại xây dựng bằng React Native và Expo. Dự án tập trung vào trải nghiệm người dùng mượt mà với NativeWind, quản lý trạng thái bằng Zustand, hỗ trợ đa ngôn ngữ, hệ thống đơn vị đo lường tùy chỉnh và hiệu suất tìm kiếm tối ưu cho hàng trăm Pokemon."
+      },
+      "10": {
+        "title": "Hệ thống Rút gọn Link",
+        "description": "LinkSnap là một ứng dụng rút gọn link chuyên nghiệp được xây dựng bằng Laravel. Hệ thống tích hợp quản lý link thông minh, tạo QR code tự động, thống kê lượt truy cập chi tiết và giao diện Dashboard theo phong cách Bento Grid hiện đại, tối ưu hóa trải nghiệm người dùng."
       }
     }
   },

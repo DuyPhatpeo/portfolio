@@ -27,4 +27,5 @@ export const heroInfo = {
   description:
     "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
   mainIcon: FiCode,
+  resumePath: "/Tran_Duy_Phat_CV_Software_Engineer.pdf",
 };

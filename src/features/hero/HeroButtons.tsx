@@ -3,6 +3,8 @@ import { RiSendPlane2Line } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
+import { heroInfo } from "../../constants/heroData";
+
 interface HeroButtonsProps {
   scrollToSection: (sectionId: string) => void;
 }
@@ -14,7 +16,7 @@ const HeroButtons: React.FC<HeroButtonsProps> = ({ scrollToSection }) => {
     <div className="flex flex-wrap gap-4 sm:gap-6 justify-center md:justify-start mt-8">
       {/* 1. Resume - Primary Action */}
       <a
-        href="/Tran-Duy-Phat-CV-English.pdf"
+        href={heroInfo.resumePath}
         target="_blank"
         rel="noopener noreferrer"
         className="group relative px-6 py-3 sm:px-8 sm:py-4 font-bold flex items-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-background bg-primary cyber-chamfer cyber-glow uppercase tracking-[0.2em] overflow-hidden"

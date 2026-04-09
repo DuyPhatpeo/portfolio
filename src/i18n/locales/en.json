@@ -98,6 +98,10 @@
       "9": {
         "title": "Pokedex App",
         "description": "A modern Pokedex application built with React Native and Expo. The project focuses on a smooth user experience with NativeWind, state management using Zustand, multi-language support, custom unit systems, and optimized search performance for hundreds of Pokemon."
+      },
+      "10": {
+        "title": "URL Shortener System",
+        "description": "LinkSnap is a professional URL shortening application built with Laravel. The system integrates intelligent link management, automatic QR code generation, detailed click analytics, and a modern Bento Grid-style Dashboard, optimizing the overall user experience."
       }
     }
   },
