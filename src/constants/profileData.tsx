@@ -19,7 +19,7 @@ export const profileData: ProfileData = {
   logo: "DINO PÉO",
   resume: "/assets/docs/TranDuyPhat_CV.pdf",
   avatar: "/assets/profile/avatar.png",
-  heroImage: "/assets/profile/hero.jpg",
+  heroImage: "/assets/profile/avatar.png",
   roles: ["Web Developer", "Front-End Developer"],
   heroDescription: "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
 
