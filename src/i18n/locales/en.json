@@ -65,7 +65,7 @@
     "items": {
       "1": {
         "title": "Dino Péo Portfolio",
-        "description": "A high-performance personal portfolio website with a Dark Sci-Fi / Cyber aesthetic. The UI is designed to mimic a HUD (Heads-Up Display) and futuristic data station."
+        "description": "A high-performance personal portfolio featuring a modern Dark Sci-Fi aesthetic. Built with React 19 and Framer Motion, it delivers a seamless user experience with a unique Cyberpunk-inspired interface."
       },
       "2": {
         "title": "E-commerce Website",

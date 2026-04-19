@@ -13,7 +13,7 @@
   <a href="https://zustand-demo.pmnd.rs/"><img src="https://img.shields.io/badge/Zustand-5.0.8-FF4154?style=for-the-badge&logo=react&logoColor=white" alt="Zustand"></a>
 </p>
 
-> **Trang web Portfolio cá nhân** được thiết kế với giao diện hiện đại, tối giản và tinh tế. Dự án không chỉ là nơi trưng bày sản phẩm mà còn là minh chứng cho khả năng tối ưu hiệu suất và áp dụng các kỹ thuật phát triển Frontend tiên tiến.
+> **Trang web Portfolio cá nhân** với giao diện Dark Sci-Fi hiện đại, tối ưu hóa hiệu suất tuyệt đối. Dự án không chỉ là nơi trưng bày sản phẩm mà còn là minh chứng cho khả năng áp dụng các công nghệ tiên tiến như React 19, TypeScript và Framer Motion để tạo ra trải nghiệm người dùng đỉnh cao.
 
 ---
 
