@@ -1,9 +1,17 @@
 /* src/styles/base/reset.css */
 /* Global resets & overrides */
 
-/* Hide default cursor globally – replaced by CustomCursor */
-*,
-*::before,
-*::after {
-  cursor: none !important;
+/* Default system cursor restored */
+html, body {
+  cursor: auto !important;
+}
+
+/* Ensure clickable elements always show the pointer (hand) cursor */
+button, 
+a, 
+[role="button"],
+input[type="submit"],
+input[type="button"],
+label {
+  cursor: pointer !important;
 }

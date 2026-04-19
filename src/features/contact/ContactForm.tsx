@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { useContactStore } from "../../stores/contactStore";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 
 export default function ContactForm() {
   const { form, loading, status, setField, sendEmail } = useContactStore();
@@ -42,7 +42,13 @@ export default function ContactForm() {
       </div>
 
       <p className="text-xs md:text-sm font-mono text-primary/80 uppercase tracking-widest border-l-2 border-primary/50 pl-3 mb-6">
-        &gt; {t("contact.subtitle")}
+        &gt; <Trans 
+          i18nKey="contact.subtitle"
+          components={{ 1: <a 
+            href="mailto:phattranduy00@gmail.com" 
+            className="text-foreground font-black underline decoration-primary/50 underline-offset-4 hover:text-primary hover:decoration-primary transition-all duration-300" 
+          /> }}
+        />
       </p>
 
       {/* NAME */}

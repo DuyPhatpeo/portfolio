@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useThemeStore } from "./stores/themeStore";
 import Particles from "./components/theme/Particles";
-import CustomCursor from "./components/theme/CustomCursor";
+
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,8 +23,7 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-transparent">
-      {/* Custom Cursor */}
-      <CustomCursor />
+
 
       {/* Background */}
       <Particles quantity={50} />

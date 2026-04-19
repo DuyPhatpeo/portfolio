@@ -1,8 +1,7 @@
-import React from "react";
-import { heroInfo } from "../../constants/heroData";
+import { PROFILE_ASSETS } from "../../constants/platformData";
 
 const HeroAvatar: React.FC = () => {
-  const { hero, name } = heroInfo;
+  const { heroImage, name } = PROFILE_ASSETS;
 
   return (
     <div className="flex justify-center md:justify-start mt-20 md:mt-0">
@@ -14,7 +13,7 @@ const HeroAvatar: React.FC = () => {
           className="absolute inset-0 flex items-center justify-center overflow-hidden border-2 border-primary cyber-glow bg-card/50 backdrop-blur-sm cyber-chamfer"
         >
           <img
-            src={hero}
+            src={heroImage}
             alt={name}
             className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
             style={{

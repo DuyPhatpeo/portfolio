@@ -77,20 +77,12 @@ export default function ContactSection() {
           <SectionHeader title={t("contact.title")} />
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <motion.div variants={formVariants}>
-            <ContactForm />
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
-            variants={containerVariants}
+        <div className="flex justify-center">
+          <motion.div 
+            variants={formVariants}
+            className="w-full max-w-3xl"
           >
-            {contactData.map((c, i) => (
-              <motion.div key={i} variants={itemVariants}>
-                <ContactCard {...c} />
-              </motion.div>
-            ))}
+            <ContactForm />
           </motion.div>
         </div>
       </div>

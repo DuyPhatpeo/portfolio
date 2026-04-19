@@ -14,11 +14,7 @@ const Bio: React.FC = () => {
             {t("about.profile")} <span className="text-primary">{t("about.name")}</span>
           </h3>
         </div>
-
-        <div className="text-[10px] font-mono text-primary/50 uppercase tracking-[0.3em] border-b border-primary/20 pb-1">
-          {t("about.neural_link")}
         </div>
-      </div>
 
       {/* Profile Bio Block */}
       <div className="relative p-8 border border-primary/20 bg-card/30 backdrop-blur-sm cyber-chamfer group transition-all duration-500 hover:border-primary/40">

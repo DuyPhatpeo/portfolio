@@ -1,26 +1,29 @@
 import React from "react";
-import { socialLinks } from "../../constants/heroData";
+import { SOCIAL_LINKS } from "../../constants/platformData";
 
 const SocialLinks: React.FC = () => (
-  <div className="flex flex-wrap gap-2 sm:gap-3 justify-center md:justify-start mt-3 md:mt-4">
-    {socialLinks.map(({ icon: Icon, href, color }, i) => (
+  <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start mt-4 md:mt-6">
+    {SOCIAL_LINKS.map((link, i) => (
       <a
         key={i}
-        href={href}
+        href={link.href}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative group p-3 sm:p-3.5 flex items-center justify-center bg-tech-bg/50 border border-tech-teal/30 hover:border-tech-teal shadow-[0_0_10px_rgba(68,187,164,0.1)] hover:shadow-[0_0_15px_rgba(68,187,164,0.5)] transition-all duration-300 hover:-translate-y-1"
+        title={link.name}
+        className="relative group p-3.5 flex items-center justify-center bg-card/30 border border-primary/20 hover:border-primary/60 shadow-[0_0_10px_rgba(var(--primary),0.05)] hover:shadow-[0_0_20px_rgba(var(--primary),0.3)] transition-all duration-500 hover:-translate-y-1.5 overflow-hidden"
         style={{
           clipPath:
-            "polygon(20% 0, 80% 0, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0 80%, 0 20%)",
+            "polygon(12% 0, 88% 0, 100% 12%, 100% 88%, 88% 100%, 12% 100%, 0 88%, 0 12%)",
         }}
       >
         {/* Glow effect inside */}
-        <Icon
-          className={`w-5 h-5 transition-colors duration-300 ${color} text-tech-light`}
-        />
+        <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-500" />
+        <div className={`relative z-10 text-foreground/40 ${link.hoverColor} transition-colors duration-500`}>
+           {link.icon}
+        </div>
       </a>
     ))}
   </div>
 );
+
 export default SocialLinks;

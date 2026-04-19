@@ -15,8 +15,8 @@
     --primary: #00ff88;
     --primary-foreground: #0a0a0f;
 
-    --secondary: #ff00ff;
-    --secondary-foreground: #0a0a0f;
+    --secondary: #a855f7;
+    --secondary-foreground: #ffffff;
 
     --muted: #1c1c2e;
     --muted-foreground: #6b7280;
@@ -32,11 +32,11 @@
     --ring: #00ff88;
 
     /* Cyberpunk Specific */
-    --accent-secondary: #ff00ff;
+    --accent-secondary: #a855f7;
     --accent-tertiary: #00d4ff;
 
     --neon-glow: 0 0 5px var(--primary), 0 0 10px rgba(0, 255, 136, 0.4);
-    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 10px rgba(255, 0, 255, 0.4);
+    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 10px rgba(168, 85, 247, 0.4);
 
     --selection-bg: var(--primary);
     --selection-text: var(--primary-foreground);
@@ -60,7 +60,7 @@
     --primary: #00cc6a;
     /* Slightly darker green for readability on white */
     --primary-foreground: #ffffff;
-    --secondary: #d400d4;
+    --secondary: #9333ea;
     --secondary-foreground: #ffffff;
     --muted: #e2e2e9;
     --muted-foreground: #64748b;
@@ -71,7 +71,7 @@
     --ring: #00cc6a;
 
     --neon-glow: 0 0 5px rgba(0, 204, 106, 0.3), 0 0 10px rgba(0, 204, 106, 0.1);
-    --neon-glow-secondary: 0 0 5px rgba(212, 0, 212, 0.3), 0 0 10px rgba(212, 0, 212, 0.1);
+    --neon-glow-secondary: 0 0 5px rgba(147, 51, 234, 0.3), 0 0 10px rgba(147, 51, 234, 0.1);
 
     --scanline-opacity: 0.05;
   }

@@ -1,10 +1,10 @@
 {
   "nav": {
-    "home": "HOME",
-    "about": "ABOUT",
-    "skills": "SKILLS",
-    "projects": "PROJECTS",
-    "contact": "CONTACT",
+    "home": "CORE",
+    "about": "PROFILE",
+    "skills": "ARSENAL",
+    "projects": "ARCHIVE",
+    "contact": "COMM",
     "theme": {
       "light": "LIGHT MODE",
       "dark": "DARK MODE"
@@ -26,7 +26,7 @@
     }
   },
   "about": {
-    "title": "About Me",
+    "title": "Biometric Profile",
     "profile": "PROFILE: ",
     "name": "Trần Duy Phát (Dino Péo)",
     "bio": "I'm a developer specializing in creating modern and optimized web experiences.",
@@ -54,10 +54,10 @@
     }
   },
   "skills": {
-    "title": "Skills"
+    "title": "Tech Stack"
   },
   "projects": {
-    "title": "FEATURED PROJECTS",
+    "title": "Data Archives",
     "subtitle": "OTHER PROJECTS",
     "badges": {
       "featured": "FEATURED PROJECT"
@@ -106,9 +106,9 @@
     }
   },
   "contact": {
-    "title": "Contact",
-    "subtitle": "SECURE CHANNEL STATUS: ONLINE",
-    "transmission_log": "TRANSMISSION_LOG",
+    "title": "Let's work together",
+    "subtitle": "Please contact me directly at <1>phattranduy00@gmail.com</1> or drop your info here.",
+    "transmission_log": "Contact Form",
     "availability": "Ready for new opportunities. Leave a message below.",
     "labels": {
       "email": "EMAIL",

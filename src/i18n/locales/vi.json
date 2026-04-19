@@ -1,10 +1,10 @@
 {
   "nav": {
-    "home": "TRANG CHỦ",
-    "about": "GIỚI THIỆU",
-    "skills": "KỸ NĂNG",
-    "projects": "DỰ ÁN",
-    "contact": "LIÊN HỆ",
+    "home": "CORE",
+    "about": "PROFILE",
+    "skills": "ARSENAL",
+    "projects": "ARCHIVE",
+    "contact": "COMM",
     "theme": {
       "light": "CHẾ ĐỘ SÁNG",
       "dark": "CHẾ ĐỘ TỐI"
@@ -26,7 +26,7 @@
     }
   },
   "about": {
-    "title": "Giới Thiệu",
+    "title": "Hồ Sơ Danh Tính",
     "profile": "HỒ SƠ: ",
     "name": "Trần Duy Phát (Dino Péo)",
     "bio": "Là một nhà phát triển phần mềm chuyên nghiệp, tập trung vào việc tạo ra các trải nghiệm web tối ưu và hiện đại.",
@@ -54,10 +54,10 @@
     }
   },
   "skills": {
-    "title": "Kỹ Năng"
+    "title": "Công Nghệ Sử Dụng"
   },
   "projects": {
-    "title": "DỰ ÁN TIÊU BIỂU",
+    "title": "Kho Lưu Trữ Dự Án",
     "subtitle": "DỰ ÁN ĐÃ LÀM",
     "badges": {
       "featured": "DỰ ÁN NỔI BẬT"
@@ -106,9 +106,9 @@
     }
   },
   "contact": {
-    "title": "Liên Hệ",
-    "subtitle": "TRẠNG THÁI KẾNH BẢO MẬT: ĐANG CHẠY",
-    "transmission_log": "NHẬT_KÝ_TRUYỀN_TIN",
+    "title": "Hãy cùng hợp tác nào",
+    "subtitle": "Vui lòng liên hệ trực tiếp với tôi qua <1>phattranduy00@gmail.com</1> hoặc để lại thông tin của bạn tại đây.",
+    "transmission_log": "Biểu mẫu liên hệ",
     "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
     "labels": {
       "email": "EMAIL",
