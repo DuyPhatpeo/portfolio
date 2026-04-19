@@ -1,7 +1,7 @@
 # Portfolio - DINO PÉO
 
 <div align="center">
-  <img src="public/portfolio.png" alt="Portfolio Preview" width="800" />
+  <img src="public/portfolio.png" alt="Portfolio Preview" width="800" style="border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
 </div>
 
 <p align="center">
@@ -13,128 +13,111 @@
   <a href="https://zustand-demo.pmnd.rs/"><img src="https://img.shields.io/badge/Zustand-5.0.8-FF4154?style=for-the-badge&logo=react&logoColor=white" alt="Zustand"></a>
 </p>
 
-> Một trang web portfolio cá nhân đầy ấn tượng với hiệu suất cao, mang đậm phong cách **Dark Sci-Fi / Cyber**. Giao diện được thiết kế mô phỏng màn hình HUD (Heads-Up Display) và trạm dữ liệu tương lai, kết hợp với kiến trúc Feature-Driven hiện đại giúp dễ dàng mở rộng và bảo trì.
+> **Trang web Portfolio cá nhân** được thiết kế với giao diện hiện đại, tối giản và tinh tế. Dự án không chỉ là nơi trưng bày sản phẩm mà còn là minh chứng cho khả năng tối ưu hiệu suất và áp dụng các kỹ thuật phát triển Frontend tiên tiến.
 
-## ✨ Tính năng Nổi bật & Giao diện
+---
 
-- 🕶️ **Chế độ Tối (Pure Black):** Nền đen chuẩn OLED `#000000` tạo chiều sâu tối đa.
-- 🌌 **Bầu trời sao vũ trụ:** Hiệu ứng nền vũ trụ sống động với các vì sao, tinh vân và sao băng ở chế độ Dark Mode.
-- 📐 **Giao diện HUD Terminal:** Các khối hình học, hiệu ứng kính mờ (glassmorphism) và các điểm nhấn công nghệ hiện đại.
-- 🌍 **Đa ngôn ngữ (i18n):** Tích hợp sẵn hỗ trợ nhiều ngôn ngữ với `react-i18next`.
-- 🌓 **Chế độ Sáng (Cyber Light):** Giao diện sáng đầy tính công nghệ với sự tương phản giữa Deep Slate và Vibrant Teal (`#0D9488`).
-- ⚡ **Hiệu suất Tối đa:** Xây dựng trên Vite + React 19, sử dụng Framer Motion cho các hoạt ảnh mượt mà đạt 60fps.
-- 🏗️ **Kiến trúc Feature-Driven:** Cấu trúc module rõ ràng, áp dụng nguyên tắc Screaming Architecture giúp dễ dàng mở rộng frontend.
+## ✨ Tính năng Nổi bật
 
-## 🛠️ Kiến trúc & Công nghệ (Tech Stack)
+- 💎 **Modern UI/UX Aesthetic:** Giao diện Dark Mode tối ưu cho trải nghiệm người dùng, kết hợp hiệu ứng kính mờ (Glassmorphism) tinh tế.
+- 🌌 **Visual Minimalism:** Hiệu ứng hình ảnh nền động tinh xảo, được tối ưu hóa để không làm ảnh hưởng đến hiệu suất hệ thống.
+- 🌍 **Đa ngôn ngữ (i18n):** Hỗ trợ chuyển đổi ngôn ngữ linh hoạt giữa **Tiếng Việt** và **Tiếng Anh**.
+- 🌓 **Dynamic Theming:** Hệ thống chủ đề (Theme) linh hoạt, hỗ trợ Dark/Light mode thông qua CSS Variables.
+- ⚡ **Siêu tốc với React 19:** Sử dụng những tính năng mới nhất của React 19 và Vite 6 để đạt điểm Performance tuyệt đối.
+- 📽️ **Animations mượt mà:** Sự kết hợp giữa Framer Motion mang lại các chuyển động tự nhiên, đạt chuẩn 60fps.
+- 📱 **Fully Responsive:** Hiển thị hoàn hảo trên mọi thiết bị từ Mobile đến Desktop.
 
-- **Core Frontend:** React 19 (Function Components, Hooks)
-- **Ngôn ngữ:** TypeScript 5.8 (Strict Typing)
-- **Trình đóng gói (Build Tool):** Vite 6
-- **CSS / Styling:** Tailwind CSS + PostCSS + CSS Variables (Hỗ trợ Global Theming)
-- **Animation:** Framer Motion
-- **Quản lý State:** Zustand (Theme, Language, App State)
+---
+
+## 🛠️ Công nghệ Sử dụng (Tech Stack)
+
+### Core
+- **Frontend Framework:** React 19
+- **Ngôn ngữ:** TypeScript 5.8 (Strict Mode)
+- **Build Tool:** Vite 6
+- **State Management:** Zustand 5
 - **Routing:** React Router v7
-- **UI Components & Icons:** Lucide React, React Icons, React Toastify
 
-## 🚀 Hướng dẫn Cài đặt & Khởi chạy
+### Styling & Animation
+- **CSS Engine:** Tailwind CSS 4.0
+- **Animations:** Framer Motion 12
+- **Icons:** Lucide React & React Icons
+- **Notifications:** React Toastify
 
-### Yêu cầu hệ thống
+### Others
+- **Internationalization:** i18next
+- **Forms:** EmailJS (Gửi email trực tiếp từ form liên hệ)
 
-Đảm bảo bạn đã cài đặt các công cụ sau:
+---
 
-- [Node.js](https://nodejs.org/) (Phiên bản v18.0.0 trở lên)
-- Trình quản lý gói: `npm`, `yarn`, hoặc `bun`.
+## 🚀 Dự án Nổi bật (Featured Projects)
 
-### Các bước Cài đặt
+| Dự án | Công nghệ | Liên kết |
+| :--- | :--- | :--- |
+| **LinkSnap** | Laravel, PHP, Tailwind, MySQL | [Repo](https://github.com/DuyPhatpeo/rutgonlink) / [Demo](https://linksnap.free.laravel.cloud/) |
+| **Personal Portfolio** | React 19, TS, Framer Motion | [Repo](https://github.com/DuyPhatpeo/portfolio) / [Demo](https://tranduyphat.vercel.app/) |
+| **Weather 24H** | React, TS, Zustand, OpenWeather API | [Repo](https://github.com/DuyPhatpeo/weather-app) / [Demo](https://thoitiet24h.vercel.app/) |
+| **E-Commerce Hub** | React, TS, Firebase, Zustand | [Repo](https://github.com/DuyPhatpeo/ecommerce) / [Demo](https://ecommerce-phat.vercel.app/) |
 
-1. Clone kho lưu trữ (repository) về máy:
+---
 
-```bash
-git clone https://github.com/DuyPhatpeo/portfolio.git
-cd portfolio
-```
+## 📂 Cấu trúc Dự án (Feature-Driven Architecture)
 
-1. Cài đặt các thư viện phụ thuộc:
-
-```bash
-npm install
-```
-
-1. Khởi chạy Server Development (Cyber Terminal):
-
-```bash
-npm run dev
-```
-
-1. Truy cập giao diện tại: `http://localhost:5173`
-
-## 📂 Cấu trúc Thư mục
+Dự án được tổ chức theo cấu trúc module giúp dễ dàng mở rộng và bảo trì:
 
 ```text
-portfolio/
-├── public/                 # Các tệp tĩnh & Hình ảnh OpenGraph
-├── src/
-│   ├── assets/             # Hình ảnh, SVGs, media cục bộ
-│   ├── components/         # Các UI Components dùng chung (Buttons, Cards, UI)
-│   ├── constants/          # Dữ liệu tĩnh và cấu hình
-│   ├── features/           # Các tính năng chính (Hero, About, Project, v.v.)
-│   ├── hooks/              # Custom React Hooks
-│   ├── i18n/               # Cấu hình đa ngôn ngữ
-│   ├── layouts/            # Layout trang và các thành phần cấu trúc
-│   ├── routes/             # Cấu hình Routing của ứng dụng
-│   ├── stores/             # Quản lý state toàn cục với Zustand
-│   ├── styles/             # Kiến trúc CSS Global & Theme Tokens
-│   ├── types/              # Định nghĩa kiểu dữ liệu TypeScript (Global TS Types)
-│   ├── App.tsx             # Cấu trúc gốc của ứng dụng (Root Component)
-│   └── main.tsx            # Điểm render vào DOM
-├── index.html              # HTML Shell
-└── vite.config.ts          # Cấu hình Vite Bundler
+src/
+├── components/      # UI Components dùng chung (Atoms, Molecules)
+├── constants/       # Dữ liệu tĩnh, cấu hình dự án & profile
+├── features/        # Các module tính năng (Hero, About, Projects, Experience)
+├── hooks/           # Custom React Hooks
+├── i18n/            # Cấu hình đa ngôn ngữ (EN / VI)
+├── layouts/         # Các khung layout chung của ứng dụng
+├── routes/          # Quản lý định tuyến (React Router 7)
+├── stores/          # Quản lý state toàn cục (Zustand)
+└── styles/          # Cấu trúc theme & CSS Global
 ```
 
-## 🎨 Hướng dẫn Tùy chỉnh (Customizing)
+---
 
-Hệ thống được thiết kế theo dạng module độc lập (Highly modular). Để tùy chỉnh portfolio thành của riêng bạn:
+## ⚙️ Cài đặt & Khởi chạy
 
-1. **Thay đổi Thông tin Cá nhân:** Chỉnh sửa các file cấu hình trong `src/constants/` (hoặc dữ liệu hiển thị trong `src/features/`).
-2. **Cấu hình Ngôn ngữ:** Cập nhật hoặc thêm ngôn ngữ mới tại `src/i18n/`.
-3. **Thay đổi Giao diện (Theme):** Chỉnh sửa các giá trị CSS Custom Properties trong thư mục `src/styles/` để thay đổi màu nhấn neon chủ đạo.
+1. **Clone dự án:**
+   ```bash
+   git clone https://github.com/DuyPhatpeo/portfolio.git
+   cd portfolio
+   ```
 
-## 🚀 Triển khai (Deployment)
+2. **Cài đặt dependencies:**
+   ```bash
+   npm install
+   ```
 
-### CI/CD với GitHub Actions
+3. **Chạy môi trường phát triển:**
+   ```bash
+   npm run dev
+   ```
 
-Dự án đã được cấu hình sẵn GitHub workflow (`.github/workflows/node.js.yml`) để tự động kiểm tra code (lint) và build dự án mỗi khi có push lên nhánh `main` hoặc tạo Pull Requests.
+4. **Build sản phẩm:**
+   ```bash
+   npm run build
+   ```
 
-### Github Pages
-
-1. Cập nhật đường dẫn `base` trong file `vite.config.ts`:
-
-```typescript
-export default defineConfig({
-  base: "/portfolio/", // Tên repository của bạn
-  // ...
-});
-```
-
-1. Chạy lệnh build:
-
-```bash
-npm run build
-```
-
-### Vercel / Netlify
-
-Kiến trúc dự án hoàn toàn tương thích với môi trường serverless. Bạn chỉ cần liên kết repository GitHub với Vercel hoặc Netlify, thiết lập command build là `npm run build` và thư mục output là `dist`. Hệ thống sẽ tự động deploy sau mỗi lần commit.
+---
 
 ## 👨‍💻 Tác giả
 
-**DINO PÉO**
+**TRẦN DUY PHÁT (DINO PÉO)**
+*Web Developer | Front-End Enthusiast*
 
-- GitHub: [@DuyPhatpeo](https://github.com/DuyPhatpeo)
+- 🐙 **GitHub:** [@DuyPhatpeo](https://github.com/DuyPhatpeo)
+- 🔵 **Facebook:** [Trần Duy Phát](https://www.facebook.com/DinoPeo2810)
+- 💼 **LinkedIn:** [Tran Duy Phat](https://www.linkedin.com/in/tranduyphat/)
 
 ---
 
 <div align="center">
-  <p>Engineered with 🩻 by DINO PÉO</p>
-  <p>Nếu kiến trúc hệ thống này giúp ích cho bạn, hãy để lại một ⭐ cho repository nhé!</p>
+  <p>Cảm ơn bạn đã ghé thăm Portfolio của tôi! Đừng quên để lại một ⭐ nếu bạn yêu thích kiến trúc này.</p>
+  <img src="https://capsule-render.vercel.app/render?type=waving&color=auto&height=100&section=footer" width="100%"/>
 </div>
+
