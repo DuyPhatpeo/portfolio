@@ -64,44 +64,44 @@
     },
     "items": {
       "1": {
-        "title": "Personal Portfolio",
-        "description": "My personal portfolio website built with React, TypeScript, and Vite. Showcasing selected projects, technical skills, and my journey as a frontend developer with a clean, modern, and responsive design."
+        "title": "Dino Péo Portfolio",
+        "description": "A high-performance personal portfolio website with a Dark Sci-Fi / Cyber aesthetic. The UI is designed to mimic a HUD (Heads-Up Display) and futuristic data station."
       },
       "2": {
         "title": "E-commerce Website",
-        "description": "A modern e-commerce platform with full cart and payment features. Integrated with React, Tailwind CSS, and Firebase for real-time data management."
+        "description": "Modern, responsive e-commerce web application built with React, Tailwind, and Firebase, featuring real-time data management and user authentication."
       },
       "3": {
         "title": "Restaurant Website",
-        "description": "A website for introducing and ordering food at a restaurant, integrating menu management systems, online table booking, and customer feedback (React & Firebase)."
+        "description": "Elegant restaurant website providing a seamless online ordering experience and menu presentation. Built with React and Vite."
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "A modern weather forecast application providing real-time information, interactive temperature charts, and detailed forecasts. Built with React, TypeScript, and Tailwind CSS."
+        "description": "Comprehensive weather forecast application providing real-time updates and detailed atmospheric data with a sleek Elite Design UI."
       },
       "5": {
         "title": "Dino Movies",
-        "description": "A simple movie discovery web application built with React and Vite. The app allows users to browse a list of movies and view detailed information for each title, featuring a clean, responsive UI and fast development setup with hot reload."
+        "description": "A simple web application to discover movie information, built with React + Vite and deployed on Vercel."
       },
       "6": {
         "title": "DinoStore",
-        "description": "DinoStore is a modern e-commerce web application built with React and Vite, offering an end-to-end online shopping experience. It includes home banners, featured products, detailed product pages, user authentication, cart and wishlist functionality, product filtering, pagination, and a fully responsive UI optimized for all devices."
+        "description": "A modern online store built with React + Vite, focusing on a smooth shopping experience and efficient cart management."
       },
       "7": {
         "title": "DinoBot Discord",
-        "description": "A multi-functional Discord Bot written in Node.js to support automated server management and provide entertaining features for the user community."
+        "description": "Versatile Discord Bot written in Node.js to assist in server management and community interaction."
       },
       "8": {
-        "title": "ShopFSTYLE – Fashion E-commerce System",
-        "description": "A full-featured fashion e-commerce website developed as a graduation project. The system includes customer and admin modules, supporting product management with color-size variants, inventory tracking, order processing, user roles, dashboards, and sales statistics. Built with a custom PHP backend, MySQL database, and a responsive frontend focused on real-world business workflows."
+        "title": "ShopFSTYLE",
+        "description": "Full-featured fashion e-commerce website developed as a graduation project, featuring product management, inventory tracking, and order processing. Built with PHP and MySQL."
       },
       "9": {
         "title": "Pokédex Mobile",
-        "description": "A mobile application for exploring the Pokémon world based on the PokéAPI. Built with React Native and TypeScript, featuring an intuitive and vibrant user interface."
+        "description": "A mobile application for exploring the Pokémon world using PokéAPI, built with React Native and TypeScript."
       },
       "10": {
-        "title": "LinkSnap - URL Shortener & Analytics",
-        "description": "An efficient and easy-to-deploy link shortener tool. Supports creating custom short links for more convenient link management."
+        "title": "LinkSnap - URL Shortener",
+        "description": "Simple and effective tool for link shortening and management with custom aliases and deployment ease."
       }
     }
   },

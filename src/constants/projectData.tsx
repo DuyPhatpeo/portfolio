@@ -3,7 +3,7 @@ import type { Project, Skill } from "../types/data";
 export const projects: Project[] = [
   {
     id: 10,
-    image: "linksnap.png",
+    image: "assets/projects/linksnap.png",
     tags: ["Laravel", "PHP", "Tailwind CSS", "MySQL", "Vite"],
     github: "https://github.com/DuyPhatpeo/rutgonlink",
     demo: "https://linksnap.free.laravel.cloud/",
@@ -12,7 +12,7 @@ export const projects: Project[] = [
   },
   {
     id: 1,
-    image: "portfolio.png",
+    image: "assets/projects/portfolio.png",
     tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
@@ -21,7 +21,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    image: "weather-app.png",
+    image: "assets/projects/weather-app.png",
     tags: ["React 18", "TypeScript", "Tailwind CSS", "Zustand"],
     github: "https://github.com/DuyPhatpeo/weather-app",
     demo: "https://thoitiet24h.vercel.app/",
@@ -32,7 +32,7 @@ export const projects: Project[] = [
   // Other Projects
   {
     id: 2,
-    image: "ecommerce.png",
+    image: "assets/projects/ecommerce.png",
     tags: [
       "React",
       "TypeScript",
@@ -47,7 +47,7 @@ export const projects: Project[] = [
   },
   {
     id: 9,
-    image: "pokedex.png",
+    image: "assets/projects/pokedex.png",
     tags: ["React Native", "Expo", "TypeScript", "NativeWind", "Zustand"],
     github: "https://github.com/DuyPhatpeo/pokedex",
     demo: null,
@@ -55,7 +55,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    image: "restaurant.png",
+    image: "assets/projects/restaurant.png",
     tags: ["React", "Vite", "Firebase", "Axios"],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
@@ -63,7 +63,7 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    image: "dinomovies.png",
+    image: "assets/projects/dinomovie.png",
     tags: ["React", "Vite", "Tailwind CSS", "Axios", "React Router"],
     github: "https://github.com/DuyPhatpeo/simple-movies",
     demo: "https://dinomovie.vercel.app",
@@ -71,7 +71,7 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    image: "dinostore.png",
+    image: "assets/projects/dinostore.jpg",
     tags: ["React", "Vite", "Axios", "React Router"],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    image: "dinobotweb.png",
+    image: "assets/projects/dinobotweb.png",
     tags: ["Node.js", "Discord.js"],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",
@@ -87,7 +87,7 @@ export const projects: Project[] = [
   },
   {
     id: 8,
-    image: "shopfstyle.png",
+    image: "assets/projects/shopfstyle.jpg",
     tags: ["PHP", "MySQL", "Tailwind CSS", "JavaScript"],
     github: "https://github.com/DuyPhatpeo/ShopFSTYLE",
     demo: "",

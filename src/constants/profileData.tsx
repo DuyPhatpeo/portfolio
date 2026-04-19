@@ -17,9 +17,9 @@ import type { ProfileData } from "../types/data";
 export const profileData: ProfileData = {
   name: "DINO PÉO",
   logo: "DINO PÉO",
-  resume: "/Tran_Duy_Phat_CV_Software_Engineer.pdf",
-  avatar: "/avt2.jpg",
-  heroImage: "/hero.jpg",
+  resume: "/assets/docs/DuyPhat_CV.pdf",
+  avatar: "/assets/profile/avatar.png",
+  heroImage: "/assets/profile/hero.jpg",
   roles: ["Web Developer", "Front-End Developer"],
   heroDescription: "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
   

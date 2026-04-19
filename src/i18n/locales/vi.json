@@ -64,44 +64,44 @@
     },
     "items": {
       "1": {
-        "title": "Website Cá Nhân (Portfolio)",
-        "description": "Trang web danh mục cá nhân của tôi được xây dựng bằng React, TypeScript và Vite. Nơi đây trưng bày các dự án chọn lọc, kỹ năng chuyên môn, và hành trình trở thành một frontend developer của tôi với thiết kế giao diện theo xu hướng hiện đại, gọn gàng và tương thích với mọi thiết bị di động."
+        "title": "Dino Péo Portfolio",
+        "description": "Một trang web portfolio cá nhân đầy ấn tượng với hiệu suất cao, mang đậm phong cách Dark Sci-Fi / Cyber. Giao diện được thiết kế mô phỏng màn hình HUD (Heads-Up Display) và trạm dữ liệu tương lai."
       },
       "2": {
         "title": "E-commerce Website",
-        "description": "Nền tảng thương mại điện tử hiện đại với đầy đủ tính năng giỏ hàng và thanh toán. Tích hợp React, Tailwind CSS và Firebase để quản lý dữ liệu thời gian thực."
+        "description": "Ứng dụng thương mại điện tử hiện đại, tích hợp Firebase để quản lý dữ liệu thời gian thực và xác thực người dùng. Giao diện tối ưu và phản hồi tốt."
       },
       "3": {
         "title": "Restaurant Website",
-        "description": "Website giới thiệu và đặt món cho nhà hàng, tích hợp hệ thống quản lý thực đơn, đặt bàn trực tuyến và phản hồi từ khách hàng (React & Firebase)."
+        "description": "Website giới thiệu nhà hàng sang trọng, hỗ trợ xem menu và đặt món trực tuyến mượt mà. Được xây dựng với React và Vite."
       },
       "4": {
-        "title": "Dự báo thời tiết - Weather Forecast",
-        "description": "Ứng dụng dự báo thời tiết hiện đại, cung cấp thông tin thời gian thực, biểu đồ nhiệt độ tương tác và dự báo chi tiết. Sử dụng React, TypeScript và Tailwind CSS."
+        "title": "Weather Forecast",
+        "description": "Ứng dụng xem thời tiết thời gian thực với giao diện hiện đại (Elite Design), cung cấp thông tin khí tượng chi tiết và chính xác."
       },
       "5": {
-        "title": "Dino Phim",
-        "description": "Ứng dụng tra cứu thông tin phim đơn giản viết bằng React và Vite. Cung cấp khả năng duyệt qua danh sách các bộ phim mới nhất, xem thông tin tóm tắt từng tựa phim với giao diện được thiết kế nhanh nhẹn, tối ưu hiệu suất, dễ sử dụng trên điện thoại."
+        "title": "Dino Movies",
+        "description": "Một ứng dụng web đơn giản giúp bạn khám phá thông tin phim, được xây dựng bằng React + Vite và triển khai trên Vercel."
       },
       "6": {
-        "title": "Cửa hàng DinoStore",
-        "description": "DinoStore là ứng dụng mua sắm thương mại điện tử làm với React và Vite, mang lại trải nghiệm đầy đủ cho mua sắm trực tuyến. Bao gồm banner trang chủ, sản phẩm nổi bật, chi tiết sản phẩm, chức năng xác thực người dùng, giỏ hàng, yêu thích, bộ lọc sản phẩm, phân trang, hoàn toàn responsive."
+        "title": "DinoStore",
+        "description": "Cửa hàng trực tuyến hiện đại với React + Vite, tập trung vào trải nghiệm mua sắm mượt mà và quản lý giỏ hàng hiệu quả."
       },
       "7": {
         "title": "DinoBot Discord",
-        "description": "Một Discord Bot đa năng được viết bằng Node.js nhằm hỗ trợ quản lý server tự động và mang lại các tính năng giải trí thú vị cho cộng đồng người dùng."
+        "description": "Bot Discord đa năng hỗ trợ quản lý server tự động và tăng tương tác thú vị cho cộng đồng người dùng. Viết bằng Node.js."
       },
       "8": {
-        "title": "ShopFSTYLE – Hệ thống TMĐT Thời Trang",
-        "description": "Website thương mại điện tử thời trang đầy đủ tính năng được phát triển dưới dạng đồ án tốt nghiệp. Hệ thống bao gồm module cho khách hàng và admin, quản lý sản phẩm cùng với biên thể màu sắc-size, theo dõi kho, các vai trò user đa cấp, bảng điều khiển thống kê kinh doanh. Làm với PHP thuần, MySQL và giao diện responsive tập trung vào luồng công việc thực tế."
+        "title": "ShopFSTYLE – Website Bán Hàng Thời Trang",
+        "description": "Đồ án tốt nghiệp xây dựng hệ thống website thương mại điện tử chuyên nghiệp cho shop thời trang FSTYLE, tích hợp đầy đủ quản lý sản phẩm và đơn hàng."
       },
       "9": {
         "title": "Pokédex Mobile",
-        "description": "Ứng dụng di động khám phá thế giới Pokémon dựa trên PokéAPI. Được xây dựng bằng React Native và TypeScript với giao diện trực quan và sinh động."
+        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, được xây dựng bằng React Native và TypeScript."
       },
       "10": {
-        "title": "LinkSnap - URL Shortener & Analytics",
-        "description": "Một công cụ rút gọn liên kết đơn giản, hiệu quả và dễ dàng triển khai. Hỗ trợ tạo các đường dẫn ngắn tùy chỉnh để quản lý liên kết thuận tiện hơn."
+        "title": "LinkSnap - URL Shortener",
+        "description": "Công cụ rút gọn liên kết đơn giản và hiệu quả, hỗ trợ tạo link tùy chỉnh và quản lý đường dẫn dễ dàng."
       }
     }
   },
