@@ -68,16 +68,16 @@
         "description": "Trang web danh mục cá nhân của tôi được xây dựng bằng React, TypeScript và Vite. Nơi đây trưng bày các dự án chọn lọc, kỹ năng chuyên môn, và hành trình trở thành một frontend developer của tôi với thiết kế giao diện theo xu hướng hiện đại, gọn gàng và tương thích với mọi thiết bị di động."
       },
       "2": {
-        "title": "Website Thương mại điện tử",
-        "description": "Một ứng dụng web thương mại điện tử đầy đủ tính năng được xây dựng bằng React và TypeScript. Dự án triển khai quy trình mua sắm cốt lõi bao gồm đăng nhập/đăng ký, danh sách và tìm kiếm sản phẩm, quản lý giỏ hàng, thanh toán, lịch sử đơn hàng và tài khoản người dùng, tất cả với giao diện tối ưu, hiện đại."
+        "title": "🛒 E-commerce Website",
+        "description": "Nền tảng thương mại điện tử hiện đại với đầy đủ tính năng giỏ hàng và thanh toán. Tích hợp React, Tailwind CSS và Firebase để quản lý dữ liệu thời gian thực."
       },
       "3": {
-        "title": "Website Nhà hàng",
-        "description": "Một website nhà hàng hiện đại xây dựng bằng React và Vite. Dự án có tính năng đặt bàn trực tuyến, quản lý thực đơn động, trang blog và thư viện ảnh, tích hợp Firebase để xác thực và lưu trữ dữ liệu, kèm theo tài liệu mô phỏng API REST sử dụng JSON Server, tất cả trong một UI đồ hoạ mãn nhãn và mượt mà."
+        "title": "Restaurant Website",
+        "description": "Website giới thiệu và đặt món cho nhà hàng, tích hợp hệ thống quản lý thực đơn, đặt bàn trực tuyến và phản hồi từ khách hàng (React & Firebase)."
       },
       "4": {
-        "title": "Ứng dụng Dự báo Thời Tiết",
-        "description": "Ứng dụng dự báo thời tiết hiện đại tích hợp tìm kiếm địa điểm, định vị tự động và hiển thị dự báo chi tiết theo giờ/ngày. Giao diện responsive mượt mà với Tailwind CSS và quản lý trạng thái hiệu quả bằng Zustand."
+        "title": "🌤️ Dự báo thời tiết - Weather Forecast",
+        "description": "Ứng dụng dự báo thời tiết hiện đại, cung cấp thông tin thời gian thực, biểu đồ nhiệt độ tương tác và dự báo chi tiết. Sử dụng React, TypeScript và Tailwind CSS."
       },
       "5": {
         "title": "Dino Phim",
@@ -88,20 +88,20 @@
         "description": "DinoStore là ứng dụng mua sắm thương mại điện tử làm với React và Vite, mang lại trải nghiệm đầy đủ cho mua sắm trực tuyến. Bao gồm banner trang chủ, sản phẩm nổi bật, chi tiết sản phẩm, chức năng xác thực người dùng, giỏ hàng, yêu thích, bộ lọc sản phẩm, phân trang, hoàn toàn responsive."
       },
       "7": {
-        "title": "DinoBot Discord",
-        "description": "Một bot Discord đa chức năng viết bằng Node.js và Discord.js để hỗ trợ điều hành và quản trị server tự động. Bao gồm các lệnh như kick, ban, và mute, được thiết kế để triển khai linh động với hệ thống kiểm soát thời gian chạy ổn định liên tục 24/7."
+        "title": "🤖 DinoBot Discord",
+        "description": "Một Discord Bot đa năng được viết bằng Node.js nhằm hỗ trợ quản lý server tự động và mang lại các tính năng giải trí thú vị cho cộng đồng người dùng."
       },
       "8": {
         "title": "ShopFSTYLE – Hệ thống TMĐT Thời Trang",
         "description": "Website thương mại điện tử thời trang đầy đủ tính năng được phát triển dưới dạng đồ án tốt nghiệp. Hệ thống bao gồm module cho khách hàng và admin, quản lý sản phẩm cùng với biên thể màu sắc-size, theo dõi kho, các vai trò user đa cấp, bảng điều khiển thống kê kinh doanh. Làm với PHP thuần, MySQL và giao diện responsive tập trung vào luồng công việc thực tế."
       },
       "9": {
-        "title": "Pokedex App",
-        "description": "Ứng dụng Pokedex hiện đại xây dựng bằng React Native và Expo. Dự án tập trung vào trải nghiệm người dùng mượt mà với NativeWind, quản lý trạng thái bằng Zustand, hỗ trợ đa ngôn ngữ, hệ thống đơn vị đo lường tùy chỉnh và hiệu suất tìm kiếm tối ưu cho hàng trăm Pokemon."
+        "title": "📱 Pokédex Mobile",
+        "description": "Ứng dụng di động khám phá thế giới Pokémon dựa trên PokéAPI. Được xây dựng bằng React Native và TypeScript với giao diện trực quan và sinh động."
       },
       "10": {
-        "title": "Hệ thống Rút gọn Link",
-        "description": "LinkSnap là một ứng dụng rút gọn link chuyên nghiệp được xây dựng bằng Laravel. Hệ thống tích hợp quản lý link thông minh, tạo QR code tự động, thống kê lượt truy cập chi tiết và giao diện Dashboard theo phong cách Bento Grid hiện đại, tối ưu hóa trải nghiệm người dùng."
+        "title": "LinkSnap - URL Shortener & Analytics",
+        "description": "Một công cụ rút gọn liên kết đơn giản, hiệu quả và dễ dàng triển khai. Hỗ trợ tạo các đường dẫn ngắn tùy chỉnh để quản lý liên kết thuận tiện hơn."
       }
     }
   },
