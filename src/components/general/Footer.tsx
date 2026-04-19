@@ -1,4 +1,4 @@
-import { SOCIAL_LINKS, PROFILE_ASSETS } from "../../constants/platformData";
+import { profileData } from "../../constants/profileData";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -18,7 +18,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 font-mono text-[10px] md:text-xs text-foreground/50 tracking-widest uppercase">
             <div className="flex items-center gap-2">
               <span>© {new Date().getFullYear()}</span>
-              <span className="text-primary font-bold">{PROFILE_ASSETS.logo}</span>
+              <span className="text-primary font-bold">{profileData.logo}</span>
             </div>
             <span className="hidden md:block opacity-30 text-[8px]">•</span>
             <span>{t("footer.rights", "ALL RIGHTS RESERVED.")}</span>
@@ -26,7 +26,7 @@ const Footer = () => {
 
           {/* Center: Social Icons */}
           <div className="order-first md:order-none flex items-center justify-center gap-6 md:gap-8">
-            {SOCIAL_LINKS.map((link) => (
+            {profileData.socialLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}

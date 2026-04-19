@@ -23,7 +23,7 @@ const SkillsSection: React.FC = () => {
         <div className="absolute inset-0 cyber-noise opacity-[0.04] mix-blend-overlay" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader title={t("skills.title")} />
         <SkillsGrid />
       </div>

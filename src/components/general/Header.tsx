@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import { profileData } from "../../constants/profileData";
+import React, { useState, useMemo, useEffect } from "react";
 import {
   RiMoonLine,
   RiSunLine,
@@ -54,18 +55,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
 
-  // framer-motion variants
-  const menuVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
-    },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1], delay: 0.1 },
-    },
-  };
+
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -84,9 +74,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       opacity: 1,
       y: 0,
       rotate: 0,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
     },
-  };
+  } as const;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
@@ -100,7 +90,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           className="relative z-[110] group"
         >
           <span className="text-xl md:text-2xl font-sans font-black uppercase tracking-[0.3em] text-foreground drop-shadow-[0_0_10px_rgba(var(--primary),0.3)] group-hover:text-primary transition-colors duration-300">
-            DINO PÉO
+            {profileData.logo}
           </span>
         </button>
 
@@ -172,9 +162,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
             <motion.nav 
               variants={containerVariants}
-              className="relative z-10 w-full px-8 md:px-32 flex flex-col items-start justify-center pt-12"
+              className="relative z-10 w-full px-6 md:px-32 flex flex-col items-start justify-center pt-8 md:pt-12"
             >
-              <div className="flex flex-wrap gap-x-12 md:gap-x-16 gap-y-2 md:gap-y-4 w-full items-start justify-start max-w-[90vw]">
+              <div className="flex flex-wrap gap-x-8 md:gap-x-16 gap-y-1 md:gap-y-4 w-full items-start justify-start max-w-[95vw]">
                 {navItems.map((item) => {
                   const isActive = activeSection === item.href;
                   return (
@@ -187,7 +177,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                       }}
                       className="group relative py-1 md:py-2 flex flex-col items-start"
                     >
-                      <span className={`relative z-10 text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-8 ${isActive ? "text-primary" : "text-foreground/10 group-hover:text-primary text-left"}`}>
+                      <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground/10 group-hover:text-primary text-left"}`}>
                         {item.name}
                       </span>
                       {/* Fill-in effect */}
@@ -198,6 +188,44 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   );
                 })}
               </div>
+
+              {/* Mobile Controls (Language & Theme) - Only visible when menu is open on small screens */}
+              <motion.div 
+                variants={linkVariants}
+                className="flex sm:hidden items-center space-x-8 mt-12 border-t border-primary/10 pt-8 w-full"
+              >
+                <button
+                  onClick={() => {
+                    const newLang = i18n.language === "vi" ? "en" : "vi";
+                    i18n.changeLanguage(newLang);
+                    localStorage.setItem("language", newLang);
+                  }}
+                  className="flex items-center gap-3 group/lang"
+                >
+                  <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
+                    <img 
+                      src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"} 
+                      alt={i18n.language === "vi" ? "Vietnamese" : "English"}
+                      className="w-full h-full object-cover"
+                    />
+                  </span>
+                  <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
+                    {i18n.language.toUpperCase()}
+                  </span>
+                </button>
+
+                <button
+                  onClick={toggleDarkMode}
+                  className="flex items-center gap-3 group/theme"
+                >
+                  <div className="text-foreground group-hover/theme:text-primary transition-colors">
+                    {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
+                  </div>
+                  <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
+                    {darkMode ? t("nav.theme.light") : t("nav.theme.dark")}
+                  </span>
+                </button>
+              </motion.div>
             </motion.nav>
 
 

@@ -1,7 +1,7 @@
-import { PROFILE_ASSETS } from "../../constants/platformData";
+import { profileData } from "../../constants/profileData";
 
 const HeroAvatar: React.FC = () => {
-  const { heroImage, name } = PROFILE_ASSETS;
+  const { heroImage, name } = profileData;
 
   return (
     <div className="flex justify-center md:justify-start mt-20 md:mt-0">

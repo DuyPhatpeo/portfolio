@@ -1,5 +1,4 @@
-import React from "react";
-import { aboutData } from "../../constants/aboutData";
+import { profileData } from "../../constants/profileData";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -8,7 +7,7 @@ const PersonalInfo: React.FC = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-      {aboutData.personal.map(
+      {profileData.personalInfo.map(
         ({ icon: Icon, labelKey, valueKey }, i) => (
           <motion.div
             key={i}

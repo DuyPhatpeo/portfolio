@@ -1,9 +1,9 @@
 import React from "react";
-import { SOCIAL_LINKS } from "../../constants/platformData";
+import { profileData } from "../../constants/profileData";
 
 const SocialLinks: React.FC = () => (
   <div className="flex flex-wrap gap-3 sm:gap-4 justify-center md:justify-start mt-4 md:mt-6">
-    {SOCIAL_LINKS.map((link, i) => (
+    {profileData.socialLinks.map((link, i) => (
       <a
         key={i}
         href={link.href}

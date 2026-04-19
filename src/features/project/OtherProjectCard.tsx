@@ -1,7 +1,6 @@
-// src/components/project/OtherProjectCard.tsx
 import { FiExternalLink, FiGithub, FiFolder } from "react-icons/fi";
 import { useEffect, useRef, useState } from "react";
-import type { Project } from "../../constants/projectData";
+import type { Project } from "../../types/data";
 import { useTranslation } from "react-i18next";
 
 interface OtherProjectCardProps {
@@ -101,7 +100,7 @@ export default function OtherProjectCard({
 
       {/* TITLE */}
       <h3 className="text-xl font-bold font-sans tracking-tight mb-3 text-foreground group-hover:text-primary transition-colors relative z-10">
-        &gt; {t(`projects.items.${project.id}.title`)}
+        {t(`projects.items.${project.id}.title`)}
       </h3>
 
       {/* DESCRIPTION */}

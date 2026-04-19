@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { roles } from "../../constants/heroData";
+import { profileData } from "../../constants/profileData";
 
 const TypingRoles: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0);
@@ -8,7 +8,7 @@ const TypingRoles: React.FC = () => {
   const [typeSpeed, setTypeSpeed] = useState(150);
 
   useEffect(() => {
-    const currentText = roles[currentRole];
+    const currentText = profileData.roles[currentRole];
     const timer = setTimeout(() => {
       if (isDeleting) {
         setDisplayedText(currentText.substring(0, displayedText.length - 1));
@@ -22,7 +22,7 @@ const TypingRoles: React.FC = () => {
         setTimeout(() => setIsDeleting(true), 2000);
       } else if (isDeleting && displayedText === "") {
         setIsDeleting(false);
-        setCurrentRole((prev) => (prev + 1) % roles.length);
+        setCurrentRole((prev) => (prev + 1) % profileData.roles.length);
       }
     }, typeSpeed);
 

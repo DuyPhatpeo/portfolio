@@ -1,6 +1,5 @@
-// src/components/project/FeaturedProject.tsx
 import { FiExternalLink, FiGithub } from "react-icons/fi";
-import type { Project } from "../../constants/projectData";
+import type { Project } from "../../types/data";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -69,7 +68,7 @@ export default function FeaturedProject({
         ) : null}
       </p>
 
-      <h3 className="text-3xl lg:text-4xl font-sans font-black mb-4 text-foreground uppercase tracking-tight drop-shadow-[0_0_8px_var(--primary)] hover:text-primary transition-colors">
+      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-black mb-4 text-foreground uppercase tracking-tight drop-shadow-[0_0_8px_var(--primary)] hover:text-primary transition-colors">
         {t(`projects.items.${project.id}.title`)}
       </h3>
 

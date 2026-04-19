@@ -1,14 +1,4 @@
-// src/data/projectData.ts
-
-export interface Project {
-  id: number;
-  image: string;
-  tags: string[];
-  github: string;
-  demo: string | null;
-  featured: boolean; // Trường để phân biệt nổi bật hay bình thường
-  reverse?: boolean; // Chỉ dùng cho featured projects
-}
+import type { Project, Skill } from "../types/data";
 
 export const projects: Project[] = [
   {

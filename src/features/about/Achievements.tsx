@@ -1,5 +1,4 @@
-import React from "react";
-import { aboutData } from "../../constants/aboutData";
+import { profileData } from "../../constants/profileData";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 
@@ -7,8 +6,8 @@ const Achievements: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-      {aboutData.achievements.map(({ icon: Icon, labelKey }, i) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-16">
+      {profileData.achievements.map(({ icon: Icon, labelKey }, i) => (
         <motion.div
           key={i}
           initial={{ opacity: 0, y: 20 }}

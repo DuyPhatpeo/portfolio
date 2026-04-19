@@ -1,10 +1,10 @@
 {
   "nav": {
-    "home": "CORE",
-    "about": "PROFILE",
-    "skills": "ARSENAL",
-    "projects": "ARCHIVE",
-    "contact": "COMM",
+    "home": "HOME",
+    "about": "ABOUT",
+    "skills": "SKILLS",
+    "projects": "PROJECTS",
+    "contact": "CONTACT",
     "theme": {
       "light": "LIGHT MODE",
       "dark": "DARK MODE"
@@ -68,7 +68,7 @@
         "description": "My personal portfolio website built with React, TypeScript, and Vite. Showcasing selected projects, technical skills, and my journey as a frontend developer with a clean, modern, and responsive design."
       },
       "2": {
-        "title": "🛒 E-commerce Website",
+        "title": "E-commerce Website",
         "description": "A modern e-commerce platform with full cart and payment features. Integrated with React, Tailwind CSS, and Firebase for real-time data management."
       },
       "3": {
@@ -76,7 +76,7 @@
         "description": "A website for introducing and ordering food at a restaurant, integrating menu management systems, online table booking, and customer feedback (React & Firebase)."
       },
       "4": {
-        "title": "🌤️ Dự báo thời tiết - Weather Forecast",
+        "title": "Weather Forecast",
         "description": "A modern weather forecast application providing real-time information, interactive temperature charts, and detailed forecasts. Built with React, TypeScript, and Tailwind CSS."
       },
       "5": {
@@ -88,7 +88,7 @@
         "description": "DinoStore is a modern e-commerce web application built with React and Vite, offering an end-to-end online shopping experience. It includes home banners, featured products, detailed product pages, user authentication, cart and wishlist functionality, product filtering, pagination, and a fully responsive UI optimized for all devices."
       },
       "7": {
-        "title": "🤖 DinoBot Discord",
+        "title": "DinoBot Discord",
         "description": "A multi-functional Discord Bot written in Node.js to support automated server management and provide entertaining features for the user community."
       },
       "8": {
@@ -96,7 +96,7 @@
         "description": "A full-featured fashion e-commerce website developed as a graduation project. The system includes customer and admin modules, supporting product management with color-size variants, inventory tracking, order processing, user roles, dashboards, and sales statistics. Built with a custom PHP backend, MySQL database, and a responsive frontend focused on real-world business workflows."
       },
       "9": {
-        "title": "📱 Pokédex Mobile",
+        "title": "Pokédex Mobile",
         "description": "A mobile application for exploring the Pokémon world based on the PokéAPI. Built with React Native and TypeScript, featuring an intuitive and vibrant user interface."
       },
       "10": {

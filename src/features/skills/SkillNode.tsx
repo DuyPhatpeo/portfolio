@@ -74,7 +74,7 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
         }`}
     >
       <motion.div
-        className={`relative w-24 h-24 transition-all duration-300`}
+        className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 transition-all duration-300`}
         animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
