@@ -44,14 +44,7 @@ const Footer = () => {
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative flex flex-col items-center justify-center space-y-8">
-          {/* System Status Line */}
-          <div className="flex items-center space-x-4 opacity-70">
-            <div className="h-px w-12 bg-primary"></div>
-            <span className="font-mono text-primary text-xs tracking-[0.2em] uppercase">
-              {t("footer.transmission")}
-            </span>
-            <div className="h-px w-12 bg-primary"></div>
-          </div>
+
 
           {/* Maximalist Glowing Name */}
           <div className="flex w-full justify-center">
