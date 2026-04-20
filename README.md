@@ -1,7 +1,7 @@
 # Portfolio - DINO PÉO
 
 <div align="center">
-  <img src="public/portfolio.png" alt="Portfolio Preview" width="800" style="border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
+  <img src="public/assets/preview.png" alt="Dino Peo Portfolio Preview" width="800" style="border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
 </div>
 
 <p align="center">
@@ -32,6 +32,7 @@
 ## 🛠️ Công nghệ Sử dụng (Tech Stack)
 
 ### Core
+
 - **Frontend Framework:** React 19
 - **Ngôn ngữ:** TypeScript 5.8 (Strict Mode)
 - **Build Tool:** Vite 6
@@ -39,12 +40,14 @@
 - **Routing:** React Router v7
 
 ### Styling & Animation
+
 - **CSS Engine:** Tailwind CSS 4.0
 - **Animations:** Framer Motion 12
 - **Icons:** Lucide React & React Icons
 - **Notifications:** React Toastify
 
 ### Others
+
 - **Internationalization:** i18next
 - **Forms:** EmailJS (Gửi email trực tiếp từ form liên hệ)
 
@@ -83,22 +86,26 @@ src/
 ## ⚙️ Cài đặt & Khởi chạy
 
 1. **Clone dự án:**
+
    ```bash
    git clone https://github.com/DuyPhatpeo/portfolio.git
    cd portfolio
    ```
 
 2. **Cài đặt dependencies:**
+
    ```bash
    npm install
    ```
 
 3. **Chạy môi trường phát triển:**
+
    ```bash
    npm run dev
    ```
 
 4. **Build sản phẩm:**
+
    ```bash
    npm run build
    ```
@@ -118,6 +125,4 @@ src/
 
 <div align="center">
   <p>Cảm ơn bạn đã ghé thăm Portfolio của tôi! Đừng quên để lại một ⭐ nếu bạn yêu thích kiến trúc này.</p>
-  <img src="https://capsule-render.vercel.app/render?type=waving&color=auto&height=100&section=footer" width="100%"/>
 </div>
-

@@ -44,7 +44,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
 
 
             <div className="flex flex-col gap-0 w-full max-w-[280px] xs:max-w-[320px]">
-              <HeroButtons scrollToSection={scrollToSection} />
+              <HeroButtons />
               <SocialLinks scrollToSection={scrollToSection} />
             </div>
           </div>

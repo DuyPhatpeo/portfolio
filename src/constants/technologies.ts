@@ -34,8 +34,10 @@ export const TECH = {
   NODE_JS: "Node.js",
   LARAVEL: "Laravel",
   PHP: "PHP",
+  NESTJS: "NestJS",
   DISCORD_JS: "Discord.js",
   MYSQL: "MySQL",
+  MONGODB: "MongoDB",
   FIREBASE: "Firebase",
 } as const;
 

@@ -1,15 +1,12 @@
 import React from "react";
-import { RiSendPlane2Line } from "react-icons/ri";
 import { IoIosDocument } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
 import { profileData } from "../../constants/profileData";
 
-interface HeroButtonsProps {
-  scrollToSection: (sectionId: string) => void;
-}
+interface HeroButtonsProps {}
 
-const HeroButtons: React.FC<HeroButtonsProps> = ({ scrollToSection }) => {
+const HeroButtons: React.FC<HeroButtonsProps> = () => {
   const { t } = useTranslation();
 
   return (

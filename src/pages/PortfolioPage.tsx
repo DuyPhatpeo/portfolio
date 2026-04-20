@@ -4,7 +4,7 @@ import Header from "../components/general/Header";
 
 import Footer from "../components/general/Footer";
 import HeroSection from "../features/hero/HeroSetion";
-import AboutSection from "../features/about/AboutSection";
+
 import SkillsSection from "../features/skills/SkillsSection";
 import ProjectsSection from "../features/project/ProjectSecion";
 import ContactSection from "../features/contact/ContactSection";
@@ -34,7 +34,7 @@ const PortfolioPage: React.FC = () => {
       <main className="flex-1 relative z-10">
         <HeroSection scrollToSection={scrollToSection} />
 
-        <AboutSection />
+
 
         <SkillsSection />
 
