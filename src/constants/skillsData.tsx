@@ -1,127 +1,128 @@
 import type { Skill } from "../types/data";
 import { FramerMotionIcon, FirebaseIcon } from "../components/ui/SkillIcons";
+import { TECH } from "./technologies";
 
 export const skills: Skill[] = [
   // Tools / Editor
   {
-    name: "VS Code",
+    name: TECH.VSCODE,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
     url: "https://code.visualstudio.com/",
   },
 
   // Core Frontend
   {
-    name: "HTML",
+    name: TECH.HTML,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
     url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
   },
   {
-    name: "CSS",
+    name: TECH.CSS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
     url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
   },
   {
-    name: "JavaScript",
+    name: TECH.JS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
     url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
   },
   {
-    name: "TypeScript",
+    name: TECH.TS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
     url: "https://www.typescriptlang.org/",
   },
 
   // Frontend Frameworks & Animation
   {
-    name: "ReactJS",
+    name: TECH.REACT,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
     url: "https://react.dev/",
   },
   {
-    name: "Next.js",
+    name: TECH.NEXT_JS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
     invertDark: true,
     url: "https://nextjs.org/",
   },
   {
-    name: "Framer Motion",
+    name: TECH.FRAMER_MOTION,
     icon: FramerMotionIcon,
     url: "https://www.framer.com/motion/",
   },
 
   // State Management
   {
-    name: "Zustand",
+    name: TECH.ZUSTAND,
     logo: "https://raw.githubusercontent.com/pmndrs/zustand/main/examples/demo/public/logo192.png",
     url: "https://zustand-demo.pmnd.rs/",
   },
 
   // Styling
   {
-    name: "TailwindCSS",
+    name: TECH.TAILWIND,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
     url: "https://tailwindcss.com/",
   },
   {
-    name: "Sass",
+    name: TECH.SASS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
     url: "https://sass-lang.com/",
   },
   {
-    name: "Bootstrap",
+    name: TECH.BOOTSTRAP,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
     url: "https://getbootstrap.com/",
   },
 
   // Build tools / Package manager
   {
-    name: "Vite",
+    name: TECH.VITE,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
     url: "https://vitejs.dev/",
   },
   {
-    name: "npm",
+    name: TECH.NPM,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
     url: "https://www.npmjs.com/",
   },
 
   // Backend
   {
-    name: "Nodejs",
+    name: TECH.NODE_JS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
     url: "https://nodejs.org/",
   },
   {
-    name: "Laravel",
+    name: TECH.LARAVEL,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg",
     url: "https://laravel.com/",
   },
   {
-    name: "Discord.js",
+    name: TECH.DISCORD_JS,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discordjs/discordjs-original.svg",
     url: "https://discord.js.org/",
   },
 
   // Database
   {
-    name: "MySQL",
+    name: TECH.MYSQL,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
     url: "https://www.mysql.com/",
   },
   {
-    name: "Firebase",
+    name: TECH.FIREBASE,
     icon: FirebaseIcon,
     url: "https://firebase.google.com/",
   },
 
   // Version control
   {
-    name: "Git",
+    name: TECH.GIT,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
     url: "https://git-scm.com/",
   },
   {
-    name: "GitHub",
+    name: TECH.GITHUB,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
     invertDark: true,
     url: "https://github.com/",
@@ -129,14 +130,14 @@ export const skills: Skill[] = [
 
   // Design
   {
-    name: "Figma",
+    name: TECH.FIGMA,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
     url: "https://www.figma.com/",
   },
 
   // Deployment
   {
-    name: "Vercel",
+    name: TECH.VERCEL,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg",
     invertDark: true,
     url: "https://vercel.com/",

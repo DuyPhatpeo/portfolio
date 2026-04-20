@@ -1,10 +1,11 @@
-import type { Project, Skill } from "../types/data";
+import type { Project } from "../types/data";
+import { TECH } from "./technologies";
 
 export const projects: Project[] = [
   {
     id: 10,
     image: "assets/projects/linksnap.png",
-    tags: ["Laravel", "PHP", "Tailwind CSS", "MySQL", "Vite"],
+    tags: [TECH.LARAVEL, TECH.PHP, TECH.TAILWIND, TECH.MYSQL, TECH.VITE],
     github: "https://github.com/DuyPhatpeo/rutgonlink",
     demo: "https://linksnap.free.laravel.cloud/",
     featured: true,
@@ -13,7 +14,7 @@ export const projects: Project[] = [
   {
     id: 1,
     image: "assets/projects/portfolio.png",
-    tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Framer Motion"],
+    tags: [TECH.REACT, TECH.TS, TECH.VITE, TECH.TAILWIND, TECH.FRAMER_MOTION],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
     featured: true,
@@ -22,7 +23,7 @@ export const projects: Project[] = [
   {
     id: 4,
     image: "assets/projects/weather-app.png",
-    tags: ["React 18", "TypeScript", "Tailwind CSS", "Zustand"],
+    tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/weather-app",
     demo: "https://thoitiet24h.vercel.app/",
     featured: true,
@@ -34,12 +35,12 @@ export const projects: Project[] = [
     id: 2,
     image: "assets/projects/ecommerce.png",
     tags: [
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "Firebase",
-      "Zustand",
+      TECH.REACT,
+      TECH.TS,
+      TECH.VITE,
+      TECH.TAILWIND,
+      TECH.FIREBASE,
+      TECH.ZUSTAND,
     ],
     github: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
@@ -48,7 +49,7 @@ export const projects: Project[] = [
   {
     id: 9,
     image: "assets/projects/pokedex.png",
-    tags: ["React Native", "Expo", "TypeScript", "NativeWind", "Zustand"],
+    tags: [TECH.REACT_NATIVE, TECH.EXPO, TECH.TS, TECH.NATIVEWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/pokedex",
     demo: null,
     featured: false,
@@ -56,7 +57,7 @@ export const projects: Project[] = [
   {
     id: 3,
     image: "assets/projects/restaurant.png",
-    tags: ["React", "Vite", "Firebase", "Axios"],
+    tags: [TECH.REACT, TECH.VITE, TECH.FIREBASE, TECH.AXIOS],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
     featured: false,
@@ -64,7 +65,7 @@ export const projects: Project[] = [
   {
     id: 5,
     image: "assets/projects/dinomovie.png",
-    tags: ["React", "Vite", "Tailwind CSS", "Axios", "React Router"],
+    tags: [TECH.REACT, TECH.VITE, TECH.TAILWIND, TECH.AXIOS, TECH.REACT_ROUTER],
     github: "https://github.com/DuyPhatpeo/simple-movies",
     demo: "https://dinomovie.vercel.app",
     featured: false,
@@ -72,7 +73,7 @@ export const projects: Project[] = [
   {
     id: 6,
     image: "assets/projects/dinostore.jpg",
-    tags: ["React", "Vite", "Axios", "React Router"],
+    tags: [TECH.REACT, TECH.VITE, TECH.AXIOS, TECH.REACT_ROUTER],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
     featured: false,
@@ -80,7 +81,7 @@ export const projects: Project[] = [
   {
     id: 7,
     image: "assets/projects/dinobotweb.png",
-    tags: ["Node.js", "Discord.js"],
+    tags: [TECH.NODE_JS, TECH.DISCORD_JS],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",
     featured: false,
@@ -88,9 +89,9 @@ export const projects: Project[] = [
   {
     id: 8,
     image: "assets/projects/shopfstyle.jpg",
-    tags: ["PHP", "MySQL", "Tailwind CSS", "JavaScript"],
+    tags: [TECH.PHP, TECH.MYSQL, TECH.TAILWIND, TECH.JS],
     github: "https://github.com/DuyPhatpeo/ShopFSTYLE",
-    demo: "",
+    demo: null,
     featured: false,
   },
 ];

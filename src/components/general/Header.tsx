@@ -107,8 +107,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 transition-all duration-300 group/lang"
             >
               <span className="w-5 h-3.5 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
-                <img 
-                  src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"} 
+                <img
+                  src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"}
                   alt={i18n.language === "vi" ? "Vietnamese" : "English"}
                   className="w-full h-full object-cover"
                 />
@@ -134,11 +134,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               {isOpen ? t("nav.close", "CLOSE") : t("nav.menu", "MENU")}
             </span>
             <div className="relative w-8 h-8 flex flex-col justify-center items-center">
-              <span 
-                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "rotate-45 translate-y-[1px]" : "-translate-y-1"}`} 
+              <span
+                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "rotate-45 translate-y-[1px]" : "-translate-y-1"}`}
               />
-              <span 
-                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-[1px]" : "translate-y-1"}`} 
+              <span
+                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-[1px]" : "translate-y-1"}`}
               />
             </div>
           </button>
@@ -148,88 +148,97 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       {/* Partial-Screen Menu Overlay (2/3 Height) */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ y: "-100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "-100%" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed top-0 left-0 right-0 h-[58vh] bg-background/70 backdrop-blur-3xl z-[105] flex flex-col items-center justify-center overflow-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
-          >
-            {/* Background Decorative Text */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
-              <span className="text-[25vw] font-black leading-none text-foreground/10 uppercase">DINO PÉO</span>
-            </div>
+          <>
+            {/* Backdrop Overlay for closing on click outside */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[104]"
+            />
 
-            <motion.nav 
-              variants={containerVariants}
-              className="relative z-10 w-full px-6 md:px-32 flex flex-col items-start justify-center pt-8 md:pt-12"
+            <motion.div
+              initial={{ y: "-100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 left-0 right-0 h-[58vh] bg-background/70 backdrop-blur-3xl z-[105] flex flex-col items-center justify-center overflow-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
             >
-              <div className="flex flex-wrap gap-x-8 md:gap-x-16 gap-y-1 md:gap-y-4 w-full items-start justify-start max-w-[95vw]">
-                {navItems.map((item) => {
-                  const isActive = activeSection === item.href;
-                  return (
-                    <motion.button
-                      key={item.href}
-                      variants={linkVariants}
-                      onClick={() => {
-                        scrollToSection(item.href);
-                        setIsOpen(false);
-                      }}
-                      className="group relative py-1 md:py-2 flex flex-col items-start"
-                    >
-                      <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground/10 group-hover:text-primary text-left"}`}>
-                        {item.name}
-                      </span>
-                      {/* Fill-in effect */}
-                      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                         <div className="absolute inset-x-0 bottom-0 h-0 group-hover:h-full bg-primary/5 -z-10 transition-all duration-500" />
-                      </div>
-                    </motion.button>
-                  );
-                })}
+              {/* Background Decorative Text */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
+                <span className="text-[25vw] font-black leading-none text-foreground/10 uppercase">DINO PÉO</span>
               </div>
 
-              {/* Mobile Controls (Language & Theme) - Only visible when menu is open on small screens */}
-              <motion.div 
-                variants={linkVariants}
-                className="flex sm:hidden items-center space-x-8 mt-12 border-t border-primary/10 pt-8 w-full"
+              <motion.nav
+                variants={containerVariants}
+                className="relative z-10 w-full px-6 md:px-32 flex flex-col items-start justify-center pt-8 md:pt-12"
               >
-                <button
-                  onClick={() => {
-                    const newLang = i18n.language === "vi" ? "en" : "vi";
-                    i18n.changeLanguage(newLang);
-                    localStorage.setItem("language", newLang);
-                  }}
-                  className="flex items-center gap-3 group/lang"
+                <div className="flex flex-wrap gap-x-8 md:gap-x-16 gap-y-1 md:gap-y-4 w-full items-start justify-start max-w-[95vw]">
+                  {navItems.map((item) => {
+                    const isActive = activeSection === item.href;
+                    return (
+                      <motion.button
+                        key={item.href}
+                        variants={linkVariants}
+                        onClick={() => {
+                          scrollToSection(item.href);
+                          setIsOpen(false);
+                        }}
+                        className="group relative py-1 md:py-2 flex flex-col items-start"
+                      >
+                        <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground/10 group-hover:text-primary text-left"}`}>
+                          {item.name}
+                        </span>
+                        {/* Underline effect */}
+                        <div className="absolute bottom-0 left-0 h-[2px] md:h-[4px] w-0 group-hover:w-full bg-primary transition-all duration-500 ease-out shadow-[0_0_10px_var(--primary)]" />
+                      </motion.button>
+                    );
+                  })}
+                </div>
+
+                {/* Mobile Controls (Language & Theme) - Only visible when menu is open on small screens */}
+                <motion.div
+                  variants={linkVariants}
+                  className="flex sm:hidden items-center space-x-8 mt-12 border-t border-primary/10 pt-8 w-full"
                 >
-                  <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
-                    <img 
-                      src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"} 
-                      alt={i18n.language === "vi" ? "Vietnamese" : "English"}
-                      className="w-full h-full object-cover"
-                    />
-                  </span>
-                  <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
-                    {i18n.language.toUpperCase()}
-                  </span>
-                </button>
+                  <button
+                    onClick={() => {
+                      const newLang = i18n.language === "vi" ? "en" : "vi";
+                      i18n.changeLanguage(newLang);
+                      localStorage.setItem("language", newLang);
+                    }}
+                    className="flex items-center gap-3 group/lang"
+                  >
+                    <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
+                      <img
+                        src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"}
+                        alt={i18n.language === "vi" ? "Vietnamese" : "English"}
+                        className="w-full h-full object-cover"
+                      />
+                    </span>
+                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
+                      {i18n.language.toUpperCase()}
+                    </span>
+                  </button>
 
-                <button
-                  onClick={toggleDarkMode}
-                  className="flex items-center gap-3 group/theme"
-                >
-                  <div className="text-foreground group-hover/theme:text-primary transition-colors">
-                    {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
-                  </div>
-                  <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
-                    {darkMode ? t("nav.theme.light") : t("nav.theme.dark")}
-                  </span>
-                </button>
-              </motion.div>
-            </motion.nav>
+                  <button
+                    onClick={toggleDarkMode}
+                    className="flex items-center gap-3 group/theme"
+                  >
+                    <div className="text-foreground group-hover/theme:text-primary transition-colors">
+                      {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
+                    </div>
+                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
+                      {darkMode ? t("nav.theme.light") : t("nav.theme.dark")}
+                    </span>
+                  </button>
+                </motion.div>
+              </motion.nav>
 
 
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

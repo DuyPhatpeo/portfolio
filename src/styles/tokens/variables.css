@@ -37,6 +37,7 @@
 
     --neon-glow: 0 0 5px var(--primary), 0 0 10px rgba(0, 255, 136, 0.4);
     --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 10px rgba(168, 85, 247, 0.4);
+    --foreground-glow: 0 0 20px rgba(224, 224, 224, 0.3);
 
     --selection-bg: var(--primary);
     --selection-text: var(--primary-foreground);
@@ -72,6 +73,7 @@
 
     --neon-glow: 0 0 5px rgba(0, 204, 106, 0.3), 0 0 10px rgba(0, 204, 106, 0.1);
     --neon-glow-secondary: 0 0 5px rgba(147, 51, 234, 0.3), 0 0 10px rgba(147, 51, 234, 0.1);
+    --foreground-glow: 0 0 20px rgba(10, 10, 15, 0.1);
 
     --scanline-opacity: 0.05;
   }
