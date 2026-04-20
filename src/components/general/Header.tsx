@@ -113,13 +113,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   className="w-full h-full object-cover"
                 />
               </span>
-              <span className="text-xs font-mono font-bold tracking-widest text-foreground/60 group-hover/lang:text-primary transition-colors">
+              <span className="text-xs font-mono font-bold tracking-widest text-foreground group-hover/lang:text-primary transition-colors">
                 {i18n.language.toUpperCase()}
               </span>
             </button>
             <button
               onClick={toggleDarkMode}
-              className="text-foreground/40 hover:text-primary transition-colors"
+              className="text-foreground hover:text-primary transition-colors"
             >
               {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
             </button>
@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-3 group"
           >
-            <span className="hidden md:inline text-xs font-mono font-bold tracking-[0.3em] text-foreground/60 group-hover:text-primary transition-colors uppercase">
+            <span className="hidden md:inline text-xs font-mono font-bold tracking-[0.3em] text-foreground group-hover:text-primary transition-colors uppercase">
               {isOpen ? t("nav.close", "CLOSE") : t("nav.menu", "MENU")}
             </span>
             <div className="relative w-8 h-8 flex flex-col justify-center items-center">
@@ -187,7 +187,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         }}
                         className="group relative py-1 md:py-2 flex flex-col items-start"
                       >
-                        <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground/10 group-hover:text-primary text-left"}`}>
+                        <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground group-hover:text-primary text-left opacity-30"}`}>
                           {item.name}
                         </span>
                         {/* Underline effect */}

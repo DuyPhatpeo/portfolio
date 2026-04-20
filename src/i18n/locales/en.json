@@ -11,9 +11,11 @@
     }
   },
   "hero": {
+    "greeting": "Hi, I am",
     "title": "DINO PÉO",
-    "subtitle": "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
+    "subtitle": "",
     "roles": [
+      "Software Engineer",
       "Web Developer",
       "Front-End Developer"
     ],
@@ -21,8 +23,8 @@
     "cta": "EXPLORE WORK",
     "scroll": "Scroll Down",
     "buttons": {
-      "resume": "Download CV",
-      "connect": "Connect Now"
+      "resume": "Resume",
+      "connect": "Hire Me"
     }
   },
   "about": {

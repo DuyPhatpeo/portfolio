@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import Particles from "../theme/Particles";
 
 interface LoadingProps {
   progress: number;
@@ -11,36 +10,20 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
 
   return (
     <div className="fixed inset-0 z-[9999] bg-background text-foreground font-mono overflow-hidden flex flex-col items-center justify-center">
-      {/* Background Layer: Particles */}
-      <div className="absolute inset-0 z-0">
-        <Particles quantity={60} />
-      </div>
 
-      {/* Top Progress Bar */}
-      <div className="absolute top-0 left-0 w-full z-20">
-        <div className="h-1 md:h-1.5 w-full bg-foreground/5 relative overflow-hidden">
-          {/* Active bar */}
-          <div
-            className="h-full bg-gradient-to-r from-primary via-accent-tertiary to-secondary shadow-[0_0_20px_var(--primary)] transition-all duration-300 ease-out relative"
-            style={{ width: `${progress}%` }}
-          >
-            <div className="absolute right-0 top-0 h-full w-6 bg-primary/20 drop-shadow-[0_0_25px_var(--primary)] animate-pulse" />
-          </div>
-        </div>
-      </div>
 
       {/* Main Content Area: Brand & Loading Text */}
       <div className="relative z-10 flex flex-col items-center justify-center">
         {/* Brand Text */}
         <div className="relative inline-block">
-          <h2 className="text-3xl md:text-5xl lg:text-7xl font-sans font-bold tracking-[0.4em] text-foreground/20 md:ml-[0.4em]">
+          <h2 className="text-4xl md:text-6xl lg:text-8xl font-sans font-bold tracking-[0.4em] text-foreground/20 md:ml-[0.4em] py-4">
             DINO PÉO
           </h2>
           <div 
             className="absolute top-0 left-0 overflow-hidden whitespace-nowrap transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           >
-            <h2 className="text-3xl md:text-5xl lg:text-7xl font-sans font-bold tracking-[0.4em] text-foreground md:ml-[0.4em] drop-shadow-[0_0_20px_var(--foreground-glow)] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)]">
+            <h2 className="text-4xl md:text-6xl lg:text-8xl font-sans font-bold tracking-[0.4em] text-foreground md:ml-[0.4em] drop-shadow-[0_0_20px_var(--foreground-glow)] dark:drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] py-4">
               DINO PÉO
             </h2>
           </div>

@@ -20,8 +20,8 @@ export const profileData: ProfileData = {
   resume: "/assets/docs/TranDuyPhat_CV.pdf",
   avatar: "/assets/profile/avatar.png",
   heroImage: "/assets/profile/avatar.png",
-  roles: ["Web Developer", "Front-End Developer"],
-  heroDescription: "I create visually appealing and highly interactive web experiences, turning ideas into reality with modern technologies.",
+  roles: ["Software Engineer", "Web Developer", "Front-End Developer"],
+  heroDescription: "",
 
   socialLinks: [
     {

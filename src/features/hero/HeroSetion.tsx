@@ -23,10 +23,15 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
           <div className="lg:col-span-7 flex flex-col justify-center space-y-6">
 
 
+            {/* Greeting */}
+            <span className="text-primary font-mono text-sm md:text-base tracking-[0.2em] uppercase block ml-1">
+              {t("hero.greeting")}
+            </span>
+
             {/* Title */}
             <h1
               data-text={t("hero.title")}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[88px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto"
+              className="text-6xl sm:text-7xl md:text-8xl lg:text-[90px] xl:text-[110px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto"
             >
               {t("hero.title")}
             </h1>
@@ -36,13 +41,12 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
               <TypingRoles />
             </div>
 
-            {/* Subtitle */}
-            <p className="text-sm md:text-base text-primary/80 font-mono max-w-xl leading-relaxed mt-1 border border-primary/15 bg-primary/5 cyber-chamfer p-4">
-              {t("hero.subtitle")}
-            </p>
 
-            <HeroButtons scrollToSection={scrollToSection} />
-            <SocialLinks />
+
+            <div className="flex flex-col gap-0 w-full max-w-[280px] xs:max-w-[320px]">
+              <HeroButtons scrollToSection={scrollToSection} />
+              <SocialLinks scrollToSection={scrollToSection} />
+            </div>
           </div>
 
           {/* Avatar Panel */}

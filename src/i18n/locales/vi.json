@@ -11,9 +11,11 @@
     }
   },
   "hero": {
+    "greeting": "Xin chào, tôi là",
     "title": "DINO PÉO",
-    "subtitle": "Kiến tạo các trải nghiệm web trực quan và tương tác cao, biến ý tưởng thành hiện thực bằng các công nghệ hiện đại.",
+    "subtitle": "",
     "roles": [
+      "Kỹ sư Phần mềm",
       "Lập trình viên Web",
       "Lập trình viên Front-End"
     ],
@@ -21,8 +23,8 @@
     "cta": "XEM DỰ ÁN",
     "scroll": "Cuộn xuống",
     "buttons": {
-      "resume": "Tải CV (Resume)",
-      "connect": "Kết nối ngay"
+      "resume": "Hồ sơ",
+      "connect": "Liên hệ"
     }
   },
   "about": {
