@@ -79,7 +79,7 @@
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "Comprehensive weather forecast application providing real-time updates and detailed atmospheric data with a sleek Elite Design UI."
+        "description": "Comprehensive weather forecast application providing real-time updates and detailed atmospheric data with a sleek UI."
       },
       "5": {
         "title": "Dino Movies",
@@ -102,8 +102,8 @@
         "description": "A mobile application for exploring the Pokémon world using PokéAPI, built with React Native and TypeScript."
       },
       "10": {
-        "title": "LinkSnap - URL Shortener",
-        "description": "Simple and effective tool for link shortening and management with custom aliases and deployment ease."
+        "title": "LinkSnap - URL Shortener & Bio Builder",
+        "description": "A professional link management platform combining a powerful URL shortener with a modern Bio Page builder. Features real-time analytics with interactive charts, custom QR code generation, and seamless Google OAuth integration."
       }
     }
   },

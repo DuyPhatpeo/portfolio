@@ -79,7 +79,7 @@
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "Ứng dụng xem thời tiết thời gian thực với giao diện hiện đại (Elite Design), cung cấp thông tin khí tượng chi tiết và chính xác."
+        "description": "Ứng dụng xem thời tiết thời gian thực với giao diện hiện đại, cung cấp thông tin khí tượng chi tiết và chính xác."
       },
       "5": {
         "title": "Dino Movies",
@@ -102,8 +102,8 @@
         "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, được xây dựng bằng React Native và TypeScript."
       },
       "10": {
-        "title": "LinkSnap - URL Shortener",
-        "description": "Công cụ rút gọn liên kết đơn giản và hiệu quả, hỗ trợ tạo link tùy chỉnh và quản lý đường dẫn dễ dàng."
+        "title": "LinkSnap - Rút gọn Link & Bio Page",
+        "description": "Nền tảng quản lý liên kết chuyên nghiệp, kết hợp công cụ rút gọn URL mạnh mẽ và trình xây dựng trang Bio hiện đại. Tích hợp hệ thống thống kê thời gian thực với biểu đồ tương tác, tạo mã QR tùy chỉnh và đăng nhập Google OAuth."
       }
     }
   },

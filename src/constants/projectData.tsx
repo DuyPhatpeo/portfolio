@@ -5,7 +5,7 @@ export const projects: Project[] = [
   {
     id: 10,
     image: "assets/projects/linksnap.png",
-    tags: [TECH.LARAVEL, TECH.PHP, TECH.TAILWIND, TECH.MYSQL, TECH.VITE],
+    tags: [TECH.LARAVEL, TECH.PHP, TECH.TAILWIND, TECH.MYSQL, TECH.VITE, TECH.JS],
     github: "https://github.com/DuyPhatpeo/rutgonlink",
     demo: "https://linksnap.free.laravel.cloud/",
     featured: true,
