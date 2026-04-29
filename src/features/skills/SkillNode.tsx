@@ -1,7 +1,6 @@
 import React from "react";
-import { motion, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
-/* ===== Skill type ===== */
 export interface Skill {
   name: string;
   logo?: string;
@@ -10,33 +9,31 @@ export interface Skill {
   url?: string;
 }
 
-interface SkillKeycapProps {
+interface SkillNodeProps {
   skill: Skill;
   hoveredSkill: string | null;
   pressedSkill: string | null;
   setHoveredSkill: (name: string | null) => void;
   setPressedSkill: (name: string | null) => void;
+  className?: string;
 }
 
-/* ===== Icon config ===== */
 const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean; glowColor?: string }> = {
-  Firebase: { size: "h-14 scale-110", glowColor: "#FFCA28" },
-  "Framer Motion": { size: "h-9", glowColor: "#FFF312" },
+  Firebase: { size: "h-10 scale-110", glowColor: "#FFCA28" },
+  "Framer Motion": { size: "h-8", glowColor: "#FFF312" },
 };
 
-const DEFAULT_ICON_SIZE = "h-8";
+const DEFAULT_ICON_SIZE = "h-7";
 const SPRING_CONFIG = { type: "spring" as const, stiffness: 600, damping: 35 };
 
-const SkillNode: React.FC<SkillKeycapProps> = ({
+const SkillNode: React.FC<SkillNodeProps> = ({
   skill,
   hoveredSkill,
   pressedSkill,
   setHoveredSkill,
   setPressedSkill,
+  className = "",
 }) => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
   const isHovered = hoveredSkill === skill.name;
   const isPressed = pressedSkill === skill.name;
   const iconConfig = ICON_CONFIG[skill.name];
@@ -46,72 +43,50 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
     if (skill.url) window.open(skill.url, "_blank", "noopener,noreferrer");
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!isHovered) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set((e.clientX - rect.left - rect.width / 2) * 0.4);
-    y.set((e.clientY - rect.top - rect.height / 2) * 0.4);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredSkill(null);
-    setPressedSkill(null);
-    x.set(0);
-    y.set(0);
-  };
-
   return (
     <motion.button
       type="button"
-      aria-label={skill.name}
       onClick={handleClick}
       onMouseEnter={() => setHoveredSkill(skill.name)}
-      onMouseLeave={handleMouseLeave}
+      onMouseLeave={() => { setHoveredSkill(null); setPressedSkill(null); }}
       onMouseDown={() => setPressedSkill(skill.name)}
       onMouseUp={() => setPressedSkill(null)}
-      onMouseMove={handleMouseMove}
-      className={`relative flex flex-col items-center justify-center select-none focus:outline-none ${skill.url ? "cursor-pointer" : "cursor-default opacity-80"
-        }`}
+      className={`relative flex flex-col items-center justify-center select-none focus:outline-none group ${skill.url ? "cursor-pointer" : "cursor-default opacity-80"} ${className}`}
     >
       <motion.div
-        className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 transition-all duration-300`}
+        className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center transition-all duration-300"
         animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
         transition={{ type: "spring", stiffness: 400, damping: 30 }}
       >
-        <div
-          className={`relative w-full h-full flex items-center justify-center border-2 transition-all duration-300 cyber-chamfer ${isHovered
-            ? "bg-primary/10 border-primary"
-            : "bg-card/50 border-primary/30"
-            }`}
-        >
-          {/* Decorative HUD Corner */}
+        {/* Outer Glowing Ring */}
+        <div className={`absolute inset-0 rounded-full border-2 transition-all duration-300 ${isHovered ? "border-primary cyber-glow shadow-[0_0_20px_var(--primary)]" : "border-primary/30"}`}>
+          
+          {/* Animated Scanning Ring on Hover */}
           {isHovered && (
-            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
+            <div className="absolute inset-[-4px] rounded-full border-t-2 border-r-2 border-primary animate-[spin_3s_linear_infinite] opacity-70"></div>
           )}
+          
+          {/* Inner Dashed Ring */}
+          <div className={`absolute inset-2 rounded-full border transition-all duration-300 ${isHovered ? "border-primary border-dashed animate-[spin_10s_linear_infinite_reverse]" : "border-primary/20 border-dotted"}`}></div>
+          
 
-          {/* Icon container */}
-          <div className="relative w-full h-full flex items-center justify-center p-4">
+          
+          {/* Icon Container */}
+          <div className="relative w-full h-full flex items-center justify-center bg-background/50 rounded-full backdrop-blur-sm z-10">
             <motion.div
-              className="relative w-full h-full flex items-center justify-center"
               animate={{ scale: isPressed ? 0.9 : 1 }}
               transition={SPRING_CONFIG}
+              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
             >
               {skill.logo ? (
                 <img
                   src={skill.logo}
                   alt={skill.name}
-                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${isHovered
-                    ? "filter brightness-125"
-                    : ""
-                    } ${skill.invertDark ? "dark:invert" : ""}`}
+                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${isHovered ? "filter brightness-125 drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""} ${skill.invertDark ? "dark:invert" : ""}`}
                 />
               ) : (
                 skill.icon?.({
-                  className: `relative w-auto transition-all duration-300 ${iconConfig?.size ?? DEFAULT_ICON_SIZE
-                    } ${isHovered
-                      ? "filter brightness-150"
-                      : "text-primary/70"
-                    }`,
+                  className: `relative w-auto transition-all duration-300 ${iconConfig?.size ?? DEFAULT_ICON_SIZE} ${isHovered ? "filter brightness-150" : "text-primary/70"}`,
                   style: { color: isHovered ? glowColor : undefined }
                 })
               )}
@@ -120,21 +95,18 @@ const SkillNode: React.FC<SkillKeycapProps> = ({
         </div>
       </motion.div>
 
-      {/* Tooltip Terminal Style */}
+      {/* Cyber Glitch Text on Hover */}
       <motion.div
-        initial={{ opacity: 0, y: -6, scale: 0.85 }}
-        animate={{
-          opacity: isHovered ? 1 : 0,
-          y: isHovered ? 14 : -6,
-          scale: isHovered ? 1 : 0.85,
-        }}
-        transition={{ duration: 0.25, ease: [0.34, 1.56, 0.64, 1] }}
-        className="mt-3 relative z-10"
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 12 : -5 }}
+        transition={{ duration: 0.2 }}
+        className="absolute -bottom-8 w-max z-20 pointer-events-none"
       >
         <div
-          className="relative text-[10px] md:text-xs font-bold px-3 py-1 font-mono uppercase tracking-widest bg-card border border-primary text-foreground transition-all duration-300 cyber-chamfer"
+          className="px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-primary cyber-glitch"
+          data-text={`[${skill.name}]`}
         >
-          &gt; {skill.name}
+          [{skill.name}]
         </div>
       </motion.div>
     </motion.button>
