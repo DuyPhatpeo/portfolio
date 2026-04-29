@@ -247,6 +247,16 @@
   animation: scanline-v 3s linear infinite;
 }
 
+@keyframes marquee-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.3333%); }
+}
+
+@keyframes marquee-x-reverse {
+  0% { transform: translateX(-33.3333%); }
+  100% { transform: translateX(0); }
+}
+
 /* 3. Custom partials - moved to App.tsx */
 
 /* ===== Custom Scrollbar ===== */
