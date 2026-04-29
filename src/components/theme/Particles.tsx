@@ -30,18 +30,10 @@ interface ParticlesProps {
 
 const STAR_COLORS_DARK = [
   "255,255,255", // white
-  "0,255,136",   // accent green
-  "255,0,255",   // accent magenta
-  "0,212,255",   // accent cyan
-  "180,200,255", // ice blue
 ];
 
 const STAR_COLORS_LIGHT = [
-  "20,20,30",    // dark navy
-  "0,150,80",    // dark green
-  "180,0,180",   // dark magenta
-  "0,100,180",   // dark blue
-  "100,100,120"  // slate gray
+  "0,0,0",       // black
 ];
 
 const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
@@ -161,10 +153,11 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
     const tx = s.x + Math.cos(s.angle) * s.len;
     const ty = s.y + Math.sin(s.angle) * s.len;
 
+    const color = darkMode ? "255,255,255" : "0,0,0";
     const grd = ctx.createLinearGradient(s.x, s.y, tx, ty);
-    grd.addColorStop(0, `rgba(0,245,212,0)`);
-    grd.addColorStop(0.5, `rgba(200,240,255,${s.alpha * 0.6})`);
-    grd.addColorStop(1, `rgba(255,255,255,${s.alpha})`);
+    grd.addColorStop(0, `rgba(${color},0)`);
+    grd.addColorStop(0.5, `rgba(${color},${s.alpha * 0.6})`);
+    grd.addColorStop(1, `rgba(${color},${s.alpha})`);
 
     ctx.beginPath();
     ctx.moveTo(tx, ty);
@@ -260,18 +253,9 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
   }, [size, quantity, animate, createStar]);
 
   /* ── Background styles ───────────────────── */
-  const darkBg = `
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,255,136,0.06) 0%, transparent 55%),
-    radial-gradient(ellipse 60% 50% at 85% 30%, rgba(255,0,255,0.05) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 10% 70%, rgba(0,212,255,0.04) 0%, transparent 50%),
-    #000000
-  `;
+  const darkBg = `#000000`;
 
-  const lightBg = `
-    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(0,255,136,0.1) 0%, transparent 50%),
-    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,0,255,0.08) 0%, transparent 45%),
-    linear-gradient(180deg, #f0f0f5 0%, #e2e2e9 40%, #f0f0f5 100%)
-  `;
+  const lightBg = `#f0f0f5`;
 
   return (
     <div
