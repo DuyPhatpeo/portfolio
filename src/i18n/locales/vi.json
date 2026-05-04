@@ -15,9 +15,9 @@
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
-      "Kỹ sư Phần mềm",
+      "Lập trình viên Front-End",
       "Lập trình viên Web",
-      "Lập trình viên Front-End"
+      "Thiết kế UI/UX"
     ],
     "system_initialized": "Hệ thống Đã Khởi Tạo",
     "cta": "XEM DỰ ÁN",
@@ -28,39 +28,25 @@
     }
   },
   "about": {
-    "title": "Hồ Sơ Danh Tính",
-    "profile": "HỒ SƠ: ",
-    "name": "Trần Duy Phát (Dino Péo)",
-    "bio": "Là một nhà phát triển phần mềm chuyên nghiệp, tập trung vào việc tạo ra các trải nghiệm web tối ưu và hiện đại.",
-    "neural_link": "Liên Kết Thần Kinh: Đã Thiết Lập // Loại: Quản Trị Viên",
-    "quote": "Không ngừng sáng tạo – Không ngại thử thách",
-    "sections": {
-      "personal": "THÔNG TIN CÁ NHÂN",
-      "achievements": "THÀNH TÍCH"
-    },
-    "personal": {
-      "dobLabel": "Ngày sinh",
-      "dobValue": "28/10/2003",
-      "fromLabel": "Đến từ",
-      "fromValue": "Nha Trang, Việt Nam",
-      "hobbiesLabel": "Sở thích",
-      "hobbiesValue": "Chơi game, Xem phim",
-      "favoritesLabel": "Đam mê",
-      "favoritesValue": "Cà phê & Lập trình"
-    },
-    "achievements": {
-      "projectsLabel": "Hơn 5+ Dự án",
-      "satisfactionLabel": "Độ hài lòng 100%",
-      "passionLabel": "Nhiệt huyết",
-      "clearance": "Cấp Độ Bảo Mật: Cấp {{level}} // Đã Xác Minh"
-    }
+    "subtitle": "DINO PÉO LÀ AI?",
+    "title": "Một Chút Về Tôi",
+    "paragraphs": [
+      "Tôi có niềm đam mê mãnh liệt với việc giải mã các vấn đề thách thức và tạo ra những trải nghiệm kỹ thuật số đặc biệt.",
+      "Trong quá trình phát triển sự nghiệp, tôi đã đóng góp vào nhiều dự án và làm việc cùng các nhà phát triển khác để tạo ra các ứng dụng thực tiễn, viết mã nguồn dễ bảo trì và dễ hiểu.",
+      "Thông qua quá trình học tập, tôi đã có được hiểu biết vững chắc về các khái niệm phát triển web và đã dành nhiều thời gian để áp dụng các khái niệm này vào các kịch bản và ứng dụng thực tế.",
+      "Khi không bận rộn với việc xây dựng, học hỏi hay khám phá những điều mới mẻ, bạn có thể thấy tôi đang thưởng thức những trận cầu đỉnh cao."
+    ]
   },
   "skills": {
-    "title": "Công Nghệ Sử Dụng"
+    "subtitle": "KỸ NĂNG CỦA TÔI",
+    "title": "Các Công Nghệ Tôi Sử Dụng",
+    "description": "Tôi đã tham gia nhiều khóa học trực tuyến, hiện đang đi sâu vào Flutter & React Native. Dưới đây là một số công nghệ tôi đã và đang làm việc gần đây:"
   },
   "projects": {
-    "title": "Kho Lưu Trữ Dự Án",
-    "subtitle": "DỰ ÁN ĐÃ LÀM",
+    "subtitle": "DỰ ÁN CỦA TÔI",
+    "title": "Những Thứ Tôi Đã Xây Dựng",
+    "description": "Tôi thích sự bận rộn và luôn ấp ủ những dự án mới. Hãy xem qua một số ứng dụng mà tôi đã từng xây dựng.",
+    "other_title": "Các Dự Án Đáng Chú Ý Khác",
     "badges": {
       "featured": "DỰ ÁN NỔI BẬT"
     },
@@ -108,8 +94,10 @@
     }
   },
   "contact": {
-    "title": "Hãy cùng hợp tác nào",
-    "subtitle": "Vui lòng liên hệ trực tiếp với tôi qua <1>phattranduy00@gmail.com</1> hoặc để lại thông tin của bạn tại đây.",
+    "title": "Hãy cùng hợp tác nhé",
+    "subtitle": "BẠN CÓ DỰ ÁN? HAY ĐANG TÌM KIẾM NHÂN SỰ?",
+    "description": "Đừng ngần ngại liên hệ nếu bạn đang tìm kiếm nhân sự, muốn kết nối hoặc xem liệu chúng ta có thể cùng nhau tạo ra điều gì đó tuyệt vời.",
+    "direct_email": "Hoặc kết nối trực tiếp qua email:",
     "transmission_log": "Biểu mẫu liên hệ",
     "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
     "labels": {
@@ -130,6 +118,7 @@
     },
     "alerts": {
       "success": "Gửi tin nhắn thành công!",
+      "copied": "Đã sao chép email vào bộ nhớ tạm!",
       "error": "Lỗi gửi tin nhắn. Mã lỗi: "
     }
   },

@@ -11,7 +11,6 @@
 /* 2. Tailwind CSS v4 */
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 @config "../../tailwind.config.cjs";
@@ -184,17 +183,17 @@
 
   25% {
     transform: translate(-1px, 1px);
-    text-shadow: 1px 0 #ff00ff;
+    text-shadow: 1px 0 var(--primary);
   }
 
   50% {
     transform: translate(1px, -1px);
-    text-shadow: -1px 0 #00ffff;
+    text-shadow: -1px 0 var(--secondary);
   }
 
   75% {
     transform: translate(-1px, -1px);
-    text-shadow: 1px 0 #ff00ff;
+    text-shadow: 1px 0 var(--primary);
   }
 
   100% {

@@ -24,114 +24,99 @@ export default function ContactForm() {
     <motion.form
       onSubmit={handleSubmit}
       initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="
-        w-full space-y-6
-        bg-card/60 backdrop-blur-md border border-primary/30
-        p-6 md:p-8 shadow-[0_0_20px_rgba(0,255,136,0.1)] relative overflow-hidden
-        cyber-chamfer
-      "
+      whileInView={{ opacity: 1, y: 0 }}
+      className="w-full space-y-8"
     >
-      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full pointer-events-none"></div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* NAME */}
+        <div className="space-y-2">
+          <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
+            {t("contact.labels.form.name")}
+          </label>
+          <input
+            type="text"
+            placeholder="John Doe"
+            value={form.name}
+            onChange={(e) => setField("name", e.target.value)}
+            required
+            className="
+              w-full px-5 py-4 bg-card/40 border border-primary/20
+              text-foreground font-mono focus:border-primary focus:bg-card/60
+              outline-none transition-all rounded-none
+            "
+          />
+        </div>
 
-      <div className="flex items-center gap-3 mb-2">
-        <div className="h-1 w-6 bg-primary"></div>
-        <h2 className="text-2xl md:text-3xl font-sans font-black text-foreground uppercase tracking-[0.2em]">
-          {t("contact.transmission_log")}
-        </h2>
+        {/* EMAIL */}
+        <div className="space-y-2">
+          <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
+            {t("contact.labels.form.email")}
+          </label>
+          <input
+            type="email"
+            placeholder="john@example.com"
+            value={form.email}
+            onChange={(e) => setField("email", e.target.value)}
+            required
+            className="
+              w-full px-5 py-4 bg-card/40 border border-primary/20
+              text-foreground font-mono focus:border-primary focus:bg-card/60
+              outline-none transition-all rounded-none
+            "
+          />
+        </div>
       </div>
 
-      <p className="text-xs md:text-sm font-mono text-primary/80 uppercase tracking-widest border-l-2 border-primary/50 pl-3 mb-6">
-        &gt; <Trans 
-          i18nKey="contact.subtitle"
-          components={{ 1: <a 
-            href="mailto:phattranduy00@gmail.com" 
-            className="text-foreground font-black underline decoration-primary/50 underline-offset-4 hover:text-primary hover:decoration-primary transition-all duration-300" 
-          /> }}
-        />
-      </p>
-
-      {/* NAME */}
-      <input
-        type="text"
-        placeholder={t("contact.labels.form.name")}
-        value={form.name}
-        onChange={(e) => setField("name", e.target.value)}
-        required
-        className="
-          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/50
-          border border-primary/30 bg-card/50
-          focus:border-primary focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)]
-          outline-none transition-all cyber-chamfer
-        "
-      />
-
-      {/* EMAIL */}
-      <input
-        type="email"
-        placeholder={t("contact.labels.form.email")}
-        value={form.email}
-        onChange={(e) => setField("email", e.target.value)}
-        required
-        className="
-          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/50
-          border border-primary/30 bg-card/50
-          focus:border-primary focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.3)]
-          outline-none transition-all cyber-chamfer
-        "
-      />
-
       {/* MESSAGE */}
-      <textarea
-        rows={4}
-        placeholder={t("contact.labels.form.message")}
-        value={form.message}
-        onChange={(e) => setField("message", e.target.value)}
-        required
-        className="
-          w-full px-4 py-3 font-mono text-foreground placeholder:text-primary/40
-          border border-primary/10 dark:border-primary/20 bg-muted/20 dark:bg-[#08080c]
-          focus:border-primary/60 focus:ring-0 focus:shadow-[0_0_15px_rgba(0,255,136,0.15)]
-          outline-none transition-all cyber-chamfer
-        "
-      />
+      <div className="space-y-2">
+        <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
+          {t("contact.labels.form.message")}
+        </label>
+        <textarea
+          rows={5}
+          placeholder="Your message here..."
+          value={form.message}
+          onChange={(e) => setField("message", e.target.value)}
+          required
+          className="
+            w-full px-5 py-4 bg-card/40 border border-primary/20
+            text-foreground font-mono focus:border-primary focus:bg-card/60
+            outline-none transition-all resize-none rounded-none
+          "
+        />
+      </div>
 
       {/* BUTTON */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="
-          group relative w-full flex items-center justify-center gap-3
-          bg-primary text-background font-bold uppercase tracking-widest
-          py-4 border border-primary
-          transition-all duration-300
-          hover:bg-primary/90 hover:cyber-glow
-          disabled:opacity-50 disabled:cursor-not-allowed
-          cyber-chamfer
-        "
-      >
-        {loading ? (
-          t("contact.labels.form.sending")
-        ) : (
-          <>
-            {t("contact.labels.form.send")}{" "}
-            <MdSend className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          </>
-        )}
-      </button>
+      <div className="relative group">
+        <button
+          type="submit"
+          disabled={loading}
+          className="
+            w-full py-5 bg-primary text-background font-black uppercase tracking-[0.3em] text-sm
+            hover:bg-primary/90 transition-all duration-300
+            disabled:opacity-50 disabled:cursor-not-allowed
+            rounded-none shadow-[0_10px_20px_rgba(var(--primary-rgb),0.15)]
+          "
+        >
+          {loading ? t("contact.labels.form.sending") : t("contact.labels.form.send")}
+        </button>
+        {/* Subtle accent line under button */}
+        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-primary/20"></div>
+      </div>
 
       {/* STATUS */}
-      {status === "success" && (
-        <p className="flex items-center gap-2 text-primary font-mono text-sm">
-          <MdCheckCircle /> {t("contact.alerts.success")}
-        </p>
-      )}
-
-      {status === "error" && (
-        <p className="flex items-center gap-2 text-destructive font-mono text-sm">
-          <MdError /> {t("contact.alerts.error")}
-        </p>
-      )}
+      <div className="flex justify-start pt-2">
+        {status === "success" && (
+          <p className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
+            <MdCheckCircle /> {t("contact.alerts.success")}
+          </p>
+        )}
+        {status === "error" && (
+          <p className="flex items-center gap-2 text-destructive font-mono text-xs uppercase tracking-widest">
+            <MdError /> {t("contact.alerts.error")}
+          </p>
+        )}
+      </div>
     </motion.form>
   );
 }

@@ -35,21 +35,16 @@ export default function FeaturedProject({
   const ImageBlock = (
     <div className="relative group">
       <div
-        className="relative w-full overflow-hidden border border-primary/40 bg-card/50 shadow-[0_0_15px_rgba(0,255,136,0.1)] transition-all duration-300 cyber-chamfer"
+        className="relative w-full overflow-hidden bg-card/50 shadow-[0_0_15px_var(--primary/10)] transition-all duration-300 cyber-chamfer group"
       >
         <img
           src={project.image}
           alt={t(`projects.items.${project.id}.title`)}
-          className="
-            w-full transition-transform duration-500
-            md:group-hover:scale-[1.05]
-          "
+          className="w-full h-full object-cover transition-transform duration-700"
         />
+        {/* Subtle dim overlay on hover */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500 pointer-events-none"></div>
       </div>
-
-      {/* HUD Accents */}
-      <div className="absolute top-[-2px] left-[-2px] w-6 h-6 border-t-2 border-l-2 border-primary transition-all duration-300 z-10 pointer-events-none"></div>
-      <div className="absolute bottom-[-2px] right-[-2px] w-6 h-6 border-b-2 border-r-2 border-primary transition-all duration-300 z-10 pointer-events-none"></div>
     </div>
   );
 
@@ -58,23 +53,17 @@ export default function FeaturedProject({
     <div
       className={`max-w-lg mx-auto ${project.reverse ? "text-center md:text-left" : "text-center md:text-right"}`}
     >
-      <p className="text-primary font-mono text-xs md:text-sm mb-2 tracking-[0.2em] uppercase flex items-center gap-2 justify-center md:justify-start">
-        {project.reverse ? null : (
-          <span className="hidden md:inline-block h-px w-8 bg-primary/50"></span>
-        )}
-        {t("projects.badges.featured")}
-        {project.reverse ? (
-          <span className="hidden md:inline-block h-px w-8 bg-primary/50"></span>
-        ) : null}
+      <p className="text-primary/40 font-mono text-5xl md:text-6xl font-black mb-1 leading-none select-none">
+        {String(index + 1).padStart(2, "0")}
       </p>
 
-      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-black mb-4 text-foreground uppercase tracking-tight drop-shadow-[0_0_8px_var(--primary)] hover:text-primary transition-colors">
+      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-black mb-4 text-foreground uppercase tracking-tight hover:text-primary transition-colors">
         {t(`projects.items.${project.id}.title`)}
       </h3>
 
       {/* DESCRIPTION - HUD Data Module */}
       <div
-        className="bg-card/80 backdrop-blur-md border border-primary/30 p-5 md:p-6 shadow-[0_0_15px_var(--primary)] mb-6 relative z-10 cyber-chamfer"
+        className="bg-card/80 backdrop-blur-md border border-primary/20 p-5 md:p-6 mb-6 relative z-10 cyber-chamfer"
       >
         <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/50"></div>
         <p className="leading-relaxed text-sm md:text-base text-foreground/80 font-mono">
@@ -84,7 +73,7 @@ export default function FeaturedProject({
 
       {/* TAGS */}
       <div
-        className={`flex flex-wrap gap-3 mb-6 font-mono text-xs uppercase tracking-widest text-primary justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
+        className={`flex flex-wrap gap-3 mb-6 font-mono text-xs uppercase tracking-widest text-foreground justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
       >
         {project.tags.map((tag, i) => (
           <span

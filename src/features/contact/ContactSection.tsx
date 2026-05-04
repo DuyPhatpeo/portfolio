@@ -49,7 +49,7 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="py-24 relative overflow-hidden bg-background border-t border-primary/10 transition-all duration-500"
+      className="py-24 relative overflow-hidden bg-[var(--background-alt)] transition-all duration-500"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -70,13 +70,43 @@ export default function ContactSection() {
 
       {/* Decorative side borders */}
 
-      <div className="max-w-7xl mx-auto px-6">
-        <motion.div variants={itemVariants}>
-          <SectionHeader title={t("contact.title")} />
+      <div className="max-w-7xl mx-auto px-6 mb-16">
+        <motion.div variants={itemVariants} className="text-left space-y-4">
+          <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block">
+            {t("contact.subtitle")}
+          </span>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
+            {t("contact.title")}
+          </h2>
+          <p className="max-w-2xl text-foreground/50 text-sm md:text-base font-mono mb-6">
+            {t("contact.description")}
+          </p>
+          
+          <div className="space-y-3">
+            <span className="text-[10px] font-mono text-primary/40 uppercase tracking-[0.2em]">
+              {t("contact.direct_email")}
+            </span>
+            <div className="flex items-center gap-4 group/email cursor-pointer" onClick={() => {
+              navigator.clipboard.writeText("phattranduy00@gmail.com");
+              import("react-toastify").then(({ toast }) => {
+                toast.success(t("contact.alerts.copied", "Email copied to clipboard!"));
+              });
+            }}>
+              <div className="w-8 h-[1px] bg-primary/30 group-hover/email:w-12 transition-all duration-500"></div>
+              <div className="flex flex-col">
+                <span className="text-primary font-mono text-sm md:text-lg tracking-wider hover:text-white transition-colors duration-300">
+                  phattranduy00@gmail.com
+                </span>
+                <span className="text-[9px] font-mono text-foreground/20 uppercase tracking-widest mt-1 opacity-0 group-hover/email:opacity-100 transition-opacity">
+                  (click to copy address)
+                </span>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <div className="flex justify-center">
-          <motion.div 
+          <motion.div
             variants={formVariants}
             className="w-full max-w-3xl"
           >

@@ -30,6 +30,7 @@ interface ParticlesProps {
 
 const STAR_COLORS_DARK = [
   "255,255,255", // white
+  "97,255,202",  // cyan
 ];
 
 const STAR_COLORS_LIGHT = [
@@ -253,9 +254,8 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
   }, [size, quantity, animate, createStar]);
 
   /* ── Background styles ───────────────────── */
-  const darkBg = `#000000`;
-
-  const lightBg = `#f0f0f5`;
+  const darkBg = `#0a0a0c`;
+  const lightBg = `#f8f8fa`;
 
   return (
     <div

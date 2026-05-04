@@ -15,9 +15,9 @@
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
-      "Software Engineer",
+      "Front-End Developer",
       "Web Developer",
-      "Front-End Developer"
+      "UI/UX Designer"
     ],
     "system_initialized": "System Initialized",
     "cta": "EXPLORE WORK",
@@ -28,39 +28,25 @@
     }
   },
   "about": {
-    "title": "Biometric Profile",
-    "profile": "PROFILE: ",
-    "name": "Trần Duy Phát (Dino Péo)",
-    "bio": "I'm a developer specializing in creating modern and optimized web experiences.",
-    "neural_link": "Neural-Link: Established // Type: Admin",
-    "quote": "Keep creating – Never fear challenges",
-    "sections": {
-      "personal": "PERSONAL",
-      "achievements": "ACHIEVEMENTS"
-    },
-    "personal": {
-      "dobLabel": "Date of Birth",
-      "dobValue": "28/10/2003",
-      "fromLabel": "From",
-      "fromValue": "Vietnam",
-      "hobbiesLabel": "Hobbies",
-      "hobbiesValue": "Gaming, Movies",
-      "favoritesLabel": "Favorites",
-      "favoritesValue": "Coffee & Coding"
-    },
-    "achievements": {
-      "projectsLabel": "5+ Projects",
-      "satisfactionLabel": "100% Satisfaction",
-      "passionLabel": "Passion",
-      "clearance": "Clearance: Level {{level}} // Verified"
-    }
+    "subtitle": "WHO IS DINO PÉO?",
+    "title": "A Bit About Me",
+    "paragraphs": [
+      "I'm passionate about deciphering challenging problems and creating exceptional digital experience.",
+      "As I've grown as a developer, I've contributed to projects and worked with other developers to create working applications and have written code that are maintainable and easy to understand.",
+      "Through my studies, I've gained a solid understanding of web development concepts, and have dedicated a lot of time to apply these concepts to real-world scenarios and applications.",
+      "When I'm not trying to build, learning, exploring and thinking about how to make things better, you can catch me watching football matches."
+    ]
   },
   "skills": {
-    "title": "Tech Stack"
+    "subtitle": "MY SKILLS",
+    "title": "Technologies I Work With",
+    "description": "I've have taken a number of online courses, currently getting my hands dirty with Flutter & React Native and here are a few technologies I've been working with recently:"
   },
   "projects": {
-    "title": "Data Archives",
-    "subtitle": "OTHER PROJECTS",
+    "subtitle": "MY PROJECTS",
+    "title": "Some Things I Built",
+    "description": "I like to stay busy and always have a project in the works. Take a look at some of the applications I've have built",
+    "other_title": "Other Noteworthy Projects",
     "badges": {
       "featured": "FEATURED PROJECT"
     },
@@ -108,8 +94,10 @@
     }
   },
   "contact": {
-    "title": "Let's work together",
-    "subtitle": "Please contact me directly at <1>phattranduy00@gmail.com</1> or drop your info here.",
+    "title": "Let's Work Together",
+    "subtitle": "HAVE A PROJECT? OR JUST LOOKING TO HIRE?",
+    "description": "Feel free to reach out if you're looking to hire, just want to connect or see if we can build something amazing together.",
+    "direct_email": "Or reach out directly via email:",
     "transmission_log": "Contact Form",
     "availability": "Ready for new opportunities. Leave a message below.",
     "labels": {
@@ -130,6 +118,7 @@
     },
     "alerts": {
       "success": "Transmission sent successfully!",
+      "copied": "Email copied to clipboard!",
       "error": "Transmission failed. Error code: "
     }
   },

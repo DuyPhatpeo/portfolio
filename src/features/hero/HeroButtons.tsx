@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { profileData } from "../../constants/profileData";
 
-interface HeroButtonsProps {}
+interface HeroButtonsProps { }
 
 const HeroButtons: React.FC<HeroButtonsProps> = () => {
   const { t } = useTranslation();
@@ -16,9 +16,8 @@ const HeroButtons: React.FC<HeroButtonsProps> = () => {
         href={profileData.resume}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative w-full py-3 sm:py-4 font-bold flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-95 text-background bg-primary cyber-chamfer cyber-glow uppercase tracking-[0.2em] overflow-hidden"
+        className="group relative w-full py-3 sm:py-4 font-bold flex items-center justify-center gap-2 sm:gap-3 bg-primary text-background uppercase tracking-[0.2em] overflow-hidden transition-all duration-300 hover:bg-primary/90 rounded-none"
       >
-        <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
         <IoIosDocument className="w-4 h-4 sm:w-5 sm:h-5" />
         <span className="text-sm sm:text-base">{t("hero.buttons.resume")}</span>
       </a>
