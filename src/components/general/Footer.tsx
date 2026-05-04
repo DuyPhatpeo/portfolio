@@ -11,7 +11,7 @@ const Footer = () => {
       {/* Decorative Top Border */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-linear-to-r from-transparent via-primary/30 to-transparent"></div>
 
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-12">
+      <div className="w-full max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
           
           {/* Left Side: Copyright Notice */}

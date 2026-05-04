@@ -1,4 +1,5 @@
-import { FiExternalLink, FiGithub } from "react-icons/fi";
+import { FiGithub, FiMonitor } from "react-icons/fi";
+import { HiArrowLongRight } from "react-icons/hi2";
 import type { Project } from "../../types/data";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -87,20 +88,19 @@ export default function FeaturedProject({
 
       {/* ICONS */}
       <div
-        className={`flex gap-4 justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
+        className={`flex gap-8 justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
       >
         {project.github && (
           <a
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              p-3 bg-card border border-primary/50
-              text-foreground hover:text-primary hover:border-primary hover:cyber-glow
-              transition-all duration-300 cyber-chamfer
-            "
+            className="group relative flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase py-2"
           >
-            <FiGithub size={20} />
+            <FiGithub className="text-primary" />
+            <span>{t("common.links.source")}</span>
+            <HiArrowLongRight className="text-lg group-hover:translate-x-2 transition-transform duration-300" />
+            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
           </a>
         )}
 
@@ -109,13 +109,12 @@ export default function FeaturedProject({
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            className="
-              p-3 bg-card border border-primary/50
-              text-foreground hover:text-primary hover:border-primary hover:cyber-glow
-              transition-all duration-300 flex items-center justify-center gap-2 cyber-chamfer
-            "
+            className="group relative flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-500 font-mono text-xs md:text-sm tracking-[0.2em] uppercase py-2"
           >
-            <FiExternalLink size={20} />
+            <FiMonitor className="text-primary" />
+            <span>{t("common.links.live")}</span>
+            <HiArrowLongRight className="text-lg group-hover:translate-x-2 transition-transform duration-300" />
+            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
           </a>
         )}
       </div>

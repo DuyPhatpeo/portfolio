@@ -49,7 +49,7 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="py-24 relative overflow-hidden bg-[var(--background-alt)] transition-all duration-500"
+      className="min-h-screen flex items-center py-24 relative overflow-hidden bg-[var(--background-alt)] transition-all duration-500"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -70,7 +70,7 @@ export default function ContactSection() {
 
       {/* Decorative side borders */}
 
-      <div className="max-w-7xl mx-auto px-6 mb-16">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
         <motion.div variants={itemVariants} className="text-left space-y-4">
           <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block">
             {t("contact.subtitle")}

@@ -11,7 +11,7 @@ export default function ProjectSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="projects" className="py-32 relative overflow-hidden bg-card/5">
+    <section id="projects" className="min-h-screen py-32 relative overflow-hidden bg-card/5">
       {/* Dots Pattern Background */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.05]" />
 
@@ -27,7 +27,7 @@ export default function ProjectSection() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* ================= FEATURED ================= */}
         <div className="mb-32">
           <div className="space-y-32">

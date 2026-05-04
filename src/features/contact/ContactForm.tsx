@@ -41,7 +41,7 @@ export default function ContactForm() {
             required
             className="
               w-full px-5 py-4 bg-card/40 border border-primary/20
-              text-foreground font-mono focus:border-primary focus:bg-card/60
+              text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
               outline-none transition-all rounded-none
             "
           />
@@ -60,7 +60,7 @@ export default function ContactForm() {
             required
             className="
               w-full px-5 py-4 bg-card/40 border border-primary/20
-              text-foreground font-mono focus:border-primary focus:bg-card/60
+              text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
               outline-none transition-all rounded-none
             "
           />
@@ -80,7 +80,7 @@ export default function ContactForm() {
           required
           className="
             w-full px-5 py-4 bg-card/40 border border-primary/20
-            text-foreground font-mono focus:border-primary focus:bg-card/60
+            text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
             outline-none transition-all resize-none rounded-none
           "
         />

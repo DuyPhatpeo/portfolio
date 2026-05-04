@@ -31,16 +31,16 @@
     "subtitle": "DINO PÉO LÀ AI?",
     "title": "Một Chút Về Tôi",
     "paragraphs": [
-      "Tôi có niềm đam mê mãnh liệt với việc giải mã các vấn đề thách thức và tạo ra những trải nghiệm kỹ thuật số đặc biệt.",
-      "Trong quá trình phát triển sự nghiệp, tôi đã đóng góp vào nhiều dự án và làm việc cùng các nhà phát triển khác để tạo ra các ứng dụng thực tiễn, viết mã nguồn dễ bảo trì và dễ hiểu.",
-      "Thông qua quá trình học tập, tôi đã có được hiểu biết vững chắc về các khái niệm phát triển web và đã dành nhiều thời gian để áp dụng các khái niệm này vào các kịch bản và ứng dụng thực tế.",
-      "Khi không bận rộn với việc xây dựng, học hỏi hay khám phá những điều mới mẻ, bạn có thể thấy tôi đang thưởng thức những trận cầu đỉnh cao."
+      "Chào bạn, tôi là Trần Duy Phát, một lập trình viên tận tâm đang sinh sống và làm việc tại Việt Nam. Tôi có niềm đam mãnh liệt với việc giải quyết các bài toán thách thức và tạo ra những trải nghiệm kỹ thuật số đặc biệt trên nền tảng web.",
+      "Trong quá trình phát triển sự nghiệp, tôi tập trung chuyên sâu vào việc làm chủ các công nghệ front-end hiện đại. Tôi đã tham gia vào nhiều dự án khác nhau, phối hợp cùng các cộng sự để xây dựng những ứng dụng mạnh mẽ, dễ bảo trì và luôn ưu tiên viết mã nguồn sạch, dễ hiểu.",
+      "Thông qua quá trình học tập và tự nghiên cứu, tôi đã có được nền tảng kiến thức vững chắc về phát triển web. Tôi luôn dành nhiều thời gian để áp dụng những kiến thức này vào thực tế, không ngừng nỗ lực để tạo ra những giao diện người dùng tinh tế và hiệu quả.",
+      "Khi không bận rộn với việc lập trình hay tìm kiếm những xu hướng thiết kế mới, bạn có thể thấy tôi đang theo dõi những trận cầu bóng đá kịch tính hoặc đang lên ý tưởng cho dự án sáng tạo tiếp theo của mình."
     ]
   },
   "skills": {
     "subtitle": "KỸ NĂNG CỦA TÔI",
     "title": "Các Công Nghệ Tôi Sử Dụng",
-    "description": "Tôi đã tham gia nhiều khóa học trực tuyến, hiện đang đi sâu vào Flutter & React Native. Dưới đây là một số công nghệ tôi đã và đang làm việc gần đây:"
+    "description": "Là một lập trình viên luôn đam mê học hỏi và cập nhật công nghệ mới, đây là những công cụ tôi thường xuyên sử dụng trong các dự án gần đây:"
   },
   "projects": {
     "subtitle": "DỰ ÁN CỦA TÔI",
@@ -52,44 +52,44 @@
     },
     "items": {
       "1": {
-        "title": "Dino Péo Portfolio",
-        "description": "Trang web Portfolio cá nhân với giao diện Dark Sci-Fi hiện đại, tối ưu hóa hiệu suất tuyệt đối. Dự án tích hợp các công nghệ tiên tiến như React 19 và Framer Motion, mang lại trải nghiệm người dùng mượt mà với phong cách Cyberpunk độc đáo."
+        "title": "Portfolio",
+        "description": "Trang web Portfolio cá nhân hiệu năng cao được xây dựng bằng React 19 và Framer Motion. Tập trung vào việc tạo ra trải nghiệm 'System UI' độc đáo với các hiệu ứng chuyển động tối ưu và hỗ trợ đa ngôn ngữ hoàn chỉnh."
       },
       "2": {
         "title": "E-commerce Website",
-        "description": "Ứng dụng thương mại điện tử hiện đại, tích hợp Firebase để quản lý dữ liệu thời gian thực và xác thực người dùng. Giao diện tối ưu và phản hồi tốt."
+        "description": "Nền tảng thương mại điện tử hiện đại tích hợp Firebase, hỗ trợ quản lý dữ liệu thời gian thực và xác thực người dùng. Giao diện tối ưu và tương thích tốt với di động."
       },
       "3": {
         "title": "Restaurant Website",
-        "description": "Website giới thiệu nhà hàng sang trọng, hỗ trợ xem menu và đặt món trực tuyến mượt mà. Được xây dựng với React và Vite."
+        "description": "Website giới thiệu nhà hàng sang trọng với trải nghiệm xem menu và đặt món trực tuyến mượt mà. Được xây dựng tối ưu hiệu suất với React và Vite."
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "Ứng dụng xem thời tiết thời gian thực với giao diện hiện đại, cung cấp thông tin khí tượng chi tiết và chính xác."
+        "description": "Ứng dụng dự báo thời tiết toàn diện, cung cấp thông tin khí tượng chi tiết và chính xác theo thời gian thực với giao diện HUD hiện đại."
       },
       "5": {
         "title": "Dino Movies",
-        "description": "Một ứng dụng web đơn giản giúp bạn khám phá thông tin phim, được xây dựng bằng React + Vite và triển khai trên Vercel."
+        "description": "Nền tảng khám phá điện ảnh vận hành bởi TMDB API. Triển khai các bộ lọc nâng cao và thông tin phim chi tiết với giao diện Dark UI tinh tế."
       },
       "6": {
         "title": "DinoStore",
-        "description": "Cửa hàng trực tuyến hiện đại với React + Vite, tập trung vào trải nghiệm mua sắm mượt mà và quản lý giỏ hàng hiệu quả."
+        "description": "Cửa hàng trực tuyến tốc độ cao xây dựng bằng Vite. Tập trung vào logic giỏ hàng hiệu quả và lưu trữ trạng thái cục bộ để tối ưu trải nghiệm mua sắm."
       },
       "7": {
         "title": "DinoBot Discord",
-        "description": "Bot Discord đa năng hỗ trợ quản lý server tự động và tăng tương tác thú vị cho cộng đồng người dùng. Viết bằng Node.js."
+        "description": "Bot Discord đa năng hỗ trợ quản lý máy chủ tự động và tăng tương tác cộng đồng. Viết bằng Node.js với cấu trúc lệnh linh hoạt."
       },
       "8": {
-        "title": "ShopFSTYLE – Website Bán Hàng Thời Trang",
-        "description": "Đồ án tốt nghiệp xây dựng hệ thống website thương mại điện tử chuyên nghiệp cho shop thời trang FSTYLE, tích hợp đầy đủ quản lý sản phẩm và đơn hàng."
+        "title": "ShopFSTYLE",
+        "description": "Hệ thống thương mại điện tử thời trang chuyên nghiệp, tích hợp đầy đủ tính năng quản lý sản phẩm, tồn kho và đơn hàng cho shop FSTYLE."
       },
       "9": {
         "title": "Pokédex Mobile",
-        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, được xây dựng bằng React Native và TypeScript."
+        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, xây dựng bằng React Native và TypeScript cho trải nghiệm nguyên bản."
       },
       "10": {
-        "title": "LinkSnap - Rút gọn Link & Bio Page",
-        "description": "Nền tảng quản lý liên kết chuyên nghiệp, kết hợp công cụ rút gọn URL mạnh mẽ và trình xây dựng trang Bio hiện đại. Tích hợp hệ thống thống kê thời gian thực với biểu đồ tương tác, tạo mã QR tùy chỉnh và đăng nhập Google OAuth."
+        "title": "LinkSnap - URL & Bio",
+        "description": "Nền tảng quản lý liên kết tiên tiến kết hợp rút gọn URL và trình xây dựng Bio Page. Tích hợp thống kê thời gian thực, Google OAuth và tạo mã QR tùy chỉnh."
       }
     }
   },
@@ -131,8 +131,8 @@
   },
   "common": {
     "links": {
-      "source": "Mã Nguồn (Source)",
-      "live": "Xem Trực Tiếp (Live)"
+      "source": "Source",
+      "live": "Live Demo"
     }
   }
 }

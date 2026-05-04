@@ -20,7 +20,7 @@ const PortfolioPage: React.FC = () => {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = -64; // header height ~ 4rem
+      const yOffset = 0; // Transparent navbar - no offset needed
       const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
