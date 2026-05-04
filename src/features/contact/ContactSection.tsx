@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import SectionHeader from "../../components/ui/SectionHeader";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
 
@@ -49,7 +48,7 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="min-h-screen flex items-center py-24 relative overflow-hidden bg-[var(--background-alt)] transition-all duration-500"
+      className="min-h-screen flex items-center py-24 relative overflow-hidden bg-(--background-alt) transition-all duration-500"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -92,7 +91,7 @@ export default function ContactSection() {
                 toast.success(t("contact.alerts.copied", "Email copied to clipboard!"));
               });
             }}>
-              <div className="w-8 h-[1px] bg-primary/30 group-hover/email:w-12 transition-all duration-500"></div>
+              <div className="w-8 h-px bg-primary/30 group-hover/email:w-12 transition-all duration-500"></div>
               <div className="flex flex-col">
                 <span className="text-primary font-mono text-sm md:text-lg tracking-wider hover:text-white transition-colors duration-300">
                   phattranduy00@gmail.com

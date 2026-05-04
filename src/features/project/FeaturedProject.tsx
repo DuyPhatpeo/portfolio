@@ -36,7 +36,7 @@ export default function FeaturedProject({
   const ImageBlock = (
     <div className="relative group">
       <div
-        className="relative w-full overflow-hidden bg-card/50 shadow-[0_0_15px_var(--primary/10)] transition-all duration-300 cyber-chamfer group"
+        className="relative w-full overflow-hidden bg-card/50 shadow-[0_0_15px_rgba(var(--primary-rgb),0.1)] transition-all duration-300 cyber-chamfer group"
       >
         <img
           src={project.image}
@@ -100,7 +100,7 @@ export default function FeaturedProject({
             <FiGithub className="text-primary" />
             <span>{t("common.links.source")}</span>
             <HiArrowLongRight className="text-lg group-hover:translate-x-2 transition-transform duration-300" />
-            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
+            <div className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
           </a>
         )}
 
@@ -114,7 +114,7 @@ export default function FeaturedProject({
             <FiMonitor className="text-primary" />
             <span>{t("common.links.live")}</span>
             <HiArrowLongRight className="text-lg group-hover:translate-x-2 transition-transform duration-300" />
-            <div className="absolute -bottom-1 left-0 w-0 h-[1px] bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
+            <div className="absolute -bottom-1 left-0 w-0 h-px bg-primary group-hover:w-full transition-all duration-500 shadow-[0_0_8px_var(--primary)]"></div>
           </a>
         )}
       </div>

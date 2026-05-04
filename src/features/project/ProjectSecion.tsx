@@ -1,5 +1,4 @@
 // src/components/project/ProjectSection.tsx
-import SectionHeader from "../../components/ui/SectionHeader";
 import { projects } from "../../constants/projectData";
 import FeaturedProject from "./FeaturedProject";
 import OtherProject from "./OtherProject";

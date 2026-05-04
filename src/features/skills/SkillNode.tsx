@@ -14,21 +14,12 @@ interface SkillNodeProps {
   className?: string;
 }
 
-const ICON_CONFIG: Record<string, { size?: string; disableGlow?: boolean; glowColor?: string }> = {
-  Firebase: { size: "h-10 scale-110" },
-  "Framer Motion": { size: "h-8" },
-};
 
-const DEFAULT_ICON_SIZE = "h-7";
-const SPRING_CONFIG = { type: "spring" as const, stiffness: 600, damping: 35 };
 
 const SkillNode: React.FC<SkillNodeProps> = ({
   skill,
   className = "",
 }) => {
-  const iconConfig = ICON_CONFIG[skill.name];
-  const glowColor = iconConfig?.glowColor ?? "var(--primary)";
-
   return (
     <motion.div
       className={`
@@ -59,7 +50,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
       </span>
 
       {/* Persistent subtle glow */}
-      <div className="absolute inset-0 rounded-full shadow-[inset_0_0_10px_var(--primary/5)] pointer-events-none"></div>
+      <div className="absolute inset-0 rounded-full shadow-[inset_0_0_10px_rgba(var(--primary-rgb),0.05)] pointer-events-none"></div>
     </motion.div>
   );
 };

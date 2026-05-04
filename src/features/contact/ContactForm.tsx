@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { MdSend, MdCheckCircle, MdError } from "react-icons/md";
+import { MdCheckCircle, MdError } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { useContactStore } from "../../stores/contactStore";
-import { useTranslation, Trans } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function ContactForm() {
   const { form, loading, status, setField, sendEmail } = useContactStore();

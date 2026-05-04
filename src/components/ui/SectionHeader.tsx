@@ -23,7 +23,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         <motion.h2
           className="
             text-3xl md:text-4xl lg:text-5xl font-sans font-black uppercase tracking-widest text-foreground
-            drop-shadow-[0_0_10px_var(--primary/50)]
+            drop-shadow-[0_0_10px_rgba(var(--primary-rgb),0.5)]
           "
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}

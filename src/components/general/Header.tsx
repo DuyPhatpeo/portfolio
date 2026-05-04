@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   } as const;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-100 transition-all duration-300">
       <div className="w-full px-6 md:px-12 h-20 md:h-24 flex justify-between items-center bg-transparent">
         {/* Logo */}
         <button
@@ -86,7 +86,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             scrollToSection("home");
             setIsOpen(false);
           }}
-          className="relative z-[110] group"
+          className="relative z-110 group"
         >
           <span className="text-xl md:text-2xl font-sans font-black uppercase tracking-[0.3em] text-foreground drop-shadow-[0_0_10px_rgba(var(--primary),0.3)] group-hover:text-primary transition-colors duration-300">
             {profileData.logo}
@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </button>
 
         {/* Right side controls */}
-        <div className="flex items-center space-x-6 relative z-[110]">
+        <div className="flex items-center space-x-6 relative z-110">
           {/* Language Selector */}
           <div className="hidden sm:flex items-center space-x-4 mr-4">
             <button
@@ -134,10 +134,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </span>
             <div className="relative w-8 h-8 flex flex-col justify-center items-center">
               <span
-                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "rotate-45 translate-y-[1px]" : "-translate-y-1"}`}
+                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "rotate-45 translate-y-px" : "-translate-y-1"}`}
               />
               <span
-                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-[1px]" : "translate-y-1"}`}
+                className={`w-6 h-0.5 bg-foreground transition-all duration-300 ${isOpen ? "-rotate-45 -translate-y-px" : "translate-y-1"}`}
               />
             </div>
           </button>
@@ -154,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[104]"
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-104"
             />
 
             <motion.div
@@ -162,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 left-0 right-0 h-[58vh] bg-background/70 backdrop-blur-3xl z-[105] flex flex-col items-center justify-center overflow-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
+              className="fixed top-0 left-0 right-0 h-[58vh] bg-background/70 backdrop-blur-3xl z-105 flex flex-col items-center justify-center overflow-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
             >
               {/* Background Decorative Text */}
               <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
