@@ -11,10 +11,6 @@ export interface Skill {
 
 interface SkillNodeProps {
   skill: Skill;
-  hoveredSkill: string | null;
-  pressedSkill: string | null;
-  setHoveredSkill: (name: string | null) => void;
-  setPressedSkill: (name: string | null) => void;
   className?: string;
 }
 
@@ -28,14 +24,8 @@ const SPRING_CONFIG = { type: "spring" as const, stiffness: 600, damping: 35 };
 
 const SkillNode: React.FC<SkillNodeProps> = ({
   skill,
-  hoveredSkill,
-  pressedSkill,
-  setHoveredSkill,
-  setPressedSkill,
   className = "",
 }) => {
-  const isHovered = hoveredSkill === skill.name;
-  const isPressed = pressedSkill === skill.name;
   const iconConfig = ICON_CONFIG[skill.name];
   const glowColor = iconConfig?.glowColor ?? "var(--primary)";
 
@@ -47,68 +37,38 @@ const SkillNode: React.FC<SkillNodeProps> = ({
     <motion.button
       type="button"
       onClick={handleClick}
-      onMouseEnter={() => setHoveredSkill(skill.name)}
-      onMouseLeave={() => { setHoveredSkill(null); setPressedSkill(null); }}
-      onMouseDown={() => setPressedSkill(skill.name)}
-      onMouseUp={() => setPressedSkill(null)}
-      className={`relative flex flex-col items-center justify-center select-none focus:outline-none group ${skill.url ? "cursor-pointer" : "cursor-default opacity-80"} ${className}`}
+      className={`
+        relative flex items-center gap-4 px-6 py-3 select-none focus:outline-none group/skill
+        bg-black/40 border border-primary/20 rounded-full backdrop-blur-sm
+        hover:border-primary/60 hover:bg-primary/5 transition-all duration-300
+        ${skill.url ? "cursor-pointer" : "cursor-default opacity-90"} ${className}
+      `}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
     >
-      <motion.div
-        className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 flex items-center justify-center transition-all duration-300"
-        animate={{ scale: isHovered ? 1.05 : 1, y: isPressed ? 2 : 0 }}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      >
-        {/* Outer Glowing Ring */}
-        <div className={`absolute inset-0 rounded-full border-2 transition-all duration-300 ${isHovered ? "border-primary cyber-glow shadow-[0_0_20px_var(--primary)]" : "border-primary/30"}`}>
-          
-          {/* Animated Scanning Ring on Hover */}
-          {isHovered && (
-            <div className="absolute inset-[-4px] rounded-full border-t-2 border-r-2 border-primary animate-[spin_3s_linear_infinite] opacity-70"></div>
-          )}
-          
-          {/* Inner Dashed Ring */}
-          <div className={`absolute inset-2 rounded-full border transition-all duration-300 ${isHovered ? "border-primary border-dashed animate-[spin_10s_linear_infinite_reverse]" : "border-primary/20 border-dotted"}`}></div>
-          
+      {/* Icon Area */}
+      <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+        {skill.logo ? (
+          <img
+            src={skill.logo}
+            alt={skill.name}
+            className={`w-full h-full object-contain transition-all duration-300 opacity-80 group-hover/skill:opacity-100 group-hover/skill:brightness-125 group-hover/skill:drop-shadow-[0_0_8px_var(--primary)] ${skill.invertDark ? "dark:invert" : ""}`}
+          />
+        ) : (
+          skill.icon?.({
+            className: "w-full h-full transition-all duration-300 text-primary/60 group-hover/skill:text-primary group-hover/skill:brightness-150 group-hover/skill:drop-shadow-[0_0_8px_var(--primary)]",
+            style: { color: undefined } // Let CSS handle it or use a CSS variable
+          })
+        )}
+      </div>
 
-          
-          {/* Icon Container */}
-          <div className="relative w-full h-full flex items-center justify-center bg-background/50 rounded-full backdrop-blur-sm z-10">
-            <motion.div
-              animate={{ scale: isPressed ? 0.9 : 1 }}
-              transition={SPRING_CONFIG}
-              className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 flex items-center justify-center"
-            >
-              {skill.logo ? (
-                <img
-                  src={skill.logo}
-                  alt={skill.name}
-                  className={`relative z-10 w-full h-full object-contain transition-all duration-300 ${isHovered ? "filter brightness-125 drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]" : ""} ${skill.invertDark ? "dark:invert" : ""}`}
-                />
-              ) : (
-                skill.icon?.({
-                  className: `relative w-auto transition-all duration-300 ${iconConfig?.size ?? DEFAULT_ICON_SIZE} ${isHovered ? "filter brightness-150" : "text-primary/70"}`,
-                  style: { color: isHovered ? glowColor : undefined }
-                })
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </motion.div>
+      {/* Text Area */}
+      <span className="font-mono text-sm sm:text-base font-bold uppercase tracking-[0.1em] transition-colors duration-300 text-foreground/80 group-hover/skill:text-primary">
+        {skill.name}
+      </span>
 
-      {/* Cyber Glitch Text on Hover */}
-      <motion.div
-        initial={{ opacity: 0, y: -5 }}
-        animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 12 : -5 }}
-        transition={{ duration: 0.2 }}
-        className="absolute -bottom-8 w-max z-20 pointer-events-none"
-      >
-        <div
-          className="px-3 py-1 font-mono text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-primary cyber-glitch"
-          data-text={`[${skill.name}]`}
-        >
-          [{skill.name}]
-        </div>
-      </motion.div>
+      {/* Subtle background glow on hover - pure CSS */}
+      <div className="absolute inset-0 rounded-full border border-primary/40 shadow-[0_0_15px_rgba(var(--primary-rgb),0.1)] pointer-events-none opacity-0 group-hover/skill:opacity-100 transition-opacity duration-300"></div>
     </motion.button>
   );
 };

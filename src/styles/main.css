@@ -248,13 +248,27 @@
 }
 
 @keyframes marquee-x {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.3333%); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 @keyframes marquee-x-reverse {
-  0% { transform: translateX(-33.3333%); }
-  100% { transform: translateX(0); }
+  0% { transform: translate3d(-50%, 0, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+.animate-marquee {
+  animation: marquee-x var(--duration, 40s) linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee-x-reverse var(--duration, 40s) linear infinite;
+}
+
+/* Pause on hover only when hovering a specific skill node - using :has for precision */
+.group\/marquee:has(.group\/skill:hover) .animate-marquee,
+.group\/marquee:has(.group\/skill:hover) .animate-marquee-reverse {
+  animation-play-state: paused !important;
 }
 
 /* 3. Custom partials - moved to App.tsx */
