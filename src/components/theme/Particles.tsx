@@ -253,10 +253,6 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
     };
   }, [size, quantity, animate, createStar]);
 
-  /* ── Background styles ───────────────────── */
-  const darkBg = `#0a0a0c`;
-  const lightBg = `#f8f8fa`;
-
   return (
     <div
       style={{
@@ -266,8 +262,7 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
         height: "100vh",
         zIndex: -1,
         pointerEvents: "none",
-        background: darkMode ? darkBg : lightBg,
-        transition: "background 0.6s ease",
+        background: "transparent",
       }}
     >
       {/* Stars canvas – always visible, color adapts to mode */}

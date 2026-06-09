@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useThemeStore } from "./stores/themeStore";
 import Particles from "./components/theme/Particles";
+import DarkModeAnimation from "./components/theme/DarkModeAnimation";
 
 import AppRoutes from "./routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
@@ -23,7 +24,8 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-transparent">
-
+      {/* Dark Mode Canvas Animation */}
+      <DarkModeAnimation isDark={darkMode} />
 
       {/* Background */}
       <Particles quantity={50} />

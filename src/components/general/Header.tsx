@@ -90,6 +90,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     localStorage.setItem("language", targetLang);
   };
 
+  const handleToggleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const clickEvent = new CustomEvent("darkModeToggle", {
+      detail: { x, y },
+    });
+    window.dispatchEvent(clickEvent);
+
+    toggleDarkMode();
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-100 transition-all duration-300">
       <div className="w-full px-6 md:px-12 h-20 md:h-24 flex justify-between items-center bg-transparent">
@@ -126,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               </span>
             </button>
             <button
-              onClick={toggleDarkMode}
+              onClick={handleToggleDarkMode}
               className="text-foreground hover:text-primary transition-colors"
             >
               {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
@@ -227,7 +240,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   </button>
 
                   <button
-                    onClick={toggleDarkMode}
+                    onClick={handleToggleDarkMode}
                     className="flex items-center gap-3 group/theme"
                   >
                     <div className="text-foreground group-hover/theme:text-primary transition-colors">

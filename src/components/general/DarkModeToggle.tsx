@@ -5,9 +5,22 @@ import { useThemeStore } from "../../stores/themeStore";
 const DarkModeToggle: React.FC = () => {
   const { darkMode, toggleDarkMode } = useThemeStore();
 
+  const handleToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    const clickEvent = new CustomEvent("darkModeToggle", {
+      detail: { x, y },
+    });
+    window.dispatchEvent(clickEvent);
+
+    toggleDarkMode();
+  };
+
   return (
     <button
-      onClick={toggleDarkMode}
+      onClick={handleToggle}
       className={`
         fixed bottom-20 right-5 z-50 p-3 rounded-full shadow-lg
         flex items-center justify-center
