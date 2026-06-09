@@ -8,6 +8,7 @@ import HeroSection from "../features/hero/HeroSetion";
 import AboutSection from "../features/about/AboutSection";
 import SkillsSection from "../features/skills/SkillsSection";
 import ProjectsSection from "../features/project/ProjectSecion";
+import ExperienceSection from "../features/experience/ExperienceSection";
 import ContactSection from "../features/contact/ContactSection";
 
 const PortfolioPage: React.FC = () => {
@@ -38,6 +39,8 @@ const PortfolioPage: React.FC = () => {
         <AboutSection />
 
         <SkillsSection />
+
+        <ExperienceSection />
 
         <ProjectsSection />
 

@@ -3,6 +3,7 @@
     "home": "TRANG CHỦ",
     "about": "GIỚI THIỆU",
     "skills": "KỸ NĂNG",
+    "experience": "KINH NGHIỆM",
     "projects": "DỰ ÁN",
     "contact": "LIÊN HỆ",
     "theme": {
@@ -41,6 +42,28 @@
     "subtitle": "KỸ NĂNG CỦA TÔI",
     "title": "Các Công Nghệ Tôi Sử Dụng",
     "description": "Là một lập trình viên luôn đam mê học hỏi và cập nhật công nghệ mới, đây là những công cụ tôi thường xuyên sử dụng trong các dự án gần đây:"
+  },
+  "experience": {
+    "subtitle": "KINH NGHIỆM CỦA TÔI",
+    "title": "Hành Trình Sự Nghiệp",
+    "description": "Quá trình học hỏi, tích lũy kinh nghiệm thực tế và đóng góp giá trị tại các đơn vị tôi từng làm việc.",
+    "present": "Hiện tại",
+    "items": [
+      {
+        "role": "Học viên Frontend Developer",
+        "company": "Công ty Cổ phần SweetSoft",
+        "period": "10/2025 – 12/2025",
+        "type": "Thực tập sinh",
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+      },
+      {
+        "role": "Thực tập sinh",
+        "company": "Công ty Cổ phần SweetSoft",
+        "period": "12/2024 – 01/2025",
+        "type": "Thực tập sinh",
+        "tech": "HTML, CSS, JavaScript, C# .NET"
+      }
+    ]
   },
   "projects": {
     "subtitle": "DỰ ÁN CỦA TÔI",

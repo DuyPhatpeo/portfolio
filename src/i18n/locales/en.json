@@ -3,6 +3,7 @@
     "home": "HOME",
     "about": "ABOUT",
     "skills": "SKILLS",
+    "experience": "EXPERIENCE",
     "projects": "PROJECTS",
     "contact": "CONTACT",
     "theme": {
@@ -41,6 +42,28 @@
     "subtitle": "MY SKILLS",
     "title": "Technologies I Work With",
     "description": "As a developer passionate about continuous learning and new technologies, here are the tools I've been working with recently:"
+  },
+  "experience": {
+    "subtitle": "MY EXPERIENCE",
+    "title": "Career Journey",
+    "description": "My process of learning, gaining practical experience, and contributing value at organizations I have worked with.",
+    "present": "Present",
+    "items": [
+      {
+        "role": "Frontend Developer Intern",
+        "company": "SweetSoft JSC",
+        "period": "10/2025 – 12/2025",
+        "type": "Internship",
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+      },
+      {
+        "role": "Intern",
+        "company": "SweetSoft JSC",
+        "period": "12/2024 – 01/2025",
+        "type": "Internship",
+        "tech": "HTML, CSS, JavaScript, C# .NET"
+      }
+    ]
   },
   "projects": {
     "subtitle": "MY PROJECTS",
