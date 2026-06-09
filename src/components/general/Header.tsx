@@ -77,6 +77,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     },
   } as const;
 
+  // Target language = ngôn ngữ sẽ chuyển sang khi click
+  const targetLang = i18n.language === "vi" ? "en" : "vi";
+  const targetFlag = targetLang === "vi"
+    ? "https://flagcdn.com/vn.svg"
+    : "https://flagcdn.com/us.svg";
+  const targetCode = targetLang === "vi" ? "VI" : "EN";
+
+  const handleToggleLang = () => {
+    i18n.changeLanguage(targetLang);
+    localStorage.setItem("language", targetLang);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-100 transition-all duration-300">
       <div className="w-full px-6 md:px-12 h-20 md:h-24 flex justify-between items-center bg-transparent">
@@ -98,22 +110,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           {/* Language Selector */}
           <div className="hidden sm:flex items-center space-x-4 mr-4">
             <button
-              onClick={() => {
-                const newLang = i18n.language === "vi" ? "en" : "vi";
-                i18n.changeLanguage(newLang);
-                localStorage.setItem("language", newLang);
-              }}
+              onClick={handleToggleLang}
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 transition-all duration-300 group/lang"
             >
               <span className="w-5 h-3.5 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
                 <img
-                  src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"}
-                  alt={i18n.language === "vi" ? "Vietnamese" : "English"}
+                  src={targetFlag}
+                  alt={targetCode}
                   className="w-full h-full object-cover"
                 />
               </span>
               <span className="text-xs font-mono font-bold tracking-widest text-foreground group-hover/lang:text-primary transition-colors">
-                {i18n.language.toUpperCase()}
+                {targetCode}
               </span>
             </button>
             <button
@@ -202,22 +210,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   className="flex sm:hidden items-center space-x-8 mt-12 border-t border-primary/10 pt-8 w-full"
                 >
                   <button
-                    onClick={() => {
-                      const newLang = i18n.language === "vi" ? "en" : "vi";
-                      i18n.changeLanguage(newLang);
-                      localStorage.setItem("language", newLang);
-                    }}
+                    onClick={handleToggleLang}
                     className="flex items-center gap-3 group/lang"
                   >
                     <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
                       <img
-                        src={i18n.language === "vi" ? "https://flagcdn.com/vn.svg" : "https://flagcdn.com/us.svg"}
-                        alt={i18n.language === "vi" ? "Vietnamese" : "English"}
+                        src={targetFlag}
+                        alt={targetCode}
                         className="w-full h-full object-cover"
                       />
                     </span>
                     <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
-                      {i18n.language.toUpperCase()}
+                      {targetCode}
                     </span>
                   </button>
 
