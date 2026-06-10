@@ -16,12 +16,10 @@ const DarkModeAnimation: React.FC<Props> = ({ isDark }) => {
       const x = detail?.x ?? window.innerWidth  / 2;
       const y = detail?.y ?? window.innerHeight / 2;
 
-      // isDarkRef.current = current state BEFORE store updates
-      // → circle should reveal the NEXT theme
       const nextIsDark  = !isDarkRef.current;
+      const currentColor = isDarkRef.current ? DARK_BG : LIGHT_BG;
       const targetColor = nextIsDark ? DARK_BG : LIGHT_BG;
 
-      // Max radius from click point to farthest corner
       const maxR = Math.ceil(
         Math.sqrt(
           Math.pow(Math.max(x, window.innerWidth  - x), 2) +
@@ -29,30 +27,40 @@ const DarkModeAnimation: React.FC<Props> = ({ isDark }) => {
         ),
       );
 
-      // Create overlay div that clips to a growing circle
-      const overlay = document.createElement("div");
-      overlay.style.cssText = `
+      // 1. Static overlay with OLD color to hide the instantly changed body background
+      const oldOverlay = document.createElement("div");
+      oldOverlay.style.cssText = `
+        position: fixed;
+        inset: 0;
+        background: ${currentColor};
+        z-index: -2;
+        pointer-events: none;
+      `;
+      document.body.appendChild(oldOverlay);
+
+      // 2. Expanding overlay with NEW color
+      const newOverlay = document.createElement("div");
+      newOverlay.style.cssText = `
         position: fixed;
         inset: 0;
         background: ${targetColor};
-        z-index: 0;
+        z-index: -2;
         pointer-events: none;
         clip-path: circle(0px at ${x}px ${y}px);
         transition: clip-path 1200ms cubic-bezier(0.22, 1, 0.36, 1);
         will-change: clip-path;
       `;
-      document.body.appendChild(overlay);
+      document.body.appendChild(newOverlay);
 
-      // Trigger expansion on next frame so transition fires
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          overlay.style.clipPath = `circle(${maxR}px at ${x}px ${y}px)`;
+          newOverlay.style.clipPath = `circle(${maxR}px at ${x}px ${y}px)`;
         });
       });
 
-      // Remove overlay after animation — theme CSS is already switched
-      overlay.addEventListener("transitionend", () => {
-        overlay.remove();
+      newOverlay.addEventListener("transitionend", () => {
+        oldOverlay.remove();
+        newOverlay.remove();
       });
     };
 
