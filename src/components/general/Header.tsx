@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const navItems = useMemo(
     () => [
+      { name: t("nav.home"), href: "home" },
       { name: t("nav.about"), href: "about" },
       { name: t("nav.skills"), href: "skills" },
       { name: t("nav.experience"), href: "experience" },
@@ -54,7 +55,27 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
+  // Lock body scroll and handle Escape key when menu is open
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
 
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen]);
 
 
   const containerVariants = {
@@ -120,9 +141,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </button>
 
         {/* Right side controls */}
-        <div className="flex items-center space-x-6 relative z-110">
-          {/* Language Selector */}
-          <div className="hidden sm:flex items-center space-x-4 mr-4">
+        <div className="flex items-center gap-3 sm:gap-6 relative z-110">
+          {/* Language and Theme Selector */}
+          <div className="hidden sm:flex items-center gap-4 sm:mr-2">
             <button
               onClick={handleToggleLang}
               className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 transition-all duration-300 group/lang"
@@ -140,9 +161,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </button>
             <button
               onClick={handleToggleDarkMode}
-              className="text-foreground hover:text-primary transition-colors"
+              className="p-2 text-foreground hover:text-primary transition-colors rounded-full flex items-center justify-center bg-transparent"
             >
-              {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
+              {darkMode ? <RiSunLine className="w-5 h-5" /> : <RiMoonLine className="w-5 h-5" />}
             </button>
           </div>
 
@@ -184,7 +205,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 left-0 right-0 h-[58vh] bg-background/70 backdrop-blur-3xl z-105 flex flex-col items-center justify-center overflow-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
+              className="fixed top-0 left-0 right-0 h-auto min-h-[58vh] max-h-[100dvh] pb-12 md:pb-24 bg-background/70 backdrop-blur-3xl z-105 flex flex-col overflow-y-auto overflow-x-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
             >
               {/* Background Decorative Text */}
               <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
@@ -193,9 +214,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
               <motion.nav
                 variants={containerVariants}
-                className="relative z-10 w-full px-6 md:px-32 flex flex-col items-start justify-center pt-8 md:pt-12"
+                className="relative z-10 w-full px-6 md:px-32 flex flex-col items-end md:items-start my-auto pt-28 md:pt-24"
               >
-                <div className="flex flex-wrap gap-x-8 md:gap-x-16 gap-y-1 md:gap-y-4 w-full items-start justify-start max-w-[95vw]">
+                <div className="flex flex-col md:flex-row md:flex-wrap gap-x-8 md:gap-x-16 gap-y-2 md:gap-y-4 w-full md:w-2/3 items-end md:items-start justify-end md:justify-start max-w-[95vw]">
                   {navItems.map((item) => {
                     const isActive = activeSection === item.href;
                     return (
@@ -206,13 +227,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                           scrollToSection(item.href);
                           setIsOpen(false);
                         }}
-                        className="group relative py-1 md:py-2 flex flex-col items-start"
+                        className="group relative py-1.5 md:py-2 flex flex-col items-end md:items-start"
                       >
-                        <span className={`relative z-10 text-2xl xs:text-3xl sm:text-5xl md:text-6xl lg:text-[6rem] xl:text-[8rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pr-6 md:pr-8 ${isActive ? "text-primary" : "text-foreground group-hover:text-primary text-left opacity-30"}`}>
-                          {item.name}
+                        <span className={`relative z-10 text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[5rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pl-6 md:pl-0 md:pr-8 text-right md:text-left ${isActive ? "text-primary" : "text-foreground group-hover:text-primary opacity-30"}`}>
+                          <span className="relative inline-block">
+                            {item.name}
+                            {/* Underline effect */}
+                            <div className={`absolute -bottom-1 md:-bottom-2 right-0 md:left-0 md:right-auto h-[2px] md:h-[4px] bg-primary transition-all duration-500 ease-out ${isActive ? "w-full" : "w-0"}`} />
+                          </span>
                         </span>
-                        {/* Underline effect */}
-                        <div className="absolute bottom-0 left-0 h-[2px] md:h-[4px] w-0 group-hover:w-full bg-primary transition-all duration-500 ease-out shadow-[0_0_10px_var(--primary)]" />
                       </motion.button>
                     );
                   })}
@@ -221,12 +244,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 {/* Mobile Controls (Language & Theme) - Only visible when menu is open on small screens */}
                 <motion.div
                   variants={linkVariants}
-                  className="flex sm:hidden items-center space-x-8 mt-12 border-t border-primary/10 pt-8 w-full"
+                  className="flex sm:hidden flex-col items-end gap-6 mt-12 border-t border-primary/10 pt-8 w-full"
                 >
                   <button
                     onClick={handleToggleLang}
                     className="flex items-center gap-3 group/lang"
                   >
+                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
+                      {targetCode}
+                    </span>
                     <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
                       <img
                         src={targetFlag}
@@ -234,21 +260,18 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         className="w-full h-full object-cover"
                       />
                     </span>
-                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
-                      {targetCode}
-                    </span>
                   </button>
 
                   <button
                     onClick={handleToggleDarkMode}
                     className="flex items-center gap-3 group/theme"
                   >
+                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
+                      {darkMode ? t("nav.theme.light", "LIGHT") : t("nav.theme.dark", "DARK")}
+                    </span>
                     <div className="text-foreground group-hover/theme:text-primary transition-colors">
                       {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
                     </div>
-                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
-                      {darkMode ? t("nav.theme.light") : t("nav.theme.dark")}
-                    </span>
                   </button>
                 </motion.div>
               </motion.nav>

@@ -7,8 +7,8 @@
     "projects": "PROJECTS",
     "contact": "CONTACT",
     "theme": {
-      "light": "LIGHT MODE",
-      "dark": "DARK MODE"
+      "light": "LIGHT",
+      "dark": "DARK"
     }
   },
   "hero": {
