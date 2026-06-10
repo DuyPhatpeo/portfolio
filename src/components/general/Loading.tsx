@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import Particles from "../theme/Particles";
 import { 
   FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaPython, FaDocker, FaGitAlt, FaFigma 
 } from "react-icons/fa";
@@ -47,10 +48,16 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
   }, []);
 
   return (
-    <div className={`fixed inset-0 z-[9999] bg-background text-foreground flex flex-col items-center justify-center transition-opacity duration-700 ${isMounted ? 'opacity-100' : 'opacity-0'} overflow-hidden`}>
+    <div className={`fixed inset-0 z-[9999] text-foreground flex flex-col items-center justify-center transition-opacity duration-700 ${isMounted ? 'opacity-100' : 'opacity-0'} overflow-hidden`}>
       
-      {/* Background Marquees */}
-      <div className="absolute inset-0 flex flex-col justify-center opacity-10 dark:opacity-20 pointer-events-none -rotate-12 scale-150">
+      {/* Base Solid Background */}
+      <div className="absolute inset-0 bg-background" style={{ zIndex: -2 }} />
+
+      {/* Particles Background (it has inline zIndex: -1, so it sits above the base background) */}
+      <Particles quantity={100} />
+      
+      {/* Background Marquees (Logo background, sits above Particles) */}
+      <div className="absolute inset-0 flex flex-col justify-center opacity-10 dark:opacity-20 pointer-events-none -rotate-12 scale-150" style={{ zIndex: 0 }}>
         
         {/* Row 1: Moves Left */}
         <div className="flex w-[300vw] mb-12">
