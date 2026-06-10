@@ -54,14 +54,27 @@
         "company": "Công ty Cổ phần SweetSoft",
         "period": "10/2025 – 12/2025",
         "type": "Thực tập sinh",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API",
+        "tasks": [
+          "Học tập và áp dụng ReactJS thông qua các dự án mẫu.",
+          "Chuyển đổi template có sẵn thành các giao diện web hoàn chỉnh.",
+          "Xây dựng và tái sử dụng các component giao diện.",
+          "Tích hợp API và thực hành quản lý state cơ bản."
+        ]
       },
       {
         "role": "Thực tập sinh",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "12/2024 – 01/2025",
         "type": "Thực tập sinh",
-        "tech": "HTML, CSS, JavaScript, C# .NET"
+        "tech": "HTML, CSS, JavaScript, C# .NET",
+        "tasks": [
+          "Tham gia dự án phát triển ứng dụng hỗ trợ yêu cầu kỹ thuật trong nhóm 6 thành viên.",
+          "Đảm nhiệm vị trí Frontend Developer, phát triển giao diện người dùng.",
+          "Xây dựng các trang giới thiệu người dùng và trang quản lý yêu cầu hỗ trợ kỹ thuật.",
+          "Phối hợp với các thành viên trong nhóm để triển khai và kiểm thử các chức năng của hệ thống.",
+          "Hỗ trợ tích hợp giao diện với hệ thống backend."
+        ]
       }
     ]
   },

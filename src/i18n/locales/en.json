@@ -50,18 +50,31 @@
     "present": "Present",
     "items": [
       {
-        "role": "Frontend Developer Intern",
+        "role": "Frontend Developer Apprentice",
         "company": "SweetSoft JSC",
         "period": "10/2025 – 12/2025",
-        "type": "Internship",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+        "type": "Apprentice",
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API",
+        "tasks": [
+          "Learned and applied ReactJS through sample projects.",
+          "Converted existing templates into fully functional web interfaces.",
+          "Built and reused UI components.",
+          "Integrated APIs and practiced basic state management."
+        ]
       },
       {
-        "role": "Intern",
+        "role": "Frontend Developer Intern",
         "company": "SweetSoft JSC",
         "period": "12/2024 – 01/2025",
         "type": "Internship",
-        "tech": "HTML, CSS, JavaScript, C# .NET"
+        "tech": "HTML, CSS, JavaScript, C# .NET",
+        "tasks": [
+          "Participated in developing a technical support request application within a 6-member team.",
+          "Served as a Frontend Developer, developing the user interface.",
+          "Built user introduction pages and technical support request management pages.",
+          "Collaborated with team members to deploy and test system functionalities.",
+          "Assisted in integrating the UI with the backend system."
+        ]
       }
     ]
   },

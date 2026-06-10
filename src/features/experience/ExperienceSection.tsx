@@ -8,6 +8,7 @@ interface ExperienceItem {
   period: string;
   type: string;
   tech: string;
+  tasks?: string[];
 }
 
 const ExperienceSection: React.FC = () => {
@@ -73,6 +74,17 @@ const ExperienceSection: React.FC = () => {
                   >
                     {item.role}
                   </h3>
+
+                  {item.tasks && item.tasks.length > 0 && (
+                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl transition-opacity duration-500 opacity-60 group-hover:opacity-100">
+                      {item.tasks.map((task, idx) => (
+                        <li key={idx} className="flex gap-3">
+                          <span className="text-primary mt-1 text-xs">▹</span>
+                          <span>{task}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 {/* Right: Company & Tech Stack */}
