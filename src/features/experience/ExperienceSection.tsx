@@ -49,6 +49,7 @@ const ExperienceSection: React.FC = () => {
         {/* Minimalist List */}
         <div className="border-t border-foreground/10">
           {items.map((item, i) => {
+            const techList = item.tech ? item.tech.split(",").map((s) => s.trim()) : [];
             return (
               <motion.div
                 key={i}
@@ -88,11 +89,11 @@ const ExperienceSection: React.FC = () => {
                 {/* Right: Company & Tech Stack */}
                 <div className="lg:w-1/3 flex flex-col lg:items-end text-left lg:text-right gap-4">
                   <div className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight transition-transform duration-500 md:group-hover:-translate-x-2">
-                    {t(`experience.items.${item.id}.company`)}
+                    {item.company}
                   </div>
                   
                   <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm transition-opacity duration-500 opacity-100 md:opacity-70 md:group-hover:opacity-100">
-                    {t(`experience.items.${item.id}.techList`)}
+                    {techList.join(" / ")}
                   </div>
                 </div>
               </motion.div>
