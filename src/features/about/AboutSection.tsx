@@ -26,7 +26,7 @@ const AboutSection: React.FC = () => {
               <img
                 src={avatar}
                 alt="About Me"
-                className="w-full h-full object-contain transition-transform duration-700"
+                className="w-full h-full object-contain scale-125 transition-transform duration-700"
               />
 
               {/* Subtle HUD scanlines on image */}
