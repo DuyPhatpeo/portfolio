@@ -56,10 +56,10 @@
         "type": "Apprentice",
         "tech": "ReactJS, JavaScript, HTML, CSS, REST API",
         "tasks": [
-          "Learned and applied ReactJS through sample projects.",
-          "Converted existing templates into fully functional web interfaces.",
-          "Built and reused UI components.",
-          "Integrated APIs and practiced basic state management."
+          "Researched and applied ReactJS to develop frontend features for the project.",
+          "Converted existing templates into fully functional, responsive web interfaces.",
+          "Built and optimized the UI components system, increasing code reusability.",
+          "Integrated RESTful APIs and managed state to synchronize data between Frontend and Backend."
         ]
       },
       {
@@ -69,11 +69,11 @@
         "type": "Internship",
         "tech": "HTML, CSS, JavaScript, C# .NET",
         "tasks": [
-          "Participated in developing a technical support request application within a 6-member team.",
-          "Served as a Frontend Developer, developing the user interface.",
-          "Built user introduction pages and technical support request management pages.",
-          "Collaborated with team members to deploy and test system functionalities.",
-          "Assisted in integrating the UI with the backend system."
+          "Participated in developing the \"Technical Support Request Application\" within a 6-member team.",
+          "Served as Frontend Developer, designing and developing the user interface.",
+          "Built application introduction pages and technical support request management pages.",
+          "Integrated the Frontend interface with the Backend system, ensuring stable data connection.",
+          "Collaborated with the team to deploy and test the entire system's functionalities."
         ]
       }
     ]

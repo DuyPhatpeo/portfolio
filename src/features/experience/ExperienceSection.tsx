@@ -70,7 +70,7 @@ const ExperienceSection: React.FC = () => {
                   
                   {/* Text Stroke Effect for Artistic Typography */}
                   <h3 
-                    className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter transition-all duration-500 text-transparent [-webkit-text-stroke:1px_rgba(150,150,150,0.5)] dark:[-webkit-text-stroke:1px_rgba(255,255,255,0.4)] group-hover:text-foreground group-hover:[-webkit-text-stroke:0px_transparent]"
+                    className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter transition-all duration-500 text-foreground md:text-transparent md:[-webkit-text-stroke:1px_rgba(150,150,150,0.5)] md:dark:[-webkit-text-stroke:1px_rgba(255,255,255,0.4)] group-hover:text-foreground group-hover:[-webkit-text-stroke:0px_transparent]"
                   >
                     {item.role}
                   </h3>
