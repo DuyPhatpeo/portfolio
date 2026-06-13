@@ -21,12 +21,12 @@ const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm cyber-chamfer"
+              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm rounded-[3rem]"
             >
               <img
                 src={avatar}
                 alt="About Me"
-                className="w-full h-full object-contain scale-125 transition-transform duration-700"
+                className="w-full h-full object-cover object-top transition-transform duration-700"
               />
 
               {/* Subtle HUD scanlines on image */}
@@ -34,8 +34,8 @@ const AboutSection: React.FC = () => {
             </motion.div>
 
             {/* Decorative corner accents */}
-            <div className="absolute -top-3 -left-3 w-12 h-12 border-t-2 border-l-2 border-primary/40 pointer-events-none"></div>
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-primary/40 pointer-events-none"></div>
+            <div className="absolute -top-3 -left-3 w-16 h-16 border-t-4 border-l-4 border-primary/40 pointer-events-none rounded-tl-[3rem]"></div>
+            <div className="absolute -bottom-3 -right-3 w-16 h-16 border-b-4 border-r-4 border-primary/40 pointer-events-none rounded-br-[3rem]"></div>
           </div>
 
           {/* Right: Content */}
