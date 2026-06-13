@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import Particles from "../theme/Particles";
 import { 
   FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaPython, FaDocker, FaGitAlt, FaFigma 
@@ -40,7 +39,6 @@ const MARQUEE_1 = [...ROW_1, ...ROW_1, ...ROW_1];
 const MARQUEE_2 = [...ROW_2, ...ROW_2, ...ROW_2];
 
 const Loading: React.FC<LoadingProps> = ({ progress }) => {
-  const { t } = useTranslation();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
