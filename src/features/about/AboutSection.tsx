@@ -21,15 +21,13 @@ const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm cyber-chamfer flex items-center justify-center p-6 sm:p-10 lg:p-12"
+              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm cyber-chamfer"
             >
-              <div className="w-full h-full relative overflow-hidden border border-primary/20">
-                <img
-                  src={avatar}
-                  alt="About Me"
-                  className="w-full h-full object-cover transition-transform duration-700"
-                />
-              </div>
+              <img
+                src={avatar}
+                alt="About Me"
+                className="w-full h-full object-contain transition-transform duration-700"
+              />
 
               {/* Subtle HUD scanlines on image */}
               <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(90deg,transparent,transparent_2px,rgba(var(--primary-rgb),0.03)_2px,rgba(var(--primary-rgb),0.03)_4px)] opacity-30"></div>
