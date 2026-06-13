@@ -52,7 +52,7 @@ export default function ContactCard({
             className="
               inline-flex p-4
               bg-card border border-primary/50 shadow-[0_0_10px_var(--primary)]
-              group-hover:scale-110 group-hover:border-primary group-hover:cyber-glow
+              md:group-hover:scale-110 group-hover:border-primary group-hover:cyber-glow
               transition-all duration-300 cyber-chamfer
             "
           >

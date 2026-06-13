@@ -52,7 +52,7 @@ export default function OtherProjectCard({
           alt={t(`projects.items.${project.id}.title`)}
           className="w-full h-full object-cover transition-transform duration-700"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-0 group-hover:opacity-70 transition-all duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-0 lg:group-hover:opacity-70 transition-all duration-500"></div>
         {/* Subtle dim overlay on hover */}
         <div className="absolute inset-0 bg-black/0 lg:group-hover:bg-black/20 transition-colors duration-500"></div>
       </div>
@@ -86,7 +86,7 @@ export default function OtherProjectCard({
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground/40 hover:text-primary transition-colors group/link"
+              className="flex items-center gap-2 text-primary md:text-foreground/40 md:hover:text-primary transition-colors group/link"
             >
               <FiGithub size={14} />
               <span className="text-[9px] font-mono uppercase tracking-[0.2em]">Source</span>
@@ -97,7 +97,7 @@ export default function OtherProjectCard({
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-foreground/40 hover:text-primary transition-colors group/link"
+              className="flex items-center gap-2 text-primary md:text-foreground/40 md:hover:text-primary transition-colors group/link"
             >
               <FiExternalLink size={14} />
               <span className="text-[9px] font-mono uppercase tracking-[0.2em]">Live Demo</span>

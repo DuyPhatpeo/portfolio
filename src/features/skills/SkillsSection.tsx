@@ -6,8 +6,8 @@ const SkillsSection: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="py-24 relative overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
+    <section id="skills" className="py-16 md:py-24 relative overflow-hidden bg-transparent">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-10 md:mb-16">
         <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
           {t("skills.subtitle")}
         </span>

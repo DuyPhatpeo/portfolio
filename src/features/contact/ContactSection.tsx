@@ -48,7 +48,7 @@ export default function ContactSection() {
   return (
     <motion.section
       id="contact"
-      className="min-h-screen flex items-center py-24 relative overflow-hidden bg-(--background-alt) transition-all duration-500"
+      className="min-h-screen flex items-center py-16 md:py-24 relative overflow-hidden bg-(--background-alt) transition-all duration-500"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -74,7 +74,7 @@ export default function ContactSection() {
           <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block">
             {t("contact.subtitle")}
           </span>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
             {t("contact.title")}
           </h2>
           <p className="max-w-2xl text-foreground/50 text-sm md:text-base font-mono mb-6">
@@ -96,7 +96,7 @@ export default function ContactSection() {
                 <span className="text-primary font-mono text-sm md:text-lg tracking-wider hover:text-white transition-colors duration-300">
                   phattranduy00@gmail.com
                 </span>
-                <span className="text-[9px] font-mono text-foreground/20 uppercase tracking-widest mt-1 opacity-0 group-hover/email:opacity-100 transition-opacity">
+                <span className="text-[9px] font-mono text-foreground/20 uppercase tracking-widest mt-1 opacity-60 md:opacity-0 md:group-hover/email:opacity-100 transition-opacity">
                   (click to copy address)
                 </span>
               </div>

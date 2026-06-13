@@ -20,7 +20,7 @@ const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen py-24 relative bg-[var(--background-alt)] overflow-hidden"
+      className="min-h-screen py-16 md:py-24 relative bg-[var(--background-alt)] overflow-hidden"
     >
       {/* Background Decor */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />
@@ -49,8 +49,6 @@ const ExperienceSection: React.FC = () => {
         {/* Minimalist List */}
         <div className="border-t border-foreground/10">
           {items.map((item, i) => {
-            const techList = item.tech ? item.tech.split(",").map((s) => s.trim()) : [];
-
             return (
               <motion.div
                 key={i}
@@ -76,7 +74,7 @@ const ExperienceSection: React.FC = () => {
                   </h3>
 
                   {item.tasks && item.tasks.length > 0 && (
-                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl transition-opacity duration-500 opacity-60 group-hover:opacity-100">
+                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl transition-opacity duration-500 opacity-100 md:opacity-60 md:group-hover:opacity-100">
                       {item.tasks.map((task, idx) => (
                         <li key={idx} className="flex gap-3">
                           <span className="text-primary mt-1 text-xs">▹</span>
@@ -89,12 +87,12 @@ const ExperienceSection: React.FC = () => {
 
                 {/* Right: Company & Tech Stack */}
                 <div className="lg:w-1/3 flex flex-col lg:items-end text-left lg:text-right gap-4">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight transition-transform duration-500 group-hover:-translate-x-2">
-                    {item.company}
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight transition-transform duration-500 md:group-hover:-translate-x-2">
+                    {t(`experience.items.${item.id}.company`)}
                   </div>
                   
-                  <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm transition-opacity duration-500 opacity-70 group-hover:opacity-100">
-                    {techList.join(" / ")}
+                  <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm transition-opacity duration-500 opacity-100 md:opacity-70 md:group-hover:opacity-100">
+                    {t(`experience.items.${item.id}.techList`)}
                   </div>
                 </div>
               </motion.div>
