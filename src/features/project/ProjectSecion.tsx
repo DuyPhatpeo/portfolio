@@ -10,11 +10,11 @@ export default function ProjectSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="projects" className="min-h-screen py-32 relative overflow-hidden bg-card/5">
+    <section id="projects" className="min-h-screen py-16 md:py-32 relative overflow-hidden bg-card/5">
       {/* Dots Pattern Background */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.05]" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-24">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12 md:mb-24">
         <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
           {t("projects.subtitle")}
         </span>
@@ -28,8 +28,8 @@ export default function ProjectSection() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* ================= FEATURED ================= */}
-        <div className="mb-32">
-          <div className="space-y-32">
+        <div className="mb-20 md:mb-32">
+          <div className="space-y-20 md:space-y-32">
             {featuredProjects.map((project, index) => (
               <FeaturedProject
                 key={project.id}
@@ -41,7 +41,7 @@ export default function ProjectSection() {
         </div>
 
         {/* ================= OTHER ================= */}
-        <div className="mt-48 text-center">
+        <div className="mt-24 md:mt-48 text-center">
           <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-12">
             {t("projects.other_title")}
           </h3>

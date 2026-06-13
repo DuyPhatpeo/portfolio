@@ -49,22 +49,27 @@ export default function FeaturedProject({
     </div>
   );
 
-  /* ---------- CONTENT ---------- */
-  const ContentBlock = () => (
-    <div
-      className={`max-w-lg mx-auto ${project.reverse ? "text-center md:text-left" : "text-center md:text-right"}`}
-    >
+  /* ---------- CONTENT TITLE ---------- */
+  const ContentTitle = () => (
+    <div className={`mb-4 max-w-lg mx-auto ${project.reverse ? "text-left" : "text-left md:text-right"}`}>
       <p className="text-primary/40 font-mono text-5xl md:text-6xl font-black mb-1 leading-none select-none">
         {String(index + 1).padStart(2, "0")}
       </p>
 
-      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-black mb-4 text-foreground uppercase tracking-tight hover:text-primary transition-colors">
+      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-sans font-black text-foreground uppercase tracking-tight hover:text-primary transition-colors">
         {t(`projects.items.${project.id}.title`)}
       </h3>
+    </div>
+  );
 
+  /* ---------- CONTENT DETAILS ---------- */
+  const ContentDetails = () => (
+    <div
+      className={`max-w-lg mx-auto ${project.reverse ? "text-left" : "text-left md:text-right"}`}
+    >
       {/* DESCRIPTION - HUD Data Module */}
       <div
-        className="bg-card/80 backdrop-blur-md border border-primary/20 p-5 md:p-6 mb-6 relative z-10 cyber-chamfer"
+        className="bg-card/80 backdrop-blur-md border border-primary/20 p-5 md:p-6 mb-6 relative z-10 cyber-chamfer mt-4 md:mt-0"
       >
         <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-primary/50"></div>
         <p className="leading-relaxed text-sm md:text-base text-foreground/80 font-mono">
@@ -74,7 +79,7 @@ export default function FeaturedProject({
 
       {/* TAGS */}
       <div
-        className={`flex flex-wrap gap-3 mb-6 font-mono text-xs uppercase tracking-widest text-foreground justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
+        className={`flex flex-wrap gap-3 mb-6 font-mono text-xs uppercase tracking-widest text-foreground justify-start ${project.reverse ? "" : "md:justify-end"}`}
       >
         {project.tags.map((tag, i) => (
           <span
@@ -88,7 +93,7 @@ export default function FeaturedProject({
 
       {/* ICONS */}
       <div
-        className={`flex gap-8 justify-center ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
+        className={`flex gap-8 justify-end ${project.reverse ? "md:justify-start" : "md:justify-end"}`}
       >
         {project.github && (
           <a
@@ -131,8 +136,13 @@ export default function FeaturedProject({
       `}
       style={{ transitionDelay: `${index * 150}ms` }}
     >
-      <div className="grid md:grid-cols-12 gap-12 md:gap-0 items-center">
-        {/* IMAGE – trên mobile */}
+      {/* Mobile Title (hiện trên cùng trên thiết bị nhỏ) */}
+      <div className="md:hidden">
+        <ContentTitle />
+      </div>
+
+      <div className="grid md:grid-cols-12 gap-6 md:gap-0 items-center">
+        {/* IMAGE */}
         <div
           className={`
             md:col-span-7
@@ -142,14 +152,18 @@ export default function FeaturedProject({
           {ImageBlock}
         </div>
 
-        {/* CONTENT – dưới mobile */}
+        {/* CONTENT */}
         <div
           className={`
             md:col-span-5 relative z-10 mt-4 md:mt-0
             ${project.reverse ? "md:-mr-6 md:order-1" : "md:-ml-6 md:order-2"}
           `}
         >
-          <ContentBlock />
+          {/* Desktop Title (ẩn trên mobile, chỉ hiện trên màn lớn) */}
+          <div className="hidden md:block">
+            <ContentTitle />
+          </div>
+          <ContentDetails />
         </div>
       </div>
     </div>
