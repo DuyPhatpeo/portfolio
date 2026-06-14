@@ -10,6 +10,7 @@
 
 /* 2. Tailwind CSS v4 */
 @import "tailwindcss";
+@source "../";
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
