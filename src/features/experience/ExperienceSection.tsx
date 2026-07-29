@@ -67,15 +67,14 @@ const ExperienceSection: React.FC = () => {
                     <span>{item.type}</span>
                   </div>
                   
-                  {/* Text Stroke Effect for Artistic Typography */}
                   <h3 
-                    className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter transition-all duration-500 text-foreground md:text-transparent md:[-webkit-text-stroke:1px_rgba(150,150,150,0.5)] md:dark:[-webkit-text-stroke:1px_rgba(255,255,255,0.4)] group-hover:text-foreground group-hover:[-webkit-text-stroke:0px_transparent]"
+                    className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground"
                   >
                     {item.role}
                   </h3>
 
                   {item.tasks && item.tasks.length > 0 && (
-                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl transition-opacity duration-500 opacity-100 md:opacity-60 md:group-hover:opacity-100">
+                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl opacity-100">
                       {item.tasks.map((task, idx) => (
                         <li key={idx} className="flex gap-3">
                           <span className="text-primary mt-1 text-xs">▹</span>
@@ -92,7 +91,7 @@ const ExperienceSection: React.FC = () => {
                     {item.company}
                   </div>
                   
-                  <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm transition-opacity duration-500 opacity-100 md:opacity-70 md:group-hover:opacity-100">
+                  <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm opacity-100">
                     {techList.join(" / ")}
                   </div>
                 </div>

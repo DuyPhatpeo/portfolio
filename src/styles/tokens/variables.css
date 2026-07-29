@@ -3,42 +3,42 @@
 @layer theme {
   :root {
     --radius: 0px;
-    --background: #0a0a0c;
+    --background: #171717;
     --foreground: #f2f2f7;
 
-    --card: #121217;
+    --card: #202020;
     --card-foreground: #f2f2f7;
 
-    --popover: #121217;
+    --popover: #202020;
     --popover-foreground: #f2f2f7;
 
-    --primary: #61ffca;
-    --primary-rgb: 97, 255, 202;
-    --primary-foreground: #0a0a0c;
+    --primary: #21f1a8;
+    --primary-rgb: 33, 241, 168;
+    --primary-foreground: #171717;
 
-    --secondary: #61ffca;
-    --secondary-rgb: 97, 255, 202;
-    --secondary-foreground: #0a0a0c;
+    --secondary: #21f1a8;
+    --secondary-rgb: 33, 241, 168;
+    --secondary-foreground: #171717;
 
-    --muted: #1c1c24;
+    --muted: #333333;
     --muted-foreground: #8a8a9a;
 
-    --accent: #61ffca;
-    --accent-foreground: #0a0a0c;
+    --accent: #21f1a8;
+    --accent-foreground: #171717;
 
     --destructive: #ff3366;
     --destructive-foreground: #f2f2f7;
 
-    --border: #23232f;
-    --input: #121217;
-    --ring: #61ffca;
+    --border: #333333;
+    --input: #202020;
+    --ring: #21f1a8;
 
     /* Cyberpunk Specific */
-    --accent-secondary: #61ffca;
-    --accent-tertiary: #61ffca;
+    --accent-secondary: #21f1a8;
+    --accent-tertiary: #21f1a8;
 
-    --neon-glow: 0 0 5px var(--primary), 0 0 15px rgba(97, 255, 202, 0.4);
-    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 15px rgba(97, 255, 202, 0.4);
+    --neon-glow: 0 0 5px var(--primary), 0 0 15px rgba(33, 241, 168, 0.4);
+    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 15px rgba(33, 241, 168, 0.4);
     --foreground-glow: 0 0 20px rgba(242, 242, 247, 0.15);
 
     --selection-bg: var(--primary);
@@ -46,7 +46,7 @@
 
     --scanline-opacity: 0.12;
 
-    --background-alt: #1c1c1c;
+    --background-alt: #202020;
 
     /* Font overrides */
     --font-heading: "Chakra Petch", "Orbitron", sans-serif;
@@ -56,38 +56,38 @@
 
   :root:not(.dark) {
     /* Clean 2-color Light theme */
-    --background: #f8f8fa;
-    --foreground: #0a0a0f;
+    --background: #f0ede4;
+    --foreground: #004741;
     --card: #ffffff;
-    --card-foreground: #0a0a0f;
+    --card-foreground: #004741;
     --popover: #ffffff;
-    --popover-foreground: #0a0a0f;
-    --primary: #00b894;
-    --primary-rgb: 0, 184, 148;
-    --primary-foreground: #ffffff;
-    --secondary: #00b894;
-    --secondary-rgb: 0, 184, 148;
-    --secondary-foreground: #ffffff;
-    --muted: #f1f1f5;
-    --muted-foreground: #64748b;
-    --accent: #00b894;
-    --accent-foreground: #ffffff;
-    --border: #e2e2e8;
-    --input: #f8f8fa;
-    --ring: #00b894;
+    --popover-foreground: #004741;
+    --primary: #004741;
+    --primary-rgb: 0, 71, 65;
+    --primary-foreground: #f0ede4;
+    --secondary: #004741;
+    --secondary-rgb: 0, 71, 65;
+    --secondary-foreground: #f0ede4;
+    --muted: #e4e1d8;
+    --muted-foreground: #5a7571;
+    --accent: #004741;
+    --accent-foreground: #f0ede4;
+    --border: #dcd9d0;
+    --input: #ffffff;
+    --ring: #004741;
 
-    --neon-glow: 0 0 5px rgba(0, 184, 148, 0.2), 0 0 10px rgba(0, 184, 148, 0.1);
-    --neon-glow-secondary: 0 0 5px rgba(0, 184, 148, 0.2), 0 0 10px rgba(0, 184, 148, 0.1);
-    --foreground-glow: 0 0 20px rgba(10, 10, 15, 0.05);
+    --neon-glow: 0 0 5px rgba(0, 71, 65, 0.2), 0 0 10px rgba(0, 71, 65, 0.1);
+    --neon-glow-secondary: 0 0 5px rgba(0, 71, 65, 0.2), 0 0 10px rgba(0, 71, 65, 0.1);
+    --foreground-glow: 0 0 20px rgba(0, 71, 65, 0.05);
 
     --scanline-opacity: 0.04;
-    --background-alt: #f0f0f5;
+    --background-alt: #e6e3da;
   }
 
   .dark {
-    --background: #0a0a0c;
-    --card: #121217;
-    --border: #23232f;
+    --background: #171717;
+    --card: #202020;
+    --border: #333333;
   }
 
   /* ===== SCROLLBAR ===== */
