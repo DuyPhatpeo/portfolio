@@ -59,8 +59,8 @@ export default function ContactSection() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,var(--primary)_0%,transparent_80%)] opacity-[0.06]" />
 
         {/* Cloudy Volumetric Layers */}
-        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-primary/20 blur-[160px] rounded-full opacity-50 animate-pulse" />
-        <div className="absolute top-[10%] right-[10%] w-[50%] h-[50%] bg-primary/10 blur-[100px] rounded-full opacity-30" />
+        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-primary/20 blur-[160px] rounded-2xl opacity-50 animate-pulse" />
+        <div className="absolute top-[10%] right-[10%] w-[50%] h-[50%] bg-primary/10 blur-[100px] rounded-2xl opacity-30" />
 
         {/* Technological Texture */}
         <div className="absolute inset-0 cyber-lines opacity-[0.04]" />
@@ -77,7 +77,7 @@ export default function ContactSection() {
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
             {t("contact.title")}
           </h2>
-          <p className="max-w-2xl text-foreground/50 text-sm md:text-base font-mono mb-6">
+          <p className="max-w-2xl text-foreground/50 text-sm md:text-base font-mono mb-6 text-justify">
             {t("contact.description")}
           </p>
           

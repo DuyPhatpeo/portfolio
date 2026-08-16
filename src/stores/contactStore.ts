@@ -1,45 +1,23 @@
 import { create } from "zustand";
 import emailjs from "@emailjs/browser";
 
-type FormState = {
+export type FormState = {
   name: string;
   email: string;
   message: string;
 };
 
 type ContactStore = {
-  form: FormState;
   loading: boolean;
   status: "" | "success" | "error";
-
-  setField: (field: keyof FormState, value: string) => void;
-  resetForm: () => void;
-  sendEmail: () => Promise<void>;
+  sendEmail: (data: FormState) => Promise<void>;
 };
 
-export const useContactStore = create<ContactStore>((set, get) => ({
-  form: {
-    name: "",
-    email: "",
-    message: "",
-  },
-
+export const useContactStore = create<ContactStore>((set) => ({
   loading: false,
   status: "",
 
-  setField: (field, value) =>
-    set((state) => ({
-      form: { ...state.form, [field]: value },
-    })),
-
-  resetForm: () =>
-    set({
-      form: { name: "", email: "", message: "" },
-    }),
-
-  sendEmail: async () => {
-    const { form } = get();
-
+  sendEmail: async (data) => {
     try {
       set({ loading: true, status: "" });
 
@@ -47,15 +25,14 @@ export const useContactStore = create<ContactStore>((set, get) => ({
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name: form.name,
-          email: form.email,
-          message: form.message,
+          name: data.name,
+          email: data.email,
+          message: data.message,
           time: new Date().toLocaleString("vi-VN"),
         }
       );
 
       set({ status: "success" });
-      get().resetForm();
     } catch (err) {
       console.error("EmailJS error:", err);
       set({ status: "error" });

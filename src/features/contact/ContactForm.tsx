@@ -1,28 +1,68 @@
-import React, { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { MdCheckCircle, MdError } from "react-icons/md";
 import emailjs from "@emailjs/browser";
 import { useContactStore } from "../../stores/contactStore";
 import { useTranslation } from "react-i18next";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import type { FormState } from "../../stores/contactStore";
 
 export default function ContactForm() {
-  const { form, loading, status, setField, sendEmail } = useContactStore();
+  const { loading, status, sendEmail } = useContactStore();
   const { t } = useTranslation();
+
+  const contactSchema = z.object({
+    name: z.string().min(2, t("contact.validation.name", "Vui lòng nhập tên của bạn (ít nhất 2 ký tự)")),
+    email: z.string().email(t("contact.validation.email", "Vui lòng nhập đúng định dạng email")),
+    message: z.string().min(10, t("contact.validation.message", "Tin nhắn phải có ít nhất 10 ký tự")),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormState>({
+    resolver: zodResolver(contactSchema),
+  });
 
   /* INIT EMAILJS */
   useEffect(() => {
     emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: FormState) => {
     if (loading) return;
-    await sendEmail();
+    await sendEmail(data);
+    reset();
   };
+
+  const FieldError = ({ message }: { message?: string }) => (
+    <div className="min-h-[18px]">
+      <AnimatePresence mode="wait">
+        {message && (
+          <motion.p
+            key={message}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.2 }}
+            className="flex items-center gap-1.5 text-destructive text-xs font-mono"
+          >
+            <MdError className="shrink-0" size={13} />
+            {message}
+          </motion.p>
+        )}
+      </AnimatePresence>
+    </div>
+  );
 
   return (
     <motion.form
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       className="w-full space-y-8"
@@ -36,15 +76,15 @@ export default function ContactForm() {
           <input
             type="text"
             placeholder="John Doe"
-            value={form.name}
-            onChange={(e) => setField("name", e.target.value)}
-            required
-            className="
-              w-full px-5 py-4 bg-card/40 border border-primary/20
-              text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
-              outline-none transition-all rounded-none
-            "
+            {...register("name")}
+            className={`
+              w-full px-5 py-4 bg-card/40 border
+              text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
+              outline-none transition-all rounded-md
+              ${errors.name ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
+            `}
           />
+          <FieldError message={errors.name?.message} />
         </div>
 
         {/* EMAIL */}
@@ -55,15 +95,15 @@ export default function ContactForm() {
           <input
             type="email"
             placeholder="john@example.com"
-            value={form.email}
-            onChange={(e) => setField("email", e.target.value)}
-            required
-            className="
-              w-full px-5 py-4 bg-card/40 border border-primary/20
-              text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
-              outline-none transition-all rounded-none
-            "
+            {...register("email")}
+            className={`
+              w-full px-5 py-4 bg-card/40 border
+              text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
+              outline-none transition-all rounded-md
+              ${errors.email ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
+            `}
           />
+          <FieldError message={errors.email?.message} />
         </div>
       </div>
 
@@ -75,15 +115,15 @@ export default function ContactForm() {
         <textarea
           rows={5}
           placeholder="Your message here..."
-          value={form.message}
-          onChange={(e) => setField("message", e.target.value)}
-          required
-          className="
-            w-full px-5 py-4 bg-card/40 border border-primary/20
-            text-foreground placeholder:text-foreground/30 font-mono focus:border-primary focus:bg-card/60
-            outline-none transition-all resize-none rounded-none
-          "
+          {...register("message")}
+          className={`
+            w-full px-5 py-4 bg-card/40 border
+            text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
+            outline-none transition-all resize-none rounded-md
+            ${errors.message ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
+          `}
         />
+        <FieldError message={errors.message?.message} />
       </div>
 
       {/* BUTTON */}
@@ -95,7 +135,7 @@ export default function ContactForm() {
             w-full py-5 bg-primary text-background font-black uppercase tracking-[0.3em] text-sm
             hover:bg-primary/90 transition-all duration-300
             disabled:opacity-50 disabled:cursor-not-allowed
-            rounded-none shadow-[0_10px_20px_rgba(var(--primary-rgb),0.15)]
+            rounded-md shadow-[0_10px_20px_rgba(var(--primary-rgb),0.15)]
           "
         >
           {loading ? t("contact.labels.form.sending") : t("contact.labels.form.send")}
