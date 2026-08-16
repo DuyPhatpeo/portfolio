@@ -21,7 +21,7 @@ const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
-              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm rounded-[3rem]"
+              className="relative aspect-square md:aspect-[4/5] overflow-hidden bg-card/50 backdrop-blur-sm rounded-2xl"
             >
               <img
                 src={avatar}
@@ -52,7 +52,7 @@ const AboutSection: React.FC = () => {
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6">
                 {t("about.title")}
               </h2>
-              <div className="h-1.5 w-24 bg-primary/30 rounded-full"></div>
+              <div className="h-1.5 w-24 bg-primary/30 rounded-2xl"></div>
             </motion.div>
 
             <motion.div
@@ -63,7 +63,7 @@ const AboutSection: React.FC = () => {
               viewport={{ once: true }}
             >
               {paragraphs.map((text, index) => (
-                <p key={index} className="text-foreground/90 text-base md:text-lg leading-relaxed font-mono">
+                <p key={index} className="text-foreground/90 text-base md:text-lg leading-relaxed font-mono text-justify">
                   {text}
                 </p>
               ))}

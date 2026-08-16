@@ -7,7 +7,7 @@ const HeroAvatar: React.FC = () => {
 
   return (
     <div className="flex justify-center lg:justify-end">
-      <div className="relative w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] group">
+      <div className="relative w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[500px] lg:max-w-[600px] group">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
