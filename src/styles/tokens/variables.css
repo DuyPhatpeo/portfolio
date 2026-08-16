@@ -2,7 +2,7 @@
 /* Design tokens – CSS custom properties for the entire app */
 @layer theme {
   :root {
-    --radius: 0px;
+    --radius: 1rem;
     --background: #171717;
     --foreground: #f2f2f7;
 
@@ -55,8 +55,8 @@
   }
 
   :root:not(.dark) {
-    /* Clean 2-color Light theme */
-    --background: #f0ede4;
+    /* Clean 2-color Light theme, tinted teal to match the brand primary */
+    --background: #eef5f3;
     --foreground: #004741;
     --card: #ffffff;
     --card-foreground: #004741;
@@ -64,15 +64,15 @@
     --popover-foreground: #004741;
     --primary: #004741;
     --primary-rgb: 0, 71, 65;
-    --primary-foreground: #f0ede4;
+    --primary-foreground: #eef5f3;
     --secondary: #004741;
     --secondary-rgb: 0, 71, 65;
-    --secondary-foreground: #f0ede4;
-    --muted: #e4e1d8;
-    --muted-foreground: #5a7571;
+    --secondary-foreground: #eef5f3;
+    --muted: #dfeae6;
+    --muted-foreground: #4d726b;
     --accent: #004741;
-    --accent-foreground: #f0ede4;
-    --border: #dcd9d0;
+    --accent-foreground: #eef5f3;
+    --border: #d3e2dd;
     --input: #ffffff;
     --ring: #004741;
 
@@ -81,7 +81,7 @@
     --foreground-glow: 0 0 20px rgba(0, 71, 65, 0.05);
 
     --scanline-opacity: 0.04;
-    --background-alt: #e6e3da;
+    --background-alt: #e3efeb;
   }
 
   .dark {

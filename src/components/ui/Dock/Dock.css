@@ -1,0 +1,66 @@
+.dock-outer {
+  position: relative;
+  margin: 0 0.5rem;
+  display: flex;
+  max-width: 100%;
+  align-items: center;
+}
+
+.dock-panel {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: fit-content;
+  max-width: 100%;
+  gap: 1rem;
+  border-radius: 1rem;
+  padding: 0 0.5rem 0.5rem;
+}
+
+/* Touch screens don't hover (no tooltip to clip), so it's safe to let a
+   too-wide icon row scroll horizontally instead of overflowing the modal. */
+@media (max-width: 767px) {
+  .dock-panel {
+    gap: 0.625rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .dock-panel::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dock-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  outline: none;
+}
+
+.dock-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dock-label {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  width: fit-content;
+  white-space: pre;
+  border-radius: 0.375rem;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+  transform: translateX(-50%);
+  z-index: 20;
+}

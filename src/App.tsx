@@ -38,7 +38,7 @@ const AppContent: React.FC = () => {
         sparkCount={8}
         duration={400}
       >
-        <div className="relative z-10">
+        <div id="app-content-root" className="relative z-10">
           <AppRoutes />
 
           {/* Scroll To Top */}

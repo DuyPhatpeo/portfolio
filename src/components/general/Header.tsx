@@ -18,6 +18,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  // Mobile menu slides in from the right; desktop drops down from the top.
+  useEffect(() => {
+    const mql = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mql.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mql.addEventListener("change", onChange);
+    return () => mql.removeEventListener("change", onChange);
+  }, []);
 
   const navItems = useMemo(
     () => [
@@ -111,6 +121,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     localStorage.setItem("language", targetLang);
   };
 
+  const handleSetLang = (lang: "vi" | "en") => {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("language", lang);
+  };
+
   const handleToggleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -146,7 +161,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <div className="hidden sm:flex items-center gap-4 sm:mr-2">
             <button
               onClick={handleToggleLang}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 transition-all duration-300 group/lang"
+              className="flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-foreground/5 hover:bg-foreground/10 border border-foreground/10 transition-all duration-300 group/lang"
             >
               <span className="w-5 h-3.5 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
                 <img
@@ -161,9 +176,20 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </button>
             <button
               onClick={handleToggleDarkMode}
-              className="p-2 text-foreground hover:text-primary transition-colors rounded-full flex items-center justify-center bg-transparent"
+              className="relative p-2 w-9 h-9 text-foreground hover:text-primary transition-colors rounded-2xl flex items-center justify-center bg-transparent overflow-hidden"
             >
-              {darkMode ? <RiSunLine className="w-5 h-5" /> : <RiMoonLine className="w-5 h-5" />}
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={darkMode ? "sun" : "moon"}
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  {darkMode ? <RiSunLine className="w-5 h-5" /> : <RiMoonLine className="w-5 h-5" />}
+                </motion.span>
+              </AnimatePresence>
             </button>
           </div>
 
@@ -201,23 +227,26 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             />
 
             <motion.div
-              initial={{ y: "-100%" }}
-              animate={{ y: 0 }}
-              exit={{ y: "-100%" }}
+              initial={isDesktop ? { y: "-100%" } : { x: "100%" }}
+              animate={isDesktop ? { y: 0 } : { x: 0 }}
+              exit={isDesktop ? { y: "-100%" } : { x: "100%" }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="fixed top-0 left-0 right-0 h-auto min-h-[58vh] max-h-[100dvh] pb-12 md:pb-24 bg-background/70 backdrop-blur-3xl z-105 flex flex-col overflow-y-auto overflow-x-hidden border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
+              className="fixed top-0 right-0 w-[62%] max-w-[280px] md:left-0 md:w-auto md:max-w-none h-dvh md:h-auto md:min-h-[58vh] md:max-h-[100dvh] pb-8 md:pb-24 bg-background/95 md:bg-background/70 backdrop-blur-3xl z-105 flex flex-col overflow-y-auto overflow-x-hidden border-l md:border-l-0 border-b border-primary/10 shadow-[0_30px_60px_rgba(0,0,0,0.3)]"
             >
-              {/* Background Decorative Text */}
-              <div className="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
+              {/* Background Decorative Text (desktop only) */}
+              <div className="hidden md:flex absolute inset-0 items-center justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden">
                 <span className="text-[25vw] font-black leading-none text-foreground/10 uppercase">DINO PÉO</span>
               </div>
 
+              {/* Dot pattern backdrop (mobile only) */}
+              <div className="md:hidden absolute inset-0 cyber-dots opacity-[0.06] pointer-events-none" />
+
               <motion.nav
                 variants={containerVariants}
-                className="relative z-10 w-full px-6 md:px-32 flex flex-col items-end md:items-start my-auto pt-28 md:pt-24"
+                className="relative z-10 w-full h-full px-4 md:px-32 flex flex-col items-start justify-center md:justify-start my-auto pt-16 pb-20 md:pt-24 md:pb-0"
               >
-                <div className="flex flex-col md:flex-row md:flex-wrap gap-x-8 md:gap-x-16 gap-y-2 md:gap-y-4 w-full md:w-2/3 items-end md:items-start justify-end md:justify-start max-w-[95vw]">
-                  {navItems.map((item) => {
+                <div className="flex flex-col md:flex-row md:flex-wrap gap-y-3 md:gap-y-4 gap-x-8 md:gap-x-16 w-full md:w-2/3 items-start justify-center md:justify-start max-w-[95vw]">
+                  {navItems.map((item, index) => {
                     const isActive = activeSection === item.href;
                     return (
                       <motion.button
@@ -227,13 +256,22 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                           scrollToSection(item.href);
                           setIsOpen(false);
                         }}
-                        className="group relative py-1.5 md:py-2 flex flex-col items-end md:items-start"
+                        className="group relative w-full md:w-auto py-2.5 md:py-2 flex items-center justify-start gap-2 md:gap-0"
                       >
-                        <span className={`relative z-10 text-3xl xs:text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-[5rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap pl-6 md:pl-0 md:pr-8 text-right md:text-left ${isActive ? "text-primary" : "text-foreground group-hover:text-primary opacity-30"}`}>
+                        {/* Vertical mark revealed on hover/active */}
+                        <span
+                          className={`md:hidden h-6 w-0.5 bg-primary transition-all duration-300 origin-left ${isActive ? "scale-x-100 opacity-100" : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"}`}
+                        />
+                        <span
+                          className={`md:hidden font-mono text-xs tracking-widest transition-colors duration-500 ${isActive ? "text-primary" : "text-foreground/30"}`}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className={`relative z-10 text-xl xs:text-2xl sm:text-2xl md:text-5xl lg:text-6xl xl:text-[5rem] font-sans font-black uppercase leading-[1.1] tracking-tighter transition-all duration-500 italic block whitespace-nowrap md:pr-8 text-left ml-2 md:ml-0 ${isActive ? "text-primary" : "text-foreground group-hover:text-primary md:opacity-30"}`}>
                           <span className="relative inline-block">
                             {item.name}
                             {/* Underline effect */}
-                            <div className={`absolute -bottom-1 md:-bottom-2 right-0 md:left-0 md:right-auto h-[2px] md:h-[4px] bg-primary transition-all duration-500 ease-out ${isActive ? "w-full" : "w-0"}`} />
+                            <div className={`absolute -bottom-1 md:-bottom-2 left-0 h-[2px] md:h-[4px] bg-primary transition-all duration-500 ease-out ${isActive ? "w-full" : "w-0"}`} />
                           </span>
                         </span>
                       </motion.button>
@@ -244,39 +282,41 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 {/* Mobile Controls (Language & Theme) - Only visible when menu is open on small screens */}
                 <motion.div
                   variants={linkVariants}
-                  className="flex sm:hidden flex-col items-end gap-6 mt-12 border-t border-primary/10 pt-8 w-full"
+                  className="flex items-center gap-6 mt-8 pt-5 border-t border-primary/10 sm:hidden"
                 >
-                  <button
-                    onClick={handleToggleLang}
-                    className="flex items-center gap-3 group/lang"
-                  >
-                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/lang:text-primary transition-colors">
-                      {targetCode}
-                    </span>
-                    <span className="w-6 h-4 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10">
-                      <img
-                        src={targetFlag}
-                        alt={targetCode}
-                        className="w-full h-full object-cover"
-                      />
-                    </span>
-                  </button>
+                  <div className="flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.2em]">
+                    <button
+                      onClick={() => handleSetLang("vi")}
+                      className={i18n.language === "vi" ? "text-primary" : "text-foreground/40"}
+                    >
+                      VN
+                    </button>
+                    <span className="text-foreground/20">/</span>
+                    <button
+                      onClick={() => handleSetLang("en")}
+                      className={i18n.language === "en" ? "text-primary" : "text-foreground/40"}
+                    >
+                      EN
+                    </button>
+                  </div>
 
                   <button
                     onClick={handleToggleDarkMode}
-                    className="flex items-center gap-3 group/theme"
+                    aria-label="Toggle theme"
+                    className="relative w-12 h-7 rounded-full bg-foreground/10 flex items-center px-1"
                   >
-                    <span className="text-sm font-mono font-bold tracking-[0.2em] text-foreground group-hover/theme:text-primary transition-colors uppercase">
-                      {darkMode ? t("nav.theme.light", "LIGHT") : t("nav.theme.dark", "DARK")}
-                    </span>
-                    <div className="text-foreground group-hover/theme:text-primary transition-colors">
-                      {darkMode ? <RiSunLine size={20} /> : <RiMoonLine size={20} />}
-                    </div>
+                    <RiSunLine className="absolute left-1.5 w-3.5 h-3.5 text-foreground/30" />
+                    <RiMoonLine className="absolute right-1.5 w-3.5 h-3.5 text-foreground/30" />
+                    <motion.span
+                      className="relative w-5 h-5 rounded-full bg-primary flex items-center justify-center text-background z-10"
+                      animate={{ x: darkMode ? 20 : 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    >
+                      {darkMode ? <RiMoonLine size={12} /> : <RiSunLine size={12} />}
+                    </motion.span>
                   </button>
                 </motion.div>
               </motion.nav>
-
-
             </motion.div>
           </>
         )}
