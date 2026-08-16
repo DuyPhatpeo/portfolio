@@ -44,10 +44,13 @@ export interface Project {
   reverse?: boolean;
 }
 
+export type SkillCategory = "frontend" | "backend" | "database" | "tools" | "design";
+
 export interface Skill {
   name: string;
   logo?: string;
   icon?: (props: { className?: string; style?: React.CSSProperties }) => React.ReactNode;
   invertDark?: boolean;
   url: string;
+  category: SkillCategory;
 }

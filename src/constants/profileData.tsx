@@ -1,7 +1,8 @@
 import {
   RiGithubFill,
   RiFacebookFill,
-  RiLinkedinBoxFill
+  RiLinkedinBoxFill,
+  RiDiscordFill
 } from "react-icons/ri";
 import {
   FiHeart,
@@ -44,6 +45,13 @@ export const profileData: ProfileData = {
       icon: <RiLinkedinBoxFill size={20} />,
       glowColor: "rgba(10, 102, 194, 0.5)",
       hoverColor: "group-hover:text-[#0A66C2]"
+    },
+    {
+      name: "Discord",
+      href: "https://discord.gg/p3d7859xFF",
+      icon: <RiDiscordFill size={20} />,
+      glowColor: "rgba(88, 101, 242, 0.5)",
+      hoverColor: "group-hover:text-[#5865F2]"
     },
   ],
 

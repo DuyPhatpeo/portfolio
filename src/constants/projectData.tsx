@@ -3,20 +3,20 @@ import { TECH } from "./technologies";
 
 export const projects: Project[] = [
   {
-    id: 10,
-    image: "assets/projects/linksnap.png",
-    tags: [TECH.LARAVEL, TECH.PHP, TECH.TAILWIND, TECH.MYSQL, TECH.VITE, TECH.JS],
-    github: "https://github.com/DuyPhatpeo/link-snap",
-    demo: "https://linksnap.free.laravel.cloud/",
+    id: 1,
+    image: "assets/projects/portfolio.png",
+    tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
+    github: "https://github.com/DuyPhatpeo/portfolio",
+    demo: "https://tranduyphat.vercel.app/",
     featured: true,
     reverse: false,
   },
   {
-    id: 1,
-    image: "assets/projects/portfolio.png",
-    tags: [TECH.REACT, TECH.TS, TECH.VITE, TECH.TAILWIND, TECH.FRAMER_MOTION],
-    github: "https://github.com/DuyPhatpeo/portfolio",
-    demo: "https://tranduyphat.vercel.app/",
+    id: 10,
+    image: "assets/projects/linksnap.png",
+    tags: [TECH.LARAVEL, TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.TAILWIND, TECH.MYSQL],
+    github: "https://github.com/DuyPhatpeo/link-snap",
+    demo: null,
     featured: true,
     reverse: true,
   },
@@ -34,14 +34,7 @@ export const projects: Project[] = [
   {
     id: 2,
     image: "assets/projects/ecommerce.png",
-    tags: [
-      TECH.REACT,
-      TECH.TS,
-      TECH.VITE,
-      TECH.TAILWIND,
-      TECH.FIREBASE,
-      TECH.ZUSTAND,
-    ],
+    tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FIREBASE, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
     featured: false,
@@ -57,7 +50,7 @@ export const projects: Project[] = [
   {
     id: 3,
     image: "assets/projects/restaurant.png",
-    tags: [TECH.REACT, TECH.VITE, TECH.FIREBASE, TECH.AXIOS],
+    tags: [TECH.REACT, TECH.FIREBASE],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
     featured: false,
@@ -65,7 +58,7 @@ export const projects: Project[] = [
   {
     id: 5,
     image: "assets/projects/dinomovie.png",
-    tags: [TECH.REACT, TECH.VITE, TECH.TAILWIND, TECH.AXIOS, TECH.REACT_ROUTER],
+    tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/simple-movies",
     demo: "https://dinomovie.vercel.app",
     featured: false,
@@ -73,7 +66,7 @@ export const projects: Project[] = [
   {
     id: 6,
     image: "assets/projects/dinostore.jpg",
-    tags: [TECH.REACT, TECH.VITE, TECH.AXIOS, TECH.REACT_ROUTER],
+    tags: [TECH.REACT],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
     featured: false,
@@ -89,7 +82,7 @@ export const projects: Project[] = [
   {
     id: 8,
     image: "assets/projects/shopfstyle.jpg",
-    tags: [TECH.PHP, TECH.MYSQL, TECH.TAILWIND, TECH.JS],
+    tags: [TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.MYSQL, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/ShopFSTYLE",
     demo: null,
     featured: false,

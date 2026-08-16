@@ -41,7 +41,14 @@
   "skills": {
     "subtitle": "KỸ NĂNG CỦA TÔI",
     "title": "Các Công Nghệ Tôi Sử Dụng",
-    "description": "Là một lập trình viên luôn đam mê học hỏi và cập nhật công nghệ mới, đây là những công cụ tôi thường xuyên sử dụng trong các dự án gần đây:"
+    "description": "Là một lập trình viên luôn đam mê học hỏi và cập nhật công nghệ mới, đây là những công cụ tôi thường xuyên sử dụng trong các dự án gần đây:",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Cơ Sở Dữ Liệu",
+      "tools": "Công Cụ & DevOps",
+      "design": "Thiết Kế"
+    }
   },
   "experience": {
     "subtitle": "KINH NGHIỆM CỦA TÔI",
@@ -49,6 +56,19 @@
     "description": "Quá trình học hỏi, tích lũy kinh nghiệm thực tế và đóng góp giá trị tại các đơn vị tôi từng làm việc.",
     "present": "Hiện tại",
     "items": [
+      {
+        "role": "Chuyên viên IT & Hỗ trợ Kỹ thuật Sự kiện",
+        "company": "Công ty Cổ phần Truyền thông GTO",
+        "period": "06/2026 – Hiện tại",
+        "type": "Nhân viên chính thức",
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API",
+        "tasks": [
+          "Xây dựng, nâng cấp hệ thống website nội bộ, website công ty và phát triển các Landing Page phục vụ sự kiện.",
+          "Triển khai và quản lý hệ thống đăng ký, check-in khách mời.",
+          "Hỗ trợ giám sát kỹ thuật, trực tiếp xử lý sự cố và đảm bảo hệ thống, thiết bị công nghệ hoạt động ổn định trong suốt sự kiện.",
+          "Tham gia điều phối chuyển cảnh (switching) và hệ thống camera phục vụ các hội nghị, cuộc họp trực tuyến."
+        ]
+      },
       {
         "role": "Học việc Frontend Developer",
         "company": "Công ty Cổ phần SweetSoft",
@@ -85,6 +105,10 @@
     "other_title": "Các Dự Án Đáng Chú Ý Khác",
     "badges": {
       "featured": "DỰ ÁN NỔI BẬT"
+    },
+    "modal": {
+      "technologies": "Công Nghệ Sử Dụng",
+      "view_details": "Xem Chi Tiết"
     },
     "items": {
       "1": {

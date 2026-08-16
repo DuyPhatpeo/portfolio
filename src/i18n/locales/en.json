@@ -41,7 +41,14 @@
   "skills": {
     "subtitle": "MY SKILLS",
     "title": "Technologies I Work With",
-    "description": "As a developer passionate about continuous learning and new technologies, here are the tools I've been working with recently:"
+    "description": "As a developer passionate about continuous learning and new technologies, here are the tools I've been working with recently:",
+    "categories": {
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools & DevOps",
+      "design": "Design"
+    }
   },
   "experience": {
     "subtitle": "MY EXPERIENCE",
@@ -49,6 +56,19 @@
     "description": "My process of learning, gaining practical experience, and contributing value at organizations I have worked with.",
     "present": "Present",
     "items": [
+      {
+        "role": "IT & Event Technical Support Specialist",
+        "company": "GTO Media JSC",
+        "period": "06/2026 – Present",
+        "type": "Full-time",
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API",
+        "tasks": [
+          "Built and upgraded internal systems, the company's website, and developed event-specific Landing Pages.",
+          "Deployed and managed event registration and guest check-in systems.",
+          "Provided technical supervision, directly troubleshooted issues, and ensured stable performance of tech infrastructure during events.",
+          "Participated in coordinating scene transitions (switching) and camera systems for online conferences and meetings."
+        ]
+      },
       {
         "role": "Frontend Developer Apprentice",
         "company": "SweetSoft JSC",
@@ -85,6 +105,10 @@
     "other_title": "Other Noteworthy Projects",
     "badges": {
       "featured": "FEATURED PROJECT"
+    },
+    "modal": {
+      "technologies": "Technologies Used",
+      "view_details": "View Details"
     },
     "items": {
       "1": {
