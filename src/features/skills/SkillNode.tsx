@@ -24,7 +24,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
     <motion.div
       className={`
         relative flex items-center gap-4 px-6 py-3.5 select-none
-        bg-muted rounded-full backdrop-blur-xl
+        bg-muted rounded-2xl backdrop-blur-xl
         transition-all duration-500 ${className}
       `}
     >
@@ -50,7 +50,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({
       </span>
 
       {/* Persistent subtle glow */}
-      <div className="absolute inset-0 rounded-full shadow-[inset_0_0_10px_rgba(var(--primary-rgb),0.05)] pointer-events-none"></div>
+      <div className="absolute inset-0 rounded-2xl shadow-[inset_0_0_10px_rgba(var(--primary-rgb),0.05)] pointer-events-none"></div>
     </motion.div>
   );
 };
