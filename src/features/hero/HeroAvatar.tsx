@@ -9,8 +9,8 @@ const HeroAvatar: React.FC = () => {
     <div className="flex justify-center lg:justify-end">
       <div className="relative w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[500px] lg:max-w-[600px] group">
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9, x: 60 }}
+          animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10"
         >

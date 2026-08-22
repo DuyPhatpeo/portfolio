@@ -10,9 +10,9 @@ const AboutSection: React.FC = () => {
   const paragraphs = t("about.paragraphs", { returnObjects: true }) as string[];
 
   return (
-    <section id="about" className="min-h-screen flex items-center py-16 md:py-24 relative overflow-hidden bg-[var(--background-alt)]">
+    <section id="about" className="min-h-screen flex items-center py-12 md:py-16 relative overflow-hidden bg-(--background-alt)">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
           {/* Left: Image Container */}
           <div className="lg:col-span-5 relative group">

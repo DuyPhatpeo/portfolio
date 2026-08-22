@@ -1,6 +1,7 @@
 import type { Skill } from "../types/data";
 import { FirebaseIcon } from "../components/ui/SkillIcons";
 import { TECH } from "./technologies";
+import { SiExpo } from "react-icons/si";
 
 export const skills: Skill[] = [
   // ===== Frontend =====
@@ -58,6 +59,24 @@ export const skills: Skill[] = [
     name: TECH.TAILWIND,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
     url: "https://tailwindcss.com/",
+    category: "frontend",
+  },
+  {
+    name: TECH.NATIVEWIND,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    url: "https://www.nativewind.dev/",
+    category: "frontend",
+  },
+  {
+    name: TECH.REACT_NATIVE,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+    url: "https://reactnative.dev/",
+    category: "frontend",
+  },
+  {
+    name: TECH.EXPO,
+    icon: (props) => <SiExpo {...props} className="w-full h-full p-1.5 scale-125 text-foreground" />,
+    url: "https://expo.dev/",
     category: "frontend",
   },
   {

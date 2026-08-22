@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdCheckCircle, MdError } from "react-icons/md";
+import { HiArrowLongRight } from "react-icons/hi2";
 import emailjs from "@emailjs/browser";
 import { useContactStore } from "../../stores/contactStore";
 import { useTranslation } from "react-i18next";
@@ -14,8 +15,10 @@ export default function ContactForm() {
   const { t } = useTranslation();
 
   const contactSchema = z.object({
-    name: z.string().min(2, t("contact.validation.name", "Vui lòng nhập tên của bạn (ít nhất 2 ký tự)")),
+    firstName: z.string().min(2, t("contact.validation.first_name", "Vui lòng nhập họ của bạn")),
+    lastName: z.string().min(2, t("contact.validation.last_name", "Vui lòng nhập tên của bạn")),
     email: z.string().email(t("contact.validation.email", "Vui lòng nhập đúng định dạng email")),
+    mobile: z.string().regex(/^\d{10}$/, t("contact.validation.mobile", "Số điện thoại phải gồm đúng 10 chữ số")),
     message: z.string().min(10, t("contact.validation.message", "Tin nhắn phải có ít nhất 10 ký tự")),
   });
 
@@ -59,103 +62,108 @@ export default function ContactForm() {
     </div>
   );
 
+  const fieldClass = (hasError?: boolean) => `
+    w-full bg-transparent border-b outline-none py-3 font-mono
+    text-primary-foreground placeholder:text-primary-foreground/60
+    transition-colors resize-none
+    ${hasError ? "border-destructive focus:border-destructive" : "border-primary-foreground/30 focus:border-primary-foreground"}
+  `;
+
   return (
     <motion.form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      className="w-full space-y-8"
+      className="w-full text-primary-foreground"
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* NAME */}
-        <div className="space-y-2">
-          <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
-            {t("contact.labels.form.name")}
-          </label>
-          <input
-            type="text"
-            placeholder="John Doe"
-            {...register("name")}
-            className={`
-              w-full px-5 py-4 bg-card/40 border
-              text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
-              outline-none transition-all rounded-md
-              ${errors.name ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
-            `}
-          />
-          <FieldError message={errors.name?.message} />
+      <span className="block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-primary-foreground/70 mb-10">
+        {t("contact.transmission_log")}
+      </span>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+        {/* LEFT: FIRST NAME, LAST NAME, EMAIL, MOBILE */}
+        <div className="space-y-8">
+          <div>
+            <input
+              type="text"
+              placeholder={t("contact.labels.form.first_name")}
+              {...register("firstName")}
+              className={fieldClass(!!errors.firstName)}
+            />
+            <FieldError message={errors.firstName?.message} />
+          </div>
+
+          <div>
+            <input
+              type="text"
+              placeholder={t("contact.labels.form.last_name")}
+              {...register("lastName")}
+              className={fieldClass(!!errors.lastName)}
+            />
+            <FieldError message={errors.lastName?.message} />
+          </div>
+
+          <div>
+            <input
+              type="email"
+              placeholder={t("contact.labels.form.email")}
+              {...register("email")}
+              className={fieldClass(!!errors.email)}
+            />
+            <FieldError message={errors.email?.message} />
+          </div>
+
+          <div>
+            <input
+              type="tel"
+              placeholder={t("contact.labels.form.mobile")}
+              {...register("mobile")}
+              className={fieldClass(!!errors.mobile)}
+            />
+            <FieldError message={errors.mobile?.message} />
+          </div>
         </div>
 
-        {/* EMAIL */}
-        <div className="space-y-2">
-          <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
-            {t("contact.labels.form.email")}
-          </label>
-          <input
-            type="email"
-            placeholder="john@example.com"
-            {...register("email")}
-            className={`
-              w-full px-5 py-4 bg-card/40 border
-              text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
-              outline-none transition-all rounded-md
-              ${errors.email ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
-            `}
+        {/* RIGHT: MESSAGE */}
+        <div className="flex flex-col h-full">
+          <textarea
+            placeholder={t("contact.labels.form.message")}
+            {...register("message")}
+            className={`${fieldClass(!!errors.message)} flex-1 min-h-40 md:min-h-full`}
           />
-          <FieldError message={errors.email?.message} />
+          <FieldError message={errors.message?.message} />
         </div>
       </div>
 
-      {/* MESSAGE */}
-      <div className="space-y-2">
-        <label className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em]">
-          {t("contact.labels.form.message")}
-        </label>
-        <textarea
-          rows={5}
-          placeholder="Your message here..."
-          {...register("message")}
-          className={`
-            w-full px-5 py-4 bg-card/40 border
-            text-foreground placeholder:text-foreground/30 font-mono focus:bg-card/60
-            outline-none transition-all resize-none rounded-md
-            ${errors.message ? "border-destructive focus:border-destructive" : "border-primary/20 focus:border-primary"}
-          `}
-        />
-        <FieldError message={errors.message?.message} />
-      </div>
+      {/* STATUS + BUTTON */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-8">
+        <div>
+          {status === "success" && (
+            <p className="flex items-center gap-2 text-primary-foreground font-mono text-xs uppercase tracking-widest">
+              <MdCheckCircle /> {t("contact.alerts.success")}
+            </p>
+          )}
+          {status === "error" && (
+            <p className="flex items-center gap-2 text-destructive font-mono text-xs uppercase tracking-widest">
+              <MdError /> {t("contact.alerts.error")}
+            </p>
+          )}
+        </div>
 
-      {/* BUTTON */}
-      <div className="relative group">
         <button
           type="submit"
           disabled={loading}
           className="
-            w-full py-5 bg-primary text-background font-black uppercase tracking-[0.3em] text-sm
-            hover:bg-primary/90 transition-all duration-300
+            group flex items-center gap-3 shrink-0
+            bg-primary-foreground text-primary font-black uppercase tracking-[0.2em] text-xs md:text-sm
+            px-8 py-4 rounded-full hover:opacity-90 transition-all duration-300
             disabled:opacity-50 disabled:cursor-not-allowed
-            rounded-md shadow-[0_10px_20px_rgba(var(--primary-rgb),0.15)]
           "
         >
           {loading ? t("contact.labels.form.sending") : t("contact.labels.form.send")}
+          <HiArrowLongRight className="group-hover:translate-x-1 transition-transform duration-300" />
         </button>
-        {/* Subtle accent line under button */}
-        <div className="absolute -bottom-1 left-0 w-full h-[2px] bg-primary/20"></div>
-      </div>
-
-      {/* STATUS */}
-      <div className="flex justify-start pt-2">
-        {status === "success" && (
-          <p className="flex items-center gap-2 text-primary font-mono text-xs uppercase tracking-widest">
-            <MdCheckCircle /> {t("contact.alerts.success")}
-          </p>
-        )}
-        {status === "error" && (
-          <p className="flex items-center gap-2 text-destructive font-mono text-xs uppercase tracking-widest">
-            <MdError /> {t("contact.alerts.error")}
-          </p>
-        )}
       </div>
     </motion.form>
   );

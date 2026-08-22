@@ -112,52 +112,53 @@
     },
     "items": {
       "1": {
-        "title": "Portfolio",
-        "description": "Trang web Portfolio cá nhân hiệu năng cao được xây dựng bằng React 19 và Framer Motion. Tập trung vào việc tạo ra trải nghiệm 'System UI' độc đáo với các hiệu ứng chuyển động tối ưu và hỗ trợ đa ngôn ngữ hoàn chỉnh."
+        "title": "Portfolio Cá Nhân",
+        "description": "Trang web Portfolio cá nhân hiệu năng cao được xây dựng bằng React 19, TypeScript và Framer Motion, lấy cảm hứng thiết kế từ giao diện dạng 'System UI' với các đường nét kỹ thuật và hiệu ứng ánh sáng đặc trưng. Toàn bộ trang được tối ưu về tốc độ tải, chuyển động mượt mà giữa các section và responsive hoàn chỉnh trên mọi kích thước màn hình. Hệ thống hỗ trợ đa ngôn ngữ (Việt - Anh) được xây dựng từ đầu bằng i18next, cho phép chuyển đổi ngôn ngữ tức thời mà không cần tải lại trang."
       },
       "2": {
         "title": "E-commerce Website",
-        "description": "Nền tảng thương mại điện tử hiện đại tích hợp Firebase, hỗ trợ quản lý dữ liệu thời gian thực và xác thực người dùng. Giao diện tối ưu và tương thích tốt với di động."
+        "description": "Nền tảng thương mại điện tử hiện đại được xây dựng bằng React và Firebase, cho phép người dùng duyệt sản phẩm, thêm vào giỏ hàng và theo dõi trạng thái đơn hàng theo thời gian thực. Dữ liệu sản phẩm và người dùng được đồng bộ tức thì nhờ Firestore, kết hợp xác thực tài khoản an toàn qua Firebase Authentication. Giao diện được xây dựng với Tailwind CSS và Zustand để quản lý trạng thái giỏ hàng, đảm bảo trải nghiệm mua sắm mượt mà và tương thích tốt trên di động."
       },
       "3": {
         "title": "Restaurant Website",
-        "description": "Website giới thiệu nhà hàng sang trọng với trải nghiệm xem menu và đặt món trực tuyến mượt mà. Được xây dựng tối ưu hiệu suất với React và Vite."
+        "description": "Website giới thiệu nhà hàng sang trọng, mang đến trải nghiệm xem thực đơn trực quan cùng khả năng đặt món trực tuyến ngay trên trình duyệt. Giao diện được thiết kế theo phong cách tinh tế, làm nổi bật hình ảnh món ăn và không gian nhà hàng nhằm thu hút thực khách. Dự án được xây dựng bằng React và Vite, kết hợp Firebase để lưu trữ dữ liệu thực đơn, giúp tốc độ tải trang nhanh và dễ dàng cập nhật nội dung."
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "Ứng dụng dự báo thời tiết toàn diện, cung cấp thông tin khí tượng chi tiết và chính xác theo thời gian thực với giao diện HUD hiện đại."
+        "description": "Ứng dụng dự báo thời tiết toàn diện, cung cấp thông tin khí tượng chi tiết như nhiệt độ, độ ẩm, tốc độ gió và chỉ số UV theo thời gian thực cho nhiều địa điểm khác nhau. Giao diện được thiết kế theo phong cách HUD hiện đại, trực quan hóa dữ liệu bằng biểu đồ và biểu tượng thời tiết sinh động. Dự án sử dụng React, TypeScript và Zustand để quản lý trạng thái dữ liệu hiệu quả, cùng tích hợp API thời tiết bên ngoài để đảm bảo độ chính xác."
       },
       "5": {
-        "title": "Dino Movies",
-        "description": "Nền tảng khám phá điện ảnh vận hành bởi TMDB API. Triển khai các bộ lọc nâng cao và thông tin phim chi tiết với giao diện Dark UI tinh tế."
+        "title": "DinoMovie - Nền Tảng Khám Phá Phim",
+        "description": "Nền tảng khám phá điện ảnh vận hành bởi TMDB API, cho phép người dùng tìm kiếm, xem thông tin chi tiết và đánh giá của hàng nghìn bộ phim. Hệ thống triển khai các bộ lọc nâng cao theo thể loại, năm phát hành và xếp hạng, giúp người dùng nhanh chóng tìm được nội dung phù hợp. Toàn bộ giao diện được thiết kế theo phong cách Dark UI tinh tế, xây dựng bằng React và Tailwind CSS để tối ưu hiệu năng hiển thị."
       },
       "6": {
-        "title": "DinoStore",
-        "description": "Cửa hàng trực tuyến tốc độ cao xây dựng bằng Vite. Tập trung vào logic giỏ hàng hiệu quả và lưu trữ trạng thái cục bộ để tối ưu trải nghiệm mua sắm."
+        "title": "DinoStore - Cửa Hàng Trực Tuyến",
+        "description": "Cửa hàng trực tuyến tốc độ cao được xây dựng bằng React và Vite, tập trung vào việc tối ưu logic giỏ hàng và quy trình thanh toán để mang lại trải nghiệm mua sắm liền mạch. Trạng thái giỏ hàng được lưu trữ cục bộ, giúp người dùng không mất dữ liệu khi tải lại trang. Giao diện tối giản, tập trung vào hình ảnh sản phẩm và thao tác nhanh, phù hợp cho các cửa hàng quy mô nhỏ và vừa."
       },
       "7": {
-        "title": "DinoBot Discord",
-        "description": "Bot Discord đa năng hỗ trợ quản lý máy chủ tự động và tăng tương tác cộng đồng. Viết bằng Node.js với cấu trúc lệnh linh hoạt."
+        "title": "DinoBot - Bot Quản Lý Discord",
+        "description": "Bot Discord đa năng hỗ trợ quản lý máy chủ tự động, từ kiểm duyệt nội dung, phân quyền thành viên đến tổ chức các mini-game nhằm tăng tương tác cộng đồng. Bot được viết bằng Node.js với thư viện discord.js, sử dụng cấu trúc lệnh module hóa giúp dễ dàng bảo trì và mở rộng thêm tính năng mới. Dự án cũng đi kèm trang web giới thiệu để người dùng theo dõi trạng thái hoạt động và danh sách lệnh của bot."
       },
       "8": {
-        "title": "ShopFSTYLE",
-        "description": "Hệ thống thương mại điện tử thời trang chuyên nghiệp, tích hợp đầy đủ tính năng quản lý sản phẩm, tồn kho và đơn hàng cho shop FSTYLE."
+        "title": "ShopFSTYLE - Hệ Thống Thời Trang",
+        "description": "Hệ thống thương mại điện tử thời trang chuyên nghiệp được xây dựng riêng cho shop FSTYLE, bao phủ toàn bộ quy trình vận hành từ quản lý sản phẩm, phân loại danh mục, theo dõi tồn kho đến xử lý đơn hàng của khách. Hệ thống có khu vực quản trị riêng dành cho chủ shop để cập nhật sản phẩm và theo dõi doanh thu. Dự án được xây dựng bằng PHP thuần và MySQL ở backend, kết hợp Tailwind CSS ở giao diện để đáp ứng nhu cầu vận hành cửa hàng thực tế."
       },
       "9": {
         "title": "Pokédex Mobile",
-        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, xây dựng bằng React Native và TypeScript cho trải nghiệm nguyên bản."
+        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, cho phép người dùng tra cứu chỉ số sức mạnh, hệ nguyên tố, chuỗi tiến hóa và hình ảnh chi tiết của từng Pokémon. Ứng dụng hỗ trợ tìm kiếm nhanh và lọc theo hệ, mang lại trải nghiệm khám phá trực quan. Được xây dựng bằng React Native, Expo và TypeScript, ứng dụng chạy mượt mà và nhất quán trên cả nền tảng iOS và Android."
       },
       "10": {
-        "title": "LinkSnap - URL & Bio",
-        "description": "Nền tảng quản lý liên kết tiên tiến kết hợp rút gọn URL và trình xây dựng Bio Page. Tích hợp thống kê thời gian thực, Google OAuth và tạo mã QR tùy chỉnh."
+        "title": "LinkSnap - URL & Bio Page",
+        "description": "Nền tảng quản lý liên kết tiên tiến kết hợp giữa tính năng rút gọn URL và trình xây dựng Bio Page tùy chỉnh, tương tự các công cụ như Linktree hay Bitly. Người dùng có thể theo dõi thống kê lượt truy cập theo thời gian thực, xem biểu đồ tương tác và tạo mã QR tùy chỉnh cho từng liên kết. Hệ thống hỗ trợ đăng nhập nhanh qua Google OAuth và được xây dựng bằng Laravel cùng MySQL ở backend, đảm bảo hiệu năng và bảo mật ổn định."
       }
     }
   },
   "contact": {
     "title": "Hãy cùng hợp tác nhé",
     "subtitle": "BẠN CÓ DỰ ÁN? HAY ĐANG TÌM KIẾM NHÂN SỰ?",
-    "description": "Đừng ngần ngại liên hệ nếu bạn đang tìm kiếm nhân sự, muốn kết nối hoặc xem liệu chúng ta có thể cùng nhau tạo ra điều gì đó tuyệt vời.",
+    "description": "Đừng ngần ngại liên hệ nếu bạn muốn kết nối hoặc hợp tác.",
     "direct_email": "Hoặc kết nối trực tiếp qua email:",
+    "watermark": "LIÊN HỆ",
     "transmission_log": "Biểu mẫu liên hệ",
     "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
     "labels": {
@@ -167,8 +168,11 @@
       "github": "GITHUB",
       "form": {
         "name": "TÊN CỦA BẠN",
-        "email": "EMAIL",
-        "message": "TIN NHẮN",
+        "first_name": "Họ",
+        "last_name": "Tên",
+        "email": "Email",
+        "mobile": "Số điện thoại (10 chữ số)",
+        "message": "Nhập tin nhắn của bạn tại đây",
         "send": "GỬI TIN NHẮN",
         "sending": "ĐANG GỬI..."
       }
@@ -184,7 +188,13 @@
   },
   "footer": {
     "rights": "BẢN QUYỀN ĐƯỢC BẢO LƯU.",
-    "transmission": "Kết thúc truyền tin"
+    "transmission": "Kết thúc truyền tin",
+    "navigation": "ĐIỀU HƯỚNG",
+    "social": "MẠNG XÃ HỘI",
+    "follow": "THEO DÕI",
+    "availability": "Sẵn sàng nhận việc",
+    "contact_label": "Liên hệ",
+    "copy_email": "Sao chép email"
   },
   "loading": {
     "percentage": "%"

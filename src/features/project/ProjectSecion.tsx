@@ -15,12 +15,12 @@ export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="min-h-screen py-16 md:py-24 relative overflow-hidden bg-card/5">
+    <section id="projects" className="min-h-screen py-12 md:py-16 relative overflow-hidden bg-(--background-alt)">
       {/* Dots Pattern Background */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.05]" />
 
       <motion.div
-        className="max-w-7xl mx-auto px-6 md:px-12 mb-12 md:mb-24"
+        className="max-w-7xl mx-auto px-6 md:px-12 mb-8 md:mb-12"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -39,7 +39,7 @@ export default function ProjectSection() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* ================= FEATURED ================= */}
-        <div className="space-y-16 md:space-y-24 mb-20 md:mb-32">
+        <div className="group/list space-y-10 md:space-y-16 mb-12 md:mb-20">
           {featuredProjects.map((project, index) => (
             <FeaturedProjectRow
               key={project.id}
@@ -60,7 +60,7 @@ export default function ProjectSection() {
         >
           {t("projects.other_title")}
         </motion.h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="group/list grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {otherProjects.map((project, index) => (
             <ProjectCard
               key={project.id}

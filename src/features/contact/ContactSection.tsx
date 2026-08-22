@@ -1,76 +1,40 @@
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
-const formVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    x: -40,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.16, 1, 0.3, 1],
-    },
-  },
-};
-
 export default function ContactSection() {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
-    <motion.section
-      id="contact"
-      className="min-h-screen flex items-center py-16 md:py-24 relative overflow-hidden bg-(--background-alt) transition-all duration-500"
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
-    >
-      {/* Refined Cyber Mist Background */}
-      <div className="absolute inset-0 pointer-events-none -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_70%,var(--primary)_0%,transparent_80%)] opacity-[0.06]" />
-
-        {/* Cloudy Volumetric Layers */}
-        <div className="absolute -bottom-[20%] -left-[10%] w-[80%] h-[80%] bg-primary/20 blur-[160px] rounded-2xl opacity-50 animate-pulse" />
-        <div className="absolute top-[10%] right-[10%] w-[50%] h-[50%] bg-primary/10 blur-[100px] rounded-2xl opacity-30" />
-
-        {/* Technological Texture */}
-        <div className="absolute inset-0 cyber-lines opacity-[0.04]" />
-        <div className="absolute inset-0 cyber-noise opacity-[0.05] mix-blend-overlay" />
+    <section id="contact" ref={sectionRef} className="relative overflow-hidden">
+      {/* Giant watermark as a slow-moving background layer (parallax) */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <motion.span
+          aria-hidden
+          style={{ y: watermarkY }}
+          className="absolute top-16 md:top-20 left-0 right-0 max-w-7xl mx-auto px-6 md:px-12 text-[20vw] md:text-[13vw] leading-none font-sans font-black uppercase text-foreground/5 select-none whitespace-nowrap"
+        >
+          {t("contact.watermark")}
+        </motion.span>
       </div>
 
-      {/* Decorative side borders */}
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-16">
-        <motion.div variants={itemVariants} className="text-left space-y-4">
+      {/* Header content */}
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-20 pb-14 md:pb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true }}
+          className="relative text-left space-y-4"
+        >
           <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block">
             {t("contact.subtitle")}
           </span>
@@ -80,7 +44,7 @@ export default function ContactSection() {
           <p className="max-w-2xl text-foreground/50 text-sm md:text-base font-mono mb-6 text-justify">
             {t("contact.description")}
           </p>
-          
+
           <div className="space-y-3">
             <span className="text-[10px] font-mono text-primary/40 uppercase tracking-[0.2em]">
               {t("contact.direct_email")}
@@ -103,16 +67,19 @@ export default function ContactSection() {
             </div>
           </div>
         </motion.div>
-
-        <div className="flex justify-center">
-          <motion.div
-            variants={formVariants}
-            className="w-full max-w-3xl"
-          >
-            <ContactForm />
-          </motion.div>
-        </div>
       </div>
-    </motion.section>
+
+      <motion.div
+        initial={{ opacity: 0, x: -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-80px" }}
+        className="relative bg-primary ml-[8%] sm:ml-[16%] md:ml-[20%] lg:ml-[24%]"
+      >
+        <div className="px-6 sm:px-10 md:px-16 py-16 md:py-24">
+          <ContactForm />
+        </div>
+      </motion.div>
+    </section>
   );
 }

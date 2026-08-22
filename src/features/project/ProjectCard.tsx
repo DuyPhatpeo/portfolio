@@ -29,6 +29,8 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
  return () => observer.disconnect();
  }, []);
 
+ const enterFrom = ["translate-y-10", "-translate-x-10", "-translate-y-10", "translate-x-10"][index % 4];
+
  return (
  <div
  ref={cardRef}
@@ -36,15 +38,16 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
  className={`
  group relative overflow-hidden cursor-pointer bg-card aspect-video
  border border-transparent hover:border-primary/50
- transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]
- ${isVisible ?"opacity-100 translate-y-0":"opacity-0 translate-y-10"}
+ transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(0,0,0,0.35)]
+ hover:!opacity-100 hover:!blur-none group-hover/list:opacity-50 group-hover/list:blur-[2px]
+ ${isVisible ?"opacity-100 translate-x-0 translate-y-0":`opacity-0 ${enterFrom}`}
 `}
  style={{ transitionDelay:`${index * 80}ms`}}
  >
  <img
  src={project.image}
  alt={t(`projects.items.${project.id}.title`)}
- className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+ className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
  />
  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"/>
 

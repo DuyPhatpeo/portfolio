@@ -29,24 +29,26 @@ export default function FeaturedProjectRow({ project, index, onSelect }: Feature
  return () => observer.disconnect();
  }, []);
 
+ const enterFrom = reverse ?"translate-x-10":"-translate-x-10";
+
  return (
  <div
  ref={rowRef}
  onClick={() => onSelect(project)}
  className={`
  group cursor-pointer flex flex-col-reverse ${reverse ?"md:flex-row-reverse":"md:flex-row"}
- items-center gap-6 md:gap-12 transition-all duration-700
- ${isVisible ?"opacity-100 translate-y-0":"opacity-0 translate-y-10"}
+ items-center gap-6 md:gap-8 transition-all duration-300
+ hover:!opacity-100 hover:!blur-none group-hover/list:opacity-50 group-hover/list:blur-[2px]
+ ${isVisible ?"opacity-100 translate-x-0 translate-y-0":`opacity-0 translate-y-10 ${enterFrom}`}
 `}
  >
  {/* IMAGE */}
- <div className="relative w-full md:w-3/5 aspect-video overflow-hidden rounded-2xl ring-1 ring-transparent group-hover:ring-primary/50 transition-all duration-500 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+ <div className="relative w-full md:w-3/5 aspect-video overflow-hidden rounded-2xl group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] transition-shadow duration-500">
  <img
  src={project.image}
  alt={t(`projects.items.${project.id}.title`)}
  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
  />
- <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500"/>
  <span className="absolute top-3 left-3 md:top-4 md:left-4 bg-primary text-primary-foreground font-mono text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-2 py-1">
  {t("projects.badges.featured")}
  </span>

@@ -66,7 +66,7 @@ export const projects: Project[] = [
   {
     id: 6,
     image: "assets/projects/dinostore.jpg",
-    tags: [TECH.REACT],
+    tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
     featured: false,

@@ -2,8 +2,10 @@ import { create } from "zustand";
 import emailjs from "@emailjs/browser";
 
 export type FormState = {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
+  mobile: string;
   message: string;
 };
 
@@ -25,8 +27,9 @@ export const useContactStore = create<ContactStore>((set) => ({
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
-          name: data.name,
+          name: `${data.firstName} ${data.lastName}`.trim(),
           email: data.email,
+          mobile: data.mobile,
           message: data.message,
           time: new Date().toLocaleString("vi-VN"),
         }

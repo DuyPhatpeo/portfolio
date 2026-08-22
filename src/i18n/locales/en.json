@@ -112,52 +112,53 @@
     },
     "items": {
       "1": {
-        "title": "Portfolio",
-        "description": "A high-performance personal portfolio built with React 19 and Framer Motion. Focused on creating a unique 'System UI' experience with optimized animations and full localization support."
+        "title": "Personal Portfolio",
+        "description": "A high-performance personal portfolio built with React 19, TypeScript, and Framer Motion, drawing its visual language from a technical 'System UI' aesthetic with sharp edges and signature glow effects. Every section is tuned for fast load times and smooth transitions, with a fully responsive layout across all screen sizes. Full Vietnamese-English localization is built in from the ground up using i18next, letting visitors switch languages instantly without a page reload."
       },
       "2": {
         "title": "E-commerce Website",
-        "description": "Modern, responsive e-commerce web application built with React, Tailwind, and Firebase, featuring real-time data management and user authentication."
+        "description": "A modern e-commerce platform built with React and Firebase, letting users browse products, manage their cart, and track order status in real time. Product and user data sync instantly through Firestore, paired with secure account authentication via Firebase Authentication. The interface is built with Tailwind CSS and Zustand for cart state management, delivering a smooth shopping experience across devices."
       },
       "3": {
         "title": "Restaurant Website",
-        "description": "Elegant restaurant website providing a seamless online ordering experience and menu presentation. Built with React and Vite."
+        "description": "An elegant restaurant website that presents the menu in a visually engaging way and lets guests place orders directly from the browser. The design leans on refined visuals that showcase the dishes and dining atmosphere to draw customers in. Built with React and Vite, with Firebase powering the menu data, the site loads fast and stays easy to update."
       },
       "4": {
         "title": "Weather Forecast",
-        "description": "Comprehensive weather forecast application providing real-time updates and detailed atmospheric data with a sleek UI."
+        "description": "A comprehensive weather forecast application delivering real-time atmospheric details — temperature, humidity, wind speed, and UV index — for multiple locations at once. The interface follows a modern HUD-style design, visualizing data through charts and lively weather icons. Built with React, TypeScript, and Zustand for efficient state management, and integrated with an external weather API for accurate, up-to-date data."
       },
       "5": {
-        "title": "Dino Movies",
-        "description": "A simple web application to discover movie information, built with React + Vite and deployed on Vercel."
+        "title": "DinoMovie - Movie Discovery Platform",
+        "description": "A movie discovery platform powered by the TMDB API, letting users search and browse detailed information and ratings for thousands of films. Advanced filters by genre, release year, and rating help users quickly find content that matches their taste. The entire interface follows a polished Dark UI aesthetic, built with React and Tailwind CSS for optimized rendering performance."
       },
       "6": {
-        "title": "DinoStore",
-        "description": "A modern online store built with React + Vite, focusing on a smooth shopping experience and efficient cart management."
+        "title": "DinoStore - Online Store",
+        "description": "A fast online store built with React and Vite, focused on streamlining cart logic and checkout flow for a seamless shopping experience. Cart state persists locally, so users never lose their selections on a page reload. The minimal interface keeps the focus on product visuals and quick actions, making it well suited for small to mid-sized shops."
       },
       "7": {
-        "title": "DinoBot Discord",
-        "description": "Versatile Discord Bot written in Node.js to assist in server management and community interaction."
+        "title": "DinoBot - Discord Management Bot",
+        "description": "A versatile Discord bot that automates server management — from content moderation and role assignment to mini-games that boost community engagement. Written in Node.js with discord.js, it uses a modular command structure that keeps maintenance and future feature additions straightforward. The project also ships with a companion website where users can check the bot's status and browse its command list."
       },
       "8": {
-        "title": "ShopFSTYLE",
-        "description": "Full-featured fashion e-commerce website developed as a graduation project, featuring product management, inventory tracking, and order processing. Built with PHP and MySQL."
+        "title": "ShopFSTYLE - Fashion Commerce System",
+        "description": "A full-featured fashion e-commerce system built specifically for the FSTYLE shop, covering the entire operational flow from product management and category organization to inventory tracking and order processing. It includes a dedicated admin area for the shop owner to update products and monitor revenue. Built with PHP and MySQL on the backend, paired with Tailwind CSS on the frontend, to run a real, working storefront."
       },
       "9": {
         "title": "Pokédex Mobile",
-        "description": "A mobile application for exploring the Pokémon world using PokéAPI, built with React Native and TypeScript."
+        "description": "A mobile app for exploring the Pokémon world via the PokéAPI, letting users look up base stats, elemental types, evolution chains, and detailed artwork for each Pokémon. It supports fast search and type-based filtering for an intuitive discovery experience. Built with React Native, Expo, and TypeScript, it runs smoothly and consistently on both iOS and Android."
       },
       "10": {
-        "title": "LinkSnap - URL & Bio",
-        "description": "A professional link management platform combining a powerful URL shortener with a modern Bio Page builder. Features real-time analytics with interactive charts, custom QR code generation, and seamless Google OAuth integration."
+        "title": "LinkSnap - URL & Bio Page",
+        "description": "An advanced link management platform that combines a URL shortener with a customizable Bio Page builder, in the spirit of tools like Linktree or Bitly. Users can track real-time click analytics, view engagement charts, and generate custom QR codes for each link. The platform supports one-click Google OAuth login and is built with Laravel and MySQL on the backend for stable performance and security."
       }
     }
   },
   "contact": {
     "title": "Let's Work Together",
     "subtitle": "HAVE A PROJECT? OR JUST LOOKING TO HIRE?",
-    "description": "Feel free to reach out if you're looking to hire, just want to connect or see if we can build something amazing together.",
+    "description": "Feel free to reach out to connect or collaborate.",
     "direct_email": "Or reach out directly via email:",
+    "watermark": "CONTACT",
     "transmission_log": "Contact Form",
     "availability": "Ready for new opportunities. Leave a message below.",
     "labels": {
@@ -167,8 +168,11 @@
       "github": "GITHUB",
       "form": {
         "name": "NAME",
-        "email": "EMAIL",
-        "message": "MESSAGE",
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "email": "Email",
+        "mobile": "Mobile No (10 digits)",
+        "message": "Type your message here",
         "send": "SEND TRANSMISSION",
         "sending": "SENDING..."
       }
@@ -184,7 +188,13 @@
   },
   "footer": {
     "rights": "ALL RIGHTS RESERVED.",
-    "transmission": "End of Transmission"
+    "transmission": "End of Transmission",
+    "navigation": "NAVIGATION",
+    "social": "SOCIAL PROFILES",
+    "follow": "FOLLOW",
+    "availability": "Worldwide Available",
+    "contact_label": "Contact",
+    "copy_email": "Copy email"
   },
   "loading": {
     "percentage": "%"

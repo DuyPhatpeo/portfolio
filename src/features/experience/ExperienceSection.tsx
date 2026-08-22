@@ -21,7 +21,7 @@ const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen py-16 md:py-24 relative bg-[var(--background-alt)] overflow-hidden"
+      className="min-h-screen py-12 md:py-16 relative overflow-hidden"
     >
       {/* Background Decor */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />
@@ -30,8 +30,8 @@ const ExperienceSection: React.FC = () => {
         
         {/* Standardized Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="mb-16"
