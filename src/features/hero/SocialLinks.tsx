@@ -15,6 +15,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ scrollToSection }) => {
       {/* Hire Me - Small version */}
       <button
         onClick={() => scrollToSection("contact")}
+        aria-label={t("hero.buttons.connect", "Contact Me")}
         className="group relative w-full h-[46px] flex items-center justify-center gap-2 px-3 bg-transparent border border-primary text-primary uppercase tracking-[0.2em] overflow-hidden transition-all duration-300 hover:text-background rounded-md"
       >
         {/* Fill Background - Scale from center */}
@@ -35,6 +36,7 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ scrollToSection }) => {
             target="_blank"
             rel="noopener noreferrer"
             title={link.name}
+            aria-label={link.name}
             className="relative group w-[46px] h-[46px] flex items-center justify-center bg-card/30 border border-primary/20 hover:border-primary/60 transition-all duration-500 hover:-translate-y-1 overflow-hidden rounded-md"
           >
             {/* Glow effect inside */}

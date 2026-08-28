@@ -149,6 +149,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             scrollToSection("home");
             setIsOpen(false);
           }}
+          aria-label="Homepage"
           className="relative z-110 group"
         >
           <span className="text-xl md:text-2xl font-sans font-black uppercase tracking-[0.3em] text-foreground drop-shadow-[0_0_10px_rgba(var(--primary),0.3)] group-hover:text-primary transition-colors duration-300">
@@ -162,6 +163,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <div className="hidden sm:flex items-center gap-2 sm:mr-2">
             <button
               onClick={handleToggleLang}
+              aria-label={`Switch language to ${targetCode}`}
               className="flex items-center gap-2 px-3 py-2 rounded-full bg-foreground/5 hover:bg-foreground border border-foreground/10 hover:border-foreground transition-all duration-300 group/lang"
             >
               <span className="w-5 h-3.5 overflow-hidden rounded-sm flex items-center justify-center border border-foreground/10 group-hover/lang:border-background/20 transition-colors">
@@ -177,6 +179,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </button>
             <button
               onClick={handleToggleDarkMode}
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               className="relative w-10 h-10 text-foreground hover:bg-foreground hover:text-background transition-colors rounded-full flex items-center justify-center bg-foreground/5 border border-foreground/10 hover:border-foreground overflow-hidden"
             >
               <AnimatePresence mode="wait" initial={false}>
@@ -197,6 +200,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           {/* Unified Menu Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
             className="flex items-center gap-3 px-4 py-2 rounded-full bg-foreground/5 hover:bg-foreground border border-foreground/10 hover:border-foreground transition-all duration-300 group/menu"
           >
             <span className="hidden md:inline text-xs font-mono font-bold tracking-[0.3em] text-foreground group-hover/menu:text-background transition-colors uppercase">

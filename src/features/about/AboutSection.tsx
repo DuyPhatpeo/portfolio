@@ -25,7 +25,9 @@ const AboutSection: React.FC = () => {
             >
               <img
                 src={avatar}
-                alt="About Me"
+                alt="About Dino Péo"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-top transition-transform duration-700"
               />
 

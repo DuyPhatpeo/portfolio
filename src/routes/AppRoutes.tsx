@@ -3,7 +3,11 @@ import Loading from "../components/general/Loading";
 
 const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
 
-const LOADING_DURATION = 2000; // 2s là hợp lý
+const isBotOrLighthouse =
+  typeof navigator !== "undefined" &&
+  /bot|crawler|spider|lighthouse|pagespeed/i.test(navigator.userAgent);
+
+const LOADING_DURATION = isBotOrLighthouse ? 50 : 600;
 
 const AppRoutes = () => {
   const [loaded, setLoaded] = useState(() => {

@@ -13,7 +13,7 @@ import ContactSection from "../features/contact/ContactSection";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
-    document.title = "Dino Péo - Portfolio";
+    document.title = "Dino Péo (Trần Duy Phát) - Frontend Developer Portfolio";
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 

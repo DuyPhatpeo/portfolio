@@ -47,6 +47,8 @@ export default function FeaturedProjectRow({ project, index, onSelect }: Feature
  <img
  src={project.image}
  alt={t(`projects.items.${project.id}.title`)}
+ loading="lazy"
+ decoding="async"
  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
  />
  <span className="absolute top-3 left-3 md:top-4 md:left-4 bg-primary text-primary-foreground font-mono text-[9px] md:text-[10px] font-bold uppercase tracking-widest px-2 py-1">

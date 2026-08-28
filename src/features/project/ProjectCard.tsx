@@ -47,6 +47,8 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
  <img
  src={project.image}
  alt={t(`projects.items.${project.id}.title`)}
+ loading="lazy"
+ decoding="async"
  className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
  />
  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"/>
