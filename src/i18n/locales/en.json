@@ -48,6 +48,17 @@
       "database": "Database",
       "tools": "Tools & DevOps",
       "design": "Design"
+    },
+    "animation_philosophy": {
+      "badge": "MOTION PHILOSOPHY",
+      "react_title": "React",
+      "react_sub": "Motion",
+      "scroll_title": "Scroll",
+      "scroll_sub": "GSAP",
+      "threed_title": "3D",
+      "threed_sub": "Three.js",
+      "quote_line1": "Animation is not just about looks",
+      "quote_line2": "It creates emotion for users!"
     }
   },
   "experience": {
@@ -194,7 +205,8 @@
     "follow": "FOLLOW",
     "availability": "Worldwide Available",
     "contact_label": "Contact",
-    "copy_email": "Copy email"
+    "copy_email": "Copy email",
+    "copied_short": "Copied!"
   },
   "loading": {
     "percentage": "%"

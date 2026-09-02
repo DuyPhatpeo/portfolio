@@ -1,15 +1,14 @@
 // src/pages/HomePage.tsx
 import React, { useEffect } from "react";
 import Header from "../components/general/Header";
-
 import Footer from "../components/general/Footer";
 import HeroSection from "../features/hero/HeroSetion";
-
 import AboutSection from "../features/about/AboutSection";
 import SkillsSection from "../features/skills/SkillsSection";
 import ProjectsSection from "../features/project/ProjectSecion";
 import ExperienceSection from "../features/experience/ExperienceSection";
 import ContactSection from "../features/contact/ContactSection";
+import ScrollProgressBar from "../components/ui/ScrollProgressBar";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -29,6 +28,9 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-500">
+      {/* Real-time Cyber Scroll Progress Indicator */}
+      <ScrollProgressBar />
+
       {/* Header */}
       <Header scrollToSection={scrollToSection} />
 

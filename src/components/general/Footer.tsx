@@ -7,13 +7,6 @@ const Footer = () => {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("phattranduy00@gmail.com");
-    import("react-toastify").then(({ toast }) => {
-      toast.success(t("contact.alerts.copied", "Email copied to clipboard!"));
-    });
-  };
-
   return (
     <footer className="relative overflow-hidden border-t border-primary/10 bg-background">
       <div className="w-full px-6 md:px-12 py-8 md:py-10">
@@ -56,7 +49,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom row: Contact / Email / Follow */}
-        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-6 pt-6 border-t border-primary/10">
+        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-6 pt-6 pb-6 md:pb-8 border-t border-primary/10">
           <div className="flex flex-col items-center md:items-start">
             <a
               href="#contact"
@@ -69,22 +62,16 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center">
             <a
               href="mailto:phattranduy00@gmail.com"
               className="text-sm font-mono text-foreground underline underline-offset-4 decoration-primary/40 hover:text-primary transition-colors"
             >
               phattranduy00@gmail.com
             </a>
-            <button
-              onClick={handleCopyEmail}
-              className="text-[10px] font-mono font-bold uppercase tracking-widest px-4 py-1.5 rounded-full bg-primary text-background hover:bg-primary/90 transition-colors"
-            >
-              {t("footer.copy_email")}
-            </button>
           </div>
 
-          <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end">
+          <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end md:pr-16">
             <span className="text-[10px] font-mono text-foreground/40 tracking-[0.2em] uppercase">
               {t("footer.follow")}
             </span>

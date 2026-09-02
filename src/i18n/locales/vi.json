@@ -48,6 +48,17 @@
       "database": "Cơ Sở Dữ Liệu",
       "tools": "Công Cụ & DevOps",
       "design": "Thiết Kế"
+    },
+    "animation_philosophy": {
+      "badge": "TRIẾT LÝ CHUYỂN ĐỘNG",
+      "react_title": "React",
+      "react_sub": "Motion",
+      "scroll_title": "Scroll",
+      "scroll_sub": "GSAP",
+      "threed_title": "3D",
+      "threed_sub": "Three.js",
+      "quote_line1": "Animation không chỉ làm đẹp",
+      "quote_line2": "Mà còn tạo cảm xúc cho người dùng!"
     }
   },
   "experience": {
@@ -194,7 +205,8 @@
     "follow": "THEO DÕI",
     "availability": "Sẵn sàng nhận việc",
     "contact_label": "Liên hệ",
-    "copy_email": "Sao chép email"
+    "copy_email": "Sao chép email",
+    "copied_short": "Đã sao chép!"
   },
   "loading": {
     "percentage": "%"
