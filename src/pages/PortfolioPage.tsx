@@ -16,13 +16,36 @@ const PortfolioPage: React.FC = () => {
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
-  // Scroll mượt tới section (bù trừ header sticky)
+  // Scroll mượt tới section với offset bù trừ chính xác
   const scrollToSection = (id: string) => {
+    if (id === "home") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (id === "contact") {
+      const upperEl = document.getElementById("upper-content");
+      if (upperEl) {
+        window.scrollTo({
+          top: upperEl.offsetHeight,
+          behavior: "smooth",
+        });
+      } else {
+        const contactEl = document.getElementById("contact");
+        if (contactEl) {
+          contactEl.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+        }
+      }
+      return;
+    }
+
     const el = document.getElementById(id);
     if (el) {
-      const yOffset = 0; // Transparent navbar - no offset needed
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      const navbarOffset = 70;
+      const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
+      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
     }
   };
 
@@ -34,23 +57,24 @@ const PortfolioPage: React.FC = () => {
       {/* Header */}
       <Header scrollToSection={scrollToSection} />
 
-      {/* Main Content */}
-      <main className="flex-1 relative z-10">
+      {/* Upper Sections (Layer Z-20 - Scrolls off to reveal Contact beneath) */}
+      <div id="upper-content" className="relative z-20 bg-background shadow-2xl">
         <HeroSection scrollToSection={scrollToSection} />
-
         <AboutSection />
-
         <SkillsSection />
-
         <ExperienceSection />
-
         <ProjectsSection />
+      </div>
 
+      {/* Contact Section (Layer Z-10 - Sticky behind upper content and footer) */}
+      <div className="sticky bottom-0 z-10 w-full min-h-screen flex flex-col justify-center overflow-hidden">
         <ContactSection />
-      </main>
+      </div>
 
-      {/* Footer */}
-      <Footer />
+      {/* Footer (Layer Z-20 - Slides up over Contact section like a curtain) */}
+      <div className="relative z-20 bg-background border-t border-primary/10 shadow-[0_-25px_60px_rgba(0,0,0,0.6)]">
+        <Footer />
+      </div>
     </div>
   );
 };

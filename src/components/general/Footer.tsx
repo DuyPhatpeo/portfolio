@@ -1,15 +1,46 @@
+import { useRef } from "react";
 import { profileData } from "../../constants/profileData";
 import { useTranslation } from "react-i18next";
+import { gsap, useGSAP } from "../../lib/gsap";
 
 const NAV_ITEMS = ["home", "about", "skills", "experience", "projects", "contact"];
 
 const Footer = () => {
   const { t } = useTranslation();
   const year = new Date().getFullYear();
+  const footerRef = useRef<HTMLElement>(null);
+  const logoRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(
+    () => {
+      if (!footerRef.current || !logoRef.current) return;
+
+      gsap.fromTo(
+        logoRef.current,
+        {
+          scaleY: 0.1,
+          opacity: 0.3,
+          transformOrigin: "bottom center",
+        },
+        {
+          scaleY: 1.3,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 85%",
+            end: "bottom bottom",
+            scrub: 1,
+          },
+        }
+      );
+    },
+    { scope: footerRef }
+  );
 
   return (
-    <footer className="relative overflow-hidden border-t border-primary/10 bg-background">
-      <div className="w-full px-6 md:px-12 py-8 md:py-10">
+    <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
+      <div className="w-full px-6 md:px-12 pt-8 md:pt-10 pb-4">
         {/* Top row: Navigation / Social */}
         <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-8 md:gap-6">
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
@@ -41,9 +72,12 @@ const Footer = () => {
           </nav>
         </div>
 
-        {/* Giant name */}
-        <div className="py-12 md:py-20 text-center">
-          <span className="text-[15vw] sm:text-[13vw] md:text-[9vw] leading-none font-sans font-black uppercase tracking-tight text-foreground select-none">
+        {/* Giant name - NAMMA Style Vertical Stretch */}
+        <div className="pt-16 pb-10 md:pt-28 md:pb-16 text-center overflow-hidden flex justify-center items-end">
+          <span
+            ref={logoRef}
+            className="inline-block origin-bottom will-change-transform text-[18vw] sm:text-[16vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
+          >
             {profileData.logo}
           </span>
         </div>

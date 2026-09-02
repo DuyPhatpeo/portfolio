@@ -45,10 +45,17 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   // Detect active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = navItems.map((item) => item.href);
       const scrollPosition = window.scrollY + 100;
+      const upperEl = document.getElementById("upper-content");
 
+      if (upperEl && window.scrollY >= upperEl.offsetHeight - 120) {
+        setActiveSection("contact");
+        return;
+      }
+
+      const sections = navItems.map((item) => item.href);
       for (const section of sections) {
+        if (section === "contact") continue;
         const element = document.getElementById(section);
         if (element) {
           const offsetTop = element.offsetTop;
@@ -62,7 +69,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [navItems]);
@@ -140,17 +147,22 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     toggleDarkMode();
   };
 
+  const handleNavigate = (id: string) => {
+    document.body.style.overflow = "";
+    setIsOpen(false);
+    requestAnimationFrame(() => {
+      scrollToSection(id);
+    });
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-100 transition-all duration-300">
       <div className="w-full px-6 md:px-12 h-20 md:h-24 flex justify-between items-center bg-transparent">
         {/* Logo */}
         <button
-          onClick={() => {
-            scrollToSection("home");
-            setIsOpen(false);
-          }}
+          onClick={() => handleNavigate("home")}
           aria-label="Homepage"
-          className="relative z-110 group"
+          className="relative z-110 group cursor-pointer"
         >
           <span className="text-xl md:text-2xl font-sans font-black uppercase tracking-[0.3em] text-foreground drop-shadow-[0_0_10px_rgba(var(--primary),0.3)] group-hover:text-primary transition-colors duration-300">
             {profileData.logo}
@@ -260,11 +272,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         <motion.button
                           key={item.href}
                           variants={linkVariants}
-                          onClick={() => {
-                            scrollToSection(item.href);
-                            setIsOpen(false);
-                          }}
-                          className="group relative w-full py-2.5 md:py-3 flex items-center gap-4 md:gap-6"
+                          onClick={() => handleNavigate(item.href)}
+                          className="group relative w-full py-2.5 md:py-3 flex items-center gap-4 md:gap-6 cursor-pointer"
                         >
                           {/* Index number */}
                           <span

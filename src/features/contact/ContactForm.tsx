@@ -15,8 +15,7 @@ export default function ContactForm() {
   const { t } = useTranslation();
 
   const contactSchema = z.object({
-    firstName: z.string().min(2, t("contact.validation.first_name", "Vui lòng nhập họ của bạn")),
-    lastName: z.string().min(2, t("contact.validation.last_name", "Vui lòng nhập tên của bạn")),
+    fullName: z.string().min(2, t("contact.validation.full_name", "Vui lòng nhập họ và tên của bạn")),
     email: z.string().email(t("contact.validation.email", "Vui lòng nhập đúng định dạng email")),
     mobile: z.string().regex(/^\d{10}$/, t("contact.validation.mobile", "Số điện thoại phải gồm đúng 10 chữ số")),
     message: z.string().min(10, t("contact.validation.message", "Tin nhắn phải có ít nhất 10 ký tự")),
@@ -77,37 +76,27 @@ export default function ContactForm() {
       whileInView={{ opacity: 1, y: 0 }}
       className="w-full text-primary-foreground"
     >
-      <span className="block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-primary-foreground/70 mb-10">
+      <span className="block text-[10px] md:text-xs font-mono uppercase tracking-[0.3em] text-primary-foreground/70 mb-6 md:mb-8">
         {t("contact.transmission_log")}
       </span>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
-        {/* LEFT: FIRST NAME, LAST NAME, EMAIL, MOBILE */}
-        <div className="space-y-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-6">
+        {/* LEFT: FULL NAME, EMAIL, MOBILE */}
+        <div className="space-y-6">
           <div>
             <input
               type="text"
-              placeholder={t("contact.labels.form.first_name")}
-              {...register("firstName")}
-              className={fieldClass(!!errors.firstName)}
+              placeholder={t("contact.labels.form.full_name", "Họ và tên")}
+              {...register("fullName")}
+              className={fieldClass(!!errors.fullName)}
             />
-            <FieldError message={errors.firstName?.message} />
-          </div>
-
-          <div>
-            <input
-              type="text"
-              placeholder={t("contact.labels.form.last_name")}
-              {...register("lastName")}
-              className={fieldClass(!!errors.lastName)}
-            />
-            <FieldError message={errors.lastName?.message} />
+            <FieldError message={errors.fullName?.message} />
           </div>
 
           <div>
             <input
               type="email"
-              placeholder={t("contact.labels.form.email")}
+              placeholder={t("contact.labels.form.email", "Email")}
               {...register("email")}
               className={fieldClass(!!errors.email)}
             />
@@ -117,7 +106,7 @@ export default function ContactForm() {
           <div>
             <input
               type="tel"
-              placeholder={t("contact.labels.form.mobile")}
+              placeholder={t("contact.labels.form.mobile", "Số điện thoại (10 chữ số)")}
               {...register("mobile")}
               className={fieldClass(!!errors.mobile)}
             />
@@ -128,16 +117,16 @@ export default function ContactForm() {
         {/* RIGHT: MESSAGE */}
         <div className="flex flex-col h-full">
           <textarea
-            placeholder={t("contact.labels.form.message")}
+            placeholder={t("contact.labels.form.message", "Nhập tin nhắn của bạn tại đây")}
             {...register("message")}
-            className={`${fieldClass(!!errors.message)} flex-1 min-h-40 md:min-h-full`}
+            className={`${fieldClass(!!errors.message)} flex-1 min-h-36 md:min-h-full`}
           />
           <FieldError message={errors.message?.message} />
         </div>
       </div>
 
       {/* STATUS + BUTTON */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-8">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-6 md:mt-8">
         <div>
           {status === "success" && (
             <p className="flex items-center gap-2 text-primary-foreground font-mono text-xs uppercase tracking-widest">

@@ -165,13 +165,19 @@
     }
   },
   "contact": {
-    "title": "Let's Work Together",
-    "subtitle": "HAVE A PROJECT? OR JUST LOOKING TO HIRE?",
+    "tag": "CONTACT",
+    "title": "Let's work together",
+    "subtitle": "HAVE A PROJECT? OR LOOKING FOR TALENT?",
     "description": "Feel free to reach out to connect or collaborate.",
     "direct_email": "Or reach out directly via email:",
     "watermark": "CONTACT",
     "transmission_log": "Contact Form",
-    "availability": "Ready for new opportunities. Leave a message below.",
+    "validation": {
+      "full_name": "Please enter your full name",
+      "email": "Please enter a valid email address",
+      "mobile": "Mobile number must be 10 digits",
+      "message": "Message must be at least 10 characters"
+    },
     "labels": {
       "email": "EMAIL",
       "phone": "PHONE",
@@ -179,6 +185,7 @@
       "github": "GITHUB",
       "form": {
         "name": "NAME",
+        "full_name": "Full Name",
         "first_name": "First Name",
         "last_name": "Last Name",
         "email": "Email",

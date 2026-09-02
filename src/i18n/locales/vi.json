@@ -165,13 +165,19 @@
     }
   },
   "contact": {
+    "tag": "LIÊN HỆ",
     "title": "Hãy cùng hợp tác nhé",
     "subtitle": "BẠN CÓ DỰ ÁN? HAY ĐANG TÌM KIẾM NHÂN SỰ?",
     "description": "Đừng ngần ngại liên hệ nếu bạn muốn kết nối hoặc hợp tác.",
     "direct_email": "Hoặc kết nối trực tiếp qua email:",
     "watermark": "LIÊN HỆ",
     "transmission_log": "Biểu mẫu liên hệ",
-    "availability": "Luôn sẵn sàng cho các cơ hội mới. Hãy để lại tin nhắn cho tôi.",
+    "validation": {
+      "full_name": "Vui lòng nhập họ và tên của bạn",
+      "email": "Vui lòng nhập đúng định dạng email",
+      "mobile": "Số điện thoại phải gồm đúng 10 chữ số",
+      "message": "Tin nhắn phải có ít nhất 10 ký tự"
+    },
     "labels": {
       "email": "EMAIL",
       "phone": "SỐ ĐIỆN THOẠI",
@@ -179,6 +185,7 @@
       "github": "GITHUB",
       "form": {
         "name": "TÊN CỦA BẠN",
+        "full_name": "Họ và tên",
         "first_name": "Họ",
         "last_name": "Tên",
         "email": "Email",
