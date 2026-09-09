@@ -1,14 +1,15 @@
 // src/pages/HomePage.tsx
 import React, { useEffect } from "react";
-import Header from "../components/general/Header";
-import Footer from "../components/general/Footer";
-import HeroSection from "../features/hero/HeroSetion";
-import AboutSection from "../features/about/AboutSection";
-import SkillsSection from "../features/skills/SkillsSection";
-import ProjectsSection from "../features/project/ProjectSecion";
-import ExperienceSection from "../features/experience/ExperienceSection";
-import ContactSection from "../features/contact/ContactSection";
-import ScrollProgressBar from "../components/ui/ScrollProgressBar";
+import Header from "@components/general/Header";
+import Footer from "@components/general/Footer";
+import HeroSection from "@features/hero/HeroSetion";
+import AboutSection from "@features/about/AboutSection";
+import SkillsSection from "@features/skills/SkillsSection";
+import ProjectsSection from "@features/project/ProjectSecion";
+import ExperienceSection from "@features/experience/ExperienceSection";
+import ContactSection from "@features/contact/ContactSection";
+import ScrollProgressBar from "@components/ui/ScrollProgressBar";
+import Particles from "@components/theme/Particles";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
@@ -59,16 +60,25 @@ const PortfolioPage: React.FC = () => {
 
       {/* Upper Sections (Layer Z-20 - Scrolls off to reveal Contact beneath) */}
       <div id="upper-content" className="relative z-20 bg-background shadow-2xl">
-        <HeroSection scrollToSection={scrollToSection} />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceSection />
-        <ProjectsSection />
+        {/* Starfield Particles on top of background, behind section items */}
+        <Particles quantity={120} zIndex={1} />
+
+        {/* Section items on top of stars */}
+        <div className="relative z-10">
+          <HeroSection scrollToSection={scrollToSection} />
+          <AboutSection />
+          <SkillsSection />
+          <ExperienceSection />
+          <ProjectsSection />
+        </div>
       </div>
 
       {/* Contact Section (Layer Z-10 - Sticky behind upper content and footer) */}
-      <div className="sticky bottom-0 z-10 w-full min-h-screen flex flex-col justify-center overflow-hidden">
-        <ContactSection />
+      <div className="sticky bottom-0 z-10 w-full min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+        <Particles quantity={60} zIndex={1} />
+        <div className="relative z-10">
+          <ContactSection />
+        </div>
       </div>
 
       {/* Footer (Layer Z-20 - Slides up over Contact section like a curtain) */}

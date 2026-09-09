@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import { useThemeStore } from "../../stores/themeStore";
+import { useThemeStore } from "@stores/themeStore";
 
 interface Star {
   x: number;
@@ -26,18 +26,18 @@ interface ShootingStar {
 
 interface ParticlesProps {
   quantity?: number;
+  zIndex?: number;
 }
 
 const STAR_COLORS_DARK = [
   "255,255,255", // white
-  "97,255,202",  // cyan
 ];
 
 const STAR_COLORS_LIGHT = [
   "0,0,0",       // black
 ];
 
-const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
+const Particles: React.FC<ParticlesProps> = ({ quantity = 160, zIndex = 25 }) => {
   const { darkMode } = useThemeStore();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -260,7 +260,7 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160 }) => {
         inset: 0,
         width: "100vw",
         height: "100vh",
-        zIndex: -1,
+        zIndex,
         pointerEvents: "none",
         background: "transparent",
       }}

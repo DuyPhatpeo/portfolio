@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { profileData } from "../../constants/profileData";
-import { gsap, useGSAP } from "../../lib/gsap";
+import { profileData } from "@constants/profileData";
+import { gsap, useGSAP } from "@lib/gsap";
 
 const AboutSection: React.FC = () => {
   const { t } = useTranslation();
@@ -102,7 +102,7 @@ const AboutSection: React.FC = () => {
     <section
       ref={sectionRef}
       id="about"
-      className="min-h-screen flex items-center py-12 md:py-16 relative overflow-hidden bg-(--background-alt)"
+      className="min-h-screen flex items-center py-12 md:py-16 relative overflow-hidden bg-(--background-alt)/40"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">

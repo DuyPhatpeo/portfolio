@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import Particles from "../theme/Particles";
+import Particles from "@components/theme/Particles";
 
 interface LoadingProps {
   progress: number;
@@ -68,7 +68,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
       } overflow-hidden select-none`}
     >
       {/* 1. Theme Starfield Particles Background */}
-      <Particles quantity={70} />
+      <Particles quantity={70} zIndex={1} />
 
       {/* 2. Falling Tech Logos Stream (Border-free, pure floating icons) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

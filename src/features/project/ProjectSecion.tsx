@@ -1,12 +1,12 @@
 // src/components/project/ProjectSection.tsx
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { projects } from "../../constants/projectData";
+import { projects } from "@constants/projectData";
 import ProjectCard from "./ProjectCard";
 import FeaturedProjectRow from "./FeaturedProjectRow";
 import ProjectModal from "./ProjectModal";
 import { useTranslation } from "react-i18next";
-import type { Project } from "../../types/data";
+import type { Project } from "@/types/data";
 
 export default function ProjectSection() {
   const featuredProjects = projects.filter((p) => p.featured);
@@ -15,7 +15,7 @@ export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="min-h-screen py-12 md:py-16 relative overflow-hidden bg-(--background-alt)">
+    <section id="projects" className="min-h-screen py-12 md:py-16 relative overflow-hidden bg-(--background-alt)/40">
       {/* Dots Pattern Background */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.05]" />
 
