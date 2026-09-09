@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useThemeStore } from "../../stores/themeStore";
+import { useThemeStore } from "@stores/themeStore";
 
 export default function CustomCursor() {
   const { darkMode } = useThemeStore();

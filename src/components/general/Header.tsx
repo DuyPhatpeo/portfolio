@@ -1,11 +1,11 @@
-import { profileData } from "../../constants/profileData";
+import { profileData } from "@constants/profileData";
 import React, { useState, useMemo, useEffect } from "react";
 import {
   RiMoonLine,
   RiSunLine,
 } from "react-icons/ri";
 import { FiArrowUpRight } from "react-icons/fi";
-import { useThemeStore } from "../../stores/themeStore";
+import { useThemeStore } from "@stores/themeStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 

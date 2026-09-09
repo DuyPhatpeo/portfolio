@@ -1,8 +1,8 @@
 import { lazy, useState, useEffect, Suspense } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import Loading from "../components/general/Loading";
+import Loading from "@components/general/Loading";
 
-const PortfolioPage = lazy(() => import("../pages/PortfolioPage"));
+const PortfolioPage = lazy(() => import("@pages/PortfolioPage"));
 
 const isBotOrLighthouse =
   typeof navigator !== "undefined" &&
@@ -20,7 +20,7 @@ const AppRoutes = () => {
 
   // 1. Eagerly preload PortfolioPage bundle during loading
   useEffect(() => {
-    import("../pages/PortfolioPage");
+    import("@pages/PortfolioPage");
   }, []);
 
   // 2. Smooth progress simulation + stabilization buffer

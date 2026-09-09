@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import ScrollStack, { ScrollStackItem } from "../../components/ui/ScrollStack/ScrollStack";
+import ScrollStack, { ScrollStackItem } from "@components/ui/ScrollStack/ScrollStack";
 
 interface ExperienceItem {
   role: string;

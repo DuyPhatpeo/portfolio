@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { HiArrowLongRight } from "react-icons/hi2";
-import type { Project } from "../../types/data";
-import { gsap } from "../../lib/gsap";
+import type { Project } from "@/types/data";
+import { gsap } from "@lib/gsap";
 
 interface ProjectCardProps {
   project: Project;

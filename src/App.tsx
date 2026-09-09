@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useThemeStore } from "./stores/themeStore";
-import Particles from "./components/theme/Particles";
-import DarkModeAnimation from "./components/theme/DarkModeAnimation";
+import { useThemeStore } from "@stores/themeStore";
+import DarkModeAnimation from "@components/theme/DarkModeAnimation";
 
-import AppRoutes from "./routes/AppRoutes";
+import AppRoutes from "@routes/AppRoutes";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./styles/tokens/variables.css";
-import "./styles/main.css";
-import "./styles/base/reset.css";
-import ScrollToTop from "./components/general/ScrollToTop";
-import ClickSpark from "./components/general/ClickSpark";
+import "@styles/tokens/variables.css";
+import "@styles/main.css";
+import "@styles/base/reset.css";
+import ScrollToTop from "@components/general/ScrollToTop";
+import ClickSpark from "@components/general/ClickSpark";
 
 const AppContent: React.FC = () => {
   const { darkMode } = useThemeStore();
@@ -26,9 +25,6 @@ const AppContent: React.FC = () => {
     <div className="relative min-h-screen bg-transparent">
       {/* Dark Mode Canvas Animation */}
       <DarkModeAnimation isDark={darkMode} />
-
-      {/* Background */}
-      <Particles quantity={50} />
 
       {/* Click Spark wrapper */}
       <ClickSpark

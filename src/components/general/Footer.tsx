@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import { profileData } from "../../constants/profileData";
+import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";
-import { gsap, useGSAP } from "../../lib/gsap";
+import { gsap, useGSAP } from "@lib/gsap";
 
 const NAV_ITEMS = ["home", "about", "skills", "experience", "projects", "contact"];
 

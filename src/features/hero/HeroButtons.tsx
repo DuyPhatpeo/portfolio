@@ -2,7 +2,7 @@ import React from "react";
 import { IoIosDocument } from "react-icons/io";
 import { useTranslation } from "react-i18next";
 
-import { profileData } from "../../constants/profileData";
+import { profileData } from "@constants/profileData";
 
 interface HeroButtonsProps { }
 

@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "../../lib/gsap";
+import { gsap } from "@lib/gsap";
 
 export interface Skill {
   name: string;

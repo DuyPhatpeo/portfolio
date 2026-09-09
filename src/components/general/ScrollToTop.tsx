@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowUp } from "react-icons/hi2";
-import { gsap } from "../../lib/gsap";
+import { gsap } from "@lib/gsap";
 
 const ScrollToTop: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);

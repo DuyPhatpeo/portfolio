@@ -1,5 +1,5 @@
 import React from "react";
-import { profileData } from "../../constants/profileData";
+import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";
 import { RiSendPlane2Line } from "react-icons/ri";
 

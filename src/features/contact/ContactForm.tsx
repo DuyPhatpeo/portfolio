@@ -3,12 +3,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MdCheckCircle, MdError } from "react-icons/md";
 import { HiArrowLongRight } from "react-icons/hi2";
 import emailjs from "@emailjs/browser";
-import { useContactStore } from "../../stores/contactStore";
+import { useContactStore } from "@stores/contactStore";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import type { FormState } from "../../stores/contactStore";
+import type { FormState } from "@stores/contactStore";
 
 export default function ContactForm() {
   const { loading, status, sendEmail } = useContactStore();

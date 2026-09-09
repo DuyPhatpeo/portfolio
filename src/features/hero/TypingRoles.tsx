@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { profileData } from "../../constants/profileData";
+import { profileData } from "@constants/profileData";
 
 const TypingRoles: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0);

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
-import { gsap, useGSAP } from "../../lib/gsap";
+import { gsap, useGSAP } from "@lib/gsap";
 
 export default function ContactSection() {
   const { t } = useTranslation();

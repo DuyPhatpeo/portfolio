@@ -1,10 +1,10 @@
 import { useEffect } from"react";
 import { FiGithub, FiMonitor, FiX } from"react-icons/fi";
 import { useTranslation } from"react-i18next";
-import type { Project } from"../../types/data";
-import { TECH_ICONS } from"../../constants/technologies";
-import { skills } from"../../constants/skillsData";
-import Dock, { type DockItemData } from"../../components/ui/Dock/Dock";
+import type { Project } from"@/types/data";
+import { TECH_ICONS } from"@constants/technologies";
+import { skills } from"@constants/skillsData";
+import Dock, { type DockItemData } from"@components/ui/Dock/Dock";
 
 interface ProjectModalProps {
  project: Project;

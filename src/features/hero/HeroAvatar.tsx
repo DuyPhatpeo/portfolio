@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-import { profileData } from "../../constants/profileData";
-import { gsap, useGSAP } from "../../lib/gsap";
+import { profileData } from "@constants/profileData";
+import { gsap, useGSAP } from "@lib/gsap";
 
 const HeroAvatar: React.FC = () => {
   const { heroImage, name } = profileData;

@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { skills } from "../../constants/skillsData";
-import type { SkillCategory } from "../../types/data";
+import { skills } from "@constants/skillsData";
+import type { SkillCategory } from "@/types/data";
 import SkillNode from "./SkillNode";
 
 const CATEGORY_ORDER: SkillCategory[] = ["frontend", "backend", "database", "tools", "design"];
