@@ -5,6 +5,7 @@
     "skills": "KỸ NĂNG",
     "experience": "KINH NGHIỆM",
     "projects": "DỰ ÁN",
+    "activity": "HOẠT ĐỘNG",
     "contact": "LIÊN HỆ",
     "theme": {
       "light": "SÁNG",
@@ -163,6 +164,13 @@
         "description": "Nền tảng quản lý liên kết tiên tiến kết hợp giữa tính năng rút gọn URL và trình xây dựng Bio Page tùy chỉnh, tương tự các công cụ như Linktree hay Bitly. Người dùng có thể theo dõi thống kê lượt truy cập theo thời gian thực, xem biểu đồ tương tác và tạo mã QR tùy chỉnh cho từng liên kết. Hệ thống hỗ trợ đăng nhập nhanh qua Google OAuth và được xây dựng bằng Laravel cùng MySQL ở backend, đảm bảo hiệu năng và bảo mật ổn định."
       }
     }
+  },
+  "activity": {
+    "subtitle": "HOẠT ĐỘNG MÃ NGUỒN MỞ",
+    "title": "GitHub Activity",
+    "description": "Thống kê đóng góp mã nguồn mở và lịch sử commit thực tế trong năm qua trên GitHub.",
+    "view_github": "Ghé thăm GitHub",
+    "top_contributions": "Top repositories đóng góp gần đây:"
   },
   "contact": {
     "tag": "LIÊN HỆ",

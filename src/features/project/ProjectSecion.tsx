@@ -15,7 +15,10 @@ export default function ProjectSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="min-h-screen py-12 md:py-16 relative overflow-hidden bg-(--background-alt)/40">
+    <section
+      id="projects"
+      className="min-h-screen py-24 md:py-32 relative overflow-hidden bg-(--background-alt) scroll-mt-24 md:scroll-mt-28"
+    >
       {/* Dots Pattern Background */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.05]" />
 

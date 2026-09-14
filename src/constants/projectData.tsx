@@ -16,7 +16,7 @@ export const projects: Project[] = [
     image: "assets/projects/linksnap.png",
     tags: [TECH.LARAVEL, TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.TAILWIND, TECH.MYSQL],
     github: "https://github.com/DuyPhatpeo/link-snap",
-    demo: null,
+    demo: "http://linksnap.site.je/",
     featured: true,
     reverse: true,
   },

@@ -8,6 +8,7 @@ import SkillsSection from "@features/skills/SkillsSection";
 import ProjectsSection from "@features/project/ProjectSecion";
 import ExperienceSection from "@features/experience/ExperienceSection";
 import ContactSection from "@features/contact/ContactSection";
+import GithubSection from "@features/github/GithubSection";
 import ScrollProgressBar from "@components/ui/ScrollProgressBar";
 import Particles from "@components/theme/Particles";
 
@@ -44,7 +45,7 @@ const PortfolioPage: React.FC = () => {
 
     const el = document.getElementById(id);
     if (el) {
-      const navbarOffset = 70;
+      const navbarOffset = 90;
       const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
       window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
     }
@@ -70,6 +71,7 @@ const PortfolioPage: React.FC = () => {
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />
+          <GithubSection />
         </div>
       </div>
 

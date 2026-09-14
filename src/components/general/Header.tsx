@@ -37,6 +37,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       { name: t("nav.skills"), href: "skills" },
       { name: t("nav.experience"), href: "experience" },
       { name: t("nav.projects"), href: "projects" },
+      { name: t("nav.activity"), href: "activity" },
       { name: t("nav.contact"), href: "contact" },
     ],
     [t],

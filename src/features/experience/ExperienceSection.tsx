@@ -21,7 +21,7 @@ const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen py-12 md:py-16 relative overflow-hidden"
+      className="min-h-screen pt-12 md:pt-16 pb-24 md:pb-36 relative overflow-hidden scroll-mt-24 md:scroll-mt-28"
     >
       {/* Background Decor */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />

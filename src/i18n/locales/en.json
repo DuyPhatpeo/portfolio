@@ -5,6 +5,7 @@
     "skills": "SKILLS",
     "experience": "EXPERIENCE",
     "projects": "PROJECTS",
+    "activity": "ACTIVITY",
     "contact": "CONTACT",
     "theme": {
       "light": "LIGHT",
@@ -163,6 +164,13 @@
         "description": "An advanced link management platform that combines a URL shortener with a customizable Bio Page builder, in the spirit of tools like Linktree or Bitly. Users can track real-time click analytics, view engagement charts, and generate custom QR codes for each link. The platform supports one-click Google OAuth login and is built with Laravel and MySQL on the backend for stable performance and security."
       }
     }
+  },
+  "activity": {
+    "subtitle": "OPEN SOURCE & CONTRIBUTIONS",
+    "title": "GitHub Activity",
+    "description": "Real-time contribution statistics and commit streak over the past year on GitHub.",
+    "view_github": "Visit GitHub Profile",
+    "top_contributions": "Top contributions in:"
   },
   "contact": {
     "tag": "CONTACT",

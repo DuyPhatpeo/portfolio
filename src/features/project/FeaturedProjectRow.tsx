@@ -125,10 +125,6 @@ export default function FeaturedProjectRow({ project, index, onSelect }: Feature
   ref={glareRef}
   className="absolute inset-0 pointer-events-none opacity-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.4)_0%,transparent_60%)] mix-blend-overlay transition-opacity duration-300"
  />
-
- {/* HUD corner accents */}
- <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
- <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
  </div>
 
   <div className="w-full md:w-2/5 text-left flex flex-row items-baseline gap-4">
