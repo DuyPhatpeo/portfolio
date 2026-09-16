@@ -59,14 +59,14 @@ export default function ContactSection() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-background pt-24 md:pt-32 pb-16 md:pb-24"
+      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-background pt-20 sm:pt-24 md:pt-32 pb-16 md:pb-24"
     >
       {/* Giant watermark with GSAP ScrollTrigger horizontal glide */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center">
         <div
           ref={watermarkRef}
           aria-hidden
-          className="whitespace-nowrap font-sans font-black uppercase text-[22vw] md:text-[15vw] leading-none select-none will-change-transform text-foreground/5 dark:text-foreground/5 tracking-tighter"
+          className="whitespace-nowrap font-sans font-black uppercase text-[18vw] md:text-[15vw] leading-none select-none will-change-transform text-foreground/5 dark:text-foreground/5 tracking-tighter"
         >
           <span className="inline-block px-4">{t("contact.watermark")}</span>
           <span className="inline-block px-4 text-transparent [-webkit-text-stroke:1.5px_rgba(var(--primary-rgb),0.15)]">
@@ -76,7 +76,7 @@ export default function ContactSection() {
       </div>
 
       {/* Main Container */}
-      <div className="relative max-w-7xl w-full mx-auto px-6 md:px-12 space-y-8 md:space-y-10 z-10">
+      <div className="relative max-w-7xl w-full mx-auto px-5 sm:px-8 md:px-12 space-y-6 sm:space-y-8 md:space-y-10 z-10">
         {/* Top: Title & Info */}
         <div className="space-y-3.5 text-left">
           {/* Section Category Tag */}
@@ -91,7 +91,7 @@ export default function ContactSection() {
             {t("contact.subtitle")}
           </span>
 
-          <h2 className="contact-reveal-item text-3xl sm:text-5xl md:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-[1.08]">
+          <h2 className="contact-reveal-item text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-[1.08]">
             {t("contact.title")}
           </h2>
 
@@ -132,7 +132,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: "-60px" }}
-          className="relative bg-primary text-primary-foreground rounded-3xl shadow-2xl p-6 sm:p-10 md:p-12 overflow-hidden w-full"
+          className="relative bg-primary text-primary-foreground rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 md:p-12 overflow-hidden w-full"
         >
           {/* Subtle decorative inner corner glow */}
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />

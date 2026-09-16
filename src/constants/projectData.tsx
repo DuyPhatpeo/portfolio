@@ -73,7 +73,7 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    image: "assets/projects/dinobotweb.png",
+    image: "assets/projects/dinobot.png",
     tags: [TECH.NODE_JS, TECH.DISCORD_JS],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",

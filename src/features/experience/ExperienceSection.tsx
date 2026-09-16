@@ -21,12 +21,12 @@ const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="min-h-screen pt-12 md:pt-16 pb-24 md:pb-36 relative overflow-hidden scroll-mt-24 md:scroll-mt-28"
+      className="min-h-screen pt-12 md:pt-16 pb-24 md:pb-36 relative overflow-hidden"
     >
       {/* Background Decor */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-[85rem] mx-auto px-6 md:px-12 relative z-10 w-full">
+      <div className="max-w-[85rem] mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
         
         {/* Standardized Section Header */}
         <motion.div
@@ -34,15 +34,15 @@ const ExperienceSection: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-10 sm:mb-16"
         >
           <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
             {t("experience.subtitle")}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6 drop-shadow-sm">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6 drop-shadow-sm">
             {t("experience.title")}
           </h2>
-          <p className="max-w-2xl text-foreground/60 text-base md:text-lg font-mono text-justify">
+          <p className="max-w-2xl text-foreground/60 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
             {t("experience.description")}
           </p>
         </motion.div>
@@ -54,24 +54,24 @@ const ExperienceSection: React.FC = () => {
             return (
               <ScrollStackItem
                 key={i}
-                itemClassName="bg-card border border-primary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-8"
+                itemClassName="bg-card border border-primary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8"
               >
                 {/* Left: Title & Period */}
                 <div className="flex flex-col lg:w-2/3">
-                  <div className="flex flex-wrap items-center gap-4 font-mono text-sm md:text-base text-primary mb-4 uppercase tracking-widest">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm md:text-base text-primary mb-3 sm:mb-4 uppercase tracking-widest">
                     <span>{item.period}</span>
                     <span className="w-8 h-[1px] bg-primary/50 hidden md:block" />
                     <span>{item.type}</span>
                   </div>
 
-                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground">
+                  <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground break-words">
                     {item.role}
                   </h3>
 
                   {item.tasks && item.tasks.length > 0 && (
-                    <ul className="mt-6 space-y-2 text-foreground/70 font-sans text-sm md:text-base max-w-xl">
+                    <ul className="mt-4 sm:mt-6 space-y-2 text-foreground/70 font-sans text-xs sm:text-sm md:text-base max-w-xl">
                       {item.tasks.map((task, idx) => (
-                        <li key={idx} className="flex gap-3">
+                        <li key={idx} className="flex gap-2.5 sm:gap-3">
                           <span className="text-primary mt-1 text-xs">▹</span>
                           <span>{task}</span>
                         </li>
@@ -81,12 +81,12 @@ const ExperienceSection: React.FC = () => {
                 </div>
 
                 {/* Right: Company & Tech Stack */}
-                <div className="lg:w-1/3 flex flex-col lg:items-end text-left lg:text-right gap-4">
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight">
+                <div className="lg:w-1/3 flex flex-col lg:items-end text-left lg:text-right gap-2 sm:gap-4">
+                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight">
                     {item.company}
                   </div>
 
-                  <div className="font-mono text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm">
+                  <div className="font-mono text-xs sm:text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm">
                     {techList.join(" / ")}
                   </div>
                 </div>

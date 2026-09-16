@@ -40,9 +40,9 @@ const Footer = () => {
 
   return (
     <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
-      <div className="w-full px-6 md:px-12 pt-8 md:pt-10 pb-4">
+      <div className="w-full px-5 sm:px-8 md:px-12 pt-8 md:pt-10 pb-4">
         {/* Top row: Navigation / Social */}
-        <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-8 md:gap-6">
+        <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-6 md:gap-6">
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
             {NAV_ITEMS.map((id) => (
               <a
@@ -73,17 +73,17 @@ const Footer = () => {
         </div>
 
         {/* Giant name - NAMMA Style Vertical Stretch */}
-        <div className="pt-16 pb-10 md:pt-28 md:pb-16 text-center overflow-hidden flex justify-center items-end">
+        <div className="pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-24 md:pb-14 text-center overflow-hidden flex justify-center items-end">
           <span
             ref={logoRef}
-            className="inline-block origin-bottom will-change-transform text-[18vw] sm:text-[16vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
+            className="inline-block origin-bottom will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
           >
             {profileData.logo}
           </span>
         </div>
 
         {/* Bottom row: Contact / Email / Follow */}
-        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-6 pt-6 pb-6 md:pb-8 border-t border-primary/10">
+        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-5 sm:gap-6 pt-6 pb-6 md:pb-8 border-t border-primary/10">
           <div className="flex flex-col items-center md:items-start">
             <a
               href="#contact"
@@ -105,7 +105,7 @@ const Footer = () => {
             </a>
           </div>
 
-          <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end md:pr-16">
+          <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end">
             <span className="text-[10px] font-mono text-foreground/40 tracking-[0.2em] uppercase">
               {t("footer.follow")}
             </span>

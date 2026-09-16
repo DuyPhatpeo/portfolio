@@ -18,7 +18,7 @@ const GithubSection: React.FC = () => {
   return (
     <section
       id="activity"
-      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-(--background-alt) scroll-mt-24 md:scroll-mt-28"
+      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-(--background-alt)"
     >
       {/* Top Cyber Divider separating Projects and GitHub */}
       <div className="absolute top-0 inset-x-0 flex items-center justify-center pointer-events-none z-20">
@@ -33,10 +33,10 @@ const GithubSection: React.FC = () => {
       {/* Background Cyber Dots Pattern */}
       <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.04]" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* Section Header */}
         <motion.div
-          className="mb-10 md:mb-14"
+          className="mb-8 sm:mb-12 md:mb-14"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -45,30 +45,37 @@ const GithubSection: React.FC = () => {
           <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
             {t("activity.subtitle")}
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
             {t("activity.title")}
           </h2>
-          <p className="max-w-2xl text-foreground/90 text-base md:text-lg font-mono text-justify">
+          <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
             {t("activity.description")}
           </p>
         </motion.div>
 
         {/* GitHub Activity Card & CTA Container */}
-        <div className="flex flex-col items-center justify-center gap-8">
-          <motion.div
-            className="w-full flex justify-center overflow-x-auto py-2 px-1"
-            initial={{ opacity: 0, scale: 0.96, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            viewport={{ once: true }}
-          >
-            <GitHubActivity
-              username={username}
-              label={t("activity.top_contributions")}
-              showMonths={true}
-              months={12}
-            />
-          </motion.div>
+        <div className="flex flex-col items-center justify-center gap-6 sm:gap-8">
+          <div className="w-full flex flex-col items-center">
+            {/* Mobile swipe hint */}
+            <span className="sm:hidden text-[10px] font-mono text-primary/70 tracking-widest uppercase mb-2 flex items-center gap-1.5">
+              ← {t("common.scroll_hint", "Kéo ngang để xem")} →
+            </span>
+
+            <motion.div
+              className="w-full flex justify-start sm:justify-center overflow-x-auto py-2 px-1"
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+            >
+              <GitHubActivity
+                username={username}
+                label={t("activity.top_contributions")}
+                showMonths={true}
+                months={12}
+              />
+            </motion.div>
+          </div>
 
           {/* GitHub Profile CTA Button */}
           <motion.div
@@ -76,12 +83,13 @@ const GithubSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
+            className="w-full sm:w-auto"
           >
             <a
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-foreground/5 hover:bg-foreground hover:text-background border border-primary/20 hover:border-primary transition-all duration-300 shadow-md font-mono text-xs md:text-sm font-semibold tracking-wider uppercase text-foreground"
+              className="group inline-flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-foreground/5 hover:bg-foreground hover:text-background border border-primary/20 hover:border-primary transition-all duration-300 shadow-md font-mono text-xs md:text-sm font-semibold tracking-wider uppercase text-foreground w-full sm:w-auto"
             >
               <RiGithubFill className="size-5 text-primary group-hover:text-background transition-colors" />
               <span>{t("activity.view_github")}</span>

@@ -9,7 +9,7 @@ const SkillsSection: React.FC = () => {
   return (
     <section id="skills" className="py-12 md:py-16 relative overflow-hidden bg-transparent">
       <motion.div
-        className="max-w-7xl mx-auto px-6 md:px-12 mb-8 md:mb-12"
+        className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-8 md:mb-12"
         initial={{ opacity: 0, x: 50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -18,10 +18,10 @@ const SkillsSection: React.FC = () => {
         <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
           {t("skills.subtitle")}
         </span>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
           {t("skills.title")}
         </h2>
-        <p className="max-w-2xl text-foreground/90 text-base md:text-lg font-mono text-justify">
+        <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
           {t("skills.description")}
         </p>
       </motion.div>

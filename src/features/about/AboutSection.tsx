@@ -104,7 +104,7 @@ const AboutSection: React.FC = () => {
       id="about"
       className="min-h-screen flex items-center py-12 md:py-16 relative overflow-hidden bg-(--background-alt)/40"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
 
           {/* Left: Image Container with 3D Tilt and GSAP Parallax */}
@@ -138,16 +138,16 @@ const AboutSection: React.FC = () => {
             {/* Decorative corner accents with GSAP parallax */}
             <div
               ref={cornerTopRef}
-              className="absolute -top-3 -left-3 w-16 h-16 border-t-4 border-l-4 border-primary/40 pointer-events-none rounded-tl-[3rem] transition-colors group-hover:border-primary"
+              className="absolute -top-3 -left-3 w-10 h-10 md:w-16 md:h-16 border-t-4 border-l-4 border-primary/40 pointer-events-none rounded-tl-[2rem] md:rounded-tl-[3rem] transition-colors group-hover:border-primary"
             ></div>
             <div
               ref={cornerBottomRef}
-              className="absolute -bottom-3 -right-3 w-16 h-16 border-b-4 border-r-4 border-primary/40 pointer-events-none rounded-br-[3rem] transition-colors group-hover:border-primary"
+              className="absolute -bottom-3 -right-3 w-10 h-10 md:w-16 md:h-16 border-b-4 border-r-4 border-primary/40 pointer-events-none rounded-br-[2rem] md:rounded-br-[3rem] transition-colors group-hover:border-primary"
             ></div>
           </div>
 
           {/* Right: Content */}
-          <div className="lg:col-span-7 space-y-8">
+          <div className="lg:col-span-7 space-y-6 md:space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -157,21 +157,21 @@ const AboutSection: React.FC = () => {
               <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
                 {t("about.subtitle")}
               </span>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-6">
                 {t("about.title")}
               </h2>
               <div className="h-1.5 w-24 bg-primary/30 rounded-2xl"></div>
             </motion.div>
 
             <motion.div
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               viewport={{ once: true }}
             >
               {paragraphs.map((text, index) => (
-                <p key={index} className="text-foreground/90 text-base md:text-lg leading-relaxed font-mono text-justify">
+                <p key={index} className="text-foreground/90 text-sm sm:text-base md:text-lg leading-relaxed font-mono text-left sm:text-justify">
                   {text}
                 </p>
               ))}

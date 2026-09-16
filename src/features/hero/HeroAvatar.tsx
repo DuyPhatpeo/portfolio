@@ -68,7 +68,7 @@ const HeroAvatar: React.FC = () => {
 
   return (
     <div ref={containerRef} className="flex justify-center lg:justify-end [perspective:1000px]">
-      <div className="relative w-full max-w-[160px] xs:max-w-[200px] sm:max-w-[280px] md:max-w-[500px] lg:max-w-[600px] group">
+      <div className="relative w-full max-w-[170px] xs:max-w-[220px] sm:max-w-[280px] md:max-w-[440px] lg:max-w-[540px] group">
         <div className="relative z-10 will-change-transform">
           <img
             ref={imageRef}

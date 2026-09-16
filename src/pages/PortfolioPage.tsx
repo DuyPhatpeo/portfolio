@@ -45,9 +45,7 @@ const PortfolioPage: React.FC = () => {
 
     const el = document.getElementById(id);
     if (el) {
-      const navbarOffset = 90;
-      const y = el.getBoundingClientRect().top + window.pageYOffset - navbarOffset;
-      window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+      el.scrollIntoView({ behavior: "smooth" });
     }
   };
 

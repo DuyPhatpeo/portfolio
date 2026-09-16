@@ -126,7 +126,7 @@ export default function ContactForm() {
       </div>
 
       {/* STATUS + BUTTON */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mt-6 md:mt-8">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 sm:gap-6 mt-6 md:mt-8">
         <div>
           {status === "success" && (
             <p className="flex items-center gap-2 text-primary-foreground font-mono text-xs uppercase tracking-widest">
@@ -144,7 +144,7 @@ export default function ContactForm() {
           type="submit"
           disabled={loading}
           className="
-            group flex items-center gap-3 shrink-0
+            group flex items-center justify-center gap-3 shrink-0 w-full sm:w-auto cursor-pointer
             bg-primary-foreground text-primary font-black uppercase tracking-[0.2em] text-xs md:text-sm
             px-8 py-4 rounded-full hover:opacity-90 transition-all duration-300
             disabled:opacity-50 disabled:cursor-not-allowed

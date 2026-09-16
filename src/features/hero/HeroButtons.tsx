@@ -10,7 +10,7 @@ const HeroButtons: React.FC<HeroButtonsProps> = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col w-full mt-8">
+    <div className="flex flex-col w-full mt-4 sm:mt-8">
       {/* 1. Resume - Primary Action */}
       <a
         href={profileData.resume}

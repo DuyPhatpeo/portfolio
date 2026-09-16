@@ -65,7 +65,7 @@ const SkillsGrid: React.FC = () => {
   }, []);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+    <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 space-y-8 sm:space-y-12">
       {groups.map((group) => (
         <div key={group.category}>
           <motion.h3
@@ -80,7 +80,7 @@ const SkillsGrid: React.FC = () => {
           </motion.h3>
 
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
             variants={groupVariants}
             initial="hidden"
             whileInView="visible"

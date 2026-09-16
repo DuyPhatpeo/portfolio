@@ -35,9 +35,9 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
   return (
     <section
       id="home"
-      className="relative h-dvh overflow-hidden flex items-center justify-center pt-16 pb-16 sm:pt-20 sm:pb-20 md:pt-28 md:pb-32 scroll-mt-20 md:scroll-mt-24"
+      className="relative min-h-dvh overflow-hidden flex flex-col items-center justify-center pt-24 pb-24 sm:py-20 md:py-28"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-16 items-center relative">
           {/* Main Content */}
           <motion.div
@@ -59,7 +59,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
             <motion.h1
               variants={itemVariants}
               data-text={t("hero.title")}
-              className="text-4xl xs:text-5xl sm:text-6xl md:text-8xl lg:text-[90px] xl:text-[110px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto"
+              className="text-3xl xs:text-4xl sm:text-6xl md:text-8xl lg:text-[90px] xl:text-[110px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto break-words"
             >
               {t("hero.title")}
             </motion.h1>
@@ -71,7 +71,7 @@ export default function HeroSection({ scrollToSection }: HeroSectionProps) {
 
             <motion.div
               variants={itemVariants}
-              className="flex flex-col gap-0 w-fit"
+              className="flex flex-col gap-0 w-full sm:w-fit"
             >
               <HeroButtons />
               <SocialLinks scrollToSection={scrollToSection} />
