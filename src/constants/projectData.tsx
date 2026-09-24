@@ -60,7 +60,7 @@ export const projects: Project[] = [
     image: "assets/projects/dinomovie.png",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/movie-web-app",
-    demo: "https://dinomovie.vercel.app",
+    demo: "https://dinocine.vercel.app",
     featured: false,
   },
   {
