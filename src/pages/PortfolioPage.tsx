@@ -14,7 +14,7 @@ import Particles from "@components/theme/Particles";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
-    document.title = "Dino Péo (Trần Duy Phát) - Portfolio";
+    document.title = "Portfolio - Dino Péo (Trần Duy Phát)";
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
