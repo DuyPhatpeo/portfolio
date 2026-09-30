@@ -1,90 +1,29 @@
-import React, { useRef } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
-import { gsap, useGSAP } from "@lib/gsap";
 
-const HeroAvatar: React.FC = () => {
-  const { heroImage, name } = profileData;
-  const containerRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
-
-  useGSAP(
-    () => {
-      if (!imageRef.current || !containerRef.current) return;
-
-      // Initial entrance
-      gsap.fromTo(
-        imageRef.current,
-        { opacity: 0, scale: 0.9, x: 50 },
-        { opacity: 1, scale: 1, x: 0, duration: 1.2, ease: "power3.out" }
-      );
-
-      // Smooth floating animation
-      gsap.to(imageRef.current, {
-        y: -12,
-        duration: 3,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut",
-      });
-
-      // Mouse interactive tilt/parallax
-      const handleMouseMove = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const { innerWidth, innerHeight } = window;
-        const xPos = (clientX / innerWidth - 0.5) * 25;
-        const yPos = (clientY / innerHeight - 0.5) * 25;
-
-        gsap.to(imageRef.current, {
-          x: xPos,
-          rotationY: xPos * 0.4,
-          rotationX: -yPos * 0.4,
-          duration: 0.8,
-          ease: "power2.out",
-          overwrite: "auto",
-        });
-      };
-
-      const handleMouseLeave = () => {
-        gsap.to(imageRef.current, {
-          x: 0,
-          rotationY: 0,
-          rotationX: 0,
-          duration: 1.2,
-          ease: "elastic.out(1, 0.4)",
-          overwrite: "auto",
-        });
-      };
-
-      window.addEventListener("mousemove", handleMouseMove);
-      window.addEventListener("mouseleave", handleMouseLeave);
-
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-        window.removeEventListener("mouseleave", handleMouseLeave);
-      };
-    },
-    { scope: containerRef }
-  );
+export default function HeroAvatar() {
+  const { t } = useTranslation();
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div ref={containerRef} className="flex justify-center lg:justify-end [perspective:1000px]">
-      <div className="relative w-full max-w-[170px] xs:max-w-[220px] sm:max-w-[280px] md:max-w-[440px] lg:max-w-[540px] group">
-        <div className="relative z-10 will-change-transform">
-          <img
-            ref={imageRef}
-            src={heroImage}
-            alt={name}
-            width="500"
-            height="500"
-            fetchPriority="high"
-            decoding="async"
-            className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(var(--primary-rgb),0.25)] select-none pointer-events-none"
-          />
-        </div>
-      </div>
-    </div>
+    <motion.div
+      className="developer-hero__visual"
+      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <span className="developer-hero__portrait-block" aria-hidden="true" />
+      <span className="developer-hero__portrait-ring" aria-hidden="true" />
+      <img
+        className="developer-hero__scene"
+        src={profileData.heroImage}
+        alt={t("hero.banner.imageAlt", "Developer Hero")}
+        width={1536}
+        height={1024}
+        fetchPriority="high"
+        decoding="async"
+      />
+    </motion.div>
   );
-};
-
-export default HeroAvatar;
-
+}

@@ -1,91 +1,28 @@
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { profileData } from "@constants/profileData";
 import HeroAvatar from "./HeroAvatar";
-import TypingRoles from "./TypingRoles";
-import HeroButtons from "./HeroButtons";
-import SocialLinks from "./SocialLinks";
-import ScrollIndicator from "./ScrollIndicator";
-import { useTranslation } from "react-i18next";
+import "./hero-banner.css";
 
-interface HeroSectionProps {
-  scrollToSection: (sectionId: string) => void;
-}
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0, x: -60 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.15, delayChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-export default function HeroSection({ scrollToSection }: HeroSectionProps) {
-  const { t } = useTranslation();
+export default function HeroSection() {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      id="home"
-      className="relative min-h-dvh overflow-hidden flex flex-col items-center justify-center pt-24 pb-24 sm:py-20 md:py-28"
-    >
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-16 items-center relative">
-          {/* Main Content */}
-          <motion.div
-            className="lg:col-span-7 flex flex-col justify-center space-y-2 sm:space-y-4 md:space-y-6"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
+    <section id="home" className="developer-hero" aria-labelledby="hero-heading">
+      <div className="developer-hero__inner">
+        <motion.div
+          className="developer-hero__copy"
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h1 id="hero-heading" className="developer-hero__heading" aria-label={`${profileData.name} — Portfolio`}>
+            <span className="developer-hero__title-line developer-hero__title-line--marked" aria-hidden="true">PORT</span>
+            <span className="developer-hero__title-line developer-hero__title-line--offset" aria-hidden="true">FOLIO</span>
+          </h1>
+        </motion.div>
 
-            {/* Greeting */}
-            <motion.span
-              variants={itemVariants}
-              className="text-primary font-mono text-xs sm:text-sm md:text-base tracking-[0.2em] uppercase block ml-1"
-            >
-              {t("hero.greeting")}
-            </motion.span>
-
-            {/* Title */}
-            <motion.h1
-              variants={itemVariants}
-              data-text={t("hero.title")}
-              className="text-3xl xs:text-4xl sm:text-6xl md:text-8xl lg:text-[90px] xl:text-[110px] font-sans font-black uppercase leading-[1.05] tracking-tight text-foreground cyber-glitch-auto break-words"
-            >
-              {t("hero.title")}
-            </motion.h1>
-
-            {/* Typing roles */}
-            <motion.div variants={itemVariants} className="pl-4 border-l-2 border-primary/50">
-              <TypingRoles />
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col gap-0 w-full sm:w-fit"
-            >
-              <HeroButtons />
-              <SocialLinks scrollToSection={scrollToSection} />
-            </motion.div>
-          </motion.div>
-
-          {/* Avatar Panel */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative order-first lg:order-last mb-2 sm:mb-4 lg:mb-0">
-            <HeroAvatar />
-          </div>
-        </div>
+        <HeroAvatar />
       </div>
-
-      <ScrollIndicator scrollToSection={scrollToSection} />
     </section>
   );
 }

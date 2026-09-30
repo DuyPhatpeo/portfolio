@@ -1,26 +1,35 @@
 import React from "react";
-import { IoIosDocument } from "react-icons/io";
 import { useTranslation } from "react-i18next";
+import { FiArrowUpRight } from "react-icons/fi";
 
-import { profileData } from "@constants/profileData";
+interface HeroButtonsProps {
+  scrollToSection?: (sectionId: string) => void;
+}
 
-interface HeroButtonsProps { }
-
-const HeroButtons: React.FC<HeroButtonsProps> = () => {
+const HeroButtons: React.FC<HeroButtonsProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col w-full mt-4 sm:mt-8">
-      {/* 1. Resume - Primary Action */}
-      <a
-        href={profileData.resume}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative w-full py-3 sm:py-4 font-bold flex items-center justify-center gap-2 sm:gap-3 bg-primary text-background uppercase tracking-[0.2em] overflow-hidden transition-all duration-300 hover:bg-primary/90 rounded-md"
+    <div className="flex flex-wrap items-center gap-4 mt-8">
+      {/* Primary Action Button: View My Work */}
+      <button
+        onClick={() => scrollToSection ? scrollToSection("projects") : null}
+        className="hero-btn-primary group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full text-white font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+        aria-label={t("hero.banner.work", "View My Work")}
       >
-        <IoIosDocument className="w-4 h-4 sm:w-5 sm:h-5" />
-        <span className="text-sm sm:text-base">{t("hero.buttons.resume")}</span>
-      </a>
+        <span>{t("hero.banner.work", "View My Work")}</span>
+        <FiArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </button>
+
+      {/* Secondary Action Button: About Me */}
+      <button
+        onClick={() => scrollToSection ? scrollToSection("about") : null}
+        className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-card/60 backdrop-blur-sm border border-primary/40 hover:border-primary text-foreground font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/10 cursor-pointer"
+        aria-label={t("nav.about", "About Me")}
+      >
+        <span>{t("nav.about", "About Me")}</span>
+        <FiArrowUpRight className="w-5 h-5 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      </button>
     </div>
   );
 };
