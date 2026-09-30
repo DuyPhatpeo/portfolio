@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+
+/* About Profile Section */
+.about-section {
+  position: relative;
+  overflow: hidden;
+  padding: 90px 0;
+}
+
+@media (max-width: 1024px) {
+  .about-section {
+    padding: 60px 0;
+  }
+}
+
+/* Gradient Name Heading matching project brand */
+.about-gradient-text {
+  background: linear-gradient(135deg, var(--foreground) 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Handwritten Note Font */
+.about-handwritten {
+  font-family: 'Caveat', cursive, sans-serif;
+  color: var(--primary);
+}
+
+/* Soft Backdrop Blob using project brand color */
+.about-blob-bg {
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--primary) 24%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 14%, transparent) 45%,
+    color-mix(in srgb, var(--primary) 4%, transparent) 75%,
+    transparent 100%
+  );
+  filter: blur(28px);
+}
+
+/* Freelance Floating Badge */
+.about-freelance-badge {
+  background: color-mix(in srgb, var(--card) 90%, transparent);
+  border: 1px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  box-shadow: 0 10px 30px -5px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* Primary Brand Pill Button */
+.about-btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 8px 20px -4px color-mix(in srgb, var(--primary) 45%, transparent);
+}
+
+.about-btn-primary:hover {
+  background: color-mix(in srgb, var(--primary) 88%, #ffffff);
+  box-shadow: 0 12px 24px -2px color-mix(in srgb, var(--primary) 60%, transparent);
+}
+
+:is(.dark) .about-btn-primary:hover {
+  background: color-mix(in srgb, var(--primary) 90%, #ffffff);
+  box-shadow: 0 12px 24px -2px color-mix(in srgb, var(--primary) 65%, transparent);
+}
