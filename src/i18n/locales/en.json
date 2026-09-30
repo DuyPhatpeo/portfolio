@@ -13,13 +13,23 @@
     }
   },
   "hero": {
+    "banner": {
+      "greeting": "Hello, I’m",
+      "description": "I build <strong>thoughtful web interfaces</strong> that feel smooth on every device.",
+      "work": "View My Work",
+      "contact": "Contact",
+      "resume": "View résumé",
+      "imageAlt": "Dino Péo in black glasses and a green hoodie, coding on a laptop"
+    },
+    "description_full": "I create modern, responsive and user-friendly websites and digital experiences that help brands grow and make a lasting impression.",
     "greeting": "Hi, I am",
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
       "Front-End Developer",
       "Web Developer",
-      "UI/UX Designer"
+      "Full-Stack Developer",
+      "Software Engineer"
     ],
     "system_initialized": "System Initialized",
     "cta": "EXPLORE WORK",
@@ -73,40 +83,21 @@
         "company": "GTO Media JSC",
         "period": "06/2026 – Present",
         "type": "Full-time",
-        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API",
-        "tasks": [
-          "Built and upgraded internal systems, the company's website, and developed event-specific Landing Pages.",
-          "Deployed and managed event registration and guest check-in systems.",
-          "Provided technical supervision, directly troubleshooted issues, and ensured stable performance of tech infrastructure during events.",
-          "Participated in coordinating scene transitions (switching) and camera systems for online conferences and meetings."
-        ]
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
       },
       {
         "role": "Frontend Developer Apprentice",
         "company": "SweetSoft JSC",
         "period": "10/2025 – 12/2025",
         "type": "Apprentice",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API",
-        "tasks": [
-          "Researched and applied ReactJS to develop frontend features for the project.",
-          "Converted existing templates into fully functional, responsive web interfaces.",
-          "Built and optimized the UI components system, increasing code reusability.",
-          "Integrated RESTful APIs and managed state to synchronize data between Frontend and Backend."
-        ]
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
       },
       {
         "role": "Frontend Developer Intern",
         "company": "SweetSoft JSC",
         "period": "12/2024 – 01/2025",
         "type": "Internship",
-        "tech": "HTML, CSS, JavaScript, C# .NET",
-        "tasks": [
-          "Participated in developing the \"Technical Support Request Application\" within a 6-member team.",
-          "Served as Frontend Developer, designing and developing the user interface.",
-          "Built application introduction pages and technical support request management pages.",
-          "Integrated the Frontend interface with the Backend system, ensuring stable data connection.",
-          "Collaborated with the team to deploy and test the entire system's functionalities."
-        ]
+        "tech": "HTML, CSS, JavaScript, C# .NET"
       }
     ]
   },

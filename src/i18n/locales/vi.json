@@ -13,13 +13,23 @@
     }
   },
   "hero": {
+    "banner": {
+      "greeting": "Xin chào, mình là",
+      "description": "Mình xây dựng <strong>giao diện web tinh tế</strong>, mượt mà trên mọi thiết bị.",
+      "work": "Xem dự án",
+      "contact": "Liên hệ",
+      "resume": "Xem CV",
+      "imageAlt": "Dino Péo với kính đen và hoodie xanh, lập trình trên laptop"
+    },
+    "description_full": "Tôi tạo ra các trang web và trải nghiệm kỹ thuật số hiện đại, thân thiện với người dùng và tương thích tốt trên mọi thiết bị, giúp thương hiệu phát triển và để lại ấn tượng sâu sắc.",
     "greeting": "Xin chào, tôi là",
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
       "Lập trình viên Front-End",
       "Lập trình viên Web",
-      "Thiết kế UI/UX"
+      "Lập trình viên Full-Stack",
+      "Kỹ sư Phần mềm"
     ],
     "system_initialized": "Hệ thống Đã Khởi Tạo",
     "cta": "XEM DỰ ÁN",
@@ -73,40 +83,21 @@
         "company": "Công ty Cổ phần Truyền thông GTO",
         "period": "06/2026 – Hiện tại",
         "type": "Nhân viên chính thức",
-        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API",
-        "tasks": [
-          "Xây dựng, nâng cấp hệ thống website nội bộ, website công ty và phát triển các Landing Page phục vụ sự kiện.",
-          "Triển khai và quản lý hệ thống đăng ký, check-in khách mời.",
-          "Hỗ trợ giám sát kỹ thuật, trực tiếp xử lý sự cố và đảm bảo hệ thống, thiết bị công nghệ hoạt động ổn định trong suốt sự kiện.",
-          "Tham gia điều phối chuyển cảnh (switching) và hệ thống camera phục vụ các hội nghị, cuộc họp trực tuyến."
-        ]
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
       },
       {
         "role": "Học việc Frontend Developer",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "10/2025 – 12/2025",
         "type": "Thực tập sinh",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API",
-        "tasks": [
-          "Nghiên cứu và ứng dụng ReactJS để phát triển các tính năng Frontend của dự án.",
-          "Thực hiện chuyển đổi template có sẵn thành giao diện web hoàn chỉnh, chuẩn Responsive.",
-          "Xây dựng và tối ưu hóa hệ thống UI Components, tăng khả năng tái sử dụng mã nguồn.",
-          "Tích hợp RESTful API và quản lý State để đồng bộ dữ liệu giữa Frontend và Backend."
-        ]
+        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
       },
       {
         "role": "Thực tập sinh",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "12/2024 – 01/2025",
         "type": "Thực tập sinh",
-        "tech": "HTML, CSS, JavaScript, C# .NET",
-        "tasks": [
-          "Tham gia dự án phát triển \"Ứng dụng hỗ trợ yêu cầu kỹ thuật\" cùng nhóm 6 thành viên.",
-          "Đảm nhiệm vị trí Frontend Developer, thiết kế và phát triển giao diện người dùng.",
-          "Xây dựng trang giới thiệu ứng dụng và các trang quản lý, xử lý yêu cầu kỹ thuật.",
-          "Tích hợp giao diện Frontend với hệ thống Backend, đảm bảo kết nối dữ liệu ổn định.",
-          "Phối hợp cùng nhóm triển khai và kiểm thử toàn bộ chức năng hệ thống."
-        ]
+        "tech": "HTML, CSS, JavaScript, C# .NET"
       }
     ]
   },

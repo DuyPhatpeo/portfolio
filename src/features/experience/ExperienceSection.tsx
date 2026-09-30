@@ -9,7 +9,6 @@ interface ExperienceItem {
   period: string;
   type: string;
   tech: string;
-  tasks?: string[];
 }
 
 const ExperienceSection: React.FC = () => {
@@ -26,7 +25,7 @@ const ExperienceSection: React.FC = () => {
       {/* Background Decor */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />
 
-      <div className="max-w-[85rem] mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
         
         {/* Standardized Section Header */}
         <motion.div
@@ -67,17 +66,6 @@ const ExperienceSection: React.FC = () => {
                   <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground break-words">
                     {item.role}
                   </h3>
-
-                  {item.tasks && item.tasks.length > 0 && (
-                    <ul className="mt-4 sm:mt-6 space-y-2 text-foreground/70 font-sans text-xs sm:text-sm md:text-base max-w-xl">
-                      {item.tasks.map((task, idx) => (
-                        <li key={idx} className="flex gap-2.5 sm:gap-3">
-                          <span className="text-primary mt-1 text-xs">▹</span>
-                          <span>{task}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
 
                 {/* Right: Company & Tech Stack */}
