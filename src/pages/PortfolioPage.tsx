@@ -14,7 +14,7 @@ import Particles from "@components/theme/Particles";
 
 const PortfolioPage: React.FC = () => {
   useEffect(() => {
-    document.title = "Dino Péo (Trần Duy Phát) - Frontend Developer Portfolio";
+    document.title = "Dino Péo (Trần Duy Phát) - Portfolio";
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
 
@@ -64,8 +64,8 @@ const PortfolioPage: React.FC = () => {
 
         {/* Section items on top of stars */}
         <div className="relative z-10">
-          <HeroSection scrollToSection={scrollToSection} />
-          <AboutSection />
+          <HeroSection />
+          <AboutSection scrollToSection={scrollToSection} />
           <SkillsSection />
           <ExperienceSection />
           <ProjectsSection />
