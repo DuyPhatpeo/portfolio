@@ -1,0 +1,91 @@
+@font-face {
+  font-family: 'Lilita One';
+  src: url('/assets/fonts/LilitaOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* The poster composition inherits the site's light and dark brand palettes. */
+.developer-hero {
+  --hero-text: var(--foreground);
+  --hero-accent: var(--primary);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: min(880px, 100svh);
+  padding: 145px 0 65px;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: var(--hero-text);
+  font-family: 'Inter', Arial, sans-serif;
+}
+.developer-hero__inner {
+  width: min(1280px, calc(100% - 96px));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  align-items: center;
+}
+.developer-hero__copy { position: relative; z-index: 2; min-width: 0; padding: 24px 0; }
+.developer-hero .developer-hero__heading {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  font-family: 'Lilita One', 'Arial Rounded MT Bold', Impact, sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  font-size: clamp(100px, 12.8vw, 178px);
+  line-height: .79;
+  letter-spacing: -.035em;
+  text-transform: uppercase;
+  color: var(--hero-text);
+}
+.developer-hero__title-line { display: block; position: relative; isolation: isolate; }
+.developer-hero__title-line + .developer-hero__title-line { margin-top: 9px; }
+.developer-hero__title-line--offset { margin-left: clamp(35px, 5.5vw, 85px); }
+.developer-hero__title-line--marked { width: max-content; }
+.developer-hero__title-line--marked::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 3%;
+  left: -3%;
+  width: 108%;
+  height: 57%;
+  border-radius: 100px;
+  background: color-mix(in srgb, var(--hero-accent) 24%, transparent);
+  transform: rotate(-3deg);
+}
+.developer-hero__visual { position: relative; isolation: isolate; min-width: 0; width: calc(100% + 90px); margin-left: -48px; align-self: end; padding: 35px 0 0; }
+.developer-hero__portrait-block { position: absolute; z-index: -2; width: 72%; aspect-ratio: 1; right: 0; bottom: 5%; border-radius: 50%; background: var(--hero-accent); opacity: .92; }
+.developer-hero__portrait-ring { position: absolute; z-index: -1; width: 65%; aspect-ratio: 1; left: 6%; top: 2%; border: 1px solid var(--hero-text); border-radius: 50%; opacity: .45; }
+.developer-hero__scene { display: block; position: relative; width: 100%; height: auto; object-fit: contain; }
+@media (min-width: 1500px) {
+  .developer-hero { padding-top: 160px; }
+}
+@media (max-width: 1100px) {
+  .developer-hero { min-height: 740px; padding-top: 130px; }
+  .developer-hero__inner { width: calc(100% - 64px); }
+  .developer-hero .developer-hero__heading { font-size: 12.4vw; }
+  .developer-hero__visual { width: calc(100% + 50px); margin-left: -25px; }
+}
+@media (max-width: 760px) {
+  .developer-hero { min-height: auto; padding: 120px 0 0; }
+  .developer-hero__inner { width: calc(100% - 40px); grid-template-columns: 1fr; gap: 12px; }
+  .developer-hero__copy { padding: 15px 0 0; }
+  .developer-hero .developer-hero__heading { font-size: clamp(100px, 22vw, 150px); margin-bottom: 0; }
+  .developer-hero__title-line + .developer-hero__title-line { margin-top: 7px; }
+  .developer-hero__visual { width: min(560px, calc(100% + 20px)); margin: 20px 0 0; justify-self: center; padding-top: 15px; }
+  .developer-hero__portrait-block { right: -5%; }
+}
+@media (max-width: 380px) {
+  .developer-hero__inner { width: calc(100% - 32px); }
+  .developer-hero .developer-hero__heading { font-size: 25vw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .developer-hero *, .developer-hero { animation: none !important; transition: none !important; }
+}
