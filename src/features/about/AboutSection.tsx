@@ -47,9 +47,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
 
-          {/* Left Column: Visual & 3D Character (Ảnh nằm bên trái) */}
+          {/* Left Column: Visual & 3D Character (Ảnh nằm bên trái trên desktop, dưới trên mobile) */}
           <motion.div
-            className="lg:col-span-5 flex justify-center items-center relative z-10"
+            className="order-last lg:order-first lg:col-span-5 flex justify-center items-center relative z-10"
             initial={reduceMotion ? false : { opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -105,9 +105,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
             </div>
           </motion.div>
 
-          {/* Right Column: Content & Bio (Đoạn văn nằm bên phải) */}
+          {/* Right Column: Content & Bio (Đoạn văn nằm bên phải trên desktop, trên cùng trên mobile) */}
           <motion.div
-            className="lg:col-span-7 flex flex-col items-start z-10"
+            className="order-first lg:order-last lg:col-span-7 flex flex-col items-start z-10"
             initial={reduceMotion ? false : { opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
