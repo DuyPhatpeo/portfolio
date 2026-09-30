@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           Stays permanently visible and stable when menu is open.
       =============================================================== */}
       <div
-        className={`relative z-20 w-full px-5 sm:px-12 md:px-16 lg:px-24 h-20 md:h-24 flex justify-between items-center transition-all duration-300 transform ${
+        className={`relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 h-20 md:h-24 flex justify-between items-center transition-all duration-300 transform ${
           showHeader || isOpen
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "-translate-y-full opacity-0 pointer-events-none"
@@ -286,7 +286,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <div className="w-full h-20 md:h-24 shrink-0" />
 
             {/* ================= NAV ITEMS (TOP-LEFT ORIENTED) ================= */}
-            <div className="w-full px-5 sm:px-12 md:px-16 lg:px-24 pt-3 sm:pt-8 md:pt-10 flex-1 flex flex-col justify-start items-start overflow-y-auto z-10">
+            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-3 sm:pt-8 md:pt-10 flex-1 flex flex-col justify-start items-start overflow-y-auto z-10">
               <nav className="flex flex-col items-start gap-0.5 sm:gap-1 py-2 w-full">
                 {navItems.map((item, index) => {
                   const isHovered = hoveredIndex === index;
@@ -338,7 +338,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </div>
 
             {/* ================= MODAL FOOTER ================= */}
-            <div className="w-full px-6 sm:px-12 md:px-16 lg:px-24 py-5 sm:py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-xs font-sans text-neutral-400 shrink-0 z-10">
+            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-5 sm:py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-xs font-sans text-neutral-400 shrink-0 z-10">
               {/* Left: Copyright */}
               <div>
                 © {new Date().getFullYear()} {profileData.name || "Dino Péo"}. All rights reserved.

@@ -40,7 +40,7 @@ const Footer = () => {
 
   return (
     <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
-      <div className="w-full px-5 sm:px-8 md:px-12 pt-8 md:pt-10 pb-4">
+      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-8 md:pt-10 pb-4">
         {/* Top row: Navigation / Social */}
         <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-6 md:gap-6">
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
