@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "@components/general/Header";
 import Footer from "@components/general/Footer";
 import ProjectsSection from "@features/project/ProjectSecion";
-import ScrollProgressBar from "@components/ui/ScrollProgressBar";
+
 import Particles from "@components/theme/Particles";
 import { useNavigate } from "react-router-dom";
 
@@ -29,7 +29,6 @@ const ProjectsPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-500">
-      <ScrollProgressBar />
       <Header scrollToSection={scrollToSection} />
       
       <div className="relative z-20 bg-background shadow-2xl min-h-screen">

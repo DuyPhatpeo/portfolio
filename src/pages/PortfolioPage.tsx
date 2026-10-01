@@ -6,7 +6,6 @@ import HeroSection from "@features/hero/HeroSetion";
 import AboutSection from "@features/about/AboutSection";
 import ProjectsSection from "@features/project/ProjectSecion";
 import GithubSection from "@features/github/GithubSection";
-import ScrollProgressBar from "@components/ui/ScrollProgressBar";
 import Particles from "@components/theme/Particles";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -59,9 +58,6 @@ const PortfolioPage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-500">
-      {/* Real-time Cyber Scroll Progress Indicator */}
-      <ScrollProgressBar />
-
       {/* Header */}
       <Header scrollToSection={scrollToSection} />
 
