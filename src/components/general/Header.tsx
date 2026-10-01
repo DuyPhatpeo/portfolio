@@ -33,6 +33,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   // Scroll behavior: Show at top, hide when scrolling down, show when scrolling up
   const [showHeader, setShowHeader] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
@@ -40,13 +41,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       const currentScrollY = window.scrollY;
 
       // Always show header near top of page (first 50px)
+      setIsScrolled(currentScrollY > 50);
+
       if (currentScrollY <= 50) {
         setShowHeader(true);
       } else if (currentScrollY > lastScrollY.current + 5) {
-        // Scrolling down: hide header to give space for content
+        // Scrolling down: hide header
         setShowHeader(false);
       } else if (currentScrollY < lastScrollY.current - 5) {
-        // Scrolling up: reveal header for quick navigation
+        // Scrolling up: reveal header
         setShowHeader(true);
       }
 
@@ -146,17 +149,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[200]">
+    <header 
+      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 transform ${
+        showHeader || isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+      } ${
+        isScrolled && !isOpen ? "bg-background/80 backdrop-blur-md border-b border-primary/10" : "bg-transparent"
+      }`}
+    >
       {/* ================= TOP NAVBAR =================
           Hides when scrolling down, reveals when scrolling up.
           Stays permanently visible and stable when menu is open.
       =============================================================== */}
       <div
-        className={`relative z-20 max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 h-20 md:h-24 flex justify-between items-center transition-all duration-300 transform ${
-          showHeader || isOpen
-            ? "translate-y-0 opacity-100 pointer-events-auto"
-            : "-translate-y-full opacity-0 pointer-events-none"
-        } ${
+        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 md:h-24 flex justify-between items-center ${
           isOpen
             ? "border-b border-white/10"
             : ""
@@ -400,3 +405,4 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 };
 
 export default Header;
+

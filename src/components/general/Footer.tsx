@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const NAV_ITEMS = ["home", "about", "projects", "contact"];
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -24,37 +23,7 @@ const Footer = () => {
   return (
     <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
       <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
-        {/* Top row: Navigation / Social */}
-        <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-6 md:gap-6">
-          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
-            {NAV_ITEMS.map((id) => (
-              <a
-                key={id}
-                href={`/${id === "home" ? "" : id}`}
-                onClick={(e) => handleNavigate(e, id)}
-                className="text-sm font-mono text-foreground/70 hover:text-primary transition-colors"
-              >
-                {t(`nav.${id}`)}
-              </a>
-            ))}
-          </nav>
 
-          <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-            {profileData.socialLinks.map((link, i) => (
-              <span key={link.name} className="flex items-center gap-3">
-                {i > 0 && <span className="text-foreground/20 text-xs">•</span>}
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm font-mono text-foreground/70 hover:text-primary transition-colors"
-                >
-                  {link.name}
-                </a>
-              </span>
-            ))}
-          </nav>
-        </div>
 
         {/* Giant name - NAMMA Style Vertical Stretch */}
         <div className="pt-8 pb-6 sm:pt-12 sm:pb-10 md:pt-16 md:pb-12 text-center overflow-hidden flex justify-center items-end">
