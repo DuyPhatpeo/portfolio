@@ -1,53 +1,37 @@
 import { useRef } from "react";
 import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";
-import { gsap, useGSAP } from "@lib/gsap";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const NAV_ITEMS = ["home", "about", "skills", "experience", "projects", "contact"];
+const NAV_ITEMS = ["home", "about", "projects", "contact"];
 
 const Footer = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
   const footerRef = useRef<HTMLElement>(null);
-  const logoRef = useRef<HTMLSpanElement>(null);
 
-  useGSAP(
-    () => {
-      if (!footerRef.current || !logoRef.current) return;
-
-      gsap.fromTo(
-        logoRef.current,
-        {
-          scaleY: 0.1,
-          opacity: 0.3,
-          transformOrigin: "bottom center",
-        },
-        {
-          scaleY: 1.3,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: footerRef.current,
-            start: "top 85%",
-            end: "bottom bottom",
-            scrub: 1,
-          },
-        }
-      );
-    },
-    { scope: footerRef }
-  );
+  const handleNavigate = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    if (id === "home") navigate("/");
+    else if (id === "about") navigate("/about");
+    else if (id === "projects") navigate("/projects");
+    else if (id === "contact") navigate("/contact");
+    else navigate(`/#${id}`);
+  };
 
   return (
     <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-8 md:pt-10 pb-4">
+      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
         {/* Top row: Navigation / Social */}
         <div className="flex flex-col items-center text-center md:flex-row md:items-center md:justify-between gap-6 md:gap-6">
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2">
             {NAV_ITEMS.map((id) => (
               <a
                 key={id}
-                href={`#${id}`}
+                href={`/${id === "home" ? "" : id}`}
+                onClick={(e) => handleNavigate(e, id)}
                 className="text-sm font-mono text-foreground/70 hover:text-primary transition-colors"
               >
                 {t(`nav.${id}`)}
@@ -73,24 +57,27 @@ const Footer = () => {
         </div>
 
         {/* Giant name - NAMMA Style Vertical Stretch */}
-        <div className="pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-24 md:pb-14 text-center overflow-hidden flex justify-center items-end">
-          <span
-            ref={logoRef}
-            className="inline-block origin-bottom will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
+        <div className="pt-8 pb-6 sm:pt-12 sm:pb-10 md:pt-16 md:pb-12 text-center overflow-hidden flex justify-center items-end">
+          <motion.span
+            initial={{ y: 50, opacity: 0, scale: 0.95 }}
+            whileInView={{ y: 0, opacity: 1, scale: 1 }}
+            viewport={{ once: false, margin: "-10%" }}
+            transition={{ duration: 1.2, ease: [0.215, 0.61, 0.355, 1] }}
+            className="inline-block will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
           >
             {profileData.logo}
-          </span>
+          </motion.span>
         </div>
 
         {/* Bottom row: Contact / Email / Follow */}
-        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-5 sm:gap-6 pt-6 pb-6 md:pb-8 border-t border-primary/10">
+        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-5 sm:gap-6 pt-10 pb-10 md:pb-14 border-t border-primary/10">
           <div className="flex flex-col items-center md:items-start">
-            <a
-              href="#contact"
-              className="text-sm font-mono text-foreground underline underline-offset-4 decoration-primary/40 hover:text-primary transition-colors"
+            <button
+              onClick={(e) => handleNavigate(e, "contact")}
+              className="text-sm font-mono text-foreground underline underline-offset-4 decoration-primary/40 hover:text-primary transition-colors cursor-pointer"
             >
               {t("footer.contact_label")}
-            </a>
+            </button>
             <p className="text-[10px] font-mono text-foreground/40 tracking-widest uppercase mt-2">
               © {year} {profileData.logo}. {t("footer.rights")}
             </p>

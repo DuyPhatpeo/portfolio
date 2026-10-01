@@ -19,7 +19,8 @@
       "work": "View My Work",
       "contact": "Contact",
       "resume": "View résumé",
-      "imageAlt": "Dino Péo in black glasses and a green hoodie, coding on a laptop"
+      "imageAlt": "Dino Péo in black glasses and a green hoodie, coding on a laptop",
+      "about": "More About Me"
     },
     "description_full": "I create modern, responsive and user-friendly websites and digital experiences that help brands grow and make a lasting impression.",
     "greeting": "Hi, I am",
@@ -154,7 +155,8 @@
         "title": "LinkSnap - URL & Bio Page",
         "description": "An advanced link management platform that combines a URL shortener with a customizable Bio Page builder, in the spirit of tools like Linktree or Bitly. Users can track real-time click analytics, view engagement charts, and generate custom QR codes for each link. The platform supports one-click Google OAuth login and is built with Laravel and MySQL on the backend for stable performance and security."
       }
-    }
+    },
+    "view_all": "VIEW ALL PROJECTS"
   },
   "activity": {
     "subtitle": "OPEN SOURCE & CONTRIBUTIONS",
@@ -222,5 +224,47 @@
       "source": "Source",
       "live": "Live Demo"
     }
+  },
+  "whatIDo": {
+    "title": "What I Do",
+    "design_code_create": [
+      "Design",
+      "Code",
+      "Create"
+    ],
+    "services": [
+      {
+        "title": "Frontend Development",
+        "description": "Building modern, interactive, and highly responsive user interfaces using React and modern CSS."
+      },
+      {
+        "title": "UI/UX Implementation",
+        "description": "Bringing designs to life with smooth animations, GSAP, and pixel-perfect precision."
+      },
+      {
+        "title": "Backend Integration",
+        "description": "Connecting frontend interfaces with robust APIs, databases, and server-side logic."
+      },
+      {
+        "title": "Performance & SEO",
+        "description": "Optimizing web applications for blazing fast speed, accessibility, and search engines."
+      },
+      {
+        "title": "Mobile Development",
+        "description": "Building cross-platform native applications with React Native."
+      },
+      {
+        "title": "Cloud & Deployment",
+        "description": "Managing hosting, CI/CD pipelines, and cloud architecture."
+      }
+    ]
+  },
+  "pageHero": {
+    "about_1": "ABOUT",
+    "about_2": "ME",
+    "projects_1": "MY",
+    "projects_2": "PROJECTS",
+    "contact_1": "GET IN",
+    "contact_2": "TOUCH"
   }
 }

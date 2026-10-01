@@ -49,8 +49,8 @@
     --background-alt: #202020;
 
     /* Font overrides */
-    --font-heading: "Chakra Petch", "Orbitron", sans-serif;
-    --font-body: "Inter", "JetBrains Mono", sans-serif;
+    --font-heading: "Baloo 2", "Chakra Petch", "Orbitron", sans-serif;
+    --font-body: "Baloo 2", "Inter", "JetBrains Mono", sans-serif;
     --font-mono: "JetBrains Mono", monospace;
   }
 

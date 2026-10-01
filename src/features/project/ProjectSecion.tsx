@@ -7,14 +7,20 @@ import ProjectModal from "./ProjectModal";
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
-export default function ProjectSection() {
+interface ProjectSectionProps {
+  mode?: "featured-only" | "all-list" | "default";
+}
+
+export default function ProjectSection({ mode = "default" }: ProjectSectionProps) {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentOtherIndex, setCurrentOtherIndex] = useState(0);
 
-  const featuredProjects = projects.filter((p) => p.featured);
+  const featuredProjects = mode === "all-list" ? projects : projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -139,92 +145,106 @@ export default function ProjectSection() {
             />
           ))}
         </div>
+
+        {mode === "featured-only" && (
+          <div className="mt-16 flex justify-center">
+            <button
+              onClick={() => navigate("/projects")}
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-sm sm:text-base tracking-widest uppercase transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(33,241,168,0.4)]"
+            >
+              <span>{t("projects.view_all", "View All Projects")}</span>
+              <FiArrowRight className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ========================================================
           PHẦN 2: CÁC DỰ ÁN ĐÁNG CHÚ Ý KHÁC (OTHER PROJECTS)
           Hiệu ứng Pinned Horizontal Scroll Gallery
       ======================================================== */}
-      <div ref={otherPinRef} className="relative border-t border-border/30">
-        <div
-          ref={pinContainerRef}
-          className="min-h-dvh h-dvh w-full overflow-hidden flex flex-col justify-between py-4 sm:py-8 md:py-10 relative select-none"
-        >
-          {/* Header */}
-          <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
-              <div>
-                <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-2 sm:mb-3">
-                  ARCHIVE / OTHER WORKS
-                </span>
-                <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
-                  {t("projects.other_title")}
-                </h3>
-              </div>
-
-              {/* Controls */}
-              <div className="flex items-center gap-1.5 self-end sm:self-auto">
-                <button
-                  onClick={() => handleStepNavigate("prev")}
-                  disabled={currentOtherIndex === 0}
-                  aria-label="Previous project"
-                  className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                >
-                  <FiChevronLeft className="text-base sm:text-lg" />
-                </button>
-                <button
-                  onClick={() => handleStepNavigate("next")}
-                  disabled={currentOtherIndex === otherProjects.length - 1}
-                  aria-label="Next project"
-                  className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
-                >
-                  <FiChevronRight className="text-base sm:text-lg" />
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Horizontal Track */}
-          <div className="w-full overflow-visible my-auto z-10">
-            <div
-              ref={trackRef}
-              className="flex items-center gap-4 sm:gap-8 md:gap-10 px-5 sm:px-12 md:px-20 w-max will-change-transform"
-            >
-              {otherProjects.map((project) => (
-                <HorizontalProjectCard
-                  key={project.id}
-                  project={project}
-                  onSelect={setSelectedProject}
-                />
-              ))}
-            </div>
-          </div>
-
-          {/* Bottom Progress Bar & Info */}
-          <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
-            <div className="flex flex-col gap-2.5">
-              <div className="w-full h-1.5 rounded-full bg-muted/60 overflow-hidden relative border border-border/40">
-                <div
-                  ref={progressBarRef}
-                  className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-75 shadow-[0_0_12px_var(--primary)]"
-                  style={{ width: "0%" }}
-                />
-              </div>
-
-              <div className="flex items-center justify-between text-xs font-mono text-foreground/70">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-ping inline-block" />
-                  <span>
-                    <strong className="text-foreground font-semibold">
-                      {t(`projects.items.${otherProjects[currentOtherIndex]?.id}.title`)}
-                    </strong>
+      {mode === "default" && (
+        <div ref={otherPinRef} className="relative border-t border-border/30">
+          <div
+            ref={pinContainerRef}
+            className="min-h-dvh h-dvh w-full overflow-hidden flex flex-col justify-between py-4 sm:py-8 md:py-10 relative select-none"
+          >
+            {/* Header */}
+            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
+                <div>
+                  <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-2 sm:mb-3">
+                    ARCHIVE / OTHER WORKS
                   </span>
+                  <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
+                    {t("projects.other_title")}
+                  </h3>
+                </div>
+
+                {/* Controls */}
+                <div className="flex items-center gap-1.5 self-end sm:self-auto">
+                  <button
+                    onClick={() => handleStepNavigate("prev")}
+                    disabled={currentOtherIndex === 0}
+                    aria-label="Previous project"
+                    className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  >
+                    <FiChevronLeft className="text-base sm:text-lg" />
+                  </button>
+                  <button
+                    onClick={() => handleStepNavigate("next")}
+                    disabled={currentOtherIndex === otherProjects.length - 1}
+                    aria-label="Next project"
+                    className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                  >
+                    <FiChevronRight className="text-base sm:text-lg" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Horizontal Track */}
+            <div className="w-full overflow-visible my-auto z-10">
+              <div
+                ref={trackRef}
+                className="flex items-center gap-4 sm:gap-8 md:gap-10 px-5 sm:px-12 md:px-20 w-max will-change-transform"
+              >
+                {otherProjects.map((project) => (
+                  <HorizontalProjectCard
+                    key={project.id}
+                    project={project}
+                    onSelect={setSelectedProject}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Progress Bar & Info */}
+            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
+              <div className="flex flex-col gap-2.5">
+                <div className="w-full h-1.5 rounded-full bg-muted/60 overflow-hidden relative border border-border/40">
+                  <div
+                    ref={progressBarRef}
+                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-75 shadow-[0_0_12px_var(--primary)]"
+                    style={{ width: "0%" }}
+                  />
+                </div>
+
+                <div className="flex items-center justify-between text-xs font-mono text-foreground/70">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-ping inline-block" />
+                    <span>
+                      <strong className="text-foreground font-semibold">
+                        {t(`projects.items.${otherProjects[currentOtherIndex]?.id}.title`)}
+                      </strong>
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Project Detail Modal */}
       {selectedProject && (

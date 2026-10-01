@@ -19,7 +19,8 @@
       "work": "Xem dự án",
       "contact": "Liên hệ",
       "resume": "Xem CV",
-      "imageAlt": "Dino Péo với kính đen và hoodie xanh, lập trình trên laptop"
+      "imageAlt": "Dino Péo với kính đen và hoodie xanh, lập trình trên laptop",
+      "about": "Xem Thêm Về Tôi"
     },
     "description_full": "Tôi tạo ra các trang web và trải nghiệm kỹ thuật số hiện đại, thân thiện với người dùng và tương thích tốt trên mọi thiết bị, giúp thương hiệu phát triển và để lại ấn tượng sâu sắc.",
     "greeting": "Xin chào, tôi là",
@@ -154,7 +155,8 @@
         "title": "LinkSnap - URL & Bio Page",
         "description": "Nền tảng quản lý liên kết tiên tiến kết hợp giữa tính năng rút gọn URL và trình xây dựng Bio Page tùy chỉnh, tương tự các công cụ như Linktree hay Bitly. Người dùng có thể theo dõi thống kê lượt truy cập theo thời gian thực, xem biểu đồ tương tác và tạo mã QR tùy chỉnh cho từng liên kết. Hệ thống hỗ trợ đăng nhập nhanh qua Google OAuth và được xây dựng bằng Laravel cùng MySQL ở backend, đảm bảo hiệu năng và bảo mật ổn định."
       }
-    }
+    },
+    "view_all": "XEM TẤT CẢ DỰ ÁN"
   },
   "activity": {
     "subtitle": "HOẠT ĐỘNG MÃ NGUỒN MỞ",
@@ -222,5 +224,47 @@
       "source": "Source",
       "live": "Live Demo"
     }
+  },
+  "whatIDo": {
+    "title": "Lĩnh Vực Hoạt Động",
+    "design_code_create": [
+      "Thiết kế",
+      "Lập trình",
+      "Sáng tạo"
+    ],
+    "services": [
+      {
+        "title": "Lập Trình Frontend",
+        "description": "Xây dựng giao diện người dùng hiện đại, tương tác cao và chuẩn responsive với React."
+      },
+      {
+        "title": "Triển Khai UI/UX",
+        "description": "Thổi hồn vào thiết kế với các hiệu ứng chuyển động mượt mà (GSAP, Framer) và độ chính xác hoàn hảo."
+      },
+      {
+        "title": "Tích Hợp Backend",
+        "description": "Kết nối giao diện người dùng với các API, cơ sở dữ liệu và logic máy chủ mạnh mẽ."
+      },
+      {
+        "title": "Tối Ưu & Trải Nghiệm",
+        "description": "Tối ưu hóa tốc độ tải trang, nâng cao khả năng tiếp cận và chuẩn SEO cho ứng dụng web."
+      },
+      {
+        "title": "Phát triển Mobile",
+        "description": "Xây dựng ứng dụng di động đa nền tảng bằng React Native."
+      },
+      {
+        "title": "Triển khai Hệ thống",
+        "description": "Quản lý hosting, tự động hóa CI/CD và máy chủ Cloud."
+      }
+    ]
+  },
+  "pageHero": {
+    "about_1": "GIỚI",
+    "about_2": "THIỆU",
+    "projects_1": "DỰ ÁN",
+    "projects_2": "CỦA TÔI",
+    "contact_1": "LIÊN",
+    "contact_2": "HỆ"
   }
 }

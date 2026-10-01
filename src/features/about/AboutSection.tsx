@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
 import { Sparkles, ArrowUpRight } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import "./about-profile.css";
 
 interface AboutSectionProps {
@@ -12,6 +13,8 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
   const reduceMotion = useReducedMotion();
+  const location = useLocation();
+  const isAboutPage = location.pathname === "/about";
 
   // Dynamic Typewriter Effect for developer roles
   const roles = (t("hero.roles", { returnObjects: true }) as string[]) || profileData.roles;
@@ -149,13 +152,24 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
 
             {/* Action Buttons: View My Work, Contact, Resume */}
             <div className="flex flex-wrap items-center gap-3.5 mt-2">
+              {!isAboutPage && (
+                <button
+                  onClick={() => scrollToSection("about")}
+                  className="about-btn-primary group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  aria-label={t("hero.banner.about", "More About Me")}
+                >
+                  <span>{t("hero.banner.about", "More About Me")}</span>
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </button>
+              )}
+
               <button
                 onClick={() => scrollToSection("projects")}
-                className="about-btn-primary group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-card/60 backdrop-blur-sm border border-primary/40 hover:border-primary text-foreground font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/10 cursor-pointer"
                 aria-label={t("hero.banner.work", "View My Work")}
               >
                 <span>{t("hero.banner.work", "View My Work")}</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </button>
 
               <button

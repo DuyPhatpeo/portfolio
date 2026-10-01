@@ -1,8 +1,12 @@
 import { lazy, useState, useEffect, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Loading from "@components/general/Loading";
 
 const PortfolioPage = lazy(() => import("@pages/PortfolioPage"));
+const AboutPage = lazy(() => import("@pages/AboutPage"));
+const ProjectsPage = lazy(() => import("@pages/ProjectsPage"));
+const ContactPage = lazy(() => import("@pages/ContactPage"));
 
 const isBotOrLighthouse =
   typeof navigator !== "undefined" &&
@@ -60,7 +64,12 @@ const AppRoutes = () => {
   return (
     <>
       <Suspense fallback={null}>
-        <PortfolioPage />
+        <Routes>
+          <Route path="/" element={<PortfolioPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+        </Routes>
       </Suspense>
 
       {/* Loading Overlay with smooth fade/zoom exit */}

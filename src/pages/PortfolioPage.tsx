@@ -4,19 +4,30 @@ import Header from "@components/general/Header";
 import Footer from "@components/general/Footer";
 import HeroSection from "@features/hero/HeroSetion";
 import AboutSection from "@features/about/AboutSection";
-import SkillsSection from "@features/skills/SkillsSection";
 import ProjectsSection from "@features/project/ProjectSecion";
-import ExperienceSection from "@features/experience/ExperienceSection";
-import ContactSection from "@features/contact/ContactSection";
 import GithubSection from "@features/github/GithubSection";
 import ScrollProgressBar from "@components/ui/ScrollProgressBar";
 import Particles from "@components/theme/Particles";
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 const PortfolioPage: React.FC = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     document.title = "Portfolio - Dino Péo (Trần Duy Phát)";
     document.documentElement.style.scrollBehavior = "smooth";
   }, []);
+
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      setTimeout(() => {
+        scrollToSection(id);
+      }, 100);
+    }
+  }, [location]);
 
   // Scroll mượt tới section với offset bù trừ chính xác
   const scrollToSection = (id: string) => {
@@ -25,21 +36,18 @@ const PortfolioPage: React.FC = () => {
       return;
     }
 
+    if (id === "about") {
+      navigate("/about");
+      return;
+    }
+
+    if (id === "projects") {
+      navigate("/projects");
+      return;
+    }
+
     if (id === "contact") {
-      const upperEl = document.getElementById("upper-content");
-      if (upperEl) {
-        window.scrollTo({
-          top: upperEl.offsetHeight,
-          behavior: "smooth",
-        });
-      } else {
-        const contactEl = document.getElementById("contact");
-        if (contactEl) {
-          contactEl.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
-        }
-      }
+      navigate("/contact");
       return;
     }
 
@@ -66,19 +74,14 @@ const PortfolioPage: React.FC = () => {
         <div className="relative z-10">
           <HeroSection />
           <AboutSection scrollToSection={scrollToSection} />
-          <SkillsSection />
-          <ExperienceSection />
-          <ProjectsSection />
+          <ProjectsSection mode="featured-only" />
           <GithubSection />
         </div>
       </div>
 
-      {/* Contact Section (Layer Z-10 - Sticky behind upper content and footer) */}
-      <div className="sticky bottom-0 z-10 w-full min-h-screen flex flex-col justify-center overflow-hidden bg-background">
+      {/* Contact Section Removed for Separate Page */}
+      <div className="sticky bottom-0 z-10 w-full flex flex-col justify-center overflow-hidden bg-background">
         <Particles quantity={60} zIndex={1} />
-        <div className="relative z-10">
-          <ContactSection />
-        </div>
       </div>
 
       {/* Footer (Layer Z-20 - Slides up over Contact section like a curtain) */}

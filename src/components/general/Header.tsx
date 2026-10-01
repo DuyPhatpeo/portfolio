@@ -6,6 +6,7 @@ import { FiX, FiArrowUpRight } from "react-icons/fi";
 import { useThemeStore } from "@stores/themeStore";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
@@ -23,6 +24,8 @@ const toTitleCase = (str: string) => {
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useThemeStore();
   const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -58,10 +61,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     () => [
       { name: t("nav.home"), href: "home" },
       { name: t("nav.about"), href: "about" },
-      { name: t("nav.skills"), href: "skills" },
-      { name: t("nav.experience"), href: "experience" },
       { name: t("nav.projects"), href: "projects" },
-      { name: t("nav.activity"), href: "activity" },
       { name: t("nav.contact"), href: "contact" },
     ],
     [t]
@@ -119,7 +119,25 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     document.body.style.overflow = "";
     setIsOpen(false);
     requestAnimationFrame(() => {
-      scrollToSection(id);
+      if (id === "home") {
+        if (location.pathname !== "/") {
+          navigate("/");
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+      } else if (id === "projects") {
+        navigate("/projects");
+      } else if (id === "contact") {
+        navigate("/contact");
+      } else if (id === "about") {
+        navigate("/about");
+      } else {
+        if (location.pathname !== "/") {
+          navigate(`/#${id}`);
+        } else {
+          scrollToSection(id);
+        }
+      }
     });
   };
 

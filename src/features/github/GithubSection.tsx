@@ -18,20 +18,9 @@ const GithubSection: React.FC = () => {
   return (
     <section
       id="activity"
-      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-(--background-alt)"
+      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-transparent"
     >
-      {/* Top Cyber Divider separating Projects and GitHub */}
-      <div className="absolute top-0 inset-x-0 flex items-center justify-center pointer-events-none z-20">
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <div className="absolute px-5 bg-(--background-alt) flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-          <div className="w-2.5 h-2.5 rotate-45 border border-primary/70 bg-primary/20 shadow-[0_0_8px_rgba(var(--primary-rgb),0.5)]" />
-          <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-        </div>
-      </div>
-
-      {/* Background Cyber Dots Pattern */}
-      <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.04]" />
+      {/* Background Cyber Dots Pattern Removed */}
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* Section Header */}
