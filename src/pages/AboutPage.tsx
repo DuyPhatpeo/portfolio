@@ -5,6 +5,7 @@ import AboutSection from "@features/about/AboutSection";
 import WhatIDoSection from "@features/about/WhatIDoSection";
 import SkillsSection from "@features/skills/SkillsSection";
 import ExperienceSection from "@features/experience/ExperienceSection";
+import GithubSection from "@features/github/GithubSection";
 
 import Particles from "@components/theme/Particles";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +47,7 @@ const AboutPage: React.FC = () => {
           <WhatIDoSection />
           <SkillsSection />
           <ExperienceSection />
+          <GithubSection />
         </div>
       </div>
       
@@ -57,3 +59,4 @@ const AboutPage: React.FC = () => {
 };
 
 export default AboutPage;
+

@@ -46,7 +46,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   }, [displayedRole, isDeleting, currentRoleIndex, typeSpeed, roles]);
 
   return (
-    <section id="about" className="about-section relative w-full bg-background/50 backdrop-blur-xs" aria-labelledby="about-heading">
+    <section id="about" className="about-section relative w-full bg-transparent" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
 
@@ -163,24 +163,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 </button>
               )}
 
-              <button
-                onClick={() => scrollToSection("projects")}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-card/60 backdrop-blur-sm border border-primary/40 hover:border-primary text-foreground font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/10 cursor-pointer"
-                aria-label={t("hero.banner.work", "View My Work")}
-              >
-                <span>{t("hero.banner.work", "View My Work")}</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
-
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-card/60 backdrop-blur-sm border border-primary/40 hover:border-primary text-foreground font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary/10 cursor-pointer"
-                aria-label={t("hero.banner.contact", "Contact Me")}
-              >
-                <span>{t("hero.banner.contact", "Contact Me")}</span>
-                <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </button>
-
               <a
                 href={profileData.resume}
                 target="_blank"
@@ -219,3 +201,5 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
 };
 
 export default AboutSection;
+
+
