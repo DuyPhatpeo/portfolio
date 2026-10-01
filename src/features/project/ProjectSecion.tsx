@@ -19,7 +19,8 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
   const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentOtherIndex, setCurrentOtherIndex] = useState(0);
-
+  
+  // View mode switcher state
   const featuredProjects = mode === "all-list" ? projects : projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
@@ -123,28 +124,31 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
           Dạng danh sách hàng dọc (FeaturedProjectRow)
       ======================================================== */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 pt-16 sm:pt-20 md:pt-28 pb-12 sm:pb-16 md:pb-24 relative z-10">
-        <div className="mb-10 md:mb-14">
-          <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
-            {t("projects.subtitle")}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
-            {t("projects.title")}
-          </h2>
-          <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
-            {t("projects.description")}
-          </p>
+        <div className="mb-10 md:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
+              {t("projects.subtitle")}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
+              {t("projects.title")}
+            </h2>
+            <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
+              {t("projects.description")}
+            </p>
+          </div>
         </div>
 
-        <div className="group/list space-y-12 md:space-y-20">
-          {featuredProjects.map((project, index) => (
-            <FeaturedProjectRow
-              key={project.id}
-              project={project}
-              index={index}
-              onSelect={setSelectedProject}
-            />
-          ))}
-        </div>
+        {/* PROJECTS RENDERING LOGIC */}
+          <div className="group/list space-y-12 md:space-y-20">
+            {featuredProjects.map((project, index) => (
+              <FeaturedProjectRow
+                key={project.id}
+                project={project}
+                index={index}
+                onSelect={setSelectedProject}
+              />
+            ))}
+          </div>
 
         {mode === "featured-only" && (
           <div className="mt-16 flex justify-center">
@@ -256,3 +260,4 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
     </section>
   );
 }
+

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Header from "@components/general/Header";
 import Footer from "@components/general/Footer";
 import ProjectsSection from "@features/project/ProjectSecion";
+import GithubSection from "@features/github/GithubSection";
 
 import Particles from "@components/theme/Particles";
 import { useNavigate } from "react-router-dom";
@@ -35,6 +36,7 @@ const ProjectsPage: React.FC = () => {
         <Particles quantity={120} zIndex={1} />
         <div className="relative z-10">
           <PageHero title1={t("pageHero.projects_1", "MY")} title2={t("pageHero.projects_2", "PROJECTS")} />
+          <GithubSection />
           <ProjectsSection mode="all-list" />
         </div>
       </div>
@@ -47,3 +49,4 @@ const ProjectsPage: React.FC = () => {
 };
 
 export default ProjectsPage;
+

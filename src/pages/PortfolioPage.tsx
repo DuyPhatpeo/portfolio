@@ -5,7 +5,8 @@ import Footer from "@components/general/Footer";
 import HeroSection from "@features/hero/HeroSetion";
 import AboutSection from "@features/about/AboutSection";
 import ProjectsSection from "@features/project/ProjectSecion";
-import GithubSection from "@features/github/GithubSection";
+import FeaturedSkills from "@features/skills/FeaturedSkills";
+import ContactCTA from "@features/contact/ContactCTA";
 import Particles from "@components/theme/Particles";
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -70,15 +71,12 @@ const PortfolioPage: React.FC = () => {
         <div className="relative z-10">
           <HeroSection />
           <AboutSection scrollToSection={scrollToSection} />
+          <FeaturedSkills />
           <ProjectsSection mode="featured-only" />
-          <GithubSection />
-        </div>
+          </div>
       </div>
 
-      {/* Contact Section Removed for Separate Page */}
-      <div className="sticky bottom-0 z-10 w-full flex flex-col justify-center overflow-hidden bg-background">
-        <Particles quantity={60} zIndex={1} />
-      </div>
+      <ContactCTA />
 
       {/* Footer (Layer Z-20 - Slides up over Contact section like a curtain) */}
       <div className="relative z-20 bg-background border-t border-primary/10 shadow-[0_-25px_60px_rgba(0,0,0,0.6)]">
@@ -89,3 +87,9 @@ const PortfolioPage: React.FC = () => {
 };
 
 export default PortfolioPage;
+
+
+
+
+
+
