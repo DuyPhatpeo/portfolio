@@ -12,6 +12,11 @@
       "dark": "TỐI"
     }
   },
+  "cta": {
+    "title": "Sẵn sàng làm việc cùng nhau.",
+    "description": "Bạn có dự án hoặc ý tưởng muốn thực hiện? Mình luôn sẵn sàng lắng nghe.",
+    "button": "LIÊN HỆ NGAY"
+  },
   "hero": {
     "banner": {
       "greeting": "Xin chào, mình là",

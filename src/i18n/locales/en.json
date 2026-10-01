@@ -12,6 +12,11 @@
       "dark": "DARK"
     }
   },
+  "cta": {
+    "title": "Let's work together.",
+    "description": "Have a project or idea in mind? I'm always open to discuss.",
+    "button": "GET IN TOUCH"
+  },
   "hero": {
     "banner": {
       "greeting": "Hello, I’m",

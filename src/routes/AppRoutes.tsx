@@ -1,7 +1,8 @@
 import { lazy, useState, useEffect, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Loading from "@components/general/Loading";
+import { PageTransition } from "@components/ui/PageTransition";
 
 const PortfolioPage = lazy(() => import("@pages/PortfolioPage"));
 const AboutPage = lazy(() => import("@pages/AboutPage"));
@@ -16,6 +17,7 @@ const LOADING_DURATION = isBotOrLighthouse ? 50 : 2200;
 const STABILIZATION_DELAY = isBotOrLighthouse ? 0 : 800; // Extra buffer after 100% before entering home
 
 const AppRoutes = () => {
+  const location = useLocation();
   const [isFinished, setIsFinished] = useState(() => {
     return sessionStorage.getItem("page_loaded") === "true";
   });
@@ -64,12 +66,14 @@ const AppRoutes = () => {
   return (
     <>
       <Suspense fallback={null}>
-        <Routes>
-          <Route path="/" element={<PortfolioPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/projects" element={<ProjectsPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+        <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<PageTransition><PortfolioPage /></PageTransition>} />
+          <Route path="/about" element={<PageTransition><AboutPage /></PageTransition>} />
+          <Route path="/projects" element={<PageTransition><ProjectsPage /></PageTransition>} />
+          <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         </Routes>
+      </AnimatePresence>
       </Suspense>
 
       {/* Loading Overlay with smooth fade/zoom exit */}
@@ -95,3 +99,4 @@ const AppRoutes = () => {
 };
 
 export default AppRoutes;
+
