@@ -7,6 +7,7 @@ import {
   type Transition,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "react-i18next";
 
 export type ContributionLevel = 0 | 1 | 2 | 3 | 4;
 
@@ -98,15 +99,25 @@ type LevelStyle = { backgroundColor: string; opacity: number };
 
 type HoveredDay = { day: Contribution; x: number; y: number };
 
-const DATE_FORMAT = new Intl.DateTimeFormat("en-US", {
+const DATE_FORMAT_EN = new Intl.DateTimeFormat("en-US", {
   month: "short",
   day: "numeric",
   year: "numeric",
 });
 
-function describeDay({ count, date }: Contribution) {
-  const noun = count === 1 ? "contribution" : "contributions";
-  return `${count} ${noun} on ${DATE_FORMAT.format(new Date(`${date}T00:00:00`))}`;
+const DATE_FORMAT_VI = new Intl.DateTimeFormat("vi-VN", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+
+function describeDay({ count, date }: Contribution, lang: string) {
+  const noun = lang === "vi" 
+    ? "đóng góp" 
+    : (count === 1 ? "contribution" : "contributions");
+  const on = lang === "vi" ? "vào ngày" : "on";
+  const formatter = lang === "vi" ? DATE_FORMAT_VI : DATE_FORMAT_EN;
+  return `${count} ${noun} ${on} ${formatter.format(new Date(`${date}T00:00:00`))}`;
 }
 
 const CALENDAR_API = "https://github-contributions-api.jogruber.de/v4";
@@ -254,9 +265,11 @@ function toWeeks(contributions: Contribution[]) {
 const Tooltip = ({
   hovered,
   reduceMotion,
+  lang,
 }: {
   hovered: HoveredDay;
   reduceMotion: boolean | null;
+  lang: string;
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const [left, setLeft] = React.useState(hovered.x);
@@ -284,7 +297,7 @@ const Tooltip = ({
         exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
         transition={reduceMotion ? { duration: 0 } : TOOLTIP_FADE}
       >
-        {describeDay(hovered.day)}
+        {describeDay(hovered.day, lang)}
       </motion.div>
     </div>,
     document.body,
@@ -298,6 +311,7 @@ const ContributionGrid = ({
   showMonths,
   label,
   reduceMotion,
+  lang,
 }: {
   contributions: Contribution[];
   scale: LevelStyle[];
@@ -306,6 +320,7 @@ const ContributionGrid = ({
   showMonths: boolean;
   label: string;
   reduceMotion: boolean | null;
+  lang: string;
 }) => {
   const weeks = React.useMemo(() => toWeeks(contributions), [contributions]);
   const gap = gapFor(cellSize);
@@ -370,7 +385,7 @@ const ContributionGrid = ({
                 <motion.div
                   key={day.date}
                   onPointerEnter={hover(day)}
-                  className="shrink-0 rounded-[3px] bg-foreground/[0.08] cursor-pointer hover:ring-1 hover:ring-primary/60 transition-shadow"
+                  className="shrink-0 rounded-[3px] bg-foreground/10 cursor-pointer hover:ring-1 hover:ring-primary/60 transition-shadow"
                   style={{ width: cellSize, height: cellSize }}
                   initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -396,6 +411,7 @@ const ContributionGrid = ({
             key="tooltip"
             hovered={hovered}
             reduceMotion={reduceMotion}
+            lang={lang}
           />
         )}
       </AnimatePresence>
@@ -519,6 +535,8 @@ const GitHubActivity = ({
   style,
   ...props
 }: GitHubActivityProps) => {
+  const { i18n } = useTranslation();
+  const lang = i18n.language;
   const reduceMotion = useReducedMotion();
   const uid = React.useId();
   const [openState, setOpenState] = React.useState(defaultOpen);
@@ -558,9 +576,9 @@ const GitHubActivity = ({
     [contributions],
   );
 
-  const heading = year
-    ? `${total.toLocaleString()} contributions in ${year}`
-    : `${total.toLocaleString()} contributions in the last year`;
+  const heading = lang === "vi" 
+    ? (year ? `${total.toLocaleString()} đóng góp trong năm ${year}` : `${total.toLocaleString()} đóng góp trong năm qua`)
+    : (year ? `${total.toLocaleString()} contributions in ${year}` : `${total.toLocaleString()} contributions in the last year`);
 
   const gap = gapFor(cellSize);
   const totalWeeks = Math.max(1, Math.ceil(contributions.length / 7));
@@ -602,6 +620,7 @@ const GitHubActivity = ({
         showMonths={showMonths}
         label={heading}
         reduceMotion={reduceMotion}
+        lang={lang}
       />
 
       {showRepos && repos.length > 0 && (

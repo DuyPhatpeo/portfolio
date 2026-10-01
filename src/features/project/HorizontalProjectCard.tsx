@@ -111,7 +111,7 @@ export default function HorizontalProjectCard({
             </span>
           ) : (
             <span className="px-2.5 py-1 rounded-full bg-background/70 backdrop-blur-sm border border-border text-foreground/80 font-mono text-[10px] sm:text-xs font-medium tracking-wide">
-              Project
+              {t("projects.badges.project", "PROJECT")}
             </span>
           )}
         </div>

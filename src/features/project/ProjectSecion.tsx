@@ -174,7 +174,7 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
               <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
                 <div>
                   <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-2 sm:mb-3">
-                    ARCHIVE / OTHER WORKS
+                    {t("projects.archive", "ARCHIVE / OTHER WORKS")}
                   </span>
                   <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
                     {t("projects.other_title")}
