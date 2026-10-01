@@ -71,6 +71,7 @@ const PortfolioPage: React.FC = () => {
         <div className="relative z-10">
           <HeroSection />
           <AboutSection scrollToSection={scrollToSection} />
+          {/* You can toggle between these different skill section styles: */}
           <FeaturedSkills />
           <ProjectsSection mode="featured-only" />
           </div>
