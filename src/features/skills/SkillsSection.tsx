@@ -1,30 +1,27 @@
 import React from "react";
-import { motion } from "framer-motion";
 import SkillsGrid from "./SkillsGrid";
 import { useTranslation } from "react-i18next";
+import { FadeUp } from "@components/ui/FadeUp";
 
 const SkillsSection: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="py-12 md:py-16 relative overflow-hidden bg-transparent">
-      <motion.div
-        className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-8 md:mb-12"
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        viewport={{ once: true }}
-      >
-        <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
-          {t("skills.subtitle")}
-        </span>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
-          {t("skills.title")}
-        </h2>
-        <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
-          {t("skills.description")}
-        </p>
-      </motion.div>
+    <section id="skills" className="py-12 md:py-16 relative overflow-hidden bg-background border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-8 md:mb-12">
+        <FadeUp>
+          {/* Centered split-line header */}
+          <div className="flex flex-col items-center text-center">
+            <div className="flex items-center gap-4 sm:gap-6 w-full mb-4 sm:mb-6">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent to-primary/40" />
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none whitespace-nowrap">
+                {t("skills.title")}
+              </h2>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent to-primary/40" />
+            </div>
+          </div>
+        </FadeUp>
+      </div>
       <SkillsGrid />
     </section>
   );
