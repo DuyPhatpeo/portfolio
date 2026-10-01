@@ -10,13 +10,20 @@ const MAIN_SKILLS = [
   TECH.NEXT_JS,
   TECH.TAILWIND,
   TECH.NODE_JS,
-  TECH.REACT_NATIVE,
   TECH.LARAVEL,
-  TECH.FIGMA,
 ];
 
 // Double the array for seamless infinite scrolling
 const SCROLLING_SKILLS = [...MAIN_SKILLS, ...MAIN_SKILLS, ...MAIN_SKILLS];
+
+const SKILL_COLORS: Record<string, string> = {
+  [TECH.REACT]: "hover:text-[#61DAFB]",
+  [TECH.TS]: "hover:text-[#3178C6]",
+  [TECH.NEXT_JS]: "hover:text-foreground",
+  [TECH.TAILWIND]: "hover:text-[#06B6D4]",
+  [TECH.NODE_JS]: "hover:text-[#339933]",
+  [TECH.LARAVEL]: "hover:text-[#FF2D20]",
+};
 
 const FeaturedSkills: React.FC = () => {
   const { t } = useTranslation();
@@ -42,10 +49,12 @@ const FeaturedSkills: React.FC = () => {
         >
           {SCROLLING_SKILLS.map((skill, index) => {
             const Icon = TECH_ICONS[skill];
+            const hoverColorClass = SKILL_COLORS[skill] || "hover:text-primary";
+            
             return (
               <div
                 key={`${skill}-${index}`}
-                className="flex items-center gap-4 text-foreground/40 hover:text-primary transition-colors duration-500 cursor-default grayscale hover:grayscale-0"
+                className={`flex items-center gap-4 text-foreground/40 transition-colors duration-500 cursor-default grayscale hover:grayscale-0 ${hoverColorClass}`}
               >
                 {Icon && <Icon className="w-10 h-10 md:w-16 md:h-16" />}
                 <span className="font-mono text-2xl md:text-4xl font-bold uppercase tracking-widest">
