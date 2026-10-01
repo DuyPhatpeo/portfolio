@@ -224,13 +224,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
         </span>
       </div>
 
-      {/* 5. Top Left: Agency / Studio Subtitle */}
-      <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20 flex items-center gap-3">
-        <div className="w-2 h-2 rounded-full bg-primary animate-ping" />
-        <span className="text-xs font-mono uppercase tracking-[0.25em] text-foreground/50">
-          INITIALIZING PORTFOLIO
-        </span>
-      </div>
+
     </div>
   );
 };
