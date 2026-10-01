@@ -18,26 +18,28 @@ const GithubSection: React.FC = () => {
   return (
     <section
       id="activity"
-      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-transparent"
+      className="min-h-screen flex flex-col justify-center py-20 md:py-28 relative overflow-hidden bg-background border-t border-white/5"
     >
       {/* Background Cyber Dots Pattern Removed */}
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
-        {/* Section Header */}
+        {/* Section Header — split layout with decorative year */}
         <motion.div
-          className="mb-8 sm:mb-12 md:mb-14"
+          className="mb-8 sm:mb-12 md:mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
         >
-          <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
-            {t("activity.subtitle")}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
-            {t("activity.title")}
-          </h2>
-          <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
+          <div>
+            <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
+              {t("activity.subtitle")}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
+              {t("activity.title")}
+            </h2>
+          </div>
+          <p className="max-w-xs text-foreground/50 text-sm font-mono md:text-right border-l md:border-l-0 md:border-r border-primary/30 pl-4 md:pl-0 md:pr-4">
             {t("activity.description")}
           </p>
         </motion.div>
@@ -92,3 +94,4 @@ const GithubSection: React.FC = () => {
 };
 
 export default GithubSection;
+
