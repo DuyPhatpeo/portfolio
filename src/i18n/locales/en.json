@@ -235,27 +235,23 @@
     "services": [
       {
         "title": "Frontend Development",
-        "description": "Building modern, interactive, and highly responsive user interfaces using React and modern CSS."
+        "description": "Building modern, intuitive, and highly interactive interfaces. Focused on clean code and optimized components using React."
       },
       {
         "title": "UI/UX Implementation",
-        "description": "Bringing designs to life with smooth animations, GSAP, and pixel-perfect precision."
+        "description": "Bringing designs to life with smooth, fluid animations. Paying close attention to every detail for impressive visual experiences."
       },
       {
         "title": "Backend Integration",
-        "description": "Connecting frontend interfaces with robust APIs, databases, and server-side logic."
+        "description": "Connecting interfaces with robust APIs, databases, and server-side logic. Ensuring seamless data flow and efficient performance."
       },
       {
         "title": "Performance & SEO",
-        "description": "Optimizing web applications for blazing fast speed, accessibility, and search engines."
+        "description": "Optimizing page load speeds and minimizing bandwidth usage. Enhancing accessibility (a11y) and standardizing SEO."
       },
       {
         "title": "Mobile Development",
-        "description": "Building cross-platform native applications with React Native."
-      },
-      {
-        "title": "Cloud & Deployment",
-        "description": "Managing hosting, CI/CD pipelines, and cloud architecture."
+        "description": "Building high-performance cross-platform mobile apps using React Native. Maximizing code reuse while maintaining a native feel."
       }
     ]
   },

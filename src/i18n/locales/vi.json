@@ -235,27 +235,23 @@
     "services": [
       {
         "title": "Lập Trình Frontend",
-        "description": "Xây dựng giao diện người dùng hiện đại, tương tác cao và chuẩn responsive với React."
+        "description": "Xây dựng giao diện hiện đại, trực quan và tương tác cao. Tập trung vào mã nguồn sạch và tối ưu hóa component với React."
       },
       {
         "title": "Triển Khai UI/UX",
-        "description": "Thổi hồn vào thiết kế với các hiệu ứng chuyển động mượt mà (GSAP, Framer) và độ chính xác hoàn hảo."
+        "description": "Thổi hồn vào thiết kế với các hiệu ứng chuyển động mượt mà. Chú trọng đến từng chi tiết (pixel-perfect) để tạo ra trải nghiệm ấn tượng."
       },
       {
         "title": "Tích Hợp Backend",
-        "description": "Kết nối giao diện người dùng với các API, cơ sở dữ liệu và logic máy chủ mạnh mẽ."
+        "description": "Kết nối giao diện với các API, cơ sở dữ liệu và logic máy chủ. Đảm bảo luồng dữ liệu xuyên suốt và hiệu suất vận hành trơn tru."
       },
       {
         "title": "Tối Ưu & Trải Nghiệm",
-        "description": "Tối ưu hóa tốc độ tải trang, nâng cao khả năng tiếp cận và chuẩn SEO cho ứng dụng web."
+        "description": "Tối ưu hóa tốc độ tải trang và giảm thiểu băng thông. Nâng cao khả năng tiếp cận (a11y) và chuẩn hóa SEO tối đa."
       },
       {
         "title": "Phát triển Mobile",
-        "description": "Xây dựng ứng dụng di động đa nền tảng bằng React Native."
-      },
-      {
-        "title": "Triển khai Hệ thống",
-        "description": "Quản lý hosting, tự động hóa CI/CD và máy chủ Cloud."
+        "description": "Xây dựng ứng dụng di động đa nền tảng với React Native. Tái sử dụng logic web đồng thời giữ nguyên trải nghiệm mượt mà tự nhiên."
       }
     ]
   },
