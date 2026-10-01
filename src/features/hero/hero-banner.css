@@ -5,10 +5,11 @@
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: min(880px, 100svh);
+  min-height: 100svh;
   padding: 145px 0 65px;
   display: flex;
   align-items: center;
+  justify-content: center;
   background: transparent;
   color: var(--hero-text);
   font-family: 'Inter', Arial, sans-serif;
