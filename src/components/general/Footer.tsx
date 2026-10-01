@@ -58,15 +58,23 @@ const Footer = () => {
 
         {/* Giant name - NAMMA Style Vertical Stretch */}
         <div className="pt-8 pb-6 sm:pt-12 sm:pb-10 md:pt-16 md:pb-12 text-center overflow-hidden flex justify-center items-end">
-          <motion.span
+          <motion.button
+            onClick={() => {
+              if (window.location.pathname === "/") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              } else {
+                navigate("/");
+                window.scrollTo(0, 0);
+              }
+            }}
             initial={{ y: 50, opacity: 0, scale: 0.95 }}
             whileInView={{ y: 0, opacity: 1, scale: 1 }}
             viewport={{ once: false, margin: "-10%" }}
             transition={{ duration: 1.2, ease: [0.215, 0.61, 0.355, 1] }}
-            className="inline-block will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground select-none"
+            className="inline-block will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground cursor-pointer hover:text-primary transition-colors duration-500"
           >
             {profileData.logo}
-          </motion.span>
+          </motion.button>
         </div>
 
         {/* Bottom row: Contact / Email / Follow */}

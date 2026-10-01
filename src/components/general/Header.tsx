@@ -122,15 +122,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       if (id === "home") {
         if (location.pathname !== "/") {
           navigate("/");
+          window.scrollTo(0, 0);
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
       } else if (id === "projects") {
         navigate("/projects");
+        window.scrollTo(0, 0);
       } else if (id === "contact") {
         navigate("/contact");
+        window.scrollTo(0, 0);
       } else if (id === "about") {
         navigate("/about");
+        window.scrollTo(0, 0);
       } else {
         if (location.pathname !== "/") {
           navigate(`/#${id}`);

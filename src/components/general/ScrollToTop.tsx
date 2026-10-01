@@ -67,37 +67,21 @@ const ScrollToTop: React.FC = () => {
             ref={btnRef}
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="group relative flex items-center justify-center w-11 h-11 rounded-full bg-background/85 dark:bg-card/85 backdrop-blur-xl border border-primary/20 text-primary shadow-[0_8px_30px_rgba(0,0,0,0.35)] hover:border-primary hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.5)] transition-all duration-300 cursor-pointer overflow-hidden"
+            className="group relative flex items-center gap-2 pl-2 pr-4 h-12 rounded-full bg-card/90 backdrop-blur-xl border border-border/50 shadow-2xl hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] transition-all duration-300 cursor-pointer overflow-hidden"
           >
-            {/* SVG Circular Progress Track & Indicator */}
-            <svg
-              className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none"
-              viewBox="0 0 44 44"
-            >
-              <circle
-                cx="22"
-                cy="22"
-                r="18"
-                className="stroke-primary/15 fill-none"
-                strokeWidth="2.5"
-              />
-              <circle
-                cx="22"
-                cy="22"
-                r="18"
-                className="stroke-primary fill-none transition-[stroke-dashoffset] duration-150 ease-out"
-                strokeWidth="2.5"
-                strokeDasharray={113.1}
-                strokeDashoffset={113.1 - (113.1 * scrollPercent) / 100}
-                strokeLinecap="round"
-              />
-            </svg>
-
-            {/* Hover ambient highlight */}
-            <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-            {/* Arrow Icon */}
-            <HiArrowUp className="w-5 h-5 text-primary group-hover:-translate-y-0.5 group-hover:scale-110 transition-transform duration-300" />
+            {/* Progress Background Fill */}
+            <div 
+              className="absolute left-0 top-0 h-full bg-primary/20 transition-all duration-100 ease-out z-0"
+              style={{ width: `${scrollPercent}%` }}
+            />
+            
+            <div className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-background/50 border border-border group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
+              <HiArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-300" />
+            </div>
+            
+            <span className="relative z-10 font-mono text-sm font-bold text-foreground/70 group-hover:text-foreground transition-colors min-w-[3ch] text-right">
+              {scrollPercent}%
+            </span>
           </button>
         </motion.div>
       )}
