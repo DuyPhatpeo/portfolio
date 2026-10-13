@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from "framer-motion";
-import "@features/hero/hero-banner.css";
 
 interface PageHeroProps {
   title1: string;

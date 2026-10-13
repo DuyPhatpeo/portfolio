@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { projects } from "@constants/projectData";
 import HorizontalProjectCard from "./HorizontalProjectCard";
 import FeaturedProjectRow from "./FeaturedProjectRow";
+import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
@@ -139,6 +140,18 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
         </div>
 
         {/* PROJECTS RENDERING LOGIC */}
+        {mode === "all-list" ? (
+          <div className="group/list grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index}
+                onSelect={setSelectedProject}
+              />
+            ))}
+          </div>
+        ) : (
           <div className="group/list space-y-12 md:space-y-20">
             {featuredProjects.map((project, index) => (
               <FeaturedProjectRow
@@ -149,6 +162,7 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
               />
             ))}
           </div>
+        )}
 
         {mode === "featured-only" && (
           <div className="mt-16 flex justify-center">

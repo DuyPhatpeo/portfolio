@@ -1,22 +1,19 @@
-import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
 
 export default function HeroAvatar() {
   const { t } = useTranslation();
-  const reduceMotion = useReducedMotion();
 
   return (
-    <motion.div
-      className="developer-hero__visual"
-      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+    <div
+      className="relative isolate min-w-0 w-[calc(100%_+_90px)] -ml-12 self-end pt-[35px] max-[1100px]:w-[calc(100%_+_50px)] max-[1100px]:-ml-[25px] max-[760px]:w-[min(560px,calc(100%_+_20px))] max-[760px]:ml-0 max-[760px]:mt-5 max-[760px]:justify-self-center max-[760px]:pt-[15px]"
+      data-hero-avatar
     >
-      <span className="developer-hero__portrait-block" aria-hidden="true" />
-      <span className="developer-hero__portrait-ring" aria-hidden="true" />
+      <span className="absolute -z-2 w-[72%] aspect-square right-0 bottom-[5%] rounded-full bg-primary opacity-[0.92] max-[760px]:right-[-5%]" aria-hidden="true" />
+      <span className="absolute -z-1 w-[65%] aspect-square left-[6%] top-[2%] border border-foreground rounded-full opacity-45" aria-hidden="true" />
       <img
-        className="developer-hero__scene"
+        data-hero-portrait
+        className="block relative w-full h-auto object-contain"
         src={profileData.heroImage}
         alt={t("hero.banner.imageAlt", "Developer Hero")}
         width={1536}
@@ -24,6 +21,6 @@ export default function HeroAvatar() {
         fetchPriority="high"
         decoding="async"
       />
-    </motion.div>
+    </div>
   );
 }

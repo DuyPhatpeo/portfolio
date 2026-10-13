@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 import { useLocation } from "react-router-dom";
-import "./about-profile.css";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -12,7 +11,20 @@ interface AboutSectionProps {
 
 const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
-  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(() => {
+    const media = gsap.matchMedia();
+    media.add("(prefers-reduced-motion: no-preference)", () => {
+      gsap.from("[data-about-reveal]", {
+        autoAlpha: 0, y: 40, duration: 0.85, stagger: 0.15, ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current, start: "clamp(top 80%)", once: true,
+        },
+      });
+    }, sectionRef);
+    return () => media.revert();
+  }, { scope: sectionRef });
   const location = useLocation();
   const isAboutPage = location.pathname === "/about";
 
@@ -46,29 +58,26 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   }, [displayedRole, isDeleting, currentRoleIndex, typeSpeed, roles]);
 
   return (
-    <section id="about" className="about-section relative w-full bg-transparent" aria-labelledby="about-heading">
+    <section ref={sectionRef} onLoad={() => ScrollTrigger.refresh()} id="about" className="relative w-full overflow-hidden bg-transparent py-[90px] max-[1024px]:py-[60px]" aria-labelledby="about-heading">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-12 items-center">
 
           {/* Left Column: Visual & 3D Character (Ảnh nằm bên trái trên desktop, dưới trên mobile) */}
-          <motion.div
+          <div
             className="order-last lg:order-first lg:col-span-5 flex justify-center items-center relative z-10"
-            initial={reduceMotion ? false : { opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+            data-about-reveal
           >
             <div className="relative w-full max-w-[500px] mx-auto flex items-center justify-center">
               
               {/* Soft Organic Blob Background with Theme Primary */}
-              <div className="absolute inset-0 -top-8 -bottom-4 -left-4 -right-4 about-blob-bg rounded-full pointer-events-none -z-10" />
+              <div className="absolute inset-0 -top-8 -bottom-4 -left-4 -right-4 bg-[radial-gradient(circle_at_50%_50%,color-mix(in_srgb,var(--primary)_24%,transparent)_0%,color-mix(in_srgb,var(--primary)_14%,transparent)_45%,color-mix(in_srgb,var(--primary)_4%,transparent)_75%,transparent_100%)] blur-[28px] rounded-full pointer-events-none -z-10" />
 
               {/* Character Visual Wrapper (Tĩnh, không di chuyển lên xuống) */}
               <div className="relative w-full flex items-center justify-center">
 
                 {/* Floating Handwritten Note with Curly Arrow */}
                 <div className="absolute -left-3 sm:left-0 top-[28%] z-20 max-w-[140px] sm:max-w-[170px] pointer-events-none">
-                  <div className="about-handwritten text-base sm:text-lg font-bold -rotate-6 leading-tight">
+                  <div className="font-['Caveat',cursive,sans-serif] text-primary text-base sm:text-lg font-bold -rotate-6 leading-tight">
                     Turning ideas into digital experiences
                   </div>
                   {/* Curly Hand-drawn Arrow pointing to character */}
@@ -106,15 +115,12 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Column: Content & Bio (Đoạn văn nằm bên phải trên desktop, trên cùng trên mobile) */}
-          <motion.div
+          <div
             className="order-first lg:order-last lg:col-span-7 flex flex-col items-start z-10"
-            initial={reduceMotion ? false : { opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            data-about-reveal
           >
             {/* Greeting text */}
             <div className="mb-2 sm:mb-3">
@@ -155,7 +161,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
               {!isAboutPage && (
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="about-btn-primary group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+                  className="bg-primary text-primary-foreground shadow-[0_8px_20px_-4px_color-mix(in_srgb,var(--primary)_45%,transparent)] hover:bg-[color-mix(in_srgb,var(--primary)_88%,white)] hover:shadow-[0_12px_24px_-2px_color-mix(in_srgb,var(--primary)_60%,transparent)] dark:hover:bg-[color-mix(in_srgb,var(--primary)_90%,white)] dark:hover:shadow-[0_12px_24px_-2px_color-mix(in_srgb,var(--primary)_65%,transparent)] group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                   aria-label={t("hero.banner.about", "More About Me")}
                 >
                   <span>{t("hero.banner.about", "More About Me")}</span>
@@ -192,7 +198,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

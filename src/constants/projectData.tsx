@@ -5,6 +5,7 @@ export const projects: Project[] = [
   {
     id: 1,
     image: "assets/projects/portfolio.png",
+    previewImage: "/assets/projects/portfolio-full.png",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
@@ -14,6 +15,7 @@ export const projects: Project[] = [
   {
     id: 10,
     image: "assets/projects/linksnap.png",
+    previewImage: "/assets/projects/linksnap-full.png",
     tags: [TECH.LARAVEL, TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.TAILWIND, TECH.MYSQL],
     github: "https://github.com/DuyPhatpeo/link-snap",
     demo: "http://linksnap.site.je/",
@@ -23,6 +25,7 @@ export const projects: Project[] = [
   {
     id: 4,
     image: "assets/projects/weather-app.png",
+    previewImage: "/assets/projects/weather-app-full.png",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/weather-app",
     demo: "https://thoitiet24h.vercel.app/",
@@ -50,6 +53,7 @@ export const projects: Project[] = [
   {
     id: 3,
     image: "assets/projects/restaurant.png",
+    previewImage: "/assets/projects/restaurant-full.png",
     tags: [TECH.REACT, TECH.FIREBASE],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
@@ -57,7 +61,8 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    image: "assets/projects/dinomovie.png",
+    image: "assets/projects/dinocine.png",
+    previewImage: "/assets/projects/dinocine-full.png",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/movie-web-app",
     demo: "https://dinocine.vercel.app",
@@ -66,6 +71,7 @@ export const projects: Project[] = [
   {
     id: 6,
     image: "assets/projects/dinostore.jpg",
+    previewImage: "/assets/projects/dinostore-full.png",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
@@ -74,6 +80,7 @@ export const projects: Project[] = [
   {
     id: 7,
     image: "assets/projects/dinobot.png",
+    previewImage: "/assets/projects/dinobot-full.png",
     tags: [TECH.NODE_JS, TECH.DISCORD_JS],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",

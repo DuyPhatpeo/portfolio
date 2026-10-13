@@ -35,6 +35,7 @@ export interface ProfileData {
 }
 
 export interface Project {
+  previewImage?: string;
   id: number;
   image: string;
   tags: string[];

@@ -1,6 +1,6 @@
+import ProjectPreview from "@components/ui/ProjectPreview";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { HiArrowLongRight } from "react-icons/hi2";
 import type { Project } from "@/types/data";
 import { gsap } from "@lib/gsap";
 
@@ -98,7 +98,7 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
         group relative overflow-hidden cursor-pointer bg-card aspect-video
         border border-transparent hover:border-primary/50
         transition-all duration-300 hover:shadow-[0_25px_50px_rgba(0,0,0,0.4)]
-        hover:!opacity-100 hover:!blur-none group-hover/list:opacity-50 group-hover/list:blur-[2px]
+
         will-change-transform
         ${isVisible ? "opacity-100 translate-x-0 translate-y-0" : `opacity-0 ${enterFrom}`}
       `}
@@ -107,13 +107,9 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
         transformStyle: "preserve-3d",
       }}
     >
-      <img
-        src={project.image}
+      <ProjectPreview image={project.image} previewImage={project.previewImage}
         alt={t(`projects.items.${project.id}.title`)}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
-      />
+        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
 
       {/* 3D Specular Glare Overlay */}
@@ -130,13 +126,9 @@ export default function ProjectCard({ project, index, onSelect }: ProjectCardPro
         className="absolute bottom-0 left-0 right-0 p-3 md:p-6"
         style={{ transform: "translateZ(25px)" }}
       >
-        <h3 className="font-sans font-black text-white uppercase tracking-tight leading-tight line-clamp-2 text-lg md:text-2xl">
+        <h3 className="font-sans font-black text-white uppercase tracking-tight leading-tight line-clamp-2 text-base md:text-lg">
           {t(`projects.items.${project.id}.title`)}
         </h3>
-        <div className="flex items-center gap-1.5 text-primary font-mono text-[10px] uppercase tracking-widest max-h-0 opacity-0 group-hover:max-h-6 group-hover:opacity-100 group-hover:mt-2 transition-all duration-500 overflow-hidden">
-          <span>{t("projects.modal.view_details")}</span>
-          <HiArrowLongRight className="group-hover:translate-x-1 transition-transform duration-300" />
-        </div>
       </div>
     </div>
   );

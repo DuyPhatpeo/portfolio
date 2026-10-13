@@ -137,7 +137,7 @@
         "description": "Ứng dụng dự báo thời tiết toàn diện, cung cấp thông tin khí tượng chi tiết như nhiệt độ, độ ẩm, tốc độ gió và chỉ số UV theo thời gian thực cho nhiều địa điểm khác nhau. Giao diện được thiết kế theo phong cách HUD hiện đại, trực quan hóa dữ liệu bằng biểu đồ và biểu tượng thời tiết sinh động. Dự án sử dụng React, TypeScript và Zustand để quản lý trạng thái dữ liệu hiệu quả, cùng tích hợp API thời tiết bên ngoài để đảm bảo độ chính xác."
       },
       "5": {
-        "title": "DinoMovie - Nền Tảng Khám Phá Phim",
+        "title": "DinoCine - Nền Tảng Khám Phá Phim",
         "description": "Nền tảng khám phá điện ảnh vận hành bởi TMDB API, cho phép người dùng tìm kiếm, xem thông tin chi tiết và đánh giá của hàng nghìn bộ phim. Hệ thống triển khai các bộ lọc nâng cao theo thể loại, năm phát hành và xếp hạng, giúp người dùng nhanh chóng tìm được nội dung phù hợp. Toàn bộ giao diện được thiết kế theo phong cách Dark UI tinh tế, xây dựng bằng React và Tailwind CSS để tối ưu hiệu năng hiển thị."
       },
       "6": {
