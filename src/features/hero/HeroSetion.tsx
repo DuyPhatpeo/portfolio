@@ -1,12 +1,16 @@
-import { useRef } from "react";
-import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
+import { useRef, useEffect } from "react";
 import { profileData } from "@constants/profileData";
 import HeroAvatar from "./HeroAvatar";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(() => {
+  useEffect(() => {
+    if (!window.matchMedia("(min-width: 769px) and (prefers-reduced-motion: no-preference)").matches) return;
+    let disposed = false;
+    let cleanup: (() => void) | undefined;
+    const timer = window.setTimeout(() => { void import("@lib/gsap").then(({ gsap, ScrollTrigger }) => {
+    if (disposed) return;
     const media = gsap.matchMedia();
     media.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
       gsap.from("[data-hero-copy], [data-hero-avatar]", {
@@ -35,11 +39,13 @@ export default function HeroSection() {
     void document.fonts.ready.then(() => {
       if (mounted) ScrollTrigger.refresh();
     });
-    return () => { mounted = false; media.revert(); };
-  }, { scope: sectionRef });
+    cleanup = () => { mounted = false; media.revert(); };
+    }); }, 1200);
+    return () => { disposed = true; clearTimeout(timer); cleanup?.(); };
+  }, []);
 
   return (
-    <section ref={sectionRef} id="home" onLoad={() => ScrollTrigger.refresh()} className="relative isolate overflow-hidden min-h-svh pt-[145px] pb-[65px] flex items-center justify-center bg-transparent text-foreground font-[Inter,Arial,sans-serif] min-[1500px]:pt-[160px] max-[1100px]:min-h-[740px] max-[1100px]:pt-[130px] max-[760px]:min-h-0 max-[760px]:pt-[120px] max-[760px]:pb-0 motion-reduce:animate-none motion-reduce:transition-none motion-reduce:[&_*]:animate-none motion-reduce:[&_*]:transition-none" aria-labelledby="hero-heading">
+    <section ref={sectionRef} id="home" className="relative isolate overflow-hidden min-h-svh pt-[145px] pb-[65px] flex items-center justify-center bg-transparent text-foreground font-[Inter,Arial,sans-serif] min-[1500px]:pt-[160px] max-[1100px]:min-h-[740px] max-[1100px]:pt-[130px] max-[760px]:min-h-0 max-[760px]:pt-[120px] max-[760px]:pb-0 motion-reduce:animate-none motion-reduce:transition-none motion-reduce:[&_*]:animate-none motion-reduce:[&_*]:transition-none" aria-labelledby="hero-heading">
       <div className="mx-auto grid w-[min(1280px,calc(100%_-_96px))] grid-cols-[1.05fr_1fr] gap-0 items-center max-[1100px]:w-[calc(100%_-_64px)] max-[760px]:w-[calc(100%_-_40px)] max-[760px]:grid-cols-1 max-[760px]:gap-3 max-[380px]:w-[calc(100%_-_32px)]">
         <div
           className="relative z-2 min-w-0 py-6 flex flex-col justify-center items-start max-[760px]:pt-[15px] max-[760px]:pb-0"

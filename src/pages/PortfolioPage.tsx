@@ -1,13 +1,14 @@
 // src/pages/HomePage.tsx
-import React, { useEffect } from "react";
+import React, { lazy, useEffect } from "react";
 import Header from "@components/general/Header";
 import Footer from "@components/general/Footer";
 import HeroSection from "@features/hero/HeroSetion";
-import AboutSection from "@features/about/AboutSection";
-import ProjectsSection from "@features/project/ProjectSecion";
-import FeaturedSkills from "@features/skills/FeaturedSkills";
+const AboutSection = lazy(() => import("@features/about/AboutSection"));
+const ProjectsSection = lazy(() => import("@features/project/ProjectSecion"));
+const FeaturedSkills = lazy(() => import("@features/skills/FeaturedSkills"));
 import ContactCTA from "@features/contact/ContactCTA";
 import Particles from "@components/theme/Particles";
+import DeferredSection from "@components/general/DeferredSection";
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -70,10 +71,10 @@ const PortfolioPage: React.FC = () => {
         {/* Section items on top of stars */}
         <div className="relative z-10">
           <HeroSection />
-          <AboutSection scrollToSection={scrollToSection} />
+          <DeferredSection minHeight={800}><AboutSection scrollToSection={scrollToSection} /></DeferredSection>
           {/* You can toggle between these different skill section styles: */}
-          <FeaturedSkills />
-          <ProjectsSection mode="featured-only" />
+          <DeferredSection id="skills" minHeight={400}><FeaturedSkills /></DeferredSection>
+          <DeferredSection minHeight={1800}><ProjectsSection mode="featured-only" /></DeferredSection>
           </div>
       </main>
 

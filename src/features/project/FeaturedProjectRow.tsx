@@ -124,7 +124,7 @@ export default function FeaturedProjectRow({ project, index, onSelect }: Feature
  </div>
 
   <div className="w-full md:w-2/5 text-left flex flex-row items-baseline gap-4">
-  <p className="text-primary/40 font-mono text-4xl md:text-6xl font-black leading-none select-none group-hover:text-primary/70 transition-colors duration-500">
+  <p className="text-primary/75 font-mono text-4xl md:text-6xl font-black leading-none select-none group-hover:text-primary/70 transition-colors duration-500">
   {String(index + 1).padStart(2,"0")}
   </p>
   <div>

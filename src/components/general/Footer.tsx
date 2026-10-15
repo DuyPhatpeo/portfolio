@@ -55,7 +55,7 @@ const Footer = () => {
             >
               {t("footer.contact_label")}
             </button>
-            <p className="text-[10px] font-mono text-foreground/40 tracking-widest uppercase mt-2">
+            <p className="text-[10px] font-mono text-foreground/75 tracking-widest uppercase mt-2">
               © {year} {profileData.logo}. {t("footer.rights")}
             </p>
           </div>
@@ -70,7 +70,7 @@ const Footer = () => {
           </div>
 
           <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end">
-            <span className="text-[10px] font-mono text-foreground/40 tracking-[0.2em] uppercase">
+            <span className="text-[10px] font-mono text-foreground/75 tracking-[0.2em] uppercase">
               {t("footer.follow")}
             </span>
             <div className="flex items-center gap-4">
@@ -83,7 +83,7 @@ const Footer = () => {
                   aria-label={link.name}
                   className={`text-foreground/60 transition-colors ${link.hoverColor}`}
                 >
-                  {link.icon}
+                  <span aria-hidden="true">{link.icon}</span>
                 </a>
               ))}
             </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { TECH, TECH_ICONS } from "@constants/technologies";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
@@ -27,9 +27,12 @@ const SKILL_COLORS: Record<string, string> = {
 
 const FeaturedSkills: React.FC = () => {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef);
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section className="py-20 md:py-32 relative overflow-hidden bg-transparent">
+    <section ref={sectionRef} className="py-20 md:py-32 relative overflow-hidden bg-transparent">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-12 md:mb-20 text-center">
         <FadeUp>
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
@@ -44,7 +47,7 @@ const FeaturedSkills: React.FC = () => {
         <motion.div
           className="flex w-max gap-12 md:gap-24 items-center"
           initial={{ x: "0%" }}
-          animate={{ x: "-33.333333%" }}
+          animate={{ x: inView && !reduceMotion ? "-33.333333%" : "0%" }}
           transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
         >
           {SCROLLING_SKILLS.map((skill, index) => {
@@ -54,9 +57,9 @@ const FeaturedSkills: React.FC = () => {
             return (
               <div
                 key={`${skill}-${index}`}
-                className={`flex items-center gap-4 text-foreground/40 transition-colors duration-500 cursor-default grayscale hover:grayscale-0 ${hoverColorClass}`}
+                className={`flex items-center gap-4 text-foreground/75 transition-colors duration-500 cursor-default grayscale hover:grayscale-0 ${hoverColorClass}`}
               >
-                {Icon && <Icon className="w-10 h-10 md:w-16 md:h-16" />}
+                {Icon && <Icon aria-hidden="true" focusable="false" className="w-10 h-10 md:w-16 md:h-16" />}
                 <span className="font-mono text-2xl md:text-4xl font-bold uppercase tracking-widest">
                   {skill}
                 </span>

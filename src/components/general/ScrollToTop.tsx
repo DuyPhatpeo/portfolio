@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { HiArrowUp } from "react-icons/hi2";
-import { gsap } from "@lib/gsap";
 
 const ScrollToTop: React.FC = () => {
   const [visible, setVisible] = useState<boolean>(false);
@@ -41,10 +40,9 @@ const ScrollToTop: React.FC = () => {
 
   const scrollToTop = (): void => {
     if (btnRef.current) {
-      gsap.fromTo(
-        btnRef.current,
-        { scale: 0.9, y: 3 },
-        { scale: 1, y: 0, duration: 0.5, ease: "elastic.out(1.2, 0.4)" }
+      btnRef.current.animate(
+        [{ transform: "translateY(3px) scale(.9)" }, { transform: "none" }],
+        { duration: 500, easing: "ease-out" }
       );
     }
     window.scrollTo({

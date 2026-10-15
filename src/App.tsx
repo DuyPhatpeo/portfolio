@@ -4,8 +4,6 @@ import { useThemeStore } from "@stores/themeStore";
 import DarkModeAnimation from "@components/theme/DarkModeAnimation";
 
 import AppRoutes from "@routes/AppRoutes";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import "@styles/tokens/variables.css";
 import "@styles/main.css";
 import "@styles/base/reset.css";
@@ -40,13 +38,7 @@ const AppContent: React.FC = () => {
           {/* Scroll To Top */}
           <ScrollToTop />
 
-          <ToastContainer
-            position="top-right"
-            autoClose={3000}
-            pauseOnHover
-            draggable
-            theme={darkMode ? "dark" : "light"}
-          />
+
         </div>
       </ClickSpark>
     </div>

@@ -199,7 +199,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <span className="w-4 h-3 overflow-hidden rounded-xs flex items-center justify-center">
               <img
                 src={targetFlag}
-                alt={targetCode}
+                alt=""
+                width={16}
+                height={12}
                 className="w-full h-full object-cover"
               />
             </span>
