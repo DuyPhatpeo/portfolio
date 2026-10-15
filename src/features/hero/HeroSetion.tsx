@@ -8,9 +8,9 @@ export default function HeroSection() {
 
   useGSAP(() => {
     const media = gsap.matchMedia();
-    media.add("(prefers-reduced-motion: no-preference)", () => {
+    media.add("(min-width: 769px) and (prefers-reduced-motion: no-preference)", () => {
       gsap.from("[data-hero-copy], [data-hero-avatar]", {
-        autoAlpha: 0, y: 24, duration: 0.8, stagger: 0.12, ease: "power3.out",
+        y: 24, duration: 0.8, stagger: 0.12, ease: "power3.out",
       });
       gsap.from("[data-scroll-hint]", { autoAlpha: 0, duration: 0.6, delay: 0.8 });
       gsap.to("[data-scroll-dot]", {

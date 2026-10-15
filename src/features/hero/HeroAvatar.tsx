@@ -15,6 +15,8 @@ export default function HeroAvatar() {
         data-hero-portrait
         className="block relative w-full h-auto object-contain"
         src={profileData.heroImage}
+        srcSet="/assets/profile/hero-600.webp 600w, /assets/profile/hero.webp 1200w"
+        sizes="(max-width: 760px) 100vw, 55vw"
         alt={t("hero.banner.imageAlt", "Developer Hero")}
         width={1536}
         height={1024}

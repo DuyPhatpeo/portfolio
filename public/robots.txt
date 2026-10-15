@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tranduyphat.vercel.app/sitemap.xml

@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
+  <link rel="preload" as="image" href="/assets/profile/hero.webp" imagesrcset="/assets/profile/hero-600.webp 600w, /assets/profile/hero.webp 1200w" imagesizes="(max-width: 760px) 100vw, 55vw" fetchpriority="high" />
   <!-- Primary Meta Tags -->
   <title>Portfolio - Dino Péo (Trần Duy Phát)</title>
   <meta name="title" content="Portfolio - Dino Péo (Trần Duy Phát)" />
@@ -19,7 +20,7 @@
   <meta name="theme-color" content="#0a0a0a" />
 
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://duyphat-portfolio.vercel.app/" />
+  <link rel="canonical" href="https://tranduyphat.vercel.app/" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/icons/logo.png" />
@@ -27,19 +28,19 @@
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://duyphat-portfolio.vercel.app/" />
+  <meta property="og:url" content="https://tranduyphat.vercel.app/" />
   <meta property="og:title" content="Portfolio - Dino Péo (Trần Duy Phát)" />
   <meta property="og:description" content="Portfolio của Dino Péo (Trần Duy Phát) - Lập trình viên Front-End / Web Developer chuyên về React, TypeScript, Tailwind CSS và phát triển giao diện người dùng hiện đại." />
-  <meta property="og:image" content="https://duyphat-portfolio.vercel.app/assets/preview.png" />
+  <meta property="og:image" content="https://tranduyphat.vercel.app/assets/profile/hero.webp" />
   <meta property="og:site_name" content="Dino Péo Portfolio" />
   <meta property="og:locale" content="vi_VN" />
 
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://duyphat-portfolio.vercel.app/" />
+  <meta property="twitter:url" content="https://tranduyphat.vercel.app/" />
   <meta property="twitter:title" content="Portfolio - Dino Péo (Trần Duy Phát)" />
   <meta property="twitter:description" content="Portfolio của Dino Péo (Trần Duy Phát) - Lập trình viên Front-End / Web Developer chuyên về React, TypeScript, Tailwind CSS và phát triển giao diện người dùng hiện đại." />
-  <meta property="twitter:image" content="https://duyphat-portfolio.vercel.app/assets/preview.png" />
+  <meta property="twitter:image" content="https://tranduyphat.vercel.app/assets/profile/hero.webp" />
 
   <!-- Structured Data (JSON-LD) -->
   <script type="application/ld+json">
@@ -48,8 +49,8 @@
       "@type": "Person",
       "name": "Trần Duy Phát",
       "alternateName": "Dino Péo",
-      "url": "https://duyphat-portfolio.vercel.app/",
-      "image": "https://duyphat-portfolio.vercel.app/assets/profile/avatar.png",
+      "url": "https://tranduyphat.vercel.app/",
+      "image": "https://tranduyphat.vercel.app/assets/profile/avatar.png",
       "jobTitle": "Frontend Developer",
       "sameAs": [
         "https://github.com/DuyPhatpeo",
@@ -65,7 +66,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&family=Caveat:wght@600;700&family=Chakra+Petch:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Inter:wght@400;700&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet" media="print" onload="this.media='all'" />
 </head>
 
 <body class="font-sans">

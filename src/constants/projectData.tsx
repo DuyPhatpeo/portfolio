@@ -4,8 +4,8 @@ import { TECH } from "./technologies";
 export const projects: Project[] = [
   {
     id: 1,
-    image: "assets/projects/portfolio.png",
-    previewImage: "/assets/projects/portfolio-full.png",
+    image: "assets/projects/portfolio.webp",
+    previewImage: "/assets/projects/portfolio-full.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
@@ -14,8 +14,8 @@ export const projects: Project[] = [
   },
   {
     id: 10,
-    image: "assets/projects/linksnap.png",
-    previewImage: "/assets/projects/linksnap-full.png",
+    image: "assets/projects/linksnap.webp",
+    previewImage: "/assets/projects/linksnap-full.webp",
     tags: [TECH.LARAVEL, TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.TAILWIND, TECH.MYSQL],
     github: "https://github.com/DuyPhatpeo/link-snap",
     demo: "http://linksnap.site.je/",
@@ -24,8 +24,8 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    image: "assets/projects/weather-app.png",
-    previewImage: "/assets/projects/weather-app-full.png",
+    image: "assets/projects/weather-app.webp",
+    previewImage: "/assets/projects/weather-app-full.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/weather-app",
     demo: "https://thoitiet24h.vercel.app/",
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   // Other Projects
   {
     id: 2,
-    image: "assets/projects/ecommerce.png",
+    image: "assets/projects/ecommerce.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FIREBASE, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
@@ -44,7 +44,7 @@ export const projects: Project[] = [
   },
   {
     id: 9,
-    image: "assets/projects/pokedex.png",
+    image: "assets/projects/pokedex.webp",
     tags: [TECH.REACT_NATIVE, TECH.EXPO, TECH.TS, TECH.NATIVEWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/pokedex",
     demo: null,
@@ -52,8 +52,8 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    image: "assets/projects/restaurant.png",
-    previewImage: "/assets/projects/restaurant-full.png",
+    image: "assets/projects/restaurant.webp",
+    previewImage: "/assets/projects/restaurant-full.webp",
     tags: [TECH.REACT, TECH.FIREBASE],
     github: "https://github.com/DuyPhatpeo/restaurant",
     demo: "https://restaurant-phat.vercel.app/",
@@ -61,8 +61,8 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    image: "assets/projects/dinocine.png",
-    previewImage: "/assets/projects/dinocine-full.png",
+    image: "assets/projects/dinocine.webp",
+    previewImage: "/assets/projects/dinocine-full.webp",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/movie-web-app",
     demo: "https://dinocine.vercel.app",
@@ -70,8 +70,8 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    image: "assets/projects/dinostore.jpg",
-    previewImage: "/assets/projects/dinostore-full.png",
+    image: "assets/projects/dinostore.webp",
+    previewImage: "/assets/projects/dinostore-full.webp",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/dinostore",
     demo: "https://dinostorevn.vercel.app/",
@@ -79,8 +79,8 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    image: "assets/projects/dinobot.png",
-    previewImage: "/assets/projects/dinobot-full.png",
+    image: "assets/projects/dinobot.webp",
+    previewImage: "/assets/projects/dinobot-full.webp",
     tags: [TECH.NODE_JS, TECH.DISCORD_JS],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
     demo: "https://dinobotvn.vercel.app/",
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   },
   {
     id: 8,
-    image: "assets/projects/shopfstyle.jpg",
+    image: "assets/projects/shopfstyle.webp",
     tags: [TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.MYSQL, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/ShopFSTYLE",
     demo: null,

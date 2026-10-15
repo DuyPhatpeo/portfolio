@@ -215,28 +215,31 @@ const Particles: React.FC<ParticlesProps> = ({ quantity = 160, zIndex = 25 }) =>
 
   /* ── Shooting star scheduler ─────────────── */
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
+    let timer = 0;
     const scheduleNext = () => {
       const delay = 3500 + Math.random() * 5000;
-      const timer = window.setTimeout(() => {
+      timer = window.setTimeout(() => {
         const idle = shootingRef.current.find((s) => !s.active);
         if (idle) spawnShooting(idle);
         scheduleNext();
       }, delay);
       return timer;
     };
-    const t = scheduleNext();
-    return () => clearTimeout(t);
+    scheduleNext();
+    return () => clearTimeout(timer);
   }, [spawnShooting]);
 
   /* ── Init ───────────────────────────────── */
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctxRef.current = ctx;
 
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = size.w * dpr;
     canvas.height = size.h * dpr;
     canvas.style.width = `${size.w}px`;

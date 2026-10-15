@@ -19,8 +19,8 @@ export const profileData: ProfileData = {
   name: "Dino Péo",
   logo: "DINO PÉO",
   resume: "/assets/docs/TranDuyPhat_CV.pdf",
-  avatar: "/assets/profile/avatar_3d.png",
-  heroImage: "/assets/profile/hero.png",
+  avatar: "/assets/profile/avatar_3d.webp",
+  heroImage: "/assets/profile/hero.webp",
   roles: [
     "Front-End Developer",
     "Web Developer",

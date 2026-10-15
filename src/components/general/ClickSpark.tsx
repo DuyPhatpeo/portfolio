@@ -29,6 +29,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
   children,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const startDrawRef = useRef<(() => void) | null>(null);
   const sparksRef = useRef<Spark[]>([]);
   const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -58,7 +59,8 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     if (!parent) return;
 
     const resizeCanvas = () => {
-      const { width, height } = parent.getBoundingClientRect();
+      const width = window.innerWidth;
+      const height = window.innerHeight;
       canvas.width = width;
       canvas.height = height;
     };
@@ -89,7 +91,7 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let rafId: number;
+    let rafId = 0;
 
     const draw = (time: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -120,22 +122,23 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
         return true;
       });
 
-      rafId = requestAnimationFrame(draw);
+      rafId = sparksRef.current.length ? requestAnimationFrame(draw) : 0;
     };
 
-    rafId = requestAnimationFrame(draw);
+    startDrawRef.current = () => { if (!rafId) rafId = requestAnimationFrame(draw); };
 
-    return () => cancelAnimationFrame(rafId);
+    return () => { cancelAnimationFrame(rafId); startDrawRef.current = null; };
   }, [sparkColor, sparkRadius, sparkSize, duration, extraScale, easeFunc]);
 
   /* ================= CLICK ================= */
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const y = e.clientY;
     const now = performance.now();
 
     const sparks: Spark[] = Array.from({ length: sparkCount }, (_, i) => ({
@@ -146,13 +149,14 @@ const ClickSpark: React.FC<ClickSparkProps> = ({
     }));
 
     sparksRef.current.push(...sparks);
+    startDrawRef.current?.();
   };
 
   return (
     <div className="relative w-full h-full" onClick={handleClick}>
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
+        className="fixed inset-0 pointer-events-none"
       />
       {children}
     </div>

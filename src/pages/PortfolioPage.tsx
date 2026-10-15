@@ -63,7 +63,7 @@ const PortfolioPage: React.FC = () => {
       <Header scrollToSection={scrollToSection} />
 
       {/* Upper Sections (Layer Z-20 - Scrolls off to reveal Contact beneath) */}
-      <div id="upper-content" className="relative z-20 bg-background shadow-2xl">
+      <main id="upper-content" className="relative z-20 bg-background shadow-2xl">
         {/* Starfield Particles on top of background, behind section items */}
         <Particles quantity={120} zIndex={1} />
 
@@ -75,7 +75,7 @@ const PortfolioPage: React.FC = () => {
           <FeaturedSkills />
           <ProjectsSection mode="featured-only" />
           </div>
-      </div>
+      </main>
 
       <ContactCTA />
 

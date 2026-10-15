@@ -1,10 +1,10 @@
 // src/features/project/ProjectSecion.tsx
-import { useState, useRef } from "react";
+import { useState, useRef, lazy, Suspense } from "react";
 import { projects } from "@constants/projectData";
 import HorizontalProjectCard from "./HorizontalProjectCard";
 import FeaturedProjectRow from "./FeaturedProjectRow";
 import ProjectCard from "./ProjectCard";
-import ProjectModal from "./ProjectModal";
+const ProjectModal = lazy(() => import("./ProjectModal"));
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
@@ -266,10 +266,12 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
 
       {/* Project Detail Modal */}
       {selectedProject && (
+        <Suspense fallback={<div role="status" className="fixed inset-0 z-50 grid place-items-center bg-background/90">Đang tải…</div>}>
         <ProjectModal
           project={selectedProject}
           onClose={() => setSelectedProject(null)}
         />
+        </Suspense>
       )}
     </section>
   );
