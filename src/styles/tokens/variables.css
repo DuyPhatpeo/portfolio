@@ -1,118 +1,83 @@
 /* src/styles/tokens/variables.css */
-/* Design tokens – CSS custom properties for the entire app */
+/* Monochrome Deep Space Design Tokens – CSS custom properties */
 @layer theme {
   :root {
-    --radius: 1rem;
-    --background: #171717;
-    --foreground: #f2f2f7;
+    --radius: 0.875rem;
 
-    --card: #202020;
-    --card-foreground: #f2f2f7;
+    /* Pure deep black space backdrop so single-color white stars stand out crisply */
+    --background: #050507;
+    --foreground: #f4f4f5;
 
-    --popover: #202020;
-    --popover-foreground: #f2f2f7;
+    /* Neutral translucent dark glass – keeps monochrome starfield visible underneath */
+    --card: rgba(16, 16, 19, 0.54);
+    --card-foreground: #f4f4f5;
 
-    --primary: #21f1a8;
-    --primary-rgb: 33, 241, 168;
-    --primary-foreground: #171717;
+    --popover: #0e0e11;
+    --popover-foreground: #f4f4f5;
 
-    --secondary: #21f1a8;
-    --secondary-rgb: 33, 241, 168;
-    --secondary-foreground: #171717;
+    /* Clean emerald accent harmonizing with 3D character art */
+    --primary: #2dd4a8;
+    --primary-rgb: 45, 212, 168;
+    --primary-foreground: #04130e;
 
-    --muted: #333333;
-    --muted-foreground: #8a8a9a;
+    --secondary: #2dd4a8;
+    --secondary-rgb: 45, 212, 168;
+    --secondary-foreground: #04130e;
 
-    --accent: #21f1a8;
-    --accent-foreground: #171717;
+    --muted: rgba(28, 28, 33, 0.65);
+    --muted-foreground: #a1a1aa;
 
-    --destructive: #ff3366;
-    --destructive-foreground: #f2f2f7;
+    --accent: #2dd4a8;
+    --accent-foreground: #04130e;
 
-    --border: #333333;
-    --input: #202020;
-    --ring: #21f1a8;
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
 
-    /* Cyberpunk Specific */
-    --accent-secondary: #21f1a8;
-    --accent-tertiary: #21f1a8;
+    --border: rgba(255, 255, 255, 0.12);
+    --input: rgba(16, 16, 19, 0.65);
+    --ring: #2dd4a8;
 
-    --neon-glow: 0 0 5px var(--primary), 0 0 15px rgba(33, 241, 168, 0.4);
-    --neon-glow-secondary: 0 0 5px var(--secondary), 0 0 15px rgba(33, 241, 168, 0.4);
-    --foreground-glow: 0 0 20px rgba(242, 242, 247, 0.15);
+    --accent-secondary: #2dd4a8;
+    --accent-tertiary: #2dd4a8;
 
     --selection-bg: var(--primary);
     --selection-text: var(--primary-foreground);
 
-    --scanline-opacity: 0.12;
+    --background-alt: rgba(12, 12, 15, 0.4);
 
-    --background-alt: #202020;
-
-    /* Font overrides */
-    --font-heading: "Baloo 2", "Chakra Petch", "Orbitron", sans-serif;
-    --font-body: "Baloo 2", "Inter", "JetBrains Mono", sans-serif;
-    --font-mono: "JetBrains Mono", monospace;
+    /* Editorial & technical font stack with full Vietnamese support */
+    --font-heading: "Space Grotesk", system-ui, -apple-system, sans-serif;
+    --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   }
 
   :root:not(.dark) {
-    /* Clean 2-color Light theme, tinted teal to match the brand primary */
-    --background: #eef5f3;
-    --foreground: #004741;
-    --card: #ffffff;
-    --card-foreground: #004741;
+    --background: #f7f7f8;
+    --foreground: #111113;
+    --card: rgba(255, 255, 255, 0.68);
+    --card-foreground: #111113;
     --popover: #ffffff;
-    --popover-foreground: #004741;
-    --primary: #004741;
-    --primary-rgb: 0, 71, 65;
-    --primary-foreground: #eef5f3;
-    --secondary: #004741;
-    --secondary-rgb: 0, 71, 65;
-    --secondary-foreground: #eef5f3;
-    --muted: #dfeae6;
-    --muted-foreground: #4d726b;
-    --accent: #004741;
-    --accent-foreground: #eef5f3;
-    --border: #d3e2dd;
-    --input: #ffffff;
-    --ring: #004741;
+    --popover-foreground: #111113;
+    --primary: #0d7a65;
+    --primary-rgb: 13, 122, 101;
+    --primary-foreground: #ffffff;
+    --secondary: #0d7a65;
+    --secondary-rgb: 13, 122, 101;
+    --secondary-foreground: #ffffff;
+    --muted: rgba(228, 228, 231, 0.65);
+    --muted-foreground: #52525b;
+    --accent: #0d7a65;
+    --accent-foreground: #ffffff;
+    --border: rgba(17, 17, 19, 0.12);
+    --input: rgba(255, 255, 255, 0.8);
+    --ring: #0d7a65;
 
-    --neon-glow: 0 0 5px rgba(0, 71, 65, 0.2), 0 0 10px rgba(0, 71, 65, 0.1);
-    --neon-glow-secondary: 0 0 5px rgba(0, 71, 65, 0.2), 0 0 10px rgba(0, 71, 65, 0.1);
-    --foreground-glow: 0 0 20px rgba(0, 71, 65, 0.05);
-
-    --scanline-opacity: 0.04;
-    --background-alt: #e3efeb;
+    --background-alt: rgba(240, 240, 242, 0.5);
   }
 
   .dark {
-    --background: #171717;
-    --card: #202020;
-    --border: #333333;
-  }
-
-  /* ===== SCROLLBAR ===== */
-  ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--background);
-    border-left: 1px solid var(--border);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    opacity: 0.5;
-    border: 2px solid var(--background);
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary);
-    opacity: 1;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: var(--primary);
+    --background: #050507;
+    --card: rgba(16, 16, 19, 0.54);
+    --border: rgba(255, 255, 255, 0.12);
   }
 }

@@ -1,14 +1,11 @@
-/* src/styles/main.css (v1.0.1) */
+/* src/styles/main.css */
 /* ─────────────────────────────────────────────
    Entry point – import order matters!
-   1. Design tokens  (must come first)
-   2. Tailwind engine
-   3. Custom partials
+   1. Design tokens (imported in App.tsx)
+   2. Tailwind CSS v4 engine
+   3. Base typography & subtle utilities
    ───────────────────────────────────────────── */
 
-/* 1. Design Tokens - moved to App.tsx */
-
-/* 2. Tailwind CSS v4 */
 @import "tailwindcss";
 @source "../";
 @plugin "tailwindcss-animate";
@@ -16,7 +13,7 @@
 @custom-variant dark (&:is(.dark *));
 @config "../../tailwind.config.cjs";
 
-/* ===== Tailwind → shadcn token mapping ===== */
+/* ===== Tailwind → semantic token mapping ===== */
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -54,113 +51,45 @@
   --color-accent-tertiary: var(--accent-tertiary);
 
   --font-sans: var(--font-heading);
-  --font-mono: var(--font-body);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
-/* ===== Cyberpunk Utilities ===== */
-@utility cyber-glow {
-  box-shadow: 0 0 15px var(--primary);
-}
-
-@utility cyber-glow-sm {
-  box-shadow: 0 0 8px var(--primary);
-}
-
-@utility cyber-glow-secondary {
-  box-shadow: 0 0 15px var(--secondary);
-}
-
-@utility cyber-chamfer {
-  clip-path: polygon(0 10px, 10px 0,
-      calc(100% - 10px) 0, 100% 10px,
-      100% calc(100% - 10px), calc(100% - 10px) 100%,
-      10px 100%, 0 calc(100% - 10px));
-}
-
-@utility cyber-glitch {
-  position: relative;
-
-  &:hover::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 2px;
-    text-shadow: -1px 0 var(--secondary);
-    background: var(--background);
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: glitch-anim 2s infinite linear alternate-reverse;
-  }
-}
-
-@utility cyber-glitch-auto {
-  position: relative;
-
-  &::before {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 2px;
-    text-shadow: -1px 0 var(--secondary);
-    background: var(--background);
-    overflow: hidden;
-    clip: rect(0, 900px, 0, 0);
-    animation: glitch-anim 2s infinite linear alternate-reverse;
-  }
-}
-
-@utility cyber-grid {
+/* ===== Subtle Architectural Grid Utilities ===== */
+@utility subtle-grid {
   background-image:
-    linear-gradient(to right, var(--primary) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
-  opacity: 0.05;
-}
-
-@utility cyber-grid-subtle {
-  background-image:
-    linear-gradient(to right, var(--primary) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--primary) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.06;
-}
-
-@utility cyber-dots {
-  background-image: radial-gradient(var(--primary) 1px, transparent 1px);
-  background-size: 20px 20px;
-  mask-image: radial-gradient(ellipse at center, black, transparent 70%);
-  opacity: 0.1;
-}
-
-@utility cyber-lines-v {
-  background-image: linear-gradient(to right, var(--primary) 1px, transparent 1px);
-  background-size: 60px 100%;
-  opacity: 0.05;
-}
-
-@utility cyber-lines {
-  background-image: repeating-linear-gradient(45deg,
-      var(--primary) 0%,
-      var(--primary) 1px,
-      transparent 1px,
-      transparent 20px);
-  opacity: 0.05;
-}
-
-@utility cyber-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  filter: contrast(150%) brightness(100%);
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 @layer base {
+  html {
+    font-size: 16px;
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    html {
+      font-size: 18px;
+    }
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
 
   body {
-    @apply bg-background text-foreground font-mono overflow-x-hidden;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
   }
 
   h1,
@@ -169,85 +98,14 @@
   h4,
   h5,
   h6 {
-    @apply font-sans uppercase;
-    letter-spacing: 0.1em;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
   }
 
   ::selection {
     background-color: var(--selection-bg);
     color: var(--selection-text);
   }
-}
-
-@keyframes glitch-sm {
-  0% {
-    transform: translate(0);
-    text-shadow: none;
-  }
-
-  25% {
-    transform: translate(-1px, 1px);
-    text-shadow: 1px 0 var(--primary);
-  }
-
-  50% {
-    transform: translate(1px, -1px);
-    text-shadow: -1px 0 var(--secondary);
-  }
-
-  75% {
-    transform: translate(-1px, -1px);
-    text-shadow: 1px 0 var(--primary);
-  }
-
-  100% {
-    transform: translate(0);
-    text-shadow: none;
-  }
-}
-
-.group:hover .glitch-sm {
-  animation: glitch-sm 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-
-@keyframes glitch-anim {
-  0% {
-    clip: rect(44px, 9999px, 56px, 0);
-  }
-
-  20% {
-    clip: rect(12px, 9999px, 30px, 0);
-  }
-
-  40% {
-    clip: rect(67px, 9999px, 89px, 0);
-  }
-
-  60% {
-    clip: rect(5px, 9999px, 15px, 0);
-  }
-
-  80% {
-    clip: rect(33px, 9999px, 50px, 0);
-  }
-
-  100% {
-    clip: rect(91px, 9999px, 98px, 0);
-  }
-}
-
-@keyframes scanline-v {
-  0% {
-    transform: translateY(-100%);
-  }
-
-  100% {
-    transform: translateY(100%);
-  }
-}
-
-.animate-scanline-v {
-  animation: scanline-v 3s linear infinite;
 }
 
 @keyframes marquee-x {
@@ -268,33 +126,30 @@
   animation: marquee-x-reverse var(--duration, 40s) linear infinite;
 }
 
-/* Pause on hover only when hovering a specific skill node - using :has for precision */
-.group\/marquee:has(.group\/skill:hover) .animate-marquee,
-.group\/marquee:has(.group\/skill:hover) .animate-marquee-reverse {
-  animation-play-state: paused !important;
-}
-
-/* 3. Custom partials - moved to App.tsx */
-
 /* ===== Custom Scrollbar ===== */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--background);
-  border-left: 1px solid color-mix(in srgb, var(--primary), transparent 80%);
+  border-left: 1px solid var(--border);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--primary), transparent 60%);
-  border: 2px solid var(--background);
-  transition: all 0.3s;
+  background: color-mix(in srgb, var(--foreground), transparent 75%);
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
-  box-shadow: 0 0 10px var(--primary);
 }
-.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-.scrollbar-hide::-webkit-scrollbar { display: none; }
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

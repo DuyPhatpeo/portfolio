@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
 // Must match variables.css
-const DARK_BG  = "#171717";
-const LIGHT_BG = "#eef5f3";
+const DARK_BG  = "#050507";
+const LIGHT_BG = "#f7f7f8";
 
 interface Props { isDark: boolean }
 
@@ -115,7 +115,7 @@ const DarkModeAnimation: React.FC<Props> = ({ isDark }) => {
 
     window.addEventListener("darkModeToggle", onToggle);
     return () => window.removeEventListener("darkModeToggle", onToggle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Cleanup listener on unmount
   }, []);
 
   // Nothing to render – animation is DOM-injected

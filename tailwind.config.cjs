@@ -19,8 +19,9 @@ module.exports = {
         "tech-light": "var(--tech-light)",
       },
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
-        inter: ["Inter", "sans-serif"],
+        sans: ["Space Grotesk", "system-ui", "sans-serif"],
+        body: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "ui-monospace", "monospace"],
       },
       typography: (theme) => ({
         DEFAULT: {
