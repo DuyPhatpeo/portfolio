@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useThemeStore } from "@stores/themeStore";
 import DarkModeAnimation from "@components/theme/DarkModeAnimation";
+import Particles from "@components/theme/Particles";
 
 import AppRoutes from "@routes/AppRoutes";
 import "@styles/tokens/variables.css";
@@ -21,24 +22,23 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="relative min-h-screen bg-transparent">
-      {/* Dark Mode Canvas Animation */}
+      {/* Persistent Cosmic Starfield Layer */}
+      <Particles quantity={195} zIndex={1} />
+
+      {/* Dark Mode Circular Transition Wipe */}
       <DarkModeAnimation isDark={darkMode} />
 
-      {/* Click Spark wrapper */}
+      {/* Click Spark Wrapper */}
       <ClickSpark
-        sparkColor={darkMode ? "#fff" : "#000"}
-        sparkSize={10}
+        sparkColor={darkMode ? "#ffffff" : "#18181b"}
+        sparkSize={9}
         sparkRadius={15}
         sparkCount={8}
-        duration={400}
+        duration={380}
       >
         <div id="app-content-root" className="relative z-10">
           <AppRoutes />
-
-          {/* Scroll To Top */}
           <ScrollToTop />
-
-
         </div>
       </ClickSpark>
     </div>
