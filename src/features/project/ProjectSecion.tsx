@@ -15,14 +15,16 @@ interface ProjectSectionProps {
   mode?: "featured-only" | "all-list" | "default";
 }
 
-export default function ProjectSection({ mode = "default" }: ProjectSectionProps) {
+export default function ProjectSection({
+  mode = "default",
+}: ProjectSectionProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentOtherIndex, setCurrentOtherIndex] = useState(0);
-  
-  // View mode switcher state
-  const featuredProjects = mode === "all-list" ? projects : projects.filter((p) => p.featured);
+
+  const featuredProjects =
+    mode === "all-list" ? projects : projects.filter((p) => p.featured);
   const otherProjects = projects.filter((p) => !p.featured);
 
   const sectionRef = useRef<HTMLElement>(null);
@@ -32,10 +34,11 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
   const progressBarRef = useRef<HTMLDivElement>(null);
   const scrollTriggerInstance = useRef<ScrollTrigger | null>(null);
 
-  // GSAP Horizontal Scroll Gallery for Other Projects
+  // GSAP Horizontal Scroll Gallery for Other Projects (only in "default" mode)
   useGSAP(
     () => {
       if (
+        mode !== "default" ||
         !otherPinRef.current ||
         !trackRef.current ||
         !pinContainerRef.current ||
@@ -86,10 +89,9 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
         tween.kill();
       };
     },
-    { scope: sectionRef, dependencies: [otherProjects.length] }
+    { scope: sectionRef, dependencies: [otherProjects.length, mode] }
   );
 
-  // Smooth jump to next/previous other project
   const handleStepNavigate = (direction: "prev" | "next") => {
     const trigger =
       scrollTriggerInstance.current ||
@@ -115,33 +117,33 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
     <section
       id="projects"
       ref={sectionRef}
-      className="relative bg-(--background-alt)"
+      className={`relative bg-transparent ${
+        mode === "all-list" ? "" : "border-t border-border/60"
+      }`}
     >
-      {/* Dots Pattern Background */}
-      <div className="absolute inset-0 cyber-dots pointer-events-none opacity-[0.04]" />
-
-      {/* ========================================================
-          PHẦN 1: DỰ ÁN NỔI BẬT (FEATURED PROJECTS)
-          Dạng danh sách hàng dọc (FeaturedProjectRow)
-      ======================================================== */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 pt-16 sm:pt-20 md:pt-28 pb-12 sm:pb-16 md:pb-24 relative z-10">
-        <div className="mb-10 md:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-6">
-          <div>
-            <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
-              {t("projects.subtitle")}
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6">
+      {/* Featured / All Projects Section */}
+      <div
+        className={`max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 ${
+          mode === "all-list"
+            ? "pt-8 pb-20 md:pt-12 md:pb-28"
+            : "py-20 md:py-28"
+        }`}
+      >
+        {/* Editorial Split Section Header (omitted in all-list mode where PageHero owns the heading) */}
+        {mode !== "all-list" && (
+          <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
               {t("projects.title")}
             </h2>
-            <p className="max-w-2xl text-foreground/90 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
+            <p className="max-w-[50ch] text-muted-foreground text-lg md:text-xl leading-relaxed text-left md:text-right">
               {t("projects.description")}
             </p>
           </div>
-        </div>
+        )}
 
-        {/* PROJECTS RENDERING LOGIC */}
+        {/* Projects Rendering */}
         {mode === "all-list" ? (
-          <div className="group/list grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {featuredProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -152,7 +154,7 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
             ))}
           </div>
         ) : (
-          <div className="group/list space-y-12 md:space-y-20">
+          <div className="space-y-16 md:space-y-24">
             {featuredProjects.map((project, index) => (
               <FeaturedProjectRow
                 key={project.id}
@@ -168,54 +170,46 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
           <div className="mt-16 flex justify-center">
             <button
               onClick={() => navigate("/projects")}
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary/10 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-bold text-sm sm:text-base tracking-widest uppercase transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(33,241,168,0.4)]"
+              className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-card border border-border hover:border-primary/60 text-foreground hover:text-primary font-medium text-base sm:text-lg transition-colors duration-200 cursor-pointer"
             >
               <span>{t("projects.view_all", "View All Projects")}</span>
-              <FiArrowRight className="text-lg transition-transform duration-300 group-hover:translate-x-1" />
+              <FiArrowRight className="text-base transition-transform duration-200 group-hover:translate-x-1" />
             </button>
           </div>
         )}
       </div>
 
-      {/* ========================================================
-          PHẦN 2: CÁC DỰ ÁN ĐÁNG CHÚ Ý KHÁC (OTHER PROJECTS)
-          Hiệu ứng Pinned Horizontal Scroll Gallery
-      ======================================================== */}
+      {/* Horizontal Gallery for Other Projects (default mode) */}
       {mode === "default" && (
-        <div ref={otherPinRef} className="relative border-t border-border/30">
+        <div ref={otherPinRef} className="relative border-t border-border/60">
           <div
             ref={pinContainerRef}
-            className="min-h-dvh h-dvh w-full overflow-hidden flex flex-col justify-between py-4 sm:py-8 md:py-10 relative select-none"
+            className="min-h-dvh h-dvh w-full overflow-hidden flex flex-col justify-between py-6 sm:py-8 md:py-10 relative select-none"
           >
             {/* Header */}
             <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
-              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
-                <div>
-                  <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-2 sm:mb-3">
-                    {t("projects.archive", "ARCHIVE / OTHER WORKS")}
-                  </span>
-                  <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
-                    {t("projects.other_title")}
-                  </h3>
-                </div>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-none">
+                  {t("projects.other_title")}
+                </h3>
 
                 {/* Controls */}
-                <div className="flex items-center gap-1.5 self-end sm:self-auto">
+                <div className="flex items-center gap-2 self-end sm:self-auto">
                   <button
                     onClick={() => handleStepNavigate("prev")}
                     disabled={currentOtherIndex === 0}
                     aria-label="Previous project"
-                    className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-card hover:bg-primary hover:text-primary-foreground border border-border text-foreground disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                   >
-                    <FiChevronLeft className="text-base sm:text-lg" />
+                    <FiChevronLeft className="text-lg" />
                   </button>
                   <button
                     onClick={() => handleStepNavigate("next")}
                     disabled={currentOtherIndex === otherProjects.length - 1}
                     aria-label="Next project"
-                    className="p-2 sm:p-2.5 rounded-full bg-card/80 hover:bg-primary hover:text-primary-foreground border border-border/80 text-foreground/80 disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-card hover:bg-primary hover:text-primary-foreground border border-border text-foreground disabled:opacity-30 disabled:pointer-events-none transition-colors cursor-pointer"
                   >
-                    <FiChevronRight className="text-base sm:text-lg" />
+                    <FiChevronRight className="text-lg" />
                   </button>
                 </div>
               </div>
@@ -225,7 +219,7 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
             <div className="w-full overflow-visible my-auto z-10">
               <div
                 ref={trackRef}
-                className="flex items-center gap-4 sm:gap-8 md:gap-10 px-5 sm:px-12 md:px-20 w-max will-change-transform"
+                className="flex items-center gap-5 sm:gap-8 px-5 sm:px-12 md:px-20 w-max will-change-transform"
               >
                 {otherProjects.map((project) => (
                   <HorizontalProjectCard
@@ -237,26 +231,27 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
               </div>
             </div>
 
-            {/* Bottom Progress Bar & Info */}
+            {/* Bottom Progress Bar & Active Title */}
             <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 shrink-0 z-10">
               <div className="flex flex-col gap-2.5">
-                <div className="w-full h-1.5 rounded-full bg-muted/60 overflow-hidden relative border border-border/40">
+                <div className="w-full h-1 rounded-full bg-muted overflow-hidden relative">
                   <div
                     ref={progressBarRef}
-                    className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-75 shadow-[0_0_12px_var(--primary)]"
+                    className="h-full bg-primary transition-all duration-75"
                     style={{ width: "0%" }}
                   />
                 </div>
 
-                <div className="flex items-center justify-between text-xs font-mono text-foreground/70">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-ping inline-block" />
-                    <span>
-                      <strong className="text-foreground font-semibold">
-                        {t(`projects.items.${otherProjects[currentOtherIndex]?.id}.title`)}
-                      </strong>
-                    </span>
-                  </div>
+                <div className="flex items-center justify-between text-xs font-mono text-muted-foreground">
+                  <span className="text-foreground font-medium">
+                    {t(
+                      `projects.items.${otherProjects[currentOtherIndex]?.id}.title`
+                    )}
+                  </span>
+                  <span>
+                    {String(currentOtherIndex + 1).padStart(2, "0")} /{" "}
+                    {String(otherProjects.length).padStart(2, "0")}
+                  </span>
                 </div>
               </div>
             </div>
@@ -266,14 +261,22 @@ export default function ProjectSection({ mode = "default" }: ProjectSectionProps
 
       {/* Project Detail Modal */}
       {selectedProject && (
-        <Suspense fallback={<div role="status" className="fixed inset-0 z-50 grid place-items-center bg-background/90">Đang tải…</div>}>
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
+        <Suspense
+          fallback={
+            <div
+              role="status"
+              className="fixed inset-0 z-50 grid place-items-center bg-background/90 text-sm text-muted-foreground"
+            >
+              Đang tải…
+            </div>
+          }
+        >
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
         </Suspense>
       )}
     </section>
   );
 }
-

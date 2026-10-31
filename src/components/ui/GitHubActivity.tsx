@@ -24,17 +24,16 @@ export type RepoContribution = {
   href?: string;
 };
 
-const DEFAULT_ACCENT = "#39d353";
+const DEFAULT_ACCENT = "var(--primary)";
 const DEFAULT_CELL_SIZE = 12;
 const DEFAULT_LABEL = "Top contributions in:";
 const DEFAULT_MONTHS = 12;
 const WEEKS_PER_MONTH = 365.25 / 12 / 7;
 const STACK_LIMIT = 3;
 const MIN_CARD_WIDTH = 320;
-const MIN_LABEL_WEEKS = 3;
+const MIN_LABEL_WEEKS = 4;
 
 const gapFor = (cellSize: number) => Math.max(2, Math.round(cellSize / 4));
-// never zero: weeks.slice(-0) would hand back the whole history instead of nothing
 const weeksFor = (months: number) =>
   Math.max(1, Math.ceil(months * WEEKS_PER_MONTH));
 
@@ -77,7 +76,6 @@ function toMonthLabels(weeks: Contribution[][]) {
   let start = 0;
   for (let i = 1; i <= weeks.length; i++) {
     if (i < weeks.length && monthAt(i) === monthAt(start)) continue;
-    // a shorter run is narrower than the label itself, so it would sit under the next month
     if (i - start >= MIN_LABEL_WEEKS) {
       labels[start] = MONTH_NAMES[Number(monthAt(start)) - 1] ?? null;
     }
@@ -89,7 +87,7 @@ function toMonthLabels(weeks: Contribution[][]) {
 
 const LEVEL_OPACITY: Record<ContributionLevel, number> = {
   0: 0,
-  1: 0.3,
+  1: 0.28,
   2: 0.52,
   3: 0.76,
   4: 1,
@@ -112,9 +110,12 @@ const DATE_FORMAT_VI = new Intl.DateTimeFormat("vi-VN", {
 });
 
 function describeDay({ count, date }: Contribution, lang: string) {
-  const noun = lang === "vi" 
-    ? "đóng góp" 
-    : (count === 1 ? "contribution" : "contributions");
+  const noun =
+    lang === "vi"
+      ? "đóng góp"
+      : count === 1
+        ? "contribution"
+        : "contributions";
   const on = lang === "vi" ? "vào ngày" : "on";
   const formatter = lang === "vi" ? DATE_FORMAT_VI : DATE_FORMAT_EN;
   return `${count} ${noun} ${on} ${formatter.format(new Date(`${date}T00:00:00`))}`;
@@ -138,9 +139,8 @@ async function fetchCalendar(login: string) {
     const days: ApiDay[] = (await res.json())?.contributions ?? [];
     if (!days.length) return null;
 
-    // columns are weeks, so the first day has to be a sunday or every column shears
     const start = days.findIndex(
-      (day) => new Date(`${day.date}T00:00:00Z`).getUTCDay() === 0,
+      (day) => new Date(`${day.date}T00:00:00Z`).getUTCDay() === 0
     );
 
     return days.slice(start < 0 ? 0 : start).map<Contribution>((day) => ({
@@ -156,7 +156,9 @@ async function fetchCalendar(login: string) {
 
 async function fetchRepos(login: string): Promise<RepoContribution[]> {
   try {
-    const res = await fetch(`${EVENTS_API}/${login}/events/public?per_page=100`);
+    const res = await fetch(
+      `${EVENTS_API}/${login}/events/public?per_page=100`
+    );
     if (!res.ok) return [];
 
     const events: PushEvent[] = await res.json();
@@ -179,7 +181,6 @@ async function fetchRepos(login: string): Promise<RepoContribution[]> {
           name,
           count,
           href: `https://github.com/${fullName}`,
-          // github has no repo logo, only an owner avatar, so own repos use the initial
           logo:
             owner.toLowerCase() === login.toLowerCase() ? undefined : (
               <img
@@ -207,7 +208,10 @@ function useGitHubUser(login?: string, includeRepos: boolean = false) {
     if (!login) return;
     let active = true;
 
-    const promises: [Promise<Contribution[] | null>, Promise<RepoContribution[]>] = [
+    const promises: [
+      Promise<Contribution[] | null>,
+      Promise<RepoContribution[]>,
+    ] = [
       fetchCalendar(login),
       includeRepos ? fetchRepos(login) : Promise.resolve([]),
     ];
@@ -291,7 +295,7 @@ const Tooltip = ({
     >
       <motion.div
         ref={ref}
-        className="whitespace-nowrap rounded-lg bg-foreground px-2.5 py-1 text-[11px] font-medium text-background shadow-md border border-background/20"
+        className="whitespace-nowrap rounded-lg bg-foreground px-3 py-1.5 text-xs font-medium text-background shadow-md"
         initial={reduceMotion ? false : { opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={reduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.94 }}
@@ -300,7 +304,7 @@ const Tooltip = ({
         {describeDay(hovered.day, lang)}
       </motion.div>
     </div>,
-    document.body,
+    document.body
   );
 };
 
@@ -326,7 +330,6 @@ const ContributionGrid = ({
   const gap = gapFor(cellSize);
   const [hovered, setHovered] = React.useState<HoveredDay>();
 
-  // Full weeks from start to finish without dropping any day
   const visible = weeks;
   const sweepEnd = (visible.length - 1) * COLUMN_STAGGER + CELL_FADE.duration;
 
@@ -346,7 +349,7 @@ const ContributionGrid = ({
         {showMonths && (
           <motion.div
             className="flex"
-            style={{ gap, marginBottom: gap + 2 }}
+            style={{ gap, marginBottom: gap + 4 }}
             initial={
               reduceMotion
                 ? false
@@ -365,7 +368,7 @@ const ContributionGrid = ({
                 style={{ width: cellSize }}
               >
                 {month && (
-                  <span className="absolute left-0 top-0 text-[10px] leading-none text-foreground/60 font-mono select-none">
+                  <span className="absolute left-0 top-0 text-xs leading-none text-muted-foreground font-mono select-none">
                     {month}
                   </span>
                 )}
@@ -375,17 +378,21 @@ const ContributionGrid = ({
         )}
 
         <div
-          className="flex overflow-visible pb-2"
+          className="flex overflow-visible pb-1"
           style={{ gap }}
           onPointerLeave={() => setHovered(undefined)}
         >
           {visible.map((week, weekIndex) => (
-            <div key={weekIndex} className="flex flex-col shrink-0" style={{ gap }}>
+            <div
+              key={weekIndex}
+              className="flex flex-col shrink-0"
+              style={{ gap }}
+            >
               {week.map((day) => (
                 <motion.div
                   key={day.date}
                   onPointerEnter={hover(day)}
-                  className="shrink-0 rounded-[3px] bg-foreground/10 cursor-pointer hover:ring-1 hover:ring-primary/60 transition-shadow"
+                  className="shrink-0 rounded-[3px] bg-muted cursor-pointer hover:ring-1 hover:ring-primary/60 transition-shadow"
                   style={{ width: cellSize, height: cellSize }}
                   initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -434,9 +441,9 @@ const Avatar = ({
     layoutId={layoutId}
     transition={transition}
     className={cn(
-      "grid size-7 shrink-0 place-items-center overflow-hidden rounded-full bg-neutral-200 text-[11px] font-medium uppercase text-foreground/70 ring-2 ring-background dark:bg-neutral-800",
+      "grid size-7 shrink-0 place-items-center overflow-hidden rounded-full bg-muted text-xs font-medium uppercase text-muted-foreground ring-2 ring-background",
       "[&_img]:size-full [&_img]:object-cover [&_svg]:size-full",
-      className,
+      className
     )}
   >
     {repo.logo ?? repo.name.charAt(0)}
@@ -453,7 +460,7 @@ const RepoRow = ({
   transition: Transition;
 }) => {
   const className =
-    "flex items-center gap-3 rounded-xl mx-2 px-3 py-2 transition-colors hover:bg-foreground/5";
+    "flex items-center gap-3 rounded-xl mx-2 px-3 py-2 transition-colors hover:bg-muted/60";
 
   const content = (
     <>
@@ -461,7 +468,7 @@ const RepoRow = ({
       <span className="flex-1 truncate text-sm font-medium text-foreground">
         {repo.name}
       </span>
-      <span className="text-xs font-mono tabular-nums text-foreground/60">
+      <span className="text-xs font-mono tabular-nums text-muted-foreground">
         {repo.count} {repo.count === 1 ? "commit" : "commits"}
       </span>
     </>
@@ -491,7 +498,7 @@ const Chevron = ({
     strokeLinecap="round"
     strokeLinejoin="round"
     aria-hidden
-    className="size-6 text-foreground/60 group-hover:text-primary transition-colors"
+    className="size-5 text-muted-foreground group-hover:text-primary transition-colors"
     initial={false}
     animate={{ rotate: open ? 180 : 0 }}
     transition={transition}
@@ -547,11 +554,12 @@ const GitHubActivity = ({
     onOpenChange?.(!open);
   };
 
-  const needsFetch = !contributionsProp.length || (showRepos && !reposProp.length);
+  const needsFetch =
+    !contributionsProp.length || (showRepos && !reposProp.length);
   const fetched = useGitHubUser(needsFetch ? username : undefined, showRepos);
   const placeholder = React.useMemo(
     () => (username ? emptyDays(weeksFor(months)) : []),
-    [username, months],
+    [username, months]
   );
 
   const contributions = contributionsProp.length
@@ -573,31 +581,36 @@ const GitHubActivity = ({
 
   const total = React.useMemo(
     () => contributions.reduce((sum, day) => sum + day.count, 0),
-    [contributions],
+    [contributions]
   );
 
-  const heading = lang === "vi" 
-    ? (year ? `${total.toLocaleString()} đóng góp trong năm ${year}` : `${total.toLocaleString()} đóng góp trong năm qua`)
-    : (year ? `${total.toLocaleString()} contributions in ${year}` : `${total.toLocaleString()} contributions in the last year`);
+  const heading =
+    lang === "vi"
+      ? year
+        ? `${total.toLocaleString()} đóng góp trong năm ${year}`
+        : `${total.toLocaleString()} đóng góp trong năm qua`
+      : year
+        ? `${total.toLocaleString()} contributions in ${year}`
+        : `${total.toLocaleString()} contributions in the last year`;
 
   const gap = gapFor(cellSize);
   const totalWeeks = Math.max(1, Math.ceil(contributions.length / 7));
   const gridWidth = totalWeeks * (cellSize + gap) - gap;
-  const width = Math.max(MIN_CARD_WIDTH, gridWidth + 96);
+  const width = Math.max(MIN_CARD_WIDTH, gridWidth + 80);
 
   return (
     <div
       data-slot="github-activity"
       className={cn(
-        "relative w-fit max-w-full rounded-[28px] bg-card border border-primary/15 shadow-2xl p-6 sm:p-8 md:p-10",
-        showRepos && repos.length > 0 && "pb-[92px]",
-        className,
+        "relative w-fit max-w-full rounded-2xl bg-card border border-border p-6 sm:p-8",
+        showRepos && repos.length > 0 && "pb-[88px]",
+        className
       )}
       style={{ width, ...style }}
       {...props}
     >
-      <div className="mb-6 flex items-center justify-between px-1">
-        <p className="text-sm sm:text-base md:text-lg font-mono font-semibold text-foreground">
+      <div className="mb-5 flex items-center justify-between gap-4 px-0.5">
+        <p className="text-lg sm:text-xl font-sans font-semibold text-foreground">
           {heading}
         </p>
         {username && (
@@ -605,7 +618,7 @@ const GitHubActivity = ({
             href={`https://github.com/${username}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs sm:text-sm font-mono text-primary hover:underline"
+            className="text-base font-mono text-primary hover:underline shrink-0"
           >
             @{username}
           </a>
@@ -630,10 +643,10 @@ const GitHubActivity = ({
           data-slot="github-activity-panel"
           data-state={open ? "open" : "closed"}
           className={cn(
-            "absolute inset-x-3 bottom-3 overflow-hidden bg-background/95 border border-primary/10 shadow-lg backdrop-blur-xl",
-            open && "top-3",
+            "absolute inset-x-3 bottom-3 overflow-hidden bg-background/95 border border-border backdrop-blur-md",
+            open && "top-3"
           )}
-          style={{ borderRadius: 18 }}
+          style={{ borderRadius: 14 }}
           transition={transition}
         >
           <motion.div
@@ -641,7 +654,9 @@ const GitHubActivity = ({
             transition={headerTransition}
             className="flex items-center justify-between gap-3 py-3 px-4"
           >
-            <span className="truncate text-xs sm:text-sm font-medium text-foreground">{label}</span>
+            <span className="truncate text-xs sm:text-sm font-medium text-foreground">
+              {label}
+            </span>
 
             <div className="flex items-center gap-3">
               {!open && (
@@ -666,7 +681,7 @@ const GitHubActivity = ({
                 aria-label={
                   open ? "Hide top repositories" : "Show top repositories"
                 }
-                className="group grid size-7 shrink-0 place-items-center rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors"
+                className="group grid size-8 shrink-0 place-items-center rounded-full bg-muted hover:bg-muted/80 transition-colors"
               >
                 <Chevron open={open} transition={transition} />
               </button>

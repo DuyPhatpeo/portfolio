@@ -25,7 +25,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <img
             src={skill.logo}
             alt={tag}
-            className={`w-full h-full p-2.5 object-contain ${skill.invertDark ? "dark:invert" : ""}`}
+            className={`w-full h-full p-2.5 object-contain ${
+              skill.invertDark ? "dark:invert" : ""
+            }`}
           />
         ) : (
           skill.icon?.({ className: "w-full h-full p-2.5 text-primary" })
@@ -35,7 +37,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     const Icon = TECH_ICONS[tag];
     return {
       label: tag,
-      icon: Icon ? <Icon className="w-full h-full p-2.5 text-primary" /> : <span className="text-xs">{tag[0]}</span>,
+      icon: Icon ? (
+        <Icon className="w-full h-full p-2.5 text-primary" />
+      ) : (
+        <span className="text-xs">{tag[0]}</span>
+      ),
     };
   });
 
@@ -51,90 +57,94 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [onClose]);
 
-  // Handle gallery if provided in project data
-  // @ts-ignore - Ignore type error if gallery is not in Project type yet
-  const gallery = project.gallery || [];
+  const gallery =
+    (project as Project & { gallery?: { title?: string; image: string }[] })
+      .gallery || [];
 
   const modalContent = (
     <div
-      className="fixed inset-0 z-[150] flex items-center justify-center p-3 sm:p-4 md:p-6 pt-24 md:pt-28 bg-black/80 backdrop-blur-md transition-all"
+      className="fixed inset-0 z-[220] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/75 backdrop-blur-sm transition-all"
       onPointerDown={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      {/* PREMIUM MODAL CONTAINER - VERTICAL LAYOUT */}
       <div
-        className="relative w-full max-w-4xl lg:max-w-5xl h-[90vh] bg-[#0c0c0c] border border-white/10 shadow-[0_0_50px_rgba(33,241,168,0.15)] flex flex-col rounded-2xl md:rounded-3xl overflow-hidden animate-in fade-in zoom-in-95 duration-300"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+        className="relative w-full max-w-4xl lg:max-w-5xl max-h-[88vh] bg-popover/95 backdrop-blur-xl border border-border shadow-2xl flex flex-col rounded-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* TOP BAR / HEADER */}
-        <div className="relative z-50 w-full flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 bg-[#111] border-b border-white/5 shrink-0">
-          
-          {/* Left: Project Title */}
+        {/* Modal Header */}
+        <div className="relative z-50 w-full flex items-center justify-between px-5 sm:px-7 py-4 bg-background/60 border-b border-border shrink-0">
           <div className="flex-1 min-w-0 pr-4">
-            <h3 className="text-base md:text-xl font-sans font-bold text-foreground uppercase tracking-widest truncate flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse hidden sm:block" />
+            <h3
+              id="project-modal-title"
+              className="text-xl sm:text-2xl md:text-3xl font-sans font-bold text-foreground tracking-tight truncate"
+            >
               {t(`projects.items.${project.id}.title`)}
             </h3>
           </div>
 
-          {/* Right: Actions */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-2.5 shrink-0">
             {project.demo && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 px-3 sm:px-5 py-2 sm:py-2.5 bg-primary/10 hover:bg-primary text-primary hover:text-primary-foreground rounded-lg font-mono text-[10px] sm:text-xs font-bold tracking-widest uppercase transition-all duration-300"
+                className="flex items-center gap-2 h-10 px-4 bg-primary/12 hover:bg-primary text-primary hover:text-primary-foreground rounded-lg font-mono text-xs font-medium transition-colors duration-200"
               >
-                <span className="hidden sm:inline">{t("common.links.live", "Xem Web")}</span>
-                <FiExternalLink className="text-sm sm:text-base" />
+                <span className="hidden sm:inline">
+                  {t("common.links.live", "Live Demo")}
+                </span>
+                <FiExternalLink className="text-sm" />
               </a>
             )}
-            
+
             <button
               onClick={onClose}
-              aria-label="Close"
-              className="group w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10 hover:bg-red-500/20 hover:border-red-500/40 text-foreground/70 hover:text-red-400 transition-all duration-300 cursor-pointer"
+              aria-label="Close modal"
+              className="group w-10 h-10 flex items-center justify-center rounded-lg bg-muted hover:bg-destructive/15 border border-border hover:border-destructive/40 text-muted-foreground hover:text-destructive transition-colors duration-200 cursor-pointer"
             >
-              <FiX className="w-5 h-5 sm:w-6 sm:h-6 pointer-events-none transition-transform duration-300 group-hover:rotate-90" />
+              <FiX className="w-5 h-5 pointer-events-none" />
             </button>
           </div>
         </div>
 
-        {/* MAIN CONTENT (VERTICAL LAYOUT REORDERED) */}
-        <div className="flex flex-col flex-1 overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/10 [&::-webkit-scrollbar-thumb]:rounded-full hover:[&::-webkit-scrollbar-thumb]:bg-white/20 relative p-6 sm:p-8 md:p-10 lg:p-12">
+        {/* Modal Body */}
+        <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-8 md:p-10">
           <div className="max-w-4xl mx-auto w-full flex flex-col">
-            
-            {/* 1. TECH STACK */}
-            <div className="mb-10 shrink-0">
-              <span className="text-foreground/40 font-mono text-xs tracking-[0.2em] uppercase block mb-4">
+            {/* 1. Tech Stack */}
+            <div className="mb-8 shrink-0">
+              <span className="text-muted-foreground font-mono text-base block mb-3">
                 {t("projects.modal.technologies", "Technologies Used")}
               </span>
-              <div className="-ml-2 max-w-full overflow-x-auto pb-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-white/10">
-                <Dock items={techItems} baseItemSize={48} magnification={70} />
+              <div className="-ml-2 max-w-full overflow-x-auto pb-2">
+                <Dock items={techItems} baseItemSize={52} magnification={68} />
               </div>
             </div>
 
-            {/* 2. DESCRIPTION & CONTENT */}
+            {/* 2. Description */}
             <div className="mb-8 shrink-0">
-              <span className="inline-block px-3 py-1 mb-6 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-widest bg-primary/10 text-primary border border-primary/20 rounded-full">
-                {t("projects.badges.featured", "Featured Project")}
-              </span>
-              
-              <div className="prose prose-invert prose-p:text-foreground/80 prose-p:font-mono prose-p:text-sm md:prose-p:text-base prose-p:leading-relaxed">
-                <p>{t(`projects.items.${project.id}.description`)}</p>
-              </div>
+              {project.featured && (
+                <span className="inline-block px-4 py-1.5 mb-4 text-sm font-mono font-medium bg-primary/12 text-primary border border-primary/25 rounded-full">
+                  {t("projects.badges.featured", "Featured Project")}
+                </span>
+              )}
+
+              <p className="text-foreground/90 text-lg sm:text-xl leading-relaxed max-w-[60ch]">
+                {t(`projects.items.${project.id}.description`)}
+              </p>
             </div>
 
-            {/* ACTION BUTTONS */}
-            <div className="flex flex-wrap gap-4 mb-12">
+            {/* 3. Action Buttons */}
+            <div className="flex flex-wrap gap-4 mb-10">
               {project.demo && (
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-3.5 bg-primary text-primary-foreground hover:bg-primary/90 hover:-translate-y-1 active:scale-95 transition-all duration-300 rounded-xl font-bold font-mono text-xs sm:text-sm tracking-widest uppercase shadow-[0_0_20px_rgba(33,241,168,0.3)]"
+                  className="inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 rounded-xl font-medium text-base sm:text-lg"
                 >
                   <FiMonitor className="text-lg" />
                   <span>{t("common.links.live", "Live Demo")}</span>
@@ -145,7 +155,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 px-6 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 hover:-translate-y-1 active:scale-95 transition-all duration-300 rounded-xl font-bold font-mono text-xs sm:text-sm tracking-widest uppercase text-foreground"
+                  className="inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 bg-muted hover:bg-muted/80 border border-border rounded-xl font-medium text-base sm:text-lg text-foreground transition-colors duration-200"
                 >
                   <FiGithub className="text-lg" />
                   <span>{t("common.links.source", "Source Code")}</span>
@@ -153,30 +163,29 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               )}
             </div>
 
-            {/* 3. MAIN IMAGE */}
-            <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-black/40 mb-12 shadow-xl group">
+            {/* 4. Main Preview Image (no hover zoom transform) */}
+            <div className="w-full rounded-xl overflow-hidden border border-border bg-muted/30 mb-8">
               <img
                 src={project.image}
                 alt={t(`projects.items.${project.id}.title`)}
-                className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                className="w-full h-auto object-cover"
               />
             </div>
 
-            {/* 4. GALLERY IMAGES (IF ANY) */}
+            {/* 5. Optional Gallery */}
             {gallery.length > 0 && (
-              <div className="flex flex-col gap-8 mb-12">
-                <h4 className="text-foreground font-sans font-bold text-xl uppercase tracking-wider mb-2">
-                  Screenshots & Sections
+              <div className="flex flex-col gap-6 mb-4">
+                <h4 className="text-foreground font-sans font-semibold text-lg tracking-tight">
+                  {t("projects.modal.screenshots", "Screenshots")}
                 </h4>
-                {/* @ts-ignore */}
                 {gallery.map((item, index) => (
-                  <div key={index} className="flex flex-col gap-3">
+                  <div key={index} className="flex flex-col gap-2">
                     {item.title && (
-                      <span className="text-primary font-mono text-xs tracking-[0.2em] uppercase">
+                      <span className="text-muted-foreground font-mono text-xs">
                         {item.title}
                       </span>
                     )}
-                    <div className="w-full rounded-2xl overflow-hidden border border-white/10 bg-black/40 shadow-lg">
+                    <div className="w-full rounded-xl overflow-hidden border border-border bg-muted/30">
                       <img
                         src={item.image}
                         alt={item.title || "Project Screenshot"}
@@ -187,10 +196,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 ))}
               </div>
             )}
-            
           </div>
         </div>
-
       </div>
     </div>
   );
