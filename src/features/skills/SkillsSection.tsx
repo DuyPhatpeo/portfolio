@@ -7,19 +7,18 @@ const SkillsSection: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="skills" className="py-12 md:py-16 relative overflow-hidden bg-background border-t border-white/5">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-8 md:mb-12">
-        <FadeUp>
-          {/* Centered split-line header */}
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-4 sm:gap-6 w-full mb-4 sm:mb-6">
-              <span className="h-px flex-1 bg-gradient-to-r from-transparent to-primary/40" />
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none whitespace-nowrap">
-                {t("skills.title")}
-              </h2>
-              <span className="h-px flex-1 bg-gradient-to-l from-transparent to-primary/40" />
-            </div>
-          </div>
+    <section
+      id="skills"
+      className="py-20 md:py-28 relative overflow-hidden bg-transparent border-t border-border/60"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-12 md:mb-16">
+        <FadeUp className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
+            {t("skills.title")}
+          </h2>
+          <p className="max-w-[50ch] text-muted-foreground text-lg md:text-xl leading-relaxed">
+            {t("skills.description")}
+          </p>
         </FadeUp>
       </div>
       <SkillsGrid />

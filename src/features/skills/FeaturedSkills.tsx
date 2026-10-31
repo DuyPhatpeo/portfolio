@@ -13,7 +13,7 @@ const MAIN_SKILLS = [
   TECH.LARAVEL,
 ];
 
-// Double the array for seamless infinite scrolling
+// Triple the array for seamless infinite scrolling
 const SCROLLING_SKILLS = [...MAIN_SKILLS, ...MAIN_SKILLS, ...MAIN_SKILLS];
 
 const SKILL_COLORS: Record<string, string> = {
@@ -32,35 +32,54 @@ const FeaturedSkills: React.FC = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section ref={sectionRef} className="py-20 md:py-32 relative overflow-hidden bg-transparent">
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-12 md:mb-20 text-center">
-        <FadeUp>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none">
-            {t("nav.skills", "MAIN SKILLS")}
+    <section
+      ref={sectionRef}
+      className="py-16 md:py-24 relative overflow-hidden bg-transparent border-t border-border/60"
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-10 md:mb-14">
+        <FadeUp className="flex items-baseline justify-between gap-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-none">
+            {t("skills.title", "Technologies I Work With")}
           </h2>
+          <span className="hidden sm:inline-block font-mono text-base text-muted-foreground">
+            {t("skills.core_stack", "Core Stack")}
+          </span>
         </FadeUp>
       </div>
 
-      <div className="relative w-full overflow-hidden flex items-center py-10 bg-card/10 border-y border-white/5 backdrop-blur-sm" style={{ maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)", WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}>
-        {/* Left/Right Gradient Fades */}
-
+      <div
+        className="relative w-full overflow-hidden flex items-center py-8 bg-card/50 border-y border-border"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        }}
+      >
         <motion.div
-          className="flex w-max gap-12 md:gap-24 items-center"
+          className="flex w-max gap-12 md:gap-20 items-center"
           initial={{ x: "0%" }}
           animate={{ x: inView && !reduceMotion ? "-33.333333%" : "0%" }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 28 }}
         >
           {SCROLLING_SKILLS.map((skill, index) => {
             const Icon = TECH_ICONS[skill];
-            const hoverColorClass = SKILL_COLORS[skill] || "hover:text-primary";
-            
+            const hoverColorClass =
+              SKILL_COLORS[skill] || "hover:text-primary";
+
             return (
               <div
                 key={`${skill}-${index}`}
-                className={`flex items-center gap-4 text-foreground/75 transition-colors duration-500 cursor-default grayscale hover:grayscale-0 ${hoverColorClass}`}
+                className={`flex items-center gap-3.5 text-muted-foreground transition-colors duration-300 cursor-default ${hoverColorClass}`}
               >
-                {Icon && <Icon aria-hidden="true" focusable="false" className="w-10 h-10 md:w-16 md:h-16" />}
-                <span className="font-mono text-2xl md:text-4xl font-bold uppercase tracking-widest">
+                {Icon && (
+                  <Icon
+                    aria-hidden="true"
+                    focusable="false"
+                    className="w-8 h-8 md:w-11 md:h-11"
+                  />
+                )}
+                <span className="font-sans text-xl md:text-3xl font-semibold tracking-tight">
                   {skill}
                 </span>
               </div>
@@ -73,4 +92,3 @@ const FeaturedSkills: React.FC = () => {
 };
 
 export default FeaturedSkills;
-

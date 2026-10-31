@@ -1,82 +1,102 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import ScrollStack, { ScrollStackItem } from "@components/ui/ScrollStack/ScrollStack";
+import ScrollStack, {
+  ScrollStackItem,
+} from "@components/ui/ScrollStack/ScrollStack";
 
 interface ExperienceItem {
   role: string;
   company: string;
   period: string;
   type: string;
+  summary?: string;
   tech: string;
 }
 
 const ExperienceSection: React.FC = () => {
   const { t } = useTranslation();
-  const items = t("experience.items", { returnObjects: true }) as ExperienceItem[];
+  const items = t("experience.items", {
+    returnObjects: true,
+  }) as ExperienceItem[];
 
   if (!items || items.length === 0) return null;
 
   return (
     <section
       id="experience"
-      className="min-h-screen pt-12 md:pt-16 pb-24 md:pb-36 relative overflow-hidden bg-transparent border-t border-white/5"
+      className="pt-20 md:pt-28 pb-20 md:pb-32 relative overflow-hidden bg-transparent border-t border-border/60"
     >
-      {/* Background Decor */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(var(--primary-rgb,97,255,202),0.03)_0%,transparent_70%)] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
-        
-        {/* Standardized Section Header */}
+        {/* Editorial Split Section Header (no uppercase eyebrow stacked above h2, no justified text) */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="mb-10 sm:mb-16"
+          className="mb-10 sm:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-4"
         >
-          <span className="text-primary font-mono text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
-            {t("experience.subtitle")}
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-none mb-4 sm:mb-6 drop-shadow-sm">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("experience.title")}
           </h2>
-          <p className="max-w-2xl text-foreground/60 text-sm sm:text-base md:text-lg font-mono text-left sm:text-justify">
+          <p className="max-w-[50ch] text-muted-foreground text-lg md:text-xl leading-relaxed text-left">
             {t("experience.description")}
           </p>
         </motion.div>
 
         {/* Stacked Experience Cards */}
-        <ScrollStack useWindowScroll itemDistance={80} itemStackDistance={40} baseScale={0.88}>
+        <ScrollStack
+          useWindowScroll
+          itemDistance={64}
+          itemStackDistance={32}
+          baseScale={0.92}
+        >
           {items.map((item, i) => {
-            const techList = item.tech ? item.tech.split(",").map((s) => s.trim()) : [];
+            const techList = item.tech
+              ? item.tech.split(",").map((s) => s.trim())
+              : [];
             return (
               <ScrollStackItem
                 key={i}
-                itemClassName="bg-card border border-primary/20 flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-8"
+                itemClassName="bg-popover/90 backdrop-blur-md border border-border flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-10"
               >
-                {/* Left: Title & Period */}
-                <div className="flex flex-col lg:w-2/3">
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-xs sm:text-sm md:text-base text-primary mb-3 sm:mb-4 uppercase tracking-widest">
+                {/* Left: Period, Employment Type & Role */}
+                <div className="flex flex-col lg:w-3/5">
+                  <div className="flex flex-wrap items-center gap-2.5 font-mono text-base sm:text-lg text-primary mb-3.5">
                     <span>{item.period}</span>
-                    <span className="w-8 h-[1px] bg-primary/50 hidden md:block" />
-                    <span>{item.type}</span>
+                    <span className="text-border">·</span>
+                    <span className="text-muted-foreground">{item.type}</span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-black uppercase tracking-tighter text-foreground break-words">
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold tracking-tight text-foreground leading-snug">
                     {item.role}
                   </h3>
+
+                  {item.summary && (
+                    <p className="mt-3.5 max-w-[52ch] text-lg sm:text-xl text-muted-foreground leading-relaxed">
+                      {item.summary}
+                    </p>
+                  )}
                 </div>
 
                 {/* Right: Company & Tech Stack */}
-                <div className="lg:w-1/3 flex flex-col lg:items-end text-left lg:text-right gap-2 sm:gap-4">
-                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 tracking-tight">
+                <div className="lg:w-2/5 flex flex-col lg:items-end text-left lg:text-right gap-3.5">
+                  <div className="text-xl sm:text-2xl md:text-3xl font-medium text-foreground/95 tracking-tight">
                     {item.company}
                   </div>
 
-                  <div className="font-mono text-xs sm:text-sm md:text-base text-foreground/50 leading-relaxed max-w-sm">
-                    {techList.join(" / ")}
-                  </div>
+                  {techList.length > 0 && (
+                    <div className="flex flex-wrap lg:justify-end gap-2 max-w-md">
+                      {techList.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3.5 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-sm sm:text-base"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </ScrollStackItem>
             );
@@ -88,4 +108,3 @@ const ExperienceSection: React.FC = () => {
 };
 
 export default ExperienceSection;
-
