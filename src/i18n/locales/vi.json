@@ -1,223 +1,267 @@
 {
+  "seo": {
+    "keywords": "Trần Duy Phát, Dino Péo, Frontend Developer, Full-Stack Web Developer, Kỹ sư phần mềm, React Developer Vietnam, TypeScript, Next.js, Laravel, React Native, Thiết kế website chuẩn SEO, Lập trình web Nha Trang",
+    "home": {
+      "title": "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web Developer",
+      "description": "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên thiết kế, xây dựng website và ứng dụng di động tốc độ cao, chuẩn SEO."
+    },
+    "about": {
+      "title": "Giới thiệu — Trần Duy Phát (Dino Péo) | Chuyên môn, Công nghệ & Kinh nghiệm",
+      "description": "Tìm hiểu câu chuyện nghề nghiệp, lĩnh vực chuyên môn, hệ công nghệ sử dụng và kinh nghiệm làm việc thực tế của Trần Duy Phát tại Nha Trang, Việt Nam."
+    },
+    "projects": {
+      "title": "Dự án thực tế — Trần Duy Phát (Dino Péo) | Web App, SaaS & Mobile",
+      "description": "Khám phá 10 sản phẩm web, thương mại điện tử, nền tảng rút gọn link SaaS và ứng dụng di động cùng lịch sử đóng góp GitHub của Trần Duy Phát."
+    },
+    "contact": {
+      "title": "Liên hệ công việc & Hợp tác dự án — Trần Duy Phát (Dino Péo)",
+      "description": "Kết nối trực tiếp với Trần Duy Phát (Dino Péo) cho cơ hội tuyển dụng Frontend / Full-Stack hoặc hợp tác phát triển website và ứng dụng theo yêu cầu."
+    }
+  },
   "nav": {
-    "home": "TRANG CHỦ",
-    "about": "GIỚI THIỆU",
-    "skills": "KỸ NĂNG",
-    "experience": "KINH NGHIỆM",
-    "projects": "DỰ ÁN",
-    "activity": "HOẠT ĐỘNG",
-    "contact": "LIÊN HỆ",
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Công nghệ",
+    "experience": "Kinh nghiệm",
+    "projects": "Dự án",
+    "activity": "GitHub",
+    "contact": "Liên hệ",
     "theme": {
-      "light": "SÁNG",
-      "dark": "TỐI"
+      "light": "Sáng",
+      "dark": "Tối"
     }
   },
   "cta": {
-    "title": "Sẵn sàng làm việc cùng nhau.",
-    "description": "Bạn có dự án hoặc ý tưởng muốn thực hiện? Mình luôn sẵn sàng lắng nghe.",
-    "button": "LIÊN HỆ NGAY"
+    "title": "Sẵn sàng cho dự án tiếp theo?",
+    "description": "Dù bạn đang tìm kiếm kỹ sư đồng hành cùng đội ngũ hay cần xây dựng một sản phẩm web chỉn chu từ đầu, hãy kết nối để trao đổi cụ thể.",
+    "button": "Liên hệ trao đổi"
   },
   "hero": {
+    "seo_h1": "Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng sản phẩm Web và Mobile",
+    "tagline": "Trần Duy Phát · Frontend & Full-Stack Developer",
     "banner": {
       "greeting": "Xin chào, mình là",
-      "description": "Mình xây dựng <strong>giao diện web tinh tế</strong>, mượt mà trên mọi thiết bị.",
+      "description": "Mình xây dựng <strong>ứng dụng web tốc độ cao</strong> với trải nghiệm mượt mà trên mọi thiết bị.",
       "work": "Xem dự án",
       "contact": "Liên hệ",
       "resume": "Xem CV",
-      "imageAlt": "Dino Péo với kính đen và hoodie xanh, lập trình trên laptop",
-      "about": "Xem Thêm Về Tôi"
+      "imageAlt": "Chân dung 3D Trần Duy Phát (Dino Péo) đang làm việc trên laptop",
+      "about": "Tìm hiểu chi tiết"
     },
-    "description_full": "Tôi tạo ra các trang web và trải nghiệm kỹ thuật số hiện đại, thân thiện với người dùng và tương thích tốt trên mọi thiết bị, giúp thương hiệu phát triển và để lại ấn tượng sâu sắc.",
-    "greeting": "Xin chào, tôi là",
+    "description_full": "Mình chuyên thiết kế và phát triển các sản phẩm web cùng ứng dụng di động hiện đại, tập trung vào tốc độ phản hồi nhanh, bố cục trực quan và hiệu quả vận hành lâu dài cho doanh nghiệp lẫn người dùng cuối.",
+    "greeting": "Xin chào, mình là",
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
-      "Lập trình viên Front-End",
-      "Lập trình viên Web",
-      "Lập trình viên Full-Stack",
-      "Kỹ sư Phần mềm"
+      "Frontend Developer",
+      "Full-Stack Web Developer",
+      "Mobile App Developer",
+      "Software Engineer"
     ],
-    "system_initialized": "Hệ thống Đã Khởi Tạo",
-    "cta": "XEM DỰ ÁN",
+    "system_initialized": "Sẵn sàng",
+    "cta": "Xem dự án",
     "scroll": "Cuộn xuống",
     "buttons": {
-      "resume": "Hồ sơ",
+      "resume": "Xem CV",
       "connect": "Liên hệ"
     }
   },
   "about": {
-    "subtitle": "DINO PÉO LÀ AI?",
-    "title": "Một Chút Về Tôi",
-    "paragraphs": [
-      "Chào bạn, tôi là Trần Duy Phát, một lập trình viên tận tâm đang sinh sống và làm việc tại Việt Nam. Tôi có niềm đam mãnh liệt với việc giải quyết các bài toán thách thức và tạo ra những trải nghiệm kỹ thuật số đặc biệt trên nền tảng web.",
-      "Trong quá trình phát triển sự nghiệp, tôi tập trung chuyên sâu vào việc làm chủ các công nghệ front-end hiện đại. Tôi đã tham gia vào nhiều dự án khác nhau, phối hợp cùng các cộng sự để xây dựng những ứng dụng mạnh mẽ, dễ bảo trì và luôn ưu tiên viết mã nguồn sạch, dễ hiểu.",
-      "Thông qua quá trình học tập và tự nghiên cứu, tôi đã có được nền tảng kiến thức vững chắc về phát triển web. Tôi luôn dành nhiều thời gian để áp dụng những kiến thức này vào thực tế, không ngừng nỗ lực để tạo ra những giao diện người dùng tinh tế và hiệu quả.",
-      "Khi không bận rộn với việc lập trình hay tìm kiếm những xu hướng thiết kế mới, bạn có thể thấy tôi đang theo dõi những trận cầu bóng đá kịch tính hoặc đang lên ý tưởng cho dự án sáng tạo tiếp theo của mình."
+    "subtitle": "Giới thiệu",
+    "title": "Câu Chuyện Nghề Nghiệp",
+    "lead": "Hiện đang sinh sống và làm việc tại Nha Trang, mình theo đuổi con đường phát triển phần mềm với mong muốn biến những bài toán nghiệp vụ phức tạp thành sản phẩm số gọn gàng, dễ dùng và bền bỉ.",
+    "story": "Trong mỗi dự án cộng tác cùng doanh nghiệp hay tự tay xây dựng từ con số không, mình luôn cân bằng giữa hai yếu tố: mã nguồn có cấu trúc rõ ràng để đồng đội dễ dàng kế thừa, và trải nghiệm giao diện chỉn chu để giữ chân người dùng ngay từ lần truy cập đầu tiên."
+  },
+  "whatIDo": {
+    "title": "Giải Pháp & Chuyên Môn",
+    "design_code_create": [
+      "Thiết kế",
+      "Lập trình",
+      "Tối ưu"
+    ],
+    "services": [
+      {
+        "title": "Phát Triển Ứng Dụng Web",
+        "description": "Xây dựng các hệ thống web từ trang thương hiệu, landing page chiến dịch đến bảng điều khiển quản trị với cấu trúc phân tầng rõ ràng và dễ mở rộng."
+      },
+      {
+        "title": "Triển Khai Giao Diện & Tương Tác",
+        "description": "Chuyển hóa bản vẽ thiết kế thành giao diện sống động, chuẩn xác trên mọi kích thước màn hình cùng hiệu ứng chuyển động mượt mà, có chủ đích."
+      },
+      {
+        "title": "Xây Dựng Backend & Tích Hợp API",
+        "description": "Thiết kế cơ sở dữ liệu, cổng kết nối API, phân quyền xác thực người dùng và đồng bộ dữ liệu thời gian thực an toàn, ổn định."
+      },
+      {
+        "title": "Tối Ưu Tốc Độ & Chuẩn Hóa SEO",
+        "description": "Rút ngắn thời gian tải trang, tối ưu chỉ số Core Web Vitals, khả năng tiếp cận (Accessibility) và cấu trúc dữ liệu giúp tăng thứ hạng tìm kiếm tự nhiên."
+      },
+      {
+        "title": "Phát Triển Ứng Dụng Di Động",
+        "description": "Tạo ứng dụng hoạt động đồng nhất trên cả iOS và Android từ một nền tảng mã nguồn duy nhất, tiết kiệm thời gian phát triển mà vẫn giữ cảm giác vuốt chạm tự nhiên."
+      }
     ]
   },
   "skills": {
-    "subtitle": "KỸ NĂNG CỦA TÔI",
-    "title": "Các Công Nghệ Tôi Sử Dụng",
-    "description": "Là một lập trình viên luôn đam mê học hỏi và cập nhật công nghệ mới, đây là những công cụ tôi thường xuyên sử dụng trong các dự án gần đây:",
+    "subtitle": "Công cụ kỹ thuật",
+    "title": "Hệ Công Nghệ Sử Dụng",
+    "description": "Các ngôn ngữ lập trình, framework và công cụ được phân nhóm theo từng tầng kiến trúc sản phẩm.",
+    "core_stack": "Công nghệ chủ lực",
     "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "database": "Cơ Sở Dữ Liệu",
-      "tools": "Công Cụ & DevOps",
-      "design": "Thiết Kế"
-    },
-    "animation_philosophy": {
-      "badge": "TRIẾT LÝ CHUYỂN ĐỘNG",
-      "react_title": "React",
-      "react_sub": "Motion",
-      "scroll_title": "Scroll",
-      "scroll_sub": "GSAP",
-      "threed_title": "3D",
-      "threed_sub": "Three.js",
-      "quote_line1": "Animation không chỉ làm đẹp",
-      "quote_line2": "Mà còn tạo cảm xúc cho người dùng!"
+      "frontend": "Giao diện & Frontend",
+      "backend": "Hệ thống & Backend",
+      "database": "Cơ sở dữ liệu",
+      "tools": "Công cụ & Quy trình",
+      "design": "Thiết kế UI/UX"
     }
   },
   "experience": {
-    "subtitle": "KINH NGHIỆM CỦA TÔI",
-    "title": "Hành Trình Sự Nghiệp",
-    "description": "Quá trình học hỏi, tích lũy kinh nghiệm thực tế và đóng góp giá trị tại các đơn vị tôi từng làm việc.",
+    "subtitle": "Kinh nghiệm",
+    "title": "Quá Trình Làm Việc",
+    "description": "Các cột mốc công tác thực tế và vai trò đảm nhiệm tại doanh nghiệp.",
     "present": "Hiện tại",
     "items": [
       {
-        "role": "Chuyên viên IT & Hỗ trợ Kỹ thuật Sự kiện",
+        "role": "Chuyên viên IT & Kỹ thuật Hệ thống Sự kiện",
         "company": "Công ty Cổ phần Truyền thông GTO",
         "period": "06/2026 – Hiện tại",
-        "type": "Nhân viên chính thức",
+        "type": "Toàn thời gian",
+        "summary": "Phát triển, vận hành website chiến dịch và công cụ quản lý nội bộ; trực tiếp đảm bảo hạ tầng kỹ thuật ổn định cho các sự kiện truyền thông quy mô lớn.",
         "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
       },
       {
         "role": "Học việc Frontend Developer",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "10/2025 – 12/2025",
-        "type": "Thực tập sinh",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+        "type": "Học việc",
+        "summary": "Tham gia xây dựng các phân hệ giao diện người dùng, kết nối dữ liệu qua REST API và làm việc nhóm theo quy trình kiểm soát mã nguồn Git Flow.",
+        "tech": "ReactJS, JavaScript, HTML5, CSS3, REST API"
       },
       {
-        "role": "Thực tập sinh",
+        "role": "Thực tập sinh Frontend",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "12/2024 – 01/2025",
-        "type": "Thực tập sinh",
-        "tech": "HTML, CSS, JavaScript, C# .NET"
+        "type": "Thực tập",
+        "summary": "Thực hành cắt giao diện chuẩn ngữ nghĩa, tối ưu hiển thị đa trình duyệt và hỗ trợ kiểm thử tính năng trên các dự án web .NET.",
+        "tech": "HTML5, CSS3, JavaScript, C# .NET"
       }
     ]
   },
   "projects": {
-    "subtitle": "DỰ ÁN CỦA TÔI",
-    "title": "Những Thứ Tôi Đã Xây Dựng",
-    "description": "Tôi thích sự bận rộn và luôn ấp ủ những dự án mới. Hãy xem qua một số ứng dụng mà tôi đã từng xây dựng.",
-    "other_title": "Các Dự Án Đáng Chú Ý Khác",
+    "subtitle": "Dự án",
+    "title": "Dự Án Tiêu Biểu",
+    "description": "Ba sản phẩm trọng điểm thể hiện rõ nhất tư duy tổ chức mã nguồn và thiết kế trải nghiệm của mình.",
+    "page_intro": "Toàn bộ 10 dự án web, hệ thống thương mại điện tử, công cụ SaaS và ứng dụng di động mình đã trực tiếp thiết kế và lập trình.",
+    "other_title": "Các Dự Án Khác",
     "badges": {
-      "featured": "DỰ ÁN NỔI BẬT"
+      "featured": "Tiêu biểu",
+      "project": "Dự án"
     },
     "modal": {
-      "technologies": "Công Nghệ Sử Dụng",
-      "view_details": "Xem Chi Tiết"
+      "technologies": "Công nghệ sử dụng",
+      "view_details": "Xem chi tiết dự án",
+      "screenshots": "Hình ảnh giao diện"
     },
     "items": {
       "1": {
-        "title": "Portfolio Cá Nhân",
-        "description": "Trang web Portfolio cá nhân hiệu năng cao được xây dựng bằng React 19, TypeScript và Framer Motion, lấy cảm hứng thiết kế từ giao diện dạng 'System UI' với các đường nét kỹ thuật và hiệu ứng ánh sáng đặc trưng. Toàn bộ trang được tối ưu về tốc độ tải, chuyển động mượt mà giữa các section và responsive hoàn chỉnh trên mọi kích thước màn hình. Hệ thống hỗ trợ đa ngôn ngữ (Việt - Anh) được xây dựng từ đầu bằng i18next, cho phép chuyển đổi ngôn ngữ tức thời mà không cần tải lại trang."
+        "title": "Dino Péo Portfolio",
+        "description": "Website thương hiệu cá nhân sử dụng đồ họa bầu trời sao trên HTML5 Canvas, tách gói mã nguồn theo trang giúp tải tức thì, hỗ trợ đổi ngôn ngữ Việt – Anh thời gian thực và tối ưu SEO toàn diện."
       },
       "2": {
-        "title": "E-commerce Website",
-        "description": "Nền tảng thương mại điện tử hiện đại được xây dựng bằng React và Firebase, cho phép người dùng duyệt sản phẩm, thêm vào giỏ hàng và theo dõi trạng thái đơn hàng theo thời gian thực. Dữ liệu sản phẩm và người dùng được đồng bộ tức thì nhờ Firestore, kết hợp xác thực tài khoản an toàn qua Firebase Authentication. Giao diện được xây dựng với Tailwind CSS và Zustand để quản lý trạng thái giỏ hàng, đảm bảo trải nghiệm mua sắm mượt mà và tương thích tốt trên di động."
+        "title": "Real-Time E-Commerce",
+        "description": "Website mua sắm trực tuyến đồng bộ giỏ hàng, tồn kho và tiến trình đơn hàng tức thì qua Cloud Firestore, tích hợp đăng nhập bảo mật với Firebase Authentication."
       },
       "3": {
-        "title": "Restaurant Website",
-        "description": "Website giới thiệu nhà hàng sang trọng, mang đến trải nghiệm xem thực đơn trực quan cùng khả năng đặt món trực tuyến ngay trên trình duyệt. Giao diện được thiết kế theo phong cách tinh tế, làm nổi bật hình ảnh món ăn và không gian nhà hàng nhằm thu hút thực khách. Dự án được xây dựng bằng React và Vite, kết hợp Firebase để lưu trữ dữ liệu thực đơn, giúp tốc độ tải trang nhanh và dễ dàng cập nhật nội dung."
+        "title": "Culinary Restaurant Web",
+        "description": "Không gian ẩm thực trực tuyến giúp thực khách khám phá thực đơn theo danh mục, xem hình ảnh món ăn sắc nét và gửi yêu cầu đặt bàn ngay trên trình duyệt."
       },
       "4": {
-        "title": "Weather Forecast",
-        "description": "Ứng dụng dự báo thời tiết toàn diện, cung cấp thông tin khí tượng chi tiết như nhiệt độ, độ ẩm, tốc độ gió và chỉ số UV theo thời gian thực cho nhiều địa điểm khác nhau. Giao diện được thiết kế theo phong cách HUD hiện đại, trực quan hóa dữ liệu bằng biểu đồ và biểu tượng thời tiết sinh động. Dự án sử dụng React, TypeScript và Zustand để quản lý trạng thái dữ liệu hiệu quả, cùng tích hợp API thời tiết bên ngoài để đảm bảo độ chính xác."
+        "title": "ThoiTiet24h — Dự Báo Khí Tượng",
+        "description": "Bảng theo dõi thời tiết đa địa điểm hiển thị trực quan nhiệt độ, độ ẩm, sức gió và chỉ số tia UV theo giờ, quản lý trạng thái truy vấn gọn nhẹ với Zustand."
       },
       "5": {
-        "title": "DinoCine - Nền Tảng Khám Phá Phim",
-        "description": "Nền tảng khám phá điện ảnh vận hành bởi TMDB API, cho phép người dùng tìm kiếm, xem thông tin chi tiết và đánh giá của hàng nghìn bộ phim. Hệ thống triển khai các bộ lọc nâng cao theo thể loại, năm phát hành và xếp hạng, giúp người dùng nhanh chóng tìm được nội dung phù hợp. Toàn bộ giao diện được thiết kế theo phong cách Dark UI tinh tế, xây dựng bằng React và Tailwind CSS để tối ưu hiệu năng hiển thị."
+        "title": "DinoCine — Tra Cứu Điện Ảnh",
+        "description": "Cổng khám phá phim ảnh kết nối TMDB API, hỗ trợ tìm kiếm chống trễ (debounce) và lọc sâu theo thể loại, năm phát hành cùng điểm đánh giá của khán giả."
       },
       "6": {
-        "title": "DinoStore - Cửa Hàng Trực Tuyến",
-        "description": "Cửa hàng trực tuyến tốc độ cao được xây dựng bằng React và Vite, tập trung vào việc tối ưu logic giỏ hàng và quy trình thanh toán để mang lại trải nghiệm mua sắm liền mạch. Trạng thái giỏ hàng được lưu trữ cục bộ, giúp người dùng không mất dữ liệu khi tải lại trang. Giao diện tối giản, tập trung vào hình ảnh sản phẩm và thao tác nhanh, phù hợp cho các cửa hàng quy mô nhỏ và vừa."
+        "title": "DinoStore — Cửa Hàng Trực Tuyến",
+        "description": "Giao diện bán lẻ tốc độ cao lưu giữ trạng thái giỏ hàng cục bộ bền vững và tinh giản các bước nhập liệu thanh toán để hạn chế tối đa tỷ lệ bỏ giỏ."
       },
       "7": {
-        "title": "DinoBot - Bot Quản Lý Discord",
-        "description": "Bot Discord đa năng hỗ trợ quản lý máy chủ tự động, từ kiểm duyệt nội dung, phân quyền thành viên đến tổ chức các mini-game nhằm tăng tương tác cộng đồng. Bot được viết bằng Node.js với thư viện discord.js, sử dụng cấu trúc lệnh module hóa giúp dễ dàng bảo trì và mở rộng thêm tính năng mới. Dự án cũng đi kèm trang web giới thiệu để người dùng theo dõi trạng thái hoạt động và danh sách lệnh của bot."
+        "title": "DinoBot — Quản Trị Máy Chủ Discord",
+        "description": "Bot tự động hóa kiểm duyệt tin nhắn, cấp quyền thành viên và tổ chức trò chơi tương tác cho cộng đồng Discord, đi kèm trang web theo dõi trạng thái hoạt động."
       },
       "8": {
-        "title": "ShopFSTYLE - Hệ Thống Thời Trang",
-        "description": "Hệ thống thương mại điện tử thời trang chuyên nghiệp được xây dựng riêng cho shop FSTYLE, bao phủ toàn bộ quy trình vận hành từ quản lý sản phẩm, phân loại danh mục, theo dõi tồn kho đến xử lý đơn hàng của khách. Hệ thống có khu vực quản trị riêng dành cho chủ shop để cập nhật sản phẩm và theo dõi doanh thu. Dự án được xây dựng bằng PHP thuần và MySQL ở backend, kết hợp Tailwind CSS ở giao diện để đáp ứng nhu cầu vận hành cửa hàng thực tế."
+        "title": "ShopFSTYLE — Hệ Thống Bán Lẻ Thời Trang",
+        "description": "Hệ thống bán hàng thời trang trọn gói gồm giao diện mua sắm theo kích cỡ/màu sắc và trang quản trị CMS kiểm soát kho hàng, đơn đặt cùng báo cáo doanh thu."
       },
       "9": {
-        "title": "Pokédex Mobile",
-        "description": "Ứng dụng di động khám phá thế giới Pokémon sử dụng PokéAPI, cho phép người dùng tra cứu chỉ số sức mạnh, hệ nguyên tố, chuỗi tiến hóa và hình ảnh chi tiết của từng Pokémon. Ứng dụng hỗ trợ tìm kiếm nhanh và lọc theo hệ, mang lại trải nghiệm khám phá trực quan. Được xây dựng bằng React Native, Expo và TypeScript, ứng dụng chạy mượt mà và nhất quán trên cả nền tảng iOS và Android."
+        "title": "Pokédex Mobile App",
+        "description": "Ứng dụng di động đa nền tảng trên iOS và Android cho phép tra cứu chỉ số sức mạnh, hệ nguyên tố và chuỗi tiến hóa thông qua PokéAPI."
       },
       "10": {
-        "title": "LinkSnap - URL & Bio Page",
-        "description": "Nền tảng quản lý liên kết tiên tiến kết hợp giữa tính năng rút gọn URL và trình xây dựng Bio Page tùy chỉnh, tương tự các công cụ như Linktree hay Bitly. Người dùng có thể theo dõi thống kê lượt truy cập theo thời gian thực, xem biểu đồ tương tác và tạo mã QR tùy chỉnh cho từng liên kết. Hệ thống hỗ trợ đăng nhập nhanh qua Google OAuth và được xây dựng bằng Laravel cùng MySQL ở backend, đảm bảo hiệu năng và bảo mật ổn định."
+        "title": "LinkSnap — Rút Gọn Link & Bio Page",
+        "description": "Nền tảng SaaS quản lý liên kết tích hợp rút gọn URL tốc độ cao, tạo trang Bio cá nhân hóa, xuất mã QR tùy chỉnh, đăng nhập Google OAuth và thống kê lượt nhấp trực tiếp."
       }
     },
-    "view_all": "XEM TẤT CẢ DỰ ÁN"
+    "view_all": "Xem toàn bộ 10 dự án"
   },
   "activity": {
-    "subtitle": "HOẠT ĐỘNG MÃ NGUỒN MỞ",
-    "title": "GitHub Activity",
-    "description": "Thống kê đóng góp mã nguồn mở và lịch sử commit thực tế trong năm qua trên GitHub.",
-    "view_github": "Ghé thăm GitHub",
-    "top_contributions": "Top repositories đóng góp gần đây:"
+    "subtitle": "Mã nguồn mở",
+    "title": "Hoạt Động GitHub",
+    "description": "Lịch sử đóng góp mã nguồn và tần suất commit thực tế trong 12 tháng gần nhất.",
+    "view_github": "Mở trang GitHub (@DuyPhatpeo)",
+    "top_contributions": "Kho mã nguồn hoạt động nổi bật:"
   },
   "contact": {
-    "tag": "LIÊN HỆ",
-    "title": "Hãy cùng hợp tác nhé",
-    "subtitle": "BẠN CÓ DỰ ÁN? HAY ĐANG TÌM KIẾM NHÂN SỰ?",
-    "description": "Đừng ngần ngại liên hệ nếu bạn muốn kết nối hoặc hợp tác.",
-    "direct_email": "Hoặc kết nối trực tiếp qua email:",
+    "tag": "Liên hệ",
+    "title": "Trao đổi trực tiếp cùng mình",
+    "subtitle": "Sẵn sàng cho cơ hội việc làm toàn thời gian (Onsite Nha Trang / Remote) và các dự án phát triển web theo yêu cầu.",
+    "description": "Bạn có thể sao chép địa chỉ email bên dưới hoặc điền biểu mẫu kế bên. Mình luôn kiểm tra hộp thư và phản hồi trong vòng 24 giờ.",
+    "direct_email": "Email làm việc trực tiếp",
     "watermark": "LIÊN HỆ",
-    "transmission_log": "Biểu mẫu liên hệ",
+    "transmission_log": "Gửi lời nhắn công việc",
     "validation": {
       "full_name": "Vui lòng nhập họ và tên của bạn",
-      "email": "Vui lòng nhập đúng định dạng email",
-      "mobile": "Số điện thoại phải gồm đúng 10 chữ số",
-      "message": "Tin nhắn phải có ít nhất 10 ký tự"
+      "email": "Vui lòng nhập địa chỉ email hợp lệ",
+      "mobile": "Số điện thoại cần gồm đúng 10 chữ số",
+      "message": "Nội dung tin nhắn cần ít nhất 10 ký tự"
     },
     "labels": {
-      "email": "EMAIL",
-      "phone": "SỐ ĐIỆN THOẠI",
-      "location": "VỊ TRÍ",
-      "github": "GITHUB",
+      "email": "Email",
+      "phone": "Điện thoại",
+      "location": "Khu vực",
+      "github": "GitHub",
       "form": {
-        "name": "TÊN CỦA BẠN",
-        "full_name": "Họ và tên",
+        "name": "Họ và tên",
+        "full_name": "Họ và tên / Đơn vị",
         "first_name": "Họ",
         "last_name": "Tên",
-        "email": "Email",
+        "email": "Địa chỉ Email",
         "mobile": "Số điện thoại (10 chữ số)",
-        "message": "Nhập tin nhắn của bạn tại đây",
-        "send": "GỬI TIN NHẮN",
-        "sending": "ĐANG GỬI..."
+        "message_label": "Nội dung trao đổi",
+        "message": "Chia sẻ ngắn gọn về vị trí tuyển dụng hoặc yêu cầu dự án của bạn...",
+        "send": "Gửi tin nhắn",
+        "sending": "Đang gửi..."
       }
     },
     "values": {
       "location": "Nha Trang, Khánh Hòa, Việt Nam"
     },
     "alerts": {
-      "success": "Gửi tin nhắn thành công!",
+      "success": "Đã gửi thành công! Mình sẽ phản hồi bạn sớm nhất.",
       "copied": "Đã sao chép email vào bộ nhớ tạm!",
-      "error": "Lỗi gửi tin nhắn. Mã lỗi: "
+      "error": "Không thể gửi tin nhắn lúc này. Vui lòng thử lại hoặc gửi qua email."
     }
   },
   "footer": {
-    "rights": "BẢN QUYỀN ĐƯỢC BẢO LƯU.",
-    "transmission": "Kết thúc truyền tin",
-    "navigation": "ĐIỀU HƯỚNG",
-    "social": "MẠNG XÃ HỘI",
-    "follow": "THEO DÕI",
+    "rights": "Thiết kế & phát triển bởi Trần Duy Phát.",
+    "transmission": "Cuối trang",
+    "navigation": "Điều hướng",
+    "social": "Mạng xã hội",
+    "follow": "Kết nối trực tuyến",
     "availability": "Sẵn sàng nhận việc",
-    "contact_label": "Liên hệ",
+    "contact_label": "Liên hệ công việc",
     "copy_email": "Sao chép email",
     "copied_short": "Đã sao chép!"
   },
@@ -225,47 +269,18 @@
     "percentage": "%"
   },
   "common": {
+    "scroll_hint": "Vuốt ngang để xem lịch sử",
     "links": {
-      "source": "Source",
-      "live": "Live Demo"
+      "source": "Mã nguồn",
+      "live": "Xem thực tế"
     }
   },
-  "whatIDo": {
-    "title": "Lĩnh Vực Hoạt Động",
-    "design_code_create": [
-      "Thiết kế",
-      "Lập trình",
-      "Sáng tạo"
-    ],
-    "services": [
-      {
-        "title": "Lập Trình Frontend",
-        "description": "Xây dựng giao diện hiện đại, trực quan và tương tác cao. Tập trung vào mã nguồn sạch và tối ưu hóa component với React."
-      },
-      {
-        "title": "Triển Khai UI/UX",
-        "description": "Thổi hồn vào thiết kế với các hiệu ứng chuyển động mượt mà. Chú trọng đến từng chi tiết (pixel-perfect) để tạo ra trải nghiệm ấn tượng."
-      },
-      {
-        "title": "Tích Hợp Backend",
-        "description": "Kết nối giao diện với các API, cơ sở dữ liệu và logic máy chủ. Đảm bảo luồng dữ liệu xuyên suốt và hiệu suất vận hành trơn tru."
-      },
-      {
-        "title": "Tối Ưu & Trải Nghiệm",
-        "description": "Tối ưu hóa tốc độ tải trang và giảm thiểu băng thông. Nâng cao khả năng tiếp cận (a11y) và chuẩn hóa SEO tối đa."
-      },
-      {
-        "title": "Phát triển Mobile",
-        "description": "Xây dựng ứng dụng di động đa nền tảng với React Native. Tái sử dụng logic web đồng thời giữ nguyên trải nghiệm mượt mà tự nhiên."
-      }
-    ]
-  },
   "pageHero": {
-    "about_1": "GIỚI",
-    "about_2": "THIỆU",
-    "projects_1": "DỰ ÁN",
-    "projects_2": "CỦA TÔI",
-    "contact_1": "LIÊN",
-    "contact_2": "HỆ"
+    "about_1": "Giới",
+    "about_2": "Thiệu",
+    "projects_1": "Dự Án",
+    "projects_2": "Thực Tế",
+    "contact_1": "Liên",
+    "contact_2": "Hệ"
   }
 }

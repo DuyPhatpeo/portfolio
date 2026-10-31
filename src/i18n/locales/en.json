@@ -1,223 +1,267 @@
 {
+  "seo": {
+    "keywords": "Tran Duy Phat, Dino Peo, Frontend Developer, Full-Stack Web Developer, React Developer Vietnam, TypeScript, Next.js, Laravel, React Native, Web Performance, Technical SEO",
+    "home": {
+      "title": "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web Developer",
+      "description": "Official portfolio of Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Developer crafting fast, responsive, SEO-ready web and mobile applications."
+    },
+    "about": {
+      "title": "About — Trần Duy Phát (Dino Péo) | Story, Capabilities & Experience",
+      "description": "Learn about Trần Duy Phát's engineering background in Nha Trang, core service areas, categorized tech stack, and professional work history."
+    },
+    "projects": {
+      "title": "Projects — Trần Duy Phát (Dino Péo) | Web Apps, SaaS & Open Source",
+      "description": "Browse 10 shipped web platforms, e-commerce systems, SaaS link tools, and mobile apps alongside live GitHub commit history by Trần Duy Phát."
+    },
+    "contact": {
+      "title": "Contact — Trần Duy Phát (Dino Péo) | Hiring & Project Inquiries",
+      "description": "Get in touch directly with Trần Duy Phát (Dino Péo) for Frontend / Full-Stack engineering roles or custom web and mobile development."
+    }
+  },
   "nav": {
-    "home": "HOME",
-    "about": "ABOUT",
-    "skills": "SKILLS",
-    "experience": "EXPERIENCE",
-    "projects": "PROJECTS",
-    "activity": "ACTIVITY",
-    "contact": "CONTACT",
+    "home": "Home",
+    "about": "About",
+    "skills": "Stack",
+    "experience": "Experience",
+    "projects": "Projects",
+    "activity": "GitHub",
+    "contact": "Contact",
     "theme": {
-      "light": "LIGHT",
-      "dark": "DARK"
+      "light": "Light",
+      "dark": "Dark"
     }
   },
   "cta": {
-    "title": "Let's work together.",
-    "description": "Have a project or idea in mind? I'm always open to discuss.",
-    "button": "GET IN TOUCH"
+    "title": "Ready for the next build?",
+    "description": "Whether you're hiring an engineer for your product team or launching a custom web application from scratch, let's talk through the details.",
+    "button": "Get in Touch"
   },
   "hero": {
+    "seo_h1": "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web and Mobile Developer",
+    "tagline": "Trần Duy Phát · Frontend & Full-Stack Developer",
     "banner": {
       "greeting": "Hello, I’m",
-      "description": "I build <strong>thoughtful web interfaces</strong> that feel smooth on every device.",
-      "work": "View My Work",
+      "description": "I build <strong>fast, responsive web applications</strong> designed for clarity on every screen.",
+      "work": "View Projects",
       "contact": "Contact",
-      "resume": "View résumé",
-      "imageAlt": "Dino Péo in black glasses and a green hoodie, coding on a laptop",
-      "about": "More About Me"
+      "resume": "View Résumé",
+      "imageAlt": "3D portrait of Trần Duy Phát (Dino Péo) coding on a laptop",
+      "about": "Read Full Profile"
     },
-    "description_full": "I create modern, responsive and user-friendly websites and digital experiences that help brands grow and make a lasting impression.",
-    "greeting": "Hi, I am",
+    "description_full": "I design and build modern web platforms and mobile applications centered on fast response times, intuitive layouts, and dependable day-to-day performance for both businesses and end users.",
+    "greeting": "Hello, I am",
     "title": "DINO PÉO",
     "subtitle": "",
     "roles": [
-      "Front-End Developer",
-      "Web Developer",
-      "Full-Stack Developer",
+      "Frontend Developer",
+      "Full-Stack Web Developer",
+      "Mobile App Developer",
       "Software Engineer"
     ],
-    "system_initialized": "System Initialized",
-    "cta": "EXPLORE WORK",
+    "system_initialized": "Ready",
+    "cta": "View Projects",
     "scroll": "Scroll Down",
     "buttons": {
-      "resume": "Resume",
-      "connect": "Hire Me"
+      "resume": "Résumé",
+      "connect": "Contact"
     }
   },
   "about": {
-    "subtitle": "WHO IS DINO PÉO?",
-    "title": "A Bit About Me",
-    "paragraphs": [
-      "Hi, I'm Trần Duy Phát, a dedicated developer based in Vietnam. I'm passionate about deciphering challenging problems and creating exceptional digital experiences that live on the web.",
-      "As I've grown as a developer, I've focused on mastering modern front-end technologies. I've contributed to various projects, collaborating with teams to build robust, maintainable applications with a focus on clean, understandable code.",
-      "Through my academic journey and self-study, I've gained a solid understanding of web development concepts. I dedicate significant time to applying these principles to real-world scenarios, constantly pushing the boundaries of what's possible in the browser.",
-      "When I'm not building, learning, or exploring new UI trends, you can catch me watching football matches or seeking inspiration for my next creative project."
+    "subtitle": "Profile",
+    "title": "Background & Approach",
+    "lead": "Based in Nha Trang, Vietnam, I focus on turning complex operational and product requirements into clean, approachable, and resilient digital software.",
+    "story": "Whether collaborating inside a company team or shipping an independent product from the ground up, I hold two priorities equally: writing structured code that teammates can confidently maintain, and crafting interfaces that feel effortless from the very first click."
+  },
+  "whatIDo": {
+    "title": "Capabilities & Solutions",
+    "design_code_create": [
+      "Architect",
+      "Build",
+      "Optimize"
+    ],
+    "services": [
+      {
+        "title": "Web Application Development",
+        "description": "Delivering tailored web platforms ranging from brand websites and campaign pages to interactive dashboards with scalable modular structure."
+      },
+      {
+        "title": "Interface Craft & Motion",
+        "description": "Turning design mockups into responsive, pixel-accurate layouts enhanced with smooth, purposeful interactions across desktop and mobile."
+      },
+      {
+        "title": "Backend Logic & API Integration",
+        "description": "Structuring relational databases, RESTful endpoints, user authentication flows, and reliable real-time data synchronization."
+      },
+      {
+        "title": "Speed & Technical SEO",
+        "description": "Trimming load times, improving Core Web Vitals, ensuring keyboard/screen-reader accessibility, and structuring metadata for organic search."
+      },
+      {
+        "title": "Cross-Platform Mobile Apps",
+        "description": "Building cohesive iOS and Android applications from a shared codebase while keeping native gesture responsiveness intact."
+      }
     ]
   },
   "skills": {
-    "subtitle": "MY SKILLS",
-    "title": "Technologies I Work With",
-    "description": "As a developer passionate about continuous learning and new technologies, here are the tools I've been working with recently:",
+    "subtitle": "Toolset",
+    "title": "Technologies & Tools",
+    "description": "Languages, frameworks, and workflow tools organized across each layer of product development.",
+    "core_stack": "Core Stack",
     "categories": {
-      "frontend": "Frontend",
-      "backend": "Backend",
-      "database": "Database",
-      "tools": "Tools & DevOps",
-      "design": "Design"
-    },
-    "animation_philosophy": {
-      "badge": "MOTION PHILOSOPHY",
-      "react_title": "React",
-      "react_sub": "Motion",
-      "scroll_title": "Scroll",
-      "scroll_sub": "GSAP",
-      "threed_title": "3D",
-      "threed_sub": "Three.js",
-      "quote_line1": "Animation is not just about looks",
-      "quote_line2": "It creates emotion for users!"
+      "frontend": "Frontend & UI",
+      "backend": "Backend & APIs",
+      "database": "Databases",
+      "tools": "Tooling & Workflow",
+      "design": "UI/UX Design"
     }
   },
   "experience": {
-    "subtitle": "MY EXPERIENCE",
-    "title": "Career Journey",
-    "description": "My process of learning, gaining practical experience, and contributing value at organizations I have worked with.",
+    "subtitle": "Experience",
+    "title": "Work History",
+    "description": "Professional roles and hands-on responsibilities across organizations I have worked with.",
     "present": "Present",
     "items": [
       {
-        "role": "IT & Event Technical Support Specialist",
+        "role": "IT & Event Systems Specialist",
         "company": "GTO Media JSC",
         "period": "06/2026 – Present",
         "type": "Full-time",
+        "summary": "Build and maintain campaign websites and internal web tools while managing reliable technical infrastructure for large-scale media events.",
         "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
       },
       {
         "role": "Frontend Developer Apprentice",
         "company": "SweetSoft JSC",
         "period": "10/2025 – 12/2025",
-        "type": "Apprentice",
-        "tech": "ReactJS, JavaScript, HTML, CSS, REST API"
+        "type": "Apprenticeship",
+        "summary": "Developed responsive user interface modules, connected frontend views with REST APIs, and collaborated through Git Flow code reviews.",
+        "tech": "ReactJS, JavaScript, HTML5, CSS3, REST API"
       },
       {
         "role": "Frontend Developer Intern",
         "company": "SweetSoft JSC",
         "period": "12/2024 – 01/2025",
         "type": "Internship",
-        "tech": "HTML, CSS, JavaScript, C# .NET"
+        "summary": "Implemented semantic, cross-browser web layouts from design specs and assisted with feature testing across .NET web projects.",
+        "tech": "HTML5, CSS3, JavaScript, C# .NET"
       }
     ]
   },
   "projects": {
-    "subtitle": "MY PROJECTS",
-    "title": "Some Things I Built",
-    "description": "I like to stay busy and always have a project in the works. Take a look at some of the applications I've have built",
-    "other_title": "Other Noteworthy Projects",
+    "subtitle": "Projects",
+    "title": "Featured Work",
+    "description": "Three flagship builds highlighting how I structure architecture, performance, and user experience.",
+    "page_intro": "A complete archive of 10 web applications, e-commerce stores, SaaS utilities, and mobile apps I have designed and built.",
+    "other_title": "More Projects",
     "badges": {
-      "featured": "FEATURED PROJECT"
+      "featured": "Featured",
+      "project": "Project"
     },
     "modal": {
-      "technologies": "Technologies Used",
-      "view_details": "View Details"
+      "technologies": "Built With",
+      "view_details": "View Project Details",
+      "screenshots": "Interface Previews"
     },
     "items": {
       "1": {
-        "title": "Personal Portfolio",
-        "description": "A high-performance personal portfolio built with React 19, TypeScript, and Framer Motion, drawing its visual language from a technical 'System UI' aesthetic with sharp edges and signature glow effects. Every section is tuned for fast load times and smooth transitions, with a fully responsive layout across all screen sizes. Full Vietnamese-English localization is built in from the ground up using i18next, letting visitors switch languages instantly without a page reload."
+        "title": "Dino Péo Portfolio",
+        "description": "Personal portfolio featuring a 60fps HTML5 Canvas monochrome starfield, route-level bundle splitting, instant Vietnamese–English switching, and dynamic per-page SEO metadata."
       },
       "2": {
-        "title": "E-commerce Website",
-        "description": "A modern e-commerce platform built with React and Firebase, letting users browse products, manage their cart, and track order status in real time. Product and user data sync instantly through Firestore, paired with secure account authentication via Firebase Authentication. The interface is built with Tailwind CSS and Zustand for cart state management, delivering a smooth shopping experience across devices."
+        "title": "Real-Time E-Commerce",
+        "description": "Online shopping platform syncing cart items, inventory state, and live order tracking through Cloud Firestore with secure Firebase Authentication."
       },
       "3": {
-        "title": "Restaurant Website",
-        "description": "An elegant restaurant website that presents the menu in a visually engaging way and lets guests place orders directly from the browser. The design leans on refined visuals that showcase the dishes and dining atmosphere to draw customers in. Built with React and Vite, with Firebase powering the menu data, the site loads fast and stays easy to update."
+        "title": "Culinary Restaurant Web",
+        "description": "Digital hospitality storefront enabling guests to browse categorized visual menus and place table or dish orders directly in the browser."
       },
       "4": {
-        "title": "Weather Forecast",
-        "description": "A comprehensive weather forecast application delivering real-time atmospheric details — temperature, humidity, wind speed, and UV index — for multiple locations at once. The interface follows a modern HUD-style design, visualizing data through charts and lively weather icons. Built with React, TypeScript, and Zustand for efficient state management, and integrated with an external weather API for accurate, up-to-date data."
+        "title": "ThoiTiet24h — Weather Tracker",
+        "description": "Multi-city meteorological dashboard presenting hourly temperature, humidity, wind speed, and UV index insights with lightweight Zustand state caching."
       },
       "5": {
-        "title": "DinoCine - Movie Discovery Platform",
-        "description": "A movie discovery platform powered by the TMDB API, letting users search and browse detailed information and ratings for thousands of films. Advanced filters by genre, release year, and rating help users quickly find content that matches their taste. The entire interface follows a polished Dark UI aesthetic, built with React and Tailwind CSS for optimized rendering performance."
+        "title": "DinoCine — Movie Explorer",
+        "description": "Cinema discovery web app powered by the TMDB API with debounced search and multi-filter browsing across genre, release year, and audience score."
       },
       "6": {
-        "title": "DinoStore - Online Store",
-        "description": "A fast online store built with React and Vite, focused on streamlining cart logic and checkout flow for a seamless shopping experience. Cart state persists locally, so users never lose their selections on a page reload. The minimal interface keeps the focus on product visuals and quick actions, making it well suited for small to mid-sized shops."
+        "title": "DinoStore — Online Retail Shop",
+        "description": "Fast retail storefront featuring persistent local cart storage and a streamlined checkout flow built to reduce drop-off."
       },
       "7": {
-        "title": "DinoBot - Discord Management Bot",
-        "description": "A versatile Discord bot that automates server management — from content moderation and role assignment to mini-games that boost community engagement. Written in Node.js with discord.js, it uses a modular command structure that keeps maintenance and future feature additions straightforward. The project also ships with a companion website where users can check the bot's status and browse its command list."
+        "title": "DinoBot — Discord Server Suite",
+        "description": "Automated Discord bot handling message moderation, role assignment, and interactive community games, paired with a live status website."
       },
       "8": {
-        "title": "ShopFSTYLE - Fashion Commerce System",
-        "description": "A full-featured fashion e-commerce system built specifically for the FSTYLE shop, covering the entire operational flow from product management and category organization to inventory tracking and order processing. It includes a dedicated admin area for the shop owner to update products and monitor revenue. Built with PHP and MySQL on the backend, paired with Tailwind CSS on the frontend, to run a real, working storefront."
+        "title": "ShopFSTYLE — Fashion Commerce & CMS",
+        "description": "End-to-end fashion storefront and admin CMS covering size/color catalog filtering, stock management, order processing, and revenue reporting."
       },
       "9": {
-        "title": "Pokédex Mobile",
-        "description": "A mobile app for exploring the Pokémon world via the PokéAPI, letting users look up base stats, elemental types, evolution chains, and detailed artwork for each Pokémon. It supports fast search and type-based filtering for an intuitive discovery experience. Built with React Native, Expo, and TypeScript, it runs smoothly and consistently on both iOS and Android."
+        "title": "Pokédex Mobile App",
+        "description": "Cross-platform iOS and Android mobile app consuming PokéAPI for fast base-stat lookup, elemental filtering, and evolution chains."
       },
       "10": {
-        "title": "LinkSnap - URL & Bio Page",
-        "description": "An advanced link management platform that combines a URL shortener with a customizable Bio Page builder, in the spirit of tools like Linktree or Bitly. Users can track real-time click analytics, view engagement charts, and generate custom QR codes for each link. The platform supports one-click Google OAuth login and is built with Laravel and MySQL on the backend for stable performance and security."
+        "title": "LinkSnap — URL Shortener & Bio Page",
+        "description": "Link management SaaS combining low-latency short links, customizable Bio Pages, QR code generation, Google OAuth login, and real-time click analytics."
       }
     },
-    "view_all": "VIEW ALL PROJECTS"
+    "view_all": "View All 10 Projects"
   },
   "activity": {
-    "subtitle": "OPEN SOURCE & CONTRIBUTIONS",
+    "subtitle": "Open Source",
     "title": "GitHub Activity",
-    "description": "Real-time contribution statistics and commit streak over the past year on GitHub.",
-    "view_github": "Visit GitHub Profile",
-    "top_contributions": "Top contributions in:"
+    "description": "Public repository contributions and commit consistency over the past 12 months.",
+    "view_github": "Open GitHub (@DuyPhatpeo)",
+    "top_contributions": "Active repositories:"
   },
   "contact": {
-    "tag": "CONTACT",
-    "title": "Let's work together",
-    "subtitle": "HAVE A PROJECT? OR LOOKING FOR TALENT?",
-    "description": "Feel free to reach out to connect or collaborate.",
-    "direct_email": "Or reach out directly via email:",
+    "tag": "Contact",
+    "title": "Direct Collaboration & Hiring",
+    "subtitle": "Available for full-time engineering roles (Onsite in Nha Trang or Remote) and select custom web projects.",
+    "description": "Copy my direct email below or send a quick note through the form. I review every inquiry personally and reply within 24 hours.",
+    "direct_email": "Direct work email",
     "watermark": "CONTACT",
-    "transmission_log": "Contact Form",
+    "transmission_log": "Send a Message",
     "validation": {
       "full_name": "Please enter your full name",
       "email": "Please enter a valid email address",
-      "mobile": "Mobile number must be 10 digits",
+      "mobile": "Phone number must contain 10 digits",
       "message": "Message must be at least 10 characters"
     },
     "labels": {
-      "email": "EMAIL",
-      "phone": "PHONE",
-      "location": "LOCATION",
-      "github": "GITHUB",
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location",
+      "github": "GitHub",
       "form": {
-        "name": "NAME",
-        "full_name": "Full Name",
+        "name": "Your Name",
+        "full_name": "Full Name / Organization",
         "first_name": "First Name",
         "last_name": "Last Name",
-        "email": "Email",
-        "mobile": "Mobile No (10 digits)",
-        "message": "Type your message here",
-        "send": "SEND TRANSMISSION",
-        "sending": "SENDING..."
+        "email": "Email Address",
+        "mobile": "Phone Number (10 digits)",
+        "message_label": "Message",
+        "message": "Share a few details about the role, project scope, or timeline...",
+        "send": "Send Message",
+        "sending": "Sending..."
       }
     },
     "values": {
       "location": "Nha Trang, Khanh Hoa, Vietnam"
     },
     "alerts": {
-      "success": "Transmission sent successfully!",
+      "success": "Message sent! I'll reply to you shortly.",
       "copied": "Email copied to clipboard!",
-      "error": "Transmission failed. Error code: "
+      "error": "Could not send right now. Please try again or email me directly."
     }
   },
   "footer": {
-    "rights": "ALL RIGHTS RESERVED.",
-    "transmission": "End of Transmission",
-    "navigation": "NAVIGATION",
-    "social": "SOCIAL PROFILES",
-    "follow": "FOLLOW",
-    "availability": "Worldwide Available",
-    "contact_label": "Contact",
+    "rights": "Designed & built by Trần Duy Phát.",
+    "transmission": "End of page",
+    "navigation": "Navigation",
+    "social": "Social",
+    "follow": "Connect Online",
+    "availability": "Available for opportunities",
+    "contact_label": "Hiring & Project Inquiries",
     "copy_email": "Copy email",
     "copied_short": "Copied!"
   },
@@ -225,47 +269,18 @@
     "percentage": "%"
   },
   "common": {
+    "scroll_hint": "Swipe horizontally to view history",
     "links": {
-      "source": "Source",
+      "source": "Source Code",
       "live": "Live Demo"
     }
   },
-  "whatIDo": {
-    "title": "What I Do",
-    "design_code_create": [
-      "Design",
-      "Code",
-      "Create"
-    ],
-    "services": [
-      {
-        "title": "Frontend Development",
-        "description": "Building modern, intuitive, and highly interactive interfaces. Focused on clean code and optimized components using React."
-      },
-      {
-        "title": "UI/UX Implementation",
-        "description": "Bringing designs to life with smooth, fluid animations. Paying close attention to every detail for impressive visual experiences."
-      },
-      {
-        "title": "Backend Integration",
-        "description": "Connecting interfaces with robust APIs, databases, and server-side logic. Ensuring seamless data flow and efficient performance."
-      },
-      {
-        "title": "Performance & SEO",
-        "description": "Optimizing page load speeds and minimizing bandwidth usage. Enhancing accessibility (a11y) and standardizing SEO."
-      },
-      {
-        "title": "Mobile Development",
-        "description": "Building high-performance cross-platform mobile apps using React Native. Maximizing code reuse while maintaining a native feel."
-      }
-    ]
-  },
   "pageHero": {
-    "about_1": "ABOUT",
-    "about_2": "ME",
-    "projects_1": "MY",
-    "projects_2": "PROJECTS",
-    "contact_1": "GET IN",
-    "contact_2": "TOUCH"
+    "about_1": "About",
+    "about_2": "Me",
+    "projects_1": "Selected",
+    "projects_2": "Projects",
+    "contact_1": "Get in",
+    "contact_2": "Touch"
   }
 }
