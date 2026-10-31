@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-
 const Footer = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -21,12 +20,13 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={footerRef} className="relative overflow-hidden border-t border-primary/10 bg-background">
-      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
-
-
-        {/* Giant name - NAMMA Style Vertical Stretch */}
-        <div className="pt-8 pb-6 sm:pt-12 sm:pb-10 md:pt-16 md:pb-12 text-center overflow-hidden flex justify-center items-end">
+    <footer
+      ref={footerRef}
+      className="relative z-20 overflow-hidden border-t border-border bg-transparent"
+    >
+      <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-14 md:pt-20 pb-8 md:pb-12">
+        {/* Editorial Oversized Brand Wordmark */}
+        <div className="pt-4 pb-8 sm:pt-8 sm:pb-12 text-center overflow-hidden flex justify-center items-end">
           <motion.button
             onClick={() => {
               if (window.location.pathname === "/") {
@@ -36,44 +36,44 @@ const Footer = () => {
                 window.scrollTo(0, 0);
               }
             }}
-            initial={{ y: 50, opacity: 0, scale: 0.95 }}
-            whileInView={{ y: 0, opacity: 1, scale: 1 }}
-            viewport={{ once: false, margin: "-10%" }}
-            transition={{ duration: 1.2, ease: [0.215, 0.61, 0.355, 1] }}
-            className="inline-block will-change-transform text-[15vw] sm:text-[14vw] md:text-[13vw] leading-[0.85] font-sans font-black uppercase tracking-tighter text-foreground cursor-pointer hover:text-primary transition-colors duration-500"
+            initial={{ y: 36, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="inline-block will-change-transform text-[14vw] sm:text-[13vw] md:text-[12vw] leading-[0.88] font-sans font-bold uppercase tracking-tight text-foreground cursor-pointer hover:text-primary transition-colors duration-300"
           >
             {profileData.logo}
           </motion.button>
         </div>
 
-        {/* Bottom row: Contact / Email / Follow */}
-        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-5 sm:gap-6 pt-10 pb-10 md:pb-14 border-t border-primary/10">
+        {/* Bottom Metadata Row */}
+        <div className="flex flex-col items-center text-center md:grid md:grid-cols-3 md:items-center md:text-left gap-6 pt-8 pb-4 border-t border-border">
           <div className="flex flex-col items-center md:items-start">
             <button
               onClick={(e) => handleNavigate(e, "contact")}
-              className="text-sm font-mono text-foreground underline underline-offset-4 decoration-primary/40 hover:text-primary transition-colors cursor-pointer"
+              className="text-base sm:text-lg font-medium text-foreground underline underline-offset-4 decoration-border hover:decoration-primary hover:text-primary transition-colors cursor-pointer"
             >
               {t("footer.contact_label")}
             </button>
-            <p className="text-[10px] font-mono text-foreground/75 tracking-widest uppercase mt-2">
-              © {year} {profileData.logo}. {t("footer.rights")}
+            <p className="text-sm sm:text-base text-muted-foreground mt-2">
+              © {year} {profileData.name}. {t("footer.rights")}
             </p>
           </div>
 
           <div className="flex flex-col items-center">
             <a
               href="mailto:phattranduy00@gmail.com"
-              className="text-sm font-mono text-foreground underline underline-offset-4 decoration-primary/40 hover:text-primary transition-colors"
+              className="text-base sm:text-lg font-mono text-foreground underline underline-offset-4 decoration-border hover:decoration-primary hover:text-primary transition-colors"
             >
               phattranduy00@gmail.com
             </a>
           </div>
 
-          <div className="flex flex-col items-center md:items-end gap-3 md:justify-self-end">
-            <span className="text-[10px] font-mono text-foreground/75 tracking-[0.2em] uppercase">
+          <div className="flex flex-col items-center md:items-end gap-2.5 md:justify-self-end">
+            <span className="text-sm sm:text-base font-mono text-muted-foreground">
               {t("footer.follow")}
             </span>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               {profileData.socialLinks.map((link) => (
                 <a
                   key={link.name}
@@ -81,7 +81,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className={`text-foreground/60 transition-colors ${link.hoverColor}`}
+                  className="w-10 h-10 rounded-full border border-border/80 bg-card/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/50 transition-colors"
                 >
                   <span aria-hidden="true">{link.icon}</span>
                 </a>

@@ -28,8 +28,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mousePos, setMousePos] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
   // Scroll behavior: Show at top, hide when scrolling down, show when scrolling up
   const [showHeader, setShowHeader] = useState(true);
@@ -40,16 +38,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Always show header near top of page (first 50px)
-      setIsScrolled(currentScrollY > 50);
+      setIsScrolled(currentScrollY > 40);
 
-      if (currentScrollY <= 50) {
+      if (currentScrollY <= 40) {
         setShowHeader(true);
       } else if (currentScrollY > lastScrollY.current + 5) {
-        // Scrolling down: hide header
         setShowHeader(false);
       } else if (currentScrollY < lastScrollY.current - 5) {
-        // Scrolling up: reveal header
         setShowHeader(true);
       }
 
@@ -62,10 +57,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const navItems = useMemo(
     () => [
-      { name: t("nav.home"), href: "home" },
-      { name: t("nav.about"), href: "about" },
-      { name: t("nav.projects"), href: "projects" },
-      { name: t("nav.contact"), href: "contact" },
+      { name: t("nav.home"), href: "home", path: "/" },
+      { name: t("nav.about"), href: "about", path: "/about" },
+      { name: t("nav.projects"), href: "projects", path: "/projects" },
+      { name: t("nav.contact"), href: "contact", path: "/contact" },
     ],
     [t]
   );
@@ -149,32 +144,31 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   };
 
   return (
-    <header 
+    <header
       className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 transform ${
-        showHeader || isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        showHeader || isOpen
+          ? "translate-y-0 opacity-100"
+          : "-translate-y-full opacity-0 pointer-events-none"
       } ${
-        isScrolled && !isOpen ? "bg-background/80 backdrop-blur-md border-b border-primary/10" : "bg-transparent"
+        isScrolled && !isOpen
+          ? "bg-background/70 backdrop-blur-md border-b border-border/80"
+          : "bg-transparent"
       }`}
     >
-      {/* ================= TOP NAVBAR =================
-          Hides when scrolling down, reveals when scrolling up.
-          Stays permanently visible and stable when menu is open.
-      =============================================================== */}
+      {/* Top Navbar */}
       <div
-        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 md:h-24 flex justify-between items-center ${
-          isOpen
-            ? "border-b border-white/10"
-            : ""
+        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 flex justify-between items-center ${
+          isOpen ? "border-b border-white/10" : ""
         }`}
       >
         {/* Brand Logo */}
         <button
           onClick={() => handleNavigate("home")}
           aria-label="Homepage"
-          className="relative z-10 group cursor-pointer"
+          className="relative z-10 group cursor-pointer py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
         >
           <span
-            className={`text-xl md:text-2xl font-sans font-black uppercase tracking-[0.3em] transition-colors duration-300 ${
+            className={`text-xl md:text-2xl font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${
               isOpen
                 ? "text-neutral-100 group-hover:text-primary"
                 : "text-foreground group-hover:text-primary"
@@ -184,19 +178,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           </span>
         </button>
 
-        {/* Right side controls: Language + Theme + Square Hamburger / Close Toggle */}
-        <div className="flex items-center gap-2.5 sm:gap-3 relative z-10">
+        {/* Right Side Controls (44px accessible touch targets) */}
+        <div className="flex items-center gap-2.5 relative z-10">
           {/* Language Selector */}
           <button
             onClick={handleToggleLang}
             aria-label={`Switch language to ${targetCode}`}
-            className={`h-9 sm:h-10 px-3 flex items-center justify-center gap-1.5 rounded-lg border transition-colors font-mono text-xs font-bold cursor-pointer shrink-0 ${
+            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
-                : "border-foreground/15 dark:border-white/15 bg-foreground/5 dark:bg-white/5 text-foreground hover:text-primary hover:border-primary/50"
+                : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
             }`}
           >
-            <span className="w-4 h-3 overflow-hidden rounded-xs flex items-center justify-center">
+            <span className="w-4 h-3 overflow-hidden rounded-[2px] flex items-center justify-center">
               <img
                 src={targetFlag}
                 alt=""
@@ -212,35 +206,39 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={handleToggleDarkMode}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border transition-colors flex items-center justify-center cursor-pointer ${
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
-                : "border-foreground/15 dark:border-white/15 bg-foreground/5 dark:bg-white/5 text-foreground hover:text-primary hover:border-primary/50"
+                : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
                 key={darkMode ? "sun" : "moon"}
-                initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
                 animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
+                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                 className="flex items-center justify-center"
               >
-                {darkMode ? <RiSunLine className="w-4 h-4" /> : <RiMoonLine className="w-4 h-4" />}
+                {darkMode ? (
+                  <RiSunLine className="w-5 h-5" />
+                ) : (
+                  <RiMoonLine className="w-5 h-5" />
+                )}
               </motion.span>
             </AnimatePresence>
           </button>
 
-          {/* Square Toggle Button: [ = ] when closed, [ ✕ ] when open */}
+          {/* Menu Toggle Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
-            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-lg border transition-all flex items-center justify-center cursor-pointer ${
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
                 ? "border-white/15 bg-white/5 hover:bg-white/10 hover:border-primary/60 text-neutral-200 hover:text-primary"
-                : "border-foreground/15 dark:border-white/15 bg-foreground/5 dark:bg-white/5 hover:border-primary/50 text-foreground hover:text-primary"
+                : "border-border bg-card/70 hover:border-primary/50 text-foreground hover:text-primary"
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -273,89 +271,47 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* ========================================================
-          FULLSCREEN MENU OVERLAY (LINEWISE STYLE)
-          Expands/shrinks background from the top-right button
-          while Header remains static and functional on top
-      ======================================================== */}
+      {/* Fullscreen Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{
               opacity: 0,
-              scale: 0.75,
-              clipPath: "circle(0% at calc(100% - 44px) 44px)",
+              clipPath: "circle(0% at calc(100% - 44px) 40px)",
             }}
             animate={{
               opacity: 1,
-              scale: 1,
-              clipPath: "circle(160% at calc(100% - 44px) 44px)",
+              clipPath: "circle(160% at calc(100% - 44px) 40px)",
             }}
             exit={{
               opacity: 0,
-              scale: 0.75,
-              clipPath: "circle(0% at calc(100% - 44px) 44px)",
+              clipPath: "circle(0% at calc(100% - 44px) 40px)",
             }}
-            style={{ transformOrigin: "calc(100% - 44px) 44px" }}
-            transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-            className="fixed inset-0 z-10 w-screen h-dvh bg-[#151619] dark:bg-[#131417] text-white flex flex-col justify-between overflow-hidden select-none"
+            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-10 w-screen h-dvh bg-[#050507]/94 backdrop-blur-md text-neutral-100 flex flex-col justify-between overflow-hidden select-none"
           >
-            {/* Ambient subtle glow at top using 1 signature primary color (#21f1a8) */}
-            <div
-              className="absolute top-0 left-0 right-0 h-48 pointer-events-none transition-all duration-500 opacity-20 blur-[100px]"
-              style={{
-                background: hoveredIndex !== null ? "#21f1a8" : "transparent",
-              }}
-            />
+            {/* Header Spacer */}
+            <div className="w-full h-20 shrink-0" />
 
-            {/* Subtle background grid pattern */}
-            <div className="absolute inset-0 cyber-dots opacity-[0.03] pointer-events-none" />
-
-            {/* Header Spacer (preserves space for static top navbar) */}
-            <div className="w-full h-20 md:h-24 shrink-0" />
-
-            {/* ================= NAV ITEMS (TOP-LEFT ORIENTED) ================= */}
-            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-3 sm:pt-8 md:pt-10 flex-1 flex flex-col justify-start items-start overflow-y-auto z-10">
-              <nav className="flex flex-col items-start gap-0.5 sm:gap-1 py-2 w-full">
+            {/* Navigation Items */}
+            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-start overflow-y-auto z-10">
+              <nav className="flex flex-col items-start gap-2 sm:gap-3 w-full">
                 {navItems.map((item, index) => {
-                  const isHovered = hoveredIndex === index;
-
+                  const isActive = location.pathname === item.path;
                   return (
                     <button
                       key={item.href}
-                      onMouseEnter={(e) => {
-                        setHoveredIndex(index);
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        setMousePos({
-                          x: e.clientX - rect.left,
-                          y: e.clientY - rect.top,
-                        });
-                      }}
-                      onMouseMove={(e) => {
-                        const rect = e.currentTarget.getBoundingClientRect();
-                        setMousePos({
-                          x: e.clientX - rect.left,
-                          y: e.clientY - rect.top,
-                        });
-                      }}
-                      onMouseLeave={() => setHoveredIndex(null)}
                       onClick={() => handleNavigate(item.href)}
-                      className="group text-left py-0.5 sm:py-1 cursor-pointer w-max select-none block"
+                      className="group flex items-baseline gap-4 sm:gap-6 text-left py-1.5 cursor-pointer select-none"
                     >
-                      {/* Typography matching video: Large, font-normal, tight leading, title case
-                          Using single signature primary color (#21f1a8) for spotlight hover */}
+                      <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
+                        0{index + 1}
+                      </span>
                       <span
-                        style={
-                          isHovered
-                            ? {
-                                backgroundImage: `radial-gradient(circle 260px at ${mousePos.x}px ${mousePos.y}px, #21f1a8 0%, rgba(33, 241, 168, 0.4) 40%, #ffffff 75%)`,
-                              }
-                            : undefined
-                        }
-                        className={`text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-[4.75rem] xl:text-[5.25rem] font-sans font-normal tracking-tight leading-[1.05] block select-none transition-colors duration-150 ${
-                          isHovered
-                            ? "bg-clip-text text-transparent"
-                            : "text-white hover:text-white"
+                        className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-all duration-200 group-hover:translate-x-2 ${
+                          isActive
+                            ? "text-primary"
+                            : "text-neutral-100 group-hover:text-primary"
                         }`}
                       >
                         {toTitleCase(item.name)}
@@ -366,25 +322,20 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               </nav>
             </div>
 
-            {/* ================= MODAL FOOTER ================= */}
-            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-5 sm:py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 text-xs font-sans text-neutral-400 shrink-0 z-10">
-              {/* Left: Copyright */}
+            {/* Menu Footer */}
+            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-400 shrink-0 z-10">
               <div>
-                © {new Date().getFullYear()} {profileData.name || "Dino Péo"}. All rights reserved.
+                © {new Date().getFullYear()} {profileData.name}. {t("footer.rights")}
               </div>
 
-              {/* Center: Email */}
-              <div className="flex flex-col sm:items-center">
-                <a
-                  href="mailto:phattranduy00@gmail.com"
-                  className="hover:text-primary transition-colors font-medium text-neutral-300"
-                >
-                  phattranduy00@gmail.com
-                </a>
-              </div>
+              <a
+                href="mailto:phattranduy00@gmail.com"
+                className="font-mono hover:text-primary transition-colors text-neutral-300"
+              >
+                phattranduy00@gmail.com
+              </a>
 
-              {/* Right: Social Links */}
-              <div className="flex items-center gap-4 text-neutral-300">
+              <div className="flex items-center gap-5 text-neutral-300">
                 {profileData.socialLinks.slice(0, 3).map((link) => (
                   <a
                     key={link.name}
@@ -407,4 +358,3 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 };
 
 export default Header;
-

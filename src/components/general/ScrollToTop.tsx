@@ -14,13 +14,10 @@ const ScrollToTop: React.FC = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollY = window.scrollY;
-          const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const totalHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
 
-          if (scrollY > 200) {
-            setVisible(true);
-          } else {
-            setVisible(false);
-          }
+          setVisible(scrollY > 240);
 
           if (totalHeight > 0) {
             const percent = Math.round((scrollY / totalHeight) * 100);
@@ -39,12 +36,6 @@ const ScrollToTop: React.FC = () => {
   }, []);
 
   const scrollToTop = (): void => {
-    if (btnRef.current) {
-      btnRef.current.animate(
-        [{ transform: "translateY(3px) scale(.9)" }, { transform: "none" }],
-        { duration: 500, easing: "ease-out" }
-      );
-    }
     window.scrollTo({
       top: 0,
       behavior: "smooth",
@@ -55,29 +46,29 @@ const ScrollToTop: React.FC = () => {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          initial={{ opacity: 0, scale: 0.9, y: 16 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 20 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          exit={{ opacity: 0, scale: 0.9, y: 16 }}
+          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
           className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-[90] select-none"
         >
           <button
             ref={btnRef}
             onClick={scrollToTop}
             aria-label="Scroll to top"
-            className="group relative flex items-center gap-2 pl-2 pr-4 h-12 rounded-full bg-card/90 backdrop-blur-xl border border-border/50 shadow-2xl hover:border-primary/50 hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.3)] transition-all duration-300 cursor-pointer overflow-hidden"
+            className="group relative flex items-center gap-2.5 pl-2 pr-4 h-11 rounded-full bg-card/95 backdrop-blur-md border border-border shadow-md hover:border-primary/60 transition-colors duration-200 cursor-pointer overflow-hidden"
           >
-            {/* Progress Background Fill */}
-            <div 
-              className="absolute left-0 top-0 h-full bg-primary/20 transition-all duration-100 ease-out z-0"
+            {/* Subtle progress fill */}
+            <div
+              className="absolute left-0 top-0 h-full bg-primary/12 transition-all duration-100 ease-out z-0"
               style={{ width: `${scrollPercent}%` }}
             />
-            
-            <div className="relative z-10 flex items-center justify-center w-8 h-8 rounded-full bg-background/50 border border-border group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
-              <HiArrowUp className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-300" />
+
+            <div className="relative z-10 flex items-center justify-center w-7 h-7 rounded-full bg-muted text-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-200">
+              <HiArrowUp className="w-3.5 h-3.5" />
             </div>
-            
-            <span className="relative z-10 font-mono text-sm font-bold text-foreground/70 group-hover:text-foreground transition-colors min-w-[3ch] text-right">
+
+            <span className="relative z-10 font-mono text-xs font-medium tabular-nums text-muted-foreground group-hover:text-foreground transition-colors min-w-[3ch] text-right">
               {scrollPercent}%
             </span>
           </button>
