@@ -9,28 +9,34 @@ const ContactCTA: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-24 sm:py-32 bg-transparent border-t border-white/5 relative z-10">
+    <section className="py-24 sm:py-28 bg-transparent border-t border-border/60 relative z-10">
       <div className="max-w-3xl mx-auto px-5 sm:px-8 text-center relative z-10">
-        <FadeUp delay={0.1}>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-sans font-black tracking-tight text-foreground mb-6">
+        <FadeUp delay={0.08}>
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-sans font-bold tracking-tight text-foreground mb-5">
             {t("cta.title", "Let's work together.")}
           </h2>
-          <p className="text-foreground/60 text-lg mb-10 font-mono max-w-xl mx-auto">
-            {t("cta.description", "Have a project or idea in mind? I'm always open to discuss.")}
+          <p className="text-muted-foreground text-xl sm:text-2xl mb-10 max-w-[48ch] mx-auto leading-relaxed">
+            {t(
+              "cta.description",
+              "Have a project or idea in mind? I'm always open to discuss."
+            )}
           </p>
         </FadeUp>
-        <FadeUp delay={0.2}>
+        <FadeUp delay={0.16}>
           <button
-            onClick={() => { navigate("/contact"); window.scrollTo(0,0); }}
-            className="group inline-flex items-center gap-4 pb-2 border-b-2 border-primary text-primary hover:text-foreground hover:border-foreground transition-colors duration-300 font-mono uppercase tracking-widest text-sm font-bold cursor-pointer"
+            onClick={() => {
+              navigate("/contact");
+              window.scrollTo(0, 0);
+            }}
+            className="group inline-flex items-center justify-center gap-2.5 min-h-13 px-9 py-4 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 font-medium text-lg cursor-pointer"
           >
-            {t("cta.button", "GET IN TOUCH")}
-            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
+            <span>{t("cta.button", "Get in Touch")}</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
           </button>
         </FadeUp>
       </div>
     </section>
   );
 };
-export default ContactCTA;
 
+export default ContactCTA;

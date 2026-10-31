@@ -1,26 +1,28 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
 import { gsap, useGSAP } from "@lib/gsap";
+import { profileData } from "@constants/profileData";
+import { toast } from "react-toastify";
+import { FiCheck, FiCopy, FiMapPin } from "react-icons/fi";
 
 export default function ContactSection() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const watermarkRef = useRef<HTMLDivElement>(null);
+  const [copied, setCopied] = useState(false);
 
   useGSAP(
     () => {
       if (!sectionRef.current) return;
 
-      // 1. Giant Watermark horizontal parallax on scroll
       if (watermarkRef.current) {
         gsap.fromTo(
           watermarkRef.current,
-          { xPercent: 12, opacity: 0.02 },
+          { xPercent: 8 },
           {
-            xPercent: -12,
-            opacity: 0.08,
+            xPercent: -8,
             ease: "none",
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -32,21 +34,21 @@ export default function ContactSection() {
         );
       }
 
-      // 2. Staggered reveal for contact header text elements
-      const revealItems = sectionRef.current.querySelectorAll(".contact-reveal-item");
+      const revealItems =
+        sectionRef.current.querySelectorAll(".contact-reveal-item");
       if (revealItems.length > 0) {
         gsap.fromTo(
           revealItems,
-          { opacity: 0, y: 30 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
             y: 0,
-            duration: 0.8,
-            stagger: 0.12,
+            duration: 0.65,
+            stagger: 0.1,
             ease: "power3.out",
             scrollTrigger: {
               trigger: sectionRef.current,
-              start: "top 75%",
+              start: "top 80%",
             },
           }
         );
@@ -55,89 +57,106 @@ export default function ContactSection() {
     { scope: sectionRef }
   );
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("phattranduy00@gmail.com");
+    setCopied(true);
+    window.setTimeout(() => setCopied(false), 2200);
+    toast.success(t("contact.alerts.copied", "Email copied to clipboard!"));
+  };
+
   return (
     <section
       id="contact"
       ref={sectionRef}
-      className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden bg-background pt-20 sm:pt-24 md:pt-32 pb-16 md:pb-24"
+      className="relative w-full overflow-hidden bg-transparent py-12 sm:py-16 md:py-24"
     >
-      {/* Giant watermark with GSAP ScrollTrigger horizontal glide */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center">
+      {/* Subtle architectural watermark */}
+      <div className="absolute inset-x-0 bottom-4 pointer-events-none overflow-hidden flex items-center">
         <div
           ref={watermarkRef}
-          aria-hidden
-          className="whitespace-nowrap font-sans font-black uppercase text-[18vw] md:text-[15vw] leading-none select-none will-change-transform text-foreground/5 dark:text-foreground/5 tracking-tighter"
+          aria-hidden="true"
+          className="whitespace-nowrap font-sans font-bold uppercase text-[15vw] md:text-[13vw] leading-none select-none will-change-transform text-foreground/[0.03] tracking-tight"
         >
-          <span className="inline-block px-4">{t("contact.watermark")}</span>
-          <span className="inline-block px-4 text-transparent [-webkit-text-stroke:1.5px_rgba(var(--primary-rgb),0.15)]">
-            {t("contact.watermark")}
-          </span>
+          <span className="inline-block px-6">{t("contact.watermark")}</span>
+          <span className="inline-block px-6">{t("contact.watermark")}</span>
         </div>
       </div>
 
-      {/* Main Container */}
-      <div className="relative max-w-7xl w-full mx-auto px-5 sm:px-8 md:px-12 space-y-6 sm:space-y-8 md:space-y-10 z-10">
-        {/* Top: Title & Info */}
-        <div className="space-y-3.5 text-left">
-          {/* Section Category Tag */}
-          <div className="contact-reveal-item flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-primary font-mono text-xs md:text-sm font-bold tracking-[0.35em] uppercase">
-              {t("contact.tag", "LIÊN HỆ")}
-            </span>
-          </div>
+      {/* Main 2-Column Editorial Container */}
+      <div className="relative max-w-7xl w-full mx-auto px-5 sm:px-8 md:px-12 z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left Column: Direct Contact Details */}
+          <div className="lg:col-span-5 space-y-6 text-left">
+            <h2 className="contact-reveal-item text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
+              {t("contact.title")}
+            </h2>
 
-          <span className="contact-reveal-item text-foreground/50 font-mono text-xs md:text-sm tracking-[0.25em] uppercase block">
-            {t("contact.subtitle")}
-          </span>
+            <p className="contact-reveal-item max-w-[44ch] text-foreground/95 text-xl sm:text-2xl leading-relaxed">
+              {t("contact.subtitle")}
+            </p>
 
-          <h2 className="contact-reveal-item text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-black text-foreground uppercase tracking-tight leading-[1.08]">
-            {t("contact.title")}
-          </h2>
+            <p className="contact-reveal-item max-w-[46ch] text-muted-foreground text-lg sm:text-xl leading-relaxed">
+              {t("contact.description")}
+            </p>
 
-          <p className="contact-reveal-item max-w-2xl text-foreground/70 text-sm md:text-base font-mono leading-relaxed">
-            {t("contact.description")}
-          </p>
-
-          {/* Direct Email Address with Copy Trigger */}
-          <div className="contact-reveal-item pt-1 space-y-1.5">
-            <span className="text-[10px] font-mono text-primary/60 uppercase tracking-[0.2em] block">
-              {t("contact.direct_email")}
-            </span>
-            <div
-              className="flex items-center gap-3.5 group/email cursor-pointer w-fit"
-              onClick={() => {
-                navigator.clipboard.writeText("phattranduy00@gmail.com");
-                import("react-toastify").then(({ toast }) => {
-                  toast.success(t("contact.alerts.copied", "Email copied to clipboard!"));
-                });
-              }}
-            >
-              <div className="w-8 h-px bg-primary/40 group-hover/email:w-12 transition-all duration-500"></div>
-              <div className="flex flex-col">
-                <span className="text-primary font-mono text-sm md:text-base lg:text-lg tracking-wider hover:text-white transition-colors duration-300 font-semibold">
+            {/* Copyable Direct Email */}
+            <div className="contact-reveal-item pt-2 space-y-2.5">
+              <span className="text-base font-mono text-muted-foreground block">
+                {t("contact.direct_email")}
+              </span>
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="group inline-flex items-center gap-3.5 min-h-13 px-5 py-3.5 rounded-xl bg-card border border-border hover:border-primary/60 transition-colors cursor-pointer text-left"
+              >
+                <span className="font-mono text-lg sm:text-xl text-foreground group-hover:text-primary transition-colors font-medium">
                   phattranduy00@gmail.com
                 </span>
-                <span className="text-[9px] font-mono text-foreground/30 uppercase tracking-widest mt-0.5 opacity-70 group-hover/email:opacity-100 transition-opacity">
-                  (click to copy address)
+                <span className="w-9 h-9 rounded-lg bg-muted flex items-center justify-center text-muted-foreground group-hover:text-primary transition-colors shrink-0">
+                  {copied ? (
+                    <FiCheck className="w-4.5 h-4.5 text-primary" />
+                  ) : (
+                    <FiCopy className="w-4.5 h-4.5" />
+                  )}
                 </span>
-              </div>
+              </button>
+            </div>
+
+            {/* Location */}
+            <div className="contact-reveal-item flex items-center gap-2.5 text-lg text-muted-foreground pt-1">
+              <FiMapPin className="w-4 h-4 text-primary shrink-0" />
+              <span>{t("contact.values.location")}</span>
+            </div>
+
+            {/* Social Profiles */}
+            <div className="contact-reveal-item flex items-center gap-2.5 pt-2">
+              {profileData.socialLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={link.name}
+                  aria-label={link.name}
+                  className="w-11 h-11 rounded-full bg-card border border-border hover:border-primary/60 flex items-center justify-center text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link.icon}
+                </a>
+              ))}
             </div>
           </div>
-        </div>
 
-        {/* Bottom: Contact Form Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: true, margin: "-60px" }}
-          className="relative bg-primary text-primary-foreground rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-8 md:p-12 overflow-hidden w-full"
-        >
-          {/* Subtle decorative inner corner glow */}
-          <div className="absolute top-0 right-0 w-48 h-48 bg-white/10 rounded-full blur-3xl pointer-events-none" />
-          <ContactForm />
-        </motion.div>
+          {/* Right Column: Clean Architectural Form Panel */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: "-40px" }}
+            className="lg:col-span-7 bg-card text-card-foreground border border-border rounded-2xl p-6 sm:p-8 md:p-10 w-full"
+          >
+            <ContactForm />
+          </motion.div>
+        </div>
       </div>
     </section>
   );
