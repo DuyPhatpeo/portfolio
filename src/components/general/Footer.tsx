@@ -10,6 +10,10 @@ const Footer = () => {
   const year = new Date().getFullYear();
   const footerRef = useRef<HTMLElement>(null);
 
+  const githubHref =
+    profileData.socialLinks.find((l) => l.name.toLowerCase() === "github")
+      ?.href || "https://github.com/DuyPhatpeo";
+
   const handleNavigate = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
     if (id === "home") navigate("/");
@@ -22,7 +26,7 @@ const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className="relative z-20 overflow-hidden border-t border-border bg-transparent"
+      className="relative z-20 overflow-hidden border-t border-border bg-card/90 backdrop-blur-sm"
     >
       <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-14 md:pt-20 pb-8 md:pb-12">
         {/* Editorial Oversized Brand Wordmark */}
@@ -56,7 +60,16 @@ const Footer = () => {
               {t("footer.contact_label")}
             </button>
             <p className="text-sm sm:text-base text-muted-foreground mt-2">
-              © {year} {profileData.name}. {t("footer.rights")}
+              © {year} {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
+              <a
+                href={githubHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground font-medium underline underline-offset-4 decoration-border hover:decoration-primary hover:text-primary transition-colors"
+              >
+                Dino Péo (Trần Duy Phát)
+              </a>
+              .
             </p>
           </div>
 
