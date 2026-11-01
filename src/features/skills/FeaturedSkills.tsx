@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { TECH, TECH_ICONS } from "@constants/technologies";
+import { TECH } from "@constants/technologies";
+import { skills } from "@constants/skillsData";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
 
@@ -8,22 +9,17 @@ const MAIN_SKILLS = [
   TECH.REACT,
   TECH.TS,
   TECH.NEXT_JS,
+  TECH.ASTRO,
   TECH.TAILWIND,
   TECH.NODE_JS,
   TECH.LARAVEL,
+  TECH.POSTGRESQL,
+  TECH.FIREBASE,
+  TECH.VITE,
 ];
 
 // Triple the array for seamless infinite scrolling
 const SCROLLING_SKILLS = [...MAIN_SKILLS, ...MAIN_SKILLS, ...MAIN_SKILLS];
-
-const SKILL_COLORS: Record<string, string> = {
-  [TECH.REACT]: "hover:text-[#61DAFB]",
-  [TECH.TS]: "hover:text-[#3178C6]",
-  [TECH.NEXT_JS]: "hover:text-foreground",
-  [TECH.TAILWIND]: "hover:text-[#06B6D4]",
-  [TECH.NODE_JS]: "hover:text-[#339933]",
-  [TECH.LARAVEL]: "hover:text-[#FF2D20]",
-};
 
 const FeaturedSkills: React.FC = () => {
   const { t } = useTranslation();
@@ -48,7 +44,7 @@ const FeaturedSkills: React.FC = () => {
       </div>
 
       <div
-        className="relative w-full overflow-hidden flex items-center py-8 bg-card/50 border-y border-border"
+        className="relative w-full overflow-hidden flex items-center py-8 bg-card/55 border-y border-border"
         style={{
           maskImage:
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
@@ -57,30 +53,37 @@ const FeaturedSkills: React.FC = () => {
         }}
       >
         <motion.div
-          className="flex w-max gap-12 md:gap-20 items-center"
+          className="flex w-max gap-12 md:gap-16 items-center"
           initial={{ x: "0%" }}
           animate={{ x: inView && !reduceMotion ? "-33.333333%" : "0%" }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 28 }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
         >
-          {SCROLLING_SKILLS.map((skill, index) => {
-            const Icon = TECH_ICONS[skill];
-            const hoverColorClass =
-              SKILL_COLORS[skill] || "hover:text-primary";
+          {SCROLLING_SKILLS.map((skillName, index) => {
+            const skillItem = skills.find((s) => s.name === skillName);
 
             return (
               <div
-                key={`${skill}-${index}`}
-                className={`flex items-center gap-3.5 text-muted-foreground transition-colors duration-300 cursor-default ${hoverColorClass}`}
+                key={`${skillName}-${index}`}
+                className="group flex items-center gap-3.5 text-foreground/85 hover:text-foreground transition-colors duration-300 cursor-default"
               >
-                {Icon && (
-                  <Icon
-                    aria-hidden="true"
-                    focusable="false"
-                    className="w-8 h-8 md:w-11 md:h-11"
-                  />
-                )}
+                <span className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0">
+                  {skillItem?.logo ? (
+                    <img
+                      src={skillItem.logo}
+                      alt={skillName}
+                      loading="lazy"
+                      className={`w-full h-full object-contain ${
+                        skillItem.invertDark ? "dark:invert" : ""
+                      }`}
+                    />
+                  ) : (
+                    skillItem?.icon?.({
+                      className: "w-full h-full text-foreground",
+                    })
+                  )}
+                </span>
                 <span className="font-sans text-xl md:text-3xl font-semibold tracking-tight">
-                  {skill}
+                  {skillName}
                 </span>
               </div>
             );

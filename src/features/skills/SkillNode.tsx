@@ -31,7 +31,7 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skill, className = "" }) => {
           />
         ) : (
           skill.icon?.({
-            className: "w-full h-full text-primary",
+            className: "w-full h-full text-foreground",
             style: { color: undefined },
           })
         )}

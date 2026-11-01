@@ -30,7 +30,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             }`}
           />
         ) : (
-          skill.icon?.({ className: "w-full h-full p-2.5 text-primary" })
+          skill.icon?.({ className: "w-full h-full p-2.5 text-foreground" })
         ),
       };
     }

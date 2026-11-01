@@ -1,7 +1,18 @@
 import type { Skill } from "../types/data";
-import { FirebaseIcon } from "../components/ui/SkillIcons";
+import {
+  AstroIcon,
+  CssNewIcon,
+  DiscordJsIcon,
+  ExpoIcon,
+  FirebaseIcon,
+  FramerMotionIcon,
+  MongoDbIcon,
+  NativeWindIcon,
+  NextJsIcon,
+  NodeJsIcon,
+  NpmIcon,
+} from "../components/ui/SkillIcons";
 import { TECH } from "./technologies";
-import { SiExpo } from "react-icons/si";
 
 export const skills: Skill[] = [
   // ===== Frontend =====
@@ -13,7 +24,7 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.CSS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+    icon: CssNewIcon,
     url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
     category: "frontend",
   },
@@ -37,16 +48,20 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.NEXT_JS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-    invertDark: true,
+    icon: NextJsIcon,
     url: "https://nextjs.org/",
     category: "frontend",
   },
   {
+    name: TECH.ASTRO,
+    icon: AstroIcon,
+    url: "https://astro.build/",
+    category: "frontend",
+  },
+  {
     name: TECH.FRAMER_MOTION,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/framermotion/framermotion-original.svg",
-    invertDark: true,
-    url: "https://www.framer.com/motion/",
+    icon: FramerMotionIcon,
+    url: "https://motion.dev/",
     category: "frontend",
   },
   {
@@ -63,7 +78,7 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.NATIVEWIND,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+    icon: NativeWindIcon,
     url: "https://www.nativewind.dev/",
     category: "frontend",
   },
@@ -75,7 +90,7 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.EXPO,
-    icon: (props) => <SiExpo {...props} className="w-full h-full p-1.5 scale-125 text-foreground" />,
+    icon: ExpoIcon,
     url: "https://expo.dev/",
     category: "frontend",
   },
@@ -95,7 +110,7 @@ export const skills: Skill[] = [
   // ===== Backend =====
   {
     name: TECH.NODE_JS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+    icon: NodeJsIcon,
     url: "https://nodejs.org/",
     category: "backend",
   },
@@ -119,12 +134,18 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.DISCORD_JS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/discordjs/discordjs-original.svg",
+    icon: DiscordJsIcon,
     url: "https://discord.js.org/",
     category: "backend",
   },
 
   // ===== Database =====
+  {
+    name: TECH.POSTGRESQL,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+    url: "https://www.postgresql.org/",
+    category: "database",
+  },
   {
     name: TECH.MYSQL,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
@@ -133,7 +154,7 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.MONGODB,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+    icon: MongoDbIcon,
     url: "https://www.mongodb.com/",
     category: "database",
   },
@@ -154,12 +175,12 @@ export const skills: Skill[] = [
   {
     name: TECH.VITE,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
-    url: "https://vitejs.dev/",
+    url: "https://vite.dev/",
     category: "tools",
   },
   {
     name: TECH.NPM,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/npm/npm-original-wordmark.svg",
+    icon: NpmIcon,
     url: "https://www.npmjs.com/",
     category: "tools",
   },

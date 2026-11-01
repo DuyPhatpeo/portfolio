@@ -1,27 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import Particles from "@components/theme/Particles";
+import { skills } from "@constants/skillsData";
 
 interface LoadingProps {
   progress: number;
 }
-
-const TECH_LOGOS = [
-  { name: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" },
-  { name: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg" },
-  { name: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
-  { name: "TailwindCSS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-  { name: "NextJS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
-  { name: "NodeJS", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" },
-  { name: "Vite", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" },
-  { name: "Figma", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" },
-  { name: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" },
-  { name: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
-  { name: "CSS3", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" },
-  { name: "Laravel", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" },
-  { name: "MySQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" },
-  { name: "Firebase", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg" },
-];
 
 const Loading: React.FC<LoadingProps> = ({ progress }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -30,10 +14,10 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
     setIsMounted(true);
   }, []);
 
-  // Generate deterministic falling tech logo particles
+  // Generate deterministic falling tech logo particles directly from unified skillsData (all latest official logos)
   const fallingParticles = useMemo(() => {
     return Array.from({ length: 18 }).map((_, i) => {
-      const tech = TECH_LOGOS[i % TECH_LOGOS.length];
+      const skill = skills[i % skills.length];
       const left = 4 + ((i * 5.4 + (i % 3) * 2.3) % 92);
       const size = 32 + (i % 4) * 6; // 32px to 50px
       const duration = 4.5 + (i % 5) * 1.2; // 4.5s to 9.3s
@@ -44,7 +28,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
 
       return {
         id: i,
-        ...tech,
+        skill,
         left,
         size,
         duration,
@@ -70,7 +54,7 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
       {/* 1. Theme Starfield Particles Background */}
       <Particles quantity={70} zIndex={1} />
 
-      {/* 2. Falling Tech Logos Stream (Border-free, pure floating icons) */}
+      {/* 2. Falling Official Tech Logos Stream */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {fallingParticles.map((particle) => (
           <motion.div
@@ -94,12 +78,21 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
               ease: "linear",
             }}
           >
-            <img
-              src={particle.src}
-              alt={particle.name}
-              className="w-full h-full object-contain filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]"
-              loading="eager"
-            />
+            {particle.skill.logo ? (
+              <img
+                src={particle.skill.logo}
+                alt={particle.skill.name}
+                className={`w-full h-full object-contain filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)] ${
+                  particle.skill.invertDark ? "dark:invert" : ""
+                }`}
+                loading="eager"
+              />
+            ) : (
+              particle.skill.icon?.({
+                className:
+                  "w-full h-full text-foreground filter drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]",
+              })
+            )}
           </motion.div>
         ))}
       </div>
@@ -216,15 +209,13 @@ const Loading: React.FC<LoadingProps> = ({ progress }) => {
 
       {/* 4. Bottom Right: Monospace Percentage Counter */}
       <div className="absolute bottom-8 right-8 md:bottom-12 md:right-12 z-20 flex items-baseline">
-        <span className="text-4xl md:text-6xl font-mono font-light tracking-tighter text-foreground">
+        <span className="text-4xl md:text-6xl font-mono font-light tracking-tight text-foreground">
           {Math.round(progress).toString().padStart(2, "0")}
         </span>
         <span className="text-base md:text-xl font-mono text-primary ml-1 font-bold">
           %
         </span>
       </div>
-
-
     </div>
   );
 };
