@@ -33,20 +33,77 @@ export default function ProjectSection({
   const trackRef = useRef<HTMLDivElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const scrollTriggerInstance = useRef<ScrollTrigger | null>(null);
+  const lastIndexRef = useRef(0);
 
-  // GSAP Horizontal Scroll Gallery for Other Projects (only in "default" mode)
-  useGSAP(
+  // Scoped GSAP batch reveals & horizontal gallery (following greensock/gsap-skills)
+  const { contextSafe } = useGSAP(
     () => {
+      const mm = gsap.matchMedia();
+
+      // Staggered viewport entry batches (skipped when reduced motion is enabled)
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (mode === "all-list") {
+          const cards = gsap.utils.toArray<HTMLElement>("[data-project-card]");
+          if (cards.length > 0) {
+            gsap.set(cards, { autoAlpha: 0, y: 24 });
+            ScrollTrigger.batch(cards, {
+              interval: 0.08,
+              batchMax: 4,
+              start: "clamp(top 90%)",
+              once: true,
+              onEnter: (batch) => {
+                gsap.to(batch, {
+                  autoAlpha: 1,
+                  y: 0,
+                  duration: 0.55,
+                  stagger: 0.07,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                  clearProps: "transform",
+                });
+              },
+            });
+          }
+        } else {
+          const rows = gsap.utils.toArray<HTMLElement>("[data-featured-row]");
+          if (rows.length > 0) {
+            gsap.set(rows, { autoAlpha: 0, y: 32 });
+            ScrollTrigger.batch(rows, {
+              interval: 0.1,
+              batchMax: 2,
+              start: "clamp(top 88%)",
+              once: true,
+              onEnter: (batch) => {
+                gsap.to(batch, {
+                  autoAlpha: 1,
+                  y: 0,
+                  duration: 0.65,
+                  stagger: 0.1,
+                  ease: "power3.out",
+                  overwrite: "auto",
+                  clearProps: "transform",
+                });
+              },
+            });
+          }
+        }
+      });
+
       if (
         mode !== "default" ||
         !otherPinRef.current ||
         !trackRef.current ||
         !pinContainerRef.current ||
         otherProjects.length === 0
-      )
+      ) {
         return;
+      }
 
       const track = trackRef.current;
+      const setProgressScale = progressBarRef.current
+        ? gsap.quickSetter(progressBarRef.current, "scaleX")
+        : null;
+      setProgressScale?.(0);
 
       const getScrollAmount = () => {
         const trackWidth = track.scrollWidth;
@@ -71,32 +128,34 @@ export default function ProjectSection({
           invalidateOnRefresh: true,
           anticipatePin: 1,
           onUpdate: (self) => {
-            if (progressBarRef.current) {
-              progressBarRef.current.style.width = `${Math.min(100, Math.max(0, self.progress * 100))}%`;
-            }
-            const activeIdx = Math.min(
+            setProgressScale?.(gsap.utils.clamp(0, 1, self.progress));
+            const activeIdx = gsap.utils.clamp(
+              0,
               otherProjects.length - 1,
-              Math.max(0, Math.round(self.progress * (otherProjects.length - 1)))
+              Math.round(self.progress * (otherProjects.length - 1))
             );
-            setCurrentOtherIndex(activeIdx);
+            if (activeIdx !== lastIndexRef.current) {
+              lastIndexRef.current = activeIdx;
+              setCurrentOtherIndex(activeIdx);
+            }
           },
         },
       });
 
       scrollTriggerInstance.current = tween.scrollTrigger ?? null;
-
-      return () => {
-        tween.kill();
-      };
     },
-    { scope: sectionRef, dependencies: [otherProjects.length, mode] }
+    {
+      scope: sectionRef,
+      dependencies: [featuredProjects.length, otherProjects.length, mode],
+      revertOnUpdate: true,
+    }
   );
 
-  const handleStepNavigate = (direction: "prev" | "next") => {
+  const handleStepNavigate = contextSafe((direction: "prev" | "next") => {
     const trigger =
       scrollTriggerInstance.current ||
       ScrollTrigger.getById("other-horizontal-scroll");
-    if (!trigger) return;
+    if (!trigger || otherProjects.length <= 1) return;
 
     const nextIndex =
       direction === "next"
@@ -107,11 +166,18 @@ export default function ProjectSection({
     const targetScroll =
       trigger.start + progressRatio * (trigger.end - trigger.start);
 
-    window.scrollTo({
-      top: targetScroll,
-      behavior: "smooth",
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.scrollTo({ top: targetScroll });
+      return;
+    }
+
+    gsap.to(window, {
+      scrollTo: { y: targetScroll, autoKill: true },
+      duration: 0.65,
+      ease: "power2.out",
+      overwrite: "auto",
     });
-  };
+  });
 
   return (
     <section
@@ -123,10 +189,10 @@ export default function ProjectSection({
     >
       {/* Featured / All Projects Section */}
       <div
-        className={`max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 ${
+        className={`max-w-7xl mx-auto relative z-10 ${
           mode === "all-list"
-            ? "pt-8 pb-20 md:pt-12 md:pb-28"
-            : "py-20 md:py-28"
+            ? "px-3.5 sm:px-6 md:px-10 lg:px-12 pt-8 pb-20 md:pt-12 md:pb-28"
+            : "px-5 sm:px-8 md:px-12 py-20 md:py-28"
         }`}
       >
         {/* Editorial Split Section Header (omitted in all-list mode where PageHero owns the heading) */}
@@ -141,9 +207,9 @@ export default function ProjectSection({
           </div>
         )}
 
-        {/* Projects Rendering */}
+        {/* Projects Rendering: 2 cols mobile / 3 cols tablet / 4 cols desktop on /projects */}
         {mode === "all-list" ? (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
             {featuredProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -237,8 +303,7 @@ export default function ProjectSection({
                 <div className="w-full h-1 rounded-full bg-muted overflow-hidden relative">
                   <div
                     ref={progressBarRef}
-                    className="h-full bg-primary transition-all duration-75"
-                    style={{ width: "0%" }}
+                    className="h-full w-full bg-primary origin-left scale-x-0 will-change-transform"
                   />
                 </div>
 
@@ -265,9 +330,10 @@ export default function ProjectSection({
           fallback={
             <div
               role="status"
-              className="fixed inset-0 z-50 grid place-items-center bg-background/90 text-sm text-muted-foreground"
+              aria-label="Loading project details"
+              className="fixed inset-0 z-[220] grid place-items-center bg-black/70 backdrop-blur-sm"
             >
-              Đang tải…
+              <div className="w-9 h-9 rounded-full border-2 border-border border-t-primary animate-spin" />
             </div>
           }
         >

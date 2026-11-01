@@ -1,5 +1,4 @@
 import ProjectPreview from "@components/ui/ProjectPreview";
-import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { Project } from "@/types/data";
@@ -15,35 +14,16 @@ export default function FeaturedProjectRow({
   index,
   onSelect,
 }: FeaturedProjectRowProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const rowRef = useRef<HTMLDivElement>(null);
   const { t } = useTranslation();
   const reverse = index % 2 === 1;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.12 }
-    );
-
-    if (rowRef.current) observer.observe(rowRef.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <article
-      ref={rowRef}
+      data-featured-row
       onClick={() => onSelect(project)}
       className={`group cursor-pointer flex flex-col ${
         reverse ? "lg:flex-row-reverse" : "lg:flex-row"
-      } items-center gap-7 lg:gap-12 transition-all duration-500 ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      }`}
+      } items-center gap-7 lg:gap-12 will-change-transform`}
     >
       {/* Preview Frame (no image hover scale, preserves smooth vertical scroll preview) */}
       <div className="relative w-full lg:w-7/12 aspect-[16/10] overflow-hidden rounded-2xl bg-card border border-border group-hover:border-primary/50 transition-colors duration-300">
