@@ -2,6 +2,7 @@ import ProjectPreview from "@components/ui/ProjectPreview";
 import { useTranslation } from "react-i18next";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { Project } from "@/types/data";
+import { TECH_ICONS } from "@constants/technologies";
 
 interface FeaturedProjectRowProps {
   project: Project;
@@ -33,17 +34,10 @@ export default function FeaturedProjectRow({
           alt={t(`projects.items.${project.id}.title`)}
           className="w-full h-full object-cover"
         />
-        <span className="absolute top-3.5 left-3.5 bg-background/90 backdrop-blur-sm border border-border text-foreground font-mono text-sm font-medium px-4 py-1.5 rounded-full z-10">
-          {t("projects.badges.featured")}
-        </span>
       </div>
 
       {/* Editorial Details */}
       <div className="w-full lg:w-5/12 flex flex-col items-start text-left">
-        <span className="font-mono text-base text-primary mb-2.5 select-none">
-          0{index + 1}
-        </span>
-
         <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-foreground tracking-tight group-hover:text-primary transition-colors duration-200 mb-4 leading-snug">
           {t(`projects.items.${project.id}.title`)}
         </h3>
@@ -52,16 +46,22 @@ export default function FeaturedProjectRow({
           {t(`projects.items.${project.id}.description`)}
         </p>
 
-        {/* Tech Tags */}
+        {/* Tech Tags with Icons */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.slice(0, 5).map((tag) => (
-            <span
-              key={tag}
-              className="px-3.5 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-sm sm:text-base"
-            >
-              {tag}
-            </span>
-          ))}
+          {project.tags.slice(0, 5).map((tag) => {
+            const Icon = TECH_ICONS[tag];
+            return (
+              <span
+                key={tag}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-sm sm:text-base border border-border/40"
+              >
+                {Icon && (
+                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-foreground/80" />
+                )}
+                <span>{tag}</span>
+              </span>
+            );
+          })}
         </div>
 
         <span className="inline-flex items-center gap-2 text-base sm:text-lg font-medium text-foreground group-hover:text-primary transition-colors">

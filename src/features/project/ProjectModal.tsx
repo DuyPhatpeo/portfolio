@@ -5,8 +5,6 @@ import { FiGithub, FiMonitor, FiX, FiExternalLink } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import { TECH_ICONS } from "@constants/technologies";
-import { skills } from "@constants/skillsData";
-import Dock, { type DockItemData } from "@components/ui/Dock/Dock";
 
 interface ProjectModalProps {
   project: Project;
@@ -15,35 +13,6 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const { t } = useTranslation();
-
-  const techItems: DockItemData[] = project.tags.map((tag) => {
-    const skill = skills.find((s) => s.name === tag);
-    if (skill) {
-      return {
-        label: tag,
-        icon: skill.logo ? (
-          <img
-            src={skill.logo}
-            alt={tag}
-            className={`w-full h-full p-2.5 object-contain ${
-              skill.invertDark ? "dark:invert" : ""
-            }`}
-          />
-        ) : (
-          skill.icon?.({ className: "w-full h-full p-2.5 text-foreground" })
-        ),
-      };
-    }
-    const Icon = TECH_ICONS[tag];
-    return {
-      label: tag,
-      icon: Icon ? (
-        <Icon className="w-full h-full p-2.5 text-primary" />
-      ) : (
-        <span className="text-xs">{tag[0]}</span>
-      ),
-    };
-  });
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -75,15 +44,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         className="relative w-full max-w-4xl lg:max-w-5xl max-h-[88vh] bg-popover/95 backdrop-blur-xl border border-border shadow-2xl flex flex-col rounded-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="relative z-50 w-full flex items-center justify-between px-5 sm:px-7 py-4 bg-background/60 border-b border-border shrink-0">
-          <div className="flex-1 min-w-0 pr-4">
-            <h3
-              id="project-modal-title"
-              className="text-xl sm:text-2xl md:text-3xl font-sans font-bold text-foreground tracking-tight truncate"
-            >
-              {t(`projects.items.${project.id}.title`)}
-            </h3>
+        {/* Modal Header with macOS styled window controls */}
+        <div className="relative z-50 w-full flex items-center justify-between px-5 sm:px-7 py-4 bg-background/80 backdrop-blur-md border-b border-border shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5" aria-hidden="true">
+              <span className="w-3 h-3 rounded-full bg-red-500/80 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-yellow-500/80 inline-block" />
+              <span className="w-3 h-3 rounded-full bg-green-500/80 inline-block" />
+            </div>
+            <span className="hidden sm:inline-block font-mono text-xs text-muted-foreground border-l border-border pl-3">
+              ~/project/{project.id}
+            </span>
           </div>
 
           <div className="flex items-center gap-2.5 shrink-0">
@@ -92,62 +63,110 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 h-10 px-4 bg-primary/12 hover:bg-primary text-primary hover:text-primary-foreground rounded-lg font-mono text-xs font-medium transition-colors duration-200"
+                className="flex items-center gap-2 h-9 px-3.5 bg-primary text-primary-foreground hover:opacity-90 rounded-lg font-mono text-xs font-medium transition-opacity duration-200"
               >
-                <span className="hidden sm:inline">
-                  {t("common.links.live", "Live Demo")}
-                </span>
+                <span>{t("common.links.live", "Live Demo")}</span>
                 <FiExternalLink className="text-sm" />
+              </a>
+            )}
+
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 h-9 px-3.5 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-lg font-mono text-xs font-medium transition-colors duration-200"
+              >
+                <FiGithub className="text-sm" />
+                <span className="hidden sm:inline">{t("common.links.source", "GitHub")}</span>
               </a>
             )}
 
             <button
               onClick={onClose}
               aria-label="Close modal"
-              className="group w-10 h-10 flex items-center justify-center rounded-lg bg-muted hover:bg-destructive/15 border border-border hover:border-destructive/40 text-muted-foreground hover:text-destructive transition-colors duration-200 cursor-pointer"
+              className="group w-9 h-9 flex items-center justify-center rounded-lg bg-muted hover:bg-destructive/15 border border-border hover:border-destructive/40 text-muted-foreground hover:text-destructive transition-colors duration-200 cursor-pointer"
             >
-              <FiX className="w-5 h-5 pointer-events-none" />
+              <FiX className="w-4 h-4 pointer-events-none" />
             </button>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div className="flex flex-col flex-1 overflow-y-auto p-6 sm:p-8 md:p-10">
-          <div className="max-w-4xl mx-auto w-full flex flex-col">
-            {/* 1. Tech Stack */}
-            <div className="mb-8 shrink-0">
-              <span className="text-muted-foreground font-mono text-base block mb-3">
-                {t("projects.modal.technologies", "Technologies Used")}
-              </span>
-              <div className="-ml-2 max-w-full overflow-x-auto pb-2">
-                <Dock items={techItems} baseItemSize={52} magnification={68} />
+        <div className="flex flex-col flex-1 overflow-y-auto p-5 sm:p-7 md:p-9 space-y-8">
+          <div className="max-w-4xl mx-auto w-full flex flex-col gap-8">
+            {/* 1. Browser Mockup Window with Preview Image */}
+            <div className="w-full rounded-2xl overflow-hidden border border-border bg-card shadow-xl">
+              <div className="h-9 bg-muted/60 border-b border-border/80 px-4 flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                <div className="w-2.5 h-2.5 rounded-full bg-border" />
+                <div className="flex-1 max-w-sm mx-auto h-5 bg-background/60 rounded-md flex items-center justify-center px-3 text-[11px] font-mono text-muted-foreground truncate">
+                  {project.demo || "https://portfolio-project.local"}
+                </div>
               </div>
+              <img
+                src={project.image}
+                alt={t(`projects.items.${project.id}.title`)}
+                className="w-full h-auto object-cover max-h-[500px]"
+              />
             </div>
 
-            {/* 2. Description */}
-            <div className="mb-8 shrink-0">
-              {project.featured && (
-                <span className="inline-block px-4 py-1.5 mb-4 text-sm font-mono font-medium bg-primary/12 text-primary border border-primary/25 rounded-full">
-                  {t("projects.badges.featured", "Featured Project")}
-                </span>
-              )}
+            {/* 2. Project Title & Overview */}
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <h3
+                  id="project-modal-title"
+                  className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-foreground tracking-tight"
+                >
+                  {t(`projects.items.${project.id}.title`)}
+                </h3>
 
-              <p className="text-foreground/90 text-lg sm:text-xl leading-relaxed max-w-[60ch]">
+                {project.featured && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium bg-primary/10 text-primary border border-primary/25 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+                    {t("projects.badges.featured", "Dự án tiêu biểu")}
+                  </span>
+                )}
+              </div>
+
+              <p className="text-foreground/90 text-base sm:text-lg md:text-xl leading-relaxed">
                 {t(`projects.items.${project.id}.description`)}
               </p>
             </div>
 
-            {/* 3. Action Buttons */}
-            <div className="flex flex-wrap gap-4 mb-10">
+            {/* 3. Technology Badges with Icons */}
+            <div className="flex flex-col gap-3">
+              <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                {t("projects.modal.technologies", "Công nghệ sử dụng")}
+              </span>
+              <div className="flex flex-wrap gap-2.5">
+                {project.tags.map((tag) => {
+                  const Icon = TECH_ICONS[tag];
+                  return (
+                    <span
+                      key={tag}
+                      className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-muted text-foreground/90 font-mono text-xs sm:text-sm border border-border/70 hover:border-primary/50 transition-colors"
+                    >
+                      {Icon && <Icon className="w-4 h-4 text-primary shrink-0" />}
+                      <span>{tag}</span>
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* 4. Action Buttons */}
+            <div className="flex flex-wrap gap-4 pt-2 border-t border-border/60">
               {project.demo && (
                 <a
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 rounded-xl font-medium text-base sm:text-lg"
+                  className="inline-flex items-center justify-center gap-2.5 h-12 px-7 bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 rounded-xl font-medium text-base shadow-[0_4px_16px_rgba(var(--primary-rgb,45,212,191),0.25)]"
                 >
                   <FiMonitor className="text-lg" />
-                  <span>{t("common.links.live", "Live Demo")}</span>
+                  <span>{t("common.links.live", "Trải nghiệm trực tiếp")}</span>
                 </a>
               )}
               {project.github && (
@@ -155,21 +174,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 bg-muted hover:bg-muted/80 border border-border rounded-xl font-medium text-base sm:text-lg text-foreground transition-colors duration-200"
+                  className="inline-flex items-center justify-center gap-2.5 h-12 px-7 bg-card hover:bg-muted border border-border hover:border-primary/50 rounded-xl font-medium text-base text-foreground transition-colors duration-200"
                 >
                   <FiGithub className="text-lg" />
-                  <span>{t("common.links.source", "Source Code")}</span>
+                  <span>{t("common.links.source", "Xem mã nguồn")}</span>
                 </a>
               )}
-            </div>
-
-            {/* 4. Main Preview Image (no hover zoom transform) */}
-            <div className="w-full rounded-xl overflow-hidden border border-border bg-muted/30 mb-8">
-              <img
-                src={project.image}
-                alt={t(`projects.items.${project.id}.title`)}
-                className="w-full h-auto object-cover"
-              />
             </div>
 
             {/* 5. Optional Gallery */}

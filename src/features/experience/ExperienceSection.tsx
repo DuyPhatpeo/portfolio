@@ -28,18 +28,22 @@ const ExperienceSection: React.FC = () => {
       className="pt-20 md:pt-28 pb-20 md:pb-32 relative overflow-hidden bg-transparent border-t border-border/60"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
-        {/* Editorial Split Section Header (no uppercase eyebrow stacked above h2, no justified text) */}
+        {/* Modern Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="mb-10 sm:mb-14 flex flex-col md:flex-row md:items-end justify-between gap-4"
+          className="mb-12 sm:mb-16 flex flex-col items-start gap-3"
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span>{t("experience.eyebrow", "CAREER PATH")}</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("experience.title")}
           </h2>
-          <p className="max-w-[50ch] text-muted-foreground text-lg md:text-xl leading-relaxed text-left">
+          <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mt-1">
             {t("experience.description")}
           </p>
         </motion.div>

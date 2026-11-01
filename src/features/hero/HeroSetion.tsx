@@ -16,12 +16,58 @@ export default function HeroSection() {
       // Entrance timeline for all screens when reduced motion is not requested
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({
-          defaults: { duration: 0.75, ease: "power3.out" },
+          defaults: { duration: 0.8, ease: "power3.out" },
         });
 
-        tl.from("[data-hero-heading]", { autoAlpha: 0, y: 24 })
-          .from("[data-hero-tagline]", { autoAlpha: 0, y: 16 }, "<0.14")
-          .from("[data-hero-avatar]", { autoAlpha: 0, y: 22 }, "<0.08");
+        tl.from("[data-hero-word]", {
+          autoAlpha: 0,
+          y: 32,
+          stagger: 0.12,
+          duration: 0.85,
+        })
+          .from(
+            "[data-hero-pill]",
+            {
+              scaleX: 0,
+              transformOrigin: "left center",
+              duration: 0.55,
+              ease: "power2.out",
+            },
+            "<0.2"
+          )
+          .from("[data-hero-tagline]", { autoAlpha: 0, x: -18 }, "<0.12")
+          .from(
+            "[data-hero-avatar]",
+            { autoAlpha: 0, scale: 0.94, y: 18, duration: 0.85 },
+            "<0.1"
+          );
+
+        // Continuous gentle floating effect for 3D character
+        gsap.to("[data-hero-portrait]", {
+          y: -10,
+          duration: 3,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+
+        // Continuous smooth rotation for celestial orbit ring
+        gsap.to("[data-hero-orbit]", {
+          rotation: 360,
+          duration: 28,
+          repeat: -1,
+          ease: "none",
+          transformOrigin: "center center",
+        });
+
+        // Subtle ambient breathing for planetary disc
+        gsap.to("[data-hero-disc]", {
+          scale: 1.04,
+          duration: 3.8,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
       });
 
       // Desktop scroll-linked parallax scrub (transforms only, clamped bounds)
@@ -90,12 +136,18 @@ export default function HeroSection() {
               )}
             </span>
             <span
-              className="block relative isolate w-max before:content-[''] before:absolute before:-z-1 before:top-[4%] before:left-[-3%] before:w-[106%] before:h-[55%] before:rounded-[100px] before:bg-primary/20 before:rotate-[-2.5deg]"
+              data-hero-word
+              className="block relative isolate w-max"
               aria-hidden="true"
             >
+              <span
+                data-hero-pill
+                className="absolute -z-1 top-[4%] left-[-3%] w-[106%] h-[55%] rounded-[100px] bg-primary/25 -rotate-[2.5deg] shadow-[0_0_24px_rgba(var(--primary-rgb,45,212,191),0.25)] will-change-transform"
+              />
               PORT
             </span>
             <span
+              data-hero-word
               className="block relative isolate mt-[8px] ml-[clamp(32px,5vw,80px)] max-[760px]:mt-[6px]"
               aria-hidden="true"
             >
@@ -107,9 +159,9 @@ export default function HeroSection() {
             data-hero-tagline
             className="mt-7 sm:mt-9 font-mono text-base sm:text-xl md:text-2xl text-foreground/85 flex items-center gap-3.5"
           >
-            <span className="w-8 h-0.5 bg-primary/80 inline-block" aria-hidden="true" />
+            <span className="w-8 h-0.5 bg-primary/80 inline-block shadow-[0_0_8px_rgba(var(--primary-rgb,45,212,191),0.6)]" aria-hidden="true" />
             <span>
-              {t("hero.tagline", "Trần Duy Phát · Frontend & Full-Stack Developer")}
+              {t("hero.tagline", "Trần Duy Phát")}
             </span>
           </p>
         </div>

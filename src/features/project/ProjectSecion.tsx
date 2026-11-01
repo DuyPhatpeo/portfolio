@@ -45,24 +45,19 @@ export default function ProjectSection({
         if (mode === "all-list") {
           const cards = gsap.utils.toArray<HTMLElement>("[data-project-card]");
           if (cards.length > 0) {
-            gsap.set(cards, { autoAlpha: 0, y: 24 });
-            ScrollTrigger.batch(cards, {
-              interval: 0.08,
-              batchMax: 4,
-              start: "clamp(top 90%)",
-              once: true,
-              onEnter: (batch) => {
-                gsap.to(batch, {
-                  autoAlpha: 1,
-                  y: 0,
-                  duration: 0.55,
-                  stagger: 0.07,
-                  ease: "power3.out",
-                  overwrite: "auto",
-                  clearProps: "transform",
-                });
-              },
-            });
+            gsap.fromTo(
+              cards,
+              { autoAlpha: 0, y: 24 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.55,
+                stagger: 0.05,
+                ease: "power3.out",
+                delay: 0.08,
+                clearProps: "transform",
+              }
+            );
           }
         } else {
           const rows = gsap.utils.toArray<HTMLElement>("[data-featured-row]");
@@ -195,13 +190,17 @@ export default function ProjectSection({
             : "px-5 sm:px-8 md:px-12 py-20 md:py-28"
         }`}
       >
-        {/* Editorial Split Section Header (omitted in all-list mode where PageHero owns the heading) */}
+        {/* Modern Section Header */}
         {mode !== "all-list" && (
-          <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div className="mb-12 md:mb-16 flex flex-col items-start gap-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span>{t("projects.eyebrow", "SELECTED WORKS")}</span>
+            </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
               {t("projects.title")}
             </h2>
-            <p className="max-w-[50ch] text-muted-foreground text-lg md:text-xl leading-relaxed text-left md:text-right">
+            <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mt-1">
               {t("projects.description")}
             </p>
           </div>

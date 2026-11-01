@@ -20,18 +20,22 @@ const GithubSection: React.FC = () => {
       className="py-20 md:py-28 relative overflow-hidden bg-card/55 border-t border-border/70"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
-        {/* Editorial Split Section Header (no uppercase kicker stacked above h2) */}
+        {/* Modern Section Header */}
         <motion.div
-          className="mb-10 sm:mb-12 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
+          className="mb-12 sm:mb-16 flex flex-col items-start gap-3"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span>{t("activity.eyebrow", "OPEN SOURCE & COMMITS")}</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("activity.title")}
           </h2>
-          <p className="max-w-[46ch] text-muted-foreground text-lg md:text-xl leading-relaxed md:text-right">
+          <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mt-1">
             {t("activity.description")}
           </p>
         </motion.div>

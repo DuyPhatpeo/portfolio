@@ -38,6 +38,7 @@
     "button": "Liên hệ trao đổi"
   },
   "hero": {
+    "tagline": "Trần Duy Phát",
     "seo_h1": "Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng sản phẩm Web và Mobile",
     "identity": "Dino Péo · Trần Duy Phát",
     "banner": {
@@ -108,6 +109,7 @@
     ]
   },
   "skills": {
+    "eyebrow": "Công Nghệ & Kỹ Năng",
     "subtitle": "Công cụ kỹ thuật",
     "title": "Hệ Công Nghệ Sử Dụng",
     "description": "Các ngôn ngữ, framework và công cụ phân nhóm theo tầng kiến trúc.",
@@ -121,6 +123,7 @@
     }
   },
   "experience": {
+    "eyebrow": "Kinh Nghiệm Thực Tế",
     "subtitle": "Kinh nghiệm",
     "title": "Quá Trình Làm Việc",
     "description": "Các cột mốc công tác thực tế và vai trò đảm nhiệm tại doanh nghiệp.",
@@ -153,6 +156,7 @@
     ]
   },
   "projects": {
+    "eyebrow": "Sản Phẩm Tiêu Biểu",
     "subtitle": "Dự án",
     "title": "Dự Án Tiêu Biểu",
     "description": "Những sản phẩm tiêu biểu thể hiện tư duy kiến trúc và trải nghiệm giao diện.",
@@ -213,6 +217,7 @@
     "view_all": "Xem tất cả dự án đã làm"
   },
   "activity": {
+    "eyebrow": "Hoạt Động Mã Nguồn",
     "subtitle": "Mã nguồn mở",
     "title": "Hoạt Động GitHub",
     "description": "Lịch sử đóng góp mã nguồn và tần suất commit trong 12 tháng qua.",

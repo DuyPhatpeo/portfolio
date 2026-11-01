@@ -19,7 +19,7 @@ interface SkillNodeProps {
 const SkillNode: React.FC<SkillNodeProps> = ({ skill, className = "" }) => {
   const content = (
     <>
-      <div className="relative w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shrink-0">
+      <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-muted/60 border border-border/60 flex items-center justify-center p-2 shrink-0 group-hover:scale-105 group-hover:border-primary/40 transition-all duration-200">
         {skill.logo ? (
           <img
             src={skill.logo}
@@ -31,19 +31,19 @@ const SkillNode: React.FC<SkillNodeProps> = ({ skill, className = "" }) => {
           />
         ) : (
           skill.icon?.({
-            className: "w-full h-full text-foreground",
+            className: "w-full h-full text-foreground group-hover:text-primary transition-colors",
             style: { color: undefined },
           })
         )}
       </div>
 
-      <span className="font-sans text-base sm:text-lg font-medium text-foreground truncate">
+      <span className="font-sans text-sm sm:text-base font-medium text-foreground group-hover:text-primary transition-colors truncate">
         {skill.name}
       </span>
     </>
   );
 
-  const sharedClasses = `group relative flex items-center gap-3.5 px-4.5 py-4 min-h-14 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors duration-200 ${className}`;
+  const sharedClasses = `group relative flex items-center gap-3 px-3.5 py-2.5 sm:px-4 sm:py-3 min-h-[52px] sm:min-h-[58px] rounded-xl bg-card/70 backdrop-blur-sm border border-border/70 hover:border-primary/50 hover:bg-card hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(var(--primary-rgb,45,212,191),0.08)] transition-all duration-200 cursor-default ${className}`;
 
   if (skill.url) {
     return (

@@ -37,11 +37,7 @@ export default function ContactSection() {
 
         const tl = gsap.timeline({
           defaults: { duration: 0.6, ease: "power3.out" },
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "clamp(top 82%)",
-            once: true,
-          },
+          delay: 0.08,
         });
 
         tl.from(".contact-reveal-item", {

@@ -53,6 +53,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   useEffect(() => {
     let ticking = false;
+    let lastDirection = "none";
+
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
@@ -62,13 +64,23 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
         if (currentScrollY <= 40) {
           setShowHeader(true);
-        } else if (currentScrollY > lastScrollY.current + 5) {
-          setShowHeader(false);
-        } else if (currentScrollY < lastScrollY.current - 5) {
-          setShowHeader(true);
+          lastScrollY.current = currentScrollY;
+        } else {
+          const diff = currentScrollY - lastScrollY.current;
+          const currentDirection = diff > 0 ? "down" : diff < 0 ? "up" : lastDirection;
+
+          if (currentDirection !== lastDirection) {
+            lastScrollY.current = currentScrollY;
+            lastDirection = currentDirection;
+          } else if (diff > 8) {
+            setShowHeader(false);
+            lastScrollY.current = currentScrollY;
+          } else if (diff < -6) {
+            setShowHeader(true);
+            lastScrollY.current = currentScrollY;
+          }
         }
 
-        lastScrollY.current = currentScrollY;
         ticking = false;
       });
     };

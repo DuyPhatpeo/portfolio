@@ -59,8 +59,8 @@ const Footer = () => {
             >
               {t("footer.contact_label")}
             </button>
-            <p className="text-sm sm:text-base text-muted-foreground mt-2">
-              © {year} {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
+            <p className="text-sm sm:text-base text-muted-foreground mt-2 whitespace-nowrap">
+              © {year}{" "}
               <a
                 href={githubHref}
                 target="_blank"
@@ -69,7 +69,6 @@ const Footer = () => {
               >
                 Dino Péo (Trần Duy Phát)
               </a>
-              .
             </p>
           </div>
 
