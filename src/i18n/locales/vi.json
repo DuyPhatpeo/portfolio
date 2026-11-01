@@ -32,13 +32,14 @@
     }
   },
   "cta": {
-    "title": "Sẵn sàng cho dự án tiếp theo?",
-    "description": "Dù bạn đang tìm kiếm kỹ sư đồng hành cùng đội ngũ hay cần xây dựng một sản phẩm web chỉn chu từ đầu, hãy kết nối để trao đổi cụ thể.",
+    "badge": "Sẵn sàng hợp tác & nhận dự án mới",
+    "title": "Sẵn sàng đồng hành cùng dự án tiếp theo",
+    "description": "Kết nối trực tiếp để trao đổi về cơ hội tuyển dụng kỹ sư phần mềm hoặc phát triển sản phẩm web theo yêu cầu.",
     "button": "Liên hệ trao đổi"
   },
   "hero": {
     "seo_h1": "Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng sản phẩm Web và Mobile",
-    "tagline": "Trần Duy Phát · Frontend & Full-Stack Developer",
+    "identity": "Dino Péo · Trần Duy Phát",
     "banner": {
       "greeting": "Xin chào, mình là",
       "description": "Mình xây dựng <strong>ứng dụng web tốc độ cao</strong> với trải nghiệm mượt mà trên mọi thiết bị.",
@@ -109,7 +110,7 @@
   "skills": {
     "subtitle": "Công cụ kỹ thuật",
     "title": "Hệ Công Nghệ Sử Dụng",
-    "description": "Các ngôn ngữ lập trình, framework và công cụ được phân nhóm theo từng tầng kiến trúc sản phẩm.",
+    "description": "Các ngôn ngữ, framework và công cụ phân nhóm theo tầng kiến trúc.",
     "core_stack": "Công nghệ chủ lực",
     "categories": {
       "frontend": "Giao diện & Frontend",
@@ -154,17 +155,18 @@
   "projects": {
     "subtitle": "Dự án",
     "title": "Dự Án Tiêu Biểu",
-    "description": "Ba sản phẩm nổi bật thể hiện rõ nhất cách mình tổ chức mã nguồn và hoàn thiện trải nghiệm người dùng.",
-    "page_intro": "Tổng hợp những sản phẩm web và ứng dụng mình đã tự tay lên ý tưởng, thiết kế giao diện và hoàn thiện chức năng qua từng giai đoạn học tập lẫn làm việc.",
+    "description": "Những sản phẩm tiêu biểu thể hiện tư duy kiến trúc và trải nghiệm giao diện.",
+    "page_intro": "Các sản phẩm web và ứng dụng di động do mình trực tiếp thiết kế và lập trình.",
     "other_title": "Các Dự Án Khác",
     "badges": {
       "featured": "Tiêu biểu",
       "project": "Dự án"
     },
     "modal": {
+      "overview": "Tổng quan dự án",
       "technologies": "Công nghệ sử dụng",
       "view_details": "Xem chi tiết dự án",
-      "screenshots": "Hình ảnh giao diện"
+      "screenshots": "Giao diện chi tiết"
     },
     "items": {
       "1": {
@@ -213,14 +215,14 @@
   "activity": {
     "subtitle": "Mã nguồn mở",
     "title": "Hoạt Động GitHub",
-    "description": "Lịch sử đóng góp mã nguồn và tần suất commit thực tế trong 12 tháng gần nhất.",
+    "description": "Lịch sử đóng góp mã nguồn và tần suất commit trong 12 tháng qua.",
     "view_github": "Mở trang GitHub (@DuyPhatpeo)",
     "top_contributions": "Kho mã nguồn hoạt động nổi bật:"
   },
   "contact": {
     "tag": "Liên hệ",
     "title": "Trao đổi trực tiếp cùng mình",
-    "subtitle": "Sẵn sàng cho cơ hội việc làm toàn thời gian (Onsite Nha Trang / Remote) và các dự án phát triển web theo yêu cầu.",
+    "subtitle": "Sẵn sàng cho cơ hội làm việc toàn thời gian và hợp tác phát triển dự án mới.",
     "description": "Bạn có thể sao chép địa chỉ email bên dưới hoặc điền biểu mẫu kế bên. Mình luôn kiểm tra hộp thư và phản hồi trong vòng 24 giờ.",
     "direct_email": "Email làm việc trực tiếp",
     "watermark": "LIÊN HỆ",

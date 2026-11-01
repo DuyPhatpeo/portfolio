@@ -1,9 +1,7 @@
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
 import { PageTransition } from "@components/ui/PageTransition";
 import Loading from "@components/general/Loading";
-import RouteLoader from "@components/general/RouteLoader";
 import PortfolioPage from "@pages/PortfolioPage";
 
 const loadAboutPage = () => import("@pages/AboutPage");
@@ -14,59 +12,67 @@ const AboutPage = lazy(loadAboutPage);
 const ProjectsPage = lazy(loadProjectsPage);
 const ContactPage = lazy(loadContactPage);
 
-// Keep boot state in memory so every initial visit or browser reload plays the entry Loading screen,
-// while client-side route navigation uses the snappy RouteLoader transition.
+// On-demand chunk prefetcher invoked only on menu open/hover so initial load stays lean
+export function prefetchRoutes(target?: "about" | "projects" | "contact") {
+  if (target === "about") {
+    void loadAboutPage();
+    return;
+  }
+  if (target === "projects") {
+    void loadProjectsPage();
+    return;
+  }
+  if (target === "contact") {
+    void loadContactPage();
+    return;
+  }
+  void Promise.allSettled([
+    loadAboutPage(),
+    loadProjectsPage(),
+    loadContactPage(),
+  ]);
+}
+
 let hasInitialBooted = false;
 
 export default function AppRoutes() {
   const location = useLocation();
-  const isBotOrLighthouse =
-    typeof navigator !== "undefined" &&
-    /bot|crawler|spider|lighthouse|pagespeed/i.test(navigator.userAgent);
-
   const [isInitialLoading, setIsInitialLoading] = useState(
-    () => !hasInitialBooted && !isBotOrLighthouse
+    () => !hasInitialBooted
   );
-  const [progress, setProgress] = useState(() =>
-    hasInitialBooted || isBotOrLighthouse ? 100 : 0
-  );
-  const [isRouteLoading, setIsRouteLoading] = useState(false);
+  const [isExitingLoader, setIsExitingLoader] = useState(false);
+  const [progress, setProgress] = useState(() => (hasInitialBooted ? 100 : 0));
   const prevPathnameRef = useRef(location.pathname);
 
-  // 1. Initial Entry Loading (00% -> 100% + preload route chunks)
+  // Ultra-snappy initial entry loader (~0.42s) without blocking network or main thread
   useEffect(() => {
-    // Preload secondary route chunks in the background
-    void Promise.allSettled([
-      loadAboutPage(),
-      loadProjectsPage(),
-      loadContactPage(),
-    ]);
-
-    if (hasInitialBooted || isBotOrLighthouse) {
-      hasInitialBooted = true;
+    if (hasInitialBooted) {
       setIsInitialLoading(false);
       return;
     }
 
-    const durationMs = 1750;
+    const durationMs = 360;
     const startTime = performance.now();
     let rafId = 0;
-    let finishTimer = 0;
+    let exitTimer = 0;
+    let unmountTimer = 0;
 
     const tick = (now: number) => {
       const elapsed = now - startTime;
       const ratio = Math.min(1, elapsed / durationMs);
-      // Smooth ease-out cubic curve
       const eased = 1 - Math.pow(1 - ratio, 3);
       setProgress(Math.round(eased * 100));
 
       if (ratio < 1) {
         rafId = requestAnimationFrame(tick);
       } else {
-        finishTimer = window.setTimeout(() => {
-          hasInitialBooted = true;
-          setIsInitialLoading(false);
-        }, 380);
+        exitTimer = window.setTimeout(() => {
+          setIsExitingLoader(true);
+          unmountTimer = window.setTimeout(() => {
+            hasInitialBooted = true;
+            setIsInitialLoading(false);
+          }, 150);
+        }, 40);
       }
     };
 
@@ -74,94 +80,62 @@ export default function AppRoutes() {
 
     return () => {
       cancelAnimationFrame(rafId);
-      clearTimeout(finishTimer);
+      clearTimeout(exitTimer);
+      clearTimeout(unmountTimer);
     };
-  }, [isBotOrLighthouse]);
+  }, []);
 
-  // 2. Page-Switch Loading Transition whenever route pathname changes
+  // Reset scroll position instantly on client-side page switches (unless jumping to a hash)
   useEffect(() => {
     if (prevPathnameRef.current === location.pathname) return;
     prevPathnameRef.current = location.pathname;
 
-    if (isInitialLoading || isBotOrLighthouse) return;
-
-    setIsRouteLoading(true);
     if (!location.hash) {
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     }
-
-    const timer = window.setTimeout(() => {
-      setIsRouteLoading(false);
-    }, 420);
-
-    return () => clearTimeout(timer);
-  }, [location.pathname, location.hash, isInitialLoading, isBotOrLighthouse]);
+  }, [location.pathname, location.hash]);
 
   return (
     <>
-      {/* Initial Entry Loading Screen */}
-      <AnimatePresence>
-        {isInitialLoading && (
-          <motion.div
-            key="initial-boot-loader"
-            initial={{ opacity: 1 }}
-            exit={{
-              opacity: 0,
-              scale: 1.03,
-              transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
-            }}
-            className="fixed inset-0 z-[9999]"
-          >
-            <Loading progress={progress} />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isInitialLoading && (
+        <Loading progress={progress} exiting={isExitingLoader} />
+      )}
 
-      {/* Page-Switch Loading Screen */}
-      <AnimatePresence>
-        {!isInitialLoading && isRouteLoading && (
-          <RouteLoader key={`route-loader-${location.pathname}`} />
-        )}
-      </AnimatePresence>
-
-      {/* Route Views */}
-      <Suspense fallback={<RouteLoader />}>
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route
-              path="/"
-              element={
-                <PageTransition>
-                  <PortfolioPage />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/about"
-              element={
-                <PageTransition>
-                  <AboutPage />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/projects"
-              element={
-                <PageTransition>
-                  <ProjectsPage />
-                </PageTransition>
-              }
-            />
-            <Route
-              path="/contact"
-              element={
-                <PageTransition>
-                  <ContactPage />
-                </PageTransition>
-              }
-            />
-          </Routes>
-        </AnimatePresence>
+      <Suspense fallback={<div className="min-h-screen" aria-hidden="true" />}>
+        <Routes location={location}>
+          <Route
+            path="/"
+            element={
+              <PageTransition key={location.pathname}>
+                <PortfolioPage />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <PageTransition key={location.pathname}>
+                <AboutPage />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/projects"
+            element={
+              <PageTransition key={location.pathname}>
+                <ProjectsPage />
+              </PageTransition>
+            }
+          />
+          <Route
+            path="/contact"
+            element={
+              <PageTransition key={location.pathname}>
+                <ContactPage />
+              </PageTransition>
+            }
+          />
+        </Routes>
       </Suspense>
     </>
   );

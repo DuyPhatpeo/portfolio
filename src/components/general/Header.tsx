@@ -1,25 +1,44 @@
-// src/components/general/Header.tsx
 import { profileData } from "@constants/profileData";
 import React, { useState, useMemo, useEffect, useRef } from "react";
 import { RiMoonLine, RiSunLine } from "react-icons/ri";
 import { FiX, FiArrowUpRight } from "react-icons/fi";
 import { useThemeStore } from "@stores/themeStore";
-import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
+import { prefetchRoutes } from "@routes/AppRoutes";
+import { ensureLanguageLoaded } from "@i18n/config";
 
 interface HeaderProps {
   scrollToSection: (sectionId: string) => void;
 }
 
-// Convert string to clean Title Case
-const toTitleCase = (str: string) => {
-  return str
+const toTitleCase = (str: string) =>
+  str
     .toLowerCase()
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-};
+
+const FlagIcon: React.FC<{ code: "VI" | "EN" }> = ({ code }) =>
+  code === "VI" ? (
+    <svg viewBox="0 0 24 16" className="w-4 h-3 rounded-[2px] shrink-0" aria-hidden="true">
+      <rect width="24" height="16" fill="#DA251D" />
+      <polygon
+        fill="#FFFF00"
+        points="12,3.2 13.15,6.75 16.9,6.75 13.87,8.95 15.02,12.5 12,10.3 8.98,12.5 10.13,8.95 7.1,6.75 10.85,6.75"
+      />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 24 16" className="w-4 h-3 rounded-[2px] shrink-0" aria-hidden="true">
+      <rect width="24" height="16" fill="#B22234" />
+      <path
+        d="M0 2.46h24M0 4.92h24M0 7.38h24M0 9.85h24M0 12.31h24M0 14.77h24"
+        stroke="#FFFFFF"
+        strokeWidth="1.23"
+      />
+      <rect width="10" height="8.62" fill="#3C3B6E" />
+    </svg>
+  );
 
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useThemeStore();
@@ -28,27 +47,30 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const location = useLocation();
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // Scroll behavior: Show at top, hide when scrolling down, show when scrolling up
   const [showHeader, setShowHeader] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const currentScrollY = window.scrollY;
+        setIsScrolled(currentScrollY > 40);
 
-      setIsScrolled(currentScrollY > 40);
+        if (currentScrollY <= 40) {
+          setShowHeader(true);
+        } else if (currentScrollY > lastScrollY.current + 5) {
+          setShowHeader(false);
+        } else if (currentScrollY < lastScrollY.current - 5) {
+          setShowHeader(true);
+        }
 
-      if (currentScrollY <= 40) {
-        setShowHeader(true);
-      } else if (currentScrollY > lastScrollY.current + 5) {
-        setShowHeader(false);
-      } else if (currentScrollY < lastScrollY.current - 5) {
-        setShowHeader(true);
-      }
-
-      lastScrollY.current = currentScrollY;
+        lastScrollY.current = currentScrollY;
+        ticking = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -65,12 +87,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     [t]
   );
 
-  // Lock body scroll and handle Escape key when menu is open
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setIsOpen(false);
-      }
+      if (e.key === "Escape") setIsOpen(false);
     };
 
     if (isOpen) {
@@ -87,17 +106,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     };
   }, [isOpen]);
 
-  // Target language switch
-  const targetLang = i18n.language === "vi" ? "en" : "vi";
-  const targetFlag =
-    targetLang === "vi"
-      ? "https://flagcdn.com/vn.svg"
-      : "https://flagcdn.com/us.svg";
-  const targetCode = targetLang === "vi" ? "VI" : "EN";
+  const targetLang = i18n.language?.startsWith("en") ? "vi" : "en";
+  const targetCode: "VI" | "EN" = targetLang === "vi" ? "VI" : "EN";
 
   const handleToggleLang = () => {
-    i18n.changeLanguage(targetLang);
-    localStorage.setItem("language", targetLang);
+    void ensureLanguageLoaded(targetLang).then(() => {
+      void i18n.changeLanguage(targetLang);
+      localStorage.setItem("language", targetLang);
+    });
   };
 
   const handleToggleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -105,10 +121,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
 
-    const clickEvent = new CustomEvent("darkModeToggle", {
-      detail: { x, y },
-    });
-    window.dispatchEvent(clickEvent);
+    window.dispatchEvent(
+      new CustomEvent("darkModeToggle", {
+        detail: { x, y },
+      })
+    );
 
     toggleDarkMode();
   };
@@ -133,31 +150,36 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       } else if (id === "about") {
         navigate("/about");
         window.scrollTo(0, 0);
+      } else if (location.pathname !== "/") {
+        navigate(`/#${id}`);
       } else {
-        if (location.pathname !== "/") {
-          navigate(`/#${id}`);
-        } else {
-          scrollToSection(id);
-        }
+        scrollToSection(id);
       }
     });
   };
 
+  const handleOpenMenu = () => {
+    if (!isOpen) prefetchRoutes();
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 transform ${showHeader || isOpen
+      className={`fixed top-0 left-0 right-0 z-[200] transition-[transform,opacity,background-color,border-color] duration-300 ${
+        showHeader || isOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
-        } ${
-          isScrolled && !isOpen
-            ? "bg-background/90 backdrop-blur-md border-b border-border"
-            : "bg-transparent"
-        }`}
+      } ${
+        isScrolled && !isOpen
+          ? "bg-background/90 backdrop-blur-md border-b border-border"
+          : "bg-transparent"
+      }`}
     >
       {/* Top Navbar */}
       <div
-        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 flex justify-between items-center ${isOpen ? "border-b border-white/10" : ""
-          }`}
+        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 flex justify-between items-center ${
+          isOpen ? "border-b border-white/10" : ""
+        }`}
       >
         {/* Brand Logo */}
         <button
@@ -166,10 +188,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           className="relative z-10 group cursor-pointer py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
         >
           <span
-            className={`text-xl md:text-2xl font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${isOpen
+            className={`text-xl md:text-2xl font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${
+              isOpen
                 ? "text-neutral-100 group-hover:text-primary"
                 : "text-foreground group-hover:text-primary"
-              }`}
+            }`}
           >
             {profileData.logo}
           </span>
@@ -180,21 +203,15 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           {/* Language Selector */}
           <button
             onClick={handleToggleLang}
+            onPointerEnter={() => void ensureLanguageLoaded(targetLang)}
             aria-label={`Switch language to ${targetCode}`}
-            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
+            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
                 : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
-              }`}
+            }`}
           >
-            <span className="w-4 h-3 overflow-hidden rounded-[2px] flex items-center justify-center">
-              <img
-                src={targetFlag}
-                alt=""
-                width={16}
-                height={12}
-                className="w-full h-full object-cover"
-              />
-            </span>
+            <FlagIcon code={targetCode} />
             <span>{targetCode}</span>
           </button>
 
@@ -202,159 +219,133 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={handleToggleDarkMode}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
                 : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
-              }`}
+            }`}
           >
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={darkMode ? "sun" : "moon"}
-                initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center justify-center"
-              >
-                {darkMode ? (
-                  <RiSunLine className="w-5 h-5" />
-                ) : (
-                  <RiMoonLine className="w-5 h-5" />
-                )}
-              </motion.span>
-            </AnimatePresence>
+            <span className="flex items-center justify-center transition-transform duration-200">
+              {darkMode ? (
+                <RiSunLine className="w-5 h-5" />
+              ) : (
+                <RiMoonLine className="w-5 h-5" />
+              )}
+            </span>
           </button>
 
           {/* Menu Toggle Button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            onClick={handleOpenMenu}
+            onPointerEnter={() => prefetchRoutes()}
+            aria-label={
+              isOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={isOpen}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+              isOpen
                 ? "border-white/15 bg-white/5 hover:bg-white/10 hover:border-primary/60 text-neutral-200 hover:text-primary"
                 : "border-border bg-card/70 hover:border-primary/50 text-foreground hover:text-primary"
-              }`}
+            }`}
           >
-            <AnimatePresence mode="wait" initial={false}>
-              {isOpen ? (
-                <motion.span
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center justify-center"
-                >
-                  <FiX className="w-5 h-5 pointer-events-none" />
-                </motion.span>
-              ) : (
-                <motion.span
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0, scale: 0.6 }}
-                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
-                  exit={{ rotate: -90, opacity: 0, scale: 0.6 }}
-                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex flex-col items-center justify-center gap-1.5"
-                >
-                  <span className="w-4 h-0.5 bg-current rounded-full transition-colors" />
-                  <span className="w-4 h-0.5 bg-current rounded-full transition-colors" />
-                </motion.span>
-              )}
-            </AnimatePresence>
+            {isOpen ? (
+              <FiX className="w-5 h-5 pointer-events-none" />
+            ) : (
+              <span className="flex flex-col items-center justify-center gap-1.5 pointer-events-none">
+                <span className="w-4 h-0.5 bg-current rounded-full" />
+                <span className="w-4 h-0.5 bg-current rounded-full" />
+              </span>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Fullscreen Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{
-              opacity: 0,
-              clipPath: "circle(0% at calc(100% - 44px) 40px)",
-            }}
-            animate={{
-              opacity: 1,
-              clipPath: "circle(160% at calc(100% - 44px) 40px)",
-            }}
-            exit={{
-              opacity: 0,
-              clipPath: "circle(0% at calc(100% - 44px) 40px)",
-            }}
-            transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-10 w-screen h-dvh bg-[#171717]/96 backdrop-blur-md text-neutral-100 flex flex-col justify-between overflow-hidden select-none"
-          >
-            {/* Header Spacer */}
-            <div className="w-full h-20 shrink-0" />
+      {/* Fullscreen Menu Overlay (GPU clip-path + opacity transition, zero framer-motion bundle cost) */}
+      <div
+        aria-hidden={!isOpen}
+        style={{
+          clipPath: isOpen
+            ? "circle(160% at calc(100% - 44px) 40px)"
+            : "circle(0% at calc(100% - 44px) 40px)",
+        }}
+        className={`fixed inset-0 z-10 w-screen h-dvh bg-[#171717]/96 backdrop-blur-md text-neutral-100 flex flex-col justify-between overflow-hidden select-none transition-[clip-path,opacity] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          isOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="w-full h-20 shrink-0" />
 
-            {/* Navigation Items */}
-            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-start overflow-y-auto z-10">
-              <nav className="flex flex-col items-start gap-2 sm:gap-3 w-full">
-                {navItems.map((item, index) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <button
-                      key={item.href}
-                      onClick={() => handleNavigate(item.href)}
-                      className="group flex items-baseline gap-4 sm:gap-6 text-left py-1.5 cursor-pointer select-none"
-                    >
-                      <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
-                        0{index + 1}
-                      </span>
-                      <span
-                        className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-all duration-200 group-hover:translate-x-2 ${isActive
-                            ? "text-primary"
-                            : "text-neutral-100 group-hover:text-primary"
-                          }`}
-                      >
-                        {toTitleCase(item.name)}
-                      </span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </div>
-
-            {/* Menu Footer */}
-            <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-400 shrink-0 z-10">
-              <div>
-                © {new Date().getFullYear()} {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
-                <a
-                  href="https://github.com/DuyPhatpeo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-neutral-200 underline underline-offset-4 decoration-white/25 hover:decoration-primary hover:text-primary transition-colors"
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-start overflow-y-auto z-10">
+          <nav className="flex flex-col items-start gap-2 sm:gap-3 w-full">
+            {navItems.map((item, index) => {
+              const isActive = location.pathname === item.path;
+              return (
+                <button
+                  key={item.href}
+                  tabIndex={isOpen ? 0 : -1}
+                  onClick={() => handleNavigate(item.href)}
+                  className="group flex items-baseline gap-4 sm:gap-6 text-left py-1.5 cursor-pointer select-none"
                 >
-                  Dino Péo (Trần Duy Phát)
-                </a>
-                .
-              </div>
-
-              <a
-                href="mailto:phattranduy00@gmail.com"
-                className="font-mono hover:text-primary transition-colors text-neutral-300"
-              >
-                phattranduy00@gmail.com
-              </a>
-
-              <div className="flex items-center gap-5 text-neutral-300">
-                {profileData.socialLinks.slice(0, 3).map((link) => (
-                  <a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary transition-colors flex items-center gap-1"
+                  <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
+                    0{index + 1}
+                  </span>
+                  <span
+                    className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-[color,transform] duration-200 group-hover:translate-x-2 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-neutral-100 group-hover:text-primary"
+                    }`}
                   >
-                    <span>{link.name}</span>
-                    <FiArrowUpRight className="text-xs" />
-                  </a>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                    {toTitleCase(item.name)}
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-400 shrink-0 z-10">
+          <div>
+            © {new Date().getFullYear()}{" "}
+            {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
+            <a
+              tabIndex={isOpen ? 0 : -1}
+              href="https://github.com/DuyPhatpeo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-neutral-200 underline underline-offset-4 decoration-white/25 hover:decoration-primary hover:text-primary transition-colors"
+            >
+              Dino Péo (Trần Duy Phát)
+            </a>
+            .
+          </div>
+
+          <a
+            tabIndex={isOpen ? 0 : -1}
+            href="mailto:phattranduy00@gmail.com"
+            className="font-mono hover:text-primary transition-colors text-neutral-300"
+          >
+            phattranduy00@gmail.com
+          </a>
+
+          <div className="flex items-center gap-5 text-neutral-300">
+            {profileData.socialLinks.slice(0, 3).map((link) => (
+              <a
+                key={link.name}
+                tabIndex={isOpen ? 0 : -1}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-primary transition-colors flex items-center gap-1"
+              >
+                <span>{link.name}</span>
+                <FiArrowUpRight className="text-xs" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </header>
   );
 };

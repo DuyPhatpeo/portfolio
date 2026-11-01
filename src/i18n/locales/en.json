@@ -32,13 +32,14 @@
     }
   },
   "cta": {
-    "title": "Ready for the next build?",
-    "description": "Whether you're hiring an engineer for your product team or launching a custom web application from scratch, let's talk through the details.",
-    "button": "Get in Touch"
+    "badge": "Available for new roles & projects",
+    "title": "Ready to build your next digital product",
+    "description": "Reach out directly to discuss full-time engineering opportunities or custom web and mobile development.",
+    "button": "Start a Conversation"
   },
   "hero": {
     "seo_h1": "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web and Mobile Developer",
-    "tagline": "Trần Duy Phát · Frontend & Full-Stack Developer",
+    "identity": "Dino Péo · Trần Duy Phát",
     "banner": {
       "greeting": "Hello, I’m",
       "description": "I build <strong>fast, responsive web applications</strong> designed for clarity on every screen.",
@@ -109,7 +110,7 @@
   "skills": {
     "subtitle": "Toolset",
     "title": "Technologies & Tools",
-    "description": "Languages, frameworks, and workflow tools organized across each layer of product development.",
+    "description": "Languages, frameworks, and tools organized by architecture layer.",
     "core_stack": "Core Stack",
     "categories": {
       "frontend": "Frontend & UI",
@@ -122,7 +123,7 @@
   "experience": {
     "subtitle": "Experience",
     "title": "Work History",
-    "description": "Professional roles and hands-on responsibilities across organizations I have worked with.",
+    "description": "Professional milestones and engineering roles across organizations.",
     "present": "Present",
     "items": [
       {
@@ -154,17 +155,18 @@
   "projects": {
     "subtitle": "Projects",
     "title": "Featured Work",
-    "description": "Three flagship builds highlighting how I structure code, performance, and user experience.",
-    "page_intro": "A collection of web products and mobile apps I planned, designed, and coded hands-on across personal builds and practical work.",
+    "description": "Selected builds showcasing clean architecture and refined user experience.",
+    "page_intro": "Web platforms and mobile apps designed and engineered end-to-end.",
     "other_title": "More Projects",
     "badges": {
       "featured": "Featured",
       "project": "Project"
     },
     "modal": {
+      "overview": "Project Overview",
       "technologies": "Built With",
       "view_details": "View Project Details",
-      "screenshots": "Interface Previews"
+      "screenshots": "Full Interface Preview"
     },
     "items": {
       "1": {
@@ -213,14 +215,14 @@
   "activity": {
     "subtitle": "Open Source",
     "title": "GitHub Activity",
-    "description": "Public repository contributions and commit consistency over the past 12 months.",
+    "description": "Open-source contributions and commit consistency over the past 12 months.",
     "view_github": "Open GitHub (@DuyPhatpeo)",
     "top_contributions": "Active repositories:"
   },
   "contact": {
     "tag": "Contact",
     "title": "Direct Collaboration & Hiring",
-    "subtitle": "Available for full-time engineering roles (Onsite in Nha Trang or Remote) and select custom web projects.",
+    "subtitle": "Available for full-time engineering roles and custom web or mobile builds.",
     "description": "Copy my direct email below or send a quick note through the form. I review every inquiry personally and reply within 24 hours.",
     "direct_email": "Direct work email",
     "watermark": "CONTACT",

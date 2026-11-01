@@ -9,13 +9,13 @@ export interface SocialLink {
 }
 
 export interface Achievement {
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   labelKey: string;
   color: string;
 }
 
 export interface PersonalInfoItem {
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   labelKey: string;
   valueKey: string;
   color: string;
@@ -30,8 +30,8 @@ export interface ProfileData {
   roles: string[];
   heroDescription: string;
   socialLinks: SocialLink[];
-  personalInfo: PersonalInfoItem[];
-  achievements: Achievement[];
+  personalInfo?: PersonalInfoItem[];
+  achievements?: Achievement[];
 }
 
 export interface Project {
@@ -45,12 +45,20 @@ export interface Project {
   reverse?: boolean;
 }
 
-export type SkillCategory = "frontend" | "backend" | "database" | "tools" | "design";
+export type SkillCategory =
+  | "frontend"
+  | "backend"
+  | "database"
+  | "tools"
+  | "design";
 
 export interface Skill {
   name: string;
   logo?: string;
-  icon?: (props: { className?: string; style?: React.CSSProperties }) => React.ReactNode;
+  icon?: (props: {
+    className?: string;
+    style?: React.CSSProperties;
+  }) => React.ReactNode;
   invertDark?: boolean;
   url: string;
   category: SkillCategory;

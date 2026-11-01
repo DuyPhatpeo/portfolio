@@ -4,15 +4,6 @@ import {
   RiLinkedinBoxFill,
   RiDiscordFill,
 } from "react-icons/ri";
-import {
-  FiHeart,
-  FiAward,
-  FiTarget,
-  FiCoffee,
-  FiMapPin,
-  FiCalendar,
-} from "react-icons/fi";
-import { FaGamepad } from "react-icons/fa";
 import type { ProfileData } from "../types/data";
 
 export const profileData: ProfileData = {
@@ -57,51 +48,6 @@ export const profileData: ProfileData = {
       icon: <RiDiscordFill size={20} />,
       glowColor: "rgba(88, 101, 242, 0.5)",
       hoverColor: "group-hover:text-[#5865F2]",
-    },
-  ],
-
-  personalInfo: [
-    {
-      icon: FiCalendar,
-      labelKey: "about.personal.dobLabel",
-      valueKey: "about.personal.dobValue",
-      color: "from-pink-500 to-pink-400 text-pink-500",
-    },
-    {
-      icon: FiMapPin,
-      labelKey: "about.personal.fromLabel",
-      valueKey: "about.personal.fromValue",
-      color: "from-emerald-500 to-emerald-400 text-emerald-500",
-    },
-    {
-      icon: FaGamepad,
-      labelKey: "about.personal.hobbiesLabel",
-      valueKey: "about.personal.hobbiesValue",
-      color: "from-indigo-500 to-indigo-400 text-indigo-500",
-    },
-    {
-      icon: FiCoffee,
-      labelKey: "about.personal.favoritesLabel",
-      valueKey: "about.personal.favoritesValue",
-      color: "from-amber-500 to-amber-400 text-amber-500",
-    },
-  ],
-
-  achievements: [
-    {
-      icon: FiAward,
-      labelKey: "about.achievements.projectsLabel",
-      color: "text-yellow-500",
-    },
-    {
-      icon: FiTarget,
-      labelKey: "about.achievements.satisfactionLabel",
-      color: "text-green-500",
-    },
-    {
-      icon: FiHeart,
-      labelKey: "about.achievements.passionLabel",
-      color: "text-red-500",
     },
   ],
 };

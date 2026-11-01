@@ -126,6 +126,27 @@
   animation: marquee-x-reverse var(--duration, 40s) linear infinite;
 }
 
+@keyframes page-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-page-enter {
+  animation: page-enter 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-enter {
+    animation: none;
+  }
+}
+
 /* ===== Custom Scrollbar ===== */
 ::-webkit-scrollbar {
   width: 6px;
