@@ -17,7 +17,7 @@ const GithubSection: React.FC = () => {
   return (
     <section
       id="activity"
-      className="py-20 md:py-28 relative overflow-hidden bg-transparent border-t border-border/60"
+      className="py-20 md:py-28 relative overflow-hidden bg-card/55 border-t border-border/70"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* Editorial Split Section Header (no uppercase kicker stacked above h2) */}

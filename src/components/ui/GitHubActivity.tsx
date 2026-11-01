@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import {
   AnimatePresence,
   motion,
+  useInView,
   useReducedMotion,
   type Transition,
 } from "framer-motion";
@@ -45,12 +46,12 @@ const SPRING = { type: "spring", bounce: 0.2, duration: 0.62 } as const;
 const HEADER_SPRING = { ...SPRING, bounce: 0.45 } as const;
 const ROW_SPRING = { ...SPRING, bounce: 0.26, delay: 0.08 } as const;
 const ROW_OFFSET = 16;
-const CELL_FADE = { duration: 0.2, ease: EASE_OUT } as const;
+const CELL_FADE = { duration: 0.24, ease: EASE_OUT } as const;
 const TOOLTIP_FADE = { duration: 0.14, ease: EASE_OUT } as const;
 const TOOLTIP_EDGE = 8;
-const COLUMN_STAGGER = 0.012;
-const LABEL_BLUR = 6;
-const LABEL_REVEAL = { duration: 0.45, ease: EASE_OUT } as const;
+const COLUMN_STAGGER = 0.022;
+const ROW_STAGGER = 0.008;
+const LABEL_REVEAL = { duration: 0.35, ease: EASE_OUT } as const;
 
 const LEVELS = [0, 1, 2, 3, 4] as const;
 
@@ -199,13 +200,17 @@ async function fetchRepos(login: string): Promise<RepoContribution[]> {
 }
 
 function useGitHubUser(login?: string, includeRepos: boolean = false) {
-  const [data, setData] = React.useState<{
-    contributions: Contribution[];
+  const [state, setState] = React.useState<{
+    contributions: Contribution[] | null;
     repos: RepoContribution[];
-  }>();
+    settled: boolean;
+  }>({ contributions: null, repos: [], settled: !login });
 
   React.useEffect(() => {
-    if (!login) return;
+    if (!login) {
+      setState({ contributions: null, repos: [], settled: true });
+      return;
+    }
     let active = true;
 
     const promises: [
@@ -218,16 +223,22 @@ function useGitHubUser(login?: string, includeRepos: boolean = false) {
 
     Promise.all(promises)
       .then(([contributions, repos]) => {
-        if (active && contributions) setData({ contributions, repos });
+        if (active) {
+          setState({ contributions, repos, settled: true });
+        }
       })
-      .catch(() => {});
+      .catch(() => {
+        if (active) {
+          setState({ contributions: null, repos: [], settled: true });
+        }
+      });
 
     return () => {
       active = false;
     };
   }, [login, includeRepos]);
 
-  return data;
+  return state;
 }
 
 function emptyDays(weeks: number): Contribution[] {
@@ -316,6 +327,7 @@ const ContributionGrid = ({
   label,
   reduceMotion,
   lang,
+  isReady,
 }: {
   contributions: Contribution[];
   scale: LevelStyle[];
@@ -325,13 +337,16 @@ const ContributionGrid = ({
   label: string;
   reduceMotion: boolean | null;
   lang: string;
+  isReady: boolean;
 }) => {
+  const gridRef = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(gridRef, { once: true, amount: 0.2 });
   const weeks = React.useMemo(() => toWeeks(contributions), [contributions]);
   const gap = gapFor(cellSize);
   const [hovered, setHovered] = React.useState<HoveredDay>();
 
   const visible = weeks;
-  const sweepEnd = (visible.length - 1) * COLUMN_STAGGER + CELL_FADE.duration;
+  const shouldReveal = Boolean(reduceMotion || (inView && isReady));
 
   const hover = (day: Contribution) => (event: React.PointerEvent) => {
     const cell = event.currentTarget.getBoundingClientRect();
@@ -340,6 +355,7 @@ const ContributionGrid = ({
 
   return (
     <div
+      ref={gridRef}
       data-slot="github-activity-grid"
       role="img"
       aria-label={label}
@@ -347,19 +363,9 @@ const ContributionGrid = ({
     >
       <div className="inline-flex flex-col min-w-full items-center">
         {showMonths && (
-          <motion.div
+          <div
             className="flex"
             style={{ gap, marginBottom: gap + 4 }}
-            initial={
-              reduceMotion
-                ? false
-                : { opacity: 0, filter: `blur(${LABEL_BLUR}px)` }
-            }
-            animate={{ opacity: 1, filter: "blur(0px)" }}
-            transition={{
-              ...LABEL_REVEAL,
-              delay: reduceMotion ? 0 : sweepEnd,
-            }}
           >
             {toMonthLabels(visible).map((month, index) => (
               <div
@@ -368,15 +374,29 @@ const ContributionGrid = ({
                 style={{ width: cellSize }}
               >
                 {month && (
-                  <span className="absolute left-0 top-0 text-xs leading-none text-muted-foreground font-mono select-none">
+                  <motion.span
+                    initial={reduceMotion ? false : { opacity: 0, y: 4 }}
+                    animate={
+                      shouldReveal ? { opacity: 1, y: 0 } : { opacity: 0, y: 4 }
+                    }
+                    transition={{
+                      ...LABEL_REVEAL,
+                      delay:
+                        shouldReveal && !reduceMotion
+                          ? index * COLUMN_STAGGER
+                          : 0,
+                    }}
+                    className="absolute left-0 top-0 text-xs leading-none text-muted-foreground font-mono select-none"
+                  >
                     {month}
-                  </span>
+                  </motion.span>
                 )}
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
 
+        {/* Left-to-right staggered cell-by-cell reveal */}
         <div
           className="flex overflow-visible pb-1"
           style={{ gap }}
@@ -388,17 +408,24 @@ const ContributionGrid = ({
               className="flex flex-col shrink-0"
               style={{ gap }}
             >
-              {week.map((day) => (
+              {week.map((day, dayIndex) => (
                 <motion.div
-                  key={day.date}
+                  key={`${weekIndex}-${dayIndex}`}
                   onPointerEnter={hover(day)}
                   className="shrink-0 rounded-[3px] bg-muted cursor-pointer hover:ring-1 hover:ring-primary/60 transition-shadow"
                   style={{ width: cellSize, height: cellSize }}
-                  initial={reduceMotion ? false : { opacity: 0, scale: 0.4 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 0.2 }}
+                  animate={
+                    shouldReveal
+                      ? { opacity: 1, scale: 1 }
+                      : { opacity: 0, scale: 0.2 }
+                  }
                   transition={{
                     ...CELL_FADE,
-                    delay: reduceMotion ? 0 : weekIndex * COLUMN_STAGGER,
+                    delay:
+                      shouldReveal && !reduceMotion
+                        ? weekIndex * COLUMN_STAGGER + dayIndex * ROW_STAGGER
+                        : 0,
                   }}
                 >
                   <div
@@ -564,8 +591,9 @@ const GitHubActivity = ({
 
   const contributions = contributionsProp.length
     ? contributionsProp
-    : (fetched?.contributions ?? placeholder);
-  const repos = reposProp.length ? reposProp : (fetched?.repos ?? []);
+    : (fetched.contributions ?? placeholder);
+  const repos = reposProp.length ? reposProp : fetched.repos;
+  const isReady = Boolean(contributionsProp.length > 0 || fetched.settled);
 
   const scale = React.useMemo(() => toScale(accent), [accent]);
   const transition = reduceMotion ? { duration: 0 } : SPRING;
@@ -634,6 +662,7 @@ const GitHubActivity = ({
         label={heading}
         reduceMotion={reduceMotion}
         lang={lang}
+        isReady={isReady}
       />
 
       {showRepos && repos.length > 0 && (
