@@ -12,31 +12,45 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
+  const location = useLocation();
+  const isAboutPage = location.pathname === "/about";
 
   useGSAP(
     () => {
-      const media = gsap.matchMedia();
-      media.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.from("[data-about-reveal]", {
-          autoAlpha: 0,
-          y: 28,
-          duration: 0.75,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "clamp(top 82%)",
-            once: true,
-          },
-        });
-      }, sectionRef);
-      return () => media.revert();
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (isAboutPage) {
+          // Render immediately above the fold on /about without waiting for scroll
+          gsap.fromTo(
+            "[data-about-reveal]",
+            { autoAlpha: 0, y: 20 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.55,
+              stagger: 0.1,
+              delay: 0.05,
+              ease: "power3.out",
+            }
+          );
+        } else {
+          gsap.from("[data-about-reveal]", {
+            autoAlpha: 0,
+            y: 28,
+            duration: 0.75,
+            stagger: 0.12,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "clamp(top 82%)",
+              once: true,
+            },
+          });
+        }
+      });
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isAboutPage], revertOnUpdate: true }
   );
-
-  const location = useLocation();
-  const isAboutPage = location.pathname === "/about";
 
   // Typewriter effect for developer roles
   const roles =
@@ -71,137 +85,142 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   return (
     <section
       ref={sectionRef}
-      onLoad={() => ScrollTrigger.refresh()}
       id="about"
-      className={`relative w-full overflow-hidden bg-transparent ${
+      className={`relative w-full overflow-hidden ${
         isAboutPage
-          ? "pt-8 pb-20 md:pt-12 md:pb-28"
-          : "py-20 md:py-28 border-t border-border/60"
+          ? "bg-transparent pt-6 pb-20 md:pt-10 md:pb-28"
+          : "bg-card/55 py-20 md:py-28 border-y border-border/70"
       }`}
       aria-labelledby="about-heading"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: 3D Character Portrait with Clean Architectural Frame */}
+        {/* Equal-height 2-column split (items-stretch guarantees identical top & bottom edges) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          {/* Left Column: Full-height Architectural Portrait Card */}
           <div
-            className="order-last lg:order-first lg:col-span-5 flex justify-center items-center relative z-10"
+            className="order-last lg:order-first lg:col-span-5 flex relative z-10"
             data-about-reveal
           >
-            <div className="relative w-full max-w-[460px] mx-auto flex items-center justify-center">
-              {/* Translucent monochrome orbital frame */}
+            <div className="relative w-full h-full min-h-[340px] sm:min-h-[400px] rounded-3xl bg-card border border-border overflow-hidden flex flex-col items-center justify-end pt-8 px-6">
+              {/* Centered orbital frame behind character */}
               <span
-                className="absolute -z-10 w-[76%] aspect-square rounded-full bg-card border border-border"
+                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[68%] aspect-square rounded-full bg-muted/55 border border-border"
                 aria-hidden="true"
               />
               <span
-                className="absolute -z-10 w-[88%] aspect-square -top-2 -left-1 rounded-full border border-dashed border-foreground/20"
+                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[82%] aspect-square rounded-full border border-dashed border-foreground/15"
                 aria-hidden="true"
               >
-                <span className="absolute top-[12%] right-[8%] w-2 h-2 rounded-full bg-foreground/75" />
+                <span className="absolute top-[14%] right-[10%] w-2 h-2 rounded-full bg-foreground/70" />
               </span>
 
-              {/* 3D Developer Character Avatar */}
+              {/* 3D Developer Character Avatar anchored flush to card bottom */}
               <img
                 src={profileData.avatar || profileData.heroImage}
                 alt={t("hero.banner.imageAlt", "About Dino Péo")}
-                className="relative z-10 w-full max-w-[400px] sm:max-w-[440px] h-auto object-contain"
+                className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px] h-auto object-contain object-bottom block"
                 width={1536}
                 height={1024}
-                loading="lazy"
+                loading={isAboutPage ? "eager" : "lazy"}
                 decoding="async"
+                onLoad={() => ScrollTrigger.refresh()}
               />
             </div>
           </div>
 
-          {/* Right Column: Bio & Primary Actions */}
+          {/* Right Column: Structured Bio + Flush Bottom Action Bar */}
           <div
-            className="order-first lg:order-last lg:col-span-7 flex flex-col items-start z-10"
+            className="order-first lg:order-last lg:col-span-7 flex flex-col justify-between z-10 py-1"
             data-about-reveal
           >
-            <p className="text-muted-foreground font-mono text-lg sm:text-xl mb-3">
-              {t("hero.banner.greeting", "Hello, I'm")}
-            </p>
-
-            {/* Main Name Heading */}
-            <h2
-              id="about-heading"
-              className="text-4xl sm:text-5xl md:text-6xl font-sans font-bold tracking-tight text-foreground leading-[1.08] mb-4"
-            >
-              {profileData.name}{" "}
-              <span className="text-2xl sm:text-3xl md:text-4xl font-normal text-muted-foreground inline-block">
-                (Trần Duy Phát)
-              </span>
-            </h2>
-
-            {/* Dynamic Role */}
-            <div className="mb-6">
-              <div className="text-2xl sm:text-3xl font-mono font-medium min-h-[38px] flex items-center text-primary">
-                <span>{displayedRole}</span>
-                <span
-                  className="inline-block w-0.5 h-7 bg-primary ml-2"
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
-
-            {/* Purpose-distinct copy: concise pitch on Home vs personal story on /about */}
-            {isAboutPage ? (
-              <div className="space-y-5 mb-9 max-w-[52ch]">
-                <p className="text-foreground/95 text-xl sm:text-2xl leading-relaxed">
-                  {t("about.lead")}
-                </p>
-                <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
-                  {t("about.story")}
-                </p>
-              </div>
-            ) : (
-              <p className="text-foreground/95 text-xl sm:text-2xl leading-relaxed mb-9 max-w-[52ch]">
-                {t(
-                  "hero.description_full",
-                  "I create modern, responsive and user-friendly websites and digital experiences that help brands grow and make a lasting impression."
-                )}
+            <div>
+              <p className="text-muted-foreground font-mono text-base sm:text-lg mb-2.5">
+                {t("hero.banner.greeting", "Hello, I'm")}
               </p>
-            )}
 
-            {/* Action Buttons (48px+ accessible touch height, zero neon shadow glow) */}
-            <div className="flex flex-wrap items-center gap-4">
-              {!isAboutPage && (
-                <button
-                  onClick={() => scrollToSection("about")}
-                  className="group inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 rounded-full bg-primary text-primary-foreground font-medium text-base sm:text-lg transition-opacity duration-200 hover:opacity-90 cursor-pointer"
-                  aria-label={t("hero.banner.about", "More About Me")}
-                >
-                  <span>{t("hero.banner.about", "More About Me")}</span>
-                  <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </button>
-              )}
-
-              <a
-                href={profileData.resume}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-2.5 min-h-13 px-8 py-3.5 rounded-full border border-border bg-card hover:border-primary/60 text-foreground hover:text-primary font-medium text-base sm:text-lg transition-colors duration-200"
+              {/* Main Name Heading */}
+              <h2
+                id="about-heading"
+                className="text-4xl sm:text-5xl md:text-[54px] font-sans font-bold tracking-tight text-foreground leading-[1.08] mb-3.5"
               >
-                <span>{t("hero.banner.resume", "View Résumé")}</span>
-                <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
+                {profileData.name}{" "}
+                <span className="text-2xl sm:text-3xl font-normal text-muted-foreground inline-block">
+                  (Trần Duy Phát)
+                </span>
+              </h2>
+
+              {/* Dynamic Role */}
+              <div className="mb-6">
+                <div className="text-xl sm:text-2xl md:text-[26px] font-mono font-medium min-h-[36px] flex items-center text-primary">
+                  <span>{displayedRole}</span>
+                  <span
+                    className="inline-block w-0.5 h-6 bg-primary ml-2"
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+
+              {/* Purpose-distinct copy: concise pitch on Home vs personal story on /about */}
+              {isAboutPage ? (
+                <div className="space-y-4 max-w-[56ch]">
+                  <p className="text-foreground/95 text-lg sm:text-xl leading-relaxed">
+                    {t("about.lead")}
+                  </p>
+                  <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
+                    {t("about.story")}
+                  </p>
+                </div>
+              ) : (
+                <p className="text-foreground/95 text-lg sm:text-xl leading-relaxed max-w-[54ch]">
+                  {t(
+                    "hero.description_full",
+                    "I create modern, responsive and user-friendly websites and digital experiences that help brands grow and make a lasting impression."
+                  )}
+                </p>
+              )}
             </div>
 
-            {/* Social Links Row */}
-            <div className="flex items-center gap-2.5 mt-7">
-              {profileData.socialLinks.map((link, i) => (
+            {/* Bottom Action & Social Bar aligned flush with the bottom of the portrait card */}
+            <div className="pt-7 mt-8 border-t border-border/70 flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-3.5">
+                {!isAboutPage && (
+                  <button
+                    onClick={() => scrollToSection("about")}
+                    className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-primary text-primary-foreground font-medium text-base transition-opacity duration-200 hover:opacity-90 cursor-pointer"
+                    aria-label={t("hero.banner.about", "More About Me")}
+                  >
+                    <span>{t("hero.banner.about", "More About Me")}</span>
+                    <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </button>
+                )}
+
                 <a
-                  key={i}
-                  href={link.href}
+                  href={profileData.resume}
                   target="_blank"
                   rel="noopener noreferrer"
-                  title={link.name}
-                  aria-label={link.name}
-                  className="w-11 h-11 rounded-full flex items-center justify-center bg-card border border-border hover:border-primary/60 text-muted-foreground hover:text-primary transition-colors duration-200"
+                  className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full border border-border bg-card hover:border-primary/60 text-foreground hover:text-primary font-medium text-base transition-colors duration-200"
                 >
-                  {link.icon}
+                  <span>{t("hero.banner.resume", "View Résumé")}</span>
+                  <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
-              ))}
+              </div>
+
+              {/* Social Links Row */}
+              <div className="flex items-center gap-2.5">
+                {profileData.socialLinks.map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={link.name}
+                    aria-label={link.name}
+                    className="w-11 h-11 rounded-full flex items-center justify-center bg-card border border-border hover:border-primary/60 text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
+                    {link.icon}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

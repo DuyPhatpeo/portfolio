@@ -10,8 +10,8 @@
       "description": "Tìm hiểu câu chuyện nghề nghiệp, lĩnh vực chuyên môn, hệ công nghệ sử dụng và kinh nghiệm làm việc thực tế của Trần Duy Phát tại Nha Trang, Việt Nam."
     },
     "projects": {
-      "title": "Dự án thực tế — Trần Duy Phát (Dino Péo) | Web App, SaaS & Mobile",
-      "description": "Khám phá 10 sản phẩm web, thương mại điện tử, nền tảng rút gọn link SaaS và ứng dụng di động cùng lịch sử đóng góp GitHub của Trần Duy Phát."
+      "title": "Dự án đã làm — Trần Duy Phát (Dino Péo) | Web, SaaS & Mobile",
+      "description": "Tổng hợp các dự án website, ứng dụng bán hàng, công cụ rút gọn link và app di động do Trần Duy Phát trực tiếp thiết kế và lập trình."
     },
     "contact": {
       "title": "Liên hệ công việc & Hợp tác dự án — Trần Duy Phát (Dino Péo)",
@@ -82,23 +82,27 @@
     "services": [
       {
         "title": "Phát Triển Ứng Dụng Web",
-        "description": "Xây dựng các hệ thống web từ trang thương hiệu, landing page chiến dịch đến bảng điều khiển quản trị với cấu trúc phân tầng rõ ràng và dễ mở rộng."
+        "description": "Xây dựng website thương hiệu, landing page chiến dịch và trang quản trị với cấu trúc phân tầng rõ ràng, dễ bảo trì và mở rộng."
       },
       {
-        "title": "Triển Khai Giao Diện & Tương Tác",
-        "description": "Chuyển hóa bản vẽ thiết kế thành giao diện sống động, chuẩn xác trên mọi kích thước màn hình cùng hiệu ứng chuyển động mượt mà, có chủ đích."
+        "title": "Giao Diện & Chuyển Động UI",
+        "description": "Chuyển hóa bản vẽ thiết kế thành giao diện sắc nét, tương thích mọi kích thước màn hình cùng hiệu ứng chuyển động mượt mà."
       },
       {
-        "title": "Xây Dựng Backend & Tích Hợp API",
-        "description": "Thiết kế cơ sở dữ liệu, cổng kết nối API, phân quyền xác thực người dùng và đồng bộ dữ liệu thời gian thực an toàn, ổn định."
+        "title": "Xây Dựng Backend & API",
+        "description": "Thiết kế cơ sở dữ liệu, cổng kết nối RESTful API, phân quyền xác thực người dùng và đồng bộ dữ liệu thời gian thực an toàn."
       },
       {
-        "title": "Tối Ưu Tốc Độ & Chuẩn Hóa SEO",
-        "description": "Rút ngắn thời gian tải trang, tối ưu chỉ số Core Web Vitals, khả năng tiếp cận (Accessibility) và cấu trúc dữ liệu giúp tăng thứ hạng tìm kiếm tự nhiên."
+        "title": "Tối Ưu Tốc Độ & Chuẩn SEO",
+        "description": "Rút ngắn thời gian tải trang, tối ưu chỉ số Core Web Vitals, khả năng tiếp cận và cấu trúc thẻ meta giúp tăng thứ hạng tìm kiếm."
       },
       {
-        "title": "Phát Triển Ứng Dụng Di Động",
-        "description": "Tạo ứng dụng hoạt động đồng nhất trên cả iOS và Android từ một nền tảng mã nguồn duy nhất, tiết kiệm thời gian phát triển mà vẫn giữ cảm giác vuốt chạm tự nhiên."
+        "title": "Phát Triển Ứng Dụng Mobile",
+        "description": "Lập trình ứng dụng chạy đồng nhất trên cả iOS và Android từ một mã nguồn chung, tiết kiệm chi phí mà vẫn vuốt chạm tự nhiên."
+      },
+      {
+        "title": "Triển Khai & Vận Hành Web",
+        "description": "Đưa sản phẩm lên môi trường thực tế (Vercel, VPS, Cloud), cấu hình tên miền, bảo mật SSL và duy trì hệ thống hoạt động ổn định."
       }
     ]
   },
@@ -150,8 +154,8 @@
   "projects": {
     "subtitle": "Dự án",
     "title": "Dự Án Tiêu Biểu",
-    "description": "Ba sản phẩm trọng điểm thể hiện rõ nhất tư duy tổ chức mã nguồn và thiết kế trải nghiệm của mình.",
-    "page_intro": "Toàn bộ 10 dự án web, hệ thống thương mại điện tử, công cụ SaaS và ứng dụng di động mình đã trực tiếp thiết kế và lập trình.",
+    "description": "Ba sản phẩm nổi bật thể hiện rõ nhất cách mình tổ chức mã nguồn và hoàn thiện trải nghiệm người dùng.",
+    "page_intro": "Tổng hợp những sản phẩm web và ứng dụng mình đã tự tay lên ý tưởng, thiết kế giao diện và hoàn thiện chức năng qua từng giai đoạn học tập lẫn làm việc.",
     "other_title": "Các Dự Án Khác",
     "badges": {
       "featured": "Tiêu biểu",
@@ -165,46 +169,46 @@
     "items": {
       "1": {
         "title": "Dino Péo Portfolio",
-        "description": "Website thương hiệu cá nhân sử dụng đồ họa bầu trời sao trên HTML5 Canvas, tách gói mã nguồn theo trang giúp tải tức thì, hỗ trợ đổi ngôn ngữ Việt – Anh thời gian thực và tối ưu SEO toàn diện."
+        "description": "Trang hồ sơ cá nhân giới thiệu kỹ năng và sản phẩm đã làm, tích hợp hiệu ứng bầu trời sao trên Canvas, chuyển đổi tiếng Việt – Anh và tối ưu tốc độ tải trang."
       },
       "2": {
-        "title": "Real-Time E-Commerce",
-        "description": "Website mua sắm trực tuyến đồng bộ giỏ hàng, tồn kho và tiến trình đơn hàng tức thì qua Cloud Firestore, tích hợp đăng nhập bảo mật với Firebase Authentication."
+        "title": "Website Bán Hàng Realtime",
+        "description": "Trang mua sắm trực tuyến hỗ trợ đăng nhập tài khoản, lọc tìm sản phẩm, cập nhật giỏ hàng và theo dõi trạng thái đơn đặt theo thời gian thực qua Firebase."
       },
       "3": {
-        "title": "Culinary Restaurant Web",
-        "description": "Không gian ẩm thực trực tuyến giúp thực khách khám phá thực đơn theo danh mục, xem hình ảnh món ăn sắc nét và gửi yêu cầu đặt bàn ngay trên trình duyệt."
+        "title": "Website Nhà Hàng & Đặt Món",
+        "description": "Website giới thiệu không gian ẩm thực giúp khách xem thực đơn theo từng nhóm món, chọn phần ăn và gửi yêu cầu đặt bàn nhanh ngay trên trình duyệt."
       },
       "4": {
-        "title": "ThoiTiet24h — Dự Báo Khí Tượng",
-        "description": "Bảng theo dõi thời tiết đa địa điểm hiển thị trực quan nhiệt độ, độ ẩm, sức gió và chỉ số tia UV theo giờ, quản lý trạng thái truy vấn gọn nhẹ với Zustand."
+        "title": "ThoiTiet24h — Xem Thời Tiết",
+        "description": "Ứng dụng tra cứu thời tiết nhiều tỉnh thành, hiển thị rõ nhiệt độ, độ ẩm, sức gió, chỉ số UV và dự báo chi tiết theo từng khung giờ trong ngày."
       },
       "5": {
-        "title": "DinoCine — Tra Cứu Điện Ảnh",
-        "description": "Cổng khám phá phim ảnh kết nối TMDB API, hỗ trợ tìm kiếm chống trễ (debounce) và lọc sâu theo thể loại, năm phát hành cùng điểm đánh giá của khán giả."
+        "title": "DinoCine — Kho Phim Trực Tuyến",
+        "description": "Trang tra cứu thông tin phim kết nối dữ liệu từ TMDB API, cho phép tìm kiếm nhanh, xem trailer, dàn diễn viên và lọc phim theo thể loại yêu thích."
       },
       "6": {
-        "title": "DinoStore — Cửa Hàng Trực Tuyến",
-        "description": "Giao diện bán lẻ tốc độ cao lưu giữ trạng thái giỏ hàng cục bộ bền vững và tinh giản các bước nhập liệu thanh toán để hạn chế tối đa tỷ lệ bỏ giỏ."
+        "title": "DinoStore — Cửa Hàng Online",
+        "description": "Giao diện cửa hàng bán lẻ gọn nhẹ, tự động lưu giữ sản phẩm trong giỏ hàng trên trình duyệt và rút gọn thao tác điền thông tin đặt mua."
       },
       "7": {
-        "title": "DinoBot — Quản Trị Máy Chủ Discord",
-        "description": "Bot tự động hóa kiểm duyệt tin nhắn, cấp quyền thành viên và tổ chức trò chơi tương tác cho cộng đồng Discord, đi kèm trang web theo dõi trạng thái hoạt động."
+        "title": "DinoBot — Bot Quản Lý Discord",
+        "description": "Bot hỗ trợ tự động kiểm duyệt tin nhắn, phân quyền thành viên và tạo mini-game giải trí cho máy chủ Discord, kèm trang web hướng dẫn lệnh sử dụng."
       },
       "8": {
-        "title": "ShopFSTYLE — Hệ Thống Bán Lẻ Thời Trang",
-        "description": "Hệ thống bán hàng thời trang trọn gói gồm giao diện mua sắm theo kích cỡ/màu sắc và trang quản trị CMS kiểm soát kho hàng, đơn đặt cùng báo cáo doanh thu."
+        "title": "ShopFSTYLE — Web Thời Trang",
+        "description": "Website bán quần áo thời trang xây dựng bằng PHP & MySQL, gồm giao diện chọn mẫu theo size/màu và trang quản trị quản lý kho hàng, đơn đặt."
       },
       "9": {
-        "title": "Pokédex Mobile App",
-        "description": "Ứng dụng di động đa nền tảng trên iOS và Android cho phép tra cứu chỉ số sức mạnh, hệ nguyên tố và chuỗi tiến hóa thông qua PokéAPI."
+        "title": "Pokédex — Ứng Dụng Mobile",
+        "description": "Ứng dụng di động viết bằng React Native & Expo chạy trên iOS và Android, giúp tra cứu chỉ số, hệ thuộc tính và các cấp tiến hóa từ PokéAPI."
       },
       "10": {
-        "title": "LinkSnap — Rút Gọn Link & Bio Page",
-        "description": "Nền tảng SaaS quản lý liên kết tích hợp rút gọn URL tốc độ cao, tạo trang Bio cá nhân hóa, xuất mã QR tùy chỉnh, đăng nhập Google OAuth và thống kê lượt nhấp trực tiếp."
+        "title": "LinkSnap — Rút Gọn Link & Bio",
+        "description": "Nền tảng web rút gọn liên kết, tạo trang Bio cá nhân và mã QR chỉ trong vài giây, hỗ trợ đăng nhập Google và thống kê chi tiết số lượt truy cập."
       }
     },
-    "view_all": "Xem toàn bộ 10 dự án"
+    "view_all": "Xem tất cả dự án đã làm"
   },
   "activity": {
     "subtitle": "Mã nguồn mở",
@@ -255,7 +259,8 @@
     }
   },
   "footer": {
-    "rights": "Thiết kế & phát triển bởi Trần Duy Phát.",
+    "rights": "Thiết kế & phát triển bởi Dino Péo (Trần Duy Phát).",
+    "built_by": "Thiết kế & phát triển bởi",
     "transmission": "Cuối trang",
     "navigation": "Điều hướng",
     "social": "Mạng xã hội",
@@ -279,7 +284,7 @@
     "about_1": "Giới",
     "about_2": "Thiệu",
     "projects_1": "Dự Án",
-    "projects_2": "Thực Tế",
+    "projects_2": "Đã Làm",
     "contact_1": "Liên",
     "contact_2": "Hệ"
   }

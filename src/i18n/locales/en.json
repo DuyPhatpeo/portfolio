@@ -10,8 +10,8 @@
       "description": "Learn about Trần Duy Phát's engineering background in Nha Trang, core service areas, categorized tech stack, and professional work history."
     },
     "projects": {
-      "title": "Projects — Trần Duy Phát (Dino Péo) | Web Apps, SaaS & Open Source",
-      "description": "Browse 10 shipped web platforms, e-commerce systems, SaaS link tools, and mobile apps alongside live GitHub commit history by Trần Duy Phát."
+      "title": "Completed Projects — Trần Duy Phát (Dino Péo) | Web, SaaS & Mobile",
+      "description": "Explore completed web applications, e-commerce stores, link-shortening tools, and mobile apps designed and built by Trần Duy Phát."
     },
     "contact": {
       "title": "Contact — Trần Duy Phát (Dino Péo) | Hiring & Project Inquiries",
@@ -81,24 +81,28 @@
     ],
     "services": [
       {
-        "title": "Web Application Development",
-        "description": "Delivering tailored web platforms ranging from brand websites and campaign pages to interactive dashboards with scalable modular structure."
+        "title": "Web App Development",
+        "description": "Delivering brand websites, campaign pages, and admin dashboards built with clean modular architecture for long-term scalability."
       },
       {
-        "title": "Interface Craft & Motion",
-        "description": "Turning design mockups into responsive, pixel-accurate layouts enhanced with smooth, purposeful interactions across desktop and mobile."
+        "title": "UI Craft & Motion",
+        "description": "Turning design mockups into responsive, pixel-accurate interfaces enhanced with smooth, purposeful motion across every screen."
       },
       {
-        "title": "Backend Logic & API Integration",
-        "description": "Structuring relational databases, RESTful endpoints, user authentication flows, and reliable real-time data synchronization."
+        "title": "Backend & API Systems",
+        "description": "Structuring relational databases, RESTful APIs, secure user authentication flows, and dependable real-time data synchronization."
       },
       {
         "title": "Speed & Technical SEO",
-        "description": "Trimming load times, improving Core Web Vitals, ensuring keyboard/screen-reader accessibility, and structuring metadata for organic search."
+        "description": "Trimming load times, improving Core Web Vitals, ensuring accessibility compliance, and structuring metadata for organic search."
       },
       {
-        "title": "Cross-Platform Mobile Apps",
-        "description": "Building cohesive iOS and Android applications from a shared codebase while keeping native gesture responsiveness intact."
+        "title": "Mobile App Development",
+        "description": "Building cohesive iOS and Android applications from a unified codebase while keeping native touch and gesture responsiveness."
+      },
+      {
+        "title": "Deployment & Operations",
+        "description": "Shipping applications to production (Vercel, VPS, Cloud), configuring custom domains and SSL, and maintaining reliable uptime."
       }
     ]
   },
@@ -150,8 +154,8 @@
   "projects": {
     "subtitle": "Projects",
     "title": "Featured Work",
-    "description": "Three flagship builds highlighting how I structure architecture, performance, and user experience.",
-    "page_intro": "A complete archive of 10 web applications, e-commerce stores, SaaS utilities, and mobile apps I have designed and built.",
+    "description": "Three flagship builds highlighting how I structure code, performance, and user experience.",
+    "page_intro": "A collection of web products and mobile apps I planned, designed, and coded hands-on across personal builds and practical work.",
     "other_title": "More Projects",
     "badges": {
       "featured": "Featured",
@@ -165,46 +169,46 @@
     "items": {
       "1": {
         "title": "Dino Péo Portfolio",
-        "description": "Personal portfolio featuring a 60fps HTML5 Canvas monochrome starfield, route-level bundle splitting, instant Vietnamese–English switching, and dynamic per-page SEO metadata."
+        "description": "Personal developer portfolio showcasing completed work and technical stack, built with an HTML5 Canvas starfield, bilingual switching, and fast route loading."
       },
       "2": {
-        "title": "Real-Time E-Commerce",
-        "description": "Online shopping platform syncing cart items, inventory state, and live order tracking through Cloud Firestore with secure Firebase Authentication."
+        "title": "Realtime E-Commerce Web",
+        "description": "Online shopping web app with user sign-in, product filtering, live cart updates, and real-time order tracking powered by Firebase."
       },
       "3": {
-        "title": "Culinary Restaurant Web",
-        "description": "Digital hospitality storefront enabling guests to browse categorized visual menus and place table or dish orders directly in the browser."
+        "title": "Restaurant & Ordering Web",
+        "description": "Restaurant website where guests can browse categorized dish menus, customize selections, and submit table or meal orders online."
       },
       "4": {
-        "title": "ThoiTiet24h — Weather Tracker",
-        "description": "Multi-city meteorological dashboard presenting hourly temperature, humidity, wind speed, and UV index insights with lightweight Zustand state caching."
+        "title": "ThoiTiet24h — Weather App",
+        "description": "Multi-city weather forecast app displaying hourly temperature, humidity, wind speed, and UV index with responsive Zustand state caching."
       },
       "5": {
-        "title": "DinoCine — Movie Explorer",
-        "description": "Cinema discovery web app powered by the TMDB API with debounced search and multi-filter browsing across genre, release year, and audience score."
+        "title": "DinoCine — Movie Discovery",
+        "description": "Movie lookup platform integrated with the TMDB API for fast title search, cast details, trailers, and genre-based filtering."
       },
       "6": {
-        "title": "DinoStore — Online Retail Shop",
-        "description": "Fast retail storefront featuring persistent local cart storage and a streamlined checkout flow built to reduce drop-off."
+        "title": "DinoStore — Retail Storefront",
+        "description": "Clean retail storefront with persistent browser cart storage and a simplified checkout flow for quick ordering."
       },
       "7": {
-        "title": "DinoBot — Discord Server Suite",
-        "description": "Automated Discord bot handling message moderation, role assignment, and interactive community games, paired with a live status website."
+        "title": "DinoBot — Discord Server Bot",
+        "description": "Discord utility bot automating chat moderation, member role assignment, and interactive mini-games, paired with a companion command guide site."
       },
       "8": {
-        "title": "ShopFSTYLE — Fashion Commerce & CMS",
-        "description": "End-to-end fashion storefront and admin CMS covering size/color catalog filtering, stock management, order processing, and revenue reporting."
+        "title": "ShopFSTYLE — Fashion Shop",
+        "description": "Full PHP & MySQL fashion store featuring size/color product browsing alongside an admin dashboard for inventory and order management."
       },
       "9": {
-        "title": "Pokédex Mobile App",
-        "description": "Cross-platform iOS and Android mobile app consuming PokéAPI for fast base-stat lookup, elemental filtering, and evolution chains."
+        "title": "Pokédex — Mobile App",
+        "description": "Cross-platform iOS and Android app built with React Native and Expo to browse Pokémon stats, types, and evolution chains via PokéAPI."
       },
       "10": {
-        "title": "LinkSnap — URL Shortener & Bio Page",
-        "description": "Link management SaaS combining low-latency short links, customizable Bio Pages, QR code generation, Google OAuth login, and real-time click analytics."
+        "title": "LinkSnap — Short Links & Bio",
+        "description": "Web platform for shortening URLs, building personal Bio pages, and generating QR codes with Google sign-in and live click analytics."
       }
     },
-    "view_all": "View All 10 Projects"
+    "view_all": "View All Completed Projects"
   },
   "activity": {
     "subtitle": "Open Source",
@@ -255,7 +259,8 @@
     }
   },
   "footer": {
-    "rights": "Designed & built by Trần Duy Phát.",
+    "rights": "Designed & built by Dino Péo (Trần Duy Phát).",
+    "built_by": "Designed & built by",
     "transmission": "End of page",
     "navigation": "Navigation",
     "social": "Social",
@@ -278,7 +283,7 @@
   "pageHero": {
     "about_1": "About",
     "about_2": "Me",
-    "projects_1": "Selected",
+    "projects_1": "Completed",
     "projects_2": "Projects",
     "contact_1": "Get in",
     "contact_2": "Touch"
