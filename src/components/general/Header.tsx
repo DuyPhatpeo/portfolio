@@ -145,21 +145,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 transform ${
-        showHeader || isOpen
+      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 transform ${showHeader || isOpen
           ? "translate-y-0 opacity-100"
           : "-translate-y-full opacity-0 pointer-events-none"
-      } ${
-        isScrolled && !isOpen
-          ? "bg-background/70 backdrop-blur-md border-b border-border/80"
-          : "bg-transparent"
-      }`}
+        } ${
+          isScrolled && !isOpen
+            ? "bg-background/90 backdrop-blur-md border-b border-border"
+            : "bg-transparent"
+        }`}
     >
       {/* Top Navbar */}
       <div
-        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 flex justify-between items-center ${
-          isOpen ? "border-b border-white/10" : ""
-        }`}
+        className={`relative z-20 w-full px-4 sm:px-6 md:px-8 h-20 flex justify-between items-center ${isOpen ? "border-b border-white/10" : ""
+          }`}
       >
         {/* Brand Logo */}
         <button
@@ -168,11 +166,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           className="relative z-10 group cursor-pointer py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-md"
         >
           <span
-            className={`text-xl md:text-2xl font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${
-              isOpen
+            className={`text-xl md:text-2xl font-sans font-bold uppercase tracking-[0.2em] transition-colors duration-200 ${isOpen
                 ? "text-neutral-100 group-hover:text-primary"
                 : "text-foreground group-hover:text-primary"
-            }`}
+              }`}
           >
             {profileData.logo}
           </span>
@@ -184,11 +181,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={handleToggleLang}
             aria-label={`Switch language to ${targetCode}`}
-            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isOpen
+            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
                 : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
-            }`}
+              }`}
           >
             <span className="w-4 h-3 overflow-hidden rounded-[2px] flex items-center justify-center">
               <img
@@ -206,11 +202,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={handleToggleDarkMode}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isOpen
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
                 ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
                 : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
-            }`}
+              }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               <motion.span
@@ -235,11 +230,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isOpen
+            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${isOpen
                 ? "border-white/15 bg-white/5 hover:bg-white/10 hover:border-primary/60 text-neutral-200 hover:text-primary"
                 : "border-border bg-card/70 hover:border-primary/50 text-foreground hover:text-primary"
-            }`}
+              }`}
           >
             <AnimatePresence mode="wait" initial={false}>
               {isOpen ? (
@@ -288,7 +282,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               clipPath: "circle(0% at calc(100% - 44px) 40px)",
             }}
             transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-10 w-screen h-dvh bg-[#050507]/94 backdrop-blur-md text-neutral-100 flex flex-col justify-between overflow-hidden select-none"
+            className="fixed inset-0 z-10 w-screen h-dvh bg-[#171717]/96 backdrop-blur-md text-neutral-100 flex flex-col justify-between overflow-hidden select-none"
           >
             {/* Header Spacer */}
             <div className="w-full h-20 shrink-0" />
@@ -308,11 +302,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         0{index + 1}
                       </span>
                       <span
-                        className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-all duration-200 group-hover:translate-x-2 ${
-                          isActive
+                        className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-all duration-200 group-hover:translate-x-2 ${isActive
                             ? "text-primary"
                             : "text-neutral-100 group-hover:text-primary"
-                        }`}
+                          }`}
                       >
                         {toTitleCase(item.name)}
                       </span>
@@ -325,7 +318,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             {/* Menu Footer */}
             <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-400 shrink-0 z-10">
               <div>
-                © {new Date().getFullYear()} {profileData.name}. {t("footer.rights")}
+                © {new Date().getFullYear()} {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
+                <a
+                  href="https://github.com/DuyPhatpeo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-neutral-200 underline underline-offset-4 decoration-white/25 hover:decoration-primary hover:text-primary transition-colors"
+                >
+                  Dino Péo (Trần Duy Phát)
+                </a>
+                .
               </div>
 
               <a

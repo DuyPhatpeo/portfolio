@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 
 // Must match variables.css
-const DARK_BG  = "#050507";
-const LIGHT_BG = "#f7f7f8";
+const DARK_BG  = "#171717";
+const LIGHT_BG = "#f7f7f7";
 
 interface Props { isDark: boolean }
 
