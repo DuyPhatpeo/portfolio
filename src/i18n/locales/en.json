@@ -69,10 +69,32 @@
     }
   },
   "about": {
+    "eyebrow": "ABOUT ME",
     "subtitle": "Profile",
-    "title": "Background & Approach",
+    "title": "Background & Philosophy",
     "lead": "Based in Nha Trang, Vietnam, I focus on turning complex operational and product requirements into clean, approachable, and resilient digital software.",
-    "story": "Whether collaborating inside a company team or shipping an independent product from the ground up, I hold two priorities equally: writing structured code that teammates can confidently maintain, and crafting interfaces that feel effortless from the very first click."
+    "story": "Whether collaborating inside a company team or shipping an independent product from the ground up, I hold two priorities equally: writing structured code that teammates can confidently maintain, and crafting interfaces that feel effortless from the very first click.",
+    "location": "Nha Trang, Vietnam",
+    "status": "Available for new projects",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Shipped Projects",
+      "commitment": "Reliable Delivery"
+    },
+    "principles": {
+      "performance": {
+        "title": "Speed & Performance",
+        "desc": "Optimized bundle sizes, high Core Web Vitals, and near-instant response times."
+      },
+      "ui": {
+        "title": "UI/UX & Fluid Motion",
+        "desc": "Pixel-perfect layouts, responsive across screens with smooth animations."
+      },
+      "architecture": {
+        "title": "Clean Architecture",
+        "desc": "Structured codebase, Git Flow discipline, scalable and easy to maintain."
+      }
+    }
   },
   "whatIDo": {
     "title": "Capabilities & Solutions",
@@ -114,12 +136,28 @@
     "title": "Technologies & Tools",
     "description": "Languages, frameworks, and tools organized by architecture layer.",
     "core_stack": "Core Stack",
+    "core_description": "Core technologies and modern tools applied across production builds.",
     "categories": {
+      "all": "All Tiers",
       "frontend": "Frontend & UI",
       "backend": "Backend & APIs",
       "database": "Databases",
       "tools": "Tooling & Workflow",
       "design": "UI/UX Design"
+    },
+    "architecture": {
+      "tier_1_badge": "01 · CLIENT ARCHITECTURE",
+      "tier_1_title": "Client & Frontend Architecture",
+      "tier_1_desc": "Responsive web client interfaces, Core Web Vitals performance, and mobile cross-platform UX.",
+      "tier_2_badge": "02 · SERVER & API ARCHITECTURE",
+      "tier_2_title": "Backend Services & Business Logic",
+      "tier_2_desc": "RESTful endpoints, secure server logic, and automated background integrations.",
+      "tier_3_badge": "03 · DATA & PERSISTENCE LAYER",
+      "tier_3_title": "Database & Cloud Storage",
+      "tier_3_desc": "Relational SQL modeling, NoSQL documents, and realtime cloud data synchronization.",
+      "tier_4_badge": "04 · WORKFLOW & INFRASTRUCTURE",
+      "tier_4_title": "DevOps, Tooling & Design Systems",
+      "tier_4_desc": "Git Flow version control, bundling optimization, continuous deployment, and UI systems."
     }
   },
   "experience": {
@@ -170,48 +208,189 @@
       "overview": "Project Overview",
       "technologies": "Built With",
       "view_details": "View Project Details",
-      "screenshots": "Full Interface Preview"
+      "screenshots": "Full Interface Preview",
+      "features": "Key Features"
     },
     "items": {
       "1": {
         "title": "Dino Péo Portfolio",
-        "description": "Personal developer portfolio showcasing completed work and technical stack, built with an HTML5 Canvas starfield, bilingual switching, and fast route loading."
+        "short_title": "Dino Péo Portfolio",
+        "category": "Personal Portfolio",
+        "description": "Personal developer portfolio presenting technical skills and completed works with interactive visual effects and instant bilingual switching.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Interactive Experience & Visuals",
+              "content": "• Interactive 2D Canvas starfield reacting to cursor movement, auto-optimized to conserve mobile battery.\\n• Vertical Scroll Preview: Live hover scroll on project cards allowing visitors to preview full interfaces without navigating away.\\n• Instant Bilingual Localization: Seamless switching between Vietnamese and English, auto-persisting user preference."
+            },
+            {
+              "heading": "Contact & Architecture Showcase",
+              "content": "• Direct Contact Form: Send messages directly to personal inbox via EmailJS with instant status alerts.\\n• Architectural Bento Stack: Interactive skill grouping by Client, Server, Database, and DevOps layers.\\n• Open Source Activity: Real-time commit history and contributions fetched from GitHub."
+            }
+          ]
+        }
       },
       "2": {
         "title": "Realtime E-Commerce Web",
-        "description": "Online shopping web app with user sign-in, product filtering, live cart updates, and real-time order tracking powered by Firebase."
+        "short_title": "E-Commerce Web",
+        "category": "Realtime Commerce",
+        "description": "Real-time online shopping platform connected with Firebase to synchronize products, shopping carts, and order statuses.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Authentication & Product Discovery",
+              "content": "• Secure user sign-up and sign-in via Firebase Authentication.\\n• Smart product search, price range filtering, category navigation, and popularity sorting."
+            },
+            {
+              "heading": "Live Cart & Online Checkout",
+              "content": "• Real-time cart management: add, update quantities, auto-calculate totals, and persist state.\\n• Online checkout workflow storing order details with instant order tracking updates."
+            }
+          ]
+        }
       },
       "3": {
         "title": "Restaurant & Ordering Web",
-        "description": "Restaurant website where guests can browse categorized dish menus, customize selections, and submit table or meal orders online."
+        "short_title": "Restaurant Web",
+        "category": "Restaurant & Ordering",
+        "description": "Culinary showcase and online reservation website featuring a categorised menu and rapid table booking system.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Menu Exploration",
+              "content": "• Categorised menu: Appetizers, Main Courses, Grilled dishes, Desserts, and Beverages.\\n• Detailed dish previews with ingredients, pricing, and high-resolution photography."
+            },
+            {
+              "heading": "Online Reservation",
+              "content": "• Quick booking form: Select dining date, time, party size, and special requests.\\n• Integrated location map and direct phone ordering buttons."
+            }
+          ]
+        }
       },
       "4": {
         "title": "ThoiTiet24h — Weather App",
-        "description": "Multi-city weather forecast app displaying hourly temperature, humidity, wind speed, and UV index with responsive Zustand state caching."
+        "short_title": "ThoiTiet24h",
+        "category": "Weather App",
+        "description": "Live weather forecast platform providing accurate real-time meteorological data for cities and provinces.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Real-Time Weather Queries",
+              "content": "• Search weather by city name or automatic browser geolocation detection.\\n• Complete environmental indicators: Temperature, humidity, wind velocity, UV index, and atmospheric pressure."
+            },
+            {
+              "heading": "Hourly & Multi-Day Forecasts",
+              "content": "• Detailed 24-hour hourly outlook displaying weather trends throughout the day.\\n• 7-day extended forecast with visual temperature charts for proactive scheduling."
+            }
+          ]
+        }
       },
       "5": {
-        "title": "DinoCine — Movie Discovery",
-        "description": "Movie lookup platform integrated with the TMDB API for fast title search, cast details, trailers, and genre-based filtering."
+        "title": "DinoCine — Online Movie Hub",
+        "short_title": "DinoCine",
+        "category": "Online Cinema",
+        "description": "Film discovery and lookup platform connected to TMDB API, offering rich metadata for thousands of cinema releases.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Movie Catalog & Discovery",
+              "content": "• Curated sections: Now Playing in theatres, Trending weekly, and Top Rated classics.\\n• Keyword search and genre filtering (Action, Sci-Fi, Animation, Horror)."
+            },
+            {
+              "heading": "Metadata & Trailer Streaming",
+              "content": "• In-depth movie overviews, IMDb ratings, runtime, directors, and full cast lists.\\n• Stream official YouTube video trailers directly within the web interface."
+            }
+          ]
+        }
       },
       "6": {
-        "title": "DinoStore — Retail Storefront",
-        "description": "Clean retail storefront with persistent browser cart storage and a simplified checkout flow for quick ordering."
+        "title": "DinoStore — Online Shop",
+        "short_title": "DinoStore",
+        "category": "Online Shop",
+        "description": "Minimalist fashion retail web app focused on streamlined apparel browsing and frictionless cart ordering.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Apparel Browsing & Sizing",
+              "content": "• Categorised collection with fast filtering by size (S/M/L/XL) and colorways.\\n• Multi-angle product imagery paired with body measurement sizing guides."
+            },
+            {
+              "heading": "Cart & Checkout",
+              "content": "• LocalStorage cart persistence preserving selected items across page reloads.\\n• Streamlined checkout form capturing delivery address and order details."
+            }
+          ]
+        }
       },
       "7": {
-        "title": "DinoBot — Discord Server Bot",
-        "description": "Discord utility bot automating chat moderation, member role assignment, and interactive mini-games, paired with a companion command guide site."
+        "title": "DinoBot — Discord Utility Bot",
+        "short_title": "DinoBot Discord",
+        "category": "Discord Bot",
+        "description": "Administration and entertainment bot for Discord communities, featuring automated moderation and member management.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Server Moderation & Safety",
+              "content": "• Automated newcomer greeting messages and instant auto-role assignment.\\n• Message filtering: Auto-detect and purge profanity, antispam defense rules."
+            },
+            {
+              "heading": "Music & Entertainment",
+              "content": "• On-demand music playback from YouTube and SoundCloud in voice channels.\\n• Fun interactive mini-games and a dedicated web landing page for command syntax."
+            }
+          ]
+        }
       },
       "8": {
-        "title": "ShopFSTYLE — Fashion Shop",
-        "description": "Full PHP & MySQL fashion store featuring size/color product browsing alongside an admin dashboard for inventory and order management."
+        "title": "ShopFSTYLE — Fashion E-Commerce",
+        "short_title": "ShopFSTYLE",
+        "category": "Fashion Web",
+        "description": "Complete e-commerce platform built with PHP & MySQL, featuring customer shopping flows and an Admin dashboard.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Customer Shopping Experience",
+              "content": "• Browse apparel by categories, select color/size variations, and add to cart.\\n• Order placement and customer purchase history tracking."
+            },
+            {
+              "heading": "Admin Management Dashboard",
+              "content": "• Product inventory management: Add, edit, remove products, stock levels, and prices.\\n• Order processing pipeline: Update status (Pending, Shipping, Delivered) and sales reports."
+            }
+          ]
+        }
       },
       "9": {
         "title": "Pokédex — Mobile App",
-        "description": "Cross-platform iOS and Android app built with React Native and Expo to browse Pokémon stats, types, and evolution chains via PokéAPI."
+        "short_title": "Pokédex Mobile",
+        "category": "Mobile App",
+        "description": "Comprehensive mobile Pokédex app developed with React Native & Expo, running smoothly on iOS and Android.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Extensive PokéAPI Database",
+              "content": "• Explore 800+ Pokémon species with official high-res artwork.\\n• Stat radar charts: HP, Attack, Defense, Special Attack, Special Defense, and Speed."
+            },
+            {
+              "heading": "Search & Evolution Tracking",
+              "content": "• Instant search by name or ID, elemental type filtering (Fire, Water, Grass, Electric).\\n• Visual evolution chain diagrams showing level and item evolutionary conditions."
+            }
+          ]
+        }
       },
       "10": {
-        "title": "LinkSnap — Short Links & Bio",
-        "description": "Web platform for shortening URLs, building personal Bio pages, and generating QR codes with Google sign-in and live click analytics."
+        "title": "LinkSnap — URL & Bio Shortener",
+        "short_title": "LinkSnap",
+        "category": "Link Shortener & Bio",
+        "description": "Smart URL shortener and custom Bio link platform with automated QR generation and live click analytics.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Rapid Link Shortening & QR",
+              "content": "• Instant URL compression with custom alias branding.\\n• Auto-generated high-resolution QR codes for physical scan-to-open distribution."
+            },
+            {
+              "heading": "Bio Page & Live Analytics",
+              "content": "• 1-minute Link-in-Bio mobile landing page aggregating social links.\\n• Real-time analytics dashboard tracking total clicks and device distributions."
+            }
+          ]
+        }
       }
     },
     "view_all": "View All Completed Projects"

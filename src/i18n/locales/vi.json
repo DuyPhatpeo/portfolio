@@ -69,10 +69,32 @@
     }
   },
   "about": {
+    "eyebrow": "GIỚI THIỆU · ABOUT ME",
     "subtitle": "Giới thiệu",
-    "title": "Câu Chuyện Nghề Nghiệp",
+    "title": "Câu Chuyện & Triết Lý Phát Triển",
     "lead": "Hiện đang sinh sống và làm việc tại Nha Trang, mình theo đuổi con đường phát triển phần mềm với mong muốn biến những bài toán nghiệp vụ phức tạp thành sản phẩm số gọn gàng, dễ dùng và bền bỉ.",
-    "story": "Trong mỗi dự án cộng tác cùng doanh nghiệp hay tự tay xây dựng từ con số không, mình luôn cân bằng giữa hai yếu tố: mã nguồn có cấu trúc rõ ràng để đồng đội dễ dàng kế thừa, và trải nghiệm giao diện chỉn chu để giữ chân người dùng ngay từ lần truy cập đầu tiên."
+    "story": "Trong mỗi dự án cộng tác cùng doanh nghiệp hay tự tay xây dựng từ con số không, mình luôn cân bằng giữa hai yếu tố: mã nguồn có cấu trúc rõ ràng để đồng đội dễ dàng kế thừa, và trải nghiệm giao diện chỉn chu để giữ chân người dùng ngay từ lần truy cập đầu tiên.",
+    "location": "Nha Trang, Việt Nam",
+    "status": "Sẵn sàng nhận dự án mới",
+    "stats": {
+      "experience": "Năm kinh nghiệm",
+      "projects": "Dự án hoàn thành",
+      "commitment": "Tận tâm & đúng hạn"
+    },
+    "principles": {
+      "performance": {
+        "title": "Tốc Độ & Hiệu Năng",
+        "desc": "Tối ưu dung lượng, chỉ số Core Web Vitals cao và phản hồi tức thì."
+      },
+      "ui": {
+        "title": "UI/UX & Chuyển Động",
+        "desc": "Thiết kế sắc nét, tương thích mọi thiết bị cùng hiệu ứng chuyển động mượt mà."
+      },
+      "architecture": {
+        "title": "Kiến Trúc & Mã Nguồn",
+        "desc": "Cấu trúc rõ ràng, chuẩn Git Flow, dễ dàng bảo trì và mở rộng lâu dài."
+      }
+    }
   },
   "whatIDo": {
     "title": "Giải Pháp & Chuyên Môn",
@@ -114,12 +136,28 @@
     "title": "Hệ Công Nghệ Sử Dụng",
     "description": "Các ngôn ngữ, framework và công cụ phân nhóm theo tầng kiến trúc.",
     "core_stack": "Công nghệ chủ lực",
+    "core_description": "Các công nghệ chủ lực được tinh chọn và áp dụng xuyên suốt trong các sản phẩm thực tế.",
     "categories": {
+      "all": "Tất cả các tầng",
       "frontend": "Giao diện & Frontend",
       "backend": "Hệ thống & Backend",
       "database": "Cơ sở dữ liệu",
       "tools": "Công cụ & Quy trình",
       "design": "Thiết kế UI/UX"
+    },
+    "architecture": {
+      "tier_1_badge": "01 · CLIENT ARCHITECTURE",
+      "tier_1_title": "Tầng Giao Diện & Client",
+      "tier_1_desc": "Xây dựng giao diện web phản hồi tức thì, tối ưu Core Web Vitals và trải nghiệm vuốt chạm di động.",
+      "tier_2_badge": "02 · SERVER & API ARCHITECTURE",
+      "tier_2_title": "Tầng Dịch Vụ & Xử Lý Server",
+      "tier_2_desc": "Kiến trúc RESTful API, logic máy chủ bảo mật và các dịch vụ tự động hóa ổn định.",
+      "tier_3_badge": "03 · DATA & PERSISTENCE LAYER",
+      "tier_3_title": "Tầng Dữ Liệu & Điện Toán Đám Mây",
+      "tier_3_desc": "Mô hình hóa SQL quan hệ, NoSQL và đồng bộ trạng thái thời gian thực an toàn.",
+      "tier_4_badge": "04 · WORKFLOW & INFRASTRUCTURE",
+      "tier_4_title": "Tầng Công Cụ, Vận Hành & Thiết Kế",
+      "tier_4_desc": "Kiểm soát mã nguồn Git Flow, tối ưu bundle build, tự động triển khai và thiết kế UI/UX."
     }
   },
   "experience": {
@@ -170,48 +208,189 @@
       "overview": "Tổng quan dự án",
       "technologies": "Công nghệ sử dụng",
       "view_details": "Xem chi tiết dự án",
-      "screenshots": "Giao diện chi tiết"
+      "screenshots": "Giao diện chi tiết",
+      "features": "Chức năng chính"
     },
     "items": {
       "1": {
         "title": "Dino Péo Portfolio",
-        "description": "Trang hồ sơ cá nhân giới thiệu kỹ năng và sản phẩm đã làm, tích hợp hiệu ứng bầu trời sao trên Canvas, chuyển đổi tiếng Việt – Anh và tối ưu tốc độ tải trang."
+        "short_title": "Dino Péo Portfolio",
+        "category": "Portfolio cá nhân",
+        "description": "Website hồ sơ cá nhân giới thiệu năng lực lập trình và sản phẩm thực tế, tích hợp hiệu ứng tương tác 3D và chuyển đổi đa ngôn ngữ.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Giao diện & Trải nghiệm tương tác",
+              "content": "• Bầu trời sao 2D Canvas chuyển động theo chuột, tự động tối ưu để tiết kiệm pin trên điện thoại.\\n• Xem trước cuộn dọc: Rê chuột vào card dự án để lướt xem toàn bộ trang web trực quan từ đầu đến cuối.\\n• Chuyển đổi ngôn ngữ Tiếng Việt – Tiếng Anh tức thì, tự động ghi nhớ cài đặt của người dùng."
+            },
+            {
+              "heading": "Tính năng liên hệ & Trình bày kỹ năng",
+              "content": "• Form gửi thư trực tiếp: Người dùng gửi thông điệp và nhận phản hồi trực tiếp qua EmailJS.\\n• Cây công nghệ tương tác: Phân chia hệ kỹ năng phân tầng theo giao diện, máy chủ, dữ liệu và vận hành.\\n• Báo cáo hoạt động mã nguồn: Tự động tổng hợp dữ liệu đóng góp từ tài khoản GitHub."
+            }
+          ]
+        }
       },
       "2": {
         "title": "Website Bán Hàng Realtime",
-        "description": "Trang mua sắm trực tuyến hỗ trợ đăng nhập tài khoản, lọc tìm sản phẩm, cập nhật giỏ hàng và theo dõi trạng thái đơn đặt theo thời gian thực qua Firebase."
+        "short_title": "Website Bán Hàng",
+        "category": "Thương mại điện tử",
+        "description": "Nền tảng mua sắm trực tuyến thời gian thực, kết nối Firebase để đồng bộ sản phẩm, giỏ hàng và trạng thái đơn hàng tức thì.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Tài khoản & Tìm kiếm sản phẩm",
+              "content": "• Đăng ký và đăng nhập tài khoản an toàn thông qua Firebase Authentication.\\n• Tìm kiếm sản phẩm thông minh, lọc theo khoảng giá, danh mục hàng và sắp xếp theo độ phổ biến."
+            },
+            {
+              "heading": "Giỏ hàng & Đặt mua trực tuyến",
+              "content": "• Quản lý giỏ hàng thời gian thực: Thêm, bớt số lượng, tự động tính tổng tiền và lưu trạng thái.\\n• Quy trình đặt hàng trực tuyến, lưu trữ thông tin đơn và cập nhật trạng thái đơn đặt tức thời."
+            }
+          ]
+        }
       },
       "3": {
         "title": "Website Nhà Hàng & Đặt Món",
-        "description": "Website giới thiệu không gian ẩm thực giúp khách xem thực đơn theo từng nhóm món, chọn phần ăn và gửi yêu cầu đặt bàn nhanh ngay trên trình duyệt."
+        "short_title": "Website Nhà Hàng",
+        "category": "Đặt món & Nhà hàng",
+        "description": "Website ẩm thực và đặt bàn trực tuyến, cung cấp thực đơn chi tiết theo nhóm món và hệ thống tiếp nhận đặt bàn nhanh chóng.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Khám phá thực đơn ẩm thực",
+              "content": "• Thực đơn phân nhóm rõ ràng: Khai vị, món chính, món nướng, tráng miệng và đồ uống.\\n• Xem chi tiết từng món ăn gồm thành phần nguyên liệu, mức giá và hình ảnh thực tế."
+            },
+            {
+              "heading": "Hệ thống đặt bàn trực tuyến",
+              "content": "• Form đặt bàn nhanh: Chọn ngày giờ dùng bữa, số lượng người và gửi yêu cầu đặc biệt.\\n• Bản đồ chỉ đường vị trí nhà hàng và nút gọi điện đặt tiệc trực tiếp trên giao diện."
+            }
+          ]
+        }
       },
       "4": {
         "title": "ThoiTiet24h — Xem Thời Tiết",
-        "description": "Ứng dụng tra cứu thời tiết nhiều tỉnh thành, hiển thị rõ nhiệt độ, độ ẩm, sức gió, chỉ số UV và dự báo chi tiết theo từng khung giờ trong ngày."
+        "short_title": "ThoiTiet24h",
+        "category": "Ứng dụng thời tiết",
+        "description": "Ứng dụng tra cứu thông tin thời tiết trực tuyến, cung cấp dữ liệu khí tượng chuẩn xác theo thời gian thực cho mọi tỉnh thành.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Tra cứu & Dữ liệu thời tiết tức thì",
+              "content": "• Tìm kiếm thời tiết theo tên thành phố hoặc tự động nhận diện vị trí hiện tại của người dùng.\\n• Hiển thị đầy đủ thông số môi trường: Nhiệt độ, độ ẩm, tốc độ gió, chỉ số UV và áp suất không khí."
+            },
+            {
+              "heading": "Dự báo chi tiết theo giờ & theo ngày",
+              "content": "• Dự báo chi tiết thời tiết 24 giờ tiếp theo theo từng khung giờ trong ngày.\\n• Dự báo xu hướng thời tiết 7 ngày tới với biểu đồ trực quan, giúp người dùng chủ động lịch trình."
+            }
+          ]
+        }
       },
       "5": {
         "title": "DinoCine — Kho Phim Trực Tuyến",
-        "description": "Trang tra cứu thông tin phim kết nối dữ liệu từ TMDB API, cho phép tìm kiếm nhanh, xem trailer, dàn diễn viên và lọc phim theo thể loại yêu thích."
+        "short_title": "DinoCine",
+        "category": "Kho phim trực tuyến",
+        "description": "Nền tảng tra cứu và khám phá điện ảnh kết nối trực tiếp với TMDB API, cung cấp dữ liệu hàng ngàn bộ phim bom tấn.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Khám phá danh mục điện ảnh",
+              "content": "• Phân loại phim phong phú: Phim đang chiếu rạp, phim thịnh hành (Trending) và phim được đánh giá cao.\\n• Tìm kiếm phim theo tên, lọc theo thể loại (Hành động, Viễn tưởng, Hoạt hình, Kinh dị)."
+            },
+            {
+              "heading": "Thông tin chi tiết & Xem Trailer",
+              "content": "• Xem thông tin chi tiết: Tóm tắt cốt truyện, điểm IMDb, thời lượng, đạo diễn và dàn diễn viên.\\n• Xem video trailer chính thức từ YouTube trực tiếp trên giao diện mà không cần chuyển trang."
+            }
+          ]
+        }
       },
       "6": {
         "title": "DinoStore — Cửa Hàng Online",
-        "description": "Giao diện cửa hàng bán lẻ gọn nhẹ, tự động lưu giữ sản phẩm trong giỏ hàng trên trình duyệt và rút gọn thao tác điền thông tin đặt mua."
+        "short_title": "DinoStore",
+        "category": "Cửa hàng online",
+        "description": "Cửa hàng thời trang trực tuyến với giao diện tối giản, tập trung vào trải nghiệm lựa chọn mẫu mã và mua sắm tiện lợi.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Trải nghiệm mua sắm & Lọc sản phẩm",
+              "content": "• Danh mục thời trang phong phú, hỗ trợ lọc nhanh theo kích cỡ (Size S/M/L/XL) và màu sắc.\\n• Thư viện ảnh sản phẩm đa góc chụp kèm hướng dẫn chọn kích cỡ chuẩn cho từng dáng người."
+            },
+            {
+              "heading": "Giỏ hàng & Thanh toán đơn hàng",
+              "content": "• Giỏ hàng lưu trữ tự động trên trình duyệt (LocalStorage), không bị mất sản phẩm khi tải lại trang.\\n• Form đặt mua tinh gọn, xác nhận thông tin nhận hàng và phương thức giao hàng nhanh chóng."
+            }
+          ]
+        }
       },
       "7": {
         "title": "DinoBot — Bot Quản Lý Discord",
-        "description": "Bot hỗ trợ tự động kiểm duyệt tin nhắn, phân quyền thành viên và tạo mini-game giải trí cho máy chủ Discord, kèm trang web hướng dẫn lệnh sử dụng."
+        "short_title": "DinoBot Discord",
+        "category": "Bot quản lý Discord",
+        "description": "Bot tiện ích quản trị và giải trí dành cho máy chủ Discord, tích hợp hệ thống lệnh tự động hóa và quản lý thành viên.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Quản trị & Bảo vệ máy chủ",
+              "content": "• Tự động gửi tin nhắn chào đón thành viên mới và tự động gán vai trò (Auto-role).\\n• Hệ thống kiểm duyệt tin nhắn: Tự động phát hiện, cảnh báo và xóa từ cấm, chống spam tin nhắn."
+            },
+            {
+              "heading": "Âm nhạc & Mini-game giải trí",
+              "content": "• Phát nhạc trực tuyến theo yêu cầu từ YouTube và SoundCloud trong kênh đàm thoại (Voice).\\n• Bộ lệnh giải trí, mini-game tương tác vui nhộn và trang web tra cứu cú pháp lệnh đầy đủ."
+            }
+          ]
+        }
       },
       "8": {
         "title": "ShopFSTYLE — Web Thời Trang",
-        "description": "Website bán quần áo thời trang xây dựng bằng PHP & MySQL, gồm giao diện chọn mẫu theo size/màu và trang quản trị quản lý kho hàng, đơn đặt."
+        "short_title": "ShopFSTYLE",
+        "category": "Web thời trang",
+        "description": "Hệ thống website thương mại điện tử hoàn chỉnh viết bằng PHP & MySQL, gồm giao diện mua sắm và trang quản trị Admin.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Giao diện khách hàng mua sắm",
+              "content": "• Duyệt sản phẩm theo danh mục thời trang, chọn màu sắc và kích cỡ theo ý muốn.\\n• Quản lý giỏ hàng, đặt mua trực tuyến và xem lại lịch sử đơn hàng đã đặt."
+            },
+            {
+              "heading": "Trang quản trị (Admin Dashboard)",
+              "content": "• Quản lý sản phẩm: Thêm mới, chỉnh sửa thông tin, giá bán, ảnh chụp và số lượng tồn kho.\\n• Quản lý đơn đặt hàng: Cập nhật trạng thái xử lý đơn (Chờ duyệt, Đang giao, Đã giao) và thống kê."
+            }
+          ]
+        }
       },
       "9": {
         "title": "Pokédex — Ứng Dụng Mobile",
-        "description": "Ứng dụng di động viết bằng React Native & Expo chạy trên iOS và Android, giúp tra cứu chỉ số, hệ thuộc tính và các cấp tiến hóa từ PokéAPI."
+        "short_title": "Pokédex Mobile",
+        "category": "Ứng dụng di động",
+        "description": "Ứng dụng di động tra cứu thông tin Pokémon toàn diện xây dựng bằng React Native & Expo, chạy mượt mà trên iOS và Android.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Cơ sở dữ liệu Pokémon toàn diện",
+              "content": "• Tra cứu hơn 800+ loài Pokémon từ PokéAPI với hình ảnh minh họa chất lượng cao.\\n• Xem biểu đồ chỉ số chiến đấu chi tiết: Máu (HP), Tấn công, Phòng thủ, Tốc độ và Tổng điểm."
+            },
+            {
+              "heading": "Tìm kiếm & Chuỗi tiến hóa",
+              "content": "• Tìm kiếm nhanh theo tên hoặc số thứ tự, lọc theo hệ nguyên tố (Lửa, Nước, Cỏ, Sấm sét,...).\\n• Sơ đồ chuỗi tiến hóa trực quan, hiển thị điều kiện và cấp độ tiến hóa của từng loài."
+            }
+          ]
+        }
       },
       "10": {
         "title": "LinkSnap — Rút Gọn Link & Bio",
-        "description": "Nền tảng web rút gọn liên kết, tạo trang Bio cá nhân và mã QR chỉ trong vài giây, hỗ trợ đăng nhập Google và thống kê chi tiết số lượt truy cập."
+        "short_title": "LinkSnap",
+        "category": "Rút gọn link & Bio",
+        "description": "Nền tảng web rút gọn liên kết thông minh và tạo trang Bio cá nhân, tích hợp hệ thống đo lường lượt nhấp chi tiết.",
+        "case_study": {
+          "sections": [
+            {
+              "heading": "Rút gọn link & Mã QR tự động",
+              "content": "• Rút gọn liên kết siêu tốc, hỗ trợ đặt tên đuôi tùy chỉnh theo ý muốn (Custom Alias).\\n• Tự động tạo mã QR chất lượng cao cho mọi link rút gọn để chia sẻ và quét trên điện thoại."
+            },
+            {
+              "heading": "Trang Bio cá nhân & Báo cáo thống kê",
+              "content": "• Tạo trang cá nhân (Link-in-Bio) tổng hợp các liên kết mạng xã hội chỉ trong 1 phút.\\n• Bảng thống kê chi tiết: Đo lường tổng số lượt nhấp chuột và biểu đồ truy cập theo thời gian thực."
+            }
+          ]
+        }
       }
     },
     "view_all": "Xem tất cả dự án đã làm"

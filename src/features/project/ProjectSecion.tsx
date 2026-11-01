@@ -40,46 +40,143 @@ export default function ProjectSection({
     () => {
       const mm = gsap.matchMedia();
 
-      // Staggered viewport entry batches (skipped when reduced motion is enabled)
+      // Coordinated GSAP reveals for all project cards & sections
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         if (mode === "all-list") {
-          const cards = gsap.utils.toArray<HTMLElement>("[data-project-card]");
-          if (cards.length > 0) {
+          // Dedicated /projects page: Coordinated cascade for above-the-fold cards + scroll batches for rest
+          const gridCards = gsap.utils.toArray<HTMLElement>("[data-project-grid-card]");
+          if (gridCards.length > 0) {
+            const initialCards: HTMLElement[] = [];
+            const scrollCards: HTMLElement[] = [];
+            const viewportThreshold = window.innerHeight * 0.95;
+
+            gridCards.forEach((card) => {
+              const rect = card.getBoundingClientRect();
+              if (rect.top < viewportThreshold) {
+                initialCards.push(card);
+              } else {
+                scrollCards.push(card);
+              }
+            });
+
+            // Above-the-fold cards: smooth cascaded entrance right after PageHero
+            if (initialCards.length > 0) {
+              gsap.fromTo(
+                initialCards,
+                { autoAlpha: 0, y: 32, scale: 0.98 },
+                {
+                  autoAlpha: 1,
+                  y: 0,
+                  scale: 1,
+                  duration: 0.7,
+                  stagger: 0.08,
+                  ease: "power3.out",
+                  delay: 0.18,
+                  clearProps: "transform,opacity",
+                }
+              );
+            }
+
+            // Cards below the fold: professional batch reveals as user scrolls down
+            if (scrollCards.length > 0) {
+              gsap.set(scrollCards, { autoAlpha: 0, y: 36, scale: 0.98 });
+              ScrollTrigger.batch(scrollCards, {
+                interval: 0.08,
+                batchMax: 3,
+                start: "clamp(top 88%)",
+                once: true,
+                onEnter: (batch) => {
+                  gsap.to(batch, {
+                    autoAlpha: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.65,
+                    stagger: 0.09,
+                    ease: "power3.out",
+                    overwrite: "auto",
+                    clearProps: "transform,opacity",
+                  });
+                },
+              });
+            }
+          }
+        } else {
+          // Home page featured section reveals: Header, Rows, and CTA
+          const header = sectionRef.current?.querySelector<HTMLElement>("[data-projects-header]");
+          if (header) {
             gsap.fromTo(
-              cards,
-              { autoAlpha: 0, y: 24 },
+              header,
+              { autoAlpha: 0, y: 28 },
               {
                 autoAlpha: 1,
                 y: 0,
-                duration: 0.55,
-                stagger: 0.05,
+                duration: 0.7,
                 ease: "power3.out",
-                delay: 0.08,
-                clearProps: "transform",
+                clearProps: "transform,opacity",
+                scrollTrigger: {
+                  trigger: header,
+                  start: "clamp(top 88%)",
+                  once: true,
+                },
               }
             );
           }
-        } else {
+
           const rows = gsap.utils.toArray<HTMLElement>("[data-featured-row]");
           if (rows.length > 0) {
-            gsap.set(rows, { autoAlpha: 0, y: 32 });
-            ScrollTrigger.batch(rows, {
-              interval: 0.1,
-              batchMax: 2,
-              start: "clamp(top 88%)",
-              once: true,
-              onEnter: (batch) => {
-                gsap.to(batch, {
-                  autoAlpha: 1,
-                  y: 0,
-                  duration: 0.65,
-                  stagger: 0.1,
-                  ease: "power3.out",
-                  overwrite: "auto",
-                  clearProps: "transform",
-                });
-              },
+            rows.forEach((row) => {
+              const rect = row.getBoundingClientRect();
+              if (rect.top < window.innerHeight * 0.9) {
+                gsap.fromTo(
+                  row,
+                  { autoAlpha: 0, y: 32 },
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.75,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                  }
+                );
+              } else {
+                gsap.fromTo(
+                  row,
+                  { autoAlpha: 0, y: 38 },
+                  {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.75,
+                    ease: "power3.out",
+                    clearProps: "transform,opacity",
+                    scrollTrigger: {
+                      trigger: row,
+                      start: "clamp(top 85%)",
+                      once: true,
+                    },
+                  }
+                );
+              }
             });
+          }
+
+          const cta = sectionRef.current?.querySelector<HTMLElement>("[data-projects-cta]");
+          if (cta) {
+            gsap.fromTo(
+              cta,
+              { autoAlpha: 0, y: 20 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+                clearProps: "transform,opacity",
+                scrollTrigger: {
+                  trigger: cta,
+                  start: "clamp(top 92%)",
+                  once: true,
+                },
+              }
+            );
           }
         }
       });
@@ -186,17 +283,16 @@ export default function ProjectSection({
       <div
         className={`max-w-7xl mx-auto relative z-10 ${
           mode === "all-list"
-            ? "px-3.5 sm:px-6 md:px-10 lg:px-12 pt-8 pb-20 md:pt-12 md:pb-28"
+            ? "px-5 sm:px-8 md:px-12 pt-8 pb-20 md:pt-12 md:pb-28"
             : "px-5 sm:px-8 md:px-12 py-20 md:py-28"
         }`}
       >
         {/* Modern Section Header */}
         {mode !== "all-list" && (
-          <div className="mb-12 md:mb-16 flex flex-col items-start gap-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span>{t("projects.eyebrow", "SELECTED WORKS")}</span>
-            </div>
+          <div
+            data-projects-header
+            className="mb-12 md:mb-16 flex flex-col items-start gap-3 will-change-transform"
+          >
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
               {t("projects.title")}
             </h2>
@@ -206,9 +302,9 @@ export default function ProjectSection({
           </div>
         )}
 
-        {/* Projects Rendering: 2 cols mobile / 3 cols tablet / 4 cols desktop on /projects */}
+        {/* Projects Rendering: 1 col mobile / 2 cols sm / 3 cols lg on /projects */}
         {mode === "all-list" ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
             {featuredProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -232,7 +328,7 @@ export default function ProjectSection({
         )}
 
         {mode === "featured-only" && (
-          <div className="mt-16 flex justify-center">
+          <div data-projects-cta className="mt-16 flex justify-center will-change-transform">
             <button
               onClick={() => navigate("/projects")}
               className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-card border border-border hover:border-primary/60 text-foreground hover:text-primary font-medium text-base sm:text-lg transition-colors duration-200 cursor-pointer"

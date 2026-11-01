@@ -102,17 +102,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
             data-about-reveal
           >
             <div className="relative w-full h-full min-h-[340px] sm:min-h-[400px] rounded-3xl bg-card border border-border overflow-hidden flex flex-col items-center justify-end pt-8 px-6">
-              {/* Floating Status Pill */}
-              <div className="absolute top-4 left-4 z-20 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border shadow-lg">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                </span>
-                <span className="text-xs font-mono font-medium text-foreground">
-                  Available for Work
-                </span>
-              </div>
-
               {/* Centered orbital frame behind character */}
               <span
                 className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[68%] aspect-square rounded-full bg-muted/55 border border-border"
@@ -180,25 +169,6 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   <p className="text-muted-foreground text-base sm:text-lg leading-relaxed">
                     {t("about.story")}
                   </p>
-
-                  {/* Highlights Stat Chips */}
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-3">
-                    <div className="p-3.5 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-colors">
-                      <span className="text-xl sm:text-2xl font-bold font-sans text-primary">3+</span>
-                      <p className="text-xs font-mono text-muted-foreground mt-0.5">Năm kinh nghiệm</p>
-                    </div>
-                    <div className="p-3.5 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-colors">
-                      <span className="text-xl sm:text-2xl font-bold font-sans text-foreground">10+</span>
-                      <p className="text-xs font-mono text-muted-foreground mt-0.5">Dự án hoàn thành</p>
-                    </div>
-                    <div className="p-3.5 rounded-2xl bg-card border border-border/80 hover:border-primary/50 transition-colors col-span-2 sm:col-span-1">
-                      <div className="flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-sm font-semibold text-foreground">Sẵn sàng</span>
-                      </div>
-                      <p className="text-xs font-mono text-muted-foreground mt-0.5">Nhận dự án mới</p>
-                    </div>
-                  </div>
                 </div>
               ) : (
                 <p className="text-foreground/95 text-lg sm:text-xl leading-relaxed max-w-[54ch]">

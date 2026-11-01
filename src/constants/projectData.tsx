@@ -4,7 +4,7 @@ import { TECH } from "./technologies";
 export const projects: Project[] = [
   {
     id: 1,
-    image: "assets/projects/portfolio.webp",
+    image: "/assets/projects/portfolio.webp",
     previewImage: "/assets/projects/portfolio-full.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
     github: "https://github.com/DuyPhatpeo/portfolio",
@@ -14,7 +14,7 @@ export const projects: Project[] = [
   },
   {
     id: 10,
-    image: "assets/projects/linksnap.webp",
+    image: "/assets/projects/linksnap.webp",
     previewImage: "/assets/projects/linksnap-full.webp",
     tags: [TECH.LARAVEL, TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.TAILWIND, TECH.MYSQL],
     github: "https://github.com/DuyPhatpeo/link-snap",
@@ -24,7 +24,7 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    image: "assets/projects/weather-app.webp",
+    image: "/assets/projects/weather-app.webp",
     previewImage: "/assets/projects/weather-app-full.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/weather-app",
@@ -36,7 +36,7 @@ export const projects: Project[] = [
   // Other Projects
   {
     id: 2,
-    image: "assets/projects/ecommerce.webp",
+    image: "/assets/projects/ecommerce.webp",
     tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FIREBASE, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/ecommerce",
     demo: "https://ecommerce-phat.vercel.app/",
@@ -44,7 +44,7 @@ export const projects: Project[] = [
   },
   {
     id: 9,
-    image: "assets/projects/pokedex.webp",
+    image: "/assets/projects/pokedex.webp",
     tags: [TECH.REACT_NATIVE, TECH.EXPO, TECH.TS, TECH.NATIVEWIND, TECH.ZUSTAND],
     github: "https://github.com/DuyPhatpeo/pokedex",
     demo: null,
@@ -52,7 +52,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    image: "assets/projects/restaurant.webp",
+    image: "/assets/projects/restaurant.webp",
     previewImage: "/assets/projects/restaurant-full.webp",
     tags: [TECH.REACT, TECH.FIREBASE],
     github: "https://github.com/DuyPhatpeo/restaurant",
@@ -61,7 +61,7 @@ export const projects: Project[] = [
   },
   {
     id: 5,
-    image: "assets/projects/dinocine.webp",
+    image: "/assets/projects/dinocine.webp",
     previewImage: "/assets/projects/dinocine-full.webp",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/movie-web-app",
@@ -70,7 +70,7 @@ export const projects: Project[] = [
   },
   {
     id: 6,
-    image: "assets/projects/dinostore.webp",
+    image: "/assets/projects/dinostore.webp",
     previewImage: "/assets/projects/dinostore-full.webp",
     tags: [TECH.REACT, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/dinostore",
@@ -79,7 +79,7 @@ export const projects: Project[] = [
   },
   {
     id: 7,
-    image: "assets/projects/dinobot.webp",
+    image: "/assets/projects/dinobot.webp",
     previewImage: "/assets/projects/dinobot-full.webp",
     tags: [TECH.NODE_JS, TECH.DISCORD_JS],
     github: "https://github.com/DuyPhatpeo/DinoBotDiscord",
@@ -88,7 +88,7 @@ export const projects: Project[] = [
   },
   {
     id: 8,
-    image: "assets/projects/shopfstyle.webp",
+    image: "/assets/projects/shopfstyle.webp",
     tags: [TECH.PHP, TECH.HTML, TECH.CSS, TECH.JS, TECH.MYSQL, TECH.TAILWIND],
     github: "https://github.com/DuyPhatpeo/ShopFSTYLE",
     demo: null,

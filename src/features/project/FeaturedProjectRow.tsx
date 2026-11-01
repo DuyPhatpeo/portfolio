@@ -2,7 +2,7 @@ import ProjectPreview from "@components/ui/ProjectPreview";
 import { useTranslation } from "react-i18next";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { Project } from "@/types/data";
-import { TECH_ICONS } from "@constants/technologies";
+import TechIcon from "@components/ui/TechIcon";
 
 interface FeaturedProjectRowProps {
   project: Project;
@@ -26,13 +26,12 @@ export default function FeaturedProjectRow({
         reverse ? "lg:flex-row-reverse" : "lg:flex-row"
       } items-center gap-7 lg:gap-12 will-change-transform`}
     >
-      {/* Preview Frame (no image hover scale, preserves smooth vertical scroll preview) */}
+      {/* Preview Frame with smooth vertical scroll preview on hover */}
       <div className="relative w-full lg:w-7/12 aspect-[16/10] overflow-hidden rounded-2xl bg-card border border-border group-hover:border-primary/50 transition-colors duration-300">
         <ProjectPreview
           image={project.image}
           previewImage={project.previewImage}
           alt={t(`projects.items.${project.id}.title`)}
-          className="w-full h-full object-cover"
         />
       </div>
 
@@ -46,22 +45,17 @@ export default function FeaturedProjectRow({
           {t(`projects.items.${project.id}.description`)}
         </p>
 
-        {/* Tech Tags with Icons */}
+        {/* Tech Tags with Authentic Brand Logos */}
         <div className="flex flex-wrap gap-2 mb-6">
-          {project.tags.slice(0, 5).map((tag) => {
-            const Icon = TECH_ICONS[tag];
-            return (
-              <span
-                key={tag}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-sm sm:text-base border border-border/40"
-              >
-                {Icon && (
-                  <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 text-foreground/80" />
-                )}
-                <span>{tag}</span>
-              </span>
-            );
-          })}
+          {project.tags.slice(0, 5).map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-card/85 text-foreground font-mono text-xs sm:text-sm border border-border/70 shadow-2xs"
+            >
+              <TechIcon name={tag} className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
+              <span>{tag}</span>
+            </span>
+          ))}
         </div>
 
         <span className="inline-flex items-center gap-2 text-base sm:text-lg font-medium text-foreground group-hover:text-primary transition-colors">

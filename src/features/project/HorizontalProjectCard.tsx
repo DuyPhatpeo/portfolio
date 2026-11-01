@@ -2,6 +2,7 @@
 import { useTranslation } from "react-i18next";
 import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";
 import type { Project } from "@/types/data";
+import ProjectPreview from "@components/ui/ProjectPreview";
 
 interface HorizontalProjectCardProps {
   project: Project;
@@ -16,16 +17,16 @@ export default function HorizontalProjectCard({
 
   return (
     <article
+      data-project-card
       onClick={() => onSelect(project)}
       className="group relative w-[82vw] xs:w-[320px] sm:w-[400px] md:w-[460px] lg:w-[480px] h-[420px] sm:h-[480px] shrink-0 rounded-2xl bg-card border border-border hover:border-primary/50 transition-colors duration-300 overflow-hidden cursor-pointer flex flex-col select-none"
     >
-      {/* Top Media Area (no image hover scale transform) */}
+      {/* Top Media Area with GSAP scroll preview */}
       <div className="relative w-full h-[52%] sm:h-[54%] overflow-hidden bg-muted/40 border-b border-border/70 shrink-0">
-        <img
-          src={project.image}
+        <ProjectPreview
+          image={project.image}
+          previewImage={project.previewImage}
           alt={t(`projects.items.${project.id}.title`)}
-          loading="lazy"
-          className="w-full h-full object-cover object-top"
         />
 
         {/* Badge */}

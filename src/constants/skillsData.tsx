@@ -11,6 +11,7 @@ import {
   NextJsIcon,
   NodeJsIcon,
   NpmIcon,
+  ZustandIcon,
 } from "../components/ui/SkillIcons";
 import { TECH } from "./technologies";
 
@@ -66,6 +67,7 @@ export const skills: Skill[] = [
   },
   {
     name: TECH.ZUSTAND,
+    icon: ZustandIcon,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/zustand/zustand-original.svg",
     url: "https://zustand-demo.pmnd.rs/",
     category: "frontend",

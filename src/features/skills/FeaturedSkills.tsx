@@ -44,7 +44,7 @@ const FeaturedSkills: React.FC = () => {
       </div>
 
       <div
-        className="relative w-full overflow-hidden flex items-center py-8 bg-card/55 border-y border-border"
+        className="relative w-full overflow-hidden flex items-center py-6 sm:py-8 bg-transparent"
         style={{
           maskImage:
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",

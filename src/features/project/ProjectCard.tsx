@@ -15,28 +15,42 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   const { t } = useTranslation();
 
+  const fullTitle = t(`projects.items.${project.id}.title`);
+  const shortTitle = t(
+    `projects.items.${project.id}.short_title`,
+    fullTitle.includes(" — ") ? fullTitle.split(" — ")[0] : fullTitle
+  );
+  const category = t(
+    `projects.items.${project.id}.category`,
+    fullTitle.includes(" — ") ? fullTitle.split(" — ")[1] : project.tags[0] || "Web App"
+  );
+
   return (
     <article
       data-project-card
+      data-project-grid-card
       onClick={() => onSelect(project)}
-      className="group relative overflow-hidden cursor-pointer rounded-xl sm:rounded-2xl bg-card border border-border hover:border-primary/50 flex flex-col transition-colors duration-200 will-change-transform"
+      className="group relative w-full aspect-[16/10] overflow-hidden cursor-pointer rounded-2xl bg-card border border-border/70 hover:border-primary/60 transition-[border-color,box-shadow] duration-300 shadow-md will-change-transform"
     >
-      {/* Top Preview Viewport (full-page GSAP scroll preview remains active) */}
-      <div className="relative w-full aspect-[16/10] overflow-hidden bg-muted/40 border-b border-border/70 shrink-0">
-        <ProjectPreview
-          image={project.image}
-          previewImage={project.previewImage}
-          alt={t(`projects.items.${project.id}.title`)}
-          className="block w-full h-full object-cover"
-        />
-      </div>
+      {/* Full-bleed Preview Image (with smooth GSAP scroll preview on hover) */}
+      <ProjectPreview
+        image={project.image}
+        previewImage={project.previewImage}
+        alt={fullTitle}
+      />
 
-      {/* Card Body: Only Title + Arrow */}
-      <div className="p-3.5 sm:p-4 lg:p-5 flex items-center justify-between gap-2 bg-card/60">
-        <h3 className="font-sans font-semibold text-foreground tracking-tight leading-snug text-base sm:text-lg group-hover:text-primary transition-colors line-clamp-1">
-          {t(`projects.items.${project.id}.title`)}
-        </h3>
-        <FiArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+      {/* Floating Overlay: Title & Category directly over the image without background */}
+      <div className="absolute inset-x-0 bottom-0 z-10 p-3.5 sm:p-4.5 bg-gradient-to-t from-black/85 via-black/40 to-transparent flex flex-col items-start gap-1 pointer-events-none">
+        <div className="w-full flex items-center justify-between gap-2">
+          <h3 className="font-sans font-bold text-white tracking-tight leading-snug text-sm sm:text-base group-hover:text-primary transition-colors line-clamp-1 drop-shadow-sm">
+            {shortTitle}
+          </h3>
+          <FiArrowUpRight className="w-4 h-4 text-white/80 group-hover:text-primary shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </div>
+
+        <span className="text-[11px] sm:text-xs font-mono font-medium text-white/80 drop-shadow-sm">
+          {category}
+        </span>
       </div>
     </article>
   );
