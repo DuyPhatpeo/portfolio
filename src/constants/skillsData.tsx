@@ -1,3 +1,5 @@
+import { SiDotnet } from "react-icons/si";
+import { DiVisualstudio } from "react-icons/di";
 import type { Skill } from "../types/data";
 import {
   AstroIcon,
@@ -12,6 +14,9 @@ import {
   NodeJsIcon,
   NpmIcon,
   ZustandIcon,
+  AntigravityIcon,
+  CodexIcon,
+  ClaudeCodeIcon,
 } from "../components/ui/SkillIcons";
 import { TECH } from "./technologies";
 
@@ -111,6 +116,13 @@ export const skills: Skill[] = [
 
   // ===== Backend =====
   {
+    name: TECH.DOTNET,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg",
+    icon: SiDotnet,
+    url: "https://dotnet.microsoft.com/",
+    category: "backend",
+  },
+  {
     name: TECH.NODE_JS,
     icon: NodeJsIcon,
     url: "https://nodejs.org/",
@@ -169,6 +181,13 @@ export const skills: Skill[] = [
 
   // ===== Tools & DevOps =====
   {
+    name: TECH.VISUAL_STUDIO,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg",
+    icon: DiVisualstudio,
+    url: "https://visualstudio.microsoft.com/",
+    category: "tools",
+  },
+  {
     name: TECH.VSCODE,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
     url: "https://code.visualstudio.com/",
@@ -204,6 +223,27 @@ export const skills: Skill[] = [
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
     invertDark: true,
     url: "https://vercel.com/",
+    category: "tools",
+  },
+
+  // ===== AI & Agentic Coding =====
+  {
+    name: TECH.ANTIGRAVITY,
+    icon: AntigravityIcon,
+    url: "https://antigravity.google/",
+    category: "tools",
+  },
+  {
+    name: TECH.CODEX,
+    icon: CodexIcon,
+    url: "https://openai.com/index/openai-codex/",
+    category: "tools",
+  },
+  {
+    name: TECH.CLAUDE_CODE,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/claude/claude-original.svg",
+    icon: ClaudeCodeIcon,
+    url: "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview",
     category: "tools",
   },
 

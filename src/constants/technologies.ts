@@ -28,11 +28,13 @@ export const TECH = {
   GIT: "Git",
   GITHUB: "GitHub",
   VSCODE: "VS Code",
+  VISUAL_STUDIO: "Visual Studio",
   FIGMA: "Figma",
   VERCEL: "Vercel",
 
   // Backend & DB
   NODE_JS: "Node.js",
+  DOTNET: ".NET",
   LARAVEL: "Laravel",
   PHP: "PHP",
   NESTJS: "NestJS",
@@ -41,6 +43,11 @@ export const TECH = {
   POSTGRESQL: "PostgreSQL",
   MONGODB: "MongoDB",
   FIREBASE: "Firebase",
+
+  // AI & Agentic Coding
+  ANTIGRAVITY: "Antigravity",
+  CODEX: "Codex",
+  CLAUDE_CODE: "Claude Code",
 } as const;
 
 export type TechKey = keyof typeof TECH;
@@ -75,12 +82,17 @@ import {
   SiMongodb,
   SiFirebase,
   SiNpm,
+  SiDotnet,
 } from "react-icons/si";
+import { DiVisualstudio } from "react-icons/di";
 import { VscVscode } from "react-icons/vsc";
 import {
   ExpoIcon,
   FramerMotionIcon,
   ZustandIcon,
+  AntigravityIcon,
+  CodexIcon,
+  ClaudeCodeIcon,
 } from "../components/ui/SkillIcons";
 
 export const TECH_ICONS: Record<string, React.ElementType> = {
@@ -117,6 +129,11 @@ export const TECH_ICONS: Record<string, React.ElementType> = {
   [TECH.POSTGRESQL]: SiPostgresql,
   [TECH.MONGODB]: SiMongodb,
   [TECH.FIREBASE]: SiFirebase,
+  [TECH.ANTIGRAVITY]: AntigravityIcon,
+  [TECH.CODEX]: CodexIcon,
+  [TECH.CLAUDE_CODE]: ClaudeCodeIcon,
+  [TECH.DOTNET]: SiDotnet,
+  [TECH.VISUAL_STUDIO]: DiVisualstudio,
 };
 
 // Official brand colors for technologies
@@ -154,4 +171,9 @@ export const TECH_BRAND_COLORS: Record<string, string> = {
   [TECH.POSTGRESQL]: "#4169E1",
   [TECH.MONGODB]: "#47A248",
   [TECH.FIREBASE]: "#FFA000",
+  [TECH.ANTIGRAVITY]: "#4285F4",
+  [TECH.CODEX]: "#10A37F",
+  [TECH.CLAUDE_CODE]: "#CC785C",
+  [TECH.DOTNET]: "#512BD4",
+  [TECH.VISUAL_STUDIO]: "#5C2D91",
 };

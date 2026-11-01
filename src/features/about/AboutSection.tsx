@@ -96,36 +96,94 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 w-full">
         {/* Equal-height 2-column split (items-stretch guarantees identical top & bottom edges) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-          {/* Left Column: Full-height Architectural Portrait Card */}
+          {/* Left Column: Lanyard Badge on /about vs Classic Clean Portrait Card on Home */}
           <div
-            className="order-last lg:order-first lg:col-span-5 flex relative z-10"
+            className={`order-last lg:order-first lg:col-span-5 flex relative z-10 ${
+              isAboutPage
+                ? "flex-col items-center justify-center py-4 sm:py-6"
+                : ""
+            }`}
             data-about-reveal
           >
-            <div className="relative w-full h-full min-h-[340px] sm:min-h-[400px] rounded-3xl bg-card border border-border overflow-hidden flex flex-col items-center justify-end pt-8 px-6">
-              {/* Centered orbital frame behind character */}
-              <span
-                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[68%] aspect-square rounded-full bg-muted/55 border border-border"
-                aria-hidden="true"
-              />
-              <span
-                className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[82%] aspect-square rounded-full border border-dashed border-foreground/15"
-                aria-hidden="true"
-              >
-                <span className="absolute top-[14%] right-[10%] w-2 h-2 rounded-full bg-foreground/70" />
-              </span>
+            {isAboutPage ? (
+              /* Freestanding 3D Developer Lanyard Badge (Page About) */
+              <>
+                {/* Lanyard Strap descending from above */}
+                <div className="relative flex flex-col items-center z-20 -mb-1">
+                  {/* Premium Woven Fabric Lanyard Ribbon */}
+                  <div className="w-8 sm:w-9 h-16 sm:h-20 bg-neutral-900 border-x-2 border-primary/60 flex flex-col items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-y-0 left-1 w-px bg-white/10" />
+                    <div className="absolute inset-y-0 right-1 w-px bg-white/10" />
+                    <div className="absolute inset-y-0 w-0.5 bg-primary/40" />
+                  </div>
 
-              {/* 3D Developer Character Avatar anchored flush to card bottom */}
-              <img
-                src={profileData.avatar || profileData.heroImage}
-                alt={t("hero.banner.imageAlt", "About Dino Péo")}
-                className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px] h-auto object-contain object-bottom block"
-                width={1536}
-                height={1024}
-                loading={isAboutPage ? "eager" : "lazy"}
-                decoding="async"
-                onLoad={() => ScrollTrigger.refresh()}
-              />
-            </div>
+                  {/* Matte Metallic Clasp Hardware */}
+                  <div className="w-7 h-3 rounded-xs bg-gradient-to-r from-neutral-700 via-neutral-500 to-neutral-700 border border-neutral-400 z-20 -mt-0.5" />
+                  {/* Metallic Swivel Carabiner Hook */}
+                  <div className="w-3.5 h-6 rounded-b-full border-2 border-neutral-300 bg-neutral-800 -mt-1 z-30 flex items-end justify-center pb-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
+                  </div>
+                </div>
+
+                {/* Hanging Frosted Acrylic Badge (Straight vertical, zero tilt, zero shadow) */}
+                <div className="group/badge relative flex flex-col items-center select-none cursor-pointer">
+                  {/* Top Hanger Tab with Laser-cut Slot */}
+                  <div className="relative z-10 w-28 sm:w-32 h-6 sm:h-7 bg-neutral-900/90 border-2 border-primary/50 border-b-0 rounded-t-2xl backdrop-blur-xl flex items-center justify-center gap-2.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-background border border-primary/40" />
+                    <span className="w-9 h-2.5 rounded-full bg-background border border-primary/60" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-background border border-primary/40" />
+                  </div>
+
+                  {/* Main Acrylic Badge Sleeve (Glassmorphism & Crisp Emerald Trim - No Shadow) */}
+                  <div className="relative w-[280px] xs:w-[310px] sm:w-[340px] md:w-[360px] rounded-3xl bg-neutral-900/85 backdrop-blur-2xl border-2 border-primary/50 p-2 sm:p-2.5">
+                    {/* Characteristic Side Cutout Notches */}
+                    <span
+                      className="absolute top-1/2 -left-[3px] -translate-y-1/2 w-2 h-10 bg-background rounded-r-md border-r-2 border-y-2 border-primary/50 z-20"
+                      aria-hidden="true"
+                    />
+                    <span
+                      className="absolute top-1/2 -right-[3px] -translate-y-1/2 w-2 h-10 bg-background rounded-l-md border-l-2 border-y-2 border-primary/50 z-20"
+                      aria-hidden="true"
+                    />
+
+                    {/* Subtle Diagonal Glass Sheen */}
+                    <div
+                      className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-60 z-20"
+                      aria-hidden="true"
+                    />
+
+                    {/* 100% Pure Photo Frame (Clean neutral card background, zero colored glow) */}
+                    <div className="relative w-full aspect-[3/3.8] rounded-2xl overflow-hidden bg-card border border-border/60 flex items-end justify-center">
+                      <img
+                        src={profileData.avatar || profileData.heroImage}
+                        alt={t("hero.banner.imageAlt", "Dino Péo Badge")}
+                        className="relative z-10 w-full h-auto object-contain object-bottom block"
+                        width={1536}
+                        height={1024}
+                        loading="eager"
+                        decoding="async"
+                        onLoad={() => ScrollTrigger.refresh()}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              /* Classic Clean Portrait Card on Home Page (2 concentric rings removed) */
+              <div className="relative w-full h-full min-h-[340px] sm:min-h-[400px] rounded-3xl bg-card border border-border overflow-hidden flex flex-col items-center justify-end pt-8 px-6">
+                {/* 3D Developer Character Avatar anchored flush to card bottom */}
+                <img
+                  src={profileData.avatar || profileData.heroImage}
+                  alt={t("hero.banner.imageAlt", "About Dino Péo")}
+                  className="relative z-10 w-full max-w-[360px] sm:max-w-[400px] lg:max-w-[420px] h-auto object-contain object-bottom block"
+                  width={1536}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                  onLoad={() => ScrollTrigger.refresh()}
+                />
+              </div>
+            )}
           </div>
 
           {/* Right Column: Structured Bio + Flush Bottom Action Bar */}
