@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import { motion } from "framer-motion";
 import ContactForm from "./ContactForm";
 import { useTranslation } from "react-i18next";
 import { gsap, useGSAP } from "@lib/gsap";
@@ -13,46 +12,51 @@ export default function ContactSection() {
   const watermarkRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
 
+  // Scoped GSAP timeline + matchMedia reduced-motion support per greensock/gsap-skills
   useGSAP(
     () => {
-      if (!sectionRef.current) return;
+      const mm = gsap.matchMedia();
 
-      if (watermarkRef.current) {
-        gsap.fromTo(
-          watermarkRef.current,
-          { xPercent: 8 },
-          {
-            xPercent: -8,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 1.2,
-            },
-          }
-        );
-      }
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        if (watermarkRef.current) {
+          gsap.fromTo(
+            watermarkRef.current,
+            { xPercent: 8 },
+            {
+              xPercent: -8,
+              ease: "none",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "clamp(top bottom)",
+                end: "clamp(bottom top)",
+                scrub: 1,
+              },
+            }
+          );
+        }
 
-      const revealItems =
-        sectionRef.current.querySelectorAll(".contact-reveal-item");
-      if (revealItems.length > 0) {
-        gsap.fromTo(
-          revealItems,
-          { opacity: 0, y: 20 },
+        const tl = gsap.timeline({
+          defaults: { duration: 0.6, ease: "power3.out" },
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "clamp(top 82%)",
+            once: true,
+          },
+        });
+
+        tl.from(".contact-reveal-item", {
+          autoAlpha: 0,
+          y: 20,
+          stagger: 0.08,
+        }).from(
+          "[data-contact-form]",
           {
-            opacity: 1,
-            y: 0,
-            duration: 0.65,
-            stagger: 0.1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top 80%",
-            },
-          }
+            autoAlpha: 0,
+            y: 24,
+          },
+          "<0.12"
         );
-      }
+      });
     },
     { scope: sectionRef }
   );
@@ -147,15 +151,12 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Clean Architectural Form Panel */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: "-40px" }}
+          <div
+            data-contact-form
             className="lg:col-span-7 bg-card text-card-foreground border border-border rounded-2xl p-6 sm:p-8 md:p-10 w-full"
           >
             <ContactForm />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

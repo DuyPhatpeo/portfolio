@@ -1,75 +1,70 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";
+import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import HeroAvatar from "./HeroAvatar";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    if (
-      !window.matchMedia(
-        "(min-width: 769px) and (prefers-reduced-motion: no-preference)"
-      ).matches
-    )
-      return;
-    let disposed = false;
-    let cleanup: (() => void) | undefined;
-    const timer = window.setTimeout(() => {
-      void import("@lib/gsap").then(({ gsap, ScrollTrigger }) => {
-        if (disposed) return;
-        const media = gsap.matchMedia();
-        media.add(
-          "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
-          () => {
-            gsap.from("[data-hero-copy], [data-hero-avatar]", {
-              y: 20,
-              duration: 0.75,
-              stagger: 0.1,
-              ease: "power3.out",
-            });
-            gsap.to("#hero-heading", {
-              yPercent: -14,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.7,
-                invalidateOnRefresh: true,
-              },
-            });
-            gsap.to("[data-hero-portrait]", {
-              yPercent: 10,
-              ease: "none",
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: 0.7,
-                invalidateOnRefresh: true,
-              },
-            });
-          },
-          sectionRef
-        );
-        let mounted = true;
-        void document.fonts.ready.then(() => {
-          if (mounted) ScrollTrigger.refresh();
+  // Idiomatic GSAP + React setup per greensock/gsap-skills (gsap-react, gsap-timeline, gsap-scrolltrigger)
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+
+      // Entrance timeline for all screens when reduced motion is not requested
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        const tl = gsap.timeline({
+          defaults: { duration: 0.75, ease: "power3.out" },
         });
-        cleanup = () => {
-          mounted = false;
-          media.revert();
-        };
+
+        tl.from("[data-hero-heading]", { autoAlpha: 0, y: 24 })
+          .from("[data-hero-tagline]", { autoAlpha: 0, y: 16 }, "<0.14")
+          .from("[data-hero-avatar]", { autoAlpha: 0, y: 22 }, "<0.08");
       });
-    }, 800);
-    return () => {
-      disposed = true;
-      clearTimeout(timer);
-      cleanup?.();
-    };
-  }, []);
+
+      // Desktop scroll-linked parallax scrub (transforms only, clamped bounds)
+      mm.add(
+        "(min-width: 769px) and (prefers-reduced-motion: no-preference)",
+        () => {
+          gsap.to("[data-hero-heading]", {
+            yPercent: -14,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "clamp(top top)",
+              end: "clamp(bottom top)",
+              scrub: 0.7,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          gsap.to("[data-hero-portrait]", {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "clamp(top top)",
+              end: "clamp(bottom top)",
+              scrub: 0.7,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
+      );
+
+      let active = true;
+      void document.fonts.ready.then(() => {
+        if (active) ScrollTrigger.refresh();
+      });
+
+      return () => {
+        active = false;
+      };
+    },
+    { scope: sectionRef }
+  );
 
   return (
     <section
@@ -85,7 +80,8 @@ export default function HeroSection() {
         >
           <h1
             id="hero-heading"
-            className="relative w-max max-w-full m-0 font-['Baloo_2','Space_Grotesk',sans-serif] font-bold [font-synthesis:none] text-[clamp(92px,12.2vw,168px)] leading-[0.82] tracking-[-0.03em] uppercase text-foreground max-[1100px]:text-[12vw] max-[760px]:text-[clamp(84px,21vw,140px)] max-[380px]:text-[23vw]"
+            data-hero-heading
+            className="relative w-max max-w-full m-0 font-['Baloo_2','Space_Grotesk',sans-serif] font-bold [font-synthesis:none] text-[clamp(92px,12.2vw,168px)] leading-[0.82] tracking-[-0.03em] uppercase text-foreground will-change-transform max-[1100px]:text-[12vw] max-[760px]:text-[clamp(84px,21vw,140px)] max-[380px]:text-[23vw]"
           >
             <span className="sr-only">
               {t(
@@ -107,7 +103,10 @@ export default function HeroSection() {
             </span>
           </h1>
 
-          <p className="mt-7 sm:mt-9 font-mono text-base sm:text-xl md:text-2xl text-foreground/85 flex items-center gap-3.5">
+          <p
+            data-hero-tagline
+            className="mt-7 sm:mt-9 font-mono text-base sm:text-xl md:text-2xl text-foreground/85 flex items-center gap-3.5"
+          >
             <span className="w-8 h-0.5 bg-primary/80 inline-block" aria-hidden="true" />
             <span>
               {t("hero.tagline", "Trần Duy Phát · Frontend & Full-Stack Developer")}
