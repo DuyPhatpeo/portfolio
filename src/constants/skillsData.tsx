@@ -1,4 +1,4 @@
-import { SiDotnet } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
 import { DiVisualstudio } from "react-icons/di";
 import type { Skill } from "../types/data";
 import {
@@ -17,35 +17,13 @@ import {
   AntigravityIcon,
   CodexIcon,
   ClaudeCodeIcon,
+  ExpressNewIcon,
+  DotNetNewIcon,
 } from "../components/ui/SkillIcons";
 import { TECH } from "./technologies";
 
 export const skills: Skill[] = [
   // ===== Frontend =====
-  {
-    name: TECH.HTML,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
-    url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
-    category: "frontend",
-  },
-  {
-    name: TECH.CSS,
-    icon: CssNewIcon,
-    url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
-    category: "frontend",
-  },
-  {
-    name: TECH.JS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-    category: "frontend",
-  },
-  {
-    name: TECH.TS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-    url: "https://www.typescriptlang.org/",
-    category: "frontend",
-  },
   {
     name: TECH.REACT,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
@@ -59,22 +37,15 @@ export const skills: Skill[] = [
     category: "frontend",
   },
   {
-    name: TECH.ASTRO,
-    icon: AstroIcon,
-    url: "https://astro.build/",
+    name: TECH.TS,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+    url: "https://www.typescriptlang.org/",
     category: "frontend",
   },
   {
-    name: TECH.FRAMER_MOTION,
-    icon: FramerMotionIcon,
-    url: "https://motion.dev/",
-    category: "frontend",
-  },
-  {
-    name: TECH.ZUSTAND,
-    icon: ZustandIcon,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/zustand/zustand-original.svg",
-    url: "https://zustand-demo.pmnd.rs/",
+    name: TECH.JS,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+    url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
     category: "frontend",
   },
   {
@@ -84,9 +55,9 @@ export const skills: Skill[] = [
     category: "frontend",
   },
   {
-    name: TECH.NATIVEWIND,
-    icon: NativeWindIcon,
-    url: "https://www.nativewind.dev/",
+    name: TECH.ASTRO,
+    icon: AstroIcon,
+    url: "https://astro.build/",
     category: "frontend",
   },
   {
@@ -99,6 +70,37 @@ export const skills: Skill[] = [
     name: TECH.EXPO,
     icon: ExpoIcon,
     url: "https://expo.dev/",
+    category: "frontend",
+  },
+  {
+    name: TECH.ZUSTAND,
+    icon: ZustandIcon,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/zustand/zustand-original.svg",
+    url: "https://zustand-demo.pmnd.rs/",
+    category: "frontend",
+  },
+  {
+    name: TECH.FRAMER_MOTION,
+    icon: FramerMotionIcon,
+    url: "https://motion.dev/",
+    category: "frontend",
+  },
+  {
+    name: TECH.NATIVEWIND,
+    icon: NativeWindIcon,
+    url: "https://www.nativewind.dev/",
+    category: "frontend",
+  },
+  {
+    name: TECH.HTML,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+    url: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    category: "frontend",
+  },
+  {
+    name: TECH.CSS,
+    icon: CssNewIcon,
+    url: "https://developer.mozilla.org/en-US/docs/Web/CSS",
     category: "frontend",
   },
   {
@@ -116,22 +118,34 @@ export const skills: Skill[] = [
 
   // ===== Backend =====
   {
-    name: TECH.DOTNET,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg",
-    icon: SiDotnet,
-    url: "https://dotnet.microsoft.com/",
-    category: "backend",
-  },
-  {
     name: TECH.NODE_JS,
     icon: NodeJsIcon,
     url: "https://nodejs.org/",
     category: "backend",
   },
   {
-    name: TECH.PHP,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
-    url: "https://www.php.net/",
+    name: TECH.EXPRESS,
+    icon: ExpressNewIcon,
+    url: "https://expressjs.com/",
+    category: "backend",
+  },
+  {
+    name: TECH.NESTJS,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
+    url: "https://nestjs.com/",
+    category: "backend",
+  },
+  {
+    name: TECH.CSHARP,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg",
+    icon: TbBrandCSharp,
+    url: "https://learn.microsoft.com/en-us/dotnet/csharp/",
+    category: "backend",
+  },
+  {
+    name: TECH.DOTNET,
+    icon: DotNetNewIcon,
+    url: "https://dotnet.microsoft.com/",
     category: "backend",
   },
   {
@@ -141,9 +155,9 @@ export const skills: Skill[] = [
     category: "backend",
   },
   {
-    name: TECH.NESTJS,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg",
-    url: "https://nestjs.com/",
+    name: TECH.PHP,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+    url: "https://www.php.net/",
     category: "backend",
   },
   {
@@ -179,32 +193,28 @@ export const skills: Skill[] = [
     category: "database",
   },
 
+  // ===== AI & Agentic Coding =====
+  {
+    name: TECH.ANTIGRAVITY,
+    icon: AntigravityIcon,
+    url: "https://antigravity.google/",
+    category: "ai",
+  },
+  {
+    name: TECH.CLAUDE_CODE,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/claude/claude-original.svg",
+    icon: ClaudeCodeIcon,
+    url: "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview",
+    category: "ai",
+  },
+  {
+    name: TECH.CODEX,
+    icon: CodexIcon,
+    url: "https://openai.com/index/openai-codex/",
+    category: "ai",
+  },
+
   // ===== Tools & DevOps =====
-  {
-    name: TECH.VISUAL_STUDIO,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg",
-    icon: DiVisualstudio,
-    url: "https://visualstudio.microsoft.com/",
-    category: "tools",
-  },
-  {
-    name: TECH.VSCODE,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
-    url: "https://code.visualstudio.com/",
-    category: "tools",
-  },
-  {
-    name: TECH.VITE,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
-    url: "https://vite.dev/",
-    category: "tools",
-  },
-  {
-    name: TECH.NPM,
-    icon: NpmIcon,
-    url: "https://www.npmjs.com/",
-    category: "tools",
-  },
   {
     name: TECH.GIT,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
@@ -219,31 +229,35 @@ export const skills: Skill[] = [
     category: "tools",
   },
   {
+    name: TECH.VITE,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+    url: "https://vite.dev/",
+    category: "tools",
+  },
+  {
     name: TECH.VERCEL,
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg",
     invertDark: true,
     url: "https://vercel.com/",
     category: "tools",
   },
-
-  // ===== AI & Agentic Coding =====
   {
-    name: TECH.ANTIGRAVITY,
-    icon: AntigravityIcon,
-    url: "https://antigravity.google/",
+    name: TECH.NPM,
+    icon: NpmIcon,
+    url: "https://www.npmjs.com/",
     category: "tools",
   },
   {
-    name: TECH.CODEX,
-    icon: CodexIcon,
-    url: "https://openai.com/index/openai-codex/",
+    name: TECH.VSCODE,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+    url: "https://code.visualstudio.com/",
     category: "tools",
   },
   {
-    name: TECH.CLAUDE_CODE,
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/claude/claude-original.svg",
-    icon: ClaudeCodeIcon,
-    url: "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview",
+    name: TECH.VISUAL_STUDIO,
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/visualstudio/visualstudio-original.svg",
+    icon: DiVisualstudio,
+    url: "https://visualstudio.microsoft.com/",
     category: "tools",
   },
 

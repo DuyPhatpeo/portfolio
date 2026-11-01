@@ -50,6 +50,7 @@ export type SkillCategory =
   | "backend"
   | "database"
   | "tools"
+  | "ai"
   | "design";
 
 export interface Skill {

@@ -1,9 +1,27 @@
 // src/features/skills/SkillsGrid.tsx
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "@constants/skillsData";
-import type { Skill } from "@/types/data";
+import type { Skill, SkillCategory } from "@/types/data";
 import { FiArrowUpRight } from "react-icons/fi";
+import { useTranslation } from "react-i18next";
+
+type FilterCategory = "all" | SkillCategory;
+
+interface CategoryTab {
+  key: FilterCategory;
+  labelKey: string;
+}
+
+const CATEGORY_TABS: CategoryTab[] = [
+  { key: "all", labelKey: "all" },
+  { key: "frontend", labelKey: "frontend" },
+  { key: "backend", labelKey: "backend" },
+  { key: "database", labelKey: "database" },
+  { key: "tools", labelKey: "tools" },
+  { key: "ai", labelKey: "ai" },
+  { key: "design", labelKey: "design" },
+];
 
 interface LargeSkillCardProps {
   skill: Skill;
@@ -12,7 +30,7 @@ interface LargeSkillCardProps {
 const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
   const cardContent = (
     <div className="group relative w-full h-full pt-3.5 sm:pt-4 px-4 sm:px-5 pb-5 sm:pb-6 rounded-2xl sm:rounded-3xl bg-card/75 hover:bg-card border border-border/80 hover:border-primary/60 transition-all duration-300 flex flex-col items-center justify-between text-center min-h-[205px] sm:min-h-[235px] hover:-translate-y-1.5 cursor-pointer overflow-hidden">
-      {/* Top Row: Category tag and External Link Arrow (Elevated high up to prevent crowding the logo) */}
+      {/* Top Row: Category tag and External Link Arrow */}
       <div className="w-full flex items-center justify-between z-10 mb-2">
         <span className="px-2 py-0.5 rounded-md bg-muted/80 text-[10px] font-mono text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">
           {skill.category}
@@ -20,7 +38,7 @@ const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
         <FiArrowUpRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
       </div>
 
-      {/* Center: Large High-Resolution Tech Logo (No wrapper background, enlarged) */}
+      {/* Center: Large High-Resolution Tech Logo */}
       <div className="my-auto py-2 flex flex-col items-center z-10">
         <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform duration-300">
           {skill.logo ? (
@@ -65,26 +83,89 @@ const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
 };
 
 const SkillsGrid: React.FC = () => {
+  const { t } = useTranslation();
+  const [activeCategory, setActiveCategory] = useState<FilterCategory>("all");
+
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: skills.length };
+    skills.forEach((skill) => {
+      counts[skill.category] = (counts[skill.category] || 0) + 1;
+    });
+    return counts;
+  }, []);
+
+  const filteredSkills = useMemo(() => {
+    if (activeCategory === "all") return skills;
+    return skills.filter((skill) => skill.category === activeCategory);
+  }, [activeCategory]);
+
   return (
     <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-      {/* Grand Unified Tech Showcase Grid (No small blocks, cards enlarged) */}
-      <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-4 md:gap-5">
-        {skills.map((skill, index) => (
-          <motion.div
-            key={skill.name}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20px" }}
-            transition={{
-              duration: 0.35,
-              delay: (index % 6) * 0.05,
-              ease: "easeOut",
-            }}
-          >
-            <LargeSkillCard skill={skill} />
-          </motion.div>
-        ))}
+      {/* Category Filter Tabs */}
+      <div className="w-full flex items-center justify-start sm:justify-center overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-3 sm:pb-2 mb-8 sm:mb-12">
+        <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-card/85 backdrop-blur-xl border border-border/80 shadow-sm max-w-full">
+          {CATEGORY_TABS.map((tab) => {
+            const isActive = activeCategory === tab.key;
+            const count = categoryCounts[tab.key] ?? 0;
+
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveCategory(tab.key)}
+                className={`relative flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap select-none ${
+                  isActive
+                    ? "text-primary-foreground font-semibold"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                }`}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="activeSkillTabIndicator"
+                    className="absolute inset-0 rounded-xl bg-primary shadow-sm"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className="relative z-10">
+                  {t(`skills.categories.${tab.labelKey}`, tab.key)}
+                </span>
+                <span
+                  className={`relative z-10 px-1.5 py-0.5 rounded-md text-[10px] font-mono leading-none transition-colors ${
+                    isActive
+                      ? "bg-black/25 text-primary-foreground font-bold"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
       </div>
+
+      {/* Grid of Skill Cards */}
+      <motion.div
+        layout
+        className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3.5 sm:gap-4 md:gap-5"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredSkills.map((skill) => (
+            <motion.div
+              layout
+              key={skill.name}
+              initial={{ opacity: 0, scale: 0.92, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 12 }}
+              transition={{
+                duration: 0.25,
+                ease: "easeOut",
+              }}
+            >
+              <LargeSkillCard skill={skill} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
     </div>
   );
 };

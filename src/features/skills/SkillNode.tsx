@@ -12,6 +12,7 @@ const CATEGORY_TAG_COLORS: Record<string, string> = {
   backend: "text-emerald-500 bg-emerald-500/10 border-emerald-500/20",
   database: "text-amber-500 bg-amber-500/10 border-amber-500/20",
   tools: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20",
+  ai: "text-purple-500 bg-purple-500/10 border-purple-500/20",
   design: "text-rose-500 bg-rose-500/10 border-rose-500/20",
 };
 

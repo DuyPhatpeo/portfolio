@@ -138,12 +138,13 @@
     "core_stack": "Core Stack",
     "core_description": "Core technologies and modern tools applied across production builds.",
     "categories": {
-      "all": "All Tiers",
-      "frontend": "Frontend & UI",
-      "backend": "Backend & APIs",
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
       "database": "Databases",
-      "tools": "Tooling & Workflow",
-      "design": "UI/UX Design"
+      "tools": "Tools & DevOps",
+      "ai": "AI & Agents",
+      "design": "Design"
     },
     "architecture": {
       "tier_1_badge": "01 · CLIENT ARCHITECTURE",

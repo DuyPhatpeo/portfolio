@@ -35,6 +35,8 @@ export const TECH = {
   // Backend & DB
   NODE_JS: "Node.js",
   DOTNET: ".NET",
+  CSHARP: "C#",
+  EXPRESS: "Express.js",
   LARAVEL: "Laravel",
   PHP: "PHP",
   NESTJS: "NestJS",
@@ -82,8 +84,8 @@ import {
   SiMongodb,
   SiFirebase,
   SiNpm,
-  SiDotnet,
 } from "react-icons/si";
+import { TbBrandCSharp } from "react-icons/tb";
 import { DiVisualstudio } from "react-icons/di";
 import { VscVscode } from "react-icons/vsc";
 import {
@@ -93,6 +95,8 @@ import {
   AntigravityIcon,
   CodexIcon,
   ClaudeCodeIcon,
+  ExpressNewIcon,
+  DotNetNewIcon,
 } from "../components/ui/SkillIcons";
 
 export const TECH_ICONS: Record<string, React.ElementType> = {
@@ -132,8 +136,10 @@ export const TECH_ICONS: Record<string, React.ElementType> = {
   [TECH.ANTIGRAVITY]: AntigravityIcon,
   [TECH.CODEX]: CodexIcon,
   [TECH.CLAUDE_CODE]: ClaudeCodeIcon,
-  [TECH.DOTNET]: SiDotnet,
+  [TECH.DOTNET]: DotNetNewIcon,
   [TECH.VISUAL_STUDIO]: DiVisualstudio,
+  [TECH.CSHARP]: TbBrandCSharp,
+  [TECH.EXPRESS]: ExpressNewIcon,
 };
 
 // Official brand colors for technologies
@@ -176,4 +182,6 @@ export const TECH_BRAND_COLORS: Record<string, string> = {
   [TECH.CLAUDE_CODE]: "#CC785C",
   [TECH.DOTNET]: "#512BD4",
   [TECH.VISUAL_STUDIO]: "#5C2D91",
+  [TECH.CSHARP]: "#9B4F96",
+  [TECH.EXPRESS]: "#000000",
 };

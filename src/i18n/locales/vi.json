@@ -138,12 +138,13 @@
     "core_stack": "Công nghệ chủ lực",
     "core_description": "Các công nghệ chủ lực được tinh chọn và áp dụng xuyên suốt trong các sản phẩm thực tế.",
     "categories": {
-      "all": "Tất cả các tầng",
-      "frontend": "Giao diện & Frontend",
-      "backend": "Hệ thống & Backend",
-      "database": "Cơ sở dữ liệu",
-      "tools": "Công cụ & Quy trình",
-      "design": "Thiết kế UI/UX"
+      "all": "Tất cả",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database",
+      "tools": "Tools & DevOps",
+      "ai": "AI & Agents",
+      "design": "Design"
     },
     "architecture": {
       "tier_1_badge": "01 · CLIENT ARCHITECTURE",
