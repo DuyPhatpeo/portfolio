@@ -141,6 +141,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   handle="DuyPhatpeo"
                   status={t("about.status", "Available for work")}
                   statusColor="#d9ff3a"
+                  contactText=""
                   showUserInfo={true}
                   theme="dark"
                   radius={22}

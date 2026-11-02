@@ -234,7 +234,7 @@ const ProfileCard = ({
   handle = 'DuyPhatpeo',
   status = 'Available for work',
   statusColor = '#d9ff3a',
-  contactText = 'Contact',
+  contactText = '',
   showUserInfo = true,
   onContactClick,
   theme = 'dark',
