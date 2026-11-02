@@ -22,18 +22,22 @@ const GithubSection: React.FC = () => {
       className="py-20 md:py-28 relative overflow-hidden bg-transparent border-t border-border/70"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
-        {/* Modern Section Header */}
+        {/* Modern Centered Command-Center Section Header */}
         <motion.div
-          className="mb-12 sm:mb-16 flex flex-col items-start gap-3"
+          className="mb-12 sm:mb-16 flex flex-col items-center text-center max-w-2xl mx-auto gap-3"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/60 border border-border/70 font-mono text-xs text-primary font-medium tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+            <span>ACTIVITY & COMMITS</span>
+          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("activity.title")}
           </h2>
-          <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mt-1">
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed max-w-lg">
             {t("activity.description")}
           </p>
         </motion.div>

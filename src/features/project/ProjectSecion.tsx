@@ -295,14 +295,24 @@ export default function ProjectSection({
         {mode !== "all-list" && (
           <div
             data-projects-header
-            className="mb-12 md:mb-16 flex flex-col items-start gap-3 will-change-transform"
+            className="mb-14 md:mb-20 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-end will-change-transform"
           >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
-              {t("projects.title")}
-            </h2>
-            <p className="text-muted-foreground text-base sm:text-lg md:text-xl leading-relaxed max-w-2xl mt-1">
-              {t("projects.description")}
-            </p>
+            <div className="lg:col-span-7 flex flex-col gap-2.5">
+              <span className="font-mono text-xs sm:text-sm font-bold text-primary tracking-widest uppercase">
+                // 02. WORKS
+              </span>
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-sans font-extrabold text-foreground tracking-tight leading-[1.05]">
+                {t("projects.title")}
+              </h2>
+            </div>
+            <div className="lg:col-span-5 border-l-2 border-primary/50 pl-5 sm:pl-6 py-1">
+              <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
+                {t("projects.description")}
+              </p>
+              <span className="inline-block mt-2.5 font-mono text-xs font-semibold text-primary/90 tracking-wider uppercase">
+                [ {featuredProjects.length} {t("projects.featured_badge", "Featured Works")} ]
+              </span>
+            </div>
           </div>
         )}
 

@@ -39,9 +39,12 @@ const FeaturedSkills: React.FC = () => {
 
   return (
     <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-transparent border-t border-border/60">
-      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-8 md:px-12 mb-6 sm:mb-8 md:mb-12">
-        <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-          <div>
+      <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-8 md:px-12 mb-8 sm:mb-12">
+        <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-border/50">
+          <div className="flex items-baseline gap-3 sm:gap-4">
+            <span className="font-mono text-sm sm:text-base font-bold text-primary tracking-widest">
+              01.
+            </span>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-tight">
               {t("skills.title", "Technologies I Work With")}
             </h2>
@@ -49,10 +52,10 @@ const FeaturedSkills: React.FC = () => {
 
           <Link
             href={`/${lang}/about#skills`}
-            className="group self-start sm:self-auto inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+            className="group self-start sm:self-auto inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border/80 hover:border-primary/60 bg-card/60 backdrop-blur-sm text-xs sm:text-sm font-mono text-muted-foreground hover:text-primary transition-all duration-200 cursor-pointer shadow-sm hover:shadow-primary/10 hover:-translate-y-0.5"
           >
             <span>{t("skills.view_all", "View all technologies")}</span>
-            <span className="transition-transform group-hover:translate-x-1">→</span>
+            <span className="transition-transform duration-200 group-hover:translate-x-1 text-primary">→</span>
           </Link>
         </FadeUp>
       </div>
