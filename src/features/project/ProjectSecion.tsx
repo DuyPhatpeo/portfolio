@@ -13,7 +13,6 @@ import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
-import SpecularButton from "@components/ui/SpecularButton";
 
 interface ProjectSectionProps {
   mode?: "featured-only" | "all-list" | "default";
@@ -334,15 +333,13 @@ export default function ProjectSection({
 
         {mode === "featured-only" && (
           <div data-projects-cta className="mt-16 flex justify-center will-change-transform">
-            <SpecularButton
-              variant="secondary"
-              size="md"
+            <button
               onClick={() => router.push(`/${lang}/projects`)}
-              className="group"
+              className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-card border border-border hover:border-primary/60 text-foreground hover:text-primary font-semibold text-base sm:text-lg transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>{t("projects.view_all", "View All Projects")}</span>
               <FiArrowRight className="text-base transition-transform duration-200 group-hover:translate-x-1" />
-            </SpecularButton>
+            </button>
           </div>
         )}
       </div>

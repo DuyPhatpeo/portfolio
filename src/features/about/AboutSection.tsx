@@ -9,7 +9,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import Lanyard from "@components/ui/Lanyard";
 import ProfileCard from "@components/ui/ProfileCard";
-import SpecularButton from "@components/ui/SpecularButton";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -212,27 +211,25 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
             <div className="pt-7 mt-8 border-t border-border/70 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3.5">
                 {!isAboutPage && (
-                  <SpecularButton
-                    variant="primary"
-                    size="md"
+                  <button
                     onClick={() => router.push(`/${lang}/about`)}
                     aria-label={t("hero.banner.about", "More About Me")}
-                    className="group"
+                    className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-primary text-primary-foreground font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-[0_0_24px_rgba(217,255,58,0.45)] cursor-pointer"
                   >
                     <span>{t("hero.banner.about", "More About Me")}</span>
                     <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </SpecularButton>
+                  </button>
                 )}
 
-                <SpecularButton
-                  variant="secondary"
-                  size="md"
+                <a
                   href={profileData.resume}
-                  className="group"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full bg-card hover:bg-muted border border-border hover:border-primary/60 text-foreground hover:text-primary font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
                 >
                   <span>{t("hero.banner.resume", "View Résumé")}</span>
                   <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </SpecularButton>
+                </a>
               </div>
 
               {/* Social Links Row */}

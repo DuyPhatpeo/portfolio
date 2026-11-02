@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import type { FormState } from "@stores/contactStore";
-import SpecularButton from "@components/ui/SpecularButton";
 
 export default function ContactForm() {
   const { loading, status, sendEmail } = useContactStore();
@@ -208,12 +207,10 @@ export default function ContactForm() {
           )}
         </div>
 
-        <SpecularButton
+        <button
           type="submit"
           disabled={loading}
-          variant="primary"
-          size="lg"
-          className="group shrink-0 w-full sm:w-auto"
+          className="group shrink-0 inline-flex items-center justify-center gap-2.5 px-8 py-3.5 sm:py-4 rounded-full bg-primary text-primary-foreground font-semibold text-base tracking-wide transition-all duration-300 hover:opacity-95 hover:shadow-[0_0_24px_rgba(217,255,58,0.45)] hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:pointer-events-none cursor-pointer w-full sm:w-auto"
         >
           <span>
             {loading
@@ -221,7 +218,7 @@ export default function ContactForm() {
               : t("contact.labels.form.send")}
           </span>
           <HiArrowLongRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-        </SpecularButton>
+        </button>
       </div>
     </form>
   );

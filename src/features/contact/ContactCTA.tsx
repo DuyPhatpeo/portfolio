@@ -6,7 +6,6 @@ import { useLanguage } from "@components/providers/LanguageProvider";
 import { ArrowRight } from "lucide-react";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
-import SpecularButton from "@components/ui/SpecularButton";
 import GlassSurface from "@components/ui/GlassSurface";
 
 const ContactCTA: React.FC = () => {
@@ -35,15 +34,13 @@ const ContactCTA: React.FC = () => {
             </p>
           </FadeUp>
           <FadeUp delay={0.16}>
-            <SpecularButton
-              variant="primary"
-              size="lg"
+            <button
               onClick={() => router.push(`/${lang}/contact`)}
-              className="group"
+              className="group inline-flex items-center gap-3 px-8 sm:px-10 py-4 sm:py-5 bg-primary text-primary-foreground font-semibold text-base sm:text-lg rounded-full hover:opacity-95 shadow-[0_0_30px_rgba(217,255,58,0.4)] transition-all duration-300 hover:shadow-[0_0_45px_rgba(217,255,58,0.65)] hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               <span>{t("cta.button", "Get in Touch")}</span>
-              <ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
-            </SpecularButton>
+              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+            </button>
           </FadeUp>
         </GlassSurface>
       </div>

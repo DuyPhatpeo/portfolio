@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import TechIcon from "@components/ui/TechIcon";
 import Dock, { type DockItemData } from "@components/ui/Dock";
-import SpecularButton from "@components/ui/SpecularButton";
 import GlassSurface from "@components/ui/GlassSurface";
 import {
   Dialog,
@@ -83,7 +82,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3.5 bg-primary text-primary-foreground hover:opacity-90 rounded-lg font-mono text-xs font-medium transition-opacity duration-200"
+                className="flex items-center gap-1.5 h-8 sm:h-9 px-3 sm:px-4 bg-primary text-primary-foreground hover:opacity-95 rounded-full font-mono text-xs font-medium transition-all shadow-sm"
               >
                 <span>{t("common.links.live", "Live Demo")}</span>
                 <FiExternalLink className="text-xs sm:text-sm" />
@@ -95,7 +94,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-lg font-mono text-xs font-medium transition-colors duration-200"
+                className="flex items-center gap-1.5 h-8 sm:h-9 px-3 sm:px-3.5 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-full font-mono text-xs font-medium transition-colors duration-200"
               >
                 <FiGithub className="text-xs sm:text-sm" />
                 <span className="hidden sm:inline">
@@ -205,26 +204,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {(project.demo || project.github) && (
               <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border/60">
                 {project.demo && (
-                  <SpecularButton
-                    variant="primary"
-                    size="md"
+                  <a
                     href={project.demo}
-                    className="w-full sm:w-auto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-7 rounded-full bg-primary text-primary-foreground font-semibold text-sm sm:text-base hover:opacity-95 shadow-[0_0_20px_rgba(217,255,58,0.35)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
                   >
                     <FiMonitor className="text-base" />
                     <span>{t("common.links.live", "Trải nghiệm trực tiếp")}</span>
-                  </SpecularButton>
+                  </a>
                 )}
                 {project.github && (
-                  <SpecularButton
-                    variant="secondary"
-                    size="md"
+                  <a
                     href={project.github}
-                    className="w-full sm:w-auto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-7 rounded-full bg-card hover:bg-muted border border-border hover:border-primary/60 text-foreground hover:text-primary font-semibold text-sm sm:text-base transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0"
                   >
                     <FiGithub className="text-base" />
                     <span>{t("common.links.source", "Xem mã nguồn")}</span>
-                  </SpecularButton>
+                  </a>
                 )}
               </div>
             )}
