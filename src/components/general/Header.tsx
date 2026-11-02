@@ -116,7 +116,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
     let preLayers: HTMLElement[] = [];
     if (preContainer) {
-      preLayers = Array.from(preContainer.querySelectorAll(".sm-prelayer")) as HTMLElement[];
+      preLayers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
     }
     preLayerElsRef.current = preLayers;
 
@@ -190,10 +190,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   // Play opening Staggered prelayers & Bubble pill animations
   const playOpen = useCallback(() => {
     const panel = panelRef.current;
+    const preContainer = preLayersRef.current;
     const layers = preLayerElsRef.current;
     const bubbles = bubblesRef.current.filter(Boolean);
     const labels = labelRefs.current.filter(Boolean);
     if (!panel) return;
+
+    if (preContainer) preContainer.style.visibility = "visible";
+    panel.style.visibility = "visible";
 
     busyRef.current = true;
     gsap.killTweensOf([panel, ...layers, ...bubbles, ...labels]);
@@ -289,6 +293,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       stagger: 0.03,
       onComplete: () => {
         busyRef.current = false;
+        if (!openRef.current) {
+          panel.style.visibility = "hidden";
+          const preContainer = preLayersRef.current;
+          if (preContainer) preContainer.style.visibility = "hidden";
+        }
       },
     });
   }, []);
@@ -494,6 +503,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       {/* Staggered Multi-Layer Curtain Prelayers (Staggered Menu Concept) */}
       <div
         ref={preLayersRef}
+        style={{ visibility: "hidden" }}
         className="fixed inset-0 pointer-events-none z-[250] overflow-hidden"
         aria-hidden="true"
       >
@@ -506,6 +516,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       <div
         ref={panelRef}
         id="bubble-staggered-panel"
+        style={{ transform: "translate3d(100%, 0, 0)", visibility: "hidden" }}
         className={`fixed inset-0 z-[260] backdrop-blur-2xl flex flex-col justify-between overflow-y-auto select-none border-l ${
           darkMode
             ? "bg-[#11121c]/96 text-neutral-100 border-primary/20"

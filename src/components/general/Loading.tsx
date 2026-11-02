@@ -22,9 +22,9 @@ const Loading: React.FC<LoadingProps> = ({ progress, exiting = false }) => {
           DINO PÉO
         </span>
 
-        <div className="w-44 sm:w-60 h-1 rounded-full bg-muted overflow-hidden">
+        <div className="w-48 sm:w-64 h-1.5 rounded-full bg-muted overflow-hidden">
           <div
-            className="h-full w-full bg-foreground origin-left will-change-transform rounded-full"
+            className="h-full w-full bg-primary origin-left will-change-transform rounded-full shadow-[0_0_16px_rgba(217,255,58,0.6)]"
             style={{ transform: `scaleX(${clamped / 100})` }}
           />
         </div>
