@@ -126,6 +126,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   size={0.65}
                   strapLength={0.48}
                   breeze={0.35}
+                  imageScale={0.74}
+                  imageAnchor="bottom"
                   className="w-full h-full"
                 />
               </div>

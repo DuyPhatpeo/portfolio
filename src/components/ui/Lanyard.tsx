@@ -22,6 +22,8 @@ export interface LanyardProps {
   frontImage?: string;
   backImage?: string;
   imageFit?: ImageFit;
+  imageScale?: number;
+  imageAnchor?: 'center' | 'bottom' | 'top';
   cardColor?: string;
   orientation?: Orientation;
   finish?: Finish;
@@ -47,6 +49,8 @@ interface Settings {
   frontImage?: string;
   backImage?: string;
   imageFit: ImageFit;
+  imageScale?: number;
+  imageAnchor?: 'center' | 'bottom' | 'top';
   cardColor: string;
   orientation: Orientation;
   finish: Finish;
@@ -581,20 +585,42 @@ const drawFitted = (
   image: HTMLImageElement,
   width: number,
   height: number,
-  fit: ImageFit
+  fit: ImageFit,
+  imageScale?: number,
+  anchor: 'center' | 'bottom' | 'top' = 'bottom'
 ) => {
-  const scale = (fit === 'contain' ? Math.min : Math.max)(width / image.width, height / image.height);
+  let scale: number;
+  if (typeof imageScale === 'number' && imageScale > 0) {
+    // Direct scale relative to card height (e.g. 0.74 scales photo to 74% of card height)
+    scale = (height / image.height) * imageScale;
+  } else {
+    scale = (fit === 'contain' ? Math.min : Math.max)(width / image.width, height / image.height);
+  }
   const w = image.width * scale;
   const h = image.height * scale;
-  ctx.drawImage(image, (width - w) / 2, (height - h) / 2, w, h);
+  const x = (width - w) / 2;
+  let y = (height - h) / 2;
+  if (anchor === 'bottom') {
+    y = height - h;
+  } else if (anchor === 'top') {
+    y = 0;
+  }
+  ctx.drawImage(image, x, y, w, h);
 };
 
-const paintFace = (canvas: HTMLCanvasElement, image: HTMLImageElement | null, color: Rgb, fit: ImageFit) => {
+const paintFace = (
+  canvas: HTMLCanvasElement,
+  image: HTMLImageElement | null,
+  color: Rgb,
+  fit: ImageFit,
+  imageScale?: number,
+  anchor: 'center' | 'bottom' | 'top' = 'bottom'
+) => {
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
   ctx.fillStyle = toCss(color);
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  if (image) drawFitted(ctx, image, canvas.width, canvas.height, fit);
+  if (image) drawFitted(ctx, image, canvas.width, canvas.height, fit, imageScale, anchor);
 };
 
 const paintStrap = (canvas: HTMLCanvasElement, image: HTMLImageElement | null, color: Rgb) => {
@@ -871,6 +897,8 @@ const Lanyard = ({
   frontImage,
   backImage,
   imageFit = 'cover',
+  imageScale,
+  imageAnchor = 'bottom',
   cardColor = '#ffffff',
   orientation = 'portrait',
   finish = 'glossy',
@@ -899,6 +927,8 @@ const Lanyard = ({
     frontImage,
     backImage,
     imageFit: imageFit === 'contain' ? 'contain' : 'cover',
+    imageScale,
+    imageAnchor,
     cardColor,
     orientation: orientation === 'landscape' ? 'landscape' : 'portrait',
     finish,
@@ -1061,8 +1091,8 @@ const Lanyard = ({
         frontTexture.dispose();
         backTexture.dispose();
       }
-      paintFace(frontCanvas, images.front, color, s.imageFit);
-      paintFace(backCanvas, images.back || images.front, color, s.imageFit);
+      paintFace(frontCanvas, images.front, color, s.imageFit, s.imageScale, s.imageAnchor);
+      paintFace(backCanvas, images.back || images.front, color, s.imageFit, s.imageScale, s.imageAnchor);
       frontTexture.needsUpdate = true;
       backTexture.needsUpdate = true;
       start();
@@ -1147,7 +1177,7 @@ const Lanyard = ({
           repaintStrap();
         });
       }
-      const faceKey = `${layoutKey}|${s.cardColor}|${s.imageFit}`;
+      const faceKey = `${layoutKey}|${s.cardColor}|${s.imageFit}|${s.imageScale}|${s.imageAnchor}`;
       if (faceKey !== applied.faceKey) paintFaces();
       if (s.strapColor !== applied.strapColor) repaintStrap();
 
