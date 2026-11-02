@@ -191,7 +191,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const playOpen = useCallback(() => {
     const panel = panelRef.current;
     const preContainer = preLayersRef.current;
-    const layers = preLayerElsRef.current;
+    let layers = preLayerElsRef.current;
+    if ((!layers || layers.length === 0) && preContainer) {
+      layers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
+      preLayerElsRef.current = layers;
+    }
     const bubbles = bubblesRef.current.filter(Boolean);
     const labels = labelRefs.current.filter(Boolean);
     if (!panel) return;
@@ -260,9 +264,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   }, []);
 
   // Play closing animation
-  const playClose = useCallback(() => {
+  const playClose = useCallback((onCompleteCallback?: () => void) => {
     const panel = panelRef.current;
-    const layers = preLayerElsRef.current;
+    const preContainer = preLayersRef.current;
+    let layers = preLayerElsRef.current;
+    if ((!layers || layers.length === 0) && preContainer) {
+      layers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
+      preLayerElsRef.current = layers;
+    }
     const bubbles = bubblesRef.current.filter(Boolean);
     const labels = labelRefs.current.filter(Boolean);
     if (!panel) return;
@@ -298,6 +307,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           const preContainer = preLayersRef.current;
           if (preContainer) preContainer.style.visibility = "hidden";
         }
+        onCompleteCallback?.();
       },
     });
   }, []);
@@ -305,14 +315,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const toggleMenu = useCallback(() => {
     const target = !openRef.current;
     openRef.current = target;
-    setIsOpen(target);
 
     if (target) {
+      setIsOpen(true);
       document.body.style.overflow = "hidden";
       playOpen();
     } else {
       document.body.style.overflow = "";
-      playClose();
+      playClose(() => {
+        setIsOpen(false);
+      });
     }
 
     animateIcon(target);
@@ -322,9 +334,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const closeMenu = useCallback(() => {
     if (openRef.current) {
       openRef.current = false;
-      setIsOpen(false);
       document.body.style.overflow = "";
-      playClose();
+      playClose(() => {
+        setIsOpen(false);
+      });
       animateIcon(false);
       animateText(false);
     }
@@ -503,7 +516,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       {/* Staggered Multi-Layer Curtain Prelayers (Staggered Menu Concept) */}
       <div
         ref={preLayersRef}
-        style={{ visibility: "hidden" }}
+        style={isOpen ? undefined : { visibility: "hidden" }}
         className="fixed inset-0 pointer-events-none z-[250] overflow-hidden"
         aria-hidden="true"
       >
@@ -516,7 +529,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       <div
         ref={panelRef}
         id="bubble-staggered-panel"
-        style={{ transform: "translate3d(100%, 0, 0)", visibility: "hidden" }}
+        style={isOpen ? undefined : { transform: "translate3d(100%, 0, 0)", visibility: "hidden" }}
         className={`fixed inset-0 z-[260] backdrop-blur-2xl flex flex-col justify-between overflow-y-auto select-none border-l ${
           darkMode
             ? "bg-[#11121c]/96 text-neutral-100 border-primary/20"
