@@ -28,7 +28,7 @@ const ExperienceSection: React.FC = () => {
   return (
     <section
       id="experience"
-      className="pt-20 md:pt-28 pb-20 md:pb-32 relative overflow-hidden bg-transparent border-t border-border/60"
+      className="pt-20 md:pt-28 pb-20 md:pb-32 relative bg-transparent border-t border-border/60"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10 w-full">
         {/* Modern Timeline Section Header */}
