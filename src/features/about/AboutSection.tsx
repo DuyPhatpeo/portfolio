@@ -124,7 +124,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   strapColor="#d9ff3a"
                   interactive={false}
                   intro={false}
-                  finish="glossy"
+                  finish="matte"
                   size={0.65}
                   strapLength={0.48}
                   breeze={0.35}
@@ -148,8 +148,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   showUserInfo={true}
                   theme={darkMode ? "dark" : "light"}
                   radius={22}
-                  holo={0.75}
-                  glare={0.7}
+                  holo={0.35}
+                  glare={0.25}
                   enableTilt={true}
                   tiltStrength={14}
                   imageFit="contain"
