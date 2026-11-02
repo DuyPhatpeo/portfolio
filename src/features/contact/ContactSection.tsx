@@ -7,6 +7,7 @@ import { gsap, useGSAP } from "@lib/gsap";
 import { profileData } from "@constants/profileData";
 import { toast } from "react-toastify";
 import { FiCheck, FiCopy, FiMapPin } from "react-icons/fi";
+import GlassSurface from "@components/ui/GlassSurface";
 
 export default function ContactSection() {
   const { t } = useTranslation();
@@ -148,12 +149,16 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Clean Architectural Form Panel */}
-          <div
-            data-contact-form
-            className="lg:col-span-7 bg-card text-card-foreground border border-border rounded-2xl p-6 sm:p-8 md:p-10 w-full"
-          >
-            <ContactForm />
+          {/* Right Column: Clean Architectural Form Panel with GlassSurface */}
+          <div data-contact-form className="lg:col-span-7 w-full">
+            <GlassSurface
+              borderRadius={24}
+              blur={16}
+              opacity={0.88}
+              className="p-6 sm:p-8 md:p-10 w-full bg-card/75 border border-primary/20 shadow-[0_20px_50px_rgba(0,0,0,0.35)]"
+            >
+              <ContactForm />
+            </GlassSurface>
           </div>
         </div>
       </div>

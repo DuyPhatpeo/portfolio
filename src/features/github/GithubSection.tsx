@@ -7,6 +7,7 @@ import { RiGithubFill } from "react-icons/ri";
 import { FiArrowUpRight } from "react-icons/fi";
 import GitHubActivity from "@components/ui/GitHubActivity";
 import { profileData } from "@constants/profileData";
+import GlassSurface from "@components/ui/GlassSurface";
 
 const GithubSection: React.FC = () => {
   const { t } = useTranslation();
@@ -56,12 +57,19 @@ const GithubSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
             >
-              <GitHubActivity
-                username={username}
-                label={t("activity.top_contributions")}
-                showMonths={true}
-                months={12}
-              />
+              <GlassSurface
+                borderRadius={24}
+                blur={16}
+                opacity={0.85}
+                className="p-4 sm:p-6 md:p-8 bg-card/75 border border-primary/20 shadow-xl max-w-full"
+              >
+                <GitHubActivity
+                  username={username}
+                  label={t("activity.top_contributions")}
+                  showMonths={true}
+                  months={12}
+                />
+              </GlassSurface>
             </motion.div>
           </div>
 

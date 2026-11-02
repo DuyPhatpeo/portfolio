@@ -7,6 +7,7 @@ import type { Project } from "@/types/data";
 import TechIcon from "@components/ui/TechIcon";
 import Dock, { type DockItemData } from "@components/ui/Dock";
 import SpecularButton from "@components/ui/SpecularButton";
+import GlassSurface from "@components/ui/GlassSurface";
 import {
   Dialog,
   DialogContent,
@@ -179,9 +180,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </span>
                     <div className="grid grid-cols-1 gap-2.5">
                       {caseStudy.sections.map((sec, idx) => (
-                        <div
+                        <GlassSurface
                           key={idx}
-                          className="p-3.5 sm:p-4 md:p-5 rounded-xl bg-card/40 border border-border/60 flex flex-col gap-1.5"
+                          borderRadius={14}
+                          blur={12}
+                          opacity={0.8}
+                          className="p-3.5 sm:p-4 md:p-5 bg-card/60 border border-border/70 flex flex-col gap-1.5"
                         >
                           <h5 className="text-sm sm:text-base font-sans font-bold text-foreground flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
@@ -190,7 +194,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           <div className="text-muted-foreground text-xs sm:text-sm leading-relaxed whitespace-pre-line pl-3.5">
                             {sec.content}
                           </div>
-                        </div>
+                        </GlassSurface>
                       ))}
                     </div>
                   </div>
