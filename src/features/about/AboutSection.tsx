@@ -7,7 +7,7 @@ import { profileData } from "@constants/profileData";
 import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
-import LanyardBadge3D from "./LanyardBadge3D";
+import Lanyard from "@components/ui/Lanyard";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -112,12 +112,22 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
             data-about-reveal
           >
             {isAboutPage ? (
-              /* Freestanding 3D Developer Lanyard Badge (Page About) */
-              <LanyardBadge3D
-                avatarUrl={profileData.avatar || profileData.heroImage}
-                imageAlt={t("hero.banner.imageAlt", "Dino Péo Badge")}
-                onLoad={() => ScrollTrigger.refresh()}
-              />
+              /* React Bits 3D Developer Lanyard Badge (Page About) */
+              <div className="relative w-full h-[480px] xs:h-[540px] sm:h-[600px] md:h-[640px] flex items-center justify-center">
+                <Lanyard
+                  frontImage={profileData.avatar || profileData.heroImage}
+                  backImage={profileData.avatar || profileData.heroImage}
+                  cardColor="#2dd4a8"
+                  strapColor="#2dd4a8"
+                  interactive={false}
+                  intro={false}
+                  finish="glossy"
+                  size={0.65}
+                  strapLength={0.48}
+                  breeze={0.35}
+                  className="w-full h-full"
+                />
+              </div>
             ) : (
               /* Clean Portrait Showcase Card on Home Page (No name tag / badge accessories) */
               <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-end group shadow-sm">
