@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import SeoHead from "@components/general/SeoHead";
 import AboutSection from "@features/about/AboutSection";
 import WhatIDoSection from "@features/about/WhatIDoSection";
@@ -12,10 +12,6 @@ import { useTranslation } from "react-i18next";
 
 export default function AboutPage() {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);

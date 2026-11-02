@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import SeoHead from "@components/general/SeoHead";
 import ProjectsSection from "@features/project/ProjectSecion";
 import GithubSection from "@features/github/GithubSection";
@@ -9,10 +9,6 @@ import { useTranslation } from "react-i18next";
 
 export default function ProjectsPage() {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-300">

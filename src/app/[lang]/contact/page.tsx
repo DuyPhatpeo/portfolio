@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useThemeStore } from "@stores/themeStore";
@@ -12,10 +12,6 @@ import { useTranslation } from "react-i18next";
 export default function ContactPage() {
   const darkMode = useThemeStore((state) => state.darkMode);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-300">

@@ -41,7 +41,6 @@ const Footer = () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               } else {
                 router.push(`/${lang}`);
-                if (typeof window !== "undefined") window.scrollTo(0, 0);
               }
             }}
             initial={{ y: 36, opacity: 0 }}

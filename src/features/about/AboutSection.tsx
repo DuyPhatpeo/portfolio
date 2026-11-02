@@ -5,7 +5,8 @@ import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
 import { ArrowUpRight } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import { useLanguage } from "@components/providers/LanguageProvider";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -15,6 +16,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
+  const { lang } = useLanguage();
   const isAboutPage = Boolean(pathname?.includes("/about"));
 
   useGSAP(
@@ -312,7 +315,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
               <div className="flex flex-wrap items-center gap-3.5">
                 {!isAboutPage && (
                   <button
-                    onClick={() => scrollToSection("about")}
+                    onClick={() => router.push(`/${lang}/about`)}
                     className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-primary text-primary-foreground font-medium text-base transition-opacity duration-200 hover:opacity-90 cursor-pointer"
                     aria-label={t("hero.banner.about", "More About Me")}
                   >

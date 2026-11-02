@@ -1,6 +1,6 @@
 "use client";
 
-import React, { lazy, useEffect } from "react";
+import React, { lazy } from "react";
 import SeoHead from "@components/general/SeoHead";
 import HeroSection from "@features/hero/HeroSetion";
 const AboutSection = lazy(() => import("@features/about/AboutSection"));
@@ -10,10 +10,6 @@ import ContactCTA from "@features/contact/ContactCTA";
 import DeferredSection from "@components/general/DeferredSection";
 
 export default function HomePage() {
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth";
-  }, []);
-
   const scrollToSection = (id: string) => {
     if (id === "home") {
       window.scrollTo({ top: 0, behavior: "smooth" });

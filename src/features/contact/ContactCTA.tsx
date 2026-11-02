@@ -28,10 +28,7 @@ const ContactCTA: React.FC = () => {
         </FadeUp>
         <FadeUp delay={0.16}>
           <button
-            onClick={() => {
-              router.push(`/${lang}/contact`);
-              if (typeof window !== "undefined") window.scrollTo(0, 0);
-            }}
+            onClick={() => router.push(`/${lang}/contact`)}
             className="group inline-flex items-center justify-center gap-2.5 min-h-13 px-9 py-4 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 font-medium text-lg cursor-pointer"
           >
             <span>{t("cta.button", "Get in Touch")}</span>

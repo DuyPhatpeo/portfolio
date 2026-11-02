@@ -5,7 +5,6 @@ import { useRouter, usePathname } from "next/navigation";
 import { profileData } from "@/constants/profileData";
 import { useThemeStore } from "@stores/themeStore";
 import { useTranslation } from "react-i18next";
-import { ensureLanguageLoaded } from "@i18n/config";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { FiX } from "react-icons/fi";
@@ -20,27 +19,6 @@ const toTitleCase = (str: string) =>
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-
-const FlagIcon: React.FC<{ code: "VI" | "EN" }> = ({ code }) =>
-  code === "VI" ? (
-    <svg viewBox="0 0 24 16" className="w-4 h-3 rounded-[2px] shrink-0" aria-hidden="true">
-      <rect width="24" height="16" fill="#DA251D" />
-      <polygon
-        fill="#FFFF00"
-        points="12,3.2 13.15,6.75 16.9,6.75 13.87,8.95 15.02,12.5 12,10.3 8.98,12.5 10.13,8.95 7.1,6.75 10.85,6.75"
-      />
-    </svg>
-  ) : (
-    <svg viewBox="0 0 24 16" className="w-4 h-3 rounded-[2px] shrink-0" aria-hidden="true">
-      <rect width="24" height="16" fill="#B22234" />
-      <path
-        d="M0 2.46h24M0 4.92h24M0 7.38h24M0 9.85h24M0 12.31h24M0 14.77h24"
-        stroke="#FFFFFF"
-        strokeWidth="1.23"
-      />
-      <rect width="10" height="8.62" fill="#3C3B6E" />
-    </svg>
-  );
 
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useThemeStore();
@@ -121,26 +99,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     };
   }, [isOpen]);
 
-  const targetLang = lang === "vi" ? "en" : "vi";
-  const targetCode: "VI" | "EN" = targetLang === "vi" ? "VI" : "EN";
-
-  const handleToggleLang = () => {
-    void ensureLanguageLoaded(targetLang).then(() => {
-      void i18n.changeLanguage(targetLang);
-      if (typeof window !== "undefined") {
-        localStorage.setItem("language", targetLang);
-      }
-      // Replace /vi with /en or vice versa in current pathname
-      let newPath = pathname;
-      if (pathname.startsWith(`/${lang}`)) {
-        newPath = pathname.replace(`/${lang}`, `/${targetLang}`);
-      } else {
-        newPath = `/${targetLang}${pathname}`;
-      }
-      router.push(newPath);
-    });
-  };
-
   const handleToggleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
@@ -158,29 +116,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const handleNavigate = (id: string) => {
     document.body.style.overflow = "";
     setIsOpen(false);
-    requestAnimationFrame(() => {
-      if (id === "home") {
-        if (pathname !== `/${lang}`) {
-          router.push(`/${lang}`);
-          window.scrollTo(0, 0);
-        } else {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-      } else if (id === "projects") {
-        router.push(`/${lang}/projects`);
-        window.scrollTo(0, 0);
-      } else if (id === "contact") {
-        router.push(`/${lang}/contact`);
-        window.scrollTo(0, 0);
-      } else if (id === "about") {
-        router.push(`/${lang}/about`);
-        window.scrollTo(0, 0);
-      } else if (pathname !== `/${lang}`) {
-        router.push(`/${lang}#${id}`);
-      } else if (scrollToSection) {
-        scrollToSection(id);
-      }
-    });
+
+    const targetPath = id === "home" ? `/${lang}` : `/${lang}/${id}`;
+
+    if (pathname === targetPath) {
+      // Already on target page -> smooth scroll to top of this page
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Switching to a different page -> navigate directly without scrolling the old page
+      router.push(targetPath);
+    }
   };
 
   const handleOpenMenu = () => {
@@ -224,20 +169,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
         {/* Right Side Controls */}
         <div className="flex items-center gap-2.5 relative z-10">
-          {/* Language Selector */}
-          <button
-            onClick={handleToggleLang}
-            aria-label={`Switch language to ${targetCode}`}
-            className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
-              isOpen
-                ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
-                : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
-            }`}
-          >
-            <FlagIcon code={targetCode} />
-            <span>{targetCode}</span>
-          </button>
-
           {/* Theme Toggle */}
           <button
             onClick={handleToggleDarkMode}
