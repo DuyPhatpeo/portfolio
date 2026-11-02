@@ -46,7 +46,7 @@ const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
 
       {/* Center: Large High-Resolution Tech Logo */}
       <div className="my-auto py-2 flex flex-col items-center z-10">
-        <div className="w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform duration-300">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center mb-3.5 group-hover:scale-110 transition-transform duration-300">
           {skill.logo ? (
             <img
               src={skill.logo}
@@ -64,7 +64,7 @@ const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
         </div>
 
         {/* Tech Name */}
-        <h3 className="font-sans font-bold text-sm sm:text-base md:text-lg text-foreground tracking-tight group-hover:text-primary transition-colors line-clamp-1">
+        <h3 className="font-sans font-bold text-base sm:text-lg md:text-xl text-foreground tracking-tight group-hover:text-primary transition-colors line-clamp-1">
           {skill.name}
         </h3>
       </div>

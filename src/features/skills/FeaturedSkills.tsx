@@ -36,7 +36,7 @@ const FeaturedSkills: React.FC = () => {
       node: (
         <TechIcon
           name={name}
-          className="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 object-contain shrink-0"
+          className="w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 md:w-14 md:h-14 object-contain shrink-0"
         />
       ),
       title: name,
@@ -70,13 +70,13 @@ const FeaturedSkills: React.FC = () => {
       </div>
 
       {/* Official React Bits Infinite Logo Loop - Clean logo & text with zero borders, backgrounds, or shadows */}
-      <div className="w-full py-2 sm:py-4">
+      <div className="w-full py-4 sm:py-6">
         <LogoLoop
           logos={logos}
           speed={32}
           direction="left"
-          logoHeight={36}
-          gap={48}
+          logoHeight={56}
+          gap={56}
           labels="inline"
           pauseOnHover={true}
           scaleOnHover={true}

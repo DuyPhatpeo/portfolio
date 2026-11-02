@@ -1195,8 +1195,8 @@ export const LogoLoop = memo<LogoLoopProps>(
       );
       const labelClass =
         labels === 'below'
-          ? 'whitespace-nowrap text-[length:max(11px,calc(var(--logoloop-logoHeight)*0.26))] font-medium leading-[1.2] opacity-[0.72]'
-          : 'whitespace-nowrap font-mono text-[length:max(13px,calc(var(--logoloop-logoHeight)*0.45))] font-medium leading-none text-foreground/90 tracking-tight transition-colors';
+          ? 'whitespace-nowrap text-[length:max(12px,calc(var(--logoloop-logoHeight)*0.28))] font-medium leading-[1.2] opacity-[0.8]'
+          : 'whitespace-nowrap font-mono text-base sm:text-lg md:text-xl font-bold leading-none text-foreground tracking-tight transition-colors';
       const tipClass = cx(
         'pointer-events-none absolute whitespace-nowrap text-[length:max(11px,calc(var(--logoloop-logoHeight)*0.26))] font-medium leading-[1.2] opacity-0 transition-[opacity,translate] duration-[250ms] ease-[ease] motion-reduce:transition-none group-hover/item:opacity-80 group-focus-within/item:opacity-80 group-data-[active]/item:opacity-80',
         vertical
