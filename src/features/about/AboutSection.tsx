@@ -171,86 +171,41 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 </div>
               </>
             ) : (
-              /* High-Impact Engineering Snapshot Bento Card on Home (No badge/lanyard/avatar repetition) */
-              <div className="relative w-full h-full min-h-[360px] sm:min-h-[420px] rounded-3xl bg-card/85 backdrop-blur-xl border border-border/80 p-6 sm:p-8 flex flex-col justify-between shadow-sm overflow-hidden group">
-                {/* Subtle background ambient aura */}
+              /* Clean Portrait Showcase Card on Home Page (No lanyard/strap/badge accessories) */
+              <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-between group shadow-sm">
+                {/* Subtle ambient backdrop aura behind character */}
                 <div
-                  className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500"
+                  className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/4 aspect-square rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500"
                   aria-hidden="true"
                 />
 
-                {/* Top: Terminal Controls & Availability Status */}
-                <div className="flex items-center justify-between pb-5 border-b border-border/60 relative z-10">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                    <span className="ml-1.5 font-mono text-xs text-muted-foreground">
-                      developer.config.ts
+                {/* Top: Metadata Bar (Availability & Location) */}
+                <div className="p-5 sm:p-6 pb-0 flex items-center justify-between gap-3 relative z-20">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/70 text-xs font-mono shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span className="text-muted-foreground">
+                      {t("about.status", "Available for work")}
                     </span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-primary/10 text-primary border border-primary/25">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                    {t("about.status", "Available for work")}
-                  </span>
-                </div>
-
-                {/* Middle: 4 Key Metrics (Bento Grid) */}
-                <div className="grid grid-cols-2 gap-3 sm:gap-4 my-6 sm:my-8 relative z-10">
-                  <div className="p-4 sm:p-5 rounded-2xl bg-muted/40 border border-border/60 hover:border-primary/40 transition-colors flex flex-col gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-mono font-bold text-foreground tracking-tight">
-                      03+
-                    </span>
-                    <span className="text-xs sm:text-sm font-sans text-muted-foreground">
-                      {t("about.stats.experience", "Years Experience")}
-                    </span>
-                  </div>
-
-                  <div className="p-4 sm:p-5 rounded-2xl bg-muted/40 border border-border/60 hover:border-primary/40 transition-colors flex flex-col gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-mono font-bold text-primary tracking-tight">
-                      15+
-                    </span>
-                    <span className="text-xs sm:text-sm font-sans text-muted-foreground">
-                      {t("about.stats.projects", "Shipped Projects")}
-                    </span>
-                  </div>
-
-                  <div className="p-4 sm:p-5 rounded-2xl bg-muted/40 border border-border/60 hover:border-primary/40 transition-colors flex flex-col gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-mono font-bold text-foreground tracking-tight">
-                      100%
-                    </span>
-                    <span className="text-xs sm:text-sm font-sans text-muted-foreground">
-                      {t("about.principles.performance.title", "Speed & Performance")}
-                    </span>
-                  </div>
-
-                  <div className="p-4 sm:p-5 rounded-2xl bg-muted/40 border border-border/60 hover:border-primary/40 transition-colors flex flex-col gap-1.5">
-                    <span className="text-3xl sm:text-4xl font-mono font-bold text-primary tracking-tight">
-                      24/7
-                    </span>
-                    <span className="text-xs sm:text-sm font-sans text-muted-foreground">
-                      {t("about.stats.commitment", "Reliable Delivery")}
-                    </span>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/70 text-xs font-mono text-muted-foreground shadow-xs">
+                    <span>📍</span>
+                    <span>{t("about.location", "Nha Trang, VN")}</span>
                   </div>
                 </div>
 
-                {/* Bottom: Location & Tech Stack Pills */}
-                <div className="pt-4 border-t border-border/60 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground relative z-10">
-                  <span className="font-mono text-xs text-foreground/80 flex items-center gap-1.5">
-                    📍 {t("about.location", "Nha Trang, Vietnam")}
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-[11px] font-mono text-foreground/75">
-                      Next.js
-                    </span>
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-[11px] font-mono text-foreground/75">
-                      TypeScript
-                    </span>
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-[11px] font-mono text-foreground/75">
-                      .NET
-                    </span>
-                  </div>
+                {/* 3D Developer Character Avatar anchored flush to card bottom */}
+                <div className="relative z-10 w-full flex-1 flex items-end justify-center px-4 pt-6">
+                  <img
+                    src={profileData.avatar || profileData.heroImage}
+                    alt={t("hero.banner.imageAlt", "About Dino Péo")}
+                    className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] h-auto max-h-[380px] sm:max-h-[440px] object-contain object-bottom block filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-[1.03]"
+                    width={1536}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={() => ScrollTrigger.refresh()}
+                  />
                 </div>
               </div>
             )}
