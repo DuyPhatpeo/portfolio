@@ -7,6 +7,7 @@ import { profileData } from "@constants/profileData";
 import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
+import LanyardBadge3D from "./LanyardBadge3D";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -112,67 +113,11 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
           >
             {isAboutPage ? (
               /* Freestanding 3D Developer Lanyard Badge (Page About) */
-              <>
-                {/* Lanyard Strap descending from above */}
-                <div className="relative flex flex-col items-center z-20 -mb-1">
-                  {/* Premium Woven Fabric Lanyard Ribbon */}
-                  <div className="w-8 sm:w-9 h-16 sm:h-20 bg-neutral-900 border-x-2 border-primary/60 flex flex-col items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-y-0 left-1 w-px bg-white/10" />
-                    <div className="absolute inset-y-0 right-1 w-px bg-white/10" />
-                    <div className="absolute inset-y-0 w-0.5 bg-primary/40" />
-                  </div>
-
-                  {/* Matte Metallic Clasp Hardware */}
-                  <div className="w-7 h-3 rounded-xs bg-gradient-to-r from-neutral-700 via-neutral-500 to-neutral-700 border border-neutral-400 z-20 -mt-0.5" />
-                  {/* Metallic Swivel Carabiner Hook */}
-                  <div className="w-3.5 h-6 rounded-b-full border-2 border-neutral-300 bg-neutral-800 -mt-1 z-30 flex items-end justify-center pb-0.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-neutral-400" />
-                  </div>
-                </div>
-
-                {/* Hanging Frosted Acrylic Badge (Straight vertical, zero tilt, zero shadow) */}
-                <div className="group/badge relative flex flex-col items-center select-none cursor-pointer">
-                  {/* Top Hanger Tab with Laser-cut Slot */}
-                  <div className="relative z-10 w-28 sm:w-32 h-6 sm:h-7 bg-neutral-900/90 border-2 border-primary/50 border-b-0 rounded-t-2xl backdrop-blur-xl flex items-center justify-center gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-background border border-primary/40" />
-                    <span className="w-9 h-2.5 rounded-full bg-background border border-primary/60" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-background border border-primary/40" />
-                  </div>
-
-                  {/* Main Acrylic Badge Sleeve (Glassmorphism & Crisp Emerald Trim - No Shadow) */}
-                  <div className="relative w-[280px] xs:w-[310px] sm:w-[340px] md:w-[360px] rounded-3xl bg-neutral-900/85 backdrop-blur-2xl border-2 border-primary/50 p-2 sm:p-2.5">
-                    {/* Characteristic Side Cutout Notches */}
-                    <span
-                      className="absolute top-1/2 -left-[3px] -translate-y-1/2 w-2 h-10 bg-background rounded-r-md border-r-2 border-y-2 border-primary/50 z-20"
-                      aria-hidden="true"
-                    />
-                    <span
-                      className="absolute top-1/2 -right-[3px] -translate-y-1/2 w-2 h-10 bg-background rounded-l-md border-l-2 border-y-2 border-primary/50 z-20"
-                      aria-hidden="true"
-                    />
-
-                    {/* Subtle Diagonal Glass Sheen */}
-                    <div
-                      className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-60 z-20"
-                      aria-hidden="true"
-                    />
-
-                    {/* 100% Pure Photo Frame (Clean neutral card background, zero colored glow) */}
-                    <div className="relative w-full aspect-[3/3.8] rounded-2xl overflow-hidden bg-card border border-border/60 flex items-end justify-center">
-                      <img
-                        src={profileData.avatar || profileData.heroImage}
-                        alt={t("hero.banner.imageAlt", "Dino Péo Badge")}
-                        className="relative z-10 w-full h-auto object-contain object-bottom block"
-                        width={1536}
-                        height={1024}
-                        loading="eager"
-                        decoding="async"
-                        onLoad={() => ScrollTrigger.refresh()}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </>
+              <LanyardBadge3D
+                avatarUrl={profileData.avatar || profileData.heroImage}
+                imageAlt={t("hero.banner.imageAlt", "Dino Péo Badge")}
+                onLoad={() => ScrollTrigger.refresh()}
+              />
             ) : (
               /* Clean Portrait Showcase Card on Home Page (No name tag / badge accessories) */
               <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-end group shadow-sm">
