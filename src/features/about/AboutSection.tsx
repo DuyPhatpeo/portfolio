@@ -8,6 +8,7 @@ import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import Lanyard from "@components/ui/Lanyard";
+import ProfileCard from "@components/ui/ProfileCard";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -129,86 +130,28 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 />
               </div>
             ) : (
-              /* Clean Portrait Showcase Card on Home Page (No name tag / badge accessories) */
-              <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-end group shadow-sm">
-                {/* Subtle ambient backdrop aura behind character */}
-                <div
-                  className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/4 aspect-square rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500"
-                  aria-hidden="true"
+              /* React Bits Holographic 3D Tilt Profile Card on Home Page */
+              <div className="relative w-full flex items-center justify-center py-2 sm:py-4">
+                <ProfileCard
+                  avatarUrl={profileData.avatar || profileData.heroImage}
+                  miniAvatarUrl={profileData.avatar || profileData.heroImage}
+                  name={profileData.name}
+                  title={t("hero.roles.frontend", "Front-End Developer")}
+                  handle="DuyPhatpeo"
+                  status={t("about.status", "Available for work")}
+                  statusColor="#2dd4a8"
+                  contactText={t("nav.contact", "Contact")}
+                  onContactClick={() => scrollToSection("contact")}
+                  showUserInfo={true}
+                  theme="dark"
+                  radius={22}
+                  holo={0.75}
+                  glare={0.7}
+                  enableTilt={true}
+                  tiltStrength={14}
+                  imageFit="contain"
+                  className="mx-auto"
                 />
-
-                {/* Playful Curving Wavy Arrow & Text flowing along the path from the figure */}
-                <div className="absolute top-4 sm:top-6 inset-x-0 px-4 sm:px-6 z-20 pointer-events-none flex justify-center">
-                  <svg
-                    viewBox="0 0 340 100"
-                    className="w-full max-w-[340px] h-auto overflow-visible select-none"
-                    aria-hidden="true"
-                  >
-                    <defs>
-                      {/* Smooth S-wave path undulating outward from the character */}
-                      <path
-                        id="about-wavy-path"
-                        d="M 35,82 C 85,25 145,98 215,38 S 285,72 320,32"
-                        fill="none"
-                      />
-                      {/* Arrowhead Marker at the tip */}
-                      <marker
-                        id="about-arrowhead"
-                        viewBox="0 0 10 10"
-                        refX="7"
-                        refY="5"
-                        markerWidth="6"
-                        markerHeight="6"
-                        orient="auto"
-                      >
-                        <path
-                          d="M 0 1.5 L 8 5 L 0 8.5 L 2 5 z"
-                          className="fill-primary"
-                        />
-                      </marker>
-                    </defs>
-
-                    {/* Curving Wavy Arrow Stroke */}
-                    <path
-                      d="M 35,82 C 85,25 145,98 215,38 S 285,72 320,32"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeDasharray="5 4"
-                      markerEnd="url(#about-arrowhead)"
-                      className="text-primary/70 group-hover:text-primary transition-colors duration-300"
-                    />
-
-                    {/* Text undulating gracefully right along the wavy curve */}
-                    <text
-                      dy="-9"
-                      className="fill-foreground/90 group-hover:fill-primary text-[12px] sm:text-[13px] font-mono font-medium tracking-wide transition-colors duration-300"
-                    >
-                      <textPath
-                        href="#about-wavy-path"
-                        startOffset="4%"
-                        textAnchor="start"
-                      >
-                        {t("about.arrow_text", "Dino Péo (Trần Duy Phát) ✨")}
-                      </textPath>
-                    </text>
-                  </svg>
-                </div>
-
-                {/* 3D Developer Character Avatar anchored flush to card bottom */}
-                <div className="relative z-10 w-full flex-1 flex items-end justify-center px-4 pt-16 sm:pt-20">
-                  <img
-                    src={profileData.avatar || profileData.heroImage}
-                    alt={t("hero.banner.imageAlt", "About Dino Péo")}
-                    className="w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[380px] h-auto max-h-[380px] sm:max-h-[440px] object-contain object-bottom block filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.2)] transition-transform duration-500 group-hover:scale-[1.03]"
-                    width={1536}
-                    height={1024}
-                    loading="lazy"
-                    decoding="async"
-                    onLoad={() => ScrollTrigger.refresh()}
-                  />
-                </div>
               </div>
             )}
           </div>
