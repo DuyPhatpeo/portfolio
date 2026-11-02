@@ -182,42 +182,41 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         }
       `}</style>
 
-      {/* Floating Header Navigation (Bubble Menu Concept) */}
+      {/* Full-Width Header Navigation */}
       <header
-        className={`fixed top-0 left-0 right-0 z-[200] transition-[transform,opacity] duration-300 pointer-events-none ${
+        className={`fixed top-0 left-0 right-0 w-full z-[200] transition-[transform,opacity,background-color,border-color] duration-300 pointer-events-none ${
           showHeader || isOpen
             ? "translate-y-0 opacity-100"
             : "-translate-y-full opacity-0"
+        } ${
+          isScrolled && !isOpen
+            ? darkMode
+              ? "bg-[#11121c]/80 backdrop-blur-md border-b border-primary/10 shadow-sm"
+              : "bg-white/80 backdrop-blur-md border-b border-[#11121c]/10 shadow-sm"
+            : "bg-transparent"
         }`}
       >
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 flex items-center justify-between">
-          {/* Left Bubble: Brand Logo Capsule */}
-          <div className="bubble logo-bubble pointer-events-auto">
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between">
+          {/* Left Brand: Clean text only, no capsule background, no logo image */}
+          <div className="pointer-events-auto">
             <button
               onClick={() => handleNavigate("home")}
               aria-label="Homepage"
-              className="group inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="group inline-flex items-center py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg select-none"
             >
-              <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden flex items-center justify-center bg-primary/20 border border-primary/40 shrink-0">
-                <img
-                  src="/assets/icons/logo.webp"
-                  alt="Dino Péo"
-                  className="w-full h-full object-cover"
-                />
-              </span>
-              <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.2em] text-foreground transition-colors group-hover:text-primary">
-                {profileData.logo}
+              <span className="text-xl sm:text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
+                Dino Péo
               </span>
             </button>
           </div>
 
           {/* Right Bubble: Controls Capsule (Theme Toggle + Staggered Menu Button) */}
-          <div className="bubble controls-bubble pointer-events-auto flex items-center gap-2 sm:gap-2.5">
+          <div className="pointer-events-auto flex items-center gap-2 sm:gap-2.5">
             {/* Theme Toggle Button */}
             <button
               onClick={handleToggleDarkMode}
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_16px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_16px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span className="flex items-center justify-center transition-transform duration-200">
                 {darkMode ? (
@@ -233,7 +232,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              className="inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center gap-2.5 h-10 sm:h-11 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {/* Rolling Text (StaggeredMenu style) */}
               <span className="relative inline-block h-[1.1em] overflow-hidden whitespace-nowrap text-xs font-mono font-semibold uppercase tracking-wider text-current">
@@ -307,30 +306,27 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         aria-hidden={!isOpen}
       >
         {/* Top Bar inside panel */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 flex items-center justify-between shrink-0">
-          <div
-            className={`inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full backdrop-blur-md ${
-              darkMode
-                ? "bg-white/5 border border-primary/25 text-neutral-200"
-                : "bg-white border border-[#11121c]/15 text-[#11121c] shadow-sm"
-            }`}
+        <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12 h-16 sm:h-20 flex items-center justify-between shrink-0">
+          <button
+            onClick={() => handleNavigate("home")}
+            aria-label="Homepage"
+            className="group inline-flex items-center py-2 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg select-none"
           >
-            <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden flex items-center justify-center bg-primary/20 border border-primary/40 shrink-0">
-              <img
-                src="/assets/icons/logo.webp"
-                alt="Dino Péo"
-                className="w-full h-full object-cover"
-              />
+            <span
+              className={`text-xl sm:text-2xl font-bold tracking-tight transition-colors ${
+                darkMode
+                  ? "text-neutral-100 group-hover:text-primary"
+                  : "text-[#11121c] group-hover:text-primary"
+              }`}
+            >
+              Dino Péo
             </span>
-            <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.2em]">
-              {profileData.logo}
-            </span>
-          </div>
+          </button>
 
           <button
             onClick={closeMenu}
             aria-label="Close navigation"
-            className={`inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full backdrop-blur-md font-mono text-xs uppercase font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+            className={`inline-flex items-center gap-2.5 h-10 sm:h-11 px-4 sm:px-5 rounded-full backdrop-blur-md font-mono text-xs uppercase font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
               darkMode
                 ? "bg-white/5 border border-primary/30 text-primary hover:bg-primary/20 hover:border-primary"
                 : "bg-[#11121c] text-[#d9ff3a] border border-[#11121c] hover:bg-[#202334]"
@@ -420,7 +416,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
         {/* Bottom: Staggered Socials & Contact Bar (Staggered Menu Concept) */}
         <div
-          className={`w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-6 sm:pb-8 pt-4 shrink-0 border-t ${
+          className={`w-full px-4 sm:px-6 md:px-8 lg:px-12 pb-6 sm:pb-8 pt-4 shrink-0 border-t ${
             darkMode ? "border-white/10" : "border-[#11121c]/10"
           }`}
         >
