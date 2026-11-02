@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import Lanyard from "@components/ui/Lanyard";
 import ProfileCard from "@components/ui/ProfileCard";
+import SpecularButton from "@components/ui/SpecularButton";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -211,25 +212,27 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
             <div className="pt-7 mt-8 border-t border-border/70 flex flex-wrap items-center justify-between gap-4">
               <div className="flex flex-wrap items-center gap-3.5">
                 {!isAboutPage && (
-                  <button
+                  <SpecularButton
+                    variant="primary"
+                    size="md"
                     onClick={() => router.push(`/${lang}/about`)}
-                    className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-primary text-primary-foreground font-medium text-base transition-opacity duration-200 hover:opacity-90 cursor-pointer"
                     aria-label={t("hero.banner.about", "More About Me")}
+                    className="group"
                   >
                     <span>{t("hero.banner.about", "More About Me")}</span>
                     <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </button>
+                  </SpecularButton>
                 )}
 
-                <a
+                <SpecularButton
+                  variant="secondary"
+                  size="md"
                   href={profileData.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full border border-border bg-card hover:border-primary/60 text-foreground hover:text-primary font-medium text-base transition-colors duration-200"
+                  className="group"
                 >
                   <span>{t("hero.banner.resume", "View Résumé")}</span>
                   <ArrowUpRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </SpecularButton>
               </div>
 
               {/* Social Links Row */}

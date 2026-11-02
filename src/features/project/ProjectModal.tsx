@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import TechIcon from "@components/ui/TechIcon";
 import Dock, { type DockItemData } from "@components/ui/Dock";
+import SpecularButton from "@components/ui/SpecularButton";
 import {
   Dialog,
   DialogContent,
@@ -200,26 +201,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             {(project.demo || project.github) && (
               <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border/60">
                 {project.demo && (
-                  <a
+                  <SpecularButton
+                    variant="primary"
+                    size="md"
                     href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 bg-primary text-primary-foreground hover:opacity-90 transition-opacity rounded-xl font-medium text-sm sm:text-base shadow-sm"
+                    className="w-full sm:w-auto"
                   >
                     <FiMonitor className="text-base" />
                     <span>{t("common.links.live", "Trải nghiệm trực tiếp")}</span>
-                  </a>
+                  </SpecularButton>
                 )}
                 {project.github && (
-                  <a
+                  <SpecularButton
+                    variant="secondary"
+                    size="md"
                     href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 bg-card hover:bg-muted border border-border hover:border-primary/50 rounded-xl font-medium text-sm sm:text-base text-foreground transition-colors"
+                    className="w-full sm:w-auto"
                   >
                     <FiGithub className="text-base" />
                     <span>{t("common.links.source", "Xem mã nguồn")}</span>
-                  </a>
+                  </SpecularButton>
                 )}
               </div>
             )}
