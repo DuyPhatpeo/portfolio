@@ -298,7 +298,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       >
         <div className="w-full h-20 shrink-0" />
 
-        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-end overflow-y-auto z-10">
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-4 sm:pt-8 md:pt-10 flex-1 flex flex-col justify-start md:justify-center items-end overflow-y-auto z-10">
           <nav className="flex flex-col items-end gap-2 sm:gap-3 w-full">
             {navItems.map((item, index) => {
               const isActive = pathname === item.path;
