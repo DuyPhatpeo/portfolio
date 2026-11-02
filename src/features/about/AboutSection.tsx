@@ -171,31 +171,75 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 </div>
               </>
             ) : (
-              /* Clean Portrait Showcase Card on Home Page (No lanyard/strap/badge accessories) */
-              <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-between group shadow-sm">
+              /* Clean Portrait Showcase Card on Home Page (No name tag / badge accessories) */
+              <div className="relative w-full h-full min-h-[380px] sm:min-h-[440px] rounded-3xl bg-card/80 backdrop-blur-xl border border-border/80 overflow-hidden flex flex-col justify-end group shadow-sm">
                 {/* Subtle ambient backdrop aura behind character */}
                 <div
                   className="pointer-events-none absolute -bottom-12 left-1/2 -translate-x-1/2 w-3/4 aspect-square rounded-full bg-primary/10 blur-3xl group-hover:bg-primary/15 transition-colors duration-500"
                   aria-hidden="true"
                 />
 
-                {/* Top: Metadata Bar (Availability & Location) */}
-                <div className="p-5 sm:p-6 pb-0 flex items-center justify-between gap-3 relative z-20">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/70 text-xs font-mono shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                    <span className="text-muted-foreground">
-                      {t("about.status", "Available for work")}
-                    </span>
-                  </div>
+                {/* Playful Curving Wavy Arrow & Text flowing along the path from the figure */}
+                <div className="absolute top-4 sm:top-6 inset-x-0 px-4 sm:px-6 z-20 pointer-events-none flex justify-center">
+                  <svg
+                    viewBox="0 0 340 100"
+                    className="w-full max-w-[340px] h-auto overflow-visible select-none"
+                    aria-hidden="true"
+                  >
+                    <defs>
+                      {/* Smooth S-wave path undulating outward from the character */}
+                      <path
+                        id="about-wavy-path"
+                        d="M 35,82 C 85,25 145,98 215,38 S 285,72 320,32"
+                        fill="none"
+                      />
+                      {/* Arrowhead Marker at the tip */}
+                      <marker
+                        id="about-arrowhead"
+                        viewBox="0 0 10 10"
+                        refX="7"
+                        refY="5"
+                        markerWidth="6"
+                        markerHeight="6"
+                        orient="auto"
+                      >
+                        <path
+                          d="M 0 1.5 L 8 5 L 0 8.5 L 2 5 z"
+                          className="fill-primary"
+                        />
+                      </marker>
+                    </defs>
 
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/70 text-xs font-mono text-muted-foreground shadow-xs">
-                    <span>📍</span>
-                    <span>{t("about.location", "Nha Trang, VN")}</span>
-                  </div>
+                    {/* Curving Wavy Arrow Stroke */}
+                    <path
+                      d="M 35,82 C 85,25 145,98 215,38 S 285,72 320,32"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeDasharray="5 4"
+                      markerEnd="url(#about-arrowhead)"
+                      className="text-primary/70 group-hover:text-primary transition-colors duration-300"
+                    />
+
+                    {/* Text undulating gracefully right along the wavy curve */}
+                    <text
+                      dy="-9"
+                      className="fill-foreground/90 group-hover:fill-primary text-[12px] sm:text-[13px] font-mono font-medium tracking-wide transition-colors duration-300"
+                    >
+                      <textPath
+                        href="#about-wavy-path"
+                        startOffset="4%"
+                        textAnchor="start"
+                      >
+                        {t("about.arrow_text", "Dino Péo (Trần Duy Phát) ✨")}
+                      </textPath>
+                    </text>
+                  </svg>
                 </div>
 
                 {/* 3D Developer Character Avatar anchored flush to card bottom */}
-                <div className="relative z-10 w-full flex-1 flex items-end justify-center px-4 pt-6">
+                <div className="relative z-10 w-full flex-1 flex items-end justify-center px-4 pt-16 sm:pt-20">
                   <img
                     src={profileData.avatar || profileData.heroImage}
                     alt={t("hero.banner.imageAlt", "About Dino Péo")}
