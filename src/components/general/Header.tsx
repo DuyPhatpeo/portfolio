@@ -298,8 +298,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
       >
         <div className="w-full h-20 shrink-0" />
 
-        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-start overflow-y-auto z-10">
-          <nav className="flex flex-col items-start gap-2 sm:gap-3 w-full">
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-end overflow-y-auto z-10">
+          <nav className="flex flex-col items-end gap-2 sm:gap-3 w-full">
             {navItems.map((item, index) => {
               const isActive = pathname === item.path;
               return (
@@ -307,19 +307,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   key={item.href}
                   tabIndex={isOpen ? 0 : -1}
                   onClick={() => handleNavigate(item.href)}
-                  className="group flex items-baseline gap-4 sm:gap-6 text-left py-1.5 cursor-pointer select-none"
+                  className="group flex items-baseline justify-end gap-4 sm:gap-6 text-right py-1.5 cursor-pointer select-none"
                 >
-                  <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
-                    0{index + 1}
-                  </span>
                   <span
-                    className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-[color,transform] duration-200 group-hover:translate-x-2 ${
+                    className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-[color,transform] duration-200 group-hover:-translate-x-2 ${
                       isActive
                         ? "text-primary"
                         : "text-neutral-100 group-hover:text-primary"
                     }`}
                   >
                     {toTitleCase(item.name)}
+                  </span>
+                  <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
+                    0{index + 1}
                   </span>
                 </button>
               );

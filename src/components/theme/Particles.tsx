@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { useThemeStore } from "@stores/themeStore";
 
@@ -29,12 +31,12 @@ interface ParticlesProps {
   zIndex?: number;
 }
 
-// Pure monochrome starlight: crisp white on black sky, subtle charcoal on light background
+// Pure monochrome starlight: crisp white on dark sky, subtle charcoal on light background
 const STAR_RGB_DARK = "255, 255, 255";
 const STAR_RGB_LIGHT = "24, 24, 27";
 
 const Particles: React.FC<ParticlesProps> = ({
-  quantity = 190,
+  quantity = 175,
   zIndex = 1,
 }) => {
   const { darkMode } = useThemeStore();
@@ -53,16 +55,37 @@ const Particles: React.FC<ParticlesProps> = ({
     h: typeof window !== "undefined" ? window.innerHeight : 900,
   }));
 
-  /* Resize listener */
+  /* Responsive resize listener with debouncing to prevent mobile address bar jumpiness */
   useEffect(() => {
-    const handle = () =>
-      setSize({ w: window.innerWidth, h: window.innerHeight });
+    let timeoutId: number;
+    const handle = () => {
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        const newW = window.innerWidth;
+        const newH = window.innerHeight;
+        setSize((prev) => {
+          // Avoid unnecessary canvas resets if width barely changed (e.g. mobile scroll URL bar toggle)
+          if (Math.abs(prev.w - newW) < 20 && Math.abs(prev.h - newH) < 80) {
+            return prev;
+          }
+          return { w: newW, h: newH };
+        });
+      }, 150);
+    };
+
     window.addEventListener("resize", handle);
-    return () => window.removeEventListener("resize", handle);
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("resize", handle);
+    };
   }, []);
 
-  /* Subtle mouse parallax */
+  /* Mouse parallax: active on Desktop, completely disabled on touch devices to save CPU */
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || size.w < 768;
+    if (isTouch) return;
+
     const handle = (e: MouseEvent) => {
       mouseRef.current.x = (e.clientX / size.w - 0.5) * 2;
       mouseRef.current.y = (e.clientY / size.h - 0.5) * 2;
@@ -71,23 +94,32 @@ const Particles: React.FC<ParticlesProps> = ({
     return () => window.removeEventListener("mousemove", handle);
   }, [size]);
 
+  /* Determine responsive star quantity: Mobile (45) / Tablet (85) / Desktop (175) */
+  const getResponsiveCount = useCallback((width: number): number => {
+    if (width < 640) return 45; // Mobile: lightweight, ultra-smooth, saves battery
+    if (width < 1024) return 85; // Tablet: balanced density
+    return quantity; // Desktop: rich cosmic starfield
+  }, [quantity]);
+
   /* Create monochrome star with layered depth */
   const createStar = useCallback(
     (randomY = true): Star => {
+      const isMobile = size.w < 640;
       const depth = 0.15 + Math.random() * 0.85;
-      const isBeacon = Math.random() < 0.07;
-      const baseSize = isBeacon ? 1.7 + Math.random() * 0.8 : depth * 1.55;
+      const isBeacon = !isMobile && Math.random() < 0.07;
+      const baseSize = isBeacon ? 1.6 + Math.random() * 0.7 : depth * (isMobile ? 1.25 : 1.5);
+
       return {
         x: Math.random() * size.w,
         y: randomY ? Math.random() * size.h : -6,
-        size: Math.max(0.55, baseSize + Math.random() * 0.45),
-        alpha: isBeacon ? 0.72 + Math.random() * 0.25 : Math.random() * 0.62 + 0.24,
+        size: Math.max(0.5, baseSize + Math.random() * 0.4),
+        alpha: isBeacon ? 0.75 + Math.random() * 0.25 : Math.random() * 0.6 + 0.2,
         alphaSpeed: isBeacon
           ? 0.0035 + Math.random() * 0.005
           : 0.002 + Math.random() * 0.006,
         alphaDir: Math.random() > 0.5 ? 1 : -1,
-        dx: (Math.random() - 0.5) * 0.045 * depth,
-        dy: 0.028 + Math.random() * 0.042 * depth,
+        dx: (Math.random() - 0.5) * 0.04 * depth,
+        dy: 0.025 + Math.random() * 0.04 * depth,
         depth,
         beacon: isBeacon,
       };
@@ -95,60 +127,52 @@ const Particles: React.FC<ParticlesProps> = ({
     [size]
   );
 
-  /* Spawn shooting meteor */
+  /* Spawn shooting meteor (frequency optimized per screen) */
   const spawnShooting = useCallback(
     (s: ShootingStar) => {
+      const isMobile = size.w < 640;
       s.x = Math.random() * size.w * 0.75;
-      s.y = Math.random() * size.h * 0.45;
-      s.len = 105 + Math.random() * 115;
-      s.speed = 9 + Math.random() * 6;
-      s.angle = Math.PI / 5 + (Math.random() - 0.5) * 0.3;
-      s.alpha = 1;
+      s.y = Math.random() * size.h * 0.35;
+      s.len = isMobile ? 35 + Math.random() * 35 : 55 + Math.random() * 65;
+      s.speed = isMobile ? 8 + Math.random() * 5 : 11 + Math.random() * 8;
+      s.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.28;
+      s.alpha = isMobile ? 0.55 : 0.75;
       s.active = true;
     },
     [size]
   );
 
-  /* Draw individual monochrome star */
+  /* Draw single monochrome star */
   const drawStar = (
     ctx: CanvasRenderingContext2D,
     s: Star,
     mx: number,
     my: number,
-    animateMotion: boolean
+    animateMotion = true
   ) => {
-    const px = ((s.x + mx * s.depth * 18) % size.w + size.w) % size.w;
-    const py = s.y + my * s.depth * 11;
-    const starRgb = darkMode ? STAR_RGB_DARK : STAR_RGB_LIGHT;
-
     if (animateMotion) {
       s.alpha += s.alphaSpeed * s.alphaDir;
-      const minAlpha = s.beacon ? 0.42 : 0.14;
-      const maxAlpha = darkMode ? 0.96 : 0.45;
-      if (s.alpha >= maxAlpha) s.alphaDir = -1;
-      if (s.alpha <= minAlpha) s.alphaDir = 1;
+      if (s.alpha >= 0.95) {
+        s.alpha = 0.95;
+        s.alphaDir = -1;
+      } else if (s.alpha <= 0.15) {
+        s.alpha = 0.15;
+        s.alphaDir = 1;
+      }
     }
 
-    const effectiveAlpha = darkMode ? s.alpha : s.alpha * 0.45;
+    const isMobile = size.w < 640;
+    const px = s.x + (isMobile ? 0 : mx * s.depth * 14);
+    const py = s.y + (isMobile ? 0 : my * s.depth * 14);
 
-    // Soft white halo around larger stars
-    if (s.size > 1.2) {
-      const glowRadius = s.beacon ? s.size * 4.5 : s.size * 2.8;
-      const grd = ctx.createRadialGradient(px, py, 0, px, py, glowRadius);
-      grd.addColorStop(0, `rgba(${starRgb}, ${effectiveAlpha * 0.65})`);
-      grd.addColorStop(0.45, `rgba(${starRgb}, ${effectiveAlpha * 0.18})`);
-      grd.addColorStop(1, `rgba(${starRgb}, 0)`);
-      ctx.beginPath();
-      ctx.arc(px, py, glowRadius, 0, Math.PI * 2);
-      ctx.fillStyle = grd;
-      ctx.fill();
-    }
+    const starRgb = darkMode ? STAR_RGB_DARK : STAR_RGB_LIGHT;
+    const effectiveAlpha = darkMode ? s.alpha : s.alpha * 0.38;
 
-    // Subtle 4-point white starlight cross on bright stars
-    if (s.beacon && darkMode) {
-      const spikeLen = s.size * 3.8;
-      ctx.strokeStyle = `rgba(${starRgb}, ${effectiveAlpha * 0.4})`;
-      ctx.lineWidth = 0.7;
+    // Cross diffraction spikes on desktop beacon stars only
+    if (s.beacon && effectiveAlpha > 0.55 && !isMobile) {
+      const spikeLen = s.size * 3.4;
+      ctx.strokeStyle = `rgba(${starRgb}, ${effectiveAlpha * 0.35})`;
+      ctx.lineWidth = 0.6;
       ctx.beginPath();
       ctx.moveTo(px - spikeLen, py);
       ctx.lineTo(px + spikeLen, py);
@@ -157,7 +181,7 @@ const Particles: React.FC<ParticlesProps> = ({
       ctx.stroke();
     }
 
-    // Crisp monochrome star core
+    // Star core
     ctx.beginPath();
     ctx.arc(px, py, s.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${starRgb}, ${effectiveAlpha})`;
@@ -169,7 +193,7 @@ const Particles: React.FC<ParticlesProps> = ({
     }
   };
 
-  /* Draw monochrome shooting meteor */
+  /* Draw shooting meteor */
   const drawShooting = (ctx: CanvasRenderingContext2D, s: ShootingStar) => {
     if (!s.active) return;
 
@@ -186,17 +210,17 @@ const Particles: React.FC<ParticlesProps> = ({
     ctx.moveTo(s.x, s.y);
     ctx.lineTo(headX, headY);
     ctx.strokeStyle = grd;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.4;
     ctx.stroke();
 
     ctx.beginPath();
-    ctx.arc(headX, headY, 1.6, 0, Math.PI * 2);
+    ctx.arc(headX, headY, 1.5, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${starRgb}, ${s.alpha})`;
     ctx.fill();
 
     s.x += Math.cos(s.angle) * s.speed;
     s.y += Math.sin(s.angle) * s.speed;
-    s.alpha -= 0.018;
+    s.alpha -= 0.02;
 
     if (s.alpha <= 0 || s.x > size.w + 80 || s.y > size.h + 80) {
       s.active = false;
@@ -234,12 +258,15 @@ const Particles: React.FC<ParticlesProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [size, createStar, darkMode]);
 
-  /* Shooting star scheduler */
+  /* Shooting star scheduler: less frequent on mobile to preserve resources */
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const isMobile = size.w < 640;
     let timer = 0;
     const scheduleNext = () => {
-      const delay = 3200 + Math.random() * 4500;
+      const delay = isMobile ? 6500 + Math.random() * 6000 : 3500 + Math.random() * 4500;
       timer = window.setTimeout(() => {
         const idle = shootingRef.current.find((s) => !s.active);
         if (idle) spawnShooting(idle);
@@ -248,13 +275,15 @@ const Particles: React.FC<ParticlesProps> = ({
       return timer;
     };
     scheduleNext();
-    return () => clearTimeout(timer);
-  }, [spawnShooting]);
 
-  /* Canvas initialization */
+    return () => clearTimeout(timer);
+  }, [size, spawnShooting]);
+
+  /* Initialize Canvas */
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
     ctxRef.current = ctx;
@@ -264,14 +293,17 @@ const Particles: React.FC<ParticlesProps> = ({
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    // Cap DPR at 1.75 on desktop, 1.5 on mobile to avoid 3x retina overhead
+    const maxDpr = size.w < 640 ? 1.5 : 1.75;
+    const dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+
     canvas.width = size.w * dpr;
     canvas.height = size.h * dpr;
     canvas.style.width = `${size.w}px`;
     canvas.style.height = `${size.h}px`;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    const count = isCoarse ? Math.round(quantity * 0.48) : quantity;
+    const count = getResponsiveCount(size.w);
     starsRef.current = Array.from({ length: count }, () => createStar(true));
 
     if (reduceMotion) {
@@ -289,7 +321,7 @@ const Particles: React.FC<ParticlesProps> = ({
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [size, quantity, animate, createStar, darkMode]);
+  }, [size, quantity, animate, createStar, darkMode, getResponsiveCount]);
 
   return (
     <div
