@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ensureLanguageLoaded } from "@i18n/config";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import { RiSunLine, RiMoonLine } from "react-icons/ri";
-import { FiX, FiArrowUpRight } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 
 interface HeaderProps {
   scrollToSection?: (id: string) => void;
@@ -327,21 +327,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           </nav>
         </div>
 
-        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-6 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-neutral-400 shrink-0 z-10">
-          <div>
-            © {new Date().getFullYear()}{" "}
-            {t("footer.built_by", "Thiết kế & phát triển bởi")}{" "}
-            <a
-              tabIndex={isOpen ? 0 : -1}
-              href="https://github.com/DuyPhatpeo"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-neutral-200 underline underline-offset-4 decoration-white/25 hover:decoration-primary hover:text-primary transition-colors"
-            >
-              Dino Péo (Trần Duy Phát)
-            </a>
-            .
-          </div>
+        <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 py-5 border-t border-white/10 flex items-center justify-between text-xs text-neutral-400 shrink-0 z-10">
+          <span className="font-mono text-neutral-400">
+            © {new Date().getFullYear()} Dino Péo
+          </span>
 
           <a
             tabIndex={isOpen ? 0 : -1}
@@ -350,22 +339,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           >
             phattranduy00@gmail.com
           </a>
-
-          <div className="flex items-center gap-5 text-neutral-300">
-            {profileData.socialLinks.slice(0, 3).map((link) => (
-              <a
-                key={link.name}
-                tabIndex={isOpen ? 0 : -1}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors flex items-center gap-1"
-              >
-                <span>{link.name}</span>
-                <FiArrowUpRight className="text-xs" />
-              </a>
-            ))}
-          </div>
         </div>
       </div>
     </header>
