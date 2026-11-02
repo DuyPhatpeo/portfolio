@@ -9,6 +9,7 @@ interface ProfileCardProps {
   avatarUrl?: string;
   iconUrl?: string;
   miniAvatarUrl?: string;
+  miniIcon?: React.ReactNode;
   name?: string;
   title?: string;
   handle?: string;
@@ -230,6 +231,7 @@ const ProfileCard = ({
   avatarUrl = '',
   iconUrl,
   miniAvatarUrl,
+  miniIcon,
   name = 'Dino Péo',
   title = '',
   handle = 'DuyPhatpeo',
@@ -507,9 +509,13 @@ const ProfileCard = ({
 
         {showUserInfo && (
           <div className={FOOTER}>
-            {miniAvatarUrl && (
+            {(miniIcon || miniAvatarUrl) && (
               <span className={AVATAR}>
-                <img className={AVATAR_IMAGE} src={miniAvatarUrl} alt="" loading="lazy" draggable={false} />
+                {miniIcon ? (
+                  miniIcon
+                ) : (
+                  <img className={AVATAR_IMAGE} src={miniAvatarUrl} alt="" loading="lazy" draggable={false} />
+                )}
               </span>
             )}
             <div className={META}>

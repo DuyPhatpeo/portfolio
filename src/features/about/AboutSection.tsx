@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Code2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import { useThemeStore } from "@stores/themeStore";
@@ -138,7 +138,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
               <div className="relative w-full flex items-center justify-center py-2 sm:py-4">
                 <ProfileCard
                   avatarUrl={profileData.avatar || profileData.heroImage}
-                  miniAvatarUrl="/assets/icons/logo.webp"
+                  miniIcon={<Code2 className="w-4 h-4 text-[#11121c] dark:text-primary" strokeWidth={2.5} />}
                   name={profileData.name}
                   title=""
                   handle="DuyPhatpeo"
