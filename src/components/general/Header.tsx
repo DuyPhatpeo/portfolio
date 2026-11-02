@@ -173,10 +173,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={handleToggleDarkMode}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg border transition-all duration-200 flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
-                ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/50"
-                : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/50"
+                ? "border-white/15 bg-white/5 text-neutral-200 hover:text-primary hover:border-primary/60 hover:shadow-[0_0_12px_rgba(45,212,168,0.2)]"
+                : "border-border bg-card/70 text-foreground hover:text-primary hover:border-primary/60 hover:shadow-[0_0_12px_rgba(45,212,168,0.2)]"
             }`}
           >
             <span className="flex items-center justify-center transition-transform duration-200">
@@ -195,10 +195,10 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               isOpen ? "Close navigation menu" : "Open navigation menu"
             }
             aria-expanded={isOpen}
-            className={`w-11 h-11 rounded-lg border transition-colors flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
+            className={`w-10 h-10 sm:w-11 sm:h-11 rounded-lg border transition-all duration-200 flex items-center justify-center cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
-                ? "border-white/15 bg-white/5 hover:bg-white/10 hover:border-primary/60 text-neutral-200 hover:text-primary"
-                : "border-border bg-card/70 hover:border-primary/50 text-foreground hover:text-primary"
+                ? "border-white/15 bg-white/5 hover:bg-white/10 hover:border-primary/60 text-neutral-200 hover:text-primary hover:shadow-[0_0_12px_rgba(45,212,168,0.2)]"
+                : "border-border bg-card/70 hover:border-primary/60 text-foreground hover:text-primary hover:shadow-[0_0_12px_rgba(45,212,168,0.2)]"
             }`}
           >
             {isOpen ? (
@@ -230,7 +230,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         <div className="w-full h-20 shrink-0" />
 
         <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-4 sm:pt-8 md:pt-10 flex-1 flex flex-col justify-start md:justify-center items-end overflow-y-auto z-10">
-          <nav className="flex flex-col items-end gap-2 sm:gap-3 w-full">
+          <nav className="flex flex-col items-end gap-1 xs:gap-1.5 sm:gap-2.5 md:gap-3 w-full">
             {navItems.map((item, index) => {
               const isActive = pathname === item.path;
               return (
@@ -238,18 +238,35 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   key={item.href}
                   tabIndex={isOpen ? 0 : -1}
                   onClick={() => handleNavigate(item.href)}
-                  className="group flex items-baseline justify-end gap-4 sm:gap-6 text-right py-1.5 cursor-pointer select-none"
+                  className="group flex items-center justify-end gap-3 xs:gap-3.5 sm:gap-4 md:gap-6 text-right py-2 xs:py-2.5 sm:py-3 md:py-3.5 cursor-pointer select-none active:scale-[0.98] transition-transform"
                 >
+                  {/* Subtle glowing primary indicator dot for active / hover */}
                   <span
-                    className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-semibold tracking-tight leading-[1.08] transition-[color,transform] duration-200 group-hover:-translate-x-2 ${
+                    className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary transition-all duration-300 shadow-[0_0_10px_rgba(45,212,168,0.9)] ${
+                      isActive
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
+                    }`}
+                    aria-hidden="true"
+                  />
+
+                  <span
+                    className={`text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sans font-semibold tracking-tight leading-tight transition-[color,transform] duration-200 group-hover:-translate-x-1 sm:group-hover:-translate-x-2 ${
                       isActive
                         ? "text-primary"
-                        : "text-neutral-100 group-hover:text-primary"
+                        : "text-neutral-100 group-hover:text-primary active:text-primary"
                     }`}
                   >
                     {toTitleCase(item.name)}
                   </span>
-                  <span className="font-mono text-xs sm:text-sm text-neutral-500 group-hover:text-primary transition-colors">
+
+                  <span
+                    className={`font-mono text-xs sm:text-sm transition-colors duration-200 ${
+                      isActive
+                        ? "text-primary"
+                        : "text-neutral-500 group-hover:text-primary active:text-primary"
+                    }`}
+                  >
                     0{index + 1}
                   </span>
                 </button>
