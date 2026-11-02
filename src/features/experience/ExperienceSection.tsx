@@ -73,7 +73,7 @@ const ExperienceSection: React.FC = () => {
             return (
               <ScrollStackItem
                 key={i}
-                itemClassName="bg-popover/90 backdrop-blur-md border border-border flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-10"
+                itemClassName="bg-card/95 sm:bg-popover/90 sm:backdrop-blur-md border border-border flex flex-col lg:flex-row lg:items-center justify-between gap-6 md:gap-10"
               >
                 {/* Left: Period, Employment Type & Role */}
                 <div className="flex flex-col lg:w-3/5">
