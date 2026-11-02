@@ -138,6 +138,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   avatarUrl={profileData.avatar || profileData.heroImage}
                   miniAvatarUrl="/assets/icons/logo.webp"
                   name={profileData.name}
+                  title=""
                   handle="DuyPhatpeo"
                   status={t("about.status", "Available for work")}
                   statusColor="#d9ff3a"

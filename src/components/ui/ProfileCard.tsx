@@ -230,7 +230,7 @@ const ProfileCard = ({
   iconUrl,
   miniAvatarUrl,
   name = 'Dino Péo',
-  title = 'Front-End Developer',
+  title = '',
   handle = 'DuyPhatpeo',
   status = 'Available for work',
   statusColor = '#d9ff3a',
