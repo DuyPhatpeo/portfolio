@@ -5,6 +5,7 @@ import { FiGithub, FiMonitor, FiExternalLink } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import TechIcon from "@components/ui/TechIcon";
+import Dock, { type DockItemData } from "@components/ui/Dock";
 import {
   Dialog,
   DialogContent,
@@ -38,6 +39,20 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     returnObjects: true,
     defaultValue: null,
   }) as CaseStudyData | null;
+
+  const dockItems: DockItemData[] = React.useMemo(
+    () =>
+      (project.tags || []).map((tag) => ({
+        icon: (
+          <TechIcon
+            name={tag}
+            className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+          />
+        ),
+        label: tag,
+      })),
+    [project.tags]
+  );
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
@@ -118,21 +133,28 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               )}
             </div>
 
-            {/* 3. Technologies Used */}
+            {/* 3. Technologies Used - Interactive React Bits Dock */}
             <div className="flex flex-col gap-2">
               <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                 {t("projects.modal.technologies", "Công nghệ sử dụng")}
               </span>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-card/90 border border-border/80 hover:border-primary/40 text-foreground font-mono text-xs sm:text-sm transition-colors shadow-xs"
-                  >
-                    <TechIcon name={tag} className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
-                    <span>{tag}</span>
-                  </span>
-                ))}
+              <div className="relative w-full pt-4 pb-2 flex items-center justify-start overflow-x-auto overflow-y-visible scrollbar-none">
+                <Dock
+                  items={dockItems}
+                  position="relative"
+                  baseItemSize={44}
+                  magnification={62}
+                  distance={120}
+                  panelHeight={58}
+                  gap={8}
+                  roundness={0.65}
+                  theme="dark"
+                  bounce={true}
+                  showLabels={true}
+                  showIndicators={false}
+                  showBadges={false}
+                  className="!relative !left-0 !bottom-0 !transform-none"
+                />
               </div>
             </div>
 
