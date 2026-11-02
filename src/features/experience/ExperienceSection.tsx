@@ -41,7 +41,7 @@ const ExperienceSection: React.FC = () => {
         >
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs sm:text-sm font-semibold text-primary tracking-widest uppercase">
-              // 2022 — NAY · TIMELINE
+              // CAREER TIMELINE
             </span>
             <div className="h-px flex-1 bg-border/60" />
             <div className="hidden sm:flex items-center gap-2 text-xs font-mono text-muted-foreground">

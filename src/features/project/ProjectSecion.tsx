@@ -299,7 +299,7 @@ export default function ProjectSection({
           >
             <div className="lg:col-span-7 flex flex-col gap-2.5">
               <span className="font-mono text-xs sm:text-sm font-bold text-primary tracking-widest uppercase">
-                // 02. WORKS
+                // FEATURED WORKS
               </span>
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-sans font-extrabold text-foreground tracking-tight leading-[1.05]">
                 {t("projects.title")}

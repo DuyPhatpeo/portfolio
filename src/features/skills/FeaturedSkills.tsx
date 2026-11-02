@@ -41,14 +41,9 @@ const FeaturedSkills: React.FC = () => {
     <section className="py-12 sm:py-16 md:py-24 relative overflow-hidden bg-transparent border-t border-border/60">
       <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-8 md:px-12 mb-8 sm:mb-12">
         <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-5 border-b border-border/50">
-          <div className="flex items-baseline gap-3 sm:gap-4">
-            <span className="font-mono text-sm sm:text-base font-bold text-primary tracking-widest">
-              01.
-            </span>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-tight">
-              {t("skills.title", "Technologies I Work With")}
-            </h2>
-          </div>
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-tight">
+            {t("skills.title", "Technologies I Work With")}
+          </h2>
 
           <Link
             href={`/${lang}/about#skills`}
