@@ -1,3 +1,5 @@
+"use client";
+
 import { Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 
 // Start fetching just before the section reaches the viewport.

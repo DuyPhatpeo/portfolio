@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MdCheckCircle, MdError } from "react-icons/md";
@@ -50,7 +52,13 @@ export default function ContactForm() {
   });
 
   useEffect(() => {
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    const publicKey =
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ||
+      process.env.VITE_EMAILJS_PUBLIC_KEY ||
+      "";
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
   }, []);
 
   const onSubmit = async (data: FormState) => {

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { TECH } from "@constants/technologies";

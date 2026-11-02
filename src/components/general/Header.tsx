@@ -1,15 +1,17 @@
-import { profileData } from "@constants/profileData";
-import React, { useState, useMemo, useEffect, useRef } from "react";
-import { RiMoonLine, RiSunLine } from "react-icons/ri";
-import { FiX, FiArrowUpRight } from "react-icons/fi";
+"use client";
+
+import React, { useState, useEffect, useRef, useMemo } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { profileData } from "@/constants/profileData";
 import { useThemeStore } from "@stores/themeStore";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useLocation } from "react-router-dom";
-import { prefetchRoutes } from "@routes/AppRoutes";
 import { ensureLanguageLoaded } from "@i18n/config";
+import { useLanguage } from "@components/providers/LanguageProvider";
+import { RiSunLine, RiMoonLine } from "react-icons/ri";
+import { FiX, FiArrowUpRight } from "react-icons/fi";
 
 interface HeaderProps {
-  scrollToSection: (sectionId: string) => void;
+  scrollToSection?: (id: string) => void;
 }
 
 const toTitleCase = (str: string) =>
@@ -43,8 +45,9 @@ const FlagIcon: React.FC<{ code: "VI" | "EN" }> = ({ code }) =>
 const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const { darkMode, toggleDarkMode } = useThemeStore();
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
+  const { lang } = useLanguage();
+  const router = useRouter();
+  const pathname = usePathname() || `/${lang}`;
 
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
@@ -91,12 +94,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const navItems = useMemo(
     () => [
-      { name: t("nav.home"), href: "home", path: "/" },
-      { name: t("nav.about"), href: "about", path: "/about" },
-      { name: t("nav.projects"), href: "projects", path: "/projects" },
-      { name: t("nav.contact"), href: "contact", path: "/contact" },
+      { name: t("nav.home"), href: "home", path: `/${lang}` },
+      { name: t("nav.about"), href: "about", path: `/${lang}/about` },
+      { name: t("nav.projects"), href: "projects", path: `/${lang}/projects` },
+      { name: t("nav.contact"), href: "contact", path: `/${lang}/contact` },
     ],
-    [t]
+    [t, lang]
   );
 
   useEffect(() => {
@@ -118,13 +121,23 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     };
   }, [isOpen]);
 
-  const targetLang = i18n.language?.startsWith("en") ? "vi" : "en";
+  const targetLang = lang === "vi" ? "en" : "vi";
   const targetCode: "VI" | "EN" = targetLang === "vi" ? "VI" : "EN";
 
   const handleToggleLang = () => {
     void ensureLanguageLoaded(targetLang).then(() => {
       void i18n.changeLanguage(targetLang);
-      localStorage.setItem("language", targetLang);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("language", targetLang);
+      }
+      // Replace /vi with /en or vice versa in current pathname
+      let newPath = pathname;
+      if (pathname.startsWith(`/${lang}`)) {
+        newPath = pathname.replace(`/${lang}`, `/${targetLang}`);
+      } else {
+        newPath = `/${targetLang}${pathname}`;
+      }
+      router.push(newPath);
     });
   };
 
@@ -147,31 +160,30 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     setIsOpen(false);
     requestAnimationFrame(() => {
       if (id === "home") {
-        if (location.pathname !== "/") {
-          navigate("/");
+        if (pathname !== `/${lang}`) {
+          router.push(`/${lang}`);
           window.scrollTo(0, 0);
         } else {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }
       } else if (id === "projects") {
-        navigate("/projects");
+        router.push(`/${lang}/projects`);
         window.scrollTo(0, 0);
       } else if (id === "contact") {
-        navigate("/contact");
+        router.push(`/${lang}/contact`);
         window.scrollTo(0, 0);
       } else if (id === "about") {
-        navigate("/about");
+        router.push(`/${lang}/about`);
         window.scrollTo(0, 0);
-      } else if (location.pathname !== "/") {
-        navigate(`/#${id}`);
-      } else {
+      } else if (pathname !== `/${lang}`) {
+        router.push(`/${lang}#${id}`);
+      } else if (scrollToSection) {
         scrollToSection(id);
       }
     });
   };
 
   const handleOpenMenu = () => {
-    if (!isOpen) prefetchRoutes();
     setIsOpen((prev) => !prev);
   };
 
@@ -210,12 +222,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           </span>
         </button>
 
-        {/* Right Side Controls (44px accessible touch targets) */}
+        {/* Right Side Controls */}
         <div className="flex items-center gap-2.5 relative z-10">
           {/* Language Selector */}
           <button
             onClick={handleToggleLang}
-            onPointerEnter={() => void ensureLanguageLoaded(targetLang)}
             aria-label={`Switch language to ${targetCode}`}
             className={`h-11 px-4 flex items-center justify-center gap-2 rounded-lg border transition-colors font-mono text-sm font-medium cursor-pointer shrink-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${
               isOpen
@@ -249,7 +260,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           {/* Menu Toggle Button */}
           <button
             onClick={handleOpenMenu}
-            onPointerEnter={() => prefetchRoutes()}
             aria-label={
               isOpen ? "Close navigation menu" : "Open navigation menu"
             }
@@ -272,7 +282,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </div>
       </div>
 
-      {/* Fullscreen Menu Overlay (GPU clip-path + opacity transition, zero framer-motion bundle cost) */}
+      {/* Fullscreen Menu Overlay */}
       <div
         aria-hidden={!isOpen}
         style={{
@@ -291,7 +301,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-6 sm:pt-10 flex-1 flex flex-col justify-center items-start overflow-y-auto z-10">
           <nav className="flex flex-col items-start gap-2 sm:gap-3 w-full">
             {navItems.map((item, index) => {
-              const isActive = location.pathname === item.path;
+              const isActive = pathname === item.path;
               return (
                 <button
                   key={item.href}

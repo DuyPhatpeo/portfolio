@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useLayoutEffect, useRef, useCallback } from "react";
 import "./ScrollStack.css";
 

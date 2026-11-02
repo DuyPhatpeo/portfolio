@@ -1,3 +1,5 @@
+"use client";
+
 // src/features/project/ProjectSecion.tsx
 import { useState, useRef, lazy, Suspense } from "react";
 import { projects } from "@constants/projectData";
@@ -9,7 +11,8 @@ import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import { useLanguage } from "@components/providers/LanguageProvider";
 
 interface ProjectSectionProps {
   mode?: "featured-only" | "all-list" | "default";
@@ -19,7 +22,8 @@ export default function ProjectSection({
   mode = "default",
 }: ProjectSectionProps) {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { lang } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [currentOtherIndex, setCurrentOtherIndex] = useState(0);
 
@@ -330,7 +334,7 @@ export default function ProjectSection({
         {mode === "featured-only" && (
           <div data-projects-cta className="mt-16 flex justify-center will-change-transform">
             <button
-              onClick={() => navigate("/projects")}
+              onClick={() => router.push(`/${lang}/projects`)}
               className="group inline-flex items-center justify-center gap-2.5 min-h-12 px-7 py-3 rounded-full bg-card border border-border hover:border-primary/60 text-foreground hover:text-primary font-medium text-base sm:text-lg transition-colors duration-200 cursor-pointer"
             >
               <span>{t("projects.view_all", "View All Projects")}</span>

@@ -1,11 +1,15 @@
+"use client";
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import { useLanguage } from "@components/providers/LanguageProvider";
 import { ArrowRight } from "lucide-react";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
 
 const ContactCTA: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
+  const { lang } = useLanguage();
   const { t } = useTranslation();
 
   return (
@@ -25,8 +29,8 @@ const ContactCTA: React.FC = () => {
         <FadeUp delay={0.16}>
           <button
             onClick={() => {
-              navigate("/contact");
-              window.scrollTo(0, 0);
+              router.push(`/${lang}/contact`);
+              if (typeof window !== "undefined") window.scrollTo(0, 0);
             }}
             className="group inline-flex items-center justify-center gap-2.5 min-h-13 px-9 py-4 rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200 font-medium text-lg cursor-pointer"
           >

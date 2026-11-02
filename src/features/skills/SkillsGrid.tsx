@@ -1,10 +1,13 @@
-// src/features/skills/SkillsGrid.tsx
+"use client";
+
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { skills } from "@constants/skillsData";
 import type { Skill, SkillCategory } from "@/types/data";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
 
 type FilterCategory = "all" | SkillCategory;
 
@@ -32,9 +35,12 @@ const LargeSkillCard: React.FC<LargeSkillCardProps> = ({ skill }) => {
     <div className="group relative w-full h-full pt-3.5 sm:pt-4 px-4 sm:px-5 pb-5 sm:pb-6 rounded-2xl sm:rounded-3xl bg-card/75 hover:bg-card border border-border/80 hover:border-primary/60 transition-all duration-300 flex flex-col items-center justify-between text-center min-h-[205px] sm:min-h-[235px] hover:-translate-y-1.5 cursor-pointer overflow-hidden">
       {/* Top Row: Category tag and External Link Arrow */}
       <div className="w-full flex items-center justify-between z-10 mb-2">
-        <span className="px-2 py-0.5 rounded-md bg-muted/80 text-[10px] font-mono text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors">
+        <Badge
+          variant="outline"
+          className="px-2 py-0.5 rounded-md bg-muted/80 text-[10px] font-mono text-muted-foreground uppercase tracking-wider group-hover:text-primary transition-colors border-0"
+        >
           {skill.category}
-        </span>
+        </Badge>
         <FiArrowUpRight className="w-4 h-4 text-muted-foreground/30 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-200" />
       </div>
 
@@ -101,46 +107,39 @@ const SkillsGrid: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-      {/* Category Filter Tabs */}
+      {/* Category Filter Tabs with shadcn Tabs */}
       <div className="w-full flex items-center justify-start sm:justify-center overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden pb-3 sm:pb-2 mb-8 sm:mb-12">
-        <div className="inline-flex items-center gap-1.5 p-1.5 rounded-2xl bg-card/85 backdrop-blur-xl border border-border/80 shadow-sm max-w-full">
-          {CATEGORY_TABS.map((tab) => {
-            const isActive = activeCategory === tab.key;
-            const count = categoryCounts[tab.key] ?? 0;
+        <Tabs
+          value={activeCategory}
+          onValueChange={(val) => setActiveCategory(val as FilterCategory)}
+          className="w-auto"
+        >
+          <TabsList className="h-auto p-1.5 gap-1.5 flex-nowrap bg-card/85 backdrop-blur-xl border border-border/80 rounded-2xl">
+            {CATEGORY_TABS.map((tab) => {
+              const isActive = activeCategory === tab.key;
+              const count = categoryCounts[tab.key] ?? 0;
 
-            return (
-              <button
-                key={tab.key}
-                onClick={() => setActiveCategory(tab.key)}
-                className={`relative flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-colors duration-200 cursor-pointer whitespace-nowrap select-none ${
-                  isActive
-                    ? "text-primary-foreground font-semibold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                }`}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="activeSkillTabIndicator"
-                    className="absolute inset-0 rounded-xl bg-primary shadow-sm"
-                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                  />
-                )}
-                <span className="relative z-10">
-                  {t(`skills.categories.${tab.labelKey}`, tab.key)}
-                </span>
-                <span
-                  className={`relative z-10 px-1.5 py-0.5 rounded-md text-[10px] font-mono leading-none transition-colors ${
-                    isActive
-                      ? "bg-black/25 text-primary-foreground font-bold"
-                      : "bg-muted text-muted-foreground"
-                  }`}
+              return (
+                <TabsTrigger
+                  key={tab.key}
+                  value={tab.key}
+                  className="flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all"
                 >
-                  {count}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+                  <span>{t(`skills.categories.${tab.labelKey}`, tab.key)}</span>
+                  <span
+                    className={`px-1.5 py-0.5 rounded-md text-[10px] font-mono leading-none transition-colors ${
+                      isActive
+                        ? "bg-black/25 text-primary-foreground font-bold"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+        </Tabs>
       </div>
 
       {/* Grid of Skill Cards */}

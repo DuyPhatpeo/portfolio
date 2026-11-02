@@ -1,9 +1,11 @@
+"use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import { gsap, useGSAP, ScrollTrigger } from "@lib/gsap";
 import { useTranslation } from "react-i18next";
 import { profileData } from "@constants/profileData";
 import { ArrowUpRight } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { usePathname } from "next/navigation";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -12,8 +14,8 @@ interface AboutSectionProps {
 const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
-  const location = useLocation();
-  const isAboutPage = location.pathname === "/about";
+  const pathname = usePathname();
+  const isAboutPage = Boolean(pathname?.includes("/about"));
 
   useGSAP(
     () => {

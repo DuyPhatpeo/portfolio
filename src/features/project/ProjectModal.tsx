@@ -1,10 +1,18 @@
-// src/features/project/ProjectModal.tsx
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-import { FiGithub, FiMonitor, FiX, FiExternalLink } from "react-icons/fi";
+"use client";
+
+import React from "react";
+import { FiGithub, FiMonitor, FiExternalLink } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import type { Project } from "@/types/data";
 import TechIcon from "@components/ui/TechIcon";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 
 interface ProjectModalProps {
   project: Project;
@@ -13,18 +21,6 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const { t } = useTranslation();
-
-  useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [onClose]);
 
   const gallery =
     (project as Project & { gallery?: { title?: string; image: string }[] })
@@ -43,22 +39,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     defaultValue: null,
   }) as CaseStudyData | null;
 
-  const modalContent = (
-    <div
-      className="fixed inset-0 z-[220] flex items-center justify-center p-3 sm:p-5 md:p-8 bg-black/75 backdrop-blur-sm transition-all"
-      onPointerDown={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-modal-title"
-        className="relative w-full max-w-4xl lg:max-w-5xl max-h-[88vh] bg-popover/95 backdrop-blur-xl border border-border shadow-2xl flex flex-col rounded-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Modal Header */}
-        <div className="relative z-50 w-full flex items-center justify-end px-5 sm:px-7 py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0">
+  return (
+    <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="max-w-4xl lg:max-w-5xl max-h-[90vh] p-0 overflow-hidden flex flex-col bg-card/95 backdrop-blur-xl border border-border shadow-2xl rounded-3xl">
+        <DialogHeader className="sr-only">
+          <DialogTitle>{t(`projects.items.${project.id}.title`)}</DialogTitle>
+          <DialogDescription>
+            {t(`projects.items.${project.id}.description`)}
+          </DialogDescription>
+        </DialogHeader>
+
+        {/* Modal Top Actions */}
+        <div className="relative z-20 w-full flex items-center justify-end px-5 sm:px-7 py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0 pr-14">
           <div className="flex items-center gap-2.5 shrink-0">
             {project.demo && (
               <a
@@ -80,24 +72,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 className="flex items-center gap-2 h-9 px-3.5 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-lg font-mono text-xs font-medium transition-colors duration-200"
               >
                 <FiGithub className="text-sm" />
-                <span className="hidden sm:inline">{t("common.links.source", "GitHub")}</span>
+                <span className="hidden sm:inline">
+                  {t("common.links.source", "GitHub")}
+                </span>
               </a>
             )}
-
-            <button
-              onClick={onClose}
-              aria-label="Close modal"
-              className="group w-9 h-9 flex items-center justify-center rounded-lg bg-muted hover:bg-destructive/15 border border-border hover:border-destructive/40 text-muted-foreground hover:text-destructive transition-colors duration-200 cursor-pointer"
-            >
-              <FiX className="w-4 h-4 pointer-events-none" />
-            </button>
           </div>
         </div>
 
         {/* Modal Body */}
-        <div className="flex flex-col flex-1 overflow-y-auto p-5 sm:p-7 md:p-9 space-y-7">
+        <div className="flex flex-col flex-1 overflow-y-auto p-5 sm:p-7 md:p-9 space-y-7 [scrollbar-width:thin]">
           <div className="max-w-4xl mx-auto w-full flex flex-col gap-6 sm:gap-7">
-            {/* 1. Project Preview Image (Top Section) */}
+            {/* 1. Project Preview Image */}
             <div className="w-full aspect-[16/10] sm:aspect-[16/9] max-h-[480px] rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
               <img
                 src={project.previewImage || project.image}
@@ -106,20 +92,20 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               />
             </div>
 
-            {/* 2. Project Title */}
+            {/* 2. Project Title & Badges */}
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3
-                id="project-modal-title"
-                className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-foreground tracking-tight"
-              >
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-foreground tracking-tight">
                 {t(`projects.items.${project.id}.title`)}
               </h3>
 
               {project.featured && (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium bg-primary/10 text-primary border border-primary/25 rounded-full">
+                <Badge
+                  variant="outline"
+                  className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium bg-primary/10 text-primary border-primary/25 rounded-full"
+                >
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   {t("projects.badges.featured", "Dự án tiêu biểu")}
-                </span>
+                </Badge>
               )}
             </div>
 
@@ -141,7 +127,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
             </div>
 
-            {/* 4. Description & Functional Highlights (Bottom Section) */}
+            {/* 4. Description & Functional Highlights */}
             <div className="flex flex-col gap-4 pt-4 border-t border-border/60">
               <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                 {t("projects.modal.overview", "Mô tả dự án")}
@@ -151,30 +137,32 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {t(`projects.items.${project.id}.description`)}
               </p>
 
-              {/* Functional Features & Capabilities */}
-              {caseStudy && caseStudy.sections && caseStudy.sections.length > 0 && (
-                <div className="flex flex-col gap-3 mt-1">
-                  <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
-                    {t("projects.modal.features", "Chức năng chính")}
-                  </span>
-                  <div className="grid grid-cols-1 gap-2.5">
-                    {caseStudy.sections.map((sec, idx) => (
-                      <div
-                        key={idx}
-                        className="p-4 sm:p-5 rounded-xl bg-card/40 border border-border/60 flex flex-col gap-1.5"
-                      >
-                        <h5 className="text-sm sm:text-base font-sans font-bold text-foreground flex items-center gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                          <span>{sec.heading}</span>
-                        </h5>
-                        <div className="text-muted-foreground text-xs sm:text-sm leading-relaxed whitespace-pre-line pl-3.5">
-                          {sec.content}
+              {/* Functional Features */}
+              {caseStudy &&
+                caseStudy.sections &&
+                caseStudy.sections.length > 0 && (
+                  <div className="flex flex-col gap-3 mt-1">
+                    <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
+                      {t("projects.modal.features", "Chức năng chính")}
+                    </span>
+                    <div className="grid grid-cols-1 gap-2.5">
+                      {caseStudy.sections.map((sec, idx) => (
+                        <div
+                          key={idx}
+                          className="p-4 sm:p-5 rounded-xl bg-card/40 border border-border/60 flex flex-col gap-1.5"
+                        >
+                          <h5 className="text-sm sm:text-base font-sans font-bold text-foreground flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                            <span>{sec.heading}</span>
+                          </h5>
+                          <div className="text-muted-foreground text-xs sm:text-sm leading-relaxed whitespace-pre-line pl-3.5">
+                            {sec.content}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
             </div>
 
             {/* 5. Action Buttons */}
@@ -231,9 +219,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
-
-  return createPortal(modalContent, document.body);
 }

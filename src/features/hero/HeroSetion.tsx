@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";

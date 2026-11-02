@@ -1,12 +1,16 @@
+"use client";
+
 import { useRef } from "react";
 import { profileData } from "@constants/profileData";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+import { useLanguage } from "@components/providers/LanguageProvider";
 import { motion } from "framer-motion";
 
 const Footer = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const { lang } = useLanguage();
+  const router = useRouter();
   const year = new Date().getFullYear();
   const footerRef = useRef<HTMLElement>(null);
 
@@ -16,11 +20,11 @@ const Footer = () => {
 
   const handleNavigate = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    if (id === "home") navigate("/");
-    else if (id === "about") navigate("/about");
-    else if (id === "projects") navigate("/projects");
-    else if (id === "contact") navigate("/contact");
-    else navigate(`/#${id}`);
+    if (id === "home") router.push(`/${lang}`);
+    else if (id === "about") router.push(`/${lang}/about`);
+    else if (id === "projects") router.push(`/${lang}/projects`);
+    else if (id === "contact") router.push(`/${lang}/contact`);
+    else router.push(`/${lang}#${id}`);
   };
 
   return (
@@ -33,11 +37,11 @@ const Footer = () => {
         <div className="pt-4 pb-8 sm:pt-8 sm:pb-12 text-center overflow-hidden flex justify-center items-end">
           <motion.button
             onClick={() => {
-              if (window.location.pathname === "/") {
+              if (typeof window !== "undefined" && window.location.pathname === `/${lang}`) {
                 window.scrollTo({ top: 0, behavior: "smooth" });
               } else {
-                navigate("/");
-                window.scrollTo(0, 0);
+                router.push(`/${lang}`);
+                if (typeof window !== "undefined") window.scrollTo(0, 0);
               }
             }}
             initial={{ y: 36, opacity: 0 }}

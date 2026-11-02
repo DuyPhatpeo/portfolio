@@ -1,3 +1,5 @@
+"use client";
+
 // src/features/project/HorizontalProjectCard.tsx
 import { useTranslation } from "react-i18next";
 import { FiGithub, FiExternalLink, FiArrowRight } from "react-icons/fi";

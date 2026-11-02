@@ -1,3 +1,5 @@
+"use client";
+
 import ProjectPreview from "@components/ui/ProjectPreview";
 import { useTranslation } from "react-i18next";
 import { FiArrowUpRight } from "react-icons/fi";
