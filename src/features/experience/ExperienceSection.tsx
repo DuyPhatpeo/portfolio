@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import TechIcon from "@components/ui/TechIcon";
 import ScrollStack, {
   ScrollStackItem,
 } from "@components/ui/ScrollStack/ScrollStack";
@@ -93,14 +94,17 @@ const ExperienceSection: React.FC = () => {
 
                   {techList.length > 0 && (
                     <div className="flex flex-wrap lg:justify-end gap-2 max-w-md">
-                      {techList.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3.5 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-sm sm:text-base"
-                        >
-                          {tech}
-                        </span>
-                      ))}
+                      {techList
+                        .filter((tech) => !tech.toLowerCase().includes("rest"))
+                        .map((tech) => (
+                          <span
+                            key={tech}
+                            className="group/tech inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-muted text-muted-foreground font-mono text-xs sm:text-sm hover:text-foreground hover:bg-muted/80 transition-colors"
+                          >
+                            <TechIcon name={tech} className="w-3.5 h-3.5" monochrome />
+                            <span>{tech}</span>
+                          </span>
+                        ))}
                     </div>
                   )}
                 </div>

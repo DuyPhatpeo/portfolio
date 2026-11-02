@@ -176,15 +176,15 @@
         "period": "06/2026 – Present",
         "type": "Full-time",
         "summary": "Build and maintain campaign websites and internal web tools while managing reliable technical infrastructure for large-scale media events.",
-        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript"
       },
       {
         "role": "Frontend Developer Apprentice",
         "company": "SweetSoft JSC",
         "period": "10/2025 – 12/2025",
         "type": "Apprenticeship",
-        "summary": "Developed responsive user interface modules, connected frontend views with REST APIs, and collaborated through Git Flow code reviews.",
-        "tech": "ReactJS, JavaScript, HTML5, CSS3, REST API"
+        "summary": "Developed responsive user interface modules, connected frontend views with RESTful APIs, and collaborated through Git Flow code reviews.",
+        "tech": "ReactJS, JavaScript, HTML5, CSS3"
       },
       {
         "role": "Frontend Developer Intern",
@@ -192,7 +192,7 @@
         "period": "12/2024 – 01/2025",
         "type": "Internship",
         "summary": "Implemented semantic, cross-browser web layouts from design specs and assisted with feature testing across .NET web projects.",
-        "tech": "HTML5, CSS3, JavaScript, C# .NET"
+        "tech": "HTML5, CSS3, JavaScript, C#, .NET"
       }
     ]
   },

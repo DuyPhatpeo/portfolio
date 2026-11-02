@@ -176,15 +176,15 @@
         "period": "06/2026 – Hiện tại",
         "type": "Toàn thời gian",
         "summary": "Phát triển, vận hành website chiến dịch và công cụ quản lý nội bộ; trực tiếp đảm bảo hạ tầng kỹ thuật ổn định cho các sự kiện truyền thông quy mô lớn.",
-        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript, RESTful API"
+        "tech": "ReactJS, Laravel, PHP, MySQL, JavaScript"
       },
       {
         "role": "Học việc Frontend Developer",
         "company": "Công ty Cổ phần SweetSoft",
         "period": "10/2025 – 12/2025",
         "type": "Học việc",
-        "summary": "Tham gia xây dựng các phân hệ giao diện người dùng, kết nối dữ liệu qua REST API và làm việc nhóm theo quy trình kiểm soát mã nguồn Git Flow.",
-        "tech": "ReactJS, JavaScript, HTML5, CSS3, REST API"
+        "summary": "Tham gia xây dựng các phân hệ giao diện người dùng, kết nối dữ liệu qua RESTful API và làm việc nhóm theo quy trình kiểm soát mã nguồn Git Flow.",
+        "tech": "ReactJS, JavaScript, HTML5, CSS3"
       },
       {
         "role": "Thực tập sinh Frontend",
@@ -192,7 +192,7 @@
         "period": "12/2024 – 01/2025",
         "type": "Thực tập",
         "summary": "Thực hành cắt giao diện chuẩn ngữ nghĩa, tối ưu hiển thị đa trình duyệt và hỗ trợ kiểm thử tính năng trên các dự án web .NET.",
-        "tech": "HTML5, CSS3, JavaScript, C# .NET"
+        "tech": "HTML5, CSS3, JavaScript, C#, .NET"
       }
     ]
   },

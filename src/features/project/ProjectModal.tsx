@@ -41,7 +41,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <Dialog open={true} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl lg:max-w-5xl max-h-[90vh] p-0 overflow-hidden flex flex-col bg-card/95 backdrop-blur-xl border border-border shadow-2xl rounded-3xl">
+      <DialogContent className="w-[calc(100%-1.25rem)] sm:w-[calc(100%-2.5rem)] md:w-[90vw] max-w-4xl lg:max-w-5xl max-h-[92dvh] sm:max-h-[88vh] p-0 overflow-hidden flex flex-col bg-card/95 backdrop-blur-xl border border-border shadow-2xl rounded-2xl sm:rounded-3xl">
         <DialogHeader className="sr-only">
           <DialogTitle>{t(`projects.items.${project.id}.title`)}</DialogTitle>
           <DialogDescription>
@@ -50,17 +50,26 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </DialogHeader>
 
         {/* Modal Top Actions */}
-        <div className="relative z-20 w-full flex items-center justify-end px-5 sm:px-7 py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0 pr-14">
-          <div className="flex items-center gap-2.5 shrink-0">
+        <div className="relative z-20 w-full flex items-center justify-between px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0 pr-12 sm:pr-14">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
+            <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider truncate max-w-[140px] xs:max-w-[180px] sm:max-w-none">
+              {project.featured
+                ? t("projects.badges.featured", "Dự án tiêu biểu")
+                : t("projects.badges.project", "Chi tiết dự án")}
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 shrink-0">
             {project.demo && (
               <a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 h-9 px-3.5 bg-primary text-primary-foreground hover:opacity-90 rounded-lg font-mono text-xs font-medium transition-opacity duration-200"
+                className="flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3.5 bg-primary text-primary-foreground hover:opacity-90 rounded-lg font-mono text-xs font-medium transition-opacity duration-200"
               >
                 <span>{t("common.links.live", "Live Demo")}</span>
-                <FiExternalLink className="text-sm" />
+                <FiExternalLink className="text-xs sm:text-sm" />
               </a>
             )}
 
@@ -69,9 +78,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 h-9 px-3.5 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-lg font-mono text-xs font-medium transition-colors duration-200"
+                className="flex items-center gap-1.5 h-8 sm:h-9 px-2.5 sm:px-3 bg-muted hover:bg-muted/80 text-foreground border border-border rounded-lg font-mono text-xs font-medium transition-colors duration-200"
               >
-                <FiGithub className="text-sm" />
+                <FiGithub className="text-xs sm:text-sm" />
                 <span className="hidden sm:inline">
                   {t("common.links.source", "GitHub")}
                 </span>
@@ -81,10 +90,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </div>
 
         {/* Modal Body */}
-        <div className="flex flex-col flex-1 overflow-y-auto p-5 sm:p-7 md:p-9 space-y-7 [scrollbar-width:thin]">
-          <div className="max-w-4xl mx-auto w-full flex flex-col gap-6 sm:gap-7">
+        <div className="flex flex-col flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6 [scrollbar-width:thin]">
+          <div className="max-w-4xl mx-auto w-full flex flex-col gap-5 sm:gap-6">
             {/* 1. Project Preview Image */}
-            <div className="w-full aspect-[16/10] sm:aspect-[16/9] max-h-[480px] rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
+            <div className="w-full aspect-[16/10] sm:aspect-[16/9] max-h-[260px] sm:max-h-[380px] md:max-h-[480px] rounded-xl sm:rounded-2xl overflow-hidden border border-border shadow-lg bg-card shrink-0">
               <img
                 src={project.previewImage || project.image}
                 alt={t(`projects.items.${project.id}.title`)}
@@ -93,15 +102,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* 2. Project Title & Badges */}
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-sans font-bold text-foreground tracking-tight">
+            <div className="flex flex-wrap items-center justify-between gap-2.5 sm:gap-3">
+              <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-foreground tracking-tight">
                 {t(`projects.items.${project.id}.title`)}
               </h3>
 
               {project.featured && (
                 <Badge
                   variant="outline"
-                  className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-mono font-medium bg-primary/10 text-primary border-primary/25 rounded-full"
+                  className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 text-xs font-mono font-medium bg-primary/10 text-primary border-primary/25 rounded-full"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
                   {t("projects.badges.featured", "Dự án tiêu biểu")}
@@ -110,17 +119,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* 3. Technologies Used */}
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-2">
               <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                 {t("projects.modal.technologies", "Công nghệ sử dụng")}
               </span>
-              <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/90 border border-border/80 hover:border-primary/40 text-foreground font-mono text-xs sm:text-sm transition-colors shadow-xs"
+                    className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-card/90 border border-border/80 hover:border-primary/40 text-foreground font-mono text-xs sm:text-sm transition-colors shadow-xs"
                   >
-                    <TechIcon name={tag} className="w-4 h-4 shrink-0" />
+                    <TechIcon name={tag} className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
                     <span>{tag}</span>
                   </span>
                 ))}
@@ -133,7 +142,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {t("projects.modal.overview", "Mô tả dự án")}
               </span>
 
-              <p className="text-foreground/90 text-base sm:text-lg leading-relaxed">
+              <p className="text-foreground/90 text-sm sm:text-base md:text-lg leading-relaxed">
                 {t(`projects.items.${project.id}.description`)}
               </p>
 
@@ -141,7 +150,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {caseStudy &&
                 caseStudy.sections &&
                 caseStudy.sections.length > 0 && (
-                  <div className="flex flex-col gap-3 mt-1">
+                  <div className="flex flex-col gap-2.5 mt-1">
                     <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                       {t("projects.modal.features", "Chức năng chính")}
                     </span>
@@ -149,7 +158,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       {caseStudy.sections.map((sec, idx) => (
                         <div
                           key={idx}
-                          className="p-4 sm:p-5 rounded-xl bg-card/40 border border-border/60 flex flex-col gap-1.5"
+                          className="p-3.5 sm:p-4 md:p-5 rounded-xl bg-card/40 border border-border/60 flex flex-col gap-1.5"
                         >
                           <h5 className="text-sm sm:text-base font-sans font-bold text-foreground flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
@@ -165,15 +174,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 )}
             </div>
 
-            {/* 5. Action Buttons */}
+            {/* 5. Action Buttons (Responsive flex-col on mobile) */}
             {(project.demo || project.github) && (
-              <div className="flex flex-wrap gap-3.5 pt-4 border-t border-border/60">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t border-border/60">
                 {project.demo && (
                   <a
                     href={project.demo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 h-11 px-6 bg-primary text-primary-foreground hover:opacity-90 transition-opacity rounded-xl font-medium text-sm sm:text-base shadow-sm"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 bg-primary text-primary-foreground hover:opacity-90 transition-opacity rounded-xl font-medium text-sm sm:text-base shadow-sm"
                   >
                     <FiMonitor className="text-base" />
                     <span>{t("common.links.live", "Trải nghiệm trực tiếp")}</span>
@@ -184,7 +193,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 h-11 px-6 bg-card hover:bg-muted border border-border hover:border-primary/50 rounded-xl font-medium text-sm sm:text-base text-foreground transition-colors"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 h-11 px-6 bg-card hover:bg-muted border border-border hover:border-primary/50 rounded-xl font-medium text-sm sm:text-base text-foreground transition-colors"
                   >
                     <FiGithub className="text-base" />
                     <span>{t("common.links.source", "Xem mã nguồn")}</span>
@@ -195,8 +204,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* 6. Optional Gallery */}
             {gallery.length > 0 && (
-              <div className="flex flex-col gap-6 mb-4">
-                <h4 className="text-foreground font-sans font-semibold text-lg tracking-tight">
+              <div className="flex flex-col gap-4 sm:gap-6 mb-4">
+                <h4 className="text-foreground font-sans font-semibold text-base sm:text-lg tracking-tight">
                   {t("projects.modal.screenshots", "Screenshots")}
                 </h4>
                 {gallery.map((item, index) => (
