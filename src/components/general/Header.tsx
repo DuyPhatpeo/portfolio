@@ -165,10 +165,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             border-color: #d9ff3a !important;
             box-shadow: 0 14px 35px -5px rgba(217, 255, 58, 0.4), 0 0 20px rgba(217, 255, 58, 0.25) !important;
           }
-          .bubble-pill-item:hover .bubble-pill-num {
-            color: #11121c !important;
-            opacity: 0.95;
-          }
           .bubble-pill-item:active {
             transform: rotate(var(--pill-rot, 0deg)) translateY(1px) scale(0.98) !important;
             transition-duration: 0.12s !important;
@@ -181,10 +177,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             color: #11121c !important;
             border-color: #d9ff3a !important;
             box-shadow: 0 10px 25px -4px rgba(217, 255, 58, 0.35) !important;
-          }
-          .bubble-pill-item:hover .bubble-pill-num {
-            color: #11121c !important;
-            opacity: 0.95;
           }
           .bubble-pill-item:active {
             transform: translateY(1px) scale(0.98) !important;
@@ -392,7 +384,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         "--pill-rot": `${item.rotation}deg`,
                       } as React.CSSProperties
                     }
-                    className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
+                    className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
                       isActive
                         ? darkMode
                           ? "bg-primary/20 border-primary text-primary shadow-[0_0_24px_rgba(217,255,58,0.3)]"
@@ -416,15 +408,6 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                       <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold uppercase tracking-tight">
                         {toTitleCase(item.name)}
                       </span>
-                    </span>
-
-                    {/* Staggered Numbering (StaggeredMenu style) */}
-                    <span
-                      className={`bubble-pill-num font-mono text-xs sm:text-sm tracking-widest font-semibold transition-all duration-300 ease-out group-hover:-translate-x-1 ${
-                        darkMode ? "text-primary" : "text-[#11121c]"
-                      }`}
-                    >
-                      0{index + 1}
                     </span>
                   </button>
                 </div>
