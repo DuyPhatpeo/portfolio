@@ -31,10 +31,6 @@ const GithubSection: React.FC = () => {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span>{t("activity.eyebrow", "OPEN SOURCE & COMMITS")}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("activity.title")}
           </h2>

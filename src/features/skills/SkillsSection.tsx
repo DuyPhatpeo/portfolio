@@ -15,10 +15,6 @@ const SkillsSection: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-10 sm:mb-14">
         <FadeUp className="flex flex-col items-start gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span>{t("skills.eyebrow", "TECH ARSENAL")}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("skills.title")}
           </h2>

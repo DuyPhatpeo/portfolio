@@ -42,10 +42,6 @@ const FeaturedSkills: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 xs:px-5 sm:px-8 md:px-12 mb-6 sm:mb-8 md:mb-12">
         <FadeUp className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium mb-2.5 sm:mb-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              <span>{t("skills.core_stack", "Core Stack")}</span>
-            </div>
             <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-tight">
               {t("skills.title", "Technologies I Work With")}
             </h2>

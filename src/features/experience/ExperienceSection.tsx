@@ -39,10 +39,6 @@ const ExperienceSection: React.FC = () => {
           viewport={{ once: true }}
           className="mb-12 sm:mb-16 flex flex-col items-start gap-3"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-            <span>{t("experience.eyebrow", "CAREER PATH")}</span>
-          </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-[1.1]">
             {t("experience.title")}
           </h2>
