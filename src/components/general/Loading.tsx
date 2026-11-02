@@ -12,10 +12,24 @@ const Loading: React.FC<LoadingProps> = ({ progress, exiting = false }) => {
     <div
       role="status"
       aria-label="Loading portfolio"
+      style={{
+        animation: exiting
+          ? undefined
+          : "forceDismissLoading 0.35s ease-out 0.75s forwards",
+      }}
       className={`fixed inset-0 z-[9999] bg-background text-foreground flex flex-col items-center justify-center overflow-hidden select-none transition-opacity duration-150 ease-out ${
         exiting ? "opacity-0 pointer-events-none" : "opacity-100"
       }`}
     >
+      <style>{`
+        @keyframes forceDismissLoading {
+          to {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+          }
+        }
+      `}</style>
       {/* Crisp single-color brand wordmark + GPU-composited progress sweep */}
       <div className="relative z-10 w-full max-w-4xl px-6 flex flex-col items-center justify-center gap-6">
         <span className="font-sans font-black uppercase tracking-[0.05em] text-5xl sm:text-7xl md:text-8xl text-foreground leading-none">

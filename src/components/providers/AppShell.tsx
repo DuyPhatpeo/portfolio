@@ -22,15 +22,28 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     else html.classList.remove("dark");
   }, [darkMode]);
 
-  // Initial page entry / F5 preloader sweep (~400ms)
+  // Initial page entry / F5 preloader sweep (~360ms with guaranteed safety fallback)
   useEffect(() => {
-    const durationMs = 420;
+    let isDone = false;
+    const durationMs = 360;
     const startTime = performance.now();
     let rafId = 0;
     let exitTimer = 0;
     let unmountTimer = 0;
 
+    const finish = () => {
+      if (isDone) return;
+      isDone = true;
+      cancelAnimationFrame(rafId);
+      setProgress(100);
+      setIsExiting(true);
+      unmountTimer = window.setTimeout(() => {
+        setIsLoading(false);
+      }, 150);
+    };
+
     const tick = (now: number) => {
+      if (isDone) return;
       const elapsed = now - startTime;
       const ratio = Math.min(1, elapsed / durationMs);
       const eased = 1 - Math.pow(1 - ratio, 3);
@@ -39,21 +52,21 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       if (ratio < 1) {
         rafId = requestAnimationFrame(tick);
       } else {
-        exitTimer = window.setTimeout(() => {
-          setIsExiting(true);
-          unmountTimer = window.setTimeout(() => {
-            setIsLoading(false);
-          }, 180);
-        }, 50);
+        exitTimer = window.setTimeout(finish, 40);
       }
     };
 
     rafId = requestAnimationFrame(tick);
 
+    // Hard fallback timeout: guarantees loading screen unmounts even if tab is in background or RAF stalls
+    const hardTimeout = window.setTimeout(finish, 480);
+
     return () => {
+      isDone = true;
       cancelAnimationFrame(rafId);
       clearTimeout(exitTimer);
       clearTimeout(unmountTimer);
+      clearTimeout(hardTimeout);
     };
   }, []);
 
