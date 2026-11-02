@@ -7,7 +7,6 @@ import { RiGithubFill } from "react-icons/ri";
 import { FiArrowUpRight } from "react-icons/fi";
 import GitHubActivity from "@components/ui/GitHubActivity";
 import { profileData } from "@constants/profileData";
-import GlassSurface from "@components/ui/GlassSurface";
 
 const GithubSection: React.FC = () => {
   const { t } = useTranslation();
@@ -20,7 +19,7 @@ const GithubSection: React.FC = () => {
   return (
     <section
       id="activity"
-      className="py-20 md:py-28 relative overflow-hidden bg-card/55 border-t border-border/70"
+      className="py-20 md:py-28 relative overflow-hidden bg-transparent border-t border-border/70"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 relative z-10">
         {/* Modern Section Header */}
@@ -47,25 +46,19 @@ const GithubSection: React.FC = () => {
             </span>
 
             <motion.div
-              className="w-full flex justify-start sm:justify-center overflow-x-auto py-1"
+              className="w-full flex justify-center items-center overflow-x-auto py-1"
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
             >
-              <GlassSurface
-                borderRadius={24}
-                blur={16}
-                opacity={0.85}
-                className="p-4 sm:p-6 md:p-8 bg-card/75 border border-primary/20 shadow-xl max-w-full"
-              >
-                <GitHubActivity
-                  username={username}
-                  label={t("activity.top_contributions")}
-                  showMonths={true}
-                  months={12}
-                />
-              </GlassSurface>
+              <GitHubActivity
+                username={username}
+                label={t("activity.top_contributions")}
+                showMonths={true}
+                months={12}
+                className="mx-auto shadow-2xl border-primary/25"
+              />
             </motion.div>
           </div>
 
