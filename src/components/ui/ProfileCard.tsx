@@ -44,29 +44,29 @@ type OrientationPermission = {
 
 const THEMES: Record<Palette, Record<string, string>> = {
   dark: {
-    '--pc-frame': 'rgba(38, 35, 46, 0.66)',
-    '--pc-frame-edge': 'rgba(255, 255, 255, 0.08)',
-    '--pc-frame-highlight': 'rgba(255, 255, 255, 0.07)',
-    '--pc-frame-shadow': '0 22px 44px -20px rgba(0, 0, 0, 0.8), 0 6px 16px -8px rgba(0, 0, 0, 0.5)',
-    '--pc-tile': 'linear-gradient(180deg, #3a3644 0%, #27242f 100%)',
-    '--pc-tile-edge': 'rgba(255, 255, 255, 0.07)',
-    '--pc-tile-highlight': 'rgba(255, 255, 255, 0.12)',
-    '--pc-tile-shadow': '0 4px 10px -4px rgba(0, 0, 0, 0.7)',
+    '--pc-frame': 'rgba(23, 23, 23, 0.88)',
+    '--pc-frame-edge': 'rgba(45, 212, 168, 0.45)',
+    '--pc-frame-highlight': 'rgba(45, 212, 168, 0.3)',
+    '--pc-frame-shadow': '0 24px 50px -18px rgba(0, 0, 0, 0.75), 0 0 35px -6px rgba(45, 212, 168, 0.28)',
+    '--pc-tile': 'linear-gradient(180deg, #222222 0%, #151515 100%)',
+    '--pc-tile-edge': 'rgba(45, 212, 168, 0.3)',
+    '--pc-tile-highlight': 'rgba(45, 212, 168, 0.4)',
+    '--pc-tile-shadow': '0 8px 24px -6px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(45, 212, 168, 0.08)',
     '--pc-ink': '#f4f4f5',
-    '--pc-muted': 'rgba(244, 244, 245, 0.6)',
+    '--pc-muted': 'rgba(244, 244, 245, 0.65)',
     '--pc-hover': 'brightness(1.12)',
-    '--pc-press': 'brightness(0.8)',
-    '--pc-shade': 'rgba(0, 0, 0, 0.4)'
+    '--pc-press': 'brightness(0.85)',
+    '--pc-shade': 'rgba(0, 0, 0, 0.45)'
   },
   light: {
-    '--pc-frame': 'rgba(240, 240, 243, 0.8)',
-    '--pc-frame-edge': 'rgba(24, 24, 27, 0.07)',
+    '--pc-frame': 'rgba(245, 245, 247, 0.88)',
+    '--pc-frame-edge': 'rgba(45, 212, 168, 0.45)',
     '--pc-frame-highlight': 'rgba(255, 255, 255, 0.95)',
-    '--pc-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.3), 0 6px 16px -10px rgba(24, 24, 27, 0.16)',
+    '--pc-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.25), 0 0 25px rgba(45, 212, 168, 0.22)',
     '--pc-tile': 'linear-gradient(180deg, #ffffff 0%, #f6f6f8 100%)',
-    '--pc-tile-edge': 'rgba(24, 24, 27, 0.08)',
+    '--pc-tile-edge': 'rgba(45, 212, 168, 0.35)',
     '--pc-tile-highlight': 'rgba(255, 255, 255, 1)',
-    '--pc-tile-shadow': '0 4px 10px -5px rgba(24, 24, 27, 0.25)',
+    '--pc-tile-shadow': '0 4px 10px -5px rgba(24, 24, 27, 0.2)',
     '--pc-ink': '#27272a',
     '--pc-muted': 'rgba(39, 39, 42, 0.6)',
     '--pc-hover': 'brightness(0.97)',
@@ -78,13 +78,13 @@ const THEMES: Record<Palette, Record<string, string>> = {
 const FOILS: Record<Palette, Record<string, string>> = {
   dark: {
     '--pc-blend': 'color-dodge',
-    '--pc-holo-filter': 'hue-rotate(0deg)',
-    '--pc-sheen': 'rgba(255, 255, 255, 0.16)'
+    '--pc-holo-filter': 'hue-rotate(140deg)',
+    '--pc-sheen': 'rgba(45, 212, 168, 0.25)'
   },
   light: {
     '--pc-blend': 'multiply',
-    '--pc-holo-filter': 'invert(1) hue-rotate(180deg)',
-    '--pc-sheen': 'rgba(255, 255, 255, 0)'
+    '--pc-holo-filter': 'invert(1) hue-rotate(140deg)',
+    '--pc-sheen': 'rgba(45, 212, 168, 0.18)'
   }
 };
 
@@ -93,9 +93,9 @@ const GRAIN = `url("data:image/svg+xml,${encodeURIComponent(
 )}")`;
 
 const SPECTRUM =
-  'repeating-linear-gradient(0deg, hsl(2, 100%, 73%) 5%, hsl(53, 100%, 69%) 10%, hsl(93, 100%, 69%) 15%, hsl(176, 100%, 76%) 20%, hsl(228, 100%, 74%) 25%, hsl(260, 100%, 76%) 30%, hsl(2, 100%, 73%) 35%)';
+  'repeating-linear-gradient(0deg, hsl(165, 80%, 65%) 5%, hsl(140, 75%, 65%) 10%, hsl(180, 80%, 70%) 15%, hsl(165, 90%, 75%) 20%, hsl(190, 80%, 70%) 25%, hsl(150, 85%, 68%) 30%, hsl(165, 80%, 65%) 35%)';
 const BARS =
-  'repeating-linear-gradient(-45deg, #0e152e 0%, hsl(180, 10%, 60%) 3.8%, hsl(180, 29%, 66%) 4.5%, hsl(180, 10%, 60%) 5.2%, #0e152e 10%, #0e152e 12%)';
+  'repeating-linear-gradient(-45deg, #0e152e 0%, hsl(165, 60%, 40%) 3.8%, hsl(165, 75%, 55%) 4.5%, hsl(165, 60%, 40%) 5.2%, #0e152e 10%, #0e152e 12%)';
 const FALLOFF =
   'radial-gradient(farthest-corner circle at var(--pc-pointer-x) var(--pc-pointer-y), hsla(0, 0%, 0%, 0.1) 12%, hsla(0, 0%, 0%, 0.15) 20%, hsla(0, 0%, 0%, 0.25) 120%)';
 const PATTERN_POSITION = 'calc(50% - var(--pc-shift-x) * 1.5) calc(65% - var(--pc-shift-y) * 1.5)';
@@ -199,19 +199,19 @@ const PHOTO = (fit: 'cover' | 'contain' = 'contain') =>
   `pointer-events-none absolute select-none ${fit === 'cover' ? 'object-cover' : 'object-contain'} object-bottom`;
 const INFO = 'absolute bottom-[18px] left-5 right-5 text-white';
 const NAME = 'm-0 text-[20px] font-semibold leading-[1.25] tracking-[-0.01em] text-[inherit]';
-const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-white/78';
+const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-primary/90 font-medium';
 const TILE_RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-tile-edge),inset_0_1px_0_var(--pc-tile-highlight)]`;
 const FOOTER = 'flex min-w-0 items-center gap-3 px-5 pb-2 pt-1.5';
 const AVATAR =
-  "relative h-9 w-9 flex-none overflow-hidden rounded-full [background:var(--pc-tile)] after:absolute after:inset-0 after:rounded-[inherit] after:content-[''] after:[box-shadow:inset_0_0_0_1px_var(--pc-tile-edge)]";
-const AVATAR_IMAGE = 'block h-full w-full object-cover object-top';
+  "relative h-9 w-9 flex-none overflow-hidden rounded-full bg-primary/15 border-2 border-primary shadow-[0_0_12px_rgba(45,212,168,0.4)] flex items-center justify-center p-1";
+const AVATAR_IMAGE = 'block h-full w-full object-contain';
 const META = 'flex min-w-0 flex-1 flex-col gap-[3px]';
 const HANDLE =
-  'overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-semibold leading-[1.25] text-[var(--pc-ink)]';
+  'overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-semibold leading-[1.25] text-[var(--pc-ink)] hover:text-primary transition-colors';
 const STATUS =
-  "flex items-center gap-1.5 whitespace-nowrap text-[12.5px] leading-[1.25] text-[var(--pc-muted)] before:h-1.5 before:w-1.5 before:flex-none before:rounded-full before:bg-[var(--pc-status)] before:content-['']";
+  "flex items-center gap-1.5 whitespace-nowrap text-[12.5px] leading-[1.25] text-[var(--pc-muted)] before:h-1.5 before:w-1.5 before:flex-none before:rounded-full before:bg-[var(--pc-status)] before:content-[''] before:shadow-[0_0_8px_rgba(45,212,168,0.85)]";
 const CONTACT =
-  'flex h-9 flex-none cursor-pointer items-center gap-1.5 rounded-[calc(var(--pc-radius)*0.75)] border-none px-3.5 font-[inherit] text-[13px] font-semibold text-[var(--pc-ink)] [background:var(--pc-tile)] [box-shadow:inset_0_0_0_1px_var(--pc-tile-edge),inset_0_1px_0_var(--pc-tile-highlight),var(--pc-tile-shadow)] transition-[filter,transform,color] duration-200 hover:[filter:var(--pc-hover)] hover:text-primary active:scale-[0.96] active:duration-0 active:[filter:var(--pc-press)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
+  'flex h-9 flex-none cursor-pointer items-center gap-1.5 rounded-[calc(var(--pc-radius)*0.75)] border border-primary/40 px-3.5 font-[inherit] text-[13px] font-semibold text-primary bg-primary/10 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),var(--pc-tile-shadow)] transition-all duration-200 hover:border-primary hover:bg-primary/25 hover:text-primary hover:shadow-[0_0_14px_rgba(45,212,168,0.35)] active:scale-[0.96] active:duration-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
 const GLARE = `${LAYER} mix-blend-overlay`;
 const RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-frame-edge),inset_0_1px_0_var(--pc-frame-highlight)]`;
 

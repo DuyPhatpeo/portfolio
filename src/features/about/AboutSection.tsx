@@ -134,7 +134,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
               <div className="relative w-full flex items-center justify-center py-2 sm:py-4">
                 <ProfileCard
                   avatarUrl={profileData.avatar || profileData.heroImage}
-                  miniAvatarUrl={profileData.avatar || profileData.heroImage}
+                  miniAvatarUrl="/assets/icons/logo.webp"
                   name={profileData.name}
                   title={t("hero.roles.frontend", "Front-End Developer")}
                   handle="DuyPhatpeo"
