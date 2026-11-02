@@ -7,6 +7,7 @@ import { profileData } from "@constants/profileData";
 import { ArrowUpRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
+import { useThemeStore } from "@stores/themeStore";
 import Lanyard from "@components/ui/Lanyard";
 import ProfileCard from "@components/ui/ProfileCard";
 
@@ -20,6 +21,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
   const pathname = usePathname();
   const router = useRouter();
   const { lang } = useLanguage();
+  const { darkMode } = useThemeStore();
   const isAboutPage = Boolean(pathname?.includes("/about"));
 
   useGSAP(
@@ -144,7 +146,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   statusColor="#d9ff3a"
                   contactText=""
                   showUserInfo={true}
-                  theme="dark"
+                  theme={darkMode ? "dark" : "light"}
                   radius={22}
                   holo={0.75}
                   glare={0.7}

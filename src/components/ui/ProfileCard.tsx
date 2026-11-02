@@ -56,22 +56,24 @@ const THEMES: Record<Palette, Record<string, string>> = {
     '--pc-muted': 'rgba(244, 244, 245, 0.65)',
     '--pc-hover': 'brightness(1.12)',
     '--pc-press': 'brightness(0.85)',
-    '--pc-shade': 'rgba(0, 0, 0, 0.45)'
+    '--pc-shade': 'rgba(0, 0, 0, 0.45)',
+    '--pc-scrim': 'linear-gradient(to top, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.5) 15%, rgba(0, 0, 0, 0) 52%)'
   },
   light: {
-    '--pc-frame': 'rgba(245, 245, 247, 0.88)',
-    '--pc-frame-edge': 'rgba(217, 255, 58, 0.45)',
-    '--pc-frame-highlight': 'rgba(255, 255, 255, 0.95)',
-    '--pc-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.25), 0 0 25px rgba(217, 255, 58, 0.22)',
-    '--pc-tile': 'linear-gradient(180deg, #ffffff 0%, #f6f6f8 100%)',
-    '--pc-tile-edge': 'rgba(217, 255, 58, 0.35)',
+    '--pc-frame': 'rgba(255, 255, 255, 0.96)',
+    '--pc-frame-edge': 'rgba(17, 18, 28, 0.22)',
+    '--pc-frame-highlight': 'rgba(255, 255, 255, 1)',
+    '--pc-frame-shadow': '0 20px 45px -15px rgba(17, 18, 28, 0.15), 0 0 30px -5px rgba(217, 255, 58, 0.35)',
+    '--pc-tile': 'linear-gradient(180deg, #ffffff 0%, #f0f2f5 100%)',
+    '--pc-tile-edge': 'rgba(17, 18, 28, 0.14)',
     '--pc-tile-highlight': 'rgba(255, 255, 255, 1)',
-    '--pc-tile-shadow': '0 4px 10px -5px rgba(24, 24, 27, 0.2)',
-    '--pc-ink': '#27272a',
-    '--pc-muted': 'rgba(39, 39, 42, 0.6)',
+    '--pc-tile-shadow': '0 6px 18px -4px rgba(17, 18, 28, 0.12)',
+    '--pc-ink': '#11121c',
+    '--pc-muted': '#555a6d',
     '--pc-hover': 'brightness(0.97)',
     '--pc-press': 'brightness(0.92)',
-    '--pc-shade': 'rgba(24, 24, 27, 0.14)'
+    '--pc-shade': 'rgba(17, 18, 28, 0.08)',
+    '--pc-scrim': 'linear-gradient(to top, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.65) 15%, rgba(255, 255, 255, 0) 52%)'
   }
 };
 
@@ -170,8 +172,7 @@ const PHOTO_STYLE: CSSProperties = {
 };
 
 const SCRIM_STYLE: CSSProperties = {
-  background:
-    'linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.57) 6%, rgba(0, 0, 0, 0.5) 12%, rgba(0, 0, 0, 0.4) 19%, rgba(0, 0, 0, 0.28) 26%, rgba(0, 0, 0, 0.16) 33%, rgba(0, 0, 0, 0.07) 40%, rgba(0, 0, 0, 0.02) 46%, rgba(0, 0, 0, 0) 52%)'
+  background: 'var(--pc-scrim)'
 };
 
 const GLARE_STYLE: CSSProperties = {
@@ -189,15 +190,15 @@ const SHADE_STYLE: CSSProperties = {
 const ROOT =
   'relative w-full max-w-[340px] xs:max-w-[360px] sm:max-w-[380px] touch-pan-y [perspective:1000px] [-webkit-tap-highlight-color:transparent]';
 const BODY =
-  'relative flex flex-col gap-[10px] rounded-[calc(var(--pc-radius)+10px)] p-[10px] backdrop-blur-[20px] backdrop-saturate-[1.6] will-change-transform [background:var(--pc-frame)] [box-shadow:var(--pc-frame-shadow)] [transform:rotateX(var(--pc-rotate-x))_rotateY(var(--pc-rotate-y))]';
+  'relative flex flex-col gap-[10px] rounded-[calc(var(--pc-radius)+10px)] p-[10px] backdrop-blur-[20px] backdrop-saturate-[1.6] will-change-transform [background:var(--pc-frame)] [box-shadow:var(--pc-frame-shadow)] [transform:rotateX(var(--pc-rotate-x))_rotateY(var(--pc-rotate-y))] transition-[background,box-shadow] duration-300';
 const TILE =
-  'relative isolate aspect-[4/5] overflow-hidden rounded-[var(--pc-radius)] [background:var(--pc-backdrop)] [box-shadow:var(--pc-tile-shadow)]';
+  'relative isolate aspect-[4/5] overflow-hidden rounded-[var(--pc-radius)] [background:var(--pc-backdrop)] [box-shadow:var(--pc-tile-shadow)] transition-[background,box-shadow] duration-300';
 const LAYER = 'pointer-events-none absolute inset-0 rounded-[inherit]';
 const HOLO = `${LAYER} [mix-blend-mode:var(--pc-blend)]`;
 const HOLO_LAYER = 'absolute inset-0';
 const PHOTO = (fit: 'cover' | 'contain' = 'contain') =>
   `pointer-events-none absolute select-none ${fit === 'cover' ? 'object-cover' : 'object-contain'} object-bottom`;
-const INFO = 'absolute bottom-[18px] left-5 right-5 text-white';
+const INFO = 'absolute bottom-[18px] left-5 right-5 text-[var(--pc-ink)]';
 const NAME = 'm-0 text-[20px] font-semibold leading-[1.25] tracking-[-0.01em] text-[inherit]';
 const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-primary/90 font-medium';
 const TILE_RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-tile-edge),inset_0_1px_0_var(--pc-tile-highlight)]`;
