@@ -14,17 +14,9 @@ const CORE_SKILLS = [
   TECH.REACT,
   TECH.NEXT_JS,
   TECH.TS,
-  TECH.JS,
   TECH.TAILWIND,
   TECH.NODE_JS,
   TECH.LARAVEL,
-  TECH.PHP,
-  TECH.DOTNET,
-  TECH.CSHARP,
-  TECH.POSTGRESQL,
-  TECH.MYSQL,
-  TECH.GIT,
-  TECH.FIGMA,
 ];
 
 const FeaturedSkills: React.FC = () => {
