@@ -146,32 +146,49 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   return (
     <>
       <style>{`
+        .bubble-pill-item {
+          transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                      background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          will-change: transform, box-shadow;
+        }
         @media (min-width: 900px) {
           .bubble-pill-item {
             transform: rotate(var(--pill-rot, 0deg));
           }
           .bubble-pill-item:hover {
-            transform: rotate(var(--pill-rot, 0deg)) scale(1.04) !important;
+            transform: rotate(calc(var(--pill-rot, 0deg) * 0.35)) translateY(-3px) scale(1.035) !important;
             background: #d9ff3a !important;
             color: #11121c !important;
-            box-shadow: 0 0 28px rgba(217, 255, 58, 0.4) !important;
+            border-color: #d9ff3a !important;
+            box-shadow: 0 14px 35px -5px rgba(217, 255, 58, 0.4), 0 0 20px rgba(217, 255, 58, 0.25) !important;
           }
           .bubble-pill-item:hover .bubble-pill-num {
             color: #11121c !important;
-            opacity: 0.9;
+            opacity: 0.95;
           }
           .bubble-pill-item:active {
-            transform: rotate(var(--pill-rot, 0deg)) scale(0.97) !important;
+            transform: rotate(var(--pill-rot, 0deg)) translateY(1px) scale(0.98) !important;
+            transition-duration: 0.12s !important;
           }
         }
         @media (max-width: 899px) {
           .bubble-pill-item:hover {
-            transform: scale(1.02) !important;
+            transform: translateY(-2px) scale(1.02) !important;
             background: #d9ff3a !important;
             color: #11121c !important;
+            border-color: #d9ff3a !important;
+            box-shadow: 0 10px 25px -4px rgba(217, 255, 58, 0.35) !important;
+          }
+          .bubble-pill-item:hover .bubble-pill-num {
+            color: #11121c !important;
+            opacity: 0.95;
           }
           .bubble-pill-item:active {
-            transform: scale(0.97) !important;
+            transform: translateY(1px) scale(0.98) !important;
+            transition-duration: 0.12s !important;
           }
         }
         .header-social-item {
@@ -360,55 +377,57 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 "delay-[420ms]",
               ];
               return (
-                <button
+                <div
                   key={item.href}
-                  onClick={() => handleNavigate(item.href)}
-                  style={
-                    {
-                      "--pill-rot": `${item.rotation}deg`,
-                    } as React.CSSProperties
-                  }
-                  className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl transition-all duration-500 ease-out shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
-                    delays[index]
-                  } ${
+                  className={`w-full transition-all duration-500 ease-out ${delays[index]} ${
                     isOpen
                       ? "opacity-100 translate-y-0 scale-100"
                       : "opacity-0 translate-y-6 scale-90 pointer-events-none"
-                  } ${
-                    isActive
-                      ? darkMode
-                        ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(217,255,58,0.25)]"
-                        : "bg-[#d9ff3a] border-2 border-[#11121c] text-[#11121c] shadow-[0_4px_16px_rgba(217,255,58,0.4)]"
-                      : darkMode
-                        ? "bg-[#181926]/85 border-primary/20 text-neutral-100"
-                        : "bg-white border-2 border-[#11121c]/15 text-[#11121c] shadow-sm"
                   }`}
                 >
-                  <span className="inline-flex items-center gap-3 sm:gap-4 will-change-transform">
-                    {/* Active Route Indicator Dot */}
-                    <span
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                        isActive
-                          ? darkMode
-                            ? "bg-primary opacity-100 scale-100 shadow-[0_0_8px_rgba(217,255,58,1)]"
-                            : "bg-[#11121c] opacity-100 scale-100"
-                          : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 bg-primary"
-                      }`}
-                    />
-                    <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold uppercase tracking-tight">
-                      {toTitleCase(item.name)}
-                    </span>
-                  </span>
-
-                  {/* Staggered Numbering (StaggeredMenu style) */}
-                  <span
-                    className={`bubble-pill-num font-mono text-xs sm:text-sm tracking-widest font-semibold transition-colors ${
-                      darkMode ? "text-primary" : "text-[#11121c]"
+                  <button
+                    onClick={() => handleNavigate(item.href)}
+                    style={
+                      {
+                        "--pill-rot": `${item.rotation}deg`,
+                      } as React.CSSProperties
+                    }
+                    className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
+                      isActive
+                        ? darkMode
+                          ? "bg-primary/20 border-primary text-primary shadow-[0_0_24px_rgba(217,255,58,0.3)]"
+                          : "bg-[#d9ff3a] border-2 border-[#11121c] text-[#11121c] shadow-[0_4px_16px_rgba(217,255,58,0.4)]"
+                        : darkMode
+                          ? "bg-[#181926]/85 border-primary/20 text-neutral-100"
+                          : "bg-white border-2 border-[#11121c]/15 text-[#11121c] shadow-sm"
                     }`}
                   >
-                    0{index + 1}
-                  </span>
-                </button>
+                    <span className="inline-flex items-center gap-3 sm:gap-4 will-change-transform transition-transform duration-300 ease-out group-hover:translate-x-1.5">
+                      {/* Active Route Indicator Dot */}
+                      <span
+                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ease-out ${
+                          isActive
+                            ? darkMode
+                              ? "bg-primary opacity-100 scale-100 shadow-[0_0_10px_rgba(217,255,58,1)]"
+                              : "bg-[#11121c] opacity-100 scale-100"
+                            : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 group-hover:bg-[#11121c]"
+                        }`}
+                      />
+                      <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold uppercase tracking-tight">
+                        {toTitleCase(item.name)}
+                      </span>
+                    </span>
+
+                    {/* Staggered Numbering (StaggeredMenu style) */}
+                    <span
+                      className={`bubble-pill-num font-mono text-xs sm:text-sm tracking-widest font-semibold transition-all duration-300 ease-out group-hover:-translate-x-1 ${
+                        darkMode ? "text-primary" : "text-[#11121c]"
+                      }`}
+                    >
+                      0{index + 1}
+                    </span>
+                  </button>
+                </div>
               );
             })}
           </nav>
