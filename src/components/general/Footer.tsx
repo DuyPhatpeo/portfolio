@@ -47,7 +47,7 @@ const Footer = () => {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block will-change-transform text-[14vw] sm:text-[13vw] md:text-[12vw] leading-[0.88] font-sans font-bold uppercase tracking-tight text-foreground cursor-pointer hover:text-primary transition-colors duration-300"
+            className="inline-block will-change-transform text-[14vw] sm:text-[13vw] md:text-[12vw] leading-[0.88] font-sans font-bold uppercase tracking-tight text-lime-600 dark:text-primary cursor-pointer hover:opacity-85 transition-opacity duration-300"
           >
             {profileData.logo}
           </motion.button>
