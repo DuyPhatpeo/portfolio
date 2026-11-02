@@ -2,39 +2,47 @@
 
 import React, { useMemo } from "react";
 import { TECH } from "@constants/technologies";
-import { skills } from "@constants/skillsData";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { useLanguage } from "@components/providers/LanguageProvider";
-import LogoLoop, { LogoLoopItem } from "@components/ui/LogoLoop";
+import LogoLoop, { type LogoItem } from "@components/ui/LogoLoop";
+import TechIcon from "@components/ui/TechIcon";
 
-// Primary, frequently used core technologies
-const MAIN_SKILLS = [
+// Core prominent technologies showcased on the Home page
+const CORE_SKILLS = [
   TECH.REACT,
   TECH.NEXT_JS,
   TECH.TS,
+  TECH.JS,
   TECH.TAILWIND,
   TECH.NODE_JS,
-  TECH.DOTNET,
   TECH.LARAVEL,
+  TECH.PHP,
+  TECH.DOTNET,
+  TECH.CSHARP,
+  TECH.POSTGRESQL,
+  TECH.MYSQL,
+  TECH.GIT,
+  TECH.FIGMA,
 ];
 
 const FeaturedSkills: React.FC = () => {
   const { t } = useTranslation();
   const { lang } = useLanguage();
 
-  const coreSkillItems: LogoLoopItem[] = useMemo(() => {
-    return MAIN_SKILLS.map((name) => {
-      const found = skills.find((s) => s.name === name);
-      return {
-        name,
-        logo: found?.logo,
-        icon: found?.icon,
-        invertDark: found?.invertDark,
-        category: found?.category,
-      };
-    });
+  const logos: LogoItem[] = useMemo(() => {
+    return CORE_SKILLS.map((name) => ({
+      node: (
+        <TechIcon
+          name={name}
+          className="w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 object-contain shrink-0"
+        />
+      ),
+      title: name,
+      ariaLabel: name,
+      hoverColor: "#2dd4a8",
+    }));
   }, []);
 
   return (
@@ -61,14 +69,21 @@ const FeaturedSkills: React.FC = () => {
         </FadeUp>
       </div>
 
-      {/* React Bits Infinite Logo Loop */}
-      <LogoLoop
-        items={coreSkillItems}
-        speed={26}
-        direction="left"
-        pauseOnHover={true}
-        fadeOut={true}
-      />
+      {/* Official React Bits Infinite Logo Loop - Clean logo & text with zero borders, backgrounds, or shadows */}
+      <div className="w-full py-2 sm:py-4">
+        <LogoLoop
+          logos={logos}
+          speed={32}
+          direction="left"
+          logoHeight={36}
+          gap={48}
+          labels="inline"
+          pauseOnHover={true}
+          scaleOnHover={true}
+          fadeOut={true}
+          fadeOutWidth={0.12}
+        />
+      </div>
     </section>
   );
 };
