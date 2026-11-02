@@ -179,10 +179,10 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
 
               {/* Dynamic Role */}
               <div className="mb-6">
-                <div className="text-xl sm:text-2xl md:text-[26px] font-mono font-medium min-h-[36px] flex items-center text-primary">
+                <div className="inline-flex items-center min-h-[36px] font-mono font-semibold text-lg sm:text-xl md:text-2xl px-3 py-1 rounded-lg text-[#11121c] bg-primary dark:bg-transparent dark:text-primary dark:px-0 dark:py-0 transition-all duration-300">
                   <span>{displayedRole}</span>
                   <span
-                    className="inline-block w-0.5 h-6 bg-primary ml-2"
+                    className="inline-block w-0.5 h-5 sm:h-6 bg-current ml-2"
                     aria-hidden="true"
                   />
                 </div>

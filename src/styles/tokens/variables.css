@@ -51,29 +51,45 @@
     --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   }
 
+  /* Neo-Brutalist Light Mode (from 30 days designs reference):
+     Clean industrial light grey backdrop (#f0f2f5) with solid Neon Volt (#d9ff3a)
+     pop accents, crisp white cards, and bold deep black (#11121c) typography. */
   :root:not(.dark) {
-    --background: #f8f9fc;
+    --background: #f0f2f5;
     --foreground: #11121c;
-    --card: rgba(255, 255, 255, 0.94);
+    --card: rgba(255, 255, 255, 0.96);
     --card-foreground: #11121c;
     --popover: #ffffff;
     --popover-foreground: #11121c;
-    /* High-contrast electric olive-lime for light mode readability (WCAG AAA 6.5:1) */
-    --primary: #4d6800;
-    --primary-rgb: 77, 104, 0;
-    --primary-foreground: #ffffff;
-    --secondary: #4d6800;
-    --secondary-rgb: 77, 104, 0;
-    --secondary-foreground: #ffffff;
-    --muted: #edf0f5;
-    --muted-foreground: #555968;
-    --accent: #4d6800;
-    --accent-foreground: #ffffff;
-    --border: rgba(17, 18, 28, 0.12);
-    --input: #ffffff;
-    --ring: #4d6800;
 
-    --background-alt: #f0f2f7;
+    --primary: #d9ff3a;
+    --primary-rgb: 217, 255, 58;
+    --primary-foreground: #11121c;
+
+    --secondary: #11121c;
+    --secondary-rgb: 17, 18, 28;
+    --secondary-foreground: #f5f6fa;
+
+    --muted: #e2e5eb;
+    --muted-foreground: #555a6d;
+
+    --accent: #d9ff3a;
+    --accent-foreground: #11121c;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+
+    --border: rgba(17, 18, 28, 0.14);
+    --input: #ffffff;
+    --ring: #d9ff3a;
+
+    --accent-secondary: #d9ff3a;
+    --accent-tertiary: #d9ff3a;
+
+    --selection-bg: #d9ff3a;
+    --selection-text: #11121c;
+
+    --background-alt: #e6e8ee;
   }
 
   .dark {
@@ -81,4 +97,25 @@
     --card: rgba(24, 25, 38, 0.92);
     --border: rgba(255, 255, 255, 0.11);
   }
+}
+
+/* Sticker badge styling in Light Mode:
+   Turns subtle outline badges into punchy neon volt stickers with black text */
+:root:not(.dark) .bg-primary\/10 {
+  background-color: #d9ff3a !important;
+  color: #11121c !important;
+  border-color: rgba(17, 18, 28, 0.25) !important;
+  font-weight: 700 !important;
+  box-shadow: 0 2px 8px rgba(217, 255, 58, 0.35);
+}
+
+:root:not(.dark) .border-primary\/20,
+:root:not(.dark) .border-primary\/25 {
+  border-color: rgba(17, 18, 28, 0.18) !important;
+}
+
+/* Ensure bare text elements with text-primary have high readability in light mode */
+:root:not(.dark) p.text-primary,
+:root:not(.dark) div.text-primary:not([class*="bg-primary"]) {
+  color: #11121c;
 }

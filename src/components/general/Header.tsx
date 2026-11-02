@@ -497,23 +497,33 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         className="fixed inset-0 pointer-events-none z-[250] overflow-hidden"
         aria-hidden="true"
       >
-        <div className="header-prelayer bg-[#1a2300]" />
-        <div className="header-prelayer bg-[#2c3d00]" />
-        <div className="header-prelayer bg-[#161826]" />
+        <div className={`header-prelayer ${darkMode ? "bg-[#1a2300]" : "bg-[#d9ff3a]"}`} />
+        <div className={`header-prelayer ${darkMode ? "bg-[#2c3d00]" : "bg-[#11121c]"}`} />
+        <div className={`header-prelayer ${darkMode ? "bg-[#161826]" : "bg-[#ffffff]"}`} />
       </div>
 
       {/* Main Staggered + Bubble Menu Overlay Panel */}
       <div
         ref={panelRef}
         id="bubble-staggered-panel"
-        className={`fixed inset-0 z-[260] bg-[#11121c]/96 backdrop-blur-2xl text-neutral-100 flex flex-col justify-between overflow-y-auto select-none border-l border-primary/20 ${
+        className={`fixed inset-0 z-[260] backdrop-blur-2xl flex flex-col justify-between overflow-y-auto select-none border-l ${
+          darkMode
+            ? "bg-[#11121c]/96 text-neutral-100 border-primary/20"
+            : "bg-[#f0f2f5]/98 text-[#11121c] border-[#11121c]/15"
+        } ${
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
         aria-hidden={!isOpen}
       >
         {/* Top Bar inside panel */}
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pt-4 sm:pt-6 flex items-center justify-between shrink-0">
-          <div className="inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-white/5 border border-primary/25 backdrop-blur-md">
+          <div
+            className={`inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full backdrop-blur-md ${
+              darkMode
+                ? "bg-white/5 border border-primary/25 text-neutral-200"
+                : "bg-white border border-[#11121c]/15 text-[#11121c] shadow-sm"
+            }`}
+          >
             <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden flex items-center justify-center bg-primary/20 border border-primary/40 shrink-0">
               <img
                 src="/assets/icons/logo.webp"
@@ -521,7 +531,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                 className="w-full h-full object-cover"
               />
             </span>
-            <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.2em] text-neutral-200">
+            <span className="text-xs sm:text-sm font-sans font-bold uppercase tracking-[0.2em]">
               {profileData.logo}
             </span>
           </div>
@@ -529,7 +539,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <button
             onClick={closeMenu}
             aria-label="Close navigation"
-            className="inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-white/5 border border-primary/30 backdrop-blur-md text-primary font-mono text-xs uppercase font-semibold tracking-wider hover:bg-primary/20 hover:border-primary transition-all duration-200 cursor-pointer"
+            className={`inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full backdrop-blur-md font-mono text-xs uppercase font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+              darkMode
+                ? "bg-white/5 border border-primary/30 text-primary hover:bg-primary/20 hover:border-primary"
+                : "bg-[#11121c] text-[#d9ff3a] border border-[#11121c] hover:bg-[#202334]"
+            }`}
           >
             <span>{lang === "vi" ? "ĐÓNG" : "CLOSE"}</span>
             <span className="relative w-3.5 h-3.5 inline-flex items-center justify-center">
@@ -541,7 +555,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
         {/* Center: Bubble Menu Pills Grid (Bubble Menu Concept) */}
         <div className="max-w-5xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12 flex-1 flex flex-col justify-center items-center">
-          <p className="text-primary font-mono text-xs sm:text-sm tracking-[0.25em] uppercase mb-6 sm:mb-8 text-center opacity-80">
+          <p
+            className={`font-mono text-xs sm:text-sm tracking-[0.25em] uppercase mb-6 sm:mb-8 text-center font-semibold ${
+              darkMode ? "text-primary opacity-80" : "text-[#11121c]/70"
+            }`}
+          >
             {lang === "vi" ? "ĐIỀU HƯỚNG TRANG" : "NAVIGATION"}
           </p>
 
@@ -562,8 +580,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   }
                   className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
                     isActive
-                      ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(217,255,58,0.25)]"
-                      : "bg-[#181926]/85 border-primary/20 text-neutral-100"
+                      ? darkMode
+                        ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(217,255,58,0.25)]"
+                        : "bg-[#d9ff3a] border-2 border-[#11121c] text-[#11121c] shadow-[0_4px_16px_rgba(217,255,58,0.4)]"
+                      : darkMode
+                        ? "bg-[#181926]/85 border-primary/20 text-neutral-100"
+                        : "bg-white border-2 border-[#11121c]/15 text-[#11121c] shadow-sm"
                   }`}
                 >
                   <span
@@ -572,12 +594,14 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     }}
                     className="inline-flex items-center gap-3 sm:gap-4 will-change-transform"
                   >
-                    {/* Active Route Emerald Indicator Dot */}
+                    {/* Active Route Indicator Dot */}
                     <span
-                      className={`w-2 h-2 rounded-full bg-primary transition-all duration-300 ${
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
                         isActive
-                          ? "opacity-100 scale-100 shadow-[0_0_8px_rgba(217,255,58,1)]"
-                          : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
+                          ? darkMode
+                            ? "bg-primary opacity-100 scale-100 shadow-[0_0_8px_rgba(217,255,58,1)]"
+                            : "bg-[#11121c] opacity-100 scale-100"
+                          : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 bg-primary"
                       }`}
                     />
                     <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold uppercase tracking-tight">
@@ -586,7 +610,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   </span>
 
                   {/* Staggered Numbering (StaggeredMenu style) */}
-                  <span className="bubble-pill-num font-mono text-xs sm:text-sm text-primary tracking-widest font-medium transition-colors">
+                  <span
+                    className={`bubble-pill-num font-mono text-xs sm:text-sm tracking-widest font-semibold transition-colors ${
+                      darkMode ? "text-primary" : "text-[#11121c]"
+                    }`}
+                  >
                     0{index + 1}
                   </span>
                 </button>
@@ -596,11 +624,19 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         </div>
 
         {/* Bottom: Staggered Socials & Contact Bar (Staggered Menu Concept) */}
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-6 sm:pb-8 pt-4 border-t border-white/10 shrink-0">
+        <div
+          className={`w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-6 sm:pb-8 pt-4 shrink-0 border-t ${
+            darkMode ? "border-white/10" : "border-[#11121c]/10"
+          }`}
+        >
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             {/* Socials List with Hover Isolation */}
             <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-              <span className="text-xs font-mono uppercase tracking-wider text-primary font-semibold mr-1">
+              <span
+                className={`text-xs font-mono uppercase tracking-wider font-semibold mr-1 ${
+                  darkMode ? "text-primary" : "text-[#11121c]"
+                }`}
+              >
                 Socials:
               </span>
               <ul className="header-social-list list-none m-0 p-0 flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -610,7 +646,11 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 hover:border-primary/50 text-neutral-300 hover:text-primary text-xs font-mono transition-colors"
+                      className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-colors ${
+                        darkMode
+                          ? "bg-white/5 border border-white/10 hover:border-primary/50 text-neutral-300 hover:text-primary"
+                          : "bg-white border border-[#11121c]/15 text-[#11121c] hover:bg-[#11121c] hover:text-[#d9ff3a] shadow-sm"
+                      }`}
                     >
                       {social.icon}
                       <span>{social.name}</span>
@@ -621,15 +661,23 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             </div>
 
             {/* Email Contact link */}
-            <div className="flex items-center gap-4 text-xs font-mono text-neutral-400">
+            <div
+              className={`flex items-center gap-4 text-xs font-mono ${
+                darkMode ? "text-neutral-400" : "text-[#11121c]/70"
+              }`}
+            >
               <a
                 href="mailto:phattranduy00@gmail.com"
-                className="inline-flex items-center gap-1.5 text-neutral-300 hover:text-primary transition-colors"
+                className={`inline-flex items-center gap-1.5 transition-colors ${
+                  darkMode
+                    ? "text-neutral-300 hover:text-primary"
+                    : "text-[#11121c] hover:text-[#11121c] font-semibold"
+                }`}
               >
                 <FiMail className="w-3.5 h-3.5 text-primary" />
                 <span>phattranduy00@gmail.com</span>
               </a>
-              <span className="hidden md:inline text-neutral-600">•</span>
+              <span className="hidden md:inline text-neutral-500">•</span>
               <span className="hidden md:inline">© {new Date().getFullYear()} Dino Péo</span>
             </div>
           </div>
