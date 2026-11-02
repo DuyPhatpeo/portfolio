@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import { RiSunLine, RiMoonLine } from "react-icons/ri";
 import { FiMail } from "react-icons/fi";
-import { gsap } from "@lib/gsap";
 
 interface HeaderProps {
   scrollToSection?: (id: string) => void;
@@ -29,30 +28,9 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const pathname = usePathname() || `/${lang}`;
 
   const [isOpen, setIsOpen] = useState(false);
-  const openRef = useRef(false);
   const [showHeader, setShowHeader] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = useRef(0);
-
-  // Staggered layers & panel refs
-  const panelRef = useRef<HTMLDivElement | null>(null);
-  const preLayersRef = useRef<HTMLDivElement | null>(null);
-  const preLayerElsRef = useRef<HTMLElement[]>([]);
-
-  // Toggle button refs (from StaggeredMenu)
-  const plusHRef = useRef<HTMLSpanElement | null>(null);
-  const plusVRef = useRef<HTMLSpanElement | null>(null);
-  const iconRef = useRef<HTMLSpanElement | null>(null);
-  const textInnerRef = useRef<HTMLSpanElement | null>(null);
-  const [textLines, setTextLines] = useState<string[]>([
-    "MENU",
-    lang === "vi" ? "ĐÓNG" : "CLOSE",
-  ]);
-
-  // Bubble pills refs (from BubbleMenu)
-  const bubblesRef = useRef<HTMLButtonElement[]>([]);
-  const labelRefs = useRef<HTMLSpanElement[]>([]);
-  const busyRef = useRef(false);
 
   // Header scroll detection (auto-hide on scroll down, show on scroll up)
   useEffect(() => {
@@ -103,247 +81,24 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     [t, lang]
   );
 
-  // Initialize GSAP positions for StaggeredMenu layers
-  useEffect(() => {
-    const panel = panelRef.current;
-    const preContainer = preLayersRef.current;
-    const plusH = plusHRef.current;
-    const plusV = plusVRef.current;
-    const icon = iconRef.current;
-    const textInner = textInnerRef.current;
-
-    if (!panel || !plusH || !plusV || !icon || !textInner) return;
-
-    let preLayers: HTMLElement[] = [];
-    if (preContainer) {
-      preLayers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
-    }
-    preLayerElsRef.current = preLayers;
-
-    // Initially position panel and pre-layers off-screen to the right
-    gsap.set([panel, ...preLayers], { xPercent: 100, opacity: 1 });
-    if (preContainer) {
-      gsap.set(preContainer, { xPercent: 0, opacity: 1 });
-    }
-
-    gsap.set(plusH, { transformOrigin: "50% 50%", rotate: 0 });
-    gsap.set(plusV, { transformOrigin: "50% 50%", rotate: 90 });
-    gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
-    gsap.set(textInner, { yPercent: 0 });
-  }, []);
-
-  // Animate the icon (+ to ×)
-  const animateIcon = useCallback((opening: boolean) => {
-    const icon = iconRef.current;
-    const h = plusHRef.current;
-    const v = plusVRef.current;
-    if (!icon || !h || !v) return;
-
-    gsap.killTweensOf([icon, h, v]);
-    if (opening) {
-      gsap.timeline({ defaults: { ease: "power4.out" } })
-        .to(h, { rotate: 45, duration: 0.45 }, 0)
-        .to(v, { rotate: -45, duration: 0.45 }, 0);
-    } else {
-      gsap.timeline({ defaults: { ease: "power3.inOut" } })
-        .to(h, { rotate: 0, duration: 0.3 }, 0)
-        .to(v, { rotate: 90, duration: 0.3 }, 0);
-    }
-  }, []);
-
-  // Animate rolling text ("MENU" ↔ "CLOSE")
-  const animateText = useCallback(
-    (opening: boolean) => {
-      const inner = textInnerRef.current;
-      if (!inner) return;
-
-      gsap.killTweensOf(inner);
-      const closeLabel = lang === "vi" ? "ĐÓNG" : "CLOSE";
-      const currentLabel = opening ? "MENU" : closeLabel;
-      const targetLabel = opening ? closeLabel : "MENU";
-      const cycles = 2;
-
-      const seq: string[] = [currentLabel];
-      let last = currentLabel;
-      for (let i = 0; i < cycles; i++) {
-        last = last === "MENU" ? closeLabel : "MENU";
-        seq.push(last);
-      }
-      if (last !== targetLabel) seq.push(targetLabel);
-      seq.push(targetLabel);
-
-      setTextLines(seq);
-      gsap.set(inner, { yPercent: 0 });
-
-      const lineCount = seq.length;
-      const finalShift = ((lineCount - 1) / lineCount) * 100;
-
-      gsap.to(inner, {
-        yPercent: -finalShift,
-        duration: 0.4 + lineCount * 0.05,
-        ease: "power4.out",
-      });
-    },
-    [lang]
-  );
-
-  // Play opening Staggered prelayers & Bubble pill animations
-  const playOpen = useCallback(() => {
-    const panel = panelRef.current;
-    const preContainer = preLayersRef.current;
-    let layers = preLayerElsRef.current;
-    if ((!layers || layers.length === 0) && preContainer) {
-      layers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
-      preLayerElsRef.current = layers;
-    }
-    const bubbles = bubblesRef.current.filter(Boolean);
-    const labels = labelRefs.current.filter(Boolean);
-    if (!panel) return;
-
-    if (preContainer) preContainer.style.visibility = "visible";
-    panel.style.visibility = "visible";
-
-    busyRef.current = true;
-    gsap.killTweensOf([panel, ...layers, ...bubbles, ...labels]);
-
-    // Reset initial positions
-    gsap.set(bubbles, { scale: 0, autoAlpha: 0, transformOrigin: "50% 50%" });
-    gsap.set(labels, { y: 24, autoAlpha: 0 });
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        busyRef.current = false;
-      },
-    });
-
-    // Staggered prelayers entrance
-    layers.forEach((layer, i) => {
-      tl.fromTo(
-        layer,
-        { xPercent: 100 },
-        { xPercent: 0, duration: 0.45, ease: "power4.out" },
-        i * 0.06
-      );
-    });
-
-    const panelStartTime = layers.length ? (layers.length - 1) * 0.06 + 0.07 : 0;
-    tl.fromTo(
-      panel,
-      { xPercent: 100 },
-      { xPercent: 0, duration: 0.6, ease: "power4.out" },
-      panelStartTime
-    );
-
-    // Staggered Bubble pills entrance
-    const bubblesStartTime = panelStartTime + 0.2;
-    bubbles.forEach((bubble, i) => {
-      const delay = bubblesStartTime + i * 0.07;
-      tl.to(
-        bubble,
-        {
-          scale: 1,
-          autoAlpha: 1,
-          duration: 0.5,
-          ease: "back.out(1.4)",
-        },
-        delay
-      );
-      if (labels[i]) {
-        tl.to(
-          labels[i],
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.45,
-            ease: "power3.out",
-          },
-          delay + 0.08
-        );
-      }
-    });
-  }, []);
-
-  // Play closing animation
-  const playClose = useCallback((onCompleteCallback?: () => void) => {
-    const panel = panelRef.current;
-    const preContainer = preLayersRef.current;
-    let layers = preLayerElsRef.current;
-    if ((!layers || layers.length === 0) && preContainer) {
-      layers = Array.from(preContainer.querySelectorAll(".header-prelayer")) as HTMLElement[];
-      preLayerElsRef.current = layers;
-    }
-    const bubbles = bubblesRef.current.filter(Boolean);
-    const labels = labelRefs.current.filter(Boolean);
-    if (!panel) return;
-
-    busyRef.current = true;
-    gsap.killTweensOf([panel, ...layers, ...bubbles, ...labels]);
-
-    // Animate bubble pills out fast
-    gsap.to(labels, {
-      y: 16,
-      autoAlpha: 0,
-      duration: 0.18,
-      ease: "power3.in",
-    });
-
-    gsap.to(bubbles, {
-      scale: 0.8,
-      autoAlpha: 0,
-      duration: 0.2,
-      ease: "power3.in",
-    });
-
-    // Slide curtains and panel back to the right
-    gsap.to([...layers, panel], {
-      xPercent: 100,
-      duration: 0.32,
-      ease: "power3.in",
-      stagger: 0.03,
-      onComplete: () => {
-        busyRef.current = false;
-        if (!openRef.current) {
-          panel.style.visibility = "hidden";
-          const preContainer = preLayersRef.current;
-          if (preContainer) preContainer.style.visibility = "hidden";
-        }
-        onCompleteCallback?.();
-      },
-    });
-  }, []);
-
   const toggleMenu = useCallback(() => {
-    const target = !openRef.current;
-    openRef.current = target;
-
-    if (target) {
-      setIsOpen(true);
-      document.body.style.overflow = "hidden";
-      playOpen();
-    } else {
-      document.body.style.overflow = "";
-      playClose(() => {
-        setIsOpen(false);
-      });
-    }
-
-    animateIcon(target);
-    animateText(target);
-  }, [playOpen, playClose, animateIcon, animateText]);
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+      return next;
+    });
+  }, []);
 
   const closeMenu = useCallback(() => {
-    if (openRef.current) {
-      openRef.current = false;
-      document.body.style.overflow = "";
-      playClose(() => {
-        setIsOpen(false);
-      });
-      animateIcon(false);
-      animateText(false);
-    }
-  }, [playClose, animateIcon, animateText]);
+    setIsOpen(false);
+    document.body.style.overflow = "";
+  }, []);
 
-  // Keyboard navigation
+  // Keyboard navigation (Escape to close)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeMenu();
@@ -354,6 +109,13 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
     }
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeMenu]);
+
+  // Clean up body overflow on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, []);
 
   // Dark mode toggle with radial wipe
   const handleToggleDarkMode = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -384,21 +146,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   return (
     <>
       <style>{`
-        /* Staggered Pre-layers */
-        .header-prelayer {
-          position: absolute;
-          top: 0;
-          right: 0;
-          height: 100%;
-          width: 100%;
-          transform: translateX(100%);
-        }
         @media (min-width: 900px) {
           .bubble-pill-item {
             transform: rotate(var(--pill-rot, 0deg));
           }
           .bubble-pill-item:hover {
-            transform: rotate(var(--pill-rot, 0deg)) scale(1.04);
+            transform: rotate(var(--pill-rot, 0deg)) scale(1.04) !important;
             background: #d9ff3a !important;
             color: #11121c !important;
             box-shadow: 0 0 28px rgba(217, 255, 58, 0.4) !important;
@@ -408,17 +161,17 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             opacity: 0.9;
           }
           .bubble-pill-item:active {
-            transform: rotate(var(--pill-rot, 0deg)) scale(0.97);
+            transform: rotate(var(--pill-rot, 0deg)) scale(0.97) !important;
           }
         }
         @media (max-width: 899px) {
           .bubble-pill-item:hover {
-            transform: scale(1.02);
+            transform: scale(1.02) !important;
             background: #d9ff3a !important;
             color: #11121c !important;
           }
           .bubble-pill-item:active {
-            transform: scale(0.97);
+            transform: scale(0.97) !important;
           }
         }
         .header-social-item {
@@ -484,28 +237,30 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             >
               {/* Rolling Text (StaggeredMenu style) */}
               <span className="relative inline-block h-[1.1em] overflow-hidden whitespace-nowrap text-xs font-mono font-semibold uppercase tracking-wider text-current">
-                <span ref={textInnerRef} className="flex flex-col leading-none">
-                  {textLines.map((line, idx) => (
-                    <span key={idx} className="block h-[1.1em] leading-none">
-                      {line}
-                    </span>
-                  ))}
+                <span
+                  className={`flex flex-col leading-none transition-transform duration-300 ease-out ${
+                    isOpen ? "-translate-y-1/2" : "translate-y-0"
+                  }`}
+                >
+                  <span className="block h-[1.1em] leading-none">MENU</span>
+                  <span className="block h-[1.1em] leading-none">
+                    {lang === "vi" ? "ĐÓNG" : "CLOSE"}
+                  </span>
                 </span>
               </span>
 
               {/* Animated Plus-Cross Icon (StaggeredMenu style) */}
               <span
-                ref={iconRef}
-                className="relative w-3.5 h-3.5 shrink-0 inline-flex items-center justify-center will-change-transform text-current"
+                className={`relative w-3.5 h-3.5 shrink-0 inline-flex items-center justify-center transition-transform duration-300 ${
+                  isOpen ? "rotate-45" : "rotate-0"
+                } text-current`}
                 aria-hidden="true"
               >
+                <span className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-full -translate-x-1/2 -translate-y-1/2" />
                 <span
-                  ref={plusHRef}
-                  className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-full -translate-x-1/2 -translate-y-1/2 will-change-transform"
-                />
-                <span
-                  ref={plusVRef}
-                  className="absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-full -translate-x-1/2 -translate-y-1/2 will-change-transform"
+                  className={`absolute left-1/2 top-1/2 w-full h-[2px] bg-current rounded-full -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${
+                    isOpen ? "rotate-0" : "rotate-90"
+                  }`}
                 />
               </span>
             </button>
@@ -515,27 +270,39 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
       {/* Staggered Multi-Layer Curtain Prelayers (Staggered Menu Concept) */}
       <div
-        ref={preLayersRef}
-        style={isOpen ? undefined : { visibility: "hidden" }}
-        className="fixed inset-0 pointer-events-none z-[250] overflow-hidden"
+        className={`fixed inset-0 pointer-events-none z-[250] overflow-hidden transition-opacity duration-300 ${
+          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
         aria-hidden="true"
       >
-        <div className={`header-prelayer ${darkMode ? "bg-[#1a2300]" : "bg-[#d9ff3a]"}`} />
-        <div className={`header-prelayer ${darkMode ? "bg-[#2c3d00]" : "bg-[#11121c]"}`} />
-        <div className={`header-prelayer ${darkMode ? "bg-[#161826]" : "bg-[#ffffff]"}`} />
+        <div
+          className={`absolute top-0 right-0 h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            darkMode ? "bg-[#1a2300]" : "bg-[#d9ff3a]"
+          } ${isOpen ? "translate-x-0 delay-0" : "translate-x-full delay-[100ms]"}`}
+        />
+        <div
+          className={`absolute top-0 right-0 h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            darkMode ? "bg-[#2c3d00]" : "bg-[#11121c]"
+          } ${isOpen ? "translate-x-0 delay-[60ms]" : "translate-x-full delay-[50ms]"}`}
+        />
+        <div
+          className={`absolute top-0 right-0 h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            darkMode ? "bg-[#161826]" : "bg-[#ffffff]"
+          } ${isOpen ? "translate-x-0 delay-[120ms]" : "translate-x-full delay-0"}`}
+        />
       </div>
 
       {/* Main Staggered + Bubble Menu Overlay Panel */}
       <div
-        ref={panelRef}
         id="bubble-staggered-panel"
-        style={isOpen ? undefined : { transform: "translate3d(100%, 0, 0)", visibility: "hidden" }}
-        className={`fixed inset-0 z-[260] backdrop-blur-2xl flex flex-col justify-between overflow-y-auto select-none border-l ${
+        className={`fixed inset-0 z-[260] backdrop-blur-2xl flex flex-col justify-between overflow-y-auto select-none border-l transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
           darkMode
             ? "bg-[#11121c]/96 text-neutral-100 border-primary/20"
             : "bg-[#f0f2f5]/98 text-[#11121c] border-[#11121c]/15"
         } ${
-          isOpen ? "pointer-events-auto" : "pointer-events-none"
+          isOpen
+            ? "translate-x-0 pointer-events-auto delay-[180ms]"
+            : "translate-x-full pointer-events-none delay-0"
         }`}
         aria-hidden={!isOpen}
       >
@@ -590,19 +357,28 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           <nav className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5 max-w-3xl">
             {navItems.map((item, index) => {
               const isActive = pathname === item.path;
+              const delays = [
+                "delay-[240ms]",
+                "delay-[300ms]",
+                "delay-[360ms]",
+                "delay-[420ms]",
+              ];
               return (
                 <button
                   key={item.href}
-                  ref={(el) => {
-                    if (el) bubblesRef.current[index] = el;
-                  }}
                   onClick={() => handleNavigate(item.href)}
                   style={
                     {
                       "--pill-rot": `${item.rotation}deg`,
                     } as React.CSSProperties
                   }
-                  className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
+                  className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl transition-all duration-500 ease-out shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
+                    delays[index]
+                  } ${
+                    isOpen
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-6 scale-90 pointer-events-none"
+                  } ${
                     isActive
                       ? darkMode
                         ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(217,255,58,0.25)]"
@@ -612,12 +388,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                         : "bg-white border-2 border-[#11121c]/15 text-[#11121c] shadow-sm"
                   }`}
                 >
-                  <span
-                    ref={(el) => {
-                      if (el) labelRefs.current[index] = el;
-                    }}
-                    className="inline-flex items-center gap-3 sm:gap-4 will-change-transform"
-                  >
+                  <span className="inline-flex items-center gap-3 sm:gap-4 will-change-transform">
                     {/* Active Route Indicator Dot */}
                     <span
                       className={`w-2 h-2 rounded-full transition-all duration-300 ${
