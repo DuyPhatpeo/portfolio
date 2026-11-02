@@ -42,7 +42,7 @@ export interface StaggeredMenuProps {
 
 export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   position = 'right',
-  colors = ['#0e352b', '#134e40', '#18181d'],
+  colors = ['#1a2300', '#2c3d00', '#161826'],
   items = [],
   socialItems = [],
   displaySocials = true,
@@ -51,9 +51,9 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   logo,
   logoUrl,
   menuButtonColor = '#f4f4f5',
-  openMenuButtonColor = '#2dd4a8',
+  openMenuButtonColor = '#d9ff3a',
   changeMenuColorOnOpen = true,
-  accentColor = '#2dd4a8',
+  accentColor = '#d9ff3a',
   isFixed = false,
   closeOnClickAway = true,
   onMenuOpen,
@@ -540,7 +540,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   font-family: monospace;
   font-size: 14px;
   font-weight: 500;
-  color: var(--sm-accent, #2dd4a8);
+  color: var(--sm-accent, #d9ff3a);
   letter-spacing: 0.05em;
   opacity: var(--sm-num-opacity, 0.7);
   margin-left: 0.5rem;

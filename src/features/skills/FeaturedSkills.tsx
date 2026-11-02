@@ -41,7 +41,7 @@ const FeaturedSkills: React.FC = () => {
       ),
       title: name,
       ariaLabel: name,
-      hoverColor: "#2dd4a8",
+      hoverColor: "#d9ff3a",
     }));
   }, []);
 

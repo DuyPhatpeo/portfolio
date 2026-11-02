@@ -45,13 +45,13 @@ type OrientationPermission = {
 const THEMES: Record<Palette, Record<string, string>> = {
   dark: {
     '--pc-frame': 'rgba(23, 23, 23, 0.88)',
-    '--pc-frame-edge': 'rgba(45, 212, 168, 0.45)',
-    '--pc-frame-highlight': 'rgba(45, 212, 168, 0.3)',
-    '--pc-frame-shadow': '0 24px 50px -18px rgba(0, 0, 0, 0.75), 0 0 35px -6px rgba(45, 212, 168, 0.28)',
+    '--pc-frame-edge': 'rgba(217, 255, 58, 0.45)',
+    '--pc-frame-highlight': 'rgba(217, 255, 58, 0.3)',
+    '--pc-frame-shadow': '0 24px 50px -18px rgba(0, 0, 0, 0.75), 0 0 35px -6px rgba(217, 255, 58, 0.28)',
     '--pc-tile': 'linear-gradient(180deg, #222222 0%, #151515 100%)',
-    '--pc-tile-edge': 'rgba(45, 212, 168, 0.3)',
-    '--pc-tile-highlight': 'rgba(45, 212, 168, 0.4)',
-    '--pc-tile-shadow': '0 8px 24px -6px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(45, 212, 168, 0.08)',
+    '--pc-tile-edge': 'rgba(217, 255, 58, 0.3)',
+    '--pc-tile-highlight': 'rgba(217, 255, 58, 0.4)',
+    '--pc-tile-shadow': '0 8px 24px -6px rgba(0, 0, 0, 0.8), inset 0 0 25px rgba(217, 255, 58, 0.08)',
     '--pc-ink': '#f4f4f5',
     '--pc-muted': 'rgba(244, 244, 245, 0.65)',
     '--pc-hover': 'brightness(1.12)',
@@ -60,11 +60,11 @@ const THEMES: Record<Palette, Record<string, string>> = {
   },
   light: {
     '--pc-frame': 'rgba(245, 245, 247, 0.88)',
-    '--pc-frame-edge': 'rgba(45, 212, 168, 0.45)',
+    '--pc-frame-edge': 'rgba(217, 255, 58, 0.45)',
     '--pc-frame-highlight': 'rgba(255, 255, 255, 0.95)',
-    '--pc-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.25), 0 0 25px rgba(45, 212, 168, 0.22)',
+    '--pc-frame-shadow': '0 22px 44px -22px rgba(24, 24, 27, 0.25), 0 0 25px rgba(217, 255, 58, 0.22)',
     '--pc-tile': 'linear-gradient(180deg, #ffffff 0%, #f6f6f8 100%)',
-    '--pc-tile-edge': 'rgba(45, 212, 168, 0.35)',
+    '--pc-tile-edge': 'rgba(217, 255, 58, 0.35)',
     '--pc-tile-highlight': 'rgba(255, 255, 255, 1)',
     '--pc-tile-shadow': '0 4px 10px -5px rgba(24, 24, 27, 0.2)',
     '--pc-ink': '#27272a',
@@ -79,12 +79,12 @@ const FOILS: Record<Palette, Record<string, string>> = {
   dark: {
     '--pc-blend': 'color-dodge',
     '--pc-holo-filter': 'hue-rotate(140deg)',
-    '--pc-sheen': 'rgba(45, 212, 168, 0.25)'
+    '--pc-sheen': 'rgba(217, 255, 58, 0.25)'
   },
   light: {
     '--pc-blend': 'multiply',
     '--pc-holo-filter': 'invert(1) hue-rotate(140deg)',
-    '--pc-sheen': 'rgba(45, 212, 168, 0.18)'
+    '--pc-sheen': 'rgba(217, 255, 58, 0.18)'
   }
 };
 
@@ -203,15 +203,15 @@ const TITLE = 'mx-0 mb-0 mt-1 text-[14px] leading-[1.45] text-primary/90 font-me
 const TILE_RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-tile-edge),inset_0_1px_0_var(--pc-tile-highlight)]`;
 const FOOTER = 'flex min-w-0 items-center gap-3 px-5 pb-2 pt-1.5';
 const AVATAR =
-  "relative h-9 w-9 flex-none overflow-hidden rounded-full bg-primary/15 border-2 border-primary shadow-[0_0_12px_rgba(45,212,168,0.4)] flex items-center justify-center p-1";
+  "relative h-9 w-9 flex-none overflow-hidden rounded-full bg-primary/15 border-2 border-primary shadow-[0_0_12px_rgba(217, 255, 58,0.4)] flex items-center justify-center p-1";
 const AVATAR_IMAGE = 'block h-full w-full object-contain';
 const META = 'flex min-w-0 flex-1 flex-col gap-[3px]';
 const HANDLE =
   'overflow-hidden text-ellipsis whitespace-nowrap text-[14px] font-semibold leading-[1.25] text-[var(--pc-ink)] hover:text-primary transition-colors';
 const STATUS =
-  "flex items-center gap-1.5 whitespace-nowrap text-[12.5px] leading-[1.25] text-[var(--pc-muted)] before:h-1.5 before:w-1.5 before:flex-none before:rounded-full before:bg-[var(--pc-status)] before:content-[''] before:shadow-[0_0_8px_rgba(45,212,168,0.85)]";
+  "flex items-center gap-1.5 whitespace-nowrap text-[12.5px] leading-[1.25] text-[var(--pc-muted)] before:h-1.5 before:w-1.5 before:flex-none before:rounded-full before:bg-[var(--pc-status)] before:content-[''] before:shadow-[0_0_8px_rgba(217, 255, 58,0.85)]";
 const CONTACT =
-  'flex h-9 flex-none cursor-pointer items-center gap-1.5 rounded-[calc(var(--pc-radius)*0.75)] border border-primary/40 px-3.5 font-[inherit] text-[13px] font-semibold text-primary bg-primary/10 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),var(--pc-tile-shadow)] transition-all duration-200 hover:border-primary hover:bg-primary/25 hover:text-primary hover:shadow-[0_0_14px_rgba(45,212,168,0.35)] active:scale-[0.96] active:duration-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
+  'flex h-9 flex-none cursor-pointer items-center gap-1.5 rounded-[calc(var(--pc-radius)*0.75)] border border-primary/40 px-3.5 font-[inherit] text-[13px] font-semibold text-primary bg-primary/10 [box-shadow:inset_0_1px_0_rgba(255,255,255,0.08),var(--pc-tile-shadow)] transition-all duration-200 hover:border-primary hover:bg-primary/25 hover:text-primary hover:shadow-[0_0_14px_rgba(217, 255, 58,0.35)] active:scale-[0.96] active:duration-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
 const GLARE = `${LAYER} mix-blend-overlay`;
 const RIM = `${LAYER} [box-shadow:inset_0_0_0_1px_var(--pc-frame-edge),inset_0_1px_0_var(--pc-frame-highlight)]`;
 
@@ -233,7 +233,7 @@ const ProfileCard = ({
   title = 'Front-End Developer',
   handle = 'DuyPhatpeo',
   status = 'Available for work',
-  statusColor = '#2dd4a8',
+  statusColor = '#d9ff3a',
   contactText = 'Contact',
   showUserInfo = true,
   onContactClick,

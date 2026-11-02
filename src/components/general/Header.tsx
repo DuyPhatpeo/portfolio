@@ -377,12 +377,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           }
           .bubble-pill-item:hover {
             transform: rotate(var(--pill-rot, 0deg)) scale(1.04);
-            background: #2dd4a8 !important;
-            color: #041f17 !important;
-            box-shadow: 0 0 28px rgba(45, 212, 168, 0.4) !important;
+            background: #d9ff3a !important;
+            color: #11121c !important;
+            box-shadow: 0 0 28px rgba(217, 255, 58, 0.4) !important;
           }
           .bubble-pill-item:hover .bubble-pill-num {
-            color: #041f17 !important;
+            color: #11121c !important;
             opacity: 0.9;
           }
           .bubble-pill-item:active {
@@ -392,8 +392,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         @media (max-width: 899px) {
           .bubble-pill-item:hover {
             transform: scale(1.02);
-            background: #2dd4a8 !important;
-            color: #041f17 !important;
+            background: #d9ff3a !important;
+            color: #11121c !important;
           }
           .bubble-pill-item:active {
             transform: scale(0.97);
@@ -421,7 +421,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <button
               onClick={() => handleNavigate("home")}
               aria-label="Homepage"
-              className="group inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(45,212,168,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="group inline-flex items-center gap-2.5 sm:gap-3 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span className="w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden flex items-center justify-center bg-primary/20 border border-primary/40 shrink-0">
                 <img
@@ -442,7 +442,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             <button
               onClick={handleToggleDarkMode}
               aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
-              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_16px_rgba(45,212,168,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] flex items-center justify-center text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_16px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <span className="flex items-center justify-center transition-transform duration-200">
                 {darkMode ? (
@@ -458,7 +458,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
               onClick={toggleMenu}
               aria-label={isOpen ? "Close menu" : "Open menu"}
               aria-expanded={isOpen}
-              className="inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(45,212,168,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="inline-flex items-center gap-2.5 h-11 sm:h-12 px-4 sm:px-5 rounded-full bg-card/85 backdrop-blur-xl border border-primary/25 shadow-[0_4px_20px_rgba(0,0,0,0.35)] text-foreground hover:text-primary transition-all duration-300 hover:border-primary/70 hover:shadow-[0_0_20px_rgba(217,255,58,0.3)] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {/* Rolling Text (StaggeredMenu style) */}
               <span className="relative inline-block h-[1.1em] overflow-hidden whitespace-nowrap text-xs font-mono font-semibold uppercase tracking-wider text-current">
@@ -497,16 +497,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
         className="fixed inset-0 pointer-events-none z-[250] overflow-hidden"
         aria-hidden="true"
       >
-        <div className="header-prelayer bg-[#0a2f26]" />
-        <div className="header-prelayer bg-[#134e40]" />
-        <div className="header-prelayer bg-[#191922]" />
+        <div className="header-prelayer bg-[#1a2300]" />
+        <div className="header-prelayer bg-[#2c3d00]" />
+        <div className="header-prelayer bg-[#161826]" />
       </div>
 
       {/* Main Staggered + Bubble Menu Overlay Panel */}
       <div
         ref={panelRef}
         id="bubble-staggered-panel"
-        className={`fixed inset-0 z-[260] bg-[#101014]/96 backdrop-blur-2xl text-neutral-100 flex flex-col justify-between overflow-y-auto select-none border-l border-primary/20 ${
+        className={`fixed inset-0 z-[260] bg-[#11121c]/96 backdrop-blur-2xl text-neutral-100 flex flex-col justify-between overflow-y-auto select-none border-l border-primary/20 ${
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
         aria-hidden={!isOpen}
@@ -562,8 +562,8 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                   }
                   className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between backdrop-blur-xl transition-all duration-300 shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
                     isActive
-                      ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(45,212,168,0.25)]"
-                      : "bg-[#18181f]/85 border-primary/20 text-neutral-100"
+                      ? "bg-primary/15 border-primary text-primary shadow-[0_0_20px_rgba(217,255,58,0.25)]"
+                      : "bg-[#181926]/85 border-primary/20 text-neutral-100"
                   }`}
                 >
                   <span
@@ -576,7 +576,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
                     <span
                       className={`w-2 h-2 rounded-full bg-primary transition-all duration-300 ${
                         isActive
-                          ? "opacity-100 scale-100 shadow-[0_0_8px_rgba(45,212,168,1)]"
+                          ? "opacity-100 scale-100 shadow-[0_0_8px_rgba(217,255,58,1)]"
                           : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100"
                       }`}
                     />

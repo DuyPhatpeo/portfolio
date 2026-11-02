@@ -43,28 +43,28 @@ const DEFAULT_ITEMS: BubbleMenuItem[] = [
     href: '#',
     ariaLabel: 'Home',
     rotation: -4,
-    hoverStyles: { bgColor: '#2dd4a8', textColor: '#041f17' }
+    hoverStyles: { bgColor: '#d9ff3a', textColor: '#11121c' }
   },
   {
     label: 'About',
     href: '#',
     ariaLabel: 'About',
     rotation: 3,
-    hoverStyles: { bgColor: '#2dd4a8', textColor: '#041f17' }
+    hoverStyles: { bgColor: '#d9ff3a', textColor: '#11121c' }
   },
   {
     label: 'Projects',
     href: '#',
     ariaLabel: 'Projects',
     rotation: -3,
-    hoverStyles: { bgColor: '#2dd4a8', textColor: '#041f17' }
+    hoverStyles: { bgColor: '#d9ff3a', textColor: '#11121c' }
   },
   {
     label: 'Contact',
     href: '#',
     ariaLabel: 'Contact',
     rotation: 4,
-    hoverStyles: { bgColor: '#2dd4a8', textColor: '#041f17' }
+    hoverStyles: { bgColor: '#d9ff3a', textColor: '#11121c' }
   }
 ];
 
@@ -76,7 +76,7 @@ export default function BubbleMenu({
   menuAriaLabel = 'Toggle menu',
   menuBg = 'rgba(18, 18, 22, 0.85)',
   menuContentColor = '#f4f4f5',
-  accentColor = '#2dd4a8',
+  accentColor = '#d9ff3a',
   useFixedPosition = true,
   items,
   animationEase = 'back.out(1.4)',
@@ -213,7 +213,7 @@ export default function BubbleMenu({
             transform: rotate(var(--item-rot)) scale(1.05);
             background: var(--hover-bg) !important;
             color: var(--hover-color) !important;
-            box-shadow: 0 0 30px rgba(45, 212, 168, 0.35) !important;
+            box-shadow: 0 0 30px rgba(217, 255, 58, 0.35) !important;
           }
           .bubble-menu-items .pill-link:hover .pill-number {
             color: var(--hover-color) !important;
@@ -254,7 +254,7 @@ export default function BubbleMenu({
       <nav className={containerClassName} style={style} aria-label="Main navigation">
         {/* Left Bubble: Brand Logo */}
         <div
-          className="bubble logo-bubble inline-flex items-center justify-center rounded-full bg-card/80 backdrop-blur-xl border border-primary/25 shadow-[0_4px_24px_rgba(0,0,0,0.4)] pointer-events-auto h-11 sm:h-13 px-4 sm:px-6 gap-2.5 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_20px_rgba(45,212,168,0.25)] will-change-transform"
+          className="bubble logo-bubble inline-flex items-center justify-center rounded-full bg-card/80 backdrop-blur-xl border border-primary/25 shadow-[0_4px_24px_rgba(0,0,0,0.4)] pointer-events-auto h-11 sm:h-13 px-4 sm:px-6 gap-2.5 transition-all duration-300 hover:border-primary/60 hover:shadow-[0_0_20px_rgba(217, 255, 58,0.25)] will-change-transform"
           aria-label="Logo"
           style={{ background: menuBg }}
         >
@@ -283,7 +283,7 @@ export default function BubbleMenu({
               'w-11 h-11 sm:w-13 sm:h-13',
               'cursor-pointer p-0',
               'transition-all duration-300',
-              'hover:border-primary/60 hover:shadow-[0_0_20px_rgba(45,212,168,0.25)]',
+              'hover:border-primary/60 hover:shadow-[0_0_20px_rgba(217, 255, 58,0.25)]',
               'will-change-transform'
             ].join(' ')}
             onClick={handleToggle}
@@ -364,10 +364,10 @@ export default function BubbleMenu({
                     style={
                       {
                         ['--item-rot']: `${item.rotation ?? 0}deg`,
-                        ['--pill-bg']: isActive ? 'rgba(45, 212, 168, 0.12)' : menuBg,
+                        ['--pill-bg']: isActive ? 'rgba(217, 255, 58, 0.12)' : menuBg,
                         ['--pill-color']: isActive ? accentColor : menuContentColor,
                         ['--hover-bg']: item.hoverStyles?.bgColor || accentColor,
-                        ['--hover-color']: item.hoverStyles?.textColor || '#041f17',
+                        ['--hover-color']: item.hoverStyles?.textColor || '#11121c',
                         background: 'var(--pill-bg)',
                         color: 'var(--pill-color)',
                         minHeight: '84px',

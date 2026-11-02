@@ -119,8 +119,8 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 <Lanyard
                   frontImage={profileData.avatar || profileData.heroImage}
                   backImage={profileData.avatar || profileData.heroImage}
-                  cardColor="#2dd4a8"
-                  strapColor="#2dd4a8"
+                  cardColor="#d9ff3a"
+                  strapColor="#d9ff3a"
                   interactive={false}
                   intro={false}
                   finish="glossy"
@@ -141,7 +141,7 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   name={profileData.name}
                   handle="DuyPhatpeo"
                   status={t("about.status", "Available for work")}
-                  statusColor="#2dd4a8"
+                  statusColor="#d9ff3a"
                   showUserInfo={true}
                   theme="dark"
                   radius={22}
