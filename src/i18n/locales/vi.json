@@ -160,7 +160,8 @@
       "tier_4_badge": "04 · WORKFLOW & INFRASTRUCTURE",
       "tier_4_title": "Tầng Công Cụ, Vận Hành & Thiết Kế",
       "tier_4_desc": "Kiểm soát mã nguồn Git Flow, tối ưu bundle build, tự động triển khai và thiết kế UI/UX."
-    }
+    },
+    "view_all": "Xem tất cả công nghệ"
   },
   "experience": {
     "eyebrow": "Kinh Nghiệm Thực Tế",

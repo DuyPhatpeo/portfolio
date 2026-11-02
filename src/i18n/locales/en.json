@@ -160,7 +160,8 @@
       "tier_4_badge": "04 · WORKFLOW & INFRASTRUCTURE",
       "tier_4_title": "DevOps, Tooling & Design Systems",
       "tier_4_desc": "Git Flow version control, bundling optimization, continuous deployment, and UI systems."
-    }
+    },
+    "view_all": "View all technologies"
   },
   "experience": {
     "eyebrow": "CAREER PATH",

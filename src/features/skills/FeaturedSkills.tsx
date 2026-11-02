@@ -6,26 +6,31 @@ import { TECH } from "@constants/technologies";
 import { skills } from "@constants/skillsData";
 import { FadeUp } from "@components/ui/FadeUp";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
+import { useLanguage } from "@components/providers/LanguageProvider";
 
+// Primary, frequently used core technologies
 const MAIN_SKILLS = [
   TECH.REACT,
-  TECH.TS,
   TECH.NEXT_JS,
-  TECH.ASTRO,
+  TECH.TS,
   TECH.TAILWIND,
   TECH.NODE_JS,
   TECH.DOTNET,
   TECH.LARAVEL,
-  TECH.POSTGRESQL,
-  TECH.FIREBASE,
-  TECH.VITE,
 ];
 
-// Triple the array for seamless infinite scrolling
-const SCROLLING_SKILLS = [...MAIN_SKILLS, ...MAIN_SKILLS, ...MAIN_SKILLS];
+// Quadruple the array for a perfectly smooth 25% loop
+const SCROLLING_SKILLS = [
+  ...MAIN_SKILLS,
+  ...MAIN_SKILLS,
+  ...MAIN_SKILLS,
+  ...MAIN_SKILLS,
+];
 
 const FeaturedSkills: React.FC = () => {
   const { t } = useTranslation();
+  const { lang } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef);
   const reduceMotion = useReducedMotion();
@@ -36,13 +41,24 @@ const FeaturedSkills: React.FC = () => {
       className="py-16 md:py-24 relative overflow-hidden bg-transparent border-t border-border/60"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mb-10 md:mb-14">
-        <FadeUp className="flex items-baseline justify-between gap-4">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-none">
-            {t("skills.title", "Technologies I Work With")}
-          </h2>
-          <span className="hidden sm:inline-block font-mono text-base text-muted-foreground">
-            {t("skills.core_stack", "Core Stack")}
-          </span>
+        <FadeUp className="flex items-end justify-between gap-4">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-mono font-medium mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+              <span>{t("skills.core_stack", "Core Stack")}</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-foreground tracking-tight leading-none">
+              {t("skills.title", "Technologies I Work With")}
+            </h2>
+          </div>
+
+          <Link
+            href={`/${lang}/about#skills`}
+            className="group hidden sm:inline-flex items-center gap-1.5 text-sm font-mono text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+          >
+            <span>{t("skills.view_all", "View all technologies")}</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </Link>
         </FadeUp>
       </div>
 
@@ -58,8 +74,8 @@ const FeaturedSkills: React.FC = () => {
         <motion.div
           className="flex w-max gap-12 md:gap-16 items-center"
           initial={{ x: "0%" }}
-          animate={{ x: inView && !reduceMotion ? "-33.333333%" : "0%" }}
-          transition={{ repeat: Infinity, ease: "linear", duration: 30 }}
+          animate={{ x: inView && !reduceMotion ? "-25%" : "0%" }}
+          transition={{ repeat: Infinity, ease: "linear", duration: 25 }}
         >
           {SCROLLING_SKILLS.map((skillName, index) => {
             const skillItem = skills.find((s) => s.name === skillName);
