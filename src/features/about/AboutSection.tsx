@@ -138,12 +138,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   avatarUrl={profileData.avatar || profileData.heroImage}
                   miniAvatarUrl="/assets/icons/logo.webp"
                   name={profileData.name}
-                  title={t("hero.roles.frontend", "Front-End Developer")}
                   handle="DuyPhatpeo"
                   status={t("about.status", "Available for work")}
                   statusColor="#2dd4a8"
-                  contactText={t("nav.contact", "Contact")}
-                  onContactClick={() => scrollToSection("contact")}
                   showUserInfo={true}
                   theme="dark"
                   radius={22}
