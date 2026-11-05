@@ -35,14 +35,6 @@ export const projects: Project[] = [
 
   // Other Projects
   {
-    id: 2,
-    image: "/assets/projects/ecommerce.webp",
-    tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FIREBASE, TECH.ZUSTAND],
-    github: "https://github.com/DuyPhatpeo/ecommerce",
-    demo: "https://ecommerce-phat.vercel.app/",
-    featured: false,
-  },
-  {
     id: 9,
     image: "/assets/projects/pokedex.webp",
     tags: [TECH.REACT_NATIVE, TECH.EXPO, TECH.TS, TECH.NATIVEWIND, TECH.ZUSTAND],

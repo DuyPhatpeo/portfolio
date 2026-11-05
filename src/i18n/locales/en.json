@@ -233,24 +233,6 @@
           ]
         }
       },
-      "2": {
-        "title": "Realtime E-Commerce Web",
-        "short_title": "E-Commerce Web",
-        "category": "Realtime Commerce",
-        "description": "Real-time online shopping platform connected with Firebase to synchronize products, shopping carts, and order statuses.",
-        "case_study": {
-          "sections": [
-            {
-              "heading": "Authentication & Product Discovery",
-              "content": "• Secure user sign-up and sign-in via Firebase Authentication.\\n• Smart product search, price range filtering, category navigation, and popularity sorting."
-            },
-            {
-              "heading": "Live Cart & Online Checkout",
-              "content": "• Real-time cart management: add, update quantities, auto-calculate totals, and persist state.\\n• Online checkout workflow storing order details with instant order tracking updates."
-            }
-          ]
-        }
-      },
       "3": {
         "title": "Restaurant & Ordering Web",
         "short_title": "Restaurant Web",

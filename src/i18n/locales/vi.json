@@ -233,24 +233,6 @@
           ]
         }
       },
-      "2": {
-        "title": "Website Bán Hàng Realtime",
-        "short_title": "Website Bán Hàng",
-        "category": "Thương mại điện tử",
-        "description": "Nền tảng mua sắm trực tuyến thời gian thực, kết nối Firebase để đồng bộ sản phẩm, giỏ hàng và trạng thái đơn hàng tức thì.",
-        "case_study": {
-          "sections": [
-            {
-              "heading": "Tài khoản & Tìm kiếm sản phẩm",
-              "content": "• Đăng ký và đăng nhập tài khoản an toàn thông qua Firebase Authentication.\\n• Tìm kiếm sản phẩm thông minh, lọc theo khoảng giá, danh mục hàng và sắp xếp theo độ phổ biến."
-            },
-            {
-              "heading": "Giỏ hàng & Đặt mua trực tuyến",
-              "content": "• Quản lý giỏ hàng thời gian thực: Thêm, bớt số lượng, tự động tính tổng tiền và lưu trạng thái.\\n• Quy trình đặt hàng trực tuyến, lưu trữ thông tin đơn và cập nhật trạng thái đơn đặt tức thời."
-            }
-          ]
-        }
-      },
       "3": {
         "title": "Website Nhà Hàng & Đặt Món",
         "short_title": "Website Nhà Hàng",
