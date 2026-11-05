@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@animate-ui/react": "^2.4.2",
     "@emailjs/browser": "^4.4.1",
     "@gsap/react": "^2.1.2",
     "@hookform/resolvers": "^5.9.0",
@@ -27,6 +28,7 @@
     "gsap": "^3.15.0",
     "i18next": "^25.8.13",
     "lucide-react": "^0.562.0",
+    "motion": "^14.9.1",
     "next": "^16.4.3",
     "postcss": "^8.5.6",
     "react": "^19.1.0",

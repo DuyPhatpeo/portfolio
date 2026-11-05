@@ -10,6 +10,7 @@ import { useLanguage } from "@components/providers/LanguageProvider";
 import { useThemeStore } from "@stores/themeStore";
 import Lanyard from "@components/ui/Lanyard";
 import ProfileCard from "@components/ui/ProfileCard";
+import { HighlightText } from "@animate-ui/react/primitives/texts/highlight";
 
 interface AboutSectionProps {
   scrollToSection: (sectionId: string) => void;
@@ -169,15 +170,25 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                 {t("hero.banner.greeting", "Hello, I'm")}
               </p>
 
-              {/* Main Name Heading */}
+              {/* Main Name Heading with Animate UI HighlightText */}
               <h2
                 id="about-heading"
-                className="text-4xl sm:text-5xl md:text-[54px] font-sans font-bold tracking-tight text-foreground leading-[1.08] mb-3.5"
+                className="text-4xl sm:text-5xl md:text-[54px] font-sans font-bold tracking-tight text-foreground leading-[1.12] mb-3.5 flex flex-wrap items-baseline gap-x-3 gap-y-1"
               >
-                {profileData.name}{" "}
-                <span className="text-2xl sm:text-3xl font-normal text-muted-foreground inline-block">
-                  (Trần Duy Phát)
-                </span>
+                <HighlightText
+                  text={profileData.name}
+                  className="bg-linear-to-r from-primary/30 via-primary/50 to-primary/20 dark:from-primary/25 dark:via-primary/45 dark:to-primary/15 text-foreground px-2 py-0.5 rounded-lg"
+                  inView
+                  delay={150}
+                  transition={{ duration: 1.6, ease: "easeInOut" }}
+                />
+                <HighlightText
+                  text="(Trần Duy Phát)"
+                  className="text-2xl sm:text-3xl font-normal text-muted-foreground bg-linear-to-r from-primary/15 via-primary/30 to-primary/10 dark:from-primary/15 dark:via-primary/25 dark:to-primary/10 px-1.5 py-0.5 rounded-md"
+                  inView
+                  delay={500}
+                  transition={{ duration: 1.8, ease: "easeInOut" }}
+                />
               </h2>
 
               {/* Dynamic Role */}
