@@ -182,13 +182,9 @@ const AboutSection: React.FC<AboutSectionProps> = ({ scrollToSection }) => {
                   delay={150}
                   transition={{ duration: 1.6, ease: "easeInOut" }}
                 />
-                <HighlightText
-                  text="(Trần Duy Phát)"
-                  className="text-2xl sm:text-3xl font-normal text-muted-foreground bg-linear-to-r from-primary/15 via-primary/30 to-primary/10 dark:from-primary/15 dark:via-primary/25 dark:to-primary/10 px-1.5 py-0.5 rounded-md"
-                  inView
-                  delay={500}
-                  transition={{ duration: 1.8, ease: "easeInOut" }}
-                />
+                <span className="text-2xl sm:text-3xl font-normal text-muted-foreground inline-block">
+                  (Trần Duy Phát)
+                </span>
               </h2>
 
               {/* Dynamic Role */}
