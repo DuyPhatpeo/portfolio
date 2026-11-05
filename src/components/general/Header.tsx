@@ -73,10 +73,30 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const navItems = useMemo(
     () => [
-      { name: t("nav.home", "Home"), href: "home", path: `/${lang}`, rotation: -3 },
-      { name: t("nav.about", "About"), href: "about", path: `/${lang}/about`, rotation: 2.5 },
-      { name: t("nav.projects", "Projects"), href: "projects", path: `/${lang}/projects`, rotation: -2 },
-      { name: t("nav.contact", "Contact"), href: "contact", path: `/${lang}/contact`, rotation: 3 },
+      {
+        name: t("nav.home", "Home"),
+        href: "home",
+        path: `/${lang}`,
+        rotation: -4,
+      },
+      {
+        name: t("nav.about", "About"),
+        href: "about",
+        path: `/${lang}/about`,
+        rotation: 4,
+      },
+      {
+        name: t("nav.projects", "Projects"),
+        href: "projects",
+        path: `/${lang}/projects`,
+        rotation: 4,
+      },
+      {
+        name: t("nav.contact", "Contact"),
+        href: "contact",
+        path: `/${lang}/contact`,
+        rotation: -4,
+      },
     ],
     [t, lang]
   );
@@ -134,8 +154,27 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
   const handleNavigate = (id: string) => {
     closeMenu();
-    const targetPath = id === "home" ? `/${lang}` : `/${lang}/${id}`;
 
+    if (id === "home") {
+      if (pathname === `/${lang}`) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        router.push(`/${lang}`);
+      }
+      return;
+    }
+
+    if (id === "skills" || id === "blog") {
+      if (pathname === `/${lang}`) {
+        const el = document.getElementById("skills");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      } else {
+        router.push(`/${lang}#skills`);
+      }
+      return;
+    }
+
+    const targetPath = `/${lang}/${id}`;
     if (pathname === targetPath) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
@@ -146,7 +185,22 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   return (
     <>
       <style>{`
+        .bubble-pill-list {
+          row-gap: 28px;
+        }
+        .bubble-pill-col {
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+          flex: 0 0 50%;
+          box-sizing: border-box;
+          padding: 0 12px;
+        }
         .bubble-pill-item {
+          width: 100%;
+          min-height: 108px;
+          height: 108px;
+          padding: 0 24px;
           transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                       background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                       color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
@@ -164,6 +218,7 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
             color: #11121c !important;
             border-color: #d9ff3a !important;
             box-shadow: 0 14px 35px -5px rgba(217, 255, 58, 0.4), 0 0 20px rgba(217, 255, 58, 0.25) !important;
+            z-index: 10;
           }
           .bubble-pill-item:active {
             transform: rotate(var(--pill-rot, 0deg)) translateY(1px) scale(0.98) !important;
@@ -171,6 +226,20 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
           }
         }
         @media (max-width: 899px) {
+          .bubble-pill-list {
+            row-gap: 14px;
+            padding: 0 16px;
+          }
+          .bubble-pill-col {
+            flex: 0 0 100% !important;
+            margin-left: 0 !important;
+            padding: 0;
+          }
+          .bubble-pill-item {
+            min-height: 64px;
+            height: 64px;
+            padding: 0 20px;
+          }
           .bubble-pill-item:hover {
             transform: translateY(-2px) scale(1.02) !important;
             background: #d9ff3a !important;
@@ -351,68 +420,64 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
         {/* Center: Bubble Menu Pills Grid (Bubble Menu Concept) */}
         <div className="max-w-5xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12 flex-1 flex flex-col justify-center items-center">
-          <p
-            className={`font-mono text-xs sm:text-sm tracking-[0.25em] uppercase mb-6 sm:mb-8 text-center font-semibold ${
-              darkMode ? "text-primary opacity-80" : "text-[#11121c]/70"
-            }`}
-          >
-            {lang === "vi" ? "ĐIỀU HƯỚNG TRANG" : "NAVIGATION"}
-          </p>
-
-          <nav className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-5 max-w-3xl">
-            {navItems.map((item, index) => {
-              const isActive = pathname === item.path;
-              const delays = [
-                "delay-[240ms]",
-                "delay-[300ms]",
-                "delay-[360ms]",
-                "delay-[420ms]",
-              ];
-              return (
-                <div
-                  key={item.href}
-                  className={`w-full transition-all duration-500 ease-out ${delays[index]} ${
-                    isOpen
-                      ? "opacity-100 translate-y-0 scale-100"
-                      : "opacity-0 translate-y-6 scale-90 pointer-events-none"
-                  }`}
-                >
-                  <button
-                    onClick={() => handleNavigate(item.href)}
-                    style={
-                      {
-                        "--pill-rot": `${item.rotation}deg`,
-                      } as React.CSSProperties
-                    }
-                    className={`bubble-pill-item group w-full rounded-full border px-6 sm:px-8 py-4 sm:py-5 flex items-center backdrop-blur-xl shadow-[0_8px_24px_rgba(0,0,0,0.35)] cursor-pointer will-change-transform ${
-                      isActive
-                        ? darkMode
-                          ? "bg-primary/20 border-primary text-primary shadow-[0_0_24px_rgba(217,255,58,0.3)]"
-                          : "bg-[#d9ff3a] border-2 border-[#11121c] text-[#11121c] shadow-[0_4px_16px_rgba(217,255,58,0.4)]"
-                        : darkMode
-                          ? "bg-[#181926]/85 border-primary/20 text-neutral-100"
-                          : "bg-white border-2 border-[#11121c]/15 text-[#11121c] shadow-sm"
+          <nav className="w-full max-w-[760px] mx-auto">
+            <ul className="bubble-pill-list list-none m-0 p-0 flex flex-wrap justify-center w-full">
+              {navItems.map((item, index) => {
+                const isActive = pathname === item.path;
+                const delays = [
+                  "delay-[240ms]",
+                  "delay-[300ms]",
+                  "delay-[360ms]",
+                  "delay-[420ms]",
+                ];
+                return (
+                  <li
+                    key={item.href}
+                    role="none"
+                    className={`bubble-pill-col transition-all duration-500 ease-out ${delays[index]} ${
+                      isOpen
+                        ? "opacity-100 translate-y-0 scale-100"
+                        : "opacity-0 translate-y-6 scale-90 pointer-events-none"
                     }`}
                   >
-                    <span className="inline-flex items-center gap-3 sm:gap-4 will-change-transform transition-transform duration-300 ease-out group-hover:translate-x-1.5">
-                      {/* Active Route Indicator Dot */}
-                      <span
-                        className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ease-out ${
-                          isActive
-                            ? darkMode
-                              ? "bg-primary opacity-100 scale-100 shadow-[0_0_10px_rgba(217,255,58,1)]"
-                              : "bg-[#11121c] opacity-100 scale-100"
-                            : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 group-hover:bg-[#11121c]"
-                        }`}
-                      />
-                      <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold uppercase tracking-tight">
-                        {toTitleCase(item.name)}
+                    <button
+                      type="button"
+                      onClick={() => handleNavigate(item.href)}
+                      style={
+                        {
+                          "--pill-rot": `${item.rotation}deg`,
+                        } as React.CSSProperties
+                      }
+                      className={`bubble-pill-item group w-full rounded-full border flex items-center justify-center backdrop-blur-xl cursor-pointer will-change-transform ${
+                        isActive
+                          ? darkMode
+                            ? "bg-primary/20 border-primary text-primary shadow-[0_0_24px_rgba(217,255,58,0.3)] ring-1 ring-primary/40"
+                            : "bg-[#11121c] border-2 border-[#11121c] text-[#d9ff3a] shadow-[0_8px_24px_rgba(17,18,28,0.25)]"
+                          : darkMode
+                            ? "bg-[#181926]/90 border-primary/20 text-neutral-100 hover:border-primary/50 shadow-[0_6px_20px_rgba(0,0,0,0.4)]"
+                            : "bg-white border-2 border-[#11121c]/15 text-[#11121c] hover:border-[#11121c] shadow-[0_4px_16px_rgba(0,0,0,0.08)]"
+                      }`}
+                    >
+                      <span className="inline-flex items-center gap-2.5 sm:gap-3.5 will-change-transform transition-transform duration-300 ease-out group-hover:scale-105">
+                        {/* Active Route Indicator Dot */}
+                        <span
+                          className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ease-out ${
+                            isActive
+                              ? darkMode
+                                ? "bg-primary opacity-100 scale-100 shadow-[0_0_10px_rgba(217,255,58,1)]"
+                                : "bg-[#d9ff3a] opacity-100 scale-100"
+                              : "opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 group-hover:bg-[#11121c]"
+                          }`}
+                        />
+                        <span className="text-xl sm:text-2xl md:text-3xl font-sans font-bold tracking-tight">
+                          {toTitleCase(item.name)}
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </div>
-              );
-            })}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
           </nav>
         </div>
 

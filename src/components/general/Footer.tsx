@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@components/providers/LanguageProvider";
 import { motion } from "framer-motion";
+import GradientText from "@components/ui/GradientText";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -34,7 +35,7 @@ const Footer = () => {
     >
       <div className="max-w-7xl mx-auto w-full px-5 sm:px-8 md:px-12 pt-14 md:pt-20 pb-8 md:pb-12">
         {/* Editorial Oversized Brand Wordmark */}
-        <div className="pt-4 pb-8 sm:pt-8 sm:pb-12 text-center overflow-hidden flex justify-center items-end">
+        <div className="pt-4 pb-8 sm:pt-10 sm:pb-14 text-center overflow-hidden flex justify-center items-end">
           <motion.button
             onClick={() => {
               if (typeof window !== "undefined" && window.location.pathname === `/${lang}`) {
@@ -47,9 +48,17 @@ const Footer = () => {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true, margin: "-10%" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-block will-change-transform text-[14vw] sm:text-[13vw] md:text-[12vw] leading-[0.88] font-sans font-bold uppercase tracking-tight text-lime-600 dark:text-primary cursor-pointer hover:opacity-85 transition-opacity duration-300"
+            className="inline-block will-change-transform text-[16vw] sm:text-[15vw] md:text-[14vw] lg:text-[14.5vw] xl:text-[185px] leading-[0.92] font-sans font-extrabold uppercase tracking-tight whitespace-nowrap cursor-pointer hover:opacity-90 transition-opacity duration-300"
           >
-            {profileData.logo}
+            <GradientText
+              colors={["#d9ff3a", "#00f2fe", "#4ade80", "#d9ff3a"]}
+              animationSpeed={6}
+              variant="flow"
+              glow={0.3}
+              followPointer={true}
+            >
+              {profileData.logo}
+            </GradientText>
           </motion.button>
         </div>
 

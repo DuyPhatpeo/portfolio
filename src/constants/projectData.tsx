@@ -6,7 +6,7 @@ export const projects: Project[] = [
     id: 1,
     image: "/assets/projects/portfolio.webp",
     previewImage: "/assets/projects/portfolio-full.webp",
-    tags: [TECH.REACT, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
+    tags: [TECH.NEXT_JS, TECH.TS, TECH.TAILWIND, TECH.FRAMER_MOTION],
     github: "https://github.com/DuyPhatpeo/portfolio",
     demo: "https://tranduyphat.vercel.app/",
     featured: true,

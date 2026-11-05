@@ -476,5 +476,12 @@
     "projects_2": "Đã Làm",
     "contact_1": "Liên",
     "contact_2": "Hệ"
+  },
+  "not_found": {
+    "badge": "Lỗi 404 • Tín hiệu thất lạc",
+    "title": "Trang này không tồn tại",
+    "description": "Đường dẫn bạn vừa truy cập có thể đã bị gỡ bỏ, đổi tên hoặc vũ trụ tạm thời chưa định tuyến được.",
+    "back_home": "Về trang chủ",
+    "explore_projects": "Khám phá dự án"
   }
 }

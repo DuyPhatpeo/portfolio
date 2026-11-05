@@ -174,17 +174,17 @@ const DOT_SIDES = {
 const SEPARATOR = 'flex-none self-center rounded-[1px] [background:var(--dock-separator)]';
 
 const LABEL =
-  'pointer-events-none absolute whitespace-nowrap rounded-lg px-2.5 py-1.5 text-[12px] font-mono font-medium leading-none opacity-0 [background:var(--dock-label)] text-[color:var(--dock-label-ink)] border border-primary/30 [box-shadow:inset_0_0_0_1px_var(--dock-panel-edge),0_8px_20px_-8px_rgba(0,0,0,0.5)] [transition:opacity_0.16s_ease,transform_0.16s_ease] group-hover:opacity-100 group-focus-visible:opacity-100 group-data-[hop]:!opacity-0 z-30';
+  'pointer-events-none absolute whitespace-nowrap rounded-xl px-3.5 py-2 text-xs sm:text-sm font-mono font-semibold tracking-wide leading-none opacity-0 bg-neutral-900/95 text-neutral-100 [background:var(--dock-label)] text-[color:var(--dock-label-ink)] border border-primary/50 [box-shadow:inset_0_0_0_1px_var(--dock-panel-edge),0_10px_25px_-5px_rgba(0,0,0,0.6)] transition-all duration-200 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 group-data-[hop]:!opacity-0 z-50';
 
 const LABEL_SIDES = {
   bottom:
-    'bottom-[calc(100%_+_12px)] left-1/2 [transform:translate(-50%,4px)] group-hover:[transform:translate(-50%,0)] group-focus-visible:[transform:translate(-50%,0)]',
-  top: 'top-[calc(100%_+_12px)] left-1/2 [transform:translate(-50%,-4px)] group-hover:[transform:translate(-50%,0)] group-focus-visible:[transform:translate(-50%,0)]',
-  left: 'left-[calc(100%_+_12px)] top-1/2 [transform:translate(-4px,-50%)] group-hover:[transform:translate(0,-50%)] group-focus-visible:[transform:translate(0,-50%)]',
+    'bottom-[calc(100%_+_12px)] left-1/2 -translate-x-1/2 translate-y-1.5 group-hover:translate-y-0 group-focus-visible:translate-y-0',
+  top: 'top-[calc(100%_+_12px)] left-1/2 -translate-x-1/2 -translate-y-1.5 group-hover:translate-y-0 group-focus-visible:translate-y-0',
+  left: 'left-[calc(100%_+_12px)] top-1/2 -translate-y-1/2 -translate-x-1.5 group-hover:translate-x-0 group-focus-visible:translate-x-0',
   right:
-    'right-[calc(100%_+_12px)] top-1/2 [transform:translate(4px,-50%)] group-hover:[transform:translate(0,-50%)] group-focus-visible:[transform:translate(0,-50%)]',
+    'right-[calc(100%_+_12px)] top-1/2 -translate-y-1/2 translate-x-1.5 group-hover:translate-x-0 group-focus-visible:translate-x-0',
   relative:
-    'bottom-[calc(100%_+_12px)] left-1/2 [transform:translate(-50%,4px)] group-hover:[transform:translate(-50%,0)] group-focus-visible:[transform:translate(-50%,0)]'
+    'bottom-[calc(100%_+_12px)] left-1/2 -translate-x-1/2 translate-y-1.5 group-hover:translate-y-0 group-focus-visible:translate-y-0'
 };
 
 const MENU = 'invisible fixed left-0 top-0 z-[1000] text-[13px] leading-none text-[color:var(--dock-menu-ink)]';
@@ -671,6 +671,7 @@ export default function Dock({
   const skipRef = useRef(-1);
   const [fit, setFit] = useState(1);
   const [menu, setMenu] = useState<MenuState | null>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const side = SIDES.includes(position) ? position : 'bottom';
   const vertical = side === 'left' || side === 'right';
   const rawBase = Math.max(16, baseItemSize);
@@ -1170,6 +1171,8 @@ export default function Dock({
             aria-haspopup={item.menu?.length ? 'menu' : undefined}
             aria-expanded={item.menu?.length ? openIndex === index : undefined}
             data-open={openIndex === index ? '' : undefined}
+            onPointerEnter={() => setHoveredIndex(index)}
+            onPointerLeave={() => setHoveredIndex(null)}
             onPointerDown={event => {
               skipRef.current = -1;
               const current = menuRef.current;
@@ -1211,7 +1214,12 @@ export default function Dock({
             </span>
             {showIndicators && item.active ? <span className={`${DOT} ${DOT_SIDES[side]}`} aria-hidden="true" /> : null}
             {showLabels && item.label && !menu ? (
-              <span className={`${LABEL} ${LABEL_SIDES[side]}`} aria-hidden="true">
+              <span
+                className={`${LABEL} ${LABEL_SIDES[side]} ${
+                  hoveredIndex === index ? '!opacity-100 !translate-y-0' : ''
+                }`}
+                aria-hidden="true"
+              >
                 {item.label}
               </span>
             ) : null}

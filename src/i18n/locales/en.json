@@ -476,5 +476,12 @@
     "projects_2": "Projects",
     "contact_1": "Get in",
     "contact_2": "Touch"
+  },
+  "not_found": {
+    "badge": "Error 404 • Signal Lost",
+    "title": "Page Not Found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily lost in space.",
+    "back_home": "Back to Home",
+    "explore_projects": "Explore Projects"
   }
 }

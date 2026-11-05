@@ -47,7 +47,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         icon: (
           <TechIcon
             name={tag}
-            className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain"
           />
         ),
         label: tag,
@@ -66,7 +66,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </DialogHeader>
 
         {/* Modal Top Actions */}
-        <div className="relative z-20 w-full flex items-center justify-between px-4 sm:px-6 md:px-8 py-3 sm:py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0 pr-12 sm:pr-14">
+        <div className="relative z-20 w-full flex items-center justify-between pl-4 sm:pl-6 md:pl-8 pr-16 sm:pr-20 md:pr-24 py-3 sm:py-3.5 bg-background/80 backdrop-blur-md border-b border-border shrink-0">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse shrink-0" />
             <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider truncate max-w-[140px] xs:max-w-[180px] sm:max-w-none">
@@ -139,15 +139,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">
                 {t("projects.modal.technologies", "Công nghệ sử dụng")}
               </span>
-              <div className="relative w-full pt-4 pb-2 flex items-center justify-start overflow-x-auto overflow-y-visible scrollbar-none">
+              <div className="relative w-full pt-12 pb-4 flex items-center justify-start overflow-visible">
                 <Dock
                   items={dockItems}
                   position="relative"
-                  baseItemSize={44}
-                  magnification={62}
-                  distance={120}
-                  panelHeight={58}
-                  gap={8}
+                  baseItemSize={52}
+                  magnification={76}
+                  distance={140}
+                  panelHeight={68}
+                  gap={10}
                   roundness={0.65}
                   theme="dark"
                   bounce={true}
