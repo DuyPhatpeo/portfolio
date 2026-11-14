@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: "export",
+  output: process.env.NEXT_EXPORT ? "export" : undefined,
   allowedDevOrigins: [
     "localhost:2003",
     "127.0.0.1:2003",
