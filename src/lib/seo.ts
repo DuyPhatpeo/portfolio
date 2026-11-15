@@ -31,24 +31,24 @@ export const SEO_DATA: Record<
       "Portfolio Developer",
     ],
     home: {
-      title: "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web Developer",
+      title: "Trần Duy Phát (Dino Péo) | Frontend Developer",
       description:
-        "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên thiết kế, xây dựng website và ứng dụng di động tốc độ cao, chuẩn SEO.",
+        "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng website tốc độ cao, chuẩn SEO.",
     },
     about: {
-      title: "Giới thiệu — Trần Duy Phát (Dino Péo) | Chuyên môn, Công nghệ & Kinh nghiệm",
+      title: "Giới thiệu | Trần Duy Phát (Dino Péo)",
       description:
-        "Tìm hiểu câu chuyện nghề nghiệp, lĩnh vực chuyên môn, hệ công nghệ sử dụng và kinh nghiệm làm việc thực tế của Trần Duy Phát tại Nha Trang, Việt Nam.",
+        "Kinh nghiệm làm việc, năng lực công nghệ và câu chuyện nghề nghiệp của Trần Duy Phát (Dino Péo).",
     },
     projects: {
-      title: "Dự án đã làm — Trần Duy Phát (Dino Péo) | Web, SaaS & Mobile",
+      title: "Dự án | Trần Duy Phát (Dino Péo)",
       description:
-        "Tổng hợp các dự án website, ứng dụng bán hàng, công cụ rút gọn link và app di động do Trần Duy Phát trực tiếp thiết kế và lập trình.",
+        "Tổng hợp các dự án web app, e-commerce và sản phẩm nổi bật do Trần Duy Phát trực tiếp phát triển.",
     },
     contact: {
-      title: "Liên hệ công việc & Hợp tác dự án — Trần Duy Phát (Dino Péo)",
+      title: "Liên hệ | Trần Duy Phát (Dino Péo)",
       description:
-        "Kết nối trực tiếp với Trần Duy Phát (Dino Péo) cho cơ hội tuyển dụng Frontend / Full-Stack hoặc hợp tác phát triển website và ứng dụng theo yêu cầu.",
+        "Kết nối trực tiếp với Trần Duy Phát (Dino Péo) cho cơ hội tuyển dụng hoặc hợp tác phát triển dự án.",
     },
   },
   en: {
@@ -68,24 +68,24 @@ export const SEO_DATA: Record<
       "Portfolio Developer",
     ],
     home: {
-      title: "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web Developer",
+      title: "Tran Duy Phat (Dino Peo) | Frontend Developer",
       description:
-        "Official portfolio of Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Developer crafting fast, responsive, SEO-ready web and mobile applications.",
+        "Official portfolio of Tran Duy Phat (Dino Peo) — Frontend & Full-Stack Developer crafting fast, responsive, and SEO-ready web apps.",
     },
     about: {
-      title: "About — Trần Duy Phát (Dino Péo) | Story, Capabilities & Experience",
+      title: "About | Tran Duy Phat (Dino Peo)",
       description:
-        "Learn about Trần Duy Phát's engineering background in Nha Trang, core service areas, categorized tech stack, and professional work history.",
+        "Engineering background, technical capabilities, and professional journey of Tran Duy Phat.",
     },
     projects: {
-      title: "Completed Projects — Trần Duy Phát (Dino Péo) | Web, SaaS & Mobile",
+      title: "Projects | Tran Duy Phat (Dino Peo)",
       description:
-        "Explore completed web applications, e-commerce stores, link-shortening tools, and mobile apps designed and built by Trần Duy Phát.",
+        "Selected web applications, tools, and digital products designed and developed by Tran Duy Phat.",
     },
     contact: {
-      title: "Contact — Trần Duy Phát (Dino Péo) | Hiring & Project Inquiries",
+      title: "Contact | Tran Duy Phat (Dino Peo)",
       description:
-        "Get in touch directly with Trần Duy Phát (Dino Péo) for Frontend / Full-Stack engineering roles or custom web and mobile development.",
+        "Get in touch directly with Tran Duy Phat (Dino Peo) for engineering roles or project inquiries.",
     },
   },
 };

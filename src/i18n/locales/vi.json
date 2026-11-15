@@ -2,20 +2,20 @@
   "seo": {
     "keywords": "Trần Duy Phát, Dino Péo, Frontend Developer, Full-Stack Web Developer, Kỹ sư phần mềm, React Developer Vietnam, TypeScript, Next.js, Laravel, React Native, Thiết kế website chuẩn SEO, Lập trình web Nha Trang",
     "home": {
-      "title": "Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Web Developer",
-      "description": "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên thiết kế, xây dựng website và ứng dụng di động tốc độ cao, chuẩn SEO."
+      "title": "Trần Duy Phát (Dino Péo) | Frontend Developer",
+      "description": "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng website tốc độ cao, chuẩn SEO."
     },
     "about": {
-      "title": "Giới thiệu — Trần Duy Phát (Dino Péo) | Chuyên môn, Công nghệ & Kinh nghiệm",
-      "description": "Tìm hiểu câu chuyện nghề nghiệp, lĩnh vực chuyên môn, hệ công nghệ sử dụng và kinh nghiệm làm việc thực tế của Trần Duy Phát tại Nha Trang, Việt Nam."
+      "title": "Giới thiệu | Trần Duy Phát (Dino Péo)",
+      "description": "Kinh nghiệm làm việc, năng lực công nghệ và câu chuyện nghề nghiệp của Trần Duy Phát (Dino Péo)."
     },
     "projects": {
-      "title": "Dự án đã làm — Trần Duy Phát (Dino Péo) | Web, SaaS & Mobile",
-      "description": "Tổng hợp các dự án website, ứng dụng bán hàng, công cụ rút gọn link và app di động do Trần Duy Phát trực tiếp thiết kế và lập trình."
+      "title": "Dự án | Trần Duy Phát (Dino Péo)",
+      "description": "Tổng hợp các dự án web app, e-commerce và sản phẩm nổi bật do Trần Duy Phát trực tiếp phát triển."
     },
     "contact": {
-      "title": "Liên hệ công việc & Hợp tác dự án — Trần Duy Phát (Dino Péo)",
-      "description": "Kết nối trực tiếp với Trần Duy Phát (Dino Péo) cho cơ hội tuyển dụng Frontend / Full-Stack hoặc hợp tác phát triển website và ứng dụng theo yêu cầu."
+      "title": "Liên hệ | Trần Duy Phát (Dino Péo)",
+      "description": "Kết nối trực tiếp với Trần Duy Phát (Dino Péo) cho cơ hội tuyển dụng hoặc hợp tác phát triển dự án."
     }
   },
   "nav": {
