@@ -32,8 +32,7 @@ export const SEO_DATA: Record<
     ],
     home: {
       title: "Portfolio | Trần Duy Phát (Dino Péo)",
-      description:
-        "Portfolio của Trần Duy Phát (Dino Péo) — Frontend & Full-Stack Developer.",
+      description: "Lập trình viên Frontend & Full-Stack Developer.",
     },
     about: {
       title: "Giới thiệu | Trần Duy Phát (Dino Péo)",
@@ -69,8 +68,7 @@ export const SEO_DATA: Record<
     ],
     home: {
       title: "Portfolio | Tran Duy Phat (Dino Peo)",
-      description:
-        "Portfolio of Tran Duy Phat (Dino Peo) — Frontend & Full-Stack Developer.",
+      description: "Frontend & Full-Stack Developer.",
     },
     about: {
       title: "About | Tran Duy Phat (Dino Peo)",
@@ -133,7 +131,7 @@ export function getSeoMetadata(
       description: pageData.description,
       images: [
         {
-          url: "/og-image.png",
+          url: "/og-image.png?v=banner",
           width: 1200,
           height: 630,
           alt: `${pageData.title} — Portfolio Preview`,
@@ -144,7 +142,7 @@ export function getSeoMetadata(
       card: "summary_large_image",
       title: pageData.title,
       description: pageData.description,
-      images: ["/og-image.png"],
+      images: ["/og-image.png?v=banner"],
       creator: "@DinoPeo",
     },
     robots: {
