@@ -30,7 +30,16 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showHeader, setShowHeader] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isInitialEntered, setIsInitialEntered] = useState(false);
   const lastScrollY = useRef(0);
+
+  // Entrance slide-down animation on initial page load
+  useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setIsInitialEntered(true);
+    }, 80);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   // Header scroll detection (auto-hide on scroll down, show on scroll up)
   useEffect(() => {
@@ -262,8 +271,12 @@ const Header: React.FC<HeaderProps> = ({ scrollToSection }) => {
 
       {/* Full-Width Header Navigation */}
       <header
-        className={`fixed top-0 left-0 right-0 w-full z-[200] transition-[transform,opacity,background-color,border-color] duration-300 pointer-events-none ${
-          showHeader || isOpen
+        className={`fixed top-0 left-0 right-0 w-full z-[200] transition-[transform,opacity,background-color,border-color] ${
+          !isInitialEntered
+            ? "duration-700 [transition-timing-function:cubic-bezier(0.16,1,0.3,1)]"
+            : "duration-300 ease-out"
+        } pointer-events-none ${
+          isInitialEntered && (showHeader || isOpen)
             ? "translate-y-0 opacity-100"
             : "-translate-y-full opacity-0"
         } ${

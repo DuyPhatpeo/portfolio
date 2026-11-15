@@ -18,29 +18,68 @@ export default function HeroSection() {
       // Entrance timeline for all screens when reduced motion is not requested
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const tl = gsap.timeline({
-          defaults: { duration: 0.8, ease: "power3.out" },
+          defaults: { duration: 0.9, ease: "power3.out" },
         });
 
-        tl.from("[data-hero-word]", {
+        // Left wing (Text & Heading) enters from left
+        tl.from("[data-hero-copy]", {
           autoAlpha: 0,
-          y: 32,
-          stagger: 0.12,
-          duration: 0.85,
+          x: -90,
+          duration: 1,
+          ease: "power3.out",
         })
+          .from(
+            "[data-hero-word]",
+            {
+              autoAlpha: 0,
+              x: -30,
+              stagger: 0.1,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "<0.1"
+          )
           .from(
             "[data-hero-pill]",
             {
               scaleX: 0,
               transformOrigin: "left center",
-              duration: 0.55,
+              duration: 0.6,
               ease: "power2.out",
             },
             "<0.2"
           )
-          .from("[data-hero-tagline]", { autoAlpha: 0, x: -18 }, "<0.12")
+          .from("[data-hero-tagline]", { autoAlpha: 0, x: -25, duration: 0.7 }, "<0.12")
+          // Right wing (Avatar & 3D character) enters from right simultaneously
           .from(
             "[data-hero-avatar]",
-            { autoAlpha: 0, scale: 0.94, y: 18, duration: 0.85 },
+            {
+              autoAlpha: 0,
+              x: 90,
+              scale: 0.94,
+              duration: 1.05,
+              ease: "power3.out",
+            },
+            0.1
+          )
+          .from(
+            "[data-hero-orbit]",
+            {
+              autoAlpha: 0,
+              scale: 0.8,
+              duration: 0.8,
+              ease: "power2.out",
+            },
+            "<0.2"
+          )
+          .from(
+            "[data-hero-disc]",
+            {
+              autoAlpha: 0,
+              scale: 0.85,
+              duration: 0.8,
+              ease: "power2.out",
+            },
             "<0.1"
           );
 

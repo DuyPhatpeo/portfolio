@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import { LOCALES, type Locale, isValidLocale, DEFAULT_LOCALE } from "@/lib/i18n";
+import { getSeoMetadata } from "@/lib/seo";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import AppShell from "@/components/providers/AppShell";
 import Header from "@/components/general/Header";
@@ -6,6 +8,19 @@ import Footer from "@/components/general/Footer";
 
 export async function generateStaticParams() {
   return LOCALES.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }> | { lang: string };
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang: Locale = isValidLocale(resolvedParams.lang)
+    ? (resolvedParams.lang as Locale)
+    : DEFAULT_LOCALE;
+
+  return getSeoMetadata("home", lang);
 }
 
 export default async function LangLayout({

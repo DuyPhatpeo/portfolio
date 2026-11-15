@@ -1,31 +1,21 @@
-"use client";
+import type { Metadata } from "next";
+import { isValidLocale, DEFAULT_LOCALE, type Locale } from "@/lib/i18n";
+import { getSeoMetadata } from "@/lib/seo";
+import ProjectsClient from "./ProjectsClient";
 
-import React from "react";
-import SeoHead from "@components/general/SeoHead";
-import ProjectsSection from "@features/project/ProjectSecion";
-import GithubSection from "@features/github/GithubSection";
-import PageHero from "@components/general/PageHero";
-import { useTranslation } from "react-i18next";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }> | { lang: string };
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang: Locale = isValidLocale(resolvedParams.lang)
+    ? (resolvedParams.lang as Locale)
+    : DEFAULT_LOCALE;
+
+  return getSeoMetadata("projects", lang, "/projects");
+}
 
 export default function ProjectsPage() {
-  const { t } = useTranslation();
-
-  return (
-    <div className="flex flex-col min-h-screen bg-transparent text-foreground transition-colors duration-300">
-      <SeoHead page="projects" path="/projects" />
-
-      <main className="relative z-10 flex-1 min-h-screen">
-        <div className="relative z-10">
-          <PageHero
-            title1={t("pageHero.projects_1", "Selected")}
-            title2={t("pageHero.projects_2", "Projects")}
-            indexLabel="02"
-            subtitle={t("projects.page_intro")}
-          />
-          <ProjectsSection mode="all-list" />
-          <GithubSection />
-        </div>
-      </main>
-    </div>
-  );
+  return <ProjectsClient />;
 }
