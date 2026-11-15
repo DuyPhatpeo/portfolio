@@ -31,7 +31,7 @@ export const SEO_DATA: Record<
       "Portfolio Developer",
     ],
     home: {
-      title: "Trần Duy Phát (Dino Péo) | Frontend Developer",
+      title: "Portfolio | Trần Duy Phát (Dino Péo)",
       description:
         "Portfolio chính thức của Trần Duy Phát (Dino Péo) — Lập trình viên Frontend & Full-Stack chuyên xây dựng website tốc độ cao, chuẩn SEO.",
     },
@@ -68,7 +68,7 @@ export const SEO_DATA: Record<
       "Portfolio Developer",
     ],
     home: {
-      title: "Tran Duy Phat (Dino Peo) | Frontend Developer",
+      title: "Portfolio | Tran Duy Phat (Dino Peo)",
       description:
         "Official portfolio of Tran Duy Phat (Dino Peo) — Frontend & Full-Stack Developer crafting fast, responsive, and SEO-ready web apps.",
     },
